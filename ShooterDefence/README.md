@@ -13,3 +13,4 @@ Combination of shooter and tower defence
 
 # Assets
 - SkyBox Volume 2
+- CasualGameSounds

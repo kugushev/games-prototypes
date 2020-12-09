@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77aff944b238cb44ab36b9d240b45567, type: 3}
+  m_Name: PlayerBulletsPrefabs
+  m_EditorClassIdentifier: 
+  redPrefab: {fileID: 746075121556126028, guid: ea12faeafa4c7ab449d788d45f13f1d7, type: 3}
+  greenPrefab: {fileID: 1143407798557182641, guid: f72cb83a2e403f746a34db7a3e523458, type: 3}
+  bluePrefab: {fileID: 4988294749878546474, guid: 73f003cb02aa5f647a5e1a789a9aa692, type: 3}
+  yellowPrefab: {fileID: 5075082654843998177, guid: 3ad731283c05a044eaa33928f0fc7a0b, type: 3}
+  cyanPrefab: {fileID: 8143148821687844689, guid: 881fe972f6859fd49b48ba0fd753fb6a, type: 3}
+  magentaPrefab: {fileID: 5651460503958693204, guid: 3da0e46cc085f9f428f594ee32dcd708, type: 3}
