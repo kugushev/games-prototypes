@@ -15,8 +15,8 @@ namespace Kugushev.Scripts
             while (true)
             {
                 var timeout = new WaitForSeconds(5f);
-
-                var color = (FightColors) Random.Range((int) FightColors.Red, (int) FightColors.Blue + 1);
+                
+                var color = (FightColors) Random.Range((int) FightColors.Red, (int) FightColors.Magenta + 1);
 
                 var enemy = gameController.GetNextEnemy(color);
 
