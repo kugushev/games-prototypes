@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.AI;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private float maxXOffset = 20f;
@@ -16,12 +18,15 @@ namespace Kugushev.Scripts
         [SerializeField] private Pool pool;
         [SerializeField] private FightColors fightColor;
 
+        private NavMeshAgent _navMeshAgent;
         private GameController _gameController;
         private float movementDirection;
         private bool dying;
 
         private void Awake()
         {
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            
             var obj = GameObject.FindWithTag("GameController");
             _gameController = obj.GetComponent<GameController>();
         }
@@ -29,7 +34,8 @@ namespace Kugushev.Scripts
         private void Start()
         {
             movementDirection = Random.Range(0, 2) == 0 ? 1 : -1;
-            StartCoroutine(Shooting());
+            _navMeshAgent.destination = _gameController.EnemyTargetPosition;
+            //StartCoroutine(Shooting());
         }
 
         private void FixedUpdate()
@@ -93,7 +99,7 @@ namespace Kugushev.Scripts
 
                 var bulletTransform = bullet.transform;
                 bulletTransform.position = transform.position;
-                bulletTransform.LookAt(_gameController.PlayerPosition);
+                bulletTransform.LookAt(_gameController.EnemyTargetPosition);
 
                 bulletsInQueue++;
 

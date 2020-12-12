@@ -12,7 +12,7 @@ namespace Kugushev.Scripts
         [SerializeField] private ColoredPrefabs enemyPrefabs;
         [SerializeField] private Pool pool;
 
-        public Vector3 PlayerPosition => player.transform.position;
+        public Vector3 EnemyTargetPosition => player.transform.position;
 
         public GameObject GetNextEnemyBullet(FightColors color)
             => CreateOfTakeFromPool(pool.EnemyBulletsPool, enemyBulletPrefabs, color);

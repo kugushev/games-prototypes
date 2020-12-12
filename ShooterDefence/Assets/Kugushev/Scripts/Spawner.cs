@@ -8,6 +8,8 @@ namespace Kugushev.Scripts
     public class Spawner : MonoBehaviour
     {
         [SerializeField] private GameController gameController;
+        [SerializeField] private Transform[] spawningPositions;
+        
         private readonly Vector2 _spawnArea = new Vector2(20f, 10f);
 
         private IEnumerator Start()
@@ -20,15 +22,21 @@ namespace Kugushev.Scripts
 
                 var enemy = gameController.GetNextEnemy(color);
 
-                var position = enemy.transform.position;
-                position.x = Random.Range(-_spawnArea.x, _spawnArea.x);
-                position.y = Random.Range(-_spawnArea.y, _spawnArea.y);
-                position.z = transform.position.z;
-                enemy.transform.position = position;
+                // var position = enemy.transform.position;
+                // position.x = Random.Range(-_spawnArea.x, _spawnArea.x);
+                // position.y = Random.Range(-_spawnArea.y, _spawnArea.y);
+                // position.z = transform.position.z;
+                enemy.transform.position = GetRandomPosition();
 
 
                 yield return timeout;
             }
+        }
+
+        private Vector3 GetRandomPosition()
+        {
+            var idx = Random.Range(0, spawningPositions.Length);
+            return spawningPositions[idx].position;
         }
     }
 }

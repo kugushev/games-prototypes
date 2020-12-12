@@ -4839,7 +4839,7 @@ Transform:
   m_GameObject: {fileID: 5646149160404718522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 5646149160989668972}
   m_RootOrder: 1
@@ -4851,7 +4851,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5646149160404718522}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5646149160404718516
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4904,6 +4904,7 @@ GameObject:
   - component: {fileID: 5646149160989668972}
   - component: {fileID: 5646149160989668975}
   - component: {fileID: 5646149160989668974}
+  - component: {fileID: 4838804613887937407}
   m_Layer: 0
   m_Name: UnitEnemy
   m_TagString: Untagged
@@ -4920,7 +4921,7 @@ Transform:
   m_GameObject: {fileID: 5646149160989668947}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 20}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5646149159677204339}
   - {fileID: 5646149160404718517}
@@ -4958,3 +4959,25 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.9
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &4838804613887937407
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5646149160989668947}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.05
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.5
+  m_BaseOffset: 0.2
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
