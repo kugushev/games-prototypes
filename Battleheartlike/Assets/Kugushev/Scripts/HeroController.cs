@@ -1,33 +1,31 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Kugushev.Scripts
 {
+    [RequireComponent(typeof(XRController))]
     public class HeroController : MonoBehaviour
     {
-        [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private XRController xrController;
+        [SerializeField] private UnitController unit;
+        private XRController _xrController;
+
+        private void Awake()
+        {
+            _xrController = GetComponent<XRController>();
+        }
 
         private void FixedUpdate()
         {
-            if (xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out bool isPressed) && isPressed)
+            if (_xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out bool isPressed) && isPressed)
             {
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out var hit,
                     Mathf.Infinity))
-                {
-                    agent.destination = hit.point;
-                }
+                    unit.SetDestination(hit.point);
             }
 
-            if (xrController.inputDevice.IsPressed(InputHelpers.Button.Grip, out bool grip) && grip)
+            if (_xrController.inputDevice.IsPressed(InputHelpers.Button.PrimaryButton, out bool button) && button)
             {
-                agent.enabled = false;
-            }
-            else
-            {
-                agent.enabled = true;
+                unit.Attack();
             }
         }
     }

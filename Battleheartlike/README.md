@@ -14,3 +14,4 @@ Template for other projects.
 
 # Assets
 - [Free Medieval Room](https://assetstore.unity.com/packages/3d/environments/free-medieval-room-131004)
+- SkySerie Freebie
