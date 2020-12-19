@@ -18,8 +18,6 @@ namespace Kugushev.Scripts.Controllers
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
-            
-            
         }
 
         private void Start()

@@ -1,8 +1,7 @@
-﻿using System;
-using Kugushev.Scripts.Core.Activities.Abstractions;
-using Kugushev.Scripts.Core.Activities.Managers;
-using Kugushev.Scripts.Core.ValueObjects;
+﻿using Kugushev.Scripts.Components;
 using Kugushev.Scripts.Models.Characters.Abstractions;
+using Kugushev.Scripts.Models.Managers;
+using Kugushev.Scripts.ValueObjects;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -11,7 +10,7 @@ namespace Kugushev.Scripts.Controllers
     [RequireComponent(typeof(XRController))]
     public class HandController : MonoBehaviour
     {
-        [SerializeField] private InteractionsManager interactionsManager;
+        [SerializeField] private PlayableCharactersManager playableCharactersManager;
         [SerializeField] private PlayableCharacter character;
         private XRController _xrController;
 
@@ -22,16 +21,20 @@ namespace Kugushev.Scripts.Controllers
 
         private void FixedUpdate()
         {
-            if (_xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out bool isPressed) && isPressed)
+            //if (_xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out bool isPressed) && isPressed)
             {
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out var hit,
                     Mathf.Infinity))
                 {
-                    //var passives = hit.collider.GetComponents<IInteractable>(); how to take MODELS with high performance
+                    var interactable = hit.collider.GetComponent<CharacterInteractable>();
+                    Character passive = null;
+                    if (!ReferenceEquals(null, interactable))
+                        passive = interactable.Character;
+
                     var position = new Position(hit.point);
-                    if (!interactionsManager.TryExecuteInteraction(character, Array.Empty<IInteractable>(), position))
+                    if (!playableCharactersManager.TryExecuteInteraction(character, passive, position))
                     {
-                        // todo: show line
+                        // todo: show red line
                     }
                 }
             }

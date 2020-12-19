@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.Core.Activities;
-using Kugushev.Scripts.Core.AI.Objectives;
-using Kugushev.Scripts.Core.Interactions;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Pooling
@@ -17,8 +14,7 @@ namespace Kugushev.Scripts.Common.Pooling
         private readonly IReadOnlyDictionary<Type, Func<ObjectsPool, object>> _constructors =
             new Dictionary<Type, Func<ObjectsPool, object>>
             {
-                {typeof(MovementActivity), pool => new MovementActivity(pool)},
-                {typeof(MoveToPositionObjective), pool => new MoveToPositionObjective(pool)}
+                
             };
 
         public TObj GetObject<TObj, TState>(TState state)
