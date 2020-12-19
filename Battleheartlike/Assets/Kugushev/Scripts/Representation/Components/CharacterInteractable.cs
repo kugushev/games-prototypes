@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.Models.Characters.Abstractions;
+﻿using Kugushev.Scripts.Game.Models.Characters.Abstractions;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Components
+namespace Kugushev.Scripts.Representation.Components
 {
     public class CharacterInteractable : MonoBehaviour
     {

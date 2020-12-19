@@ -1,11 +1,11 @@
-﻿using Kugushev.Scripts.Components;
-using Kugushev.Scripts.Models.Characters.Abstractions;
-using Kugushev.Scripts.Models.Managers;
-using Kugushev.Scripts.ValueObjects;
+﻿using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Managers;
+using Kugushev.Scripts.Game.Models.Characters.Abstractions;
+using Kugushev.Scripts.Representation.Components;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Kugushev.Scripts.Controllers
+namespace Kugushev.Scripts.Representation.Controllers
 {
     [RequireComponent(typeof(XRController))]
     public class HandController : MonoBehaviour

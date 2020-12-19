@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Common.Pooling
+namespace Kugushev.Scripts.Common.Utils.Pooling
 {
     [CreateAssetMenu(fileName = "ObjectsPool", menuName = "Game/ObjectsPool", order = 0)]
     public class ObjectsPool : ScriptableObject
@@ -12,10 +12,7 @@ namespace Kugushev.Scripts.Common.Pooling
         private readonly Dictionary<Type, Queue<object>> _pools = new Dictionary<Type, Queue<object>>();
 
         private readonly IReadOnlyDictionary<Type, Func<ObjectsPool, object>> _constructors =
-            new Dictionary<Type, Func<ObjectsPool, object>>
-            {
-                
-            };
+            new Dictionary<Type, Func<ObjectsPool, object>>();
 
         public TObj GetObject<TObj, TState>(TState state)
             where TState : struct

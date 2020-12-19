@@ -1,10 +1,9 @@
-﻿using System;
-using Kugushev.Scripts.Models.Behaviors;
-using Kugushev.Scripts.Models.Services;
-using Kugushev.Scripts.ValueObjects;
+﻿using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Behaviors;
+using Kugushev.Scripts.Game.Services;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Models.Characters.Abstractions
+namespace Kugushev.Scripts.Game.Models.Characters.Abstractions
 {
     public abstract class Character : ScriptableObject, IMovable
     {

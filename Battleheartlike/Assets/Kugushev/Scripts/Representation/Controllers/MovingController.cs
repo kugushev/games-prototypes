@@ -1,11 +1,11 @@
-﻿using Kugushev.Scripts.Models.Behaviors;
-using Kugushev.Scripts.Models.Characters.Abstractions;
-using Kugushev.Scripts.Models.Services;
-using Kugushev.Scripts.ValueObjects;
+﻿using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Behaviors;
+using Kugushev.Scripts.Game.Models.Characters.Abstractions;
+using Kugushev.Scripts.Game.Services;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Kugushev.Scripts.Controllers
+namespace Kugushev.Scripts.Representation.Controllers
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public class MovingController: MonoBehaviour, IPathfindingService

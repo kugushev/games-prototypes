@@ -1,6 +1,6 @@
-﻿using Kugushev.Scripts.ValueObjects;
+﻿using Kugushev.Scripts.Common.ValueObjects;
 
-namespace Kugushev.Scripts.Models.Services
+namespace Kugushev.Scripts.Game.Services
 {
     public interface IPathfindingService
     {

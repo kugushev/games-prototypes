@@ -1,17 +1,14 @@
 ﻿using JetBrains.Annotations;
-using Kugushev.Scripts.Common.Pooling;
-using Kugushev.Scripts.Models.Behaviors;
-using Kugushev.Scripts.Models.Characters.Abstractions;
-using Kugushev.Scripts.ValueObjects;
+using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Behaviors;
+using Kugushev.Scripts.Game.Models.Characters.Abstractions;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Models.Managers
+namespace Kugushev.Scripts.Game.Managers
 {
     [CreateAssetMenu(fileName = "PlayableCharactersManager", menuName = "Game/PlayableCharactersManager", order = 0)]
     public class PlayableCharactersManager : ScriptableObject
     {
-        [SerializeField] private ObjectsPool objectsPool;
-        
         public bool TryExecuteInteraction(PlayableCharacter active, [CanBeNull] Character passive, in Position target)
         {
             if (!ReferenceEquals(passive, null))

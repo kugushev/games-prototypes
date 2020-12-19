@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Kugushev.Scripts.Controllers
+namespace Kugushev.Scripts.Representation.Controllers
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(NavMeshAgent))]

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kugushev.Scripts.Common.Pooling
+namespace Kugushev.Scripts.Common.Utils.Pooling
 {
     public interface IPoolable : IDisposable
     {

@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.Models.Services;
-using Kugushev.Scripts.ValueObjects;
+﻿using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Services;
 
-namespace Kugushev.Scripts.Models.Behaviors
+namespace Kugushev.Scripts.Game.Behaviors
 {
     public interface IMovable
     {

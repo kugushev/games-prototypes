@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Kugushev.Scripts.ValueObjects
+namespace Kugushev.Scripts.Common.ValueObjects
 {
     public readonly struct Position
     {

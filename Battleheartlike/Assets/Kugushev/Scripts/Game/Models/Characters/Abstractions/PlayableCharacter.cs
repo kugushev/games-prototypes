@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Models.Characters.Abstractions
+﻿namespace Kugushev.Scripts.Game.Models.Characters.Abstractions
 {
     public abstract class PlayableCharacter: Character
     {

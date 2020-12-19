@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Common.Pooling
+﻿namespace Kugushev.Scripts.Common.Utils.Pooling
 {
     public abstract class Poolable<TState> : IPoolable<TState>
         where TState : struct
