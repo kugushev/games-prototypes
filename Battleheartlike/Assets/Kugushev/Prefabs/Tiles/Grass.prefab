@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5627864644236632901}
   - component: {fileID: 7407610290379315727}
   - component: {fileID: 6334493671709572763}
+  - component: {fileID: 5509980037416829832}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5509980037416829832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507211667180777598}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.4, y: 6.4, z: 6.4}
+  m_Center: {x: 0, y: 3.2, z: 0}
 --- !u!1 &5557958219664001191
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5073873570371293725}
+  - component: {fileID: 3172582584884959738}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -112,3 +127,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3172582584884959738
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5557958219664001191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.4, y: 6.4, z: 6.4}
+  m_Center: {x: 2.2, y: 3.2, z: 3.11}

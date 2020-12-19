@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Kugushev.Scripts
+namespace Kugushev.Scripts.Controllers
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(NavMeshAgent))]
@@ -20,6 +18,8 @@ namespace Kugushev.Scripts
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
+            
+            
         }
 
         private void Start()
