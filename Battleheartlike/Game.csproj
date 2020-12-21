@@ -50,12 +50,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\PlayableCharactersManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Services\InteractionsService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\Characters\Abstractions\PlayableCharacter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Services\IPathfindingService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\Characters\Abstractions\Character.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\Characters\Hunter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Behaviors\IMovable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Characters\Abstractions\Model.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/Battleheartlike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

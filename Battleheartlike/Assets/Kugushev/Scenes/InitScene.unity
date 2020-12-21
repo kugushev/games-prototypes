@@ -3814,8 +3814,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 416307720}
-  - component: {fileID: 416307722}
   - component: {fileID: 416307721}
+  - component: {fileID: 416307724}
+  - component: {fileID: 416307723}
+  - component: {fileID: 416307722}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -3846,10 +3848,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 416307719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c7a18984c0f4b9383121e15e0c0c074, type: 3}
+  m_Script: {fileID: 11500000, guid: 0449c7c7b81349c09499943e756f0c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: f9bffffe28ac2564ab5069d182229f28, type: 2}
+  model: {fileID: 11400000, guid: f9bffffe28ac2564ab5069d182229f28, type: 2}
 --- !u!195 &416307722
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3872,6 +3874,30 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &416307723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416307719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae409b85aef64abf81ac511575868a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &416307724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416307719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36390ec87284bb89b294408d804f5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &417356330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16087,7 +16113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde096e5db5752543a9f852fcaf91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableCharactersManager: {fileID: 11400000, guid: cadad85eaecb73549a7c5e74fb674c11, type: 2}
+  interactionsService: {fileID: 11400000, guid: cadad85eaecb73549a7c5e74fb674c11, type: 2}
   character: {fileID: 11400000, guid: f9bffffe28ac2564ab5069d182229f28, type: 2}
 --- !u!1001 &1698718876
 PrefabInstance:

@@ -4,10 +4,10 @@ using Kugushev.Scripts.Game.Behaviors;
 using Kugushev.Scripts.Game.Models.Characters.Abstractions;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Managers
+namespace Kugushev.Scripts.Game.Services
 {
-    [CreateAssetMenu(fileName = "PlayableCharactersManager", menuName = "Game/PlayableCharactersManager", order = 0)]
-    public class PlayableCharactersManager : ScriptableObject
+    [CreateAssetMenu(fileName = "InteractionsService", menuName = "Game/InteractionsService", order = 0)]
+    public class InteractionsService : ScriptableObject
     {
         public bool TryExecuteInteraction(PlayableCharacter active, [CanBeNull] Character passive, in Position target)
         {

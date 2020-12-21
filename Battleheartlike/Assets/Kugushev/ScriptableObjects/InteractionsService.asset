@@ -10,6 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4551a19c79746eba364c125f838731c, type: 3}
-  m_Name: PlayableCharactersManager
+  m_Name: InteractionsService
   m_EditorClassIdentifier: 
-  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}

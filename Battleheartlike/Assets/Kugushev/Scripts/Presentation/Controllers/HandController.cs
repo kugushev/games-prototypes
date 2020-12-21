@@ -1,16 +1,16 @@
 ﻿using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Managers;
 using Kugushev.Scripts.Game.Models.Characters.Abstractions;
-using Kugushev.Scripts.Representation.Components;
+using Kugushev.Scripts.Game.Services;
+using Kugushev.Scripts.Presentation.Components;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Kugushev.Scripts.Representation.Controllers
+namespace Kugushev.Scripts.Presentation.Controllers
 {
     [RequireComponent(typeof(XRController))]
     public class HandController : MonoBehaviour
     {
-        [SerializeField] private PlayableCharactersManager playableCharactersManager;
+        [SerializeField] private InteractionsService interactionsService;
         [SerializeField] private PlayableCharacter character;
         private XRController _xrController;
 
@@ -26,13 +26,13 @@ namespace Kugushev.Scripts.Representation.Controllers
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out var hit,
                     Mathf.Infinity))
                 {
-                    var interactable = hit.collider.GetComponent<CharacterInteractable>();
+                    var interactable = hit.collider.GetComponent<PlayerInteractableComponent>();
                     Character passive = null;
                     if (!ReferenceEquals(null, interactable))
                         passive = interactable.Character;
 
                     var position = new Position(hit.point);
-                    if (!playableCharactersManager.TryExecuteInteraction(character, passive, position))
+                    if (!interactionsService.TryExecuteInteraction(character, passive, position))
                     {
                         // todo: show red line
                     }
