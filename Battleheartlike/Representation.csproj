@@ -50,16 +50,20 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Old\UnitController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlayerInteractableComponent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\NavigationComponent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\HunterPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\Abstractions\BaseComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Old\UnitController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\NavigationComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\HunterPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\FlatModeController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlayerInteractableComponent.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Representation.asmdef" />
  <Reference Include="Unity.XR.Interaction.Toolkit">
  <HintPath>C:/Projects/games-prototypes-vr/Battleheartlike/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.InputSystem">
+ <HintPath>C:/Projects/games-prototypes-vr/Battleheartlike/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/Battleheartlike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

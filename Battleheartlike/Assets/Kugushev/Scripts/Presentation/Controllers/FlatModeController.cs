@@ -1,31 +1,41 @@
-﻿using Kugushev.Scripts.Common.ValueObjects;
+﻿using System;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Models.Characters.Abstractions;
 using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Presentation.Components;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
-    [RequireComponent(typeof(XRController))]
-    public class HandController : MonoBehaviour
+    /// <summary>
+    /// Alternative input and other things for debugging in not VR mode
+    /// </summary>
+    public class FlatModeController : MonoBehaviour
     {
+        [SerializeField] private GameObject xrRig;
         [SerializeField] private InteractionsService interactionsService;
         [SerializeField] private PlayableCharacter character;
-        private XRController _xrController;
+        [SerializeField] private Camera flatCamera;
 
         private void Awake()
         {
-            _xrController = GetComponent<XRController>();
+            xrRig.SetActive(false);
         }
 
-        private void FixedUpdate()
+
+        // Update is called once per frame
+        void Update()
         {
-            if (_xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out bool isPressed) && isPressed)
+            var mouse = Mouse.current;
+            if (mouse.leftButton.isPressed)
             {
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out var hit,
-                    Mathf.Infinity))
+                var mousePosition = mouse.position.ReadValue();
+                Ray ray = flatCamera.ScreenPointToRay(mousePosition);
+                Debug.DrawRay(ray.origin, ray.direction);
+                if (Physics.Raycast(ray, out var hit))
                 {
+                    print(hit.collider);
                     var interactable = hit.collider.GetComponent<PlayerInteractableComponent>();
                     Character passive = null;
                     if (!ReferenceEquals(null, interactable))
@@ -34,15 +44,11 @@ namespace Kugushev.Scripts.Presentation.Controllers
                     var position = new Position(hit.point);
                     if (!interactionsService.TryExecuteInteraction(character, passive, position))
                     {
-                        // todo: show red line
+                        Debug.LogWarning($"Can't move to {hit.point}");
                     }
                 }
+                
             }
-
-            // if (_xrController.inputDevice.IsPressed(InputHelpers.Button.PrimaryButton, out bool button) && button)
-            // {
-            //     unit.Attack();
-            // }
         }
     }
 }

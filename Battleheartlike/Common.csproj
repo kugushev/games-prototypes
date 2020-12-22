@@ -51,11 +51,11 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Position.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionAttribute.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\IPoolable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\ObjectsPool.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\Poolable.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionAttribute.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionHelper.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/Battleheartlike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
