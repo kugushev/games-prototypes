@@ -28,24 +28,20 @@ namespace Kugushev.Scripts.Presentation.Controllers
         void Update()
         {
             var mouse = Mouse.current;
-            if (mouse.leftButton.isPressed)
+            if (mouse.leftButton.wasPressedThisFrame)
             {
                 var mousePosition = mouse.position.ReadValue();
                 Ray ray = flatCamera.ScreenPointToRay(mousePosition);
                 Debug.DrawRay(ray.origin, ray.direction);
                 if (Physics.Raycast(ray, out var hit))
                 {
-                    print(hit.collider);
                     var interactable = hit.collider.GetComponent<PlayerInteractableComponent>();
                     Character passive = null;
                     if (!ReferenceEquals(null, interactable))
                         passive = interactable.Character;
 
                     var position = new Position(hit.point);
-                    if (!interactionsService.TryExecuteInteraction(character, passive, position))
-                    {
-                        Debug.LogWarning($"Can't move to {hit.point}");
-                    }
+                    interactionsService.ExecuteInteraction(character, passive, position);
                 }
                 
             }

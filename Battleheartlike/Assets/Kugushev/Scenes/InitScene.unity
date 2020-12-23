@@ -571,6 +571,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1001 &69535480
@@ -3076,6 +3077,7 @@ GameObject:
   - component: {fileID: 416307724}
   - component: {fileID: 416307723}
   - component: {fileID: 416307722}
+  - component: {fileID: 416307725}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -3154,6 +3156,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a36390ec87284bb89b294408d804f5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &416307725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416307719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc1f4d0996c4feb91bb773b743c6c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &420142201

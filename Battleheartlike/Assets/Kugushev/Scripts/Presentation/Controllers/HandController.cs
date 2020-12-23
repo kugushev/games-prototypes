@@ -32,10 +32,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
                         passive = interactable.Character;
 
                     var position = new Position(hit.point);
-                    if (!interactionsService.TryExecuteInteraction(character, passive, position))
-                    {
-                        // todo: show red line
-                    }
+                    interactionsService.ExecuteInteraction(character, passive, position);
                 }
             }
 
