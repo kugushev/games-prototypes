@@ -15,7 +15,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
     {
         [SerializeField] private GameObject xrRig;
         [SerializeField] private InteractionsService interactionsService;
-        [SerializeField] private PlayableCharacter character;
+        [SerializeField] private Character character;
         [SerializeField] private Camera flatCamera;
 
         private void Awake()

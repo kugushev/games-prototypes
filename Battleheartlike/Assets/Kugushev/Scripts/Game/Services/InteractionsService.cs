@@ -13,7 +13,7 @@ namespace Kugushev.Scripts.Game.Services
     {
         [SerializeField] private ObjectsPool pool;
 
-        public void ExecuteInteraction(PlayableCharacter active, [CanBeNull] Character passive, in Position target)
+        public void ExecuteInteraction(Character active, [CanBeNull] Character passive, in Position target)
         {
             if (!ReferenceEquals(passive, null))
             {

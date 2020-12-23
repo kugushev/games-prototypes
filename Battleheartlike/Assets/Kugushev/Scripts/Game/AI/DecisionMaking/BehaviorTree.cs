@@ -42,7 +42,11 @@ namespace Kugushev.Scripts.Game.AI.DecisionMaking
 
         private void CleanupCurrent()
         {
-            _root?.Dispose();
+            if (_root != null)
+            {
+                _root.Cancel();
+                _root.Dispose();
+            }
             _root = null;
         }
 

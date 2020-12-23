@@ -6,14 +6,22 @@ namespace Kugushev.Scripts.Common.Utils.Pooling
     public abstract class Poolable<TState> : IPoolable<TState>
         where TState : struct
     {
-        protected Poolable(ObjectsPool objectsPool) => MyPool = objectsPool;
+        private readonly ObjectsPool _myPool;
+        protected TState ObjectState;
+        protected Poolable(ObjectsPool objectsPool) => _myPool = objectsPool;
 
-        public ObjectsPool MyPool { get; }
-        public TState ObjectState { get; private set; }
+        public void SetState(TState state)
+        {
+            ObjectState = state;
+            OnRestore();
+        }
 
-        public void SetState(TState state) => ObjectState = state;
+        protected virtual void OnRestore()
+        {
+        }
+
         public void ClearState() => ObjectState = default;
 
-        public void Dispose() => MyPool.GiveBackObject(this);
+        public void Dispose() => _myPool.GiveBackObject(this);
     }
 }

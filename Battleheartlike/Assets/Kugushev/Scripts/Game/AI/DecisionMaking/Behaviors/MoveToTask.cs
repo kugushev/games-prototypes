@@ -8,9 +8,9 @@ using Kugushev.Scripts.Game.Features;
 namespace Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors
 {
     [Serializable]
-    internal class MoveToTask: Poolable<MoveToTask.State>, IBehaviorTreeTask
+    internal class MoveToTask : BehaviorTreeTask<MoveToTask.State>
     {
-        public readonly struct State
+        public struct State
         {
             public IMovable Agent { get; }
             public Position Destination { get; }
@@ -28,27 +28,27 @@ namespace Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors
             }
         }
 
-        public MoveToTask(ObjectsPool objectsPool) 
+        public MoveToTask(ObjectsPool objectsPool)
             : base(objectsPool)
         {
         }
 
-        public async UniTask<bool> RunAsync()
+        public override async UniTask<bool> RunAsync()
         {
             var (agent, destination) = ObjectState;
-            
-            if (!agent.NavigationComponent.TrySetDestination(in destination))
+
+            if (!agent.NavigationService.TrySetDestination(in destination))
                 return false;
 
             agent.IsMoving = true;
 
-            await UniTask.WaitUntil(DestinationReached);
-            
+            await AwaitOrCancel(UniTask.WaitUntil(DestinationReached));
+
             agent.IsMoving = false;
 
             return true;
         }
 
-        private bool DestinationReached() => ObjectState.Agent.NavigationComponent.TestIfDestinationReached();
+        private bool DestinationReached() => ObjectState.Agent?.NavigationService.TestIfDestinationReached() ?? false;
     }
 }

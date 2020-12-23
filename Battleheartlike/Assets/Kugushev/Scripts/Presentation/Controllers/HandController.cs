@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
     public class HandController : MonoBehaviour
     {
         [SerializeField] private InteractionsService interactionsService;
-        [SerializeField] private PlayableCharacter character;
+        [SerializeField] private Character character;
         private XRController _xrController;
 
         private void Awake()

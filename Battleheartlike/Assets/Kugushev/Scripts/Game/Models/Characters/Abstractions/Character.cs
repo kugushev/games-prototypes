@@ -12,7 +12,7 @@ namespace Kugushev.Scripts.Game.Models.Characters.Abstractions
 
         [ComponentInjection]
         [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local", Justification = "Use Component Injection")]
-        public INavigationComponent NavigationComponent { get; private set; }
+        public INavigationService NavigationService { get; private set; }
 
         public bool IsMoving { get; set; }
 

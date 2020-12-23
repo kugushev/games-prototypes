@@ -5,7 +5,7 @@ namespace Kugushev.Scripts.Game.Features
 {
     public interface IMovable
     {
-        INavigationComponent NavigationComponent { get; }
+        INavigationService NavigationService { get; }
         
         bool IsMoving { get; set; }
     }
