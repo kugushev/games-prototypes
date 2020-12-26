@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors.Abstractions;
+﻿using Kugushev.Scripts.Game.AI.BehaviorTree.Abstractions;
 
 namespace Kugushev.Scripts.Game.Features
 {

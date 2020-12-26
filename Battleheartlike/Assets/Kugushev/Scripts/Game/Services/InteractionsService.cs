@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors;
+using Kugushev.Scripts.Game.AI.BehaviorTree;
 using Kugushev.Scripts.Game.Features;
 using Kugushev.Scripts.Game.Models.Characters.Abstractions;
 using UnityEngine;
@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Game.Services
 
         private void ExecuteMoveTo(Character character, in Position target)
         {
-            character.BehaviorTree.SetRootTask(pool.GetObject<MoveToTask, MoveToTask.State>(
+            character.Commander.SetRootTask(pool.GetObject<MoveToTask, MoveToTask.State>(
                 new MoveToTask.State(character, target))
             );
         }

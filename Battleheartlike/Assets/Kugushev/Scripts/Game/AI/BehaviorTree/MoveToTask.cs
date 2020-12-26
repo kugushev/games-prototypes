@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors.Abstractions;
+using Kugushev.Scripts.Game.AI.BehaviorTree.Abstractions;
 using Kugushev.Scripts.Game.Features;
+using UnityEngine;
 
-namespace Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors
+namespace Kugushev.Scripts.Game.AI.BehaviorTree
 {
     [Serializable]
     internal class MoveToTask : BehaviorTreeTask<MoveToTask.State>
@@ -33,7 +35,7 @@ namespace Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors
         {
         }
 
-        public override async UniTask<bool> RunAsync()
+        public override async UniTask<bool> RunAsync(CancellationToken cancellationToken)
         {
             var (agent, destination) = ObjectState;
 
@@ -42,7 +44,7 @@ namespace Kugushev.Scripts.Game.AI.DecisionMaking.Behaviors
 
             agent.IsMoving = true;
 
-            await AwaitOrCancel(UniTask.WaitUntil(DestinationReached));
+            await UniTask.WaitUntil(DestinationReached, cancellationToken: cancellationToken);
 
             agent.IsMoving = false;
 

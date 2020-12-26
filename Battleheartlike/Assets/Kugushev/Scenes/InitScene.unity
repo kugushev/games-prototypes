@@ -4159,6 +4159,10 @@ PrefabInstance:
       propertyPath: model
       value: 
       objectReference: {fileID: 11400000, guid: a1214ddef1ffab242b2d4aa2d564c075, type: 2}
+    - target: {fileID: 7709410470251907574, guid: 4afc928fb8489304f884ab6532bff1d0, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 7709410470251907579, guid: 4afc928fb8489304f884ab6532bff1d0, type: 3}
       propertyPath: m_Icon
       value: 

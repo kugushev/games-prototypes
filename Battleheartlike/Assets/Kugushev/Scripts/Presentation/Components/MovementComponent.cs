@@ -10,17 +10,28 @@ using UnityEngine.AI;
 namespace Kugushev.Scripts.Presentation.Components
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class MovementService : BaseComponent<IMovable>, INavigationService
+    public class MovementComponent : BaseComponent<IMovable>, INavigationService
     {
         [SerializeField] private Animator animator;
         private NavMeshAgent _navMeshAgent;
 
-
         protected override void OnAwake() => _navMeshAgent = GetComponent<NavMeshAgent>();
+
+        private void Start()
+        {
+            _navMeshAgent.updateRotation = false;
+        }
 
         private void Update()
         {
             animator.SetBool(AnimatorParameters.Walking, Model.IsMoving);
+        }
+
+        private void LateUpdate()
+        {
+            // rotate instantly
+            if (_navMeshAgent.velocity.sqrMagnitude > Mathf.Epsilon)
+                transform.rotation = Quaternion.LookRotation(_navMeshAgent.velocity.normalized);
         }
 
         public bool TrySetDestination(in Position target) => _navMeshAgent.SetDestination(target.Point);
