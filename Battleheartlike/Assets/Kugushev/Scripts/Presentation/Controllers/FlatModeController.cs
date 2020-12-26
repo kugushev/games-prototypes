@@ -1,5 +1,4 @@
-﻿using System;
-using Kugushev.Scripts.Common.ValueObjects;
+﻿using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Models.Characters.Abstractions;
 using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Presentation.Components;
@@ -14,7 +13,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
     public class FlatModeController : MonoBehaviour
     {
         [SerializeField] private GameObject xrRig;
-        [SerializeField] private InteractionsService interactionsService;
+        [SerializeField] private PlayerInteractionsService playerInteractionsService;
         [SerializeField] private Character character;
         [SerializeField] private Camera flatCamera;
 
@@ -23,8 +22,6 @@ namespace Kugushev.Scripts.Presentation.Controllers
             xrRig.SetActive(false);
         }
 
-
-        // Update is called once per frame
         void Update()
         {
             var mouse = Mouse.current;
@@ -41,7 +38,9 @@ namespace Kugushev.Scripts.Presentation.Controllers
                         passive = interactable.Character;
 
                     var position = new Position(hit.point);
-                    interactionsService.ExecuteInteraction(character, passive, position);
+                    var success = playerInteractionsService.TryFindAndSetBehavior(character, passive, position);
+                    if (!success) 
+                        Debug.LogWarning($"Can't interact by {character} with {passive} at {position}");
                 }
                 
             }

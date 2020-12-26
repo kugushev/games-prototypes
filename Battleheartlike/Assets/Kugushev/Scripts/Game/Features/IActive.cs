@@ -1,9 +1,9 @@
-﻿using Kugushev.Scripts.Game.AI;
+﻿using Kugushev.Scripts.Game.AI.BehaviorTree;
 
 namespace Kugushev.Scripts.Game.Features
 {
     public interface IActive
     {
-        ICommander Commander { get; }
+        IBehaviorTreeManager BehaviorTreeManager { get; }
     }
 }

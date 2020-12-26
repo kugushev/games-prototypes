@@ -10,7 +10,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
     [RequireComponent(typeof(XRController))]
     public class HandController : MonoBehaviour
     {
-        [SerializeField] private InteractionsService interactionsService;
+        [SerializeField] private PlayerInteractionsService playerInteractionsService;
         [SerializeField] private Character character;
         private XRController _xrController;
 
@@ -32,7 +32,8 @@ namespace Kugushev.Scripts.Presentation.Controllers
                         passive = interactable.Character;
 
                     var position = new Position(hit.point);
-                    interactionsService.ExecuteInteraction(character, passive, position);
+                    playerInteractionsService.TryFindAndSetBehavior(character, passive, position);
+                    // todo: make ray red for a second on false result
                 }
             }
 

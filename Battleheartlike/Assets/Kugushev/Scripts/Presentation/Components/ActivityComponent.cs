@@ -8,7 +8,7 @@ namespace Kugushev.Scripts.Presentation.Components
     public class ActivityComponent : BaseComponent<IActive>
     {
         private IEnumerator Start() =>
-            Model.Commander
+            Model.BehaviorTreeManager
                 .RunLoop()
                 .ToCoroutine();
     }

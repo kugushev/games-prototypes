@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models.Characters.Abstractions
 {

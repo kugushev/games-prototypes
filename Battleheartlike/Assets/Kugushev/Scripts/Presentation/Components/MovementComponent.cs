@@ -1,5 +1,4 @@
-﻿using System;
-using Kugushev.Scripts.Common.ValueObjects;
+﻿using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Features;
 using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Presentation.Common;
@@ -14,8 +13,13 @@ namespace Kugushev.Scripts.Presentation.Components
     {
         [SerializeField] private Animator animator;
         private NavMeshAgent _navMeshAgent;
+        private NavMeshPath _navMeshPathForTest;
 
-        protected override void OnAwake() => _navMeshAgent = GetComponent<NavMeshAgent>();
+        protected override void OnAwake()
+        {
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshPathForTest = new NavMeshPath();
+        }
 
         private void Start()
         {
@@ -27,11 +31,18 @@ namespace Kugushev.Scripts.Presentation.Components
             animator.SetBool(AnimatorParameters.Walking, Model.IsMoving);
         }
 
+
         private void LateUpdate()
         {
             // rotate instantly
             if (_navMeshAgent.velocity.sqrMagnitude > Mathf.Epsilon)
                 transform.rotation = Quaternion.LookRotation(_navMeshAgent.velocity.normalized);
+        }
+        
+        public bool TestDestination(in Position target)
+        {
+            _navMeshAgent.CalculatePath(target.Point, _navMeshPathForTest);
+            return _navMeshPathForTest.status == NavMeshPathStatus.PathComplete;
         }
 
         public bool TrySetDestination(in Position target) => _navMeshAgent.SetDestination(target.Point);

@@ -5,7 +5,6 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.AI.BehaviorTree.Abstractions;
 using Kugushev.Scripts.Game.Features;
-using UnityEngine;
 
 namespace Kugushev.Scripts.Game.AI.BehaviorTree
 {

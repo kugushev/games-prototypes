@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Kugushev.Scripts.Common.Utils.Pooling
+﻿namespace Kugushev.Scripts.Common.Utils.Pooling
 {
     public abstract class Poolable<TState> : IPoolable<TState>
         where TState : struct

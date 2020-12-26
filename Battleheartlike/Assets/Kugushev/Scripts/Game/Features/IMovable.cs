@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Services;
+﻿using Kugushev.Scripts.Game.Services;
 
 namespace Kugushev.Scripts.Game.Features
 {

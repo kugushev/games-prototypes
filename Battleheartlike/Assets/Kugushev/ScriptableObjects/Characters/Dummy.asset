@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70de801ba1e8478f951b4e48129dc6bf, type: 3}
   m_Name: Dummy
   m_EditorClassIdentifier: 
+  pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
+  isMoving: 0
