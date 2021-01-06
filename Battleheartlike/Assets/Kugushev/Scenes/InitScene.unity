@@ -17272,7 +17272,7 @@ SkinnedMeshRenderer:
   m_GameObject: {fileID: 1403178368939711124}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -17810,6 +17810,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 683f2ca495230264e9fb54a19c690de1, type: 2}
+    - target: {fileID: 6021751221083291920, guid: 1ca75dd7473d5454db076dcbcb4cba9e, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca75dd7473d5454db076dcbcb4cba9e, type: 3}
 --- !u!4 &8728771724077131144

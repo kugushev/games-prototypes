@@ -1,10 +1,10 @@
 Using pre-set license
-Built from '2020.2/release' branch; Version is '2020.2.0f1 (3721df5a8b28) revision 3613151'; Using compiler version '192528614'; Build Type 'Release'
+Built from '2020.2/release' branch; Version is '2020.2.1f1 (270dd8c3da1c) revision 2559448'; Using compiler version '192528614'; Build Type 'Release'
 OS: 'Windows 10  (10.0.0) 64bit' Language: 'en' Physical Memory: 16335 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.2.0f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
@@ -15,16 +15,14 @@ C:/Projects/games-prototypes-vr/Battleheartlike
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-59337
+64587
 Successfully changed project path to: C:/Projects/games-prototypes-vr/Battleheartlike
 C:/Projects/games-prototypes-vr/Battleheartlike
 Using Asset Import Pipeline V2.
-Unable to join player connection multicast group.
-
-Refreshing native plugins compatible for Editor in 255.96 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 6.76 ms.
-Initialize engine version: 2020.2.0f1 (3721df5a8b28)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/Resources/UnitySubsystems
+Refreshing native plugins compatible for Editor in 47.28 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.85 ms.
+Initialize engine version: 2020.2.1f1 (270dd8c3da1c)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Projects/games-prototypes-vr/Battleheartlike/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
@@ -34,28 +32,28 @@ Direct3D:
     VRAM:     6052 MB
     Driver:   27.21.14.6079
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56056
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56332
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001245 seconds.
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002312 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 32.51 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 33.50 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.07 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.773 seconds
+- Completed reload, in  1.962 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001528 seconds.
+Registered in 0.001989 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 35.31 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 35.41 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.07 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
@@ -67,31 +65,124 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  0.971 seconds
+- Completed reload, in  1.642 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.46 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
 Unloading 1845 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 85.4 MB.
-System memory in use after: 85.5 MB.
+System memory in use before: 85.6 MB.
+System memory in use after: 85.7 MB.
 
 Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 2310.
-Total: 6.713800 ms (FindLiveObjects: 0.293800 ms CreateObjectMapping: 0.051000 ms MarkObjects: 6.074200 ms  DeleteObjects: 0.293100 ms)
+Total: 1.998800 ms (FindLiveObjects: 0.194500 ms CreateObjectMapping: 0.045300 ms MarkObjects: 1.695200 ms  DeleteObjects: 0.063000 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Kugushev/ScriptableObjects/PlayerInteractionsService.asset
-  artifactKey: Guid(cadad85eaecb73549a7c5e74fb674c11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/ScriptableObjects/PlayerInteractionsService.asset using Guid(cadad85eaecb73549a7c5e74fb674c11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88bf70df701b4b77cfc8059d32d0ea44') in 0.049846 seconds
-  Import took 0.053804 seconds .
+  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController
+  artifactKey: Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController using Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ce66147f8f01e2586a62967efc95204') in 0.034314 seconds
+  Import took 0.037468 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.191718 seconds.
+  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController
+  artifactKey: Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController using Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '243aac3f555650512e1ca1be40993c92') in 0.005855 seconds
+  Import took 0.009476 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.275991 seconds.
+  path: Assets/Kugushev/Animations/Characters/Clips/Idle.fbx
+  artifactKey: Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Clips/Idle.fbx using Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d1490d7a14337c4d1129dd17c56a0e7') in 0.060411 seconds
+  Import took 0.063740 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 70.310204 seconds.
+  path: Assets/Kugushev/Meshes/Characters/HunterBowman.mtl
+  artifactKey: Guid(3456fdc7ace7ff04b98a323b4b699a87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Meshes/Characters/HunterBowman.mtl using Guid(3456fdc7ace7ff04b98a323b4b699a87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e0a5ac3ff59e92be7a08a241b9ba927') in 0.003270 seconds
+  Import took 0.006521 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 36.481791 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 03 examine.fbx
+  artifactKey: Guid(8f7e19527ba5d5e4fa821a3a12cff406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 03 examine.fbx using Guid(8f7e19527ba5d5e4fa821a3a12cff406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae210f25988645d949155daf6b8e3c8d') in 0.004098 seconds
+  Import took 0.007725 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.218812 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 01.fbx
+  artifactKey: Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 01.fbx using Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32f218924fa353964c772afea1f52437') in 0.006242 seconds
+  Import took 0.009323 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 50.980991 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 01.fbx
+  artifactKey: Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 01.fbx using Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6ba7692f7b5f9e7698658cebffae8cc') in 0.004329 seconds
+  Import took 0.007747 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000649 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 01.fbx
+  artifactKey: Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 01.fbx using Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6ba7692f7b5f9e7698658cebffae8cc') in 0.005105 seconds
+  Import took 0.007767 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.293221 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController
+  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee530d266dc1f381738c72432da655a2') in 0.005539 seconds
+  Import took 0.009192 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
 Registered in 0.001532 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.864 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1828 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 85.2 MB.
+System memory in use after: 85.3 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2313.
+Total: 1.851300 ms (FindLiveObjects: 0.176200 ms CreateObjectMapping: 0.041400 ms MarkObjects: 1.618800 ms  DeleteObjects: 0.013900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001483 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
@@ -106,110 +197,7 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  0.909 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.52 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 1828 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 84.9 MB.
-System memory in use after: 85.0 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2313.
-Total: 1.932900 ms (FindLiveObjects: 0.196200 ms CreateObjectMapping: 0.043100 ms MarkObjects: 1.676300 ms  DeleteObjects: 0.016200 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001757 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.12 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.877 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.58 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 85.1 MB.
-System memory in use after: 85.2 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2316.
-Total: 1.983400 ms (FindLiveObjects: 0.229000 ms CreateObjectMapping: 0.044600 ms MarkObjects: 1.694000 ms  DeleteObjects: 0.014700 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 192.626357 seconds.
-  path: Assets/Kugushev/Scripts/Game/Models/Characters/Heroes/Hunter.cs
-  artifactKey: Guid(dfdd035edf894bcd9b47bb2b1105d0da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Scripts/Game/Models/Characters/Heroes/Hunter.cs using Guid(dfdd035edf894bcd9b47bb2b1105d0da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '516c38bd0e95438e5ed4af0cf8adf722') in 0.012235 seconds
-  Import took 0.015337 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001700 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.47 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.884 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.12 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 85.3 MB.
-System memory in use after: 85.4 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2319.
-Total: 1.908600 ms (FindLiveObjects: 0.194100 ms CreateObjectMapping: 0.044500 ms MarkObjects: 1.654100 ms  DeleteObjects: 0.015000 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.616861 seconds.
-  path: Assets/Kugushev/Scripts/Game/Models/Characters/Dummy.cs
-  artifactKey: Guid(70de801ba1e8478f951b4e48129dc6bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Scripts/Game/Models/Characters/Dummy.cs using Guid(70de801ba1e8478f951b4e48129dc6bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe3e0340d47d738102d4455b8518ace4') in 0.004660 seconds
-  Import took 0.008052 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002512 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.47 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.913 seconds
+- Completed reload, in  0.856 seconds
 Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.47 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
@@ -217,16 +205,32 @@ Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 85.4 MB.
 System memory in use after: 85.5 MB.
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2322.
-Total: 1.911100 ms (FindLiveObjects: 0.219100 ms CreateObjectMapping: 0.043600 ms MarkObjects: 1.633800 ms  DeleteObjects: 0.013700 ms)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2316.
+Total: 2.109400 ms (FindLiveObjects: 0.204800 ms CreateObjectMapping: 0.046400 ms MarkObjects: 1.841400 ms  DeleteObjects: 0.015700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 225.655327 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 02 looking.fbx
+  artifactKey: Guid(e16d930d1531fd240817fa287fa9b7b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 02 looking.fbx using Guid(e16d930d1531fd240817fa287fa9b7b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f85d00c66f869c8d2aed2ac15799a3d6') in 0.023750 seconds
+  Import took 0.027409 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003452 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 02 looking.fbx
+  artifactKey: Guid(e16d930d1531fd240817fa287fa9b7b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 02 looking.fbx using Guid(e16d930d1531fd240817fa287fa9b7b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f85d00c66f869c8d2aed2ac15799a3d6') in 0.003965 seconds
+  Import took 0.006463 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.001805 seconds.
+Registered in 0.001621 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
@@ -238,24 +242,255 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  0.886 seconds
+- Completed reload, in  0.846 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.47 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
 Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 85.5 MB.
+System memory in use before: 85.6 MB.
 System memory in use after: 85.7 MB.
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2325.
-Total: 1.923300 ms (FindLiveObjects: 0.189000 ms CreateObjectMapping: 0.043700 ms MarkObjects: 1.673100 ms  DeleteObjects: 0.016200 ms)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2319.
+Total: 1.901700 ms (FindLiveObjects: 0.191400 ms CreateObjectMapping: 0.043400 ms MarkObjects: 1.652600 ms  DeleteObjects: 0.013300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.410362 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 02 looking.fbx
+  artifactKey: Guid(e16d930d1531fd240817fa287fa9b7b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing idle 02 looking.fbx using Guid(e16d930d1531fd240817fa287fa9b7b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bff229b0c1feecfccb8f8cdc324d228') in 0.025577 seconds
+  Import took 0.028963 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.997020 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController
+  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae24cbedd5e0918d0987c181c064673c') in 0.006481 seconds
+  Import took 0.009500 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.002515 seconds.
+Registered in 0.001498 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.53 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.850 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.47 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 85.8 MB.
+System memory in use after: 85.9 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2322.
+Total: 1.881000 ms (FindLiveObjects: 0.194400 ms CreateObjectMapping: 0.043100 ms MarkObjects: 1.628400 ms  DeleteObjects: 0.014000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 35.882166 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx
+  artifactKey: Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx using Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b60fd1190b5b9681f973cadb3af2f92') in 0.025223 seconds
+  Import took 0.028712 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007217 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx
+  artifactKey: Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx using Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b60fd1190b5b9681f973cadb3af2f92') in 0.004175 seconds
+  Import took 0.006853 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.616761 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx
+  artifactKey: Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx using Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '822c34f203f2fe9bb38639e275627271') in 0.006465 seconds
+  Import took 0.009634 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.013964 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx
+  artifactKey: Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx using Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '822c34f203f2fe9bb38639e275627271') in 0.003932 seconds
+  Import took 0.006676 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.509580 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx
+  artifactKey: Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing run forward.fbx using Guid(10fd45b8f2612ac408598a8fbbeeadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23748a559bdf6c585dd6a4e1d5bcdfb2') in 0.006622 seconds
+  Import took 0.009527 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.369481 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController
+  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aeecbb89427371460469d9745ce3d754') in 0.006672 seconds
+  Import took 0.010082 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001526 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.839 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.55 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.0 MB.
+System memory in use after: 86.1 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2325.
+Total: 2.049800 ms (FindLiveObjects: 0.219500 ms CreateObjectMapping: 0.040400 ms MarkObjects: 1.771400 ms  DeleteObjects: 0.017300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 417.575045 seconds.
+  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
+  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd3b2a936942f2f2be2dc6df31bbf05c') in 0.017242 seconds
+  Import took 0.021046 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001702 seconds.
+  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
+  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd3b2a936942f2f2be2dc6df31bbf05c') in 0.003363 seconds
+  Import took 0.006352 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 173.286428 seconds.
+  path: Assets/Kugushev/Meshes/Characters/Dummy.mtl
+  artifactKey: Guid(06f5e8dc7d7b23d4f8bbaeb749a78434) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Meshes/Characters/Dummy.mtl using Guid(06f5e8dc7d7b23d4f8bbaeb749a78434) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5ee56208759900819a4b55f8355610d') in 0.002508 seconds
+  Import took 0.005780 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 58.473388 seconds.
+  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
+  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d09911a2e99e0b7ef0e02aef04cc3ac') in 0.005595 seconds
+  Import took 0.009426 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 31.805137 seconds.
+  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
+  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4b8c8195963efec3d819236825839f6') in 0.003748 seconds
+  Import took 0.007598 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.405220 seconds.
+  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
+  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0911811b49af43ecfd1dec25bab63bed') in 0.005279 seconds
+  Import took 0.008845 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001679 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.871 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.1 MB.
+System memory in use after: 86.2 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2328.
+Total: 1.903900 ms (FindLiveObjects: 0.201600 ms CreateObjectMapping: 0.042600 ms MarkObjects: 1.644600 ms  DeleteObjects: 0.014100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 88.884680 seconds.
+  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
+  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '886f3012595d7b1dd8a56e35264d8b60') in 0.015597 seconds
+  Import took 0.019101 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.029371 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim overdraw.fbx
+  artifactKey: Guid(0b69d01bcabea444cb78901e6c048edd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim overdraw.fbx using Guid(0b69d01bcabea444cb78901e6c048edd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4876a8da5258d9de4c9f37bd05adbe71') in 0.015316 seconds
+  Import took 0.018591 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.013042 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim overdraw.fbx
+  artifactKey: Guid(0b69d01bcabea444cb78901e6c048edd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim overdraw.fbx using Guid(0b69d01bcabea444cb78901e6c048edd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4876a8da5258d9de4c9f37bd05adbe71') in 0.003831 seconds
+  Import took 0.006573 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 80.558080 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil.fbx
+  artifactKey: Guid(0fba385b4697ed44a9986ec6b5ccb829) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil.fbx using Guid(0fba385b4697ed44a9986ec6b5ccb829) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd47edceef261b811f750a936f04fb331') in 0.003955 seconds
+  Import took 0.007584 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001850 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.09 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
@@ -267,24 +502,298 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  0.940 seconds
+- Completed reload, in  0.953 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
+Refreshing native plugins compatible for Editor in 0.60 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
 Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 85.7 MB.
-System memory in use after: 85.8 MB.
+System memory in use before: 86.3 MB.
+System memory in use after: 86.4 MB.
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2328.
-Total: 2.131200 ms (FindLiveObjects: 0.236100 ms CreateObjectMapping: 0.044600 ms MarkObjects: 1.831400 ms  DeleteObjects: 0.018100 ms)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2331.
+Total: 3.057200 ms (FindLiveObjects: 0.258600 ms CreateObjectMapping: 0.135800 ms MarkObjects: 2.638700 ms  DeleteObjects: 0.023000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 235.922778 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController
+  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e4550d5a89d5d1484f803368ad11949') in 0.018250 seconds
+  Import took 0.021825 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.375151 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil.fbx
+  artifactKey: Guid(0fba385b4697ed44a9986ec6b5ccb829) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil.fbx using Guid(0fba385b4697ed44a9986ec6b5ccb829) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1dab6773508bd6562fb9a9931873c252') in 0.015430 seconds
+  Import took 0.019414 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.001566 seconds.
+Registered in 0.001563 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.887 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.5 MB.
+System memory in use after: 86.6 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2334.
+Total: 1.941900 ms (FindLiveObjects: 0.206900 ms CreateObjectMapping: 0.041800 ms MarkObjects: 1.677000 ms  DeleteObjects: 0.015000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 61.619124 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/NotUsed
+  artifactKey: Guid(86d023e229d13f242805d290d1832895) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/NotUsed using Guid(86d023e229d13f242805d290d1832895) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae017af5532c3793261b7877ba31c480') in 0.004242 seconds
+  Import took 0.006984 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.238614 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to standing idle 01.fbx
+  artifactKey: Guid(f20f44b71107b674b9e6be127256165e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to standing idle 01.fbx using Guid(f20f44b71107b674b9e6be127256165e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a27a20c40578132a08649bd9fd76fd3') in 0.023581 seconds
+  Import took 0.027357 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007621 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to standing idle 01.fbx
+  artifactKey: Guid(f20f44b71107b674b9e6be127256165e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to standing idle 01.fbx using Guid(f20f44b71107b674b9e6be127256165e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a27a20c40578132a08649bd9fd76fd3') in 0.003804 seconds
+  Import took 0.006517 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.802167 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to run forward.fbx
+  artifactKey: Guid(ea929ad5a1321184292dbb2c1427ec9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to run forward.fbx using Guid(ea929ad5a1321184292dbb2c1427ec9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd968f1ee24b53efdfb4732ec6601810b') in 0.004237 seconds
+  Import took 0.007742 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002832 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to run forward.fbx
+  artifactKey: Guid(ea929ad5a1321184292dbb2c1427ec9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/fall a land to run forward.fbx using Guid(ea929ad5a1321184292dbb2c1427ec9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd968f1ee24b53efdfb4732ec6601810b') in 0.003880 seconds
+  Import took 0.006664 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.804086 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Stash
+  artifactKey: Guid(86d023e229d13f242805d290d1832895) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Stash using Guid(86d023e229d13f242805d290d1832895) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a186fa3f429e357494dd2e557929c52') in 0.001618 seconds
+  Import took 0.004572 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.034172 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil 1.fbx
+  artifactKey: Guid(829a6d6ce6c594448842c147c166e0e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil 1.fbx using Guid(829a6d6ce6c594448842c147c166e0e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b5e6c351773be749cc09d6a611c8049') in 0.007181 seconds
+  Import took 0.010594 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.829600 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil 1.fbx
+  artifactKey: Guid(829a6d6ce6c594448842c147c166e0e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/standing aim recoil 1.fbx using Guid(829a6d6ce6c594448842c147c166e0e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f92a8e215f3397e040526a8aa95d922') in 0.006731 seconds
+  Import took 0.010010 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 268.189283 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController
+  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98a69ef571ce79a2ccfe666c9ceb1aac') in 0.008175 seconds
+  Import took 0.011953 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 216.342530 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Aim Recoil New.anim
+  artifactKey: Guid(1753eb29ae65c3040b1ac14b14504689) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Aim Recoil New.anim using Guid(1753eb29ae65c3040b1ac14b14504689) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fe9dcf1dda43fd2fa49152b4dc9497b') in 0.013121 seconds
+  Import took 0.016930 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001499 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.858 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.7 MB.
+System memory in use after: 86.8 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2337.
+Total: 1.898600 ms (FindLiveObjects: 0.199800 ms CreateObjectMapping: 0.044900 ms MarkObjects: 1.639900 ms  DeleteObjects: 0.013200 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 406.915712 seconds.
+  path: Assets/Kugushev/Animations/Characters/Clips/Dummy@Shooting.fbx
+  artifactKey: Guid(5b575cb9fa93d2e43b75964cb39acd36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Clips/Dummy@Shooting.fbx using Guid(5b575cb9fa93d2e43b75964cb39acd36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc116d85015f0d52b4edac05667b5b8d') in 0.024793 seconds
+  Import took 0.027975 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.427733 seconds.
+  path: Assets/Kugushev/Animations/Characters/Clips/Shooting.anim
+  artifactKey: Guid(542147f9f2e60cb4aa7fd88d2f576037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Clips/Shooting.anim using Guid(542147f9f2e60cb4aa7fd88d2f576037) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '005680b79a51917158ad57afe247af17') in 0.005784 seconds
+  Import took 0.008825 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.891907 seconds.
+  path: Assets/Kugushev/Animations/Characters/Clips/Idle.fbx
+  artifactKey: Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Clips/Idle.fbx using Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '662b6243084455e0e25ba6249fc86fdd') in 0.004134 seconds
+  Import took 0.007359 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.332583 seconds.
+  path: Assets/Kugushev/Animations/Characters/Clips/Idle.anim
+  artifactKey: Guid(233e77f82c09c564c8247380061e7021) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Clips/Idle.anim using Guid(233e77f82c09c564c8247380061e7021) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eddef002496946643b96ab0d1fca2ff5') in 0.005024 seconds
+  Import took 0.008311 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.470009 seconds.
+  path: Assets/Kugushev/Animations/Characters/Clips/Running.fbx
+  artifactKey: Guid(996a7dad30f6ac647b691193758e9a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Clips/Running.fbx using Guid(996a7dad30f6ac647b691193758e9a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa90645f8e39ac521681c151eefd2a09') in 0.004023 seconds
+  Import took 0.007433 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.353859 seconds.
+  path: Assets/Kugushev/Animations/Characters/Clips/Running.anim
+  artifactKey: Guid(fa4bff47f055f664cb844ca552ee7195) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Clips/Running.anim using Guid(fa4bff47f055f664cb844ca552ee7195) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ca3cf8fae762035c413c44181b11ea5') in 0.006535 seconds
+  Import took 0.009695 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.026615 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController
+  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed2740909c132b1364c2fcff86a98e6c') in 0.006122 seconds
+  Import took 0.009310 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.298412 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Standing idle 01.anim
+  artifactKey: Guid(262532ee8b891984e9167f6db8f0d8a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Standing idle 01.anim using Guid(262532ee8b891984e9167f6db8f0d8a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '433982dd41feb37b72ea65cdfb353b89') in 0.009012 seconds
+  Import took 0.012419 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.481574 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Aim Recoil.anim
+  artifactKey: Guid(734a6c7245d598a469c7f500a7c5eee0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Aim Recoil.anim using Guid(734a6c7245d598a469c7f500a7c5eee0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c6a00f21e65dfea742b2eb0c6c32c7c') in 0.005827 seconds
+  Import took 0.008750 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.901004 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Run Forward.anim
+  artifactKey: Guid(e13b4567f7a1cda418f3ee662ea1c9dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips/Run Forward.anim using Guid(e13b4567f7a1cda418f3ee662ea1c9dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57dcfde9ac97272ef366aa6972c4a005') in 0.007127 seconds
+  Import took 0.010450 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.192060 seconds.
+  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController
+  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd905a79e6c6a2b51b47f625e0edb681') in 0.021002 seconds
+  Import took 0.024951 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 29.045566 seconds.
+  path: Assets/Kugushev/Animations/Characters/Orc/Clips/Standing Idle.anim
+  artifactKey: Guid(79d68a0cf4187084fa59b2d44cb0f14f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Orc/Clips/Standing Idle.anim using Guid(79d68a0cf4187084fa59b2d44cb0f14f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edd54d90488e42b5dfb4cfae7fbfde06') in 0.005284 seconds
+  Import took 0.008140 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.413109 seconds.
+  path: Assets/Kugushev/Animations/Characters/Orc/Clips/Unarmed Walk Forward.anim
+  artifactKey: Guid(10a032e886477d74e85724e7972822b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Orc/Clips/Unarmed Walk Forward.anim using Guid(10a032e886477d74e85724e7972822b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf7e0e891f5e09266bb0ee34d3c775ec') in 0.007092 seconds
+  Import took 0.010287 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11959.637563 seconds.
+  path: Assets/Kugushev/Animations/Characters/Orc/Clips/Running.anim
+  artifactKey: Guid(f1abd3f820ccdd14cb92cac235b53135) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Orc/Clips/Running.anim using Guid(f1abd3f820ccdd14cb92cac235b53135) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69893524f5b06b73ab23b8844ffd1208') in 0.006861 seconds
+  Import took 0.010406 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.007384 seconds.
+  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController
+  artifactKey: Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController using Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acd1d613cffd8732757a81fd708b37ce') in 0.023990 seconds
+  Import took 0.027473 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004047 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
@@ -298,837 +807,12 @@ NullReferenceException: Object reference not set to an instance of an object
 Mono: successfully reloaded assembly
 - Completed reload, in  0.891 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 85.9 MB.
-System memory in use after: 86.0 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2331.
-Total: 2.351100 ms (FindLiveObjects: 0.240100 ms CreateObjectMapping: 0.043500 ms MarkObjects: 2.046500 ms  DeleteObjects: 0.019700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002720 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.919 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.52 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 86.0 MB.
-System memory in use after: 86.2 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2334.
-Total: 1.950800 ms (FindLiveObjects: 0.195700 ms CreateObjectMapping: 0.044300 ms MarkObjects: 1.691600 ms  DeleteObjects: 0.018200 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002828 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.52 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.967 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 86.2 MB.
-System memory in use after: 86.3 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2337.
-Total: 2.145800 ms (FindLiveObjects: 0.349300 ms CreateObjectMapping: 0.076700 ms MarkObjects: 1.699100 ms  DeleteObjects: 0.019600 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001636 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.922 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
+Preloading 1 native plugins for Editor in 0.07 ms.
 Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 86.4 MB.
-System memory in use after: 86.5 MB.
+System memory in use before: 87.1 MB.
+System memory in use after: 87.2 MB.
 
 Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2340.
-Total: 1.929300 ms (FindLiveObjects: 0.209100 ms CreateObjectMapping: 0.043500 ms MarkObjects: 1.656800 ms  DeleteObjects: 0.019100 ms)
+Total: 2.642800 ms (FindLiveObjects: 0.361300 ms CreateObjectMapping: 0.061700 ms MarkObjects: 2.194800 ms  DeleteObjects: 0.022800 ms)
 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001777 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.62 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.970 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 86.5 MB.
-System memory in use after: 86.6 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2343.
-Total: 2.161700 ms (FindLiveObjects: 0.254400 ms CreateObjectMapping: 0.046100 ms MarkObjects: 1.839000 ms  DeleteObjects: 0.021200 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001524 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.961 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 86.6 MB.
-System memory in use after: 86.7 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2346.
-Total: 2.104300 ms (FindLiveObjects: 0.218800 ms CreateObjectMapping: 0.045100 ms MarkObjects: 1.817500 ms  DeleteObjects: 0.021300 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 106.333654 seconds.
-  path: Assets/Kugushev/Scripts/Game/Models/Characters/Hunter.cs
-  artifactKey: Guid(dfdd035edf894bcd9b47bb2b1105d0da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Scripts/Game/Models/Characters/Hunter.cs using Guid(dfdd035edf894bcd9b47bb2b1105d0da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9d2b93b49d7773d3606131e7be04a71') in 0.004045 seconds
-  Import took 0.007083 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 23.021902 seconds.
-  path: Assets/Kugushev/ScriptableObjects/Characters/Dummy.asset
-  artifactKey: Guid(bf44ceedfcd091b4c8d07b0a0de0c298) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/ScriptableObjects/Characters/Dummy.asset using Guid(bf44ceedfcd091b4c8d07b0a0de0c298) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e55d0fde06055e1dfc46cead63a043f6') in 0.013188 seconds
-  Import took 0.016326 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.777395 seconds.
-  path: Assets/Kugushev/ScriptableObjects/Characters/Hunter.asset
-  artifactKey: Guid(f9bffffe28ac2564ab5069d182229f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/ScriptableObjects/Characters/Hunter.asset using Guid(f9bffffe28ac2564ab5069d182229f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2993d6f691b79252ce4890e0de71ab1') in 0.004174 seconds
-  Import took 0.007493 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.726383 seconds.
-  path: Assets/Kugushev/ScriptableObjects/Characters/Orc.asset
-  artifactKey: Guid(a1214ddef1ffab242b2d4aa2d564c075) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/ScriptableObjects/Characters/Orc.asset using Guid(a1214ddef1ffab242b2d4aa2d564c075) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9482e73aabab067b94661f68f73206a1') in 0.004328 seconds
-  Import took 0.007771 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001572 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.912 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.54 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 85.8 MB.
-System memory in use after: 85.9 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2349.
-Total: 2.032100 ms (FindLiveObjects: 0.233600 ms CreateObjectMapping: 0.043200 ms MarkObjects: 1.738300 ms  DeleteObjects: 0.015900 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001738 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.935 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 86.0 MB.
-System memory in use after: 86.1 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2352.
-Total: 1.972500 ms (FindLiveObjects: 0.231100 ms CreateObjectMapping: 0.050000 ms MarkObjects: 1.675700 ms  DeleteObjects: 0.014800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001510 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.932 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 86.1 MB.
-System memory in use after: 86.2 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2355.
-Total: 1.969600 ms (FindLiveObjects: 0.210100 ms CreateObjectMapping: 0.044700 ms MarkObjects: 1.699200 ms  DeleteObjects: 0.014600 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 1486.391538 seconds.
-  path: Assets/Kugushev/Prefabs/Characters/Character.prefab
-  artifactKey: Guid(4afc928fb8489304f884ab6532bff1d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Prefabs/Characters/Character.prefab using Guid(4afc928fb8489304f884ab6532bff1d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ed80afe9f063b217f4d53274fcfc4cb') in 0.033851 seconds
-  Import took 0.037837 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.518456 seconds.
-  path: Assets/Kugushev/Prefabs/Characters/Orc Variant.prefab
-  artifactKey: Guid(1ca75dd7473d5454db076dcbcb4cba9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Prefabs/Characters/Orc Variant.prefab using Guid(1ca75dd7473d5454db076dcbcb4cba9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9bf12909461624c3aad3ec71bf5951a1') in 1.391801 seconds
-  Import took 1.396150 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.461849 seconds.
-  path: Assets/Kugushev/Prefabs/Characters/Orc.prefab
-  artifactKey: Guid(1ca75dd7473d5454db076dcbcb4cba9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Prefabs/Characters/Orc.prefab using Guid(1ca75dd7473d5454db076dcbcb4cba9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e95ba0d2c024c18b848233c502873392') in 0.021564 seconds
-  Import took 0.025694 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 169.745278 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterBowman.fbx
-  artifactKey: Guid(1c59595cd272c4149802912f67a8f45d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterBowman.fbx using Guid(1c59595cd272c4149802912f67a8f45d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58416d843bb77fc31f2a1d5f1ede6008') in 0.104742 seconds
-  Import took 0.108321 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 72.057665 seconds.
-  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimatorController.controller
-  artifactKey: Guid(89da7de5e7412ea4ea143937cd45e999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimatorController.controller using Guid(89da7de5e7412ea4ea143937cd45e999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f23f977317a1acbf773ca8407d05a8e') in 0.004756 seconds
-  Import took 0.007805 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.429294 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/standing run forward stop.fbx
-  artifactKey: Guid(0da97b0e1da75e941a38314735d901b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/standing run forward stop.fbx using Guid(0da97b0e1da75e941a38314735d901b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f46cfba28df04c12066889a96418ef0') in 0.005104 seconds
-  Import took 0.008630 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001635 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/standing run forward stop.fbx
-  artifactKey: Guid(0da97b0e1da75e941a38314735d901b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/standing run forward stop.fbx using Guid(0da97b0e1da75e941a38314735d901b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f46cfba28df04c12066889a96418ef0') in 0.004145 seconds
-  Import took 0.007119 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.127091 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/standing walk left.fbx
-  artifactKey: Guid(2ce5931a4793bfa4b8bad4eedd64c9d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/standing walk left.fbx using Guid(2ce5931a4793bfa4b8bad4eedd64c9d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2378fb7dd21feee1327587263260bead') in 0.004259 seconds
-  Import took 0.007468 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.513187 seconds.
-  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimatorController 1.controller
-  artifactKey: Guid(e7519b76564b3d14c8a19a4d7efd5a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimatorController 1.controller using Guid(e7519b76564b3d14c8a19a4d7efd5a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '856ad55a4978256ef48f227d2951b7f2') in 0.005214 seconds
-  Import took 0.008996 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.431770 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimatorController.controller
-  artifactKey: Guid(e7519b76564b3d14c8a19a4d7efd5a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimatorController.controller using Guid(e7519b76564b3d14c8a19a4d7efd5a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96fd2a60cfcf361e8a357cef2a11e16c') in 0.003406 seconds
-  Import took 0.007087 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 11.894784 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimatorController.controller
-  artifactKey: Guid(e7519b76564b3d14c8a19a4d7efd5a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/HunterAnimatorController.controller using Guid(e7519b76564b3d14c8a19a4d7efd5a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acf6da3bf3a560e36758bca0a1203a76') in 0.003783 seconds
-  Import took 0.006896 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001923 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.53 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.13 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.932 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.9 MB.
-System memory in use after: 90.1 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2401.
-Total: 1.995900 ms (FindLiveObjects: 0.224400 ms CreateObjectMapping: 0.044200 ms MarkObjects: 1.711600 ms  DeleteObjects: 0.014700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001627 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.966 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.77 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.12 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 90.1 MB.
-System memory in use after: 90.2 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2404.
-Total: 1.982400 ms (FindLiveObjects: 0.225600 ms CreateObjectMapping: 0.046600 ms MarkObjects: 1.695300 ms  DeleteObjects: 0.013800 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 224.093553 seconds.
-  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimatorController 1.controller
-  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimatorController 1.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98c4f10a48f9481e1ab253f1e0feb549') in 0.015824 seconds
-  Import took 0.019293 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 12.671759 seconds.
-  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
-  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '672a750f979a4f91eeda76ef30b8d1bb') in 0.003491 seconds
-  Import took 0.007054 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.875746 seconds.
-  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
-  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5374b133ad12a893f9ba3d7760706f27') in 0.005510 seconds
-  Import took 0.009188 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 42.726960 seconds.
-  path: Assets/Kugushev/Animations/Characters/HunterAnimationController.overrideController
-  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39e99ccafccf36ae3bd0d3d2898f89ff') in 0.005806 seconds
-  Import took 0.008948 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.698292 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/fall a loop.fbx
-  artifactKey: Guid(3f7424de512119d49b64502a37decfbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/fall a loop.fbx using Guid(3f7424de512119d49b64502a37decfbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c46b83118bf1da27aa19f5a8e5c21960') in 0.013834 seconds
-  Import took 0.017077 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.014478 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/fall a loop.fbx
-  artifactKey: Guid(3f7424de512119d49b64502a37decfbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/fall a loop.fbx using Guid(3f7424de512119d49b64502a37decfbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c46b83118bf1da27aa19f5a8e5c21960') in 0.003907 seconds
-  Import took 0.006420 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 11.148036 seconds.
-  path: Assets/Kugushev/Animations/Characters/HunterAnimationController.overrideController
-  artifactKey: Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/HunterAnimationController.overrideController using Guid(d6c2d709835a7a548aa7c117858fe87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22c7e90a51ff23af76b6fe34b180d88e') in 0.005262 seconds
-  Import took 0.008786 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 45.277959 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips
-  artifactKey: Guid(e9e32ddd115c1344e829a7c2f1aeac07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips using Guid(e9e32ddd115c1344e829a7c2f1aeac07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33071346e3cfe5913f5ab2f7d4087c43') in 0.001638 seconds
-  Import took 0.004622 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 16.915456 seconds.
-  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController
-  artifactKey: Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController using Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '620cf1440f68eb803d68131093a7afbc') in 0.003956 seconds
-  Import took 0.007259 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 88.629305 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Running.fbx
-  artifactKey: Guid(996a7dad30f6ac647b691193758e9a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Running.fbx using Guid(996a7dad30f6ac647b691193758e9a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b70200988405994b7a9fb68f19bb929') in 0.005474 seconds
-  Import took 0.009385 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 15.751585 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Running.fbx
-  artifactKey: Guid(996a7dad30f6ac647b691193758e9a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Running.fbx using Guid(996a7dad30f6ac647b691193758e9a3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f709d0a179356bf9efd2320852fb84a8') in 0.006733 seconds
-  Import took 0.010333 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 94.391173 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Idle.fbx
-  artifactKey: Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Idle.fbx using Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '744d9e83acf232b0582d863eedb60c2e') in 0.007831 seconds
-  Import took 0.011412 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000717 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Idle.fbx
-  artifactKey: Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Idle.fbx using Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '744d9e83acf232b0582d863eedb60c2e') in 0.004194 seconds
-  Import took 0.006615 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.190215 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Idle.fbx
-  artifactKey: Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Idle.fbx using Guid(2d23a0b36c2345c4ca2ef8d0fafb81e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17f4793b855b8d5208e3ec90a75f17f3') in 0.007080 seconds
-  Import took 0.010674 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 66.445598 seconds.
-  path: Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController
-  artifactKey: Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Orc/OrcAnimationController.overrideController using Guid(683f2ca495230264e9fb54a19c690de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11bbfd3195dc55fa974b4c58cecd3d3c') in 0.005833 seconds
-  Import took 0.009830 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 11.154070 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips
-  artifactKey: Guid(396bf11b4bf3cc34ca475d7e81691bb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/Clips using Guid(396bf11b4bf3cc34ca475d7e81691bb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57e61688007c0c2a813f445560860930') in 0.001776 seconds
-  Import took 0.004892 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.527148 seconds.
-  path: Assets/Kugushev/Animations/Characters/Hunter Bowman/standing idle 01.fbx
-  artifactKey: Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Hunter Bowman/standing idle 01.fbx using Guid(e18feb86f7dd5d74da2282c5250513db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74c464b775e21eb4e1a4b7500ff8d8e8') in 0.004358 seconds
-  Import took 0.007646 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.933615 seconds.
-  path: Assets/Kugushev/Animations/Characters/Orc/Clips
-  artifactKey: Guid(c9c263c1bc1dc5444ba7aebf33d9444c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Orc/Clips using Guid(c9c263c1bc1dc5444ba7aebf33d9444c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac86b1ff6a1f4a930604fa52f75594c6') in 0.001497 seconds
-  Import took 0.004119 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002146 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.13 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.960 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 90.3 MB.
-System memory in use after: 90.4 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2407.
-Total: 2.517100 ms (FindLiveObjects: 0.254300 ms CreateObjectMapping: 0.050000 ms MarkObjects: 2.189200 ms  DeleteObjects: 0.022200 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001630 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.950 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.52 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.5 MB.
-System memory in use after: 89.6 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2410.
-Total: 2.025700 ms (FindLiveObjects: 0.242500 ms CreateObjectMapping: 0.045800 ms MarkObjects: 1.723000 ms  DeleteObjects: 0.013400 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 179.256417 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Breathing Idle.fbx
-  artifactKey: Guid(7578c5ab864d0574ca9d69ddbbb2a7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Breathing Idle.fbx using Guid(7578c5ab864d0574ca9d69ddbbb2a7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '603eb2e983debb234d8d7fc414cc0acc') in 0.027180 seconds
-  Import took 0.031028 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.004079 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Breathing Idle.fbx
-  artifactKey: Guid(7578c5ab864d0574ca9d69ddbbb2a7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Breathing Idle.fbx using Guid(7578c5ab864d0574ca9d69ddbbb2a7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '603eb2e983debb234d8d7fc414cc0acc') in 0.005081 seconds
-  Import took 0.007901 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.917509 seconds.
-  path: Assets/Kugushev/Animations/Characters/Clips/Breathing Idle.fbx
-  artifactKey: Guid(7578c5ab864d0574ca9d69ddbbb2a7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/Clips/Breathing Idle.fbx using Guid(7578c5ab864d0574ca9d69ddbbb2a7d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60ca84b41ebcb6e5f27352978e4138f3') in 0.007731 seconds
-  Import took 0.011044 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.590962 seconds.
-  path: Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller
-  artifactKey: Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Animations/Characters/CharacterAnimatorController.controller using Guid(d1b2dd00543fbdc4b893b754eafcd772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c663eaeec808b599044b2258ab26cc4') in 0.004826 seconds
-  Import took 0.008021 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001485 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.973 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.7 MB.
-System memory in use after: 89.8 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2413.
-Total: 2.204200 ms (FindLiveObjects: 0.325200 ms CreateObjectMapping: 0.053900 ms MarkObjects: 1.808500 ms  DeleteObjects: 0.015300 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001510 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.936 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.09 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.9 MB.
-System memory in use after: 90.0 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2416.
-Total: 1.930300 ms (FindLiveObjects: 0.229000 ms CreateObjectMapping: 0.042900 ms MarkObjects: 1.643600 ms  DeleteObjects: 0.014000 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 754.424110 seconds.
-  path: Assets/Kugushev/Meshes/Objects/Bow.png
-  artifactKey: Guid(cef61b6c58b3d604ab480e0c37b5a12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Meshes/Objects/Bow.png using Guid(cef61b6c58b3d604ab480e0c37b5a12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0a6de63bbd840af1e8fbb7766aecf2e') in 0.065188 seconds
-  Import took 0.068801 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.004280 seconds.
-  path: Assets/Kugushev/Meshes/Objects/Bow.png
-  artifactKey: Guid(cef61b6c58b3d604ab480e0c37b5a12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Meshes/Objects/Bow.png using Guid(cef61b6c58b3d604ab480e0c37b5a12b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0a6de63bbd840af1e8fbb7766aecf2e') in 0.004825 seconds
-  Import took 0.007731 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.908417 seconds.
-  path: Assets/Kugushev/Meshes/Objects/Bow.obj
-  artifactKey: Guid(3abbbd09ab9fd774989823ec571835ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Kugushev/Meshes/Objects/Bow.obj using Guid(3abbbd09ab9fd774989823ec571835ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc339883d8fe685c81aaa09878fbd7da') in 0.062621 seconds
-  Import took 0.065658 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001645 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.934 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 90.3 MB.
-System memory in use after: 90.4 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2422.
-Total: 1.963800 ms (FindLiveObjects: 0.236900 ms CreateObjectMapping: 0.044700 ms MarkObjects: 1.665400 ms  DeleteObjects: 0.015900 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001514 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.945 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 90.4 MB.
-System memory in use after: 90.6 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2425.
-Total: 1.986300 ms (FindLiveObjects: 0.215700 ms CreateObjectMapping: 0.044800 ms MarkObjects: 1.709800 ms  DeleteObjects: 0.014900 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001554 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:242 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\Battleheartlike\Library\PackageCache\com.unity.xr.oculus@1.6.1\Runtime\OculusLoader.cs:227 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.6.1/Runtime/OculusLoader.cs Line: 242)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.945 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 1829 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 90.6 MB.
-System memory in use after: 90.7 MB.
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2428.
-Total: 1.960800 ms (FindLiveObjects: 0.238900 ms CreateObjectMapping: 0.044600 ms MarkObjects: 1.662700 ms  DeleteObjects: 0.013800 ms)
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 1.20 ms, found 3 plugins.
-Preloading 1 native plugins for Editor in 0.07 ms.
-Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 55.2 MB.
-System memory in use after: 55.3 MB.
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 2428.
-Total: 2.117500 ms (FindLiveObjects: 0.251300 ms CreateObjectMapping: 0.047100 ms MarkObjects: 1.804900 ms  DeleteObjects: 0.012900 ms)
-
-AssetImportWorkerClient::OnTransportError - code=2 error=End of file

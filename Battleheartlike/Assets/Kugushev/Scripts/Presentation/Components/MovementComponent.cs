@@ -28,7 +28,7 @@ namespace Kugushev.Scripts.Presentation.Components
 
         private void Update()
         {
-            animator.SetBool(AnimatorParameters.Walking, Model.IsMoving);
+            animator.SetBool(AnimatorParameters.Running, Model.IsMoving);
         }
 
 
