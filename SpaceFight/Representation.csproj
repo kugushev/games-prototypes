@@ -13,11 +13,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7e22d7ea-b120-4926-e832-1a353be1eddc}</ProjectGuid>
+    <ProjectGuid>{aa452417-e78e-1dc4-9371-28f084a3e8bc}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Common</AssemblyName>
+    <AssemblyName>Representation</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -52,13 +52,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\Poolable.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\ObjectsPool.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\IPoolable.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionHelper.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Position.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionAttribute.cs" />
-     <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\FlatModeController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\Abstractions\BaseComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
+     <None Include="Assets\Kugushev\Scripts\Presentation\Representation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -291,10 +290,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="ICSharpCode.NRefactory">
- <HintPath>C:/Projects/games-prototypes-vr/Template_Upd/Library/PackageCache/com.unity.render-pipelines.core@10.2.2/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.2.2/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Projects/games-prototypes-vr/Template_Upd/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -641,14 +640,34 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.XR.Interaction.Toolkit">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.InputSystem">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+ </Reference>
+ <Reference Include="UniTask">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ </Reference>
+ <Reference Include="UniTask.Linq">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Projects/games-prototypes-vr/Template_Upd/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Projects/games-prototypes-vr/Template_Upd/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Common.csproj">
+      <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.csproj">
+      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
+      <Name>Game</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
