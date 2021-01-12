@@ -5,15 +5,13 @@ using UnityEngine;
 namespace Kugushev.Scripts.Presentation.Components.Abstractions
 {
     [RequireComponent(typeof(BasePresentationModel))]
-    public class BaseComponent<T> : MonoBehaviour
+    public abstract class BaseComponent<T> : MonoBehaviour
     {
         private BasePresentationModel _presentationModel;
 
         protected T Model { get; private set; }
 
-        protected virtual void OnAwake()
-        {
-        }
+        protected abstract void OnAwake();
 
         private void Awake()
         {
