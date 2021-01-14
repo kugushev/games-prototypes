@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faction: 1
   size: 3
+  production: 3

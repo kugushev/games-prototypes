@@ -52,10 +52,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Abstractions\Model.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\Planet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Faction.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Abstractions\Model.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PlanetSize.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Faction.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

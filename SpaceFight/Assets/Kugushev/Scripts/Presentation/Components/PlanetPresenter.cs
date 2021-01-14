@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
+using TMPro;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.Components
@@ -9,11 +11,14 @@ namespace Kugushev.Scripts.Presentation.Components
     [RequireComponent(typeof(MeshRenderer))]
     public class PlanetPresenter: BaseComponent<Planet>
     {
+        [SerializeField] private TextMeshProUGUI armyCaption;
         [SerializeField] private Material playerMaterial;
         [SerializeField] private Material neutralMaterial;
         [SerializeField] private Material enemyMaterial;
 
         private MeshRenderer _meshRenderer;
+        private int currentArmy = 0;
+        private static readonly Dictionary<int, string> ArmyStringBag = new Dictionary<int, string>(64); 
 
         protected override void OnAwake()
         {
@@ -37,6 +42,7 @@ namespace Kugushev.Scripts.Presentation.Components
         private void Update()
         {
             // todo: use UniRx to track changes
+            
             _meshRenderer.material = Model.Faction switch
             {
                 Faction.Player => playerMaterial,
@@ -44,6 +50,14 @@ namespace Kugushev.Scripts.Presentation.Components
                 Faction.Enemy => enemyMaterial,
                 _ => null
             };
+
+            if (currentArmy != Model.Army)
+            {
+                if (!ArmyStringBag.TryGetValue(Model.Army, out var armyCaptionText))
+                    ArmyStringBag[Model.Army] = armyCaptionText = Model.Army.ToString();
+
+                armyCaption.text = armyCaptionText;
+            }
         }
     }
 }

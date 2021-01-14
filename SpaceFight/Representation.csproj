@@ -55,10 +55,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\FlatModeController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\Abstractions\BaseComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\PlanetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\PlanetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlanetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\GameController.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Representation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -644,6 +645,9 @@
  </Reference>
  <Reference Include="UniTask.Linq">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
