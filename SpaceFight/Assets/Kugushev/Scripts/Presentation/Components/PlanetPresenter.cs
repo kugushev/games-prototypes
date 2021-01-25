@@ -58,6 +58,11 @@ namespace Kugushev.Scripts.Presentation.Components
 
                 armyCaption.text = armyCaptionText;
             }
+
+            if (Model.Selected)
+            {
+                print("Selected");
+            }
         }
     }
 }

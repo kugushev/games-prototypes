@@ -24,6 +24,8 @@ namespace Kugushev.Scripts.Game.Models
         public PlanetSize Size => size;
 
         public int Army => army;
+        
+        public bool Selected { get; set; }
 
         public UniTask ExecuteProductionCycle()
         {

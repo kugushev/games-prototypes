@@ -9,5 +9,7 @@ namespace Kugushev.Scripts.Presentation.PresentationModels
     {
         [SerializeField] private Planet model;
         protected override Model Model => model;
+
+        public Planet Planet => model;
     }
 }
