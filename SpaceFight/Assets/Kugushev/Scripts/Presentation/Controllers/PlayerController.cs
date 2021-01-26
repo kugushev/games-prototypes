@@ -8,11 +8,13 @@ namespace Kugushev.Scripts.Presentation.Controllers
         public void SelectPlanet(Planet planet)
         {
             planet.Selected = true;
+            print("Selected");
         }
 
         public void DeselectPlanet(Planet planet)
         {
             planet.Selected = false;
+            print("Deselected");
         }
         
     }

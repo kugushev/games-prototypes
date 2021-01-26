@@ -61,7 +61,7 @@ namespace Kugushev.Scripts.Presentation.Components
 
             if (Model.Selected)
             {
-                print("Selected");
+                // todo: highlight the planet
             }
         }
     }

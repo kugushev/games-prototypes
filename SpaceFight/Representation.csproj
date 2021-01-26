@@ -52,7 +52,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\PlanetEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\GameController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\PlayerController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\FlatModeController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\Abstractions\BaseComponent.cs" />
@@ -60,8 +62,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlanetPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\PlayerController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\PlanetEvent.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Representation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
