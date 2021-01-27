@@ -1889,13 +1889,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde096e5db5752543a9f852fcaf91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTouchPlanet:
+  onHoverPlanet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: SelectPlanet
+        m_MethodName: HighlightPlanet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1905,13 +1905,61 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onReleasePlanet:
+  onHoverPlanetCancel:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: DeselectPlanet
+        m_MethodName: HighlightPlanetCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectPlanet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874176779}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
+          Representation
+        m_MethodName: SelectArmy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectPlanetCancel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874176779}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
+          Representation
+        m_MethodName: SelectArmyCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectedMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874176779}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
+          Representation
+        m_MethodName: MoveSelectedArmy
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2301,13 +2349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde096e5db5752543a9f852fcaf91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTouchPlanet:
+  onHoverPlanet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: SelectPlanet
+        m_MethodName: HighlightPlanet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2317,13 +2365,61 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onReleasePlanet:
+  onHoverPlanetCancel:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: DeselectPlanet
+        m_MethodName: HighlightPlanetCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectPlanet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874176779}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
+          Representation
+        m_MethodName: SelectArmy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectPlanetCancel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874176779}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
+          Representation
+        m_MethodName: SelectArmyCancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectedMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874176779}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
+          Representation
+        m_MethodName: MoveSelectedArmy
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
