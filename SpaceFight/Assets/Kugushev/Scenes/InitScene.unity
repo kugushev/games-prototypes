@@ -1107,6 +1107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb268305b9c94e57ad0c8565d3e8abd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftOrders: {fileID: 11400000, guid: 96471764dcf2e0543b6363439ded1890, type: 2}
+  rightOrders: {fileID: 11400000, guid: 0bb62fe45467b524db4b7a626dfd356b, type: 2}
 --- !u!1001 &986351074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1889,13 +1891,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde096e5db5752543a9f852fcaf91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handType: 2
   onHoverPlanet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: HighlightPlanet
+        m_MethodName: HandleTouchPlanet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1911,7 +1914,7 @@ MonoBehaviour:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: HighlightPlanetCancel
+        m_MethodName: HandleDetouchPlanet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1921,13 +1924,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSelectPlanet:
+  onSelect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: SelectArmy
+        m_MethodName: HandleSelect
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1937,13 +1940,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSelectPlanetCancel:
+  onSelectCancel:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: SelectArmyCancel
+        m_MethodName: HandleDeselect
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1953,13 +1956,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSelectedMove:
+  onMove:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: MoveSelectedArmy
+        m_MethodName: HandleMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2349,13 +2352,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde096e5db5752543a9f852fcaf91199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handType: 1
   onHoverPlanet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: HighlightPlanet
+        m_MethodName: HandleTouchPlanet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2371,7 +2375,7 @@ MonoBehaviour:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: HighlightPlanetCancel
+        m_MethodName: HandleDetouchPlanet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2381,13 +2385,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSelectPlanet:
+  onSelect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: SelectArmy
+        m_MethodName: HandleSelect
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2397,13 +2401,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSelectPlanetCancel:
+  onSelectCancel:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: SelectArmyCancel
+        m_MethodName: HandleDeselect
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2413,13 +2417,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSelectedMove:
+  onMove:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874176779}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Presentation.Controllers.PlayerController,
           Representation
-        m_MethodName: MoveSelectedArmy
+        m_MethodName: HandleMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

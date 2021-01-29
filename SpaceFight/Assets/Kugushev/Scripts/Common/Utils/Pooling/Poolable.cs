@@ -17,7 +17,15 @@
         {
         }
 
-        public void ClearState() => ObjectState = default;
+        public void ClearState()
+        {
+            OnClear();
+            ObjectState = default;
+        }
+        
+        protected virtual void OnClear()
+        {
+        }
 
         public void Dispose() => _myPool.GiveBackObject(this);
     }

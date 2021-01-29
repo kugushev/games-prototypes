@@ -1,9 +1,11 @@
 ﻿using System;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Presentation.Events;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Kugushev.Scripts.Presentation.Controllers
@@ -11,17 +13,17 @@ namespace Kugushev.Scripts.Presentation.Controllers
     [RequireComponent(typeof(XRController))]
     public class HandController : MonoBehaviour
     {
+        [SerializeField] private HandType handType;
         [SerializeField] private PlanetEvent onHoverPlanet;
         [SerializeField] private PlanetEvent onHoverPlanetCancel;
-        [SerializeField] private PlanetEvent onSelectPlanet;
-        [SerializeField] private PlanetEvent onSelectPlanetCancel;
-        [SerializeField] private MovingEvent onSelectedMove;
+        [SerializeField] private HandEvent onSelect;
+        [SerializeField] private HandEvent onSelectCancel;
+        [SerializeField] private MovingEvent onMove;
 
         private XRController _xrController;
+        private bool _triggerPressed;
 
-        // todo: think about moving this logic to PlayerController
-        private Planet _hoveredPlanet;
-        private Planet _selectedPlanet;
+        public HandType HandType => handType;
 
         private void Awake()
         {
@@ -30,27 +32,19 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         private void Update()
         {
-            if (_xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out var isPressed) && isPressed)
+            if (!_triggerPressed &&
+                _xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out var isPressed) && isPressed)
             {
-                if (!ReferenceEquals(_selectedPlanet, null))
-                {
-                    // todo: add temp object to identify finger
-                    onSelectedMove.Invoke(this, _selectedPlanet, _xrController.modelTransform.position);
-                }
-                else if (!ReferenceEquals(_hoveredPlanet, null))
-                {
-                    onSelectPlanet.Invoke(this, _hoveredPlanet);
-                    _selectedPlanet = _hoveredPlanet;
-                }
+                onSelect.Invoke(this);
+                _triggerPressed = true;
             }
-            else
+            else if (_triggerPressed)
             {
-                if (!ReferenceEquals(_selectedPlanet, null))
-                {
-                    onSelectPlanetCancel.Invoke(this, _selectedPlanet);
-                    _selectedPlanet = null;
-                }
+                onSelectCancel.Invoke(this);
+                _triggerPressed = false;
             }
+
+            onMove.Invoke(this, _xrController.modelTransform.position);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -61,13 +55,6 @@ namespace Kugushev.Scripts.Presentation.Controllers
                 if (!ReferenceEquals(ppm, null))
                 {
                     var planet = ppm.Planet;
-                    if (!ReferenceEquals(_hoveredPlanet, null) && !ReferenceEquals(_hoveredPlanet, planet))
-                    {
-                        Debug.LogError($"Planet {_hoveredPlanet} is already selected. New {planet}");
-                        return;
-                    }
-
-                    _hoveredPlanet = planet;
                     onHoverPlanet.Invoke(this, planet);
                 }
             }
@@ -81,7 +68,6 @@ namespace Kugushev.Scripts.Presentation.Controllers
                 if (!ReferenceEquals(ppm, null))
                 {
                     onHoverPlanetCancel.Invoke(this, ppm.Planet);
-                    _hoveredPlanet = null;
                 }
             }
         }

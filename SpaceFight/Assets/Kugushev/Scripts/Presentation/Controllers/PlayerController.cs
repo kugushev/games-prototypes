@@ -1,41 +1,58 @@
-﻿using Kugushev.Scripts.Game.Models;
+﻿using System;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Managers;
+using Kugushev.Scripts.Game.Models;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private OrdersManager leftOrders;
+        [SerializeField] private OrdersManager rightOrders;
+
         // todo: add order controller and deal with orders in scriptable object. 
         // draw line and other staff based on CurrentOrder.CursorPosition
-        
-        public void HighlightPlanet(HandController sender, Planet planet)
+
+        public void HandleTouchPlanet(HandController sender, Planet planet)
         {
+            var ordersManager = GetOrdersManager(sender);
+            ordersManager.HandlePlanetTouch(planet);
+            
             planet.Selected = true;
         }
 
-        public void HighlightPlanetCancel(HandController sender, Planet planet)
+        public void HandleDetouchPlanet(HandController sender, Planet planet)
         {
+            var ordersManager = GetOrdersManager(sender);
+            ordersManager.HandlePlanetDetouch();
             planet.Selected = false;
         }
 
-        public void SelectArmy(HandController sender, Planet planet)
+        public void HandleSelect(HandController sender)
         {
-            // OrderController.NewOrder
-            // todo: start drawing line
+            var ordersManager = GetOrdersManager(sender);
+            ordersManager.HandleSelect();
         }
 
-        public void SelectArmyCancel(HandController sender, Planet planet)
+        public void HandleDeselect(HandController sender)
         {
-            // OrderController.CancelOrder
-            // todo: stop drawing line
+            var ordersManager = GetOrdersManager(sender);
+            ordersManager.HandleDeselect();
         }
-        
-        // todo: add SelectArmyCommit
 
-        public void MoveSelectedArmy(HandController sender, Planet planet, Vector3 position)
+        public void HandleMove(HandController sender, Vector3 position)
         {
-            // OrderController.UpdateOrder
-            // todo: fill Vector3 array and add next section of line
+            var ordersManager = GetOrdersManager(sender);
+            ordersManager.HandleMove(position);
         }
+
+        private OrdersManager GetOrdersManager(HandController handController) => handController.HandType switch
+        {
+            HandType.Right => rightOrders,
+            HandType.Left => leftOrders,
+            _ => throw new ArgumentOutOfRangeException(nameof(handController.HandType), handController.HandType,
+                "Unexpected hand type")
+        };
     }
 }

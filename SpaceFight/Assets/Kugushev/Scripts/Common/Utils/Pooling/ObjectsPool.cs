@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Utils.Pooling
 {
-    [CreateAssetMenu(fileName = "ObjectsPool", menuName = "Game/ObjectsPool", order = 0)]
+    [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "ObjectsPool")]
     public class ObjectsPool : ScriptableObject
     {
         // todo: use concurrent collection once I decide to use this toll in multithreading

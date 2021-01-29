@@ -1,19 +1,25 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models.Abstractions;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models
 {
-    [CreateAssetMenu(menuName = "Game/Planet")]
+    [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Planet")]
     public class Planet : Model
     {
         [SerializeField] private Faction faction;
         [SerializeField] private PlanetSize size;
         [SerializeField] private int production;
         private readonly TempState _state = new TempState();
-
+        private class TempState
+        {
+            public int Army;
+            public bool Selected;
+        }
+        
         public Faction Faction => faction;
 
         public PlanetSize Size => size;
@@ -34,15 +40,6 @@ namespace Kugushev.Scripts.Game.Models
 
         protected override void Dispose(bool destroying)
         {
-        }
-        
-        /// <summary>
-        /// Not persistent state
-        /// </summary>
-        private class TempState
-        {
-            public int Army;
-            public bool Selected;
         }
     }
 }
