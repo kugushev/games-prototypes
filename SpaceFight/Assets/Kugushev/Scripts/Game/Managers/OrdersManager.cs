@@ -1,16 +1,21 @@
-﻿using Kugushev.Scripts.Common.Utils;
+﻿using JetBrains.Annotations;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Models.Abstractions;
+using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Managers
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "OrdersManager")]
-    public class OrdersManager : ScriptableObject
+    public class OrdersManager : Model
     {
         [SerializeField] private ObjectsPool pool;
+        [SerializeField] private FleetManager fleetManager;
         [SerializeField] private HandType handHandType;
+        [SerializeField] private float gapBetweenWaypoints = 0.05f;
         private readonly TempState _state = new TempState();
 
         private class TempState
@@ -19,6 +24,7 @@ namespace Kugushev.Scripts.Game.Managers
             public Planet HighlightedPlanet;
         }
 
+        [CanBeNull] public Order CurrentOrder => _state.CurrentOrder;
 
         public void HandlePlanetTouch(Planet planet)
         {
@@ -31,7 +37,8 @@ namespace Kugushev.Scripts.Game.Managers
             }
             else
             {
-                // todo: commit order (no reason to wait trigger release)
+                fleetManager.CommitOrder(_state.CurrentOrder);
+                _state.CurrentOrder = null;
             }
         }
 
@@ -73,8 +80,13 @@ namespace Kugushev.Scripts.Game.Managers
             var currentOrder = _state.CurrentOrder;
             if (currentOrder != null && currentOrder.Status == OrderStatus.Assignment)
             {
-                currentOrder.RegisterMovement(position);
+                currentOrder.RegisterMovement(position, gapBetweenWaypoints);
             }
+        }
+
+        protected override void Dispose(bool destroying)
+        {
+            DropCurrentOrder();
         }
     }
 }

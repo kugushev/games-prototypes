@@ -32,11 +32,13 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         private void Update()
         {
-            if (!_triggerPressed &&
-                _xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out var isPressed) && isPressed)
+            if (_xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out var isPressed) && isPressed)
             {
-                onSelect.Invoke(this);
-                _triggerPressed = true;
+                if (!_triggerPressed)
+                {
+                    onSelect.Invoke(this);
+                    _triggerPressed = true;
+                }
             }
             else if (_triggerPressed)
             {

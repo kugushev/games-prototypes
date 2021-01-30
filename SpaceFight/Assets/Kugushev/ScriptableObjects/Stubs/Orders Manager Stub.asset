@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c84e78f338545f6bfee40faef3f61b9, type: 3}
-  m_Name: Orders Manager Left Hand
+  m_Name: Orders Manager Stub
   m_EditorClassIdentifier: 
-  pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
-  fleetManager: {fileID: 11400000, guid: 610ef38f2dfd1284f9a9bb436330e682, type: 2}
-  handHandType: 2
-  gapBetweenWaypoints: 0.05
+  pool: {fileID: 0}
+  handHandType: 0
+  gapBetweenWaypoints: 1

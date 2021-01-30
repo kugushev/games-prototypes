@@ -20,6 +20,8 @@ namespace Kugushev.Scripts.Presentation.Controllers
             ordersManager.HandlePlanetTouch(planet);
             
             planet.Selected = true;
+            
+            print("HandleTouchPlanet");
         }
 
         public void HandleDetouchPlanet(HandController sender, Planet planet)
@@ -27,18 +29,21 @@ namespace Kugushev.Scripts.Presentation.Controllers
             var ordersManager = GetOrdersManager(sender);
             ordersManager.HandlePlanetDetouch();
             planet.Selected = false;
+            print("HandleDetouchPlanet");
         }
 
         public void HandleSelect(HandController sender)
         {
             var ordersManager = GetOrdersManager(sender);
             ordersManager.HandleSelect();
+            print("HandleSelect");
         }
 
         public void HandleDeselect(HandController sender)
         {
             var ordersManager = GetOrdersManager(sender);
             ordersManager.HandleDeselect();
+            print("HandleDeselect");
         }
 
         public void HandleMove(HandController sender, Vector3 position)

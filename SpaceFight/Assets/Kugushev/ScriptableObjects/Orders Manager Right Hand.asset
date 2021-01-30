@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Orders Manager Right Hand
   m_EditorClassIdentifier: 
   pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
+  fleetManager: {fileID: 11400000, guid: 610ef38f2dfd1284f9a9bb436330e682, type: 2}
   handHandType: 1
+  gapBetweenWaypoints: 0.05

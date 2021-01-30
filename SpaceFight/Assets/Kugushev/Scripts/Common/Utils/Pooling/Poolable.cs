@@ -10,20 +10,20 @@
         public void SetState(TState state)
         {
             ObjectState = state;
-            OnRestore();
+            OnRestore(ObjectState);
         }
 
-        protected virtual void OnRestore()
+        protected virtual void OnRestore(TState state)
         {
         }
 
         public void ClearState()
         {
-            OnClear();
+            OnClear(ObjectState);
             ObjectState = default;
         }
         
-        protected virtual void OnClear()
+        protected virtual void OnClear(TState state)
         {
         }
 
