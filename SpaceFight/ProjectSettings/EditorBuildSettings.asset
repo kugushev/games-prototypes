@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/Kugushev/Scenes/InitScene.unity
     guid: 31afbd9f2e3ae054288ae5e1f06c433c
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa10df11bcc983e4985af45914d72194, type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f020f889886cc8d44bfd8136d122800d, type: 2}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 89c34ea4e25670f44b5301ed1627d451, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 14903cf5aa0616c4492583a2f6120cab, type: 2}

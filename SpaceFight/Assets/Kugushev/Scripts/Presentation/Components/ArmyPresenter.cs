@@ -7,23 +7,32 @@ namespace Kugushev.Scripts.Presentation.Components
 {
     public class ArmyPresenter: MonoBehaviour
     {
-        public Army Army { get; set; }
+        private FleetPresenter _owner;
 
-        private void Start()
+        public void SetOwner(FleetPresenter owner)
+        {
+            if (!ReferenceEquals(_owner, null)) 
+                Debug.LogError("Fleet is already specified");
+
+            _owner = owner;
+        }
+
+        public Army Army { get; internal set; }
+
+        public void Send()
         {
             StartCoroutine(Army.Send(() => Time.deltaTime));
-            
         }
 
         private void Update()
         {
-            transform.position = Army.Position;
+            var t = transform;
+            
+            t.position = Army.Position;
+            t.rotation = Army.Rotation;
 
-            if (Army.Arrived)
-            {
-                // todo: handle properly (with pooling)
-                Destroy(gameObject);
-            }
+            if (Army.Disbanded) 
+                _owner.ReturnArmyToPool(this);
         }
     }
 }

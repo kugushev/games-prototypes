@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Game.Managers
         public void CommitOrder(Order order)
         {
             // todo: dispose army on the end
-            var army = pool.GetObject<Army, Army.State>(new Army.State(order, 10f, 1));
+            var army = pool.GetObject<Army, Army.State>(new Army.State(order, 5f, 1f, 1));
             ArmiesToSent.Enqueue(army);
         }
     }
