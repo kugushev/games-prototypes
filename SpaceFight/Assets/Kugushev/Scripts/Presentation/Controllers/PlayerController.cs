@@ -11,9 +11,6 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private OrdersManager leftOrders;
         [SerializeField] private OrdersManager rightOrders;
 
-        // todo: add order controller and deal with orders in scriptable object. 
-        // draw line and other staff based on CurrentOrder.CursorPosition
-
         public void HandleTouchPlanet(HandController sender, Planet planet)
         {
             var ordersManager = GetOrdersManager(sender);

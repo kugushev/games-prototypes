@@ -52,6 +52,7 @@ namespace Kugushev.Scripts.Presentation.Components
 
         public void ReturnArmyToPool(ArmyPresenter armyPresenter)
         {
+            armyPresenter.Army.Dispose();
             armyPresenter.Army = null;
             armyPresenter.gameObject.SetActive(false);
             _armiesPool.Enqueue(armyPresenter);

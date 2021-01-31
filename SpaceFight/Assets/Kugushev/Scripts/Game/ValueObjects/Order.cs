@@ -15,10 +15,12 @@ namespace Kugushev.Scripts.Game.ValueObjects
             {
                 SourcePlanet = planet;
                 Status = OrderStatus.Created;
+                LastRegisteredPosition = null;
             }
 
             public readonly Planet SourcePlanet;
             public OrderStatus Status;
+            public Vector3? LastRegisteredPosition;
         }
         
         private readonly List<Vector3> _path = new List<Vector3>(GameConstants.OrderPathCapacity);
@@ -28,7 +30,8 @@ namespace Kugushev.Scripts.Game.ValueObjects
         }
         
         public IReadOnlyList<Vector3> Path => _path;
-        
+
+        public Planet SourcePlanet => ObjectState.SourcePlanet;
         public OrderStatus Status
         {
             get => ObjectState.Status;
@@ -37,6 +40,8 @@ namespace Kugushev.Scripts.Game.ValueObjects
 
         internal void RegisterMovement(Vector3 position, float gapBetweenWaypoints)
         {
+            ObjectState.LastRegisteredPosition = position;
+            
             if (_path.Count > 0)
             {
                 var last = _path[_path.Count - 1];
@@ -48,6 +53,14 @@ namespace Kugushev.Scripts.Game.ValueObjects
                 Debug.LogWarning($"Path capacity increased to {_path.Capacity}");
 
             _path.Add(position);
+        }
+        
+        public void Commit()
+        {
+            if (ObjectState.LastRegisteredPosition != null) 
+                _path.Add(ObjectState.LastRegisteredPosition.Value);
+
+            ObjectState.Status = OrderStatus.Execution;
         }
 
         protected override void OnClear(State state)

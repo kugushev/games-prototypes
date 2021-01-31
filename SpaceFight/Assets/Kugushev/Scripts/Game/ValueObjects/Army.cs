@@ -2,6 +2,8 @@
 using System.Collections;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Models.Abstractions;
 using UnityEngine;
 
@@ -38,10 +40,12 @@ namespace Kugushev.Scripts.Game.ValueObjects
 
         public Vector3 Position => ObjectState.CurrentPosition;
         public Quaternion Rotation => ObjectState.CurrentRotation;
+        public int Power => ObjectState.Power;
         public bool Disbanded => ObjectState.Arrived;
 
         public IEnumerator Send(Func<float> deltaTime)
         {
+            // todo: use UniTask
             var previous = ObjectState.CurrentPosition;
 
             for (var i = 1; i < ObjectState.Order.Path.Count; i++)
@@ -53,17 +57,39 @@ namespace Kugushev.Scripts.Game.ValueObjects
                 {
                     ObjectState.CurrentPosition = Vector3.Lerp(previous, next, delta);
 
-
                     rotationDelta += deltaTime() * ObjectState.AngularSpeed;
                     var lookRotation = Quaternion.LookRotation(next - ObjectState.CurrentPosition);
                     ObjectState.CurrentRotation = Quaternion.Slerp(ObjectState.CurrentRotation, lookRotation, rotationDelta);
 
                     yield return null;
+                    
+                    if (ObjectState.Arrived)
+                        yield break;
                 }
-
-                previous = next;
+                
+                ObjectState.CurrentPosition = previous = next;
             }
+        }
 
+        public void HandlePlanetArriving(Planet planet)
+        {
+            if (planet == ObjectState.Order.SourcePlanet)
+                return;
+
+            switch (planet.Faction)
+            {
+                case Faction.Player:
+                    planet.Reinforce(this);
+                    break;
+                case Faction.Neutral:
+                case Faction.Enemy:
+                    planet.Fight(this);
+                    break;
+                default:
+                    Debug.LogError($"Unexpected planet faction {planet.Faction}");
+                    break;
+            }
+            
             ObjectState.Arrived = true;
         }
 

@@ -51,12 +51,15 @@ namespace Kugushev.Scripts.Presentation.Components
                 _ => null
             };
 
-            if (currentArmy != Model.Army)
+            var power = Model.Power;
+            if (currentArmy != power)
             {
-                if (!ArmyStringBag.TryGetValue(Model.Army, out var armyCaptionText))
-                    ArmyStringBag[Model.Army] = armyCaptionText = Model.Army.ToString();
+                if (!ArmyStringBag.TryGetValue(power, out var armyCaptionText))
+                    ArmyStringBag[power] = armyCaptionText = power.ToString();
 
                 armyCaption.text = armyCaptionText;
+
+                currentArmy = power;
             }
 
             if (Model.Selected)

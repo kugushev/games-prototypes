@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5208074341317328048}
   - component: {fileID: 5208074341317328049}
   - component: {fileID: 5208074341317328050}
+  - component: {fileID: 6857920193809494038}
+  - component: {fileID: 4676292661632520737}
   m_Layer: 0
   m_Name: Army
   m_TagString: Untagged
@@ -97,3 +99,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458dbf14f143441eb60c09f185413922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minScale: 0.005
+  maxScale: 0.05
+--- !u!54 &6857920193809494038
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208074341317328207}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &4676292661632520737
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208074341317328207}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0.34999996, z: 0}
