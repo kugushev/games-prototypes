@@ -43,7 +43,6 @@ namespace Kugushev.Scripts.Presentation.Components
             {
                 for (var i = _displayedWaypoints.Count; i < currentOrder.Path.Count; i++)
                 {
-                    print("waypoint");
                     var position = currentOrder.Path[i];
                     var waypoint = GetWaypoint(position);
                     _displayedWaypoints.Add(waypoint);

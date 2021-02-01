@@ -4,15 +4,16 @@
         where TState : struct
     {
         private readonly ObjectsPool _myPool;
-        private bool active;
         protected TState ObjectState;
         protected Poolable(ObjectsPool objectsPool) => _myPool = objectsPool;
+        
+        public bool Active { get; private set; }
 
         public void SetState(TState state)
         {
             ObjectState = state;
             OnRestore(ObjectState);
-            active = true;
+            Active = true;
         }
 
         protected virtual void OnRestore(TState state)
@@ -23,7 +24,7 @@
         {
             OnClear(ObjectState);
             ObjectState = default;
-            active = false;
+            Active = false;
         }
 
         protected virtual void OnClear(TState state)
@@ -32,7 +33,7 @@
 
         public void Dispose()
         {
-            if (active)
+            if (Active)
                 _myPool.GiveBackObject(this);
         }
     }

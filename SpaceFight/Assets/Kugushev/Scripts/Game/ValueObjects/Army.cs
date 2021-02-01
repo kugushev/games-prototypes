@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
             public readonly Order Order;
             public readonly float Speed;
             public readonly float AngularSpeed;
-            public int Power;
+            public readonly int Power;
             public bool Arrived;
             public Vector3 CurrentPosition;
             public Quaternion CurrentRotation;
@@ -47,7 +47,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
         {
             // todo: use UniTask
             var previous = ObjectState.CurrentPosition;
-
+            
             for (var i = 1; i < ObjectState.Order.Path.Count; i++)
             {
                 var next = ObjectState.Order.Path[i];
@@ -59,15 +59,16 @@ namespace Kugushev.Scripts.Game.ValueObjects
 
                     rotationDelta += deltaTime() * ObjectState.AngularSpeed;
                     var lookRotation = Quaternion.LookRotation(next - ObjectState.CurrentPosition);
-                    ObjectState.CurrentRotation = Quaternion.Slerp(ObjectState.CurrentRotation, lookRotation, rotationDelta);
+                    ObjectState.CurrentRotation =
+                        Quaternion.Slerp(ObjectState.CurrentRotation, lookRotation, rotationDelta);
 
                     yield return null;
-                    
-                    if (ObjectState.Arrived)
+
+                    if (!Active || ObjectState.Arrived)
                         yield break;
                 }
-                
-                ObjectState.CurrentPosition = previous = next;
+
+                previous = next;
             }
         }
 
@@ -89,7 +90,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
                     Debug.LogError($"Unexpected planet faction {planet.Faction}");
                     break;
             }
-            
+
             ObjectState.Arrived = true;
         }
 

@@ -9,6 +9,7 @@ namespace Kugushev.Scripts.Presentation.Components
 {
     public class FleetPresenter : BaseComponent<FleetManager>
     {
+        [SerializeField] private Transform limbo;
         [SerializeField] private GameObject armyPrefab;
 
         private readonly Queue<ArmyPresenter> _armiesPool =
@@ -54,7 +55,9 @@ namespace Kugushev.Scripts.Presentation.Components
         {
             armyPresenter.Army.Dispose();
             armyPresenter.Army = null;
+            
             armyPresenter.gameObject.SetActive(false);
+            armyPresenter.transform.position = limbo.position;
             _armiesPool.Enqueue(armyPresenter);
         }
     }

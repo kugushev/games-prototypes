@@ -1108,7 +1108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943399658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16617653, y: 0.5824329, z: 0.21641171}
+  m_LocalPosition: {x: -0.16617653, y: -1.172, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1126,6 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0254fdd221fa4b4d94d984aad5d5a82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  limbo: {fileID: 943399659}
   armyPrefab: {fileID: 5208074341317328207, guid: d539801e18fb22a43bf26928058f2afc, type: 3}
 --- !u!114 &943399661
 MonoBehaviour:
