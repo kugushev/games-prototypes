@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Game.Managers
             }
             else if (_state.CurrentOrder.SourcePlanet != planet)
             {
-                fleetManager.CommitOrder(_state.CurrentOrder);
+                fleetManager.CommitOrder(_state.CurrentOrder, planet);
                 _state.CurrentOrder = null;
             }
         }

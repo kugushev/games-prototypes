@@ -21,9 +21,9 @@ namespace Kugushev.Scripts.Game.Managers
         {
         }
 
-        public void CommitOrder(Order order)
+        public void CommitOrder(Order order, Planet target)
         {
-            order.Commit();
+            order.Commit(target);
             if (order.SourcePlanet.Power > 0)
             {
                 var power = order.SourcePlanet.Recruit();

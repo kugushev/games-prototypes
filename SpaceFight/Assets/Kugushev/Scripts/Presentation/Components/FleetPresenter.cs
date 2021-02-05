@@ -32,7 +32,7 @@ namespace Kugushev.Scripts.Presentation.Components
 
                 var presenter = GetArmy();
                 presenter.Army = army;
-                presenter.Send();
+                presenter.SendFollowingOrder();
             }
         }
 

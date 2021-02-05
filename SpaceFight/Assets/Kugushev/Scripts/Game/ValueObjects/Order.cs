@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Enums;
@@ -14,11 +15,13 @@ namespace Kugushev.Scripts.Game.ValueObjects
             public State(Planet planet)
             {
                 SourcePlanet = planet;
+                TargetPlanet = null;
                 Status = OrderStatus.Created;
                 LastRegisteredPosition = null;
             }
 
             public readonly Planet SourcePlanet;
+            [CanBeNull] public Planet TargetPlanet;
             public OrderStatus Status;
             public Vector3? LastRegisteredPosition;
         }
@@ -30,8 +33,9 @@ namespace Kugushev.Scripts.Game.ValueObjects
         }
         
         public IReadOnlyList<Vector3> Path => _path;
-
         public Planet SourcePlanet => ObjectState.SourcePlanet;
+        public Planet TargetPlanet => ObjectState.TargetPlanet;
+
         public OrderStatus Status
         {
             get => ObjectState.Status;
@@ -55,11 +59,12 @@ namespace Kugushev.Scripts.Game.ValueObjects
             _path.Add(position);
         }
         
-        public void Commit()
+        public void Commit(Planet target)
         {
             if (ObjectState.LastRegisteredPosition != null) 
                 _path.Add(ObjectState.LastRegisteredPosition.Value);
 
+            ObjectState.TargetPlanet = target;
             ObjectState.Status = OrderStatus.Execution;
         }
 

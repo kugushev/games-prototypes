@@ -1,7 +1,9 @@
 ﻿using System;
 using Kugushev.Scripts.Game.Common;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Presentation.PresentationModels;
+using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -11,6 +13,8 @@ namespace Kugushev.Scripts.Presentation.Components
     {
         [SerializeField] private float minScale = 0.005f;
         [SerializeField] private float maxScale = 0.05f;
+        [SerializeField] private Transform mesh;
+        [SerializeField] private TextMeshProUGUI powerText;
 
         private FleetPresenter _owner;
 
@@ -24,18 +28,28 @@ namespace Kugushev.Scripts.Presentation.Components
 
         public Army Army { get; internal set; }
 
-        public void Send()
+        public void SendFollowingOrder()
         {
-            StartCoroutine(Army.Send(() => Time.deltaTime));
+            Army.Status = ArmyStatus.OnMatch;
         }
 
         private void Update()
+        {
+            Army.NextStep(Time.deltaTime);
+
+            ApplyModelChanges();
+        }
+
+        private void ApplyModelChanges()
         {
             var t = transform;
 
             t.position = Army.Position;
             t.rotation = Army.Rotation;
-            t.localScale = GetAdjustedScale();
+            mesh.localScale = GetAdjustedScale();
+            
+            // todo: use strings cache
+            powerText.text = Army.Power.ToString();
 
             if (Army.Disbanded)
                 _owner.ReturnArmyToPool(this);
@@ -56,7 +70,7 @@ namespace Kugushev.Scripts.Presentation.Components
                 if (!ReferenceEquals(ppm, null))
                 {
                     var planet = ppm.Planet;
-                    Army.HandlePlanetArriving(planet);
+                    Army.HandlePlanetVisiting(planet);
                 }
             }
         }

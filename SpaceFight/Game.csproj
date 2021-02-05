@@ -58,11 +58,14 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\OrderStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Managers\FleetManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\Abstractions\Model.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IGameLoopParticipant.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\Army.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\ArmyStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\HandType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Faction.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IFighter.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

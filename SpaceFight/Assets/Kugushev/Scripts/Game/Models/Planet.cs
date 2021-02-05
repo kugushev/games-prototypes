@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models.Abstractions;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
@@ -10,7 +11,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Game.Models
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Planet")]
-    public class Planet : Model
+    public class Planet : Model, IFighter
     {
         [SerializeField] private Faction faction;
         [SerializeField] private PlanetSize size;
@@ -61,17 +62,21 @@ namespace Kugushev.Scripts.Game.Models
         {
             _state.Power += army.Power;
         }
-
-        public void Fight(Army army)
+        
+        public bool TryCapture()
         {
-            _state.Power -= army.Power;
+            _state.Power -= GameConstants.UnifiedDamage;
+            
             if (_state.Power < 0)
             {
                 _state.Power *= -1;
                 _state.CurrentFaction = Faction.Player; //todo: handle enemies
+                return true;
             }
-        }
 
+            return false;
+        }
+        
         protected override void Dispose(bool destroying)
         {
         }
