@@ -10,6 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3eae2f6fa5224bc8b0158865118183f0, type: 3}
-  m_Name: Fleet Manager
+  m_Name: Players Fleet
   m_EditorClassIdentifier: 
   pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
+  armySpeed: 5
+  armyAngularSpeed: 1
+  faction: 1

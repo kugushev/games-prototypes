@@ -23,6 +23,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
             public readonly Order Order;
             public readonly float Speed;
             public readonly float AngularSpeed;
+            public readonly Faction Faction;
             public int Power;
             public ArmyStatus Status;
             public Vector3 CurrentPosition;
@@ -33,12 +34,13 @@ namespace Kugushev.Scripts.Game.ValueObjects
             [CanBeNull] public IFighter Enemy; // todo: support multiple enemies
             public float FightingTimeCollector;
 
-            public State(Order order, float speed, float angularSpeed, int power)
+            public State(Order order, float speed, float angularSpeed, Faction faction, int power)
             {
                 // todo: assert order
                 Order = order;
                 Speed = speed;
                 AngularSpeed = angularSpeed;
+                Faction = faction;
                 Power = power;
                 Status = ArmyStatus.Recruiting;
                 CurrentPosition = order.Path[0];
@@ -61,6 +63,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
         public Quaternion Rotation => ObjectState.CurrentRotation;
         public int Power => ObjectState.Power;
         public bool Disbanded => ObjectState.Status == ArmyStatus.Disbanded;
+        public Faction Faction => ObjectState.Faction;
 
         public void NextStep(float deltaTime)
         {
@@ -127,7 +130,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
                 ObjectState.FightingTimeCollector = 0f;
 
                 // execute fight
-                var captured = ObjectState.Enemy.TryCapture();
+                var captured = ObjectState.Enemy.TryCapture(this);
                 ObjectState.Power -= GameConstants.UnifiedDamage;
 
                 if (ObjectState.Power <= 0)
@@ -140,35 +143,6 @@ namespace Kugushev.Scripts.Game.ValueObjects
                 }
             }
         }
-
-        // public IEnumerator Send(Func<float> deltaTime)
-        // {
-        //     // todo: use UniTask
-        //     var previous = ObjectState.CurrentPosition;
-        //
-        //     for (var i = 1; i < ObjectState.Order.Path.Count; i++)
-        //     {
-        //         var next = ObjectState.Order.Path[i];
-        //
-        //         var rotationDelta = 0f;
-        //         for (float delta = 0f; delta < 1f; delta += deltaTime() * ObjectState.Speed)
-        //         {
-        //             ObjectState.CurrentPosition = Vector3.Lerp(previous, next, delta);
-        //
-        //             rotationDelta += deltaTime() * ObjectState.AngularSpeed;
-        //             var lookRotation = Quaternion.LookRotation(next - ObjectState.CurrentPosition);
-        //             ObjectState.CurrentRotation =
-        //                 Quaternion.Slerp(ObjectState.CurrentRotation, lookRotation, rotationDelta);
-        //
-        //             yield return null;
-        //
-        //             if (!Active || ObjectState.Arrived)
-        //                 yield break;
-        //         }
-        //
-        //         previous = next;
-        //     }
-        // }
 
         public void HandlePlanetVisiting(Planet planet)
         {
@@ -190,10 +164,10 @@ namespace Kugushev.Scripts.Game.ValueObjects
                     break;
             }
         }
-
-        protected override void OnClear(State state)
+        
+        public void HandleCrash()
         {
-            state.Order.Dispose();
+            Disband();
         }
 
         private void Arrived()
@@ -203,5 +177,10 @@ namespace Kugushev.Scripts.Game.ValueObjects
         }
 
         private void Disband() => ObjectState.Status = ArmyStatus.Disbanded;
+
+        protected override void OnClear(State state)
+        {
+            state.Order.Dispose();
+        }
     }
 }

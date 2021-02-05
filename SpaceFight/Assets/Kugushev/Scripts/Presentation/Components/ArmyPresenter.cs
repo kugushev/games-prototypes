@@ -73,6 +73,11 @@ namespace Kugushev.Scripts.Presentation.Components
                     Army.HandlePlanetVisiting(planet);
                 }
             }
+
+            if (other.CompareTag("Zone"))
+            {
+                Army.HandleCrash();
+            }
         }
     }
 }

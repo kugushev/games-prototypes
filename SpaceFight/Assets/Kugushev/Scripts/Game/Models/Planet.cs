@@ -63,14 +63,14 @@ namespace Kugushev.Scripts.Game.Models
             _state.Power += army.Power;
         }
         
-        public bool TryCapture()
+        public bool TryCapture(Army invader)
         {
             _state.Power -= GameConstants.UnifiedDamage;
             
             if (_state.Power < 0)
             {
                 _state.Power *= -1;
-                _state.CurrentFaction = Faction.Player; //todo: handle enemies
+                _state.CurrentFaction = invader.Faction;
                 return true;
             }
 

@@ -66,6 +66,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IFighter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\AI\Tactical\SimpleAI.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

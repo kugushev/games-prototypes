@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Models.Abstractions;
 using Kugushev.Scripts.Game.ValueObjects;
@@ -14,6 +15,7 @@ namespace Kugushev.Scripts.Game.Managers
         [SerializeField] private ObjectsPool pool;
         [SerializeField] private float armySpeed = 5f;
         [SerializeField] private float armyAngularSpeed = 1f;
+        [SerializeField] private Faction faction;
 
         public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
 
@@ -27,7 +29,8 @@ namespace Kugushev.Scripts.Game.Managers
             if (order.SourcePlanet.Power > 0)
             {
                 var power = order.SourcePlanet.Recruit();
-                var army = pool.GetObject<Army, Army.State>(new Army.State(order, armySpeed, armyAngularSpeed, power));
+                var army = pool.GetObject<Army, Army.State>(
+                    new Army.State(order, armySpeed, armyAngularSpeed, faction, power));
                 ArmiesToSent.Enqueue(army);
             }
             else
