@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Game.Common;
+using Kugushev.Scripts.Game.Entities;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Managers;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Entities;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.Controllers

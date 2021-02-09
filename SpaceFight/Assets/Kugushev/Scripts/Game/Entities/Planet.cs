@@ -1,14 +1,12 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Common;
+using Kugushev.Scripts.Game.Entities.Abstractions;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Interfaces;
-using Kugushev.Scripts.Game.Models.Abstractions;
-using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.Game.Entities
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Planet")]
     public class Planet : Model, IFighter

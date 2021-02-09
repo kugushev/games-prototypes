@@ -52,21 +52,21 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\Order.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Order.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Managers\OrdersManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Planet.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Planet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\OrderStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Managers\FleetManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Abstractions\Model.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IFighter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Abstractions\Model.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IGameLoopParticipant.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\Army.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\AI\Tactical\SimpleAI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\ArmyStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\HandType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Faction.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IFighter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\AI\Tactical\SimpleAI.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections;
-using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Interfaces;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.Models.Abstractions;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.Game.Entities
 {
     public class Army : Poolable<Army.State>, IGameLoopParticipant
     {
@@ -31,7 +27,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
             public int CurrentWaypoint;
             public float WaypointMovingProgress;
             public float WaypointRotationProgress;
-            [CanBeNull] public IFighter Enemy; // todo: support multiple enemies
+            [CanBeNull] public IFighter Target; // todo: support multiple enemies
             public float FightingTimeCollector;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, int power)
@@ -48,7 +44,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
                 CurrentWaypoint = 0;
                 WaypointMovingProgress = 0f;
                 WaypointRotationProgress = 0f;
-                Enemy = null;
+                Target = null;
                 FightingTimeCollector = 0f;
             }
         }
@@ -118,7 +114,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
 
         private void FightStep(float deltaTime)
         {
-            if (ObjectState.Enemy == null)
+            if (ObjectState.Target == null)
             {
                 Debug.LogError("Enemy is null");
                 return;
@@ -130,7 +126,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
                 ObjectState.FightingTimeCollector = 0f;
 
                 // execute fight
-                var captured = ObjectState.Enemy.TryCapture(this);
+                var captured = ObjectState.Target.TryCapture(this);
                 ObjectState.Power -= GameConstants.UnifiedDamage;
 
                 if (ObjectState.Power <= 0)
@@ -139,7 +135,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
                 if (captured)
                 {
                     ObjectState.Status = ArmyStatus.Arriving;
-                    ObjectState.Enemy = null;
+                    ObjectState.Target = null;
                 }
             }
         }
@@ -149,22 +145,29 @@ namespace Kugushev.Scripts.Game.ValueObjects
             if (planet != ObjectState.Order.TargetPlanet)
                 return;
 
-            switch (planet.Faction)
+            var opposite = ObjectState.Faction switch
             {
-                case Faction.Player:
-                    ObjectState.Status = ArmyStatus.Arriving;
-                    break;
-                case Faction.Neutral:
-                case Faction.Enemy:
-                    ObjectState.Status = ArmyStatus.Fighting;
-                    ObjectState.Enemy = planet;
-                    break;
-                default:
-                    Debug.LogError($"Unexpected planet faction {planet.Faction}");
-                    break;
+                Faction.Player => Faction.Enemy,
+                Faction.Enemy => Faction.Player,
+                _ => throw new ArgumentOutOfRangeException(nameof(Faction), ObjectState.Faction, "Unexpected army")
+            };
+
+
+            if (planet.Faction == ObjectState.Faction)
+            {
+                ObjectState.Status = ArmyStatus.Arriving;
+            }
+            else if (planet.Faction == Faction.Neutral || planet.Faction == opposite)
+            {
+                ObjectState.Status = ArmyStatus.Fighting;
+                ObjectState.Target = planet;
+            }
+            else
+            {
+                Debug.LogError($"Unexpected planet faction {planet.Faction}");
             }
         }
-        
+
         public void HandleCrash()
         {
             Disband();

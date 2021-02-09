@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Game.Models.Abstractions;
+﻿using Kugushev.Scripts.Game.Entities.Abstractions;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.PresentationModels.Abstractions

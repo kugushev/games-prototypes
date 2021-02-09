@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.Game.Entities;
 
 namespace Kugushev.Scripts.Game.Interfaces
 {

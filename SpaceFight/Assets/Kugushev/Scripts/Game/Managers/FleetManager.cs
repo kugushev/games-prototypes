@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Entities;
+using Kugushev.Scripts.Game.Entities.Abstractions;
 using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.Models.Abstractions;
-using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Managers

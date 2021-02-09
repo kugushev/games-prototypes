@@ -1,11 +1,13 @@
 ﻿using System;
 using Kugushev.Scripts.Game.Common;
+using Kugushev.Scripts.Game.Entities;
 using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Presentation.Common.Utils;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Presentation.Components
 {
@@ -15,6 +17,7 @@ namespace Kugushev.Scripts.Presentation.Components
         [SerializeField] private float maxScale = 0.05f;
         [SerializeField] private Transform mesh;
         [SerializeField] private TextMeshProUGUI powerText;
+        [SerializeField] private ParticleSystem projectilesParticleSystem;
 
         private FleetPresenter _owner;
 
@@ -42,17 +45,34 @@ namespace Kugushev.Scripts.Presentation.Components
 
         private void ApplyModelChanges()
         {
+            ApplyTransformChanges();
+
+            powerText.text = StringBag.FromInt(Army.Power);
+
+            ApplyFight();
+
+            if (Army.Disbanded)
+                _owner.ReturnArmyToPool(this);
+        }
+
+        private void ApplyTransformChanges()
+        {
             var t = transform;
 
             t.position = Army.Position;
             t.rotation = Army.Rotation;
             mesh.localScale = GetAdjustedScale();
-            
-            // todo: use strings cache
-            powerText.text = Army.Power.ToString();
+        }
 
-            if (Army.Disbanded)
-                _owner.ReturnArmyToPool(this);
+        private void ApplyFight()
+        {
+            if (Army.Status == ArmyStatus.Fighting)
+            {
+                if (!projectilesParticleSystem.isPlaying)
+                    projectilesParticleSystem.Play();
+            }
+            else if (!projectilesParticleSystem.isPlaying)
+                projectilesParticleSystem.Stop();
         }
 
         private Vector3 GetAdjustedScale()
