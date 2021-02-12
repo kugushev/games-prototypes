@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c5ad3f93829f9438dcbd5de5a4426c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
+  missionsManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
 --- !u!1 &383712622
 GameObject:
   m_ObjectHideFlags: 0

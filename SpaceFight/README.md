@@ -2,7 +2,7 @@
 A clone of the typical mobile "strategy" in VR
 
 # Requirements
-- Unity 2020.2
+- Unity 2020.3
 - XR Interaction Toolkit
 - Oculus Quest 2
 
@@ -13,4 +13,4 @@ A clone of the typical mobile "strategy" in VR
 - Enjoy:)
 
 # Assets
-- 
+- SkyBox Volume 2

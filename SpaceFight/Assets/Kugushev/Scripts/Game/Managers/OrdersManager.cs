@@ -29,7 +29,7 @@ namespace Kugushev.Scripts.Game.Managers
         {
             if (_state.CurrentOrder == null)
             {
-                if (planet.Faction == Faction.Player)
+                if (planet.Faction == Faction.Green)
                 {
                     _state.HighlightedPlanet = planet;
                 }

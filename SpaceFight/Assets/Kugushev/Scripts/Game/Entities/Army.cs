@@ -145,13 +145,7 @@ namespace Kugushev.Scripts.Game.Entities
             if (planet != ObjectState.Order.TargetPlanet)
                 return;
 
-            var opposite = ObjectState.Faction switch
-            {
-                Faction.Player => Faction.Enemy,
-                Faction.Enemy => Faction.Player,
-                _ => throw new ArgumentOutOfRangeException(nameof(Faction), ObjectState.Faction, "Unexpected army")
-            };
-
+            var opposite = ObjectState.Faction.GetOpposite();
 
             if (planet.Faction == ObjectState.Faction)
             {

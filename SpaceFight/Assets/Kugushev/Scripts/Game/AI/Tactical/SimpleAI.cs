@@ -5,17 +5,19 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Entities;
 using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Managers;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.AI.Tactical
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Simple AI")]
-    public class SimpleAI : ScriptableObject
+    public class SimpleAI : ScriptableObject, IAIAgent
     {
         [SerializeField] private FleetManager fleet;
         [SerializeField] private PlanetInfo[] planets;
         [SerializeField] private ObjectsPool objectsPool;
+        [SerializeField] private Faction agentFaction;
 
         [Serializable]
         public class PlanetInfo
@@ -33,7 +35,7 @@ namespace Kugushev.Scripts.Game.AI.Tactical
         {
             foreach (var planetInfo in planets)
             {
-                if (planetInfo.Planet.Faction == Faction.Enemy)
+                if (planetInfo.Planet.Faction == agentFaction)
                 {
                     if (planetInfo.Planet.Power > 5)
                         Act(planetInfo);
@@ -44,7 +46,8 @@ namespace Kugushev.Scripts.Game.AI.Tactical
         private void Act(PlanetInfo info)
         {
             // attack
-            var weakestVictim = FindWeakest(info, faction => faction == Faction.Player || faction == Faction.Neutral);
+            var weakestVictim = FindWeakest(info, faction => faction == agentFaction.GetOpposite() ||
+                                                             faction == Faction.Neutral);
             if (!ReferenceEquals(weakestVictim, null))
             {
                 if (info.Planet.Power > weakestVictim.Power + 6)
@@ -63,7 +66,7 @@ namespace Kugushev.Scripts.Game.AI.Tactical
             }
 
             // send reinforcements
-            var weakestAllay = FindWeakest(info, faction => faction == Faction.Enemy);
+            var weakestAllay = FindWeakest(info, faction => faction == agentFaction);
             if (!ReferenceEquals(weakestAllay, null))
             {
                 // todo: send reinforcements based on Random
@@ -84,7 +87,7 @@ namespace Kugushev.Scripts.Game.AI.Tactical
                 var point = Vector3.Lerp(@from, to, i);
                 order.RegisterMovement(point, 0.05f);
             }
-            
+
             fleet.CommitOrder(order, weakestVictim);
         }
 

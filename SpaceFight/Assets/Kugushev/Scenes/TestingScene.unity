@@ -269,6 +269,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6c20792b8d4db0449f2f4c5fa4dda64, type: 2}
   - {fileID: 11400000, guid: 0c7bd902c28945e4994e0aca832a6253, type: 2}
   enemyAi:
+  - {fileID: 11400000, guid: f4c174ac53180c846be9f8e1645e9278, type: 2}
   - {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
 --- !u!1 &2060497906
 GameObject:

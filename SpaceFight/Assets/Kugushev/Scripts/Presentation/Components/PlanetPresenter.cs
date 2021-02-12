@@ -44,9 +44,9 @@ namespace Kugushev.Scripts.Presentation.Components
 
             _meshRenderer.material = Model.Faction switch
             {
-                Faction.Player => playerMaterial,
+                Faction.Green => playerMaterial,
                 Faction.Neutral => neutralMaterial,
-                Faction.Enemy => enemyMaterial,
+                Faction.Red => enemyMaterial,
                 _ => null
             };
 
