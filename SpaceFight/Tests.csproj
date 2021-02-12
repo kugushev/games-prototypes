@@ -13,11 +13,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</ProjectGuid>
+    <ProjectGuid>{7bd4ba8a-fa49-a8fb-658f-1f25ad0a0ddd}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Game</AssemblyName>
+    <AssemblyName>Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -52,22 +52,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Order.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\OrdersManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Planet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\OrderStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\FleetManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IFighter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Abstractions\Model.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IGameLoopParticipant.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\AI\Tactical\SimpleAI.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Army.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\ArmyStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\HandType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PlanetSize.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Faction.cs" />
-     <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\NewTestScript.cs" />
+     <None Include="Assets\Kugushev\Scripts\Tests\Tests.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -281,17 +267,8 @@
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Android.Extensions">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.WindowsStandalone.Extensions">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="ICSharpCode.NRefactory">
- <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.2.2/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+ <Reference Include="nunit.framework">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -638,11 +615,11 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
- <Reference Include="UniTask">
- <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
- <Reference Include="UniTask.Linq">
- <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
+ <Reference Include="UnityEditor.TestRunner">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -652,10 +629,6 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Common.csproj">
-      <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
