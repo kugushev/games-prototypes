@@ -9,14 +9,13 @@ namespace Kugushev.Scripts.Presentation.Components.Abstractions
     {
         private BasePresentationModel _presentationModel;
 
-        protected T Model { get; private set; }
+        protected T Model => _presentationModel.GetModelAs<T>();
 
         protected abstract void OnAwake();
 
         private void Awake()
         {
             _presentationModel = GetComponent<BasePresentationModel>();
-            Model = _presentationModel.GetModelAs<T>();
 
             InjectComponents(Model);
             

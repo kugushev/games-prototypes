@@ -15,3 +15,4 @@ MonoBehaviour:
   faction: 1
   size: 3
   production: 3
+  position: {x: -0.298, y: 1.174, z: 0.08}

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Common.ValueObjects
 {
+    [Serializable]
     public readonly struct Position
     {
         public Vector3 Point { get; }

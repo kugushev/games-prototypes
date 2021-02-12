@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Satrun
       objectReference: {fileID: 0}
+    - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5842988920487544329, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -567,6 +571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mercury
       objectReference: {fileID: 0}
+    - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5842988920487544329, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -730,6 +738,10 @@ PrefabInstance:
     - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_Name
       value: Jupiter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5842988920487544329, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_RootOrder
@@ -1137,6 +1149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Venus
       objectReference: {fileID: 0}
+    - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5842988920487544329, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1203,6 +1219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mars
       objectReference: {fileID: 0}
+    - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5842988920487544329, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1267,6 +1287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1125814074}
+  - component: {fileID: 1125814075}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -1295,6 +1316,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1125814075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125814073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f429cc2a3dd64151a88b709acf8a78cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionsManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
+  sun: {fileID: 1504819625}
+  planetPrefab: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
 --- !u!1 &1504819621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1359,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504819621}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -2710,6 +2746,10 @@ PrefabInstance:
     - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_Name
       value: Earth
+      objectReference: {fileID: 0}
+    - target: {fileID: 5842988920487544328, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5842988920487544329, guid: 8c9d080ca3b968242899b4aae389dcc2, type: 3}
       propertyPath: m_RootOrder

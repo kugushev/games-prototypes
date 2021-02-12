@@ -67,14 +67,8 @@ namespace Kugushev.Scripts.Game.Entities
             ObjectState.Status = OrderStatus.Execution;
         }
 
-        protected override void OnClear(State state)
-        {
-            _path.Clear();
-        }
+        protected override void OnClear(State state) => _path.Clear();
 
-        protected override void OnRestore(State state)
-        {
-            _path.Clear();
-        }
+        protected override void OnRestore(State state) => _path.Clear();
     }
 }

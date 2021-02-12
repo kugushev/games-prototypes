@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Kugushev/Scenes/InitScene.unity
+    path: Assets/Kugushev/Scenes/MainMenuScene.unity
+    guid: d0a4aebf9c7d08348a723cb769160605
+  - enabled: 1
+    path: Assets/Kugushev/Scenes/MissionScene.unity
     guid: 31afbd9f2e3ae054288ae5e1f06c433c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa10df11bcc983e4985af45914d72194, type: 2}

@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Entities.Abstractions;
 using Kugushev.Scripts.Game.Enums;
@@ -14,6 +15,8 @@ namespace Kugushev.Scripts.Game.Entities
         [SerializeField] private Faction faction;
         [SerializeField] private PlanetSize size;
         [SerializeField] private int production;
+        [SerializeField] private Vector3 position;
+        [SerializeField] private bool isStub = false;
         private readonly TempState _state = new TempState();
 
         private class TempState
@@ -36,6 +39,10 @@ namespace Kugushev.Scripts.Game.Entities
             get => _state.Selected;
             set => _state.Selected = value;
         }
+
+        public Position Position => new Position(position);
+
+        public bool IsStub => isStub;
 
         public UniTask ExecuteProductionCycle()
         {
