@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faction: 2
   size: 6
-  production: 2
+  production: 5
   position: {x: -1.047, y: 1.641, z: 1.049}
+  isStub: 0

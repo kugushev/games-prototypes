@@ -52,12 +52,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\MissionManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Order.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\OrdersManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Planet.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Player\OrdersManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Presets\PlanetPreset.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\OrderStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\FleetManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Fleet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Interfaces\IFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\Entities\Abstractions\Model.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\PlanetarySystem.cs" />
@@ -71,7 +71,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\MissionState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\MissionState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Interfaces\ICommander.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\ConflictParty.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Player\PlayerCommander.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Planet.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

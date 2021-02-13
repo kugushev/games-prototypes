@@ -2,14 +2,14 @@
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common.Entities.Abstractions;
-using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Presets;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Missions.Managers
+namespace Kugushev.Scripts.Game.Missions.Entities
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "FleetManager")]
-    public class FleetManager : Model
+    public class Fleet : Model
     {
         [SerializeField] private ObjectsPool pool;
         [SerializeField] private float armySpeed = 5f;
@@ -17,12 +17,19 @@ namespace Kugushev.Scripts.Game.Missions.Managers
         [SerializeField] private Faction faction;
 
         public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
+        
 
         protected override void Dispose(bool destroying)
         {
         }
+        
+        public void Dispose()
+        {
+            // todo: dispse armies to sent
+            // todo: dispose all armies 
+        }
 
-        public void CommitOrder(Order order, Planet target)
+        public void CommitOrder(Order order, PlanetPreset target)
         {
             order.Commit(target);
             if (order.SourcePlanet.Power > 0)

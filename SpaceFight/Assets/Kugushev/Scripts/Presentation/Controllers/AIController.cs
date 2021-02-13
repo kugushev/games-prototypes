@@ -1,4 +1,6 @@
+using Kugushev.Scripts.Game.Common.Interfaces;
 using Kugushev.Scripts.Game.Missions;
+using Kugushev.Scripts.Game.Missions.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,11 +12,14 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         void Update()
         {
-            if (missionManager.AIAgents != null)
-                foreach (var agent in missionManager.AIAgents)
-                {
-                    agent.Act();
-                }
+            if (missionManager.State != null)
+            {
+                if (missionManager.State.Value.Green.Commander is IAIAgent greenAgent) 
+                    greenAgent.Act();
+                
+                if (missionManager.State.Value.Red.Commander is IAIAgent redAgent) 
+                    redAgent.Act();
+            }
         }
     }
 }

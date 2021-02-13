@@ -6,36 +6,61 @@ using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Interfaces;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
-using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Game.Missions.Interfaces;
+using Kugushev.Scripts.Game.Missions.Presets;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.AI.Tactical
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Simple AI")]
-    public class SimpleAI : ScriptableObject, IAIAgent
+    public class SimpleAI : ScriptableObject, IAIAgent, ICommander
     {
-        [SerializeField] private FleetManager fleet;
         [SerializeField] private PlanetInfo[] planets;
         [SerializeField] private ObjectsPool objectsPool;
-        [SerializeField] private Faction agentFaction;
 
         [Serializable]
         public class PlanetInfo
         {
-            [SerializeField] private Planet planet;
+            [SerializeField] private PlanetPreset planet;
             [SerializeField] private Vector3 position;
-            [SerializeField] private Planet[] neighbours;
-            public Planet Planet => planet;
-            public IReadOnlyList<Planet> Neighbours => neighbours;
+            [SerializeField] private PlanetPreset[] neighbours;
+            public PlanetPreset Planet => planet;
+            public IReadOnlyList<PlanetPreset> Neighbours => neighbours;
 
             public Vector3 Position => position;
         }
+
+        private readonly TempState _state = new TempState();
+
+        private class TempState
+        {
+            public Fleet Fleet;
+            public Faction AgentFaction;
+        }
+
+        #region ICommander
+
+        public void AssignFleet(Fleet fleet, Faction faction)
+        {
+            _state.Fleet = fleet;
+            _state.AgentFaction = faction;
+        }
+
+        public void WithdrawFleet()
+        {
+            _state.Fleet = null;
+            _state.AgentFaction = Faction.Unspecified;
+        }
+
+        #endregion
+
+        #region IAIAgent
 
         public void Act()
         {
             foreach (var planetInfo in planets)
             {
-                if (planetInfo.Planet.Faction == agentFaction)
+                if (planetInfo.Planet.Faction == _state.AgentFaction)
                 {
                     if (planetInfo.Planet.Power > 5)
                         Act(planetInfo);
@@ -43,10 +68,12 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             }
         }
 
+        #endregion
+
         private void Act(PlanetInfo info)
         {
             // attack
-            var weakestVictim = FindWeakest(info, faction => faction == agentFaction.GetOpposite() ||
+            var weakestVictim = FindWeakest(info, faction => faction == _state.AgentFaction.GetOpposite() ||
                                                              faction == Faction.Neutral);
             if (!ReferenceEquals(weakestVictim, null))
             {
@@ -66,7 +93,7 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             }
 
             // send reinforcements
-            var weakestAllay = FindWeakest(info, faction => faction == agentFaction);
+            var weakestAllay = FindWeakest(info, faction => faction == _state.AgentFaction);
             if (!ReferenceEquals(weakestAllay, null))
             {
                 // todo: send reinforcements based on Random
@@ -74,7 +101,7 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             }
         }
 
-        private void SendFleet(PlanetInfo info, Planet weakestVictim)
+        private void SendFleet(PlanetInfo info, PlanetPreset weakestVictim)
         {
             var order = objectsPool.GetObject<Order, Order.State>(new Order.State(info.Planet));
 
@@ -88,12 +115,12 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
                 order.RegisterMovement(point, 0.05f);
             }
 
-            fleet.CommitOrder(order, weakestVictim);
+            _state.Fleet.CommitOrder(order, weakestVictim);
         }
 
-        private static Planet FindWeakest(PlanetInfo info, Predicate<Faction> predicate)
+        private static PlanetPreset FindWeakest(PlanetInfo info, Predicate<Faction> predicate)
         {
-            Planet weakest = null;
+            PlanetPreset weakest = null;
 
             foreach (var neighbour in info.Neighbours)
             {
@@ -109,7 +136,7 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             return weakest;
         }
 
-        private Vector3 GetPlanetPosition(Planet planet)
+        private Vector3 GetPlanetPosition(PlanetPreset planet)
         {
             foreach (var planetInfo in planets)
             {

@@ -2,6 +2,8 @@
 using Kugushev.Scripts.Game.Common.Enums;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Game.Missions.Player;
+using Kugushev.Scripts.Game.Missions.Presets;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.Controllers
@@ -11,7 +13,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private OrdersManager leftOrders;
         [SerializeField] private OrdersManager rightOrders;
 
-        public void HandleTouchPlanet(HandController sender, Planet planet)
+        public void HandleTouchPlanet(HandController sender, PlanetPreset planet)
         {
             var ordersManager = GetOrdersManager(sender);
             ordersManager.HandlePlanetTouch(planet);
@@ -19,7 +21,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
             planet.Selected = true;
         }
 
-        public void HandleDetouchPlanet(HandController sender, Planet planet)
+        public void HandleDetouchPlanet(HandController sender, PlanetPreset planet)
         {
             var ordersManager = GetOrdersManager(sender);
             ordersManager.HandlePlanetDetouch();

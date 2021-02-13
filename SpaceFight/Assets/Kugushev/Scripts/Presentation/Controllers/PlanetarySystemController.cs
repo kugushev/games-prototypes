@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.Game.Missions;
+using Kugushev.Scripts.Game.Missions.Managers;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,7 +14,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         private void Start()
         {
-            var system = missionManager.CurrentPlanetarySystem;
+            var system = missionManager.State?.CurrentPlanetarySystem;
             if (system == null)
             {
                 Debug.LogError("Current planetary system is not set");

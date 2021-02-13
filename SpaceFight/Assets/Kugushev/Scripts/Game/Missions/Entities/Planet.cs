@@ -1,89 +1,91 @@
 ﻿using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Common.Entities.Abstractions;
 using Kugushev.Scripts.Game.Missions.Enums;
-using Kugushev.Scripts.Game.Missions.Interfaces;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
 {
-    [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Planet")]
-    public class Planet : Model, IFighter
+    public class Planet : Poolable<Planet.State>
     {
-        [SerializeField] private Faction faction;
-        [SerializeField] private PlanetSize size;
-        [SerializeField] private int production;
-        [SerializeField] private Vector3 position;
-        [SerializeField] private bool isStub = false;
-        private readonly TempState _state = new TempState();
-
-        private class TempState
+        public struct State
         {
-            public int Power;
-            public bool Selected;
-            public Faction CurrentFaction;
+            public State(Faction faction, PlanetSize size, int production, Vector3 position)
+            {
+                Faction = faction;
+                Size = size;
+                Production = production;
+                Position = position;
+                Power = 0;
+                Selected = false;
+            }
+
+            public Faction Faction { get; set; }
+            public PlanetSize Size { get; }
+            public int Production { get; }
+            public Vector3 Position { get; }
+            public int Power { get; set; }
+            public bool Selected { get; set; }
         }
 
-        public Faction Faction => _state.CurrentFaction == Faction.Unspecified 
-            ? _state.CurrentFaction = faction
-            : _state.CurrentFaction;
+        public Planet(ObjectsPool objectsPool) : base(objectsPool)
+        {
+        }
+        
+        public Faction Faction => ObjectState.Faction;
 
-        public PlanetSize Size => size;
+        public PlanetSize Size => ObjectState.Size;
 
-        public int Power => _state.Power;
+        public int Power => ObjectState.Power;
 
         public bool Selected
         {
-            get => _state.Selected;
-            set => _state.Selected = value;
+            get => ObjectState.Selected;
+            set => ObjectState.Selected = value;
         }
 
-        public Position Position => new Position(position);
-
-        public bool IsStub => isStub;
+        public Position Position => new Position(ObjectState.Position);
 
         public UniTask ExecuteProductionCycle()
         {
-            _state.Power += production;
+            if (Faction == Faction.Neutral && ObjectState.Power >= 50)
+                return UniTask.CompletedTask;
+            
+            ObjectState.Power += ObjectState.Production;
             return UniTask.CompletedTask;
         }
 
         public int Recruit()
         {
-            if (_state.Power <= GameConstants.SoftCapArmyPower)
+            if (ObjectState.Power <= GameConstants.SoftCapArmyPower)
             {
-                var allPower = _state.Power;
-                _state.Power = 0;
+                var allPower = ObjectState.Power;
+                ObjectState.Power = 0;
                 return allPower;
             }
 
-            _state.Power -= GameConstants.SoftCapArmyPower;
+            ObjectState.Power -= GameConstants.SoftCapArmyPower;
             return GameConstants.SoftCapArmyPower;
         }
 
         public void Reinforce(Army army)
         {
-            _state.Power += army.Power;
+            ObjectState.Power += army.Power;
         }
         
         public bool TryCapture(Army invader)
         {
-            _state.Power -= GameConstants.UnifiedDamage;
+            ObjectState.Power -= GameConstants.UnifiedDamage;
             
-            if (_state.Power < 0)
+            if (ObjectState.Power < 0)
             {
-                _state.Power *= -1;
-                _state.CurrentFaction = invader.Faction;
+                ObjectState.Power *= -1;
+                ObjectState.Faction = invader.Faction;
                 return true;
             }
 
             return false;
-        }
-        
-        protected override void Dispose(bool destroying)
-        {
         }
     }
 }

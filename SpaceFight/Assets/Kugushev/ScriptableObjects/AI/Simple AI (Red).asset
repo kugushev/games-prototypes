@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed8cf818ca4d4492befbac567194c6a0, type: 3}
-  m_Name: Simple AI
+  m_Name: Simple AI (Red)
   m_EditorClassIdentifier: 
-  fleet: {fileID: 11400000, guid: 93e61a212f79adc4783e4bb3b236593f, type: 2}
   planets:
   - planet: {fileID: 11400000, guid: fa68e6e61942d5e40b0cef213b049d4a, type: 2}
     position: {x: 0.314, y: 2.074, z: 0.99}
@@ -53,4 +52,3 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0c7bd902c28945e4994e0aca832a6253, type: 2}
     - {fileID: 11400000, guid: 3ba64f1217815a342b07068ef4b279a0, type: 2}
   objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
-  agentFaction: 3

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Presets;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
 using TMPro;
@@ -10,7 +11,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Presentation.Components
 {
     [RequireComponent(typeof(MeshRenderer))]
-    public class PlanetPresenter : BaseComponent<Planet>
+    public class PlanetPresenter : BaseComponent<PlanetPreset>
     {
         [SerializeField] private TextMeshProUGUI armyCaption;
         [SerializeField] private Material playerMaterial;

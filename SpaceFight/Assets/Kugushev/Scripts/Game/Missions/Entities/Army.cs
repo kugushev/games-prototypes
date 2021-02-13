@@ -4,6 +4,7 @@ using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Interfaces;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Game.Missions.Interfaces;
+using Kugushev.Scripts.Game.Missions.Presets;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
@@ -140,7 +141,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             }
         }
 
-        public void HandlePlanetVisiting(Planet planet)
+        public void HandlePlanetVisiting(PlanetPreset planet)
         {
             if (planet != ObjectState.Order.TargetPlanet)
                 return;

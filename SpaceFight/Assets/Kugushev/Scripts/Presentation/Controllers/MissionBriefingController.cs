@@ -4,6 +4,11 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Missions;
 using Kugushev.Scripts.Game.Missions.AI.Tactical;
 using Kugushev.Scripts.Game.Missions.Entities;
+using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Game.Missions.Player;
+using Kugushev.Scripts.Game.Missions.Presets;
+using Kugushev.Scripts.Game.Missions.ValueObjects;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using TMPro;
 using UnityEngine;
@@ -14,10 +19,15 @@ namespace Kugushev.Scripts.Presentation.Controllers
     public class MissionBriefingController : MonoBehaviour
     {
         [SerializeField] private ObjectsPool pool;
-        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManager missionManager;
-        [SerializeField] private Planet[] defaultPlanets;
-        [SerializeField] private SimpleAI[] enemyAi;
+        [SerializeField] private MissionManager missionManager;
+        [Header("Menu")]
         [SerializeField] private TextMeshProUGUI countdownText;
+        [Header("Mission Related Assets")]
+        [SerializeField] private PlanetPreset[] defaultPlanets;
+        [SerializeField] private PlayerCommander playerCommander;
+        [SerializeField] private SimpleAI enemyAi;
+        [SerializeField] private Fleet greenFleet;
+        [SerializeField] private Fleet redFleet;
 
         private const int CountDownStart = 3;
 
@@ -42,7 +52,10 @@ namespace Kugushev.Scripts.Presentation.Controllers
             foreach (var planet in defaultPlanets)
                 system.AddPlanet(planet);
 
-            await missionManager.NextMission(system, enemyAi);
+            var green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
+            var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
+
+            await missionManager.NextMission(system, green, red);
         }
     }
 }

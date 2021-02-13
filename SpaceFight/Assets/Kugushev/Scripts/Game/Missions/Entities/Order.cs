@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Presets;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
@@ -11,7 +12,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
     {
         public struct State
         {
-            public State(Planet planet)
+            public State(PlanetPreset planet)
             {
                 SourcePlanet = planet;
                 TargetPlanet = null;
@@ -19,8 +20,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                 LastRegisteredPosition = null;
             }
 
-            public readonly Planet SourcePlanet;
-            [CanBeNull] public Planet TargetPlanet;
+            public readonly PlanetPreset SourcePlanet;
+            [CanBeNull] public PlanetPreset TargetPlanet;
             public OrderStatus Status;
             public Vector3? LastRegisteredPosition;
         }
@@ -32,8 +33,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         }
         
         public IReadOnlyList<Vector3> Path => _path;
-        public Planet SourcePlanet => ObjectState.SourcePlanet;
-        public Planet TargetPlanet => ObjectState.TargetPlanet;
+        public PlanetPreset SourcePlanet => ObjectState.SourcePlanet;
+        public PlanetPreset TargetPlanet => ObjectState.TargetPlanet;
 
         public OrderStatus Status
         {
@@ -58,7 +59,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             _path.Add(position);
         }
         
-        public void Commit(Planet target)
+        public void Commit(PlanetPreset target)
         {
             if (ObjectState.LastRegisteredPosition != null) 
                 _path.Add(ObjectState.LastRegisteredPosition.Value);

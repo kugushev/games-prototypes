@@ -5,56 +5,59 @@ using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Interfaces;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.ValueObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Kugushev.Scripts.Game.Missions
+namespace Kugushev.Scripts.Game.Missions.Managers
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Missions Manager")]
     public class MissionManager : ScriptableObject
     {
-        public PlanetarySystem CurrentPlanetarySystem { get; private set; }
-        public IReadOnlyList<IAIAgent> AIAgents { get; private set; }
+        public MissionState? State { get; private set; }
         public Faction? LastWinner { get; private set; }
 
-        public async UniTask NextMission(PlanetarySystem planetarySystem, IReadOnlyList<IAIAgent> aiAgents)
+        public async UniTask NextMission(PlanetarySystem planetarySystem, ConflictParty green, ConflictParty red)
         {
-            if (CurrentPlanetarySystem != null || AIAgents != null)
+            if (State != null)
             {
                 Debug.LogError("Can't start next mission. Current is not finished yet");
                 return;
             }
 
-            CurrentPlanetarySystem = planetarySystem;
-            AIAgents = aiAgents;
-            LastWinner = null;
+            State = new MissionState(planetarySystem, green, red);
+            State.Value.Setup();
             
+            LastWinner = null;
+
             await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MissionScene);
         }
 
         public async UniTask CheckMissionStatus()
         {
-            if (CurrentPlanetarySystem != null)
+            if (State != null)
             {
-                if (IsMissionFinished(out var winner))
+                if (IsMissionFinished(State.Value, out var winner))
                 {
                     LastWinner = winner;
-                    
-                    // todo: clenup fleet 
-                    CurrentPlanetarySystem = null;
-                    AIAgents = null;
+
+                    State.Value.Dispose();
+                    State = null;
+
                     await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MissionBriefingScene);
                 }
             }
         }
 
-        private bool IsMissionFinished(out Faction winner)
+        private static bool IsMissionFinished(MissionState state, out Faction winner)
         {
             winner = Faction.Unspecified;
+
             bool greedIsAlive = false;
             bool redIsAlive = false;
 
-            foreach (var planet in CurrentPlanetarySystem.Planets)
+
+            foreach (var planet in state.CurrentPlanetarySystem.Planets)
             {
                 switch (planet.Faction)
                 {

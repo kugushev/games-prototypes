@@ -1,5 +1,6 @@
 ﻿using Kugushev.Scripts.Game.Common.Entities.Abstractions;
 using Kugushev.Scripts.Game.Missions.Entities;
+using Kugushev.Scripts.Game.Missions.Presets;
 using Kugushev.Scripts.Presentation.PresentationModels.Abstractions;
 using UnityEngine;
 
@@ -7,10 +8,10 @@ namespace Kugushev.Scripts.Presentation.PresentationModels
 {
     public class PlanetPresentationModel: BasePresentationModel
     {
-        [SerializeField] private Planet model;
+        [SerializeField] private PlanetPreset model;
         protected override Model Model => model;
 
-        public Planet Planet
+        public PlanetPreset Planet
         {
             get => model;
             set

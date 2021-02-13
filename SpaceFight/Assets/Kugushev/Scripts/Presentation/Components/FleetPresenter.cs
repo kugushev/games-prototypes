@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Game.Common;
+using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Managers;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.Components
 {
-    public class FleetPresenter : BaseComponent<FleetManager>
+    public class FleetPresenter : BaseComponent<Fleet>
     {
         [SerializeField] private Transform limbo;
         [SerializeField] private GameObject armyPrefab;

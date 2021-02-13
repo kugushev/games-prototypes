@@ -2,31 +2,31 @@
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common.Entities.Abstractions;
-using Kugushev.Scripts.Game.Common.Enums;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Interfaces;
+using Kugushev.Scripts.Game.Missions.Presets;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Missions.Managers
+namespace Kugushev.Scripts.Game.Missions.Player
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "OrdersManager")]
-    public class OrdersManager : Model
+    public class OrdersManager : Model, ICommander
     {
         [SerializeField] private ObjectsPool pool;
-        [SerializeField] private FleetManager fleetManager;
-        [SerializeField] private HandType handHandType;
         [SerializeField] private float gapBetweenWaypoints = 0.05f;
         private readonly TempState _state = new TempState();
 
         private class TempState
         {
             public Order CurrentOrder;
-            public Planet HighlightedPlanet;
+            public PlanetPreset HighlightedPlanet;
+            public Fleet Fleet;
         }
 
         [CanBeNull] public Order CurrentOrder => _state.CurrentOrder;
 
-        public void HandlePlanetTouch(Planet planet)
+        public void HandlePlanetTouch(PlanetPreset planet)
         {
             if (_state.CurrentOrder == null)
             {
@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Game.Missions.Managers
             }
             else if (_state.CurrentOrder.SourcePlanet != planet)
             {
-                fleetManager.CommitOrder(_state.CurrentOrder, planet);
+                _state.Fleet.CommitOrder(_state.CurrentOrder, planet);
                 _state.CurrentOrder = null;
             }
         }
@@ -83,6 +83,20 @@ namespace Kugushev.Scripts.Game.Missions.Managers
                 currentOrder.RegisterMovement(position, gapBetweenWaypoints);
             }
         }
+
+        #region ICommander
+
+        public void AssignFleet(Fleet fleet, Faction faction)
+        {
+            _state.Fleet = fleet;
+        }
+
+        public void WithdrawFleet()
+        {
+            _state.Fleet = null;
+        }
+
+        #endregion
 
         protected override void Dispose(bool destroying)
         {

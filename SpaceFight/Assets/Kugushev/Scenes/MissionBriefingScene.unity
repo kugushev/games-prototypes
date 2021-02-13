@@ -360,7 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
-  missionsManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
+  missionManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
+  countdownText: {fileID: 1952919115}
   defaultPlanets:
   - {fileID: 11400000, guid: 3ba64f1217815a342b07068ef4b279a0, type: 2}
   - {fileID: 11400000, guid: be65f426e9a5a3b49be192e93ad7fb9b, type: 2}
@@ -368,9 +369,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b981c22e0cd8bce43a1a981052be8471, type: 2}
   - {fileID: 11400000, guid: b6c20792b8d4db0449f2f4c5fa4dda64, type: 2}
   - {fileID: 11400000, guid: 0c7bd902c28945e4994e0aca832a6253, type: 2}
-  enemyAi:
-  - {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
-  countdownText: {fileID: 1952919115}
+  playerCommander: {fileID: 11400000, guid: c2930a428602cc443901b922d905f9d4, type: 2}
+  enemyAi: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
+  greenFleet: {fileID: 11400000, guid: 610ef38f2dfd1284f9a9bb436330e682, type: 2}
+  redFleet: {fileID: 11400000, guid: 93e61a212f79adc4783e4bb3b236593f, type: 2}
 --- !u!1 &1952919113
 GameObject:
   m_ObjectHideFlags: 0
