@@ -52,25 +52,26 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\MissionsManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Order.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\OrdersManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Planet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\OrderStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\FleetManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IFighter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Abstractions\Model.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\PlanetarySystem.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IGameLoopParticipant.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\AI\Tactical\SimpleAI.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Entities\Army.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\ArmyStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\HandType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IAIAgent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PlanetSize.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\MissionManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Order.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\OrdersManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Planet.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\OrderStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\FleetManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Interfaces\IFighter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Common\Entities\Abstractions\Model.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\PlanetarySystem.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Common\Interfaces\IGameLoopParticipant.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\AI\Tactical\SimpleAI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Army.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\ArmyStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Common\Enums\HandType.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Common\Interfaces\IAIAgent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Faction.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\UnityConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\MissionState.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

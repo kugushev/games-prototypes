@@ -1,7 +1,7 @@
 ﻿using System;
-using Kugushev.Scripts.Game.Entities;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Managers;
+using Kugushev.Scripts.Game.Common.Enums;
+using Kugushev.Scripts.Game.Missions.Entities;
+using Kugushev.Scripts.Game.Missions.Managers;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.Controllers

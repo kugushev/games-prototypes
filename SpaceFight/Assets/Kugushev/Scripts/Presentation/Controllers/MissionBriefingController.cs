@@ -1,19 +1,20 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.AI.Tactical;
-using Kugushev.Scripts.Game.Entities;
-using Kugushev.Scripts.Game.Managers;
+using Kugushev.Scripts.Game.Missions;
+using Kugushev.Scripts.Game.Missions.AI.Tactical;
+using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class MissionBriefingController : MonoBehaviour
     {
         [SerializeField] private ObjectsPool pool;
-        [SerializeField] private MissionsManager missionsManager;
+        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManager missionManager;
         [SerializeField] private Planet[] defaultPlanets;
         [SerializeField] private SimpleAI[] enemyAi;
         [SerializeField] private TextMeshProUGUI countdownText;
@@ -27,7 +28,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         private async UniTask RunSingleRun()
         {
-            var winner = missionsManager.LastWinner?.ToString();
+            var winner = missionManager.LastWinner?.ToString();
             for (int i = CountDownStart; i >= 0; i--)
             {
                 countdownText.text = winner != null
@@ -41,7 +42,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
             foreach (var planet in defaultPlanets)
                 system.AddPlanet(planet);
 
-            await missionsManager.NextMission(system, enemyAi);
+            await missionManager.NextMission(system, enemyAi);
         }
     }
 }

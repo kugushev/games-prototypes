@@ -2,12 +2,12 @@
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Entities.Abstractions;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Interfaces;
+using Kugushev.Scripts.Game.Common.Entities.Abstractions;
+using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Interfaces;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Entities
+namespace Kugushev.Scripts.Game.Missions.Entities
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Planet")]
     public class Planet : Model, IFighter

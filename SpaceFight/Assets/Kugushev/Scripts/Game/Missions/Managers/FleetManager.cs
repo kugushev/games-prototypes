@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Entities;
-using Kugushev.Scripts.Game.Entities.Abstractions;
-using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Common.Entities.Abstractions;
+using Kugushev.Scripts.Game.Missions.Entities;
+using Kugushev.Scripts.Game.Missions.Enums;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Managers
+namespace Kugushev.Scripts.Game.Missions.Managers
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "FleetManager")]
     public class FleetManager : Model

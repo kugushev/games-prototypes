@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
 
-namespace Kugushev.Scripts.Game.Entities
+namespace Kugushev.Scripts.Game.Missions.Entities
 {
     public class PlanetarySystem : Poolable<PlanetarySystem.State>
     {

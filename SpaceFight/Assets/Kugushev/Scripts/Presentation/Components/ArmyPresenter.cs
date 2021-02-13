@@ -1,13 +1,10 @@
-﻿using System;
-using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Entities;
-using Kugushev.Scripts.Game.Enums;
+﻿using Kugushev.Scripts.Game.Common;
+using Kugushev.Scripts.Game.Missions.Entities;
+using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Presentation.Components
 {

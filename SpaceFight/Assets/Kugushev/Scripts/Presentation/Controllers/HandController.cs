@@ -1,5 +1,5 @@
 ﻿using System;
-using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Common.Enums;
 using Kugushev.Scripts.Presentation.Events;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;

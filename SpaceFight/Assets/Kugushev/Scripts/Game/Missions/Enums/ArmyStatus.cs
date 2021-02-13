@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Game.Enums
+﻿namespace Kugushev.Scripts.Game.Missions.Enums
 {
     public enum ArmyStatus
     {

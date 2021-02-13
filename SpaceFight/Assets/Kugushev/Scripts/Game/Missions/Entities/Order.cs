@@ -2,10 +2,10 @@
 using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Missions.Enums;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Entities
+namespace Kugushev.Scripts.Game.Missions.Entities
 {
     public class Order : Poolable<Order.State>
     {

@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Game.Interfaces
+﻿namespace Kugushev.Scripts.Game.Common.Interfaces
 {
     public interface IGameLoopParticipant
     {

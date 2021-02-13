@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.Game.Entities;
-using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Missions.Entities;
+using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
 using TMPro;

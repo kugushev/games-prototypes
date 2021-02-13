@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Entities;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Interfaces;
+using Kugushev.Scripts.Game.Common.Interfaces;
+using Kugushev.Scripts.Game.Missions.Entities;
+using Kugushev.Scripts.Game.Missions.Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Kugushev.Scripts.Game.Managers
+namespace Kugushev.Scripts.Game.Missions
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Missions Manager")]
-    public class MissionsManager : ScriptableObject
+    public class MissionManager : ScriptableObject
     {
         public PlanetarySystem CurrentPlanetarySystem { get; private set; }
         public IReadOnlyList<IAIAgent> AIAgents { get; private set; }

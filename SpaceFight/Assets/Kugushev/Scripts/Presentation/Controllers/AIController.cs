@@ -1,17 +1,17 @@
-using Kugushev.Scripts.Game.AI.Tactical;
-using Kugushev.Scripts.Game.Managers;
+using Kugushev.Scripts.Game.Missions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class AIController : MonoBehaviour
     {
-        [SerializeField] private MissionsManager missionsManager;
+        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManager missionManager;
 
         void Update()
         {
-            if (missionsManager.AIAgents != null)
-                foreach (var agent in missionsManager.AIAgents)
+            if (missionManager.AIAgents != null)
+                foreach (var agent in missionManager.AIAgents)
                 {
                     agent.Act();
                 }

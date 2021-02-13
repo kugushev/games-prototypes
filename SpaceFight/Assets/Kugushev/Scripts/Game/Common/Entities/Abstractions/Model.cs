@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Entities.Abstractions
+namespace Kugushev.Scripts.Game.Common.Entities.Abstractions
 {
     public abstract class Model: ScriptableObject
     {

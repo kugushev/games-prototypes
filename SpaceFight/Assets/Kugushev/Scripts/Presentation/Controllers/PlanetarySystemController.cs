@@ -1,18 +1,19 @@
-﻿using Kugushev.Scripts.Game.Managers;
+﻿using Kugushev.Scripts.Game.Missions;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class PlanetarySystemController : MonoBehaviour
     {
-        [SerializeField] private MissionsManager missionsManager;
+        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManager missionManager;
         [SerializeField] private Transform sun;
         [SerializeField] private GameObject planetPrefab;
 
         private void Start()
         {
-            var system = missionsManager.CurrentPlanetarySystem;
+            var system = missionManager.CurrentPlanetarySystem;
             if (system == null)
             {
                 Debug.LogError("Current planetary system is not set");

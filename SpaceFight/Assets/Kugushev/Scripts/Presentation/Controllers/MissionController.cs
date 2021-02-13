@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections;
 using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Game.Entities;
-using Kugushev.Scripts.Game.Managers;
+using Kugushev.Scripts.Game.Missions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class MissionController : MonoBehaviour
     {
         [SerializeField] private float productionTimeoutSeconds;
-        [SerializeField] private MissionsManager missionsManager;
+        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManager missionManager;
 
         private WaitForSeconds _productionTimeout;
 
@@ -29,9 +29,9 @@ namespace Kugushev.Scripts.Presentation.Controllers
         {
             while (true)
             {
-                if (missionsManager.CurrentPlanetarySystem != null)
+                if (missionManager.CurrentPlanetarySystem != null)
                 {
-                    foreach (var planet in missionsManager.CurrentPlanetarySystem.Planets)
+                    foreach (var planet in missionManager.CurrentPlanetarySystem.Planets)
                     {
                         var task = planet.ExecuteProductionCycle();
                         yield return task.ToCoroutine();
@@ -46,7 +46,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
         {
             while (true)
             {
-                yield return missionsManager.CheckMissionStatus().ToCoroutine();
+                yield return missionManager.CheckMissionStatus().ToCoroutine();
             }
         }
     }
