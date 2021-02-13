@@ -7,14 +7,14 @@ namespace Kugushev.Scripts.Presentation.Controllers
     public class AIController : MonoBehaviour
     {
         [SerializeField] private MissionsManager missionsManager;
-        
+
         void Update()
         {
-            foreach (var agent in missionsManager.AIAgents)
-            {
-                agent.Act();
-            }
+            if (missionsManager.AIAgents != null)
+                foreach (var agent in missionsManager.AIAgents)
+                {
+                    agent.Act();
+                }
         }
     }
 }
- 

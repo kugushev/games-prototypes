@@ -1117,13 +1117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productionTimeoutSeconds: 3
-  planets:
-  - {fileID: 11400000, guid: b981c22e0cd8bce43a1a981052be8471, type: 2}
-  - {fileID: 11400000, guid: 0c7bd902c28945e4994e0aca832a6253, type: 2}
-  - {fileID: 11400000, guid: 3ba64f1217815a342b07068ef4b279a0, type: 2}
-  - {fileID: 11400000, guid: fa68e6e61942d5e40b0cef213b049d4a, type: 2}
-  - {fileID: 11400000, guid: be65f426e9a5a3b49be192e93ad7fb9b, type: 2}
-  - {fileID: 11400000, guid: b6c20792b8d4db0449f2f4c5fa4dda64, type: 2}
+  missionsManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
 --- !u!114 &874176779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,7 +1354,7 @@ SphereCollider:
   m_GameObject: {fileID: 1504819621}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
