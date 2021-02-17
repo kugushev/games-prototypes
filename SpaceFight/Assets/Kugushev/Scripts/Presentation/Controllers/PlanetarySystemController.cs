@@ -8,7 +8,9 @@ namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class PlanetarySystemController : MonoBehaviour
     {
-        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManager missionManager;
+        [FormerlySerializedAs("missionsManager")] [SerializeField]
+        private MissionManager missionManager;
+
         [SerializeField] private Transform sun;
         [SerializeField] private GameObject planetPrefab;
 

@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Game.Missions.Player
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "OrdersManager")]
-    public class OrdersManager : Model, ICommander
+    public class OrdersManager : ScriptableObject, IModel, ICommander
     {
         [SerializeField] private ObjectsPool pool;
         [SerializeField] private float gapBetweenWaypoints = 0.05f;
@@ -20,13 +20,13 @@ namespace Kugushev.Scripts.Game.Missions.Player
         private class TempState
         {
             public Order CurrentOrder;
-            public PlanetPreset HighlightedPlanet;
+            public Planet HighlightedPlanet;
             public Fleet Fleet;
         }
 
         [CanBeNull] public Order CurrentOrder => _state.CurrentOrder;
 
-        public void HandlePlanetTouch(PlanetPreset planet)
+        public void HandlePlanetTouch(Planet planet)
         {
             if (_state.CurrentOrder == null)
             {
@@ -98,7 +98,7 @@ namespace Kugushev.Scripts.Game.Missions.Player
 
         #endregion
 
-        protected override void Dispose(bool destroying)
+        public void Dispose()
         {
             DropCurrentOrder();
         }

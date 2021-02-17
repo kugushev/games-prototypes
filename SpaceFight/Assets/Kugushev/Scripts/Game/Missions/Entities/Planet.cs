@@ -2,12 +2,14 @@
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
+using Kugushev.Scripts.Game.Common.Entities.Abstractions;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Interfaces;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
 {
-    public class Planet : Poolable<Planet.State>
+    public class Planet : Poolable<Planet.State>, IModel, IFighter
     {
         public struct State
         {
@@ -21,18 +23,18 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                 Selected = false;
             }
 
-            public Faction Faction { get; set; }
+            public Faction Faction { get; internal set; }
             public PlanetSize Size { get; }
             public int Production { get; }
             public Vector3 Position { get; }
-            public int Power { get; set; }
-            public bool Selected { get; set; }
+            public int Power { get; internal set; }
+            public bool Selected { get; internal set; }
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
-        
+
         public Faction Faction => ObjectState.Faction;
 
         public PlanetSize Size => ObjectState.Size;
@@ -51,7 +53,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         {
             if (Faction == Faction.Neutral && ObjectState.Power >= 50)
                 return UniTask.CompletedTask;
-            
+
             ObjectState.Power += ObjectState.Production;
             return UniTask.CompletedTask;
         }
@@ -73,11 +75,11 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         {
             ObjectState.Power += army.Power;
         }
-        
+
         public bool TryCapture(Army invader)
         {
             ObjectState.Power -= GameConstants.UnifiedDamage;
-            
+
             if (ObjectState.Power < 0)
             {
                 ObjectState.Power *= -1;

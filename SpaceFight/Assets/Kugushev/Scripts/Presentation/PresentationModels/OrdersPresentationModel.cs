@@ -9,6 +9,6 @@ namespace Kugushev.Scripts.Presentation.PresentationModels
     public class OrdersPresentationModel: BasePresentationModel
     {
         [SerializeField] private OrdersManager model;
-        protected override Model Model => model;
+        protected override IModel Model => model;
     }
 }

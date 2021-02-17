@@ -20,6 +20,10 @@ namespace Kugushev.Scripts.Presentation.Components
         {
         }
 
+        protected override void OnStart()
+        {
+        }
+
         private void Update()
         {
             SendArmyIfRequired();
@@ -45,7 +49,7 @@ namespace Kugushev.Scripts.Presentation.Components
                 fromPool.gameObject.SetActive(true);
                 return fromPool;
             }
-            
+
             var go = Instantiate(armyPrefab, transform);
             var armyPresenter = go.GetComponent<ArmyPresenter>();
             armyPresenter.SetOwner(this);
@@ -56,7 +60,7 @@ namespace Kugushev.Scripts.Presentation.Components
         {
             armyPresenter.Army.Dispose();
             armyPresenter.Army = null;
-            
+
             armyPresenter.gameObject.SetActive(false);
             armyPresenter.transform.position = limbo.position;
             _armiesPool.Enqueue(armyPresenter);

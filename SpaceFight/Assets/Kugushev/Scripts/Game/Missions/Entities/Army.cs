@@ -125,13 +125,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             if (ObjectState.FightingTimeCollector > GameConstants.FightRoundDelay)
             {
                 ObjectState.FightingTimeCollector = 0f;
-
-                // execute fight
-                var captured = ObjectState.Target.TryCapture(this);
-                ObjectState.Power -= GameConstants.UnifiedDamage;
-
-                if (ObjectState.Power <= 0)
-                    Disband();
+                
+                var captured = ExecuteFight();
 
                 if (captured)
                 {
@@ -139,9 +134,27 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                     ObjectState.Target = null;
                 }
             }
+
+            bool ExecuteFight()
+            {
+                bool captured;
+                if (ObjectState.Target.Faction != ObjectState.Faction)
+                {
+                    // execute fight
+                    captured = ObjectState.Target.TryCapture(this);
+                    ObjectState.Power -= GameConstants.UnifiedDamage;
+
+                    if (ObjectState.Power <= 0)
+                        Disband();
+                }
+                else
+                    captured = true;
+
+                return captured;
+            }
         }
 
-        public void HandlePlanetVisiting(PlanetPreset planet)
+        public void HandlePlanetVisiting(Planet planet)
         {
             if (planet != ObjectState.Order.TargetPlanet)
                 return;

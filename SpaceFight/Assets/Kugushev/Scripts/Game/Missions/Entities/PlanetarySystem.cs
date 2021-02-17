@@ -16,23 +16,21 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             public float SunScale { get; }
         }
 
-        private readonly List<PlanetPreset> _planets = new List<PlanetPreset>();
+        private readonly List<Planet> _planets = new List<Planet>();
 
         public PlanetarySystem(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
-        public IReadOnlyList<PlanetPreset> Planets => _planets;
-        public void AddPlanet(PlanetPreset planet) => _planets.Add(planet);
+        public IReadOnlyList<Planet> Planets => _planets;
+        public void AddPlanet(Planet planet) => _planets.Add(planet);
         public float SunScale => ObjectState.SunScale;
 
         protected override void OnClear(State state)
         {
-            foreach (var planet in _planets)
-            {
-                planet.Reset();
-            }
-            
+            foreach (var planet in _planets) 
+                planet.Dispose();
+
             _planets.Clear();
         }
 

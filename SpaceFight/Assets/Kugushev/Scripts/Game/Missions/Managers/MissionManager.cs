@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Common;
@@ -16,6 +17,8 @@ namespace Kugushev.Scripts.Game.Missions.Managers
     {
         public MissionState? State { get; private set; }
         public Faction? LastWinner { get; private set; }
+
+        public event Action<Faction> MissionFinished;
 
         public async UniTask NextMission(PlanetarySystem planetarySystem, ConflictParty green, ConflictParty red)
         {
@@ -44,6 +47,7 @@ namespace Kugushev.Scripts.Game.Missions.Managers
                     State.Value.Dispose();
                     State = null;
 
+                    MissionFinished?.Invoke(winner);
                     await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MissionBriefingScene);
                 }
             }

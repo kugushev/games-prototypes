@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
+using Kugushev.Scripts.Presentation.Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -13,7 +12,7 @@ namespace Kugushev.Scripts.Tests
         public IEnumerator RunBigFight()
         {
             SceneManager.LoadScene("TestingScene");
-            yield return new WaitForSeconds(30);
+            yield return new WaitUntil(() => MissionBriefingController.MissionFinished);
         }
     }
 }

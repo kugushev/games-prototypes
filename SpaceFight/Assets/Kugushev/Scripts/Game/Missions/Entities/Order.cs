@@ -12,7 +12,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
     {
         public struct State
         {
-            public State(PlanetPreset planet)
+            public State(Planet planet)
             {
                 SourcePlanet = planet;
                 TargetPlanet = null;
@@ -20,8 +20,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                 LastRegisteredPosition = null;
             }
 
-            public readonly PlanetPreset SourcePlanet;
-            [CanBeNull] public PlanetPreset TargetPlanet;
+            public readonly Planet SourcePlanet;
+            [CanBeNull] public Planet TargetPlanet;
             public OrderStatus Status;
             public Vector3? LastRegisteredPosition;
         }
@@ -33,8 +33,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         }
         
         public IReadOnlyList<Vector3> Path => _path;
-        public PlanetPreset SourcePlanet => ObjectState.SourcePlanet;
-        public PlanetPreset TargetPlanet => ObjectState.TargetPlanet;
+        public Planet SourcePlanet => ObjectState.SourcePlanet;
+        public Planet TargetPlanet => ObjectState.TargetPlanet;
 
         public OrderStatus Status
         {
@@ -59,7 +59,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             _path.Add(position);
         }
         
-        public void Commit(PlanetPreset target)
+        public void Commit(Planet target)
         {
             if (ObjectState.LastRegisteredPosition != null) 
                 _path.Add(ObjectState.LastRegisteredPosition.Value);

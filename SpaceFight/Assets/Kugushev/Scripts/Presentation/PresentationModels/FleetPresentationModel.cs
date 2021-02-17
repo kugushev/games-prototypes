@@ -10,6 +10,6 @@ namespace Kugushev.Scripts.Presentation.PresentationModels
     public class FleetPresentationModel: BasePresentationModel
     {
         [FormerlySerializedAs("fleetManager")] [SerializeField] private Fleet fleet;
-        protected override Model Model => fleet;
+        protected override IModel Model => fleet;
     }
 }

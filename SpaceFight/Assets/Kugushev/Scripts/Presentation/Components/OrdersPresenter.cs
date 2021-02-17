@@ -20,6 +20,10 @@ namespace Kugushev.Scripts.Presentation.Components
         {
         }
 
+        protected override void OnStart()
+        {
+        }
+
         private void Update()
         {
             HandlePathChanges();

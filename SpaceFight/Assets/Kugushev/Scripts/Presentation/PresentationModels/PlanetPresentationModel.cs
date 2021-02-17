@@ -1,28 +1,30 @@
 ﻿using Kugushev.Scripts.Game.Common.Entities.Abstractions;
 using Kugushev.Scripts.Game.Missions.Entities;
-using Kugushev.Scripts.Game.Missions.Presets;
 using Kugushev.Scripts.Presentation.PresentationModels.Abstractions;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.PresentationModels
 {
-    public class PlanetPresentationModel: BasePresentationModel
+    public class PlanetPresentationModel : BasePresentationModel
     {
-        [SerializeField] private PlanetPreset model;
-        protected override Model Model => model;
+        protected override IModel Model => _planet;
 
-        public PlanetPreset Planet
+        public override bool IsInPrefab => true;
+
+        private Planet _planet;
+
+        public Planet Planet
         {
-            get => model;
+            get => _planet;
             set
             {
-                if (!ReferenceEquals(model, null) && !model.IsStub)
+                if (!ReferenceEquals(_planet, null))
                 {
-                    Debug.LogError($"Unable to set planet {value} because {model} is already set");
+                    Debug.LogError($"Unable to set planet {value} because {_planet} is already set");
                     return;
                 }
-                
-                model = value;
+
+                _planet = value;
             }
         }
     }

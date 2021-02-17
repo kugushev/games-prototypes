@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Game.Missions.Entities
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "FleetManager")]
-    public class Fleet : Model
+    public class Fleet : ScriptableObject, IModel
     {
         [SerializeField] private ObjectsPool pool;
         [SerializeField] private float armySpeed = 5f;
@@ -17,11 +17,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         [SerializeField] private Faction faction;
 
         public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
-        
-
-        protected override void Dispose(bool destroying)
-        {
-        }
+       
         
         public void Dispose()
         {
@@ -29,7 +25,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             // todo: dispose all armies 
         }
 
-        public void CommitOrder(Order order, PlanetPreset target)
+        public void CommitOrder(Order order, Planet target)
         {
             order.Commit(target);
             if (order.SourcePlanet.Power > 0)

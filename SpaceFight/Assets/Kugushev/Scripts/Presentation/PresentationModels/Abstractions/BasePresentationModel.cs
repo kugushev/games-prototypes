@@ -5,7 +5,9 @@ namespace Kugushev.Scripts.Presentation.PresentationModels.Abstractions
 {
     public abstract class BasePresentationModel : MonoBehaviour
     {
-        protected abstract Model Model { get; }
+        protected abstract IModel Model { get; }
+
+        public virtual bool IsInPrefab => false;
 
         public T GetModelAs<T>()
         {

@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Presentation.Components
 {
     [RequireComponent(typeof(MeshRenderer))]
-    public class PlanetPresenter : BaseComponent<PlanetPreset>
+    public class PlanetPresenter : BaseComponent<Planet>
     {
         [SerializeField] private TextMeshProUGUI armyCaption;
         [SerializeField] private Material playerMaterial;
@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Presentation.Components
             _meshRenderer = GetComponent<MeshRenderer>();
         }
 
-        private void Start()
+        protected override void OnStart()
         {
             transform.localScale = Model.Size switch
             {

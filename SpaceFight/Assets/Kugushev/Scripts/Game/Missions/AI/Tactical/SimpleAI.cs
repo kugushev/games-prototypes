@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common;
@@ -7,7 +6,7 @@ using Kugushev.Scripts.Game.Common.Interfaces;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Game.Missions.Interfaces;
-using Kugushev.Scripts.Game.Missions.Presets;
+using Kugushev.Scripts.Game.Missions.Managers;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.AI.Tactical
@@ -15,20 +14,9 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Simple AI")]
     public class SimpleAI : ScriptableObject, IAIAgent, ICommander
     {
-        [SerializeField] private PlanetInfo[] planets;
+        [SerializeField] private MissionManager missionManager;
         [SerializeField] private ObjectsPool objectsPool;
 
-        [Serializable]
-        public class PlanetInfo
-        {
-            [SerializeField] private PlanetPreset planet;
-            [SerializeField] private Vector3 position;
-            [SerializeField] private PlanetPreset[] neighbours;
-            public PlanetPreset Planet => planet;
-            public IReadOnlyList<PlanetPreset> Neighbours => neighbours;
-
-            public Vector3 Position => position;
-        }
 
         private readonly TempState _state = new TempState();
 
@@ -58,34 +46,39 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
 
         public void Act()
         {
-            foreach (var planetInfo in planets)
+            if (missionManager.State != null)
             {
-                if (planetInfo.Planet.Faction == _state.AgentFaction)
+                var planetarySystem = missionManager.State.Value.CurrentPlanetarySystem;
+                foreach (var planet in planetarySystem.Planets)
                 {
-                    if (planetInfo.Planet.Power > 5)
-                        Act(planetInfo);
+                    if (planet.Faction == _state.AgentFaction)
+                    {
+                        if (planet.Power > 5)
+                            Act(planet, planetarySystem);
+                    }
                 }
             }
         }
 
         #endregion
 
-        private void Act(PlanetInfo info)
+        private void Act(Planet planet, PlanetarySystem planetarySystem)
         {
             // attack
-            var weakestVictim = FindWeakest(info, faction => faction == _state.AgentFaction.GetOpposite() ||
-                                                             faction == Faction.Neutral);
+            var weakestVictim = FindWeakest(planet, planetarySystem,
+                faction => faction == _state.AgentFaction.GetOpposite() || faction == Faction.Neutral);
+
             if (!ReferenceEquals(weakestVictim, null))
             {
-                if (info.Planet.Power > weakestVictim.Power + 6)
+                if (planet.Power > weakestVictim.Power + 6)
                 {
                     // todo: send invaders based on Random
 
-                    SendFleet(info, weakestVictim);
+                    SendFleet(planet, weakestVictim);
                 }
-                else if (info.Planet.Power >= GameConstants.SoftCapArmyPower)
+                else if (planet.Power >= GameConstants.SoftCapArmyPower)
                 {
-                    SendFleet(info, weakestVictim);
+                    SendFleet(planet, weakestVictim);
                 }
 
                 // we're not sending reinforcements if have enemies
@@ -93,59 +86,51 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             }
 
             // send reinforcements
-            var weakestAllay = FindWeakest(info, faction => faction == _state.AgentFaction);
+            var weakestAllay = FindWeakest(planet, planetarySystem, faction => faction == _state.AgentFaction);
             if (!ReferenceEquals(weakestAllay, null))
             {
                 // todo: send reinforcements based on Random
-                SendFleet(info, weakestAllay);
+                SendFleet(planet, weakestAllay);
             }
         }
 
-        private void SendFleet(PlanetInfo info, PlanetPreset weakestVictim)
+        private void SendFleet(Planet planet, Planet weakestVictim)
         {
-            var order = objectsPool.GetObject<Order, Order.State>(new Order.State(info.Planet));
+            var order = objectsPool.GetObject<Order, Order.State>(new Order.State(planet));
 
-            var from = info.Position;
-            var to = GetPlanetPosition(weakestVictim);
+            var from = planet.Position;
+            var to = weakestVictim.Position;
 
             var stepSize = 0.001f;
             for (float i = 0; i < 1f; i += stepSize)
             {
-                var point = Vector3.Lerp(@from, to, i);
+                var point = Vector3.Lerp(@from.Point, to.Point, i);
                 order.RegisterMovement(point, 0.05f);
             }
 
             _state.Fleet.CommitOrder(order, weakestVictim);
         }
 
-        private static PlanetPreset FindWeakest(PlanetInfo info, Predicate<Faction> predicate)
+        private static Planet FindWeakest(Planet exceptPlanet, PlanetarySystem planetarySystem,
+            Predicate<Faction> predicate)
         {
-            PlanetPreset weakest = null;
+            Planet weakest = null;
 
-            foreach (var neighbour in info.Neighbours)
+            foreach (var planet in planetarySystem.Planets)
             {
-                if (predicate(neighbour.Faction))
+                if (planet == exceptPlanet)
+                    continue;
+
+                if (predicate(planet.Faction))
                 {
                     if (weakest == null)
-                        weakest = neighbour;
-                    else if (neighbour.Power < weakest.Power)
-                        weakest = neighbour;
+                        weakest = planet;
+                    else if (planet.Power < weakest.Power)
+                        weakest = planet;
                 }
             }
 
             return weakest;
-        }
-
-        private Vector3 GetPlanetPosition(PlanetPreset planet)
-        {
-            foreach (var planetInfo in planets)
-            {
-                if (planetInfo.Planet.Equals(planet))
-                    return planetInfo.Position;
-            }
-
-            Debug.LogError($"Unable to find planet {planet}");
-            return Vector3.zero;
         }
     }
 }

@@ -5,6 +5,7 @@ using Kugushev.Scripts.Game.Missions;
 using Kugushev.Scripts.Game.Missions.AI.Tactical;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Interfaces;
 using Kugushev.Scripts.Game.Missions.Managers;
 using Kugushev.Scripts.Game.Missions.Player;
 using Kugushev.Scripts.Game.Missions.Presets;
@@ -20,17 +21,22 @@ namespace Kugushev.Scripts.Presentation.Controllers
     {
         [SerializeField] private ObjectsPool pool;
         [SerializeField] private MissionManager missionManager;
-        [Header("Menu")]
-        [SerializeField] private TextMeshProUGUI countdownText;
-        [Header("Mission Related Assets")]
-        [SerializeField] private PlanetPreset[] defaultPlanets;
+        [Header("Menu")] [SerializeField] private TextMeshProUGUI countdownText;
+
+        [Header("Mission Related Assets")] [SerializeField]
+        private PlanetPreset[] defaultPlanets;
+
         [SerializeField] private PlayerCommander playerCommander;
         [SerializeField] private SimpleAI enemyAi;
+        [SerializeField] private SimpleAI alternativeAi;
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
         private const int CountDownStart = 3;
 
+        // todo: use a dedicated controller for testing purposes
+        public static bool MissionFinished { get; private set; }
+        
         private void Start()
         {
             StartCoroutine(RunSingleRun().ToCoroutine());
@@ -38,6 +44,8 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         private async UniTask RunSingleRun()
         {
+            missionManager.MissionFinished += _ => MissionFinished = true;
+            
             var winner = missionManager.LastWinner?.ToString();
             for (int i = CountDownStart; i >= 0; i--)
             {
@@ -49,10 +57,12 @@ namespace Kugushev.Scripts.Presentation.Controllers
             }
 
             var system = pool.GetObject<PlanetarySystem, PlanetarySystem.State>(new PlanetarySystem.State(0.3f));
-            foreach (var planet in defaultPlanets)
-                system.AddPlanet(planet);
+            foreach (var planetPreset in defaultPlanets)
+                system.AddPlanet(planetPreset.ToPlanet(pool));
 
-            var green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
+            ICommander greenCommander = (ICommander) playerCommander ?? alternativeAi;
+            var green = new ConflictParty(Faction.Green, greenFleet, greenCommander);
+
             var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
 
             await missionManager.NextMission(system, green, red);

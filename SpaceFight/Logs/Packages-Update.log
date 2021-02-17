@@ -14,3 +14,11 @@ Update Mode: updateDependencies
 
 The following packages were updated:
   com.unity.xr.oculus from version 1.6.1 to 1.7.0
+
+=== Wed Feb 17 18:56:39 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.render-pipelines.universal from version 10.2.2 to 10.3.1

@@ -13,7 +13,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private OrdersManager leftOrders;
         [SerializeField] private OrdersManager rightOrders;
 
-        public void HandleTouchPlanet(HandController sender, PlanetPreset planet)
+        public void HandleTouchPlanet(HandController sender, Planet planet)
         {
             var ordersManager = GetOrdersManager(sender);
             ordersManager.HandlePlanetTouch(planet);
@@ -21,7 +21,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
             planet.Selected = true;
         }
 
-        public void HandleDetouchPlanet(HandController sender, PlanetPreset planet)
+        public void HandleDetouchPlanet(HandController sender, Planet planet)
         {
             var ordersManager = GetOrdersManager(sender);
             ordersManager.HandlePlanetDetouch();
