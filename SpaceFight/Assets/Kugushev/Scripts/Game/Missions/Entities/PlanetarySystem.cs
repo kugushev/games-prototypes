@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Missions.Presets;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
@@ -8,12 +9,12 @@ namespace Kugushev.Scripts.Game.Missions.Entities
     {
         public readonly struct State
         {
-            public State(float sunScale)
+            public State(Sun sun)
             {
-                SunScale = sunScale;
+                Sun = sun;
             }
 
-            public float SunScale { get; }
+            public readonly Sun Sun;
         }
 
         private readonly List<Planet> _planets = new List<Planet>();
@@ -24,11 +25,11 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
         public IReadOnlyList<Planet> Planets => _planets;
         public void AddPlanet(Planet planet) => _planets.Add(planet);
-        public float SunScale => ObjectState.SunScale;
+        public ref readonly Sun GetSun() => ref ObjectState.Sun;
 
         protected override void OnClear(State state)
         {
-            foreach (var planet in _planets) 
+            foreach (var planet in _planets)
                 planet.Dispose();
 
             _planets.Clear();

@@ -1,4 +1,7 @@
-﻿using Kugushev.Scripts.Game.Missions;
+﻿using System;
+using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Missions;
+using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Managers;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;
@@ -23,8 +26,19 @@ namespace Kugushev.Scripts.Presentation.Controllers
                 return;
             }
 
-            sun.localScale = new Vector3(system.SunScale, system.SunScale, system.SunScale);
+            SetupSun(system);
+            SetupPlanets(system);
+        }
 
+        private void SetupSun(PlanetarySystem system)
+        {
+            ref readonly var sunModel = ref system.GetSun();
+            sun.localScale = new Vector3(sunModel.Size, sunModel.Size, sunModel.Size);
+            sun.position = sunModel.Position.Point;
+        }
+
+        private void SetupPlanets(PlanetarySystem system)
+        {
             var worldTransform = transform;
             foreach (var planet in system.Planets)
             {
@@ -33,5 +47,13 @@ namespace Kugushev.Scripts.Presentation.Controllers
                 presentationModel.Planet = planet;
             }
         }
+
+        // private void OnDrawGizmos()
+        // {
+        //     Gizmos.color = Color.magenta;
+        //     var sunModel = new Sun(new Position(new Vector3(0f, 1.508f, 0.5f)), 0.3f);
+        //
+        //     Gizmos.DrawSphere(sunModel.Position.Point, sunModel.Radius);
+        // }
     }
 }

@@ -32,11 +32,14 @@ namespace Kugushev.Scripts.Presentation.Components.Abstractions
             if (!Application.isPlaying)
             {
                 var presentationModel = GetComponent<BasePresentationModel>();
-                var model = presentationModel.GetModelAs<T>();
-                if (model == null)
-                    Debug.LogError($"Unable to get model for component {this}");
-                else
-                    InjectComponents(model);
+                if (!presentationModel.IsInPrefab)
+                {
+                    var model = presentationModel.GetModelAs<T>();
+                    if (model == null)
+                        Debug.LogError($"Unable to get model for component {this}");
+                    else
+                        InjectComponents(model);
+                }
             }
         }
 

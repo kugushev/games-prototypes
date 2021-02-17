@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Orders Manager Stub
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
-  handHandType: 0
-  gapBetweenWaypoints: 1
+  gapBetweenWaypoints: 0.05

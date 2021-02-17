@@ -16,7 +16,8 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
     {
         [SerializeField] private MissionManager missionManager;
         [SerializeField] private ObjectsPool objectsPool;
-
+        [SerializeField] private Pathfinder pathfinder;
+        private const float ArmyRadius = 5f * 0.02f;
 
         private readonly TempState _state = new TempState();
 
@@ -101,14 +102,16 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             var from = planet.Position;
             var to = weakestVictim.Position;
 
-            var stepSize = 0.001f;
-            for (float i = 0; i < 1f; i += stepSize)
+            var pathIsValid = pathfinder.FindPath(from, to,
+                (p, o) => o.RegisterMovement(p.Point), order);
+            
+            if (pathIsValid)
+                _state.Fleet.CommitOrder(order, weakestVictim);
+            else
             {
-                var point = Vector3.Lerp(@from.Point, to.Point, i);
-                order.RegisterMovement(point, 0.05f);
+                Debug.LogError("Can't send fleet: path is too long");
+                order.Dispose();
             }
-
-            _state.Fleet.CommitOrder(order, weakestVictim);
         }
 
         private static Planet FindWeakest(Planet exceptPlanet, PlanetarySystem planetarySystem,

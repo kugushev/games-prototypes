@@ -1,11 +1,11 @@
 ﻿using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Entities.Abstractions;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Game.Missions.Interfaces;
-using Kugushev.Scripts.Game.Missions.Presets;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Player
@@ -14,7 +14,7 @@ namespace Kugushev.Scripts.Game.Missions.Player
     public class OrdersManager : ScriptableObject, IModel, ICommander
     {
         [SerializeField] private ObjectsPool pool;
-        [SerializeField] private float gapBetweenWaypoints = 0.05f;
+        [SerializeField] private float gapBetweenWaypoints = GameConstants.GapBetweenWaypoints;
         private readonly TempState _state = new TempState();
 
         private class TempState

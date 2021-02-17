@@ -25,13 +25,13 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             public OrderStatus Status;
             public Vector3? LastRegisteredPosition;
         }
-        
+
         private readonly List<Vector3> _path = new List<Vector3>(GameConstants.OrderPathCapacity);
 
         public Order(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
-        
+
         public IReadOnlyList<Vector3> Path => _path;
         public Planet SourcePlanet => ObjectState.SourcePlanet;
         public Planet TargetPlanet => ObjectState.TargetPlanet;
@@ -42,10 +42,10 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             internal set => ObjectState.Status = value;
         }
 
-        internal void RegisterMovement(Vector3 position, float gapBetweenWaypoints)
+        internal void RegisterMovement(Vector3 position, float gapBetweenWaypoints = GameConstants.GapBetweenWaypoints)
         {
             ObjectState.LastRegisteredPosition = position;
-            
+
             if (_path.Count > 0)
             {
                 var last = _path[_path.Count - 1];
@@ -58,10 +58,10 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
             _path.Add(position);
         }
-        
+
         public void Commit(Planet target)
         {
-            if (ObjectState.LastRegisteredPosition != null) 
+            if (ObjectState.LastRegisteredPosition != null)
                 _path.Add(ObjectState.LastRegisteredPosition.Value);
 
             ObjectState.TargetPlanet = target;

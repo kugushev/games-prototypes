@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.004156591, g: 0.019392813, b: 0.030909449, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -369,8 +369,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b981c22e0cd8bce43a1a981052be8471, type: 2}
   - {fileID: 11400000, guid: b6c20792b8d4db0449f2f4c5fa4dda64, type: 2}
   - {fileID: 11400000, guid: 0c7bd902c28945e4994e0aca832a6253, type: 2}
+  sunPreset: {fileID: 11400000, guid: 571a9e0d95838214c8e8767c21c41ceb, type: 2}
   playerCommander: {fileID: 11400000, guid: c2930a428602cc443901b922d905f9d4, type: 2}
   enemyAi: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
+  alternativeAi: {fileID: 0}
   greenFleet: {fileID: 11400000, guid: 610ef38f2dfd1284f9a9bb436330e682, type: 2}
   redFleet: {fileID: 11400000, guid: 93e61a212f79adc4783e4bb3b236593f, type: 2}
 --- !u!1 &1952919113

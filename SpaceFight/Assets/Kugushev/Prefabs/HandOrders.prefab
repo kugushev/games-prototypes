@@ -57,4 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47e81052c5d4f179637fae9b3a2b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointPrefab: {fileID: 3719072541819900368, guid: fe3db70003d79d54082e040301994a47, type: 3}
+  waypointPrefab: {fileID: 0}

@@ -67,9 +67,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\PlanetarySystem.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\Interfaces\IGameLoopParticipant.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Player\PlayerCommander.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\AI\Pathfinder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Presets\SunPreset.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\AI\Tactical\SimpleAI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\ArmyStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Sun.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\Enums\HandType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\Interfaces\IAIAgent.cs" />

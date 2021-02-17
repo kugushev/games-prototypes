@@ -26,7 +26,6 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             public Vector3 CurrentPosition;
             public Quaternion CurrentRotation;
             public int CurrentWaypoint;
-            public float WaypointMovingProgress;
             public float WaypointRotationProgress;
             [CanBeNull] public IFighter Target; // todo: support multiple enemies
             public float FightingTimeCollector;
@@ -43,7 +42,6 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                 CurrentPosition = order.Path[0];
                 CurrentRotation = Quaternion.identity;
                 CurrentWaypoint = 0;
-                WaypointMovingProgress = 0f;
                 WaypointRotationProgress = 0f;
                 Target = null;
                 FightingTimeCollector = 0f;
@@ -84,32 +82,47 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
         private void MoveStep(float deltaTime)
         {
-            if (ObjectState.WaypointMovingProgress >= 1)
-            {
-                ObjectState.CurrentWaypoint++;
-                ObjectState.WaypointMovingProgress = 0f;
-                ObjectState.WaypointRotationProgress = 0f;
-            }
+            var currentWaypoint = ObjectState.CurrentWaypoint;
+            var path = ObjectState.Order.Path;
 
-            if (ObjectState.Order.Path.Count <= ObjectState.CurrentWaypoint + 1)
+            if (path.Count <= currentWaypoint + 1)
             {
                 Arrived();
                 return;
             }
 
-            var previous = ObjectState.Order.Path[ObjectState.CurrentWaypoint];
-            var next = ObjectState.Order.Path[ObjectState.CurrentWaypoint + 1];
+            var previous = path[currentWaypoint];
+            var next = path[currentWaypoint + 1];
+            
+            ChangePosition();
+            ChangeRotation();
 
-            ObjectState.WaypointMovingProgress += deltaTime * ObjectState.Speed;
-            ObjectState.CurrentPosition = Vector3.Lerp(previous, next, ObjectState.WaypointMovingProgress);
-
-            ObjectState.WaypointRotationProgress += deltaTime * ObjectState.AngularSpeed;
-            var lookRotationVector = next - ObjectState.CurrentPosition;
-            if (lookRotationVector != Vector3.zero)
+            void ChangePosition()
             {
-                var lookRotation = Quaternion.LookRotation(lookRotationVector);
-                ObjectState.CurrentRotation = Quaternion.Slerp(ObjectState.CurrentRotation, lookRotation,
-                    ObjectState.WaypointRotationProgress);
+                var lookVector = next - previous;
+                var newPosition = ObjectState.CurrentPosition + lookVector * (deltaTime * ObjectState.Speed);
+                var dot = Vector3.Dot((next - newPosition).normalized, lookVector.normalized);
+                if (dot < 0f)
+                {
+                    ObjectState.CurrentPosition = next;
+                    
+                    ObjectState.CurrentWaypoint++;
+                    ObjectState.WaypointRotationProgress = 0f;
+                }
+                else
+                    ObjectState.CurrentPosition = newPosition;
+            }
+
+            void ChangeRotation()
+            {
+                ObjectState.WaypointRotationProgress += deltaTime * ObjectState.AngularSpeed;
+                var lookRotationVector = next - ObjectState.CurrentPosition;
+                if (lookRotationVector != Vector3.zero)
+                {
+                    var lookRotation = Quaternion.LookRotation(lookRotationVector);
+                    ObjectState.CurrentRotation = Quaternion.Slerp(ObjectState.CurrentRotation, lookRotation,
+                        ObjectState.WaypointRotationProgress);
+                }
             }
         }
 

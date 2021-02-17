@@ -9,5 +9,7 @@
 
         public const int UnifiedDamage = 1;
         public const float FightRoundDelay = 0.5f;
+
+        public const float GapBetweenWaypoints = 0.05f;
     }
 }

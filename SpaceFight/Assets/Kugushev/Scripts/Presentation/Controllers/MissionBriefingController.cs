@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Missions;
 using Kugushev.Scripts.Game.Missions.AI.Tactical;
 using Kugushev.Scripts.Game.Missions.Entities;
@@ -23,10 +24,14 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private MissionManager missionManager;
         [Header("Menu")] [SerializeField] private TextMeshProUGUI countdownText;
 
-        [Header("Mission Related Assets")] [SerializeField]
+        [Header("Planetary System")] [SerializeField]
         private PlanetPreset[] defaultPlanets;
 
-        [SerializeField] private PlayerCommander playerCommander;
+        [SerializeField] private SunPreset sunPreset;
+
+        [Header("Mission Related Assets")] [SerializeField]
+        private PlayerCommander playerCommander;
+
         [SerializeField] private SimpleAI enemyAi;
         [SerializeField] private SimpleAI alternativeAi;
         [SerializeField] private Fleet greenFleet;
@@ -36,7 +41,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         // todo: use a dedicated controller for testing purposes
         public static bool MissionFinished { get; private set; }
-        
+
         private void Start()
         {
             StartCoroutine(RunSingleRun().ToCoroutine());
@@ -45,7 +50,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
         private async UniTask RunSingleRun()
         {
             missionManager.MissionFinished += _ => MissionFinished = true;
-            
+
             var winner = missionManager.LastWinner?.ToString();
             for (int i = CountDownStart; i >= 0; i--)
             {
@@ -56,7 +61,9 @@ namespace Kugushev.Scripts.Presentation.Controllers
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
 
-            var system = pool.GetObject<PlanetarySystem, PlanetarySystem.State>(new PlanetarySystem.State(0.3f));
+            var system = pool.GetObject<PlanetarySystem, PlanetarySystem.State>(
+                new PlanetarySystem.State(sunPreset.ToSun()));
+
             foreach (var planetPreset in defaultPlanets)
                 system.AddPlanet(planetPreset.ToPlanet(pool));
 
