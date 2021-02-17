@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
@@ -18,16 +19,27 @@ namespace Kugushev.Scripts.Game.Missions.AI
 
         public float StepSize => stepSize;
 
-        public bool FindPath<T>(Position from, Position to, float hitRadius, Action<Position, T> filler, T objectToFill)
+        public bool FindPath(Position from, Position to, float hitRadius, out int length) =>
+            FindPath<object>(from, to, hitRadius, null, default, out length);
+        
+        public bool FindPath<T>(Position from, Position to, float hitRadius, [CanBeNull] Action<Position, T> filler,
+            T objectToFill) =>
+            FindPath(from, to, hitRadius, filler, objectToFill, out _);
+
+        public bool FindPath<T>(Position from, Position to, float hitRadius, [CanBeNull] Action<Position, T> filler,
+            T objectToFill, out int length)
         {
             if (missionManager.State == null)
+            {
+                length = 0;
                 return false;
+            }
 
             ref readonly var sun = ref missionManager.State.Value.CurrentPlanetarySystem.GetSun();
 
-            var length = 0;
+            length = 0;
             var previous = from.Point;
-            
+
             while (Vector3.Distance(to.Point, previous) > StepSize)
             {
                 var lookVector = (to.Point - previous).normalized;
@@ -35,18 +47,16 @@ namespace Kugushev.Scripts.Game.Missions.AI
 
                 point = AvoidSun(hitRadius, sun, point);
 
-                filler(new Position(point), objectToFill);
+                filler?.Invoke(new Position(point), objectToFill);
 
                 previous = point;
                 length++;
 
                 if (length > maxLength)
-                {
-                    //return false;
-                }
+                    return false;
             }
 
-            filler(new Position(to.Point), objectToFill);
+            filler?.Invoke(new Position(to.Point), objectToFill);
             return true;
         }
 

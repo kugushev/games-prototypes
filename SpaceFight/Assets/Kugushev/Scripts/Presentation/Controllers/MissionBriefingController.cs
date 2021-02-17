@@ -22,9 +22,14 @@ namespace Kugushev.Scripts.Presentation.Controllers
     {
         [SerializeField] private ObjectsPool pool;
         [SerializeField] private MissionManager missionManager;
-        [Header("Menu")] [SerializeField] private TextMeshProUGUI countdownText;
 
-        [Header("Planetary System")] [SerializeField]
+        [Header("Menu")]
+        [SerializeField] 
+        private TextMeshProUGUI countdownText;
+        [SerializeField] private int countDownStart = 5;
+
+        [Header("Planetary System")]
+        [SerializeField]
         private PlanetPreset[] defaultPlanets;
 
         [SerializeField] private SunPreset sunPreset;
@@ -37,7 +42,6 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
-        private const int CountDownStart = 0;
 
         // todo: use a dedicated controller for testing purposes
         public static bool MissionFinished { get; private set; }
@@ -52,7 +56,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
             missionManager.MissionFinished += _ => MissionFinished = true;
 
             var winner = missionManager.LastWinner?.ToString();
-            for (int i = CountDownStart; i >= 0; i--)
+            for (int i = countDownStart; i >= 0; i--)
             {
                 countdownText.text = winner != null
                     ? winner + Environment.NewLine + StringBag.FromInt(i)

@@ -32,7 +32,6 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
             public State(Order order, float speed, float angularSpeed, Faction faction, int power)
             {
-                // todo: assert order
                 Order = order;
                 Speed = speed;
                 AngularSpeed = angularSpeed;

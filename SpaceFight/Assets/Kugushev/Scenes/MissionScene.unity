@@ -435,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightHandOrders
       objectReference: {fileID: 0}
+    - target: {fileID: 7183871734637609513, guid: 746ff9c464d26314aa5b0629155573a9, type: 3}
+      propertyPath: waypointPrefab
+      value: 
+      objectReference: {fileID: 3719072541819900368, guid: fe3db70003d79d54082e040301994a47, type: 3}
     - target: {fileID: 7183871734637609514, guid: 746ff9c464d26314aa5b0629155573a9, type: 3}
       propertyPath: model
       value: 
@@ -2384,6 +2388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftHandOrders
       objectReference: {fileID: 0}
+    - target: {fileID: 7183871734637609513, guid: 746ff9c464d26314aa5b0629155573a9, type: 3}
+      propertyPath: waypointPrefab
+      value: 
+      objectReference: {fileID: 3719072541819900368, guid: fe3db70003d79d54082e040301994a47, type: 3}
     - target: {fileID: 7183871734637609514, guid: 746ff9c464d26314aa5b0629155573a9, type: 3}
       propertyPath: model
       value: 

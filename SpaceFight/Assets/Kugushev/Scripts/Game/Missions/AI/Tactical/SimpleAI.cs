@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Common;
@@ -7,6 +9,7 @@ using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Game.Missions.Interfaces;
 using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Game.Missions.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.AI.Tactical
@@ -17,6 +20,8 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
         [SerializeField] private MissionManager missionManager;
         [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private Pathfinder pathfinder;
+        [SerializeField] private int neighboursCount = 2;
+        [SerializeField] private int minPowerToAct = 15;
         private const float ArmyRadius = 5f * 0.02f;
 
         private readonly TempState _state = new TempState();
@@ -25,6 +30,8 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
         {
             public Fleet Fleet;
             public Faction AgentFaction;
+            public readonly List<Planet> NeighboursPlanetsBuffer = new List<Planet>(8);
+            public readonly PlanetsDistanceComparer PlanetsDistanceComparer = new PlanetsDistanceComparer();
         }
 
         #region ICommander
@@ -54,7 +61,7 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
                 {
                     if (planet.Faction == _state.AgentFaction)
                     {
-                        if (planet.Power > 5)
+                        if (planet.Power > minPowerToAct)
                             Act(planet, planetarySystem);
                     }
                 }
@@ -65,8 +72,12 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
 
         private void Act(Planet planet, PlanetarySystem planetarySystem)
         {
+            // todo: cache path
+            FillWithNearestPlanets(planet, planetarySystem, neighboursCount, _state.NeighboursPlanetsBuffer,
+                _state.PlanetsDistanceComparer);
+
             // attack
-            var weakestVictim = FindWeakest(planet, planetarySystem,
+            var weakestVictim = FindWeakest(planet, _state.NeighboursPlanetsBuffer,
                 faction => faction == _state.AgentFaction.GetOpposite() || faction == Faction.Neutral);
 
             if (!ReferenceEquals(weakestVictim, null))
@@ -87,12 +98,15 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             }
 
             // send reinforcements
-            var weakestAllay = FindWeakest(planet, planetarySystem, faction => faction == _state.AgentFaction);
+            var weakestAllay = FindWeakest(planet, _state.NeighboursPlanetsBuffer,
+                faction => faction == _state.AgentFaction);
             if (!ReferenceEquals(weakestAllay, null))
             {
                 // todo: send reinforcements based on Random
                 SendFleet(planet, weakestAllay);
             }
+
+            _state.NeighboursPlanetsBuffer.Clear();
         }
 
         private void SendFleet(Planet planet, Planet weakestVictim)
@@ -114,12 +128,12 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             }
         }
 
-        private static Planet FindWeakest(Planet exceptPlanet, PlanetarySystem planetarySystem,
+        private static Planet FindWeakest(Planet exceptPlanet, IReadOnlyCollection<Planet> planets,
             Predicate<Faction> predicate)
         {
             Planet weakest = null;
 
-            foreach (var planet in planetarySystem.Planets)
+            foreach (var planet in planets)
             {
                 if (planet == exceptPlanet)
                     continue;
@@ -134,6 +148,31 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             }
 
             return weakest;
+        }
+
+        private void FillWithNearestPlanets(Planet from, PlanetarySystem planetarySystem, int top,
+            List<Planet> buffer, PlanetsDistanceComparer comparer)
+        {
+            if (top > planetarySystem.Planets.Count - 1)
+                return;
+
+            // Prepare
+            buffer.Clear();
+            foreach (var planet in planetarySystem.Planets)
+            {
+                if (planet == from)
+                    continue;
+
+                buffer.Add(planet);
+            }
+
+            comparer.Setup(from, pathfinder, ArmyRadius);
+
+            // Sort
+            buffer.Sort(comparer);
+
+            // Limit
+            buffer.RemoveRange(top, buffer.Count - top);
         }
     }
 }

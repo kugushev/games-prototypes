@@ -262,6 +262,7 @@ MonoBehaviour:
   pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   missionManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
   countdownText: {fileID: 1896710415}
+  countDownStart: 0
   defaultPlanets:
   - {fileID: 11400000, guid: 3ba64f1217815a342b07068ef4b279a0, type: 2}
   - {fileID: 11400000, guid: be65f426e9a5a3b49be192e93ad7fb9b, type: 2}
