@@ -102,9 +102,9 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
             var from = planet.Position;
             var to = weakestVictim.Position;
 
-            var pathIsValid = pathfinder.FindPath(from, to,
+            var pathIsValid = pathfinder.FindPath(from, to, ArmyRadius,
                 (p, o) => o.RegisterMovement(p.Point), order);
-            
+
             if (pathIsValid)
                 _state.Fleet.CommitOrder(order, weakestVictim);
             else

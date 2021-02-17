@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
-        private const int CountDownStart = 3;
+        private const int CountDownStart = 0;
 
         // todo: use a dedicated controller for testing purposes
         public static bool MissionFinished { get; private set; }

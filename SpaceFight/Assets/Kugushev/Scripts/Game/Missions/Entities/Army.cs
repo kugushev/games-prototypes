@@ -99,9 +99,9 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
             void ChangePosition()
             {
-                var lookVector = next - previous;
+                var lookVector = (next - previous).normalized;
                 var newPosition = ObjectState.CurrentPosition + lookVector * (deltaTime * ObjectState.Speed);
-                var dot = Vector3.Dot((next - newPosition).normalized, lookVector.normalized);
+                var dot = Vector3.Dot((next - newPosition).normalized, lookVector);
                 if (dot < 0f)
                 {
                     ObjectState.CurrentPosition = next;

@@ -12,7 +12,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
     public class Fleet : ScriptableObject, IModel
     {
         [SerializeField] private ObjectsPool pool;
-        [SerializeField] private float armySpeed = 5f;
+        [SerializeField] private float armySpeed = 0.5f;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;
 

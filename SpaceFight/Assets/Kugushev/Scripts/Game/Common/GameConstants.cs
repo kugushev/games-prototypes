@@ -11,5 +11,6 @@
         public const float FightRoundDelay = 0.5f;
 
         public const float GapBetweenWaypoints = 0.05f;
+        public const float CollisionError = 0.05f;
     }
 }

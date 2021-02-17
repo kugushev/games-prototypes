@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fleet Red
   m_EditorClassIdentifier: 
   pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
-  armySpeed: 2
+  armySpeed: 0.1
   armyAngularSpeed: 1
   faction: 3

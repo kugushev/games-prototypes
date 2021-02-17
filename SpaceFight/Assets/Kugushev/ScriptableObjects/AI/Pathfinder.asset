@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
   stepSize: 0.05
+  maxLength: 128
+  collisionError: 0.05
