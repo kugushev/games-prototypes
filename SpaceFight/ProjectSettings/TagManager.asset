@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - Zone
+  - Army
   layers:
   - Default
   - TransparentFX

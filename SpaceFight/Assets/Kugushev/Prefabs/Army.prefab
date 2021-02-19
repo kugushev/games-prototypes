@@ -4902,7 +4902,7 @@ GameObject:
   - component: {fileID: 4676292661632520737}
   m_Layer: 0
   m_Name: Army
-  m_TagString: Untagged
+  m_TagString: Army
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

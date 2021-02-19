@@ -36,6 +36,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         }
 
         public Faction Faction => ObjectState.Faction;
+        
+        public bool CanBeAttacked => true;
 
         public PlanetSize Size => ObjectState.Size;
 
@@ -76,18 +78,18 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             ObjectState.Power += army.Power;
         }
 
-        public bool TryCapture(Army invader)
+        public FightRoundResult SufferFightRound(Faction enemyFaction, int damage = GameConstants.UnifiedDamage)
         {
-            ObjectState.Power -= GameConstants.UnifiedDamage;
+            ObjectState.Power -= damage;
 
             if (ObjectState.Power < 0)
             {
                 ObjectState.Power *= -1;
-                ObjectState.Faction = invader.Faction;
-                return true;
+                ObjectState.Faction = enemyFaction;
+                return FightRoundResult.Defeated;
             }
 
-            return false;
+            return FightRoundResult.StillAlive;
         }
     }
 }

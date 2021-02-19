@@ -16,14 +16,14 @@ namespace Kugushev.Scripts.Presentation.Components
         [SerializeField] private TextMeshProUGUI powerText;
         [SerializeField] private ParticleSystem projectilesParticleSystem;
 
-        private FleetPresenter _owner;
+        private FleetPresenter _fleet;
 
         public void SetOwner(FleetPresenter owner)
         {
-            if (!ReferenceEquals(_owner, null))
+            if (!ReferenceEquals(_fleet, null))
                 Debug.LogError("Fleet is already specified");
 
-            _owner = owner;
+            _fleet = owner;
         }
 
         public Army Army { get; internal set; }
@@ -49,26 +49,29 @@ namespace Kugushev.Scripts.Presentation.Components
             ApplyFight();
 
             if (Army.Disbanded)
-                _owner.ReturnArmyToPool(this);
+                _fleet.ReturnArmyToPool(this);
         }
 
         private void ApplyTransformChanges()
         {
             var t = transform;
 
-            t.position = Army.Position;
+            t.position = Army.Position.Point;
             t.rotation = Army.Rotation;
             mesh.localScale = GetAdjustedScale();
         }
 
         private void ApplyFight()
         {
-            if (Army.Status == ArmyStatus.Fighting)
+            if (Army.Status == ArmyStatus.Fighting || Army.Status == ArmyStatus.OnSiege)
             {
                 if (!projectilesParticleSystem.isPlaying)
                     projectilesParticleSystem.Play();
+
+                if (Army.CurrentTarget != null)
+                    projectilesParticleSystem.gameObject.transform.LookAt(Army.CurrentTarget.Position.Point);
             }
-            else if (!projectilesParticleSystem.isPlaying)
+            else if (projectilesParticleSystem.isPlaying)
                 projectilesParticleSystem.Stop();
         }
 
@@ -94,6 +97,15 @@ namespace Kugushev.Scripts.Presentation.Components
             if (other.CompareTag("Zone"))
             {
                 Army.HandleCrash();
+            }
+
+            if (other.CompareTag("Army"))
+            {
+                var presenter = other.GetComponent<ArmyPresenter>();
+                if (!ReferenceEquals(presenter, null))
+                {
+                    Army.HandleArmyInteraction(presenter.Army);
+                }
             }
         }
     }

@@ -7,6 +7,7 @@
         OnMatch,
         Arriving,
         Fighting,
+        OnSiege,
         Disbanded
     }
 }
