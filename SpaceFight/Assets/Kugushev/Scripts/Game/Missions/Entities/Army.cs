@@ -143,7 +143,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             }
 
             ObjectState.FightingTimeCollector += deltaTime;
-            if (ObjectState.FightingTimeCollector > GameConstants.FightRoundDelay)
+            if (ObjectState.FightingTimeCollector > GameConstants.SiegeRoundDelay)
             {
                 ObjectState.FightingTimeCollector = 0f;
 
