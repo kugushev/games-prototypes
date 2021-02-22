@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 679860469532158262, guid: d69ae0f57e3ffed4180b784b1c3a7d9c, type: 3}
+  m_ModelPrefab: {fileID: 783281833872313952, guid: 7e15d696520a7aa46b0e43fd6967dd20, type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
@@ -2047,7 +2047,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 679860469532158262, guid: d69ae0f57e3ffed4180b784b1c3a7d9c, type: 3}
+  m_ModelPrefab: {fileID: 783281833872313952, guid: 7e15d696520a7aa46b0e43fd6967dd20, type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
@@ -2327,7 +2327,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0

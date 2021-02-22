@@ -39,9 +39,9 @@ namespace Kugushev.Scripts.Presentation.Controllers
                         var task = planet.ExecuteProductionCycle();
                         yield return task.ToCoroutine();
                     }
-
-                    yield return _productionTimeout;
                 }
+
+                yield return _productionTimeout;
             }
         }
 

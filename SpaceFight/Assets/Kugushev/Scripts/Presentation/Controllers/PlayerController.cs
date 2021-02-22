@@ -31,7 +31,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
         public void HandleSelect(HandController sender)
         {
             var ordersManager = GetOrdersManager(sender);
-            ordersManager.HandleSelect();
+            ordersManager.HandleSelect(sender.ArmyPowerAllocated);
         }
 
         public void HandleDeselect(HandController sender)

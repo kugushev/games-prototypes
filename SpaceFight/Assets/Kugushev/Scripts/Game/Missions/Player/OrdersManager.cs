@@ -51,13 +51,13 @@ namespace Kugushev.Scripts.Game.Missions.Player
                 _state.CurrentOrder.Status = OrderStatus.Assignment;
         }
 
-        public void HandleSelect()
+        public void HandleSelect(Percentage allocatedPower)
         {
             if (_state.HighlightedPlanet != null)
             {
                 DropCurrentOrder();
                 _state.CurrentOrder = pool.GetObject<Order, Order.State>(new Order.State(_state.HighlightedPlanet,
-                    new Percentage(1f)));
+                    allocatedPower));
             }
         }
 

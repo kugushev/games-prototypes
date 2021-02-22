@@ -1,11 +1,13 @@
 ﻿using System;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common.Enums;
 using Kugushev.Scripts.Presentation.Events;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using static UnityEngine.XR.CommonUsages;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
@@ -20,9 +22,13 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private MovingEvent onMove;
 
         private XRController _xrController;
+        private Slider _armySlider;
         private bool _triggerPressed;
+        private Vector2 _joystickAxis;
 
+        public Percentage ArmyPowerAllocated => new Percentage(_joystickAxis.x / 2f + 0.5f);
         public HandType HandType => handType;
+
 
         private void Awake()
         {
@@ -31,7 +37,18 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         private void Update()
         {
-            if (_xrController.inputDevice.IsPressed(InputHelpers.Button.Trigger, out var isPressed) && isPressed)
+            var inputDevice = _xrController.inputDevice;
+            
+            var newJoystickAxis = inputDevice.TryGetFeatureValue(primary2DAxis, out var joystickAxisOut)
+                ? joystickAxisOut
+                : default;
+            if (_joystickAxis != newJoystickAxis && CanUseArmySlider())
+            {
+                _armySlider.value = ArmyPowerAllocated.Amount;
+                _joystickAxis = newJoystickAxis;
+            }
+
+            if (inputDevice.IsPressed(InputHelpers.Button.Trigger, out var isPressed) && isPressed)
             {
                 if (!_triggerPressed)
                 {
@@ -71,6 +88,18 @@ namespace Kugushev.Scripts.Presentation.Controllers
                     onHoverPlanetCancel.Invoke(this, ppm.Planet);
                 }
             }
+        }
+
+        private bool CanUseArmySlider()
+        {
+            if (!ReferenceEquals(_armySlider, null))
+                return true;
+
+            if (_xrController.modelTransform.childCount == 0)
+                return false;
+
+            _armySlider = _xrController.modelTransform.GetComponentInChildren<Slider>();
+            return true;
         }
     }
 }
