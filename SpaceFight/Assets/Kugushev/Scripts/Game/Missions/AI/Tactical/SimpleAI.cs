@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Interfaces;
 using Kugushev.Scripts.Game.Missions.Entities;
@@ -23,6 +24,7 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
         [SerializeField] private int neighboursCount = 2;
         [SerializeField] private int minPowerToAct = 15;
         private const float ArmyRadius = 5f * 0.02f;
+        private static readonly Percentage DefaultRecruitment = new Percentage(0.75f); 
 
         private readonly TempState _state = new TempState();
 
@@ -82,13 +84,13 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
 
             if (!ReferenceEquals(weakestVictim, null))
             {
-                if (planet.Power > weakestVictim.Power + 6)
+                if (planet.Power * DefaultRecruitment.Amount > weakestVictim.Power + 6)
                 {
                     // todo: send invaders based on Random
 
                     SendFleet(planet, weakestVictim);
                 }
-                else if (planet.Power >= GameConstants.SoftCapArmyPower)
+                else if (planet.Power * DefaultRecruitment.Amount >= GameConstants.SoftCapArmyPower)
                 {
                     SendFleet(planet, weakestVictim);
                 }
@@ -111,7 +113,7 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
 
         private void SendFleet(Planet planet, Planet weakestVictim)
         {
-            var order = objectsPool.GetObject<Order, Order.State>(new Order.State(planet));
+            var order = objectsPool.GetObject<Order, Order.State>(new Order.State(planet, DefaultRecruitment));
 
             var from = planet.Position;
             var to = weakestVictim.Position;

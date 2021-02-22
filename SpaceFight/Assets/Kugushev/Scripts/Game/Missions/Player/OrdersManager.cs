@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Entities.Abstractions;
 using Kugushev.Scripts.Game.Missions.Entities;
@@ -55,7 +56,8 @@ namespace Kugushev.Scripts.Game.Missions.Player
             if (_state.HighlightedPlanet != null)
             {
                 DropCurrentOrder();
-                _state.CurrentOrder = pool.GetObject<Order, Order.State>(new Order.State(_state.HighlightedPlanet));
+                _state.CurrentOrder = pool.GetObject<Order, Order.State>(new Order.State(_state.HighlightedPlanet,
+                    new Percentage(1f)));
             }
         }
 

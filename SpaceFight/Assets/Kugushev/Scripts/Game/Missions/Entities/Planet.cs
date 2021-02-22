@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
@@ -36,7 +37,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         }
 
         public Faction Faction => ObjectState.Faction;
-        
+
         public bool CanBeAttacked => true;
 
         public PlanetSize Size => ObjectState.Size;
@@ -53,24 +54,33 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
         public UniTask ExecuteProductionCycle()
         {
-            if (Faction == Faction.Neutral && ObjectState.Power >= 50)
+            if (Faction == Faction.Neutral && ObjectState.Power >= GameConstants.NeutralPlanetMaxPower)
                 return UniTask.CompletedTask;
 
             ObjectState.Power += ObjectState.Production;
             return UniTask.CompletedTask;
         }
 
-        public int Recruit()
+        public int Recruit(Percentage powerToRecruit)
         {
-            if (ObjectState.Power <= GameConstants.SoftCapArmyPower)
-            {
-                var allPower = ObjectState.Power;
-                ObjectState.Power = 0;
-                return allPower;
-            }
+            var powerToRecruitAbs = Mathf.FloorToInt(ObjectState.Power * powerToRecruit.Amount);
 
-            ObjectState.Power -= GameConstants.SoftCapArmyPower;
-            return GameConstants.SoftCapArmyPower;
+            if (powerToRecruitAbs > GameConstants.SoftCapArmyPower)
+                powerToRecruitAbs = GameConstants.SoftCapArmyPower;
+
+            ObjectState.Power -= powerToRecruitAbs;
+            return powerToRecruitAbs;
+
+
+            // if (ObjectState.Power <= GameConstants.SoftCapArmyPower)
+            // {
+            //     var allPower = ObjectState.Power;
+            //     ObjectState.Power = 0;
+            //     return allPower;
+            // }
+            //
+            // ObjectState.Power -= GameConstants.SoftCapArmyPower;
+            // return GameConstants.SoftCapArmyPower;
         }
 
         public void Reinforce(Army army)

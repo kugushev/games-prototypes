@@ -30,7 +30,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             order.Commit(target);
             if (order.SourcePlanet.Power > 0)
             {
-                var power = order.SourcePlanet.Recruit();
+                var power = order.SourcePlanet.Recruit(order.Power);
                 var army = pool.GetObject<Army, Army.State>(
                     new Army.State(order, armySpeed, armyAngularSpeed, faction, power));
                 ArmiesToSent.Enqueue(army);

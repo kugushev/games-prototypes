@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Game.Missions.Presets;
@@ -12,15 +13,18 @@ namespace Kugushev.Scripts.Game.Missions.Entities
     {
         public struct State
         {
-            public State(Planet planet)
+            public State(Planet planet, Percentage power)
             {
+                Power = power;
                 SourcePlanet = planet;
                 TargetPlanet = null;
                 Status = OrderStatus.Created;
                 LastRegisteredPosition = null;
             }
 
+
             public readonly Planet SourcePlanet;
+            public readonly Percentage Power;
             [CanBeNull] public Planet TargetPlanet;
             public OrderStatus Status;
             public Vector3? LastRegisteredPosition;
@@ -35,6 +39,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         public IReadOnlyList<Vector3> Path => _path;
         public Planet SourcePlanet => ObjectState.SourcePlanet;
         public Planet TargetPlanet => ObjectState.TargetPlanet;
+        public Percentage Power => ObjectState.Power;
 
         public OrderStatus Status
         {
