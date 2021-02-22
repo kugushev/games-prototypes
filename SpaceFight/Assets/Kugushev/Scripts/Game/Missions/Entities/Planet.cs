@@ -10,8 +10,10 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
 {
+    [Serializable]
     public class Planet : Poolable<Planet.State>, IModel, IFighter
     {
+        [Serializable]
         public struct State
         {
             public State(Faction faction, PlanetSize size, int production, Vector3 position)
@@ -24,12 +26,12 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                 Selected = false;
             }
 
-            public Faction Faction { get; internal set; }
-            public PlanetSize Size { get; }
-            public int Production { get; }
-            public Vector3 Position { get; }
-            public int Power { get; internal set; }
-            public bool Selected { get; internal set; }
+            public Faction Faction;
+            public PlanetSize Size;
+            public int Production;
+            public Vector3 Position;
+            public int Power;
+            public bool Selected;
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)

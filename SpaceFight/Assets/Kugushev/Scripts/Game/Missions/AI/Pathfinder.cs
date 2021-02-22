@@ -55,8 +55,7 @@ namespace Kugushev.Scripts.Game.Missions.AI
                 if (length > maxLength)
                     return false;
             }
-
-            filler?.Invoke(new Position(to.Point), objectToFill);
+            
             return true;
         }
 

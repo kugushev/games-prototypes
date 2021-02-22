@@ -11,25 +11,27 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
 {
+    [Serializable]
     public class Army : Poolable<Army.State>, IGameLoopParticipant, IFighter
     {
         public Army(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
+        [Serializable]
         public struct State
         {
-            public readonly Order Order;
-            public readonly float Speed;
-            public readonly float AngularSpeed;
-            public readonly Faction Faction;
+            public Order Order;
+            public float Speed;
+            public float AngularSpeed;
+            public Faction Faction;
             public int Power;
             public ArmyStatus Status;
             public Vector3 CurrentPosition;
             public Quaternion CurrentRotation;
             public int CurrentWaypoint;
             public float WaypointRotationProgress;
-            [CanBeNull] public IFighter Target; // todo: support multiple enemies
+            [SerializeReference] [CanBeNull] public IFighter Target; // todo: support multiple enemies
             public float FightingTimeCollector;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, int power)
@@ -110,7 +112,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                 var lookVector = (next - previous).normalized;
                 var newPosition = ObjectState.CurrentPosition + lookVector * (deltaTime * ObjectState.Speed);
                 var dot = Vector3.Dot((next - newPosition).normalized, lookVector);
-                if (dot < 0f)
+                if (dot <= 0f || ObjectState.CurrentPosition == next)
                 {
                     ObjectState.CurrentPosition = next;
 
@@ -183,6 +185,14 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             if (ObjectState.Target == null)
             {
                 Debug.LogError("Enemy is null");
+                return;
+            }
+            
+            if (!ObjectState.Target.Active)
+            {
+                Debug.LogWarning("Enemy is not active");
+                ObjectState.Status = ArmyStatus.OnMatch;
+                ObjectState.Target = null;
                 return;
             }
 
@@ -268,7 +278,6 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         {
             Disband();
         }
-
 
         public void HandleArmyInteraction(Army otherPartyArmy)
         {

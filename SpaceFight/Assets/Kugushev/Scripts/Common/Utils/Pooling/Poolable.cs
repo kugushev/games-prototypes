@@ -1,10 +1,12 @@
-﻿namespace Kugushev.Scripts.Common.Utils.Pooling
+﻿using UnityEngine;
+
+namespace Kugushev.Scripts.Common.Utils.Pooling
 {
     public abstract class Poolable<TState> : IPoolable<TState>
         where TState : struct
     {
         private readonly ObjectsPool _myPool;
-        protected TState ObjectState;
+        [SerializeField] protected TState ObjectState;
         protected Poolable(ObjectsPool objectsPool) => _myPool = objectsPool;
         
         public bool Active { get; private set; }

@@ -6,6 +6,7 @@ namespace Kugushev.Scripts.Game.Missions.Interfaces
 {
     public interface IFighter
     {
+        bool Active { get; }
         Position Position { get; }
         Faction Faction { get; }
         bool CanBeAttacked { get; }

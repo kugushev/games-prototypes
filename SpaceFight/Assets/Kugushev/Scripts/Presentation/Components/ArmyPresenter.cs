@@ -15,6 +15,7 @@ namespace Kugushev.Scripts.Presentation.Components
         [SerializeField] private Transform mesh;
         [SerializeField] private TextMeshProUGUI powerText;
         [SerializeField] private ParticleSystem projectilesParticleSystem;
+        [SerializeReference] private Army army;
 
         private FleetPresenter _fleet;
 
@@ -26,7 +27,11 @@ namespace Kugushev.Scripts.Presentation.Components
             _fleet = owner;
         }
 
-        public Army Army { get; internal set; }
+        public Army Army
+        {
+            get => army;
+            internal set => army = value;
+        }
 
         public void SendFollowingOrder()
         {
