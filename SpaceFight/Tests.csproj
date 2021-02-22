@@ -53,6 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Tests\BigFight.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Controllers\TestMissionController.cs" />
      <None Include="Assets\Kugushev\Scripts\Tests\Tests.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -621,6 +622,12 @@
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
+ <Reference Include="UniTask">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
@@ -632,6 +639,14 @@
     <ProjectReference Include="Representation.csproj">
       <Project>{aa452417-e78e-1dc4-9371-28f084a3e8bc}</Project>
       <Name>Representation</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.csproj">
+      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
+      <Name>Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="Common.csproj">
+      <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

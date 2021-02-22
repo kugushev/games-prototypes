@@ -36,5 +36,11 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         }
 
         protected override void OnRestore(State state) => _planets.Clear();
+
+        public void SetDayOfYear(int dayOfYear)
+        {
+            foreach (var planet in _planets) 
+                planet.DayOfYear = dayOfYear;
+        }
     }
 }

@@ -1,50 +1,36 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Missions;
 using Kugushev.Scripts.Game.Missions.AI.Tactical;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
-using Kugushev.Scripts.Game.Missions.Interfaces;
 using Kugushev.Scripts.Game.Missions.Managers;
 using Kugushev.Scripts.Game.Missions.Player;
-using Kugushev.Scripts.Game.Missions.Presets;
+using Kugushev.Scripts.Game.Missions.ProceduralGeneration;
 using Kugushev.Scripts.Game.Missions.ValueObjects;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class MissionBriefingController : MonoBehaviour
     {
-        [SerializeField] private ObjectsPool pool;
         [SerializeField] private MissionManager missionManager;
 
-        [Header("Menu")]
-        [SerializeField] 
-        private TextMeshProUGUI countdownText;
+        [Header("Menu")] [SerializeField] private TextMeshProUGUI countdownText;
         [SerializeField] private int countDownStart = 5;
 
-        [Header("Planetary System")]
-        [SerializeField]
-        private PlanetPreset[] defaultPlanets;
+        [Header("Planetary System")] [SerializeField]
+        private PlanetarySystemGenerator planetarySystemGenerator;
 
-        [SerializeField] private SunPreset sunPreset;
+        [SerializeField] private int seed;
 
         [Header("Mission Related Assets")] [SerializeField]
         private PlayerCommander playerCommander;
 
         [SerializeField] private SimpleAI enemyAi;
-        [SerializeField] private SimpleAI alternativeAi;
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
-
-
-        // todo: use a dedicated controller for testing purposes
-        public static bool MissionFinished { get; private set; }
 
         private void Start()
         {
@@ -53,30 +39,22 @@ namespace Kugushev.Scripts.Presentation.Controllers
 
         private async UniTask RunSingleRun()
         {
-            missionManager.MissionFinished += _ => MissionFinished = true;
-
-            var winner = missionManager.LastWinner?.ToString();
+            var summary = $"You vs AI" + Environment.NewLine + $"{missionManager.Wins}:{missionManager.Looses}";
             for (int i = countDownStart; i >= 0; i--)
             {
-                countdownText.text = winner != null
-                    ? winner + Environment.NewLine + StringBag.FromInt(i)
-                    : StringBag.FromInt(i);
-
+                countdownText.text = summary + Environment.NewLine + StringBag.FromInt(i);
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
             }
 
-            var system = pool.GetObject<PlanetarySystem, PlanetarySystem.State>(
-                new PlanetarySystem.State(sunPreset.ToSun()));
+            if (seed == default)
+                seed = DateTime.UtcNow.Millisecond;
 
-            foreach (var planetPreset in defaultPlanets)
-                system.AddPlanet(planetPreset.ToPlanet(pool));
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(seed);
 
-            ICommander greenCommander = (ICommander) playerCommander ?? alternativeAi;
-            var green = new ConflictParty(Faction.Green, greenFleet, greenCommander);
-
+            var green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
             var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
 
-            await missionManager.NextMission(system, green, red);
+            await missionManager.NextMission(planetarySystem, green, red, true);
         }
     }
 }

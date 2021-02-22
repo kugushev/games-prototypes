@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Interfaces;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Game.Missions.ValueObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Kugushev.Scripts.Game.Common.UnityConstants.Scenes;
 
 namespace Kugushev.Scripts.Game.Missions.Managers
 {
@@ -17,10 +17,14 @@ namespace Kugushev.Scripts.Game.Missions.Managers
     {
         public MissionState? State { get; private set; }
         public Faction? LastWinner { get; private set; }
+        
+        public int Wins { get; private set; }
+        public int Looses { get; private set; }
 
         public event Action<Faction> MissionFinished;
 
-        public async UniTask NextMission(PlanetarySystem planetarySystem, ConflictParty green, ConflictParty red)
+        public async UniTask NextMission(PlanetarySystem planetarySystem, ConflictParty green, ConflictParty red, 
+            bool preparation)
         {
             if (State != null)
             {
@@ -33,7 +37,19 @@ namespace Kugushev.Scripts.Game.Missions.Managers
             
             LastWinner = null;
 
-            await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MissionScene);
+            var scene = preparation ? MissionPreparationScene : MissionScene;
+            await SceneManager.LoadSceneAsync(scene);
+        }
+
+        public async UniTask StartMission()
+        {
+            if (State == null)
+            {
+                Debug.LogError("Mission is not prepared yet");
+                return;
+            }
+            
+            await SceneManager.LoadSceneAsync(MissionScene);
         }
 
         public async UniTask CheckMissionStatus()
@@ -43,12 +59,22 @@ namespace Kugushev.Scripts.Game.Missions.Managers
                 if (IsMissionFinished(State.Value, out var winner))
                 {
                     LastWinner = winner;
+                    switch (winner)
+                    {
+                        case Faction.Green:
+                            Wins++;
+                            break;
+                        case Faction.Red:
+                            Looses++;
+                            break;
+                    }
+                    
 
                     State.Value.Dispose();
                     State = null;
 
                     MissionFinished?.Invoke(winner);
-                    await SceneManager.LoadSceneAsync(UnityConstants.Scenes.MissionBriefingScene);
+                    await SceneManager.LoadSceneAsync(MissionBriefingScene);
                 }
             }
         }

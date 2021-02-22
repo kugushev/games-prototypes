@@ -15,5 +15,7 @@
         public const float CollisionError = 0.05f;
 
         public const int NeutralPlanetMaxPower = 15;
+
+        public const int DaysInYear = 360;
     }
 }

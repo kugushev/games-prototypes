@@ -74,6 +74,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\FleetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlanetPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionBriefingController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionPreparationController.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

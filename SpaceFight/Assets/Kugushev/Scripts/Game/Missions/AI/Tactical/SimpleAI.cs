@@ -99,14 +99,14 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
                 return;
             }
 
-            // send reinforcements
-            var weakestAllay = FindWeakest(planet, _state.NeighboursPlanetsBuffer,
-                faction => faction == _state.AgentFaction);
-            if (!ReferenceEquals(weakestAllay, null))
-            {
-                // todo: send reinforcements based on Random
-                SendFleet(planet, weakestAllay);
-            }
+            // send reinforcements (don't require)
+            // var weakestAllay = FindWeakest(planet, _state.NeighboursPlanetsBuffer,
+            //     faction => faction == _state.AgentFaction);
+            // if (!ReferenceEquals(weakestAllay, null))
+            // {
+            //     // todo: send reinforcements based on Random
+            //     SendFleet(planet, weakestAllay);
+            // }
 
             _state.NeighboursPlanetsBuffer.Clear();
         }

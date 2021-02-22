@@ -7,6 +7,7 @@ namespace Kugushev.Scripts.Game.Common
         public static class Scenes
         {
             public static readonly string MissionScene = "MissionScene";
+            public static readonly string MissionPreparationScene = "MissionPreparationScene";
             public static readonly string MissionBriefingScene = "MissionBriefingScene";
         }
     }

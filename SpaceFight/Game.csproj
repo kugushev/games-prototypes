@@ -81,6 +81,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\Faction.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ProceduralGeneration\PlanetarySystemGenerator.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ProceduralGeneration\PlanetRule.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

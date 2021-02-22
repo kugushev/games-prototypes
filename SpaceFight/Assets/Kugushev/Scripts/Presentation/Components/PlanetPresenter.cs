@@ -30,11 +30,11 @@ namespace Kugushev.Scripts.Presentation.Components
             transform.localScale = Model.Size switch
             {
                 PlanetSize.Mercury => new Vector3(0.05f, 0.05f, 0.05f),
-                PlanetSize.Mars => new Vector3(0.1f, 0.1f, 0.1f),
-                PlanetSize.Earth => new Vector3(0.15f, 0.15f, 0.15f),
-                PlanetSize.Uranus => new Vector3(0.2f, 0.2f, 0.2f),
-                PlanetSize.Saturn => new Vector3(0.25f, 0.25f, 0.25f),
-                PlanetSize.Jupiter => new Vector3(0.3f, 0.3f, 0.3f),
+                PlanetSize.Mars => new Vector3(0.08f, 0.08f, 0.08f),
+                PlanetSize.Earth => new Vector3(0.11f, 0.11f, 0.11f),
+                PlanetSize.Uranus => new Vector3(0.14f, 0.14f, 0.14f),
+                PlanetSize.Saturn => new Vector3(0.17f, 0.17f, 0.17f),
+                PlanetSize.Jupiter => new Vector3(0.2f, 0.2f, 0.2f),
                 _ => Vector3.one
             };
         }
@@ -42,6 +42,8 @@ namespace Kugushev.Scripts.Presentation.Components
         private void Update()
         {
             // todo: use UniRx to track changes
+            
+            transform.position = Model.Position.Point;
 
             _meshRenderer.material = Model.Faction switch
             {

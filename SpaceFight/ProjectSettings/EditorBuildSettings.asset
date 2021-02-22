@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Kugushev/Scenes/MissionBriefingScene.unity
     guid: d0a4aebf9c7d08348a723cb769160605
   - enabled: 1
+    path: Assets/Kugushev/Scenes/MissionPreparationScene.unity
+    guid: cc6be404953a0b742895d9a137096a77
+  - enabled: 1
     path: Assets/Kugushev/Scenes/MissionScene.unity
     guid: 31afbd9f2e3ae054288ae5e1f06c433c
   - enabled: 1

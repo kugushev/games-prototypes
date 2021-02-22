@@ -16,22 +16,28 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         [Serializable]
         public struct State
         {
-            public State(Faction faction, PlanetSize size, int production, Vector3 position)
+            public State(Faction faction, PlanetSize size, int production, Orbit orbit, Sun sun)
             {
                 Faction = faction;
                 Size = size;
                 Production = production;
-                Position = position;
+                Orbit = orbit;
+                Sun = sun;
                 Power = 0;
                 Selected = false;
+                DayOfYear = 0;
+                Position = orbit.ToPosition(sun.Position, 0);
             }
 
             public Faction Faction;
             public PlanetSize Size;
             public int Production;
-            public Vector3 Position;
+            public Orbit Orbit;
+            public Sun Sun;
             public int Power;
             public bool Selected;
+            public int DayOfYear;
+            public Position Position;
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)
@@ -52,7 +58,17 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             set => ObjectState.Selected = value;
         }
 
-        public Position Position => new Position(ObjectState.Position);
+        public int DayOfYear
+        {
+            get => ObjectState.DayOfYear;
+            set
+            {
+                ObjectState.DayOfYear = value;
+                UpdatePosition();
+            }
+        }
+
+        public Position Position => ObjectState.Position;
 
         public UniTask ExecuteProductionCycle()
         {
@@ -103,5 +119,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
             return FightRoundResult.StillAlive;
         }
+
+        private void UpdatePosition() => ObjectState.Position =
+            ObjectState.Orbit.ToPosition(ObjectState.Sun.Position, ObjectState.DayOfYear);
     }
 }
