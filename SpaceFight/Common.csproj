@@ -52,6 +52,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Orbit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\Poolable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\ObjectsPool.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\IPoolable.cs" />
@@ -60,7 +61,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Position.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Percentage.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionAttribute.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Orbit.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

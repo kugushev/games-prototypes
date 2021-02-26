@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Game.Common;
+﻿using System.Linq;
+using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Presentation.Common.Utils;
@@ -73,8 +74,8 @@ namespace Kugushev.Scripts.Presentation.Components
                 if (!projectilesParticleSystem.isPlaying)
                     projectilesParticleSystem.Play();
 
-                if (Army.CurrentTarget != null)
-                    projectilesParticleSystem.gameObject.transform.LookAt(Army.CurrentTarget.Position.Point);
+                if (Army.CurrentTargets.Count > 0)
+                    projectilesParticleSystem.gameObject.transform.LookAt(Army.CurrentTargets.First().Position.Point);
             }
             else if (projectilesParticleSystem.isPlaying)
                 projectilesParticleSystem.Stop();

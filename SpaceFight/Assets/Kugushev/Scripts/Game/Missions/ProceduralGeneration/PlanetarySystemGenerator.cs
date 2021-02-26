@@ -14,14 +14,13 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
     {
         [SerializeField] private ObjectsPool objectsPool;
 
-        [Header("Rules")] [SerializeField] private float systemRadius = 2f;
+        [Header("Rules")] [SerializeField] private float systemRadius = 0.8f;
         [SerializeField] private Vector3 center = new Vector3(0f, 1.5f, 0.5f);
         [SerializeField] private float sunMaxRadius = 0.05f;
         [SerializeField] private float sunMinRadius = 0.2f;
         [SerializeField] private int minPlanets = 3;
-        [SerializeField] private int maxPlanets = 10;
+        [SerializeField] private int maxPlanets = 6;
         [SerializeField] private PlanetRule[] planetRules;
-
 
         public PlanetarySystem CreatePlanetarySystem(int seed)
         {
@@ -44,8 +43,6 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
             int planetsCount = Random.Range(minPlanets, maxPlanets);
 
             (int greenHome, int redHome) = GetHomePlanets(planetsCount);
-            PlanetRule sidesRule = null;
-            
 
             float t = 0f;
             for (int i = 0; i < planetsCount; i++)
@@ -53,13 +50,8 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
                 t += 1f / planetsCount;
                 var orbit = CreateOrbit(t);
 
-                int ruleIndex = Random.Range(0, planetRules.Length);
-
                 var faction = GetFaction(i, greenHome, redHome);
-
-                var rule = planetRules[ruleIndex];
-                
-                sidesRule = ApplySamePlanetRule(faction, sidesRule, ref rule);
+                var rule = GetPlanetRule(faction);
 
                 int production = Random.Range(rule.MinProduction, rule.MaxProduction);
 
@@ -70,6 +62,21 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
             }
         }
 
+        private PlanetRule GetPlanetRule(Faction faction)
+        {
+            switch (faction)
+            {
+                case Faction.Neutral:
+                    int ruleIndex = Random.Range(0, planetRules.Length);
+                    return planetRules[ruleIndex];
+                case Faction.Red:
+                case Faction.Green:
+                    return GetSidesRule();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(faction), faction, null);
+            }
+        }
+
         private static Faction GetFaction(int i, int greenHome, int redHome)
         {
             var faction = Faction.Neutral;
@@ -77,19 +84,6 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
                 faction = Faction.Green;
             if (i == redHome) faction = Faction.Red;
             return faction;
-        }
-
-        private static PlanetRule ApplySamePlanetRule(Faction faction, PlanetRule sidesRule, ref PlanetRule rule)
-        {
-            if (faction != Faction.Neutral)
-            {
-                if (sidesRule == null)
-                    sidesRule = rule;
-                else
-                    rule = sidesRule;
-            }
-
-            return sidesRule;
         }
 
         private Orbit CreateOrbit(float t)
@@ -105,6 +99,19 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
             while (red == green)
                 red = Random.Range(0, planetsCount);
             return (green, red);
+        }
+
+        private PlanetRule GetSidesRule()
+        {
+            PlanetRule rule;
+            do
+            {
+                int ruleIndex = Random.Range(0, planetRules.Length);
+                rule = planetRules[ruleIndex];
+                
+            } while (rule.Size < PlanetSize.Earth);
+
+            return rule;
         }
     }
 }

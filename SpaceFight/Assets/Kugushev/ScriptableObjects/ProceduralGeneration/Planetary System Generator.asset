@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Planetary System Generator
   m_EditorClassIdentifier: 
   objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
-  systemRadius: 1
+  systemRadius: 0.8
   center: {x: 0, y: 1.5, z: 0.5}
   sunMaxRadius: 0.05
   sunMinRadius: 0.2
   minPlanets: 3
-  maxPlanets: 7
+  maxPlanets: 6
   planetRules:
   - planetSize: 1
     minProduction: 1

@@ -18,75 +18,75 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         {
             public State(Faction faction, PlanetSize size, int production, Orbit orbit, Sun sun)
             {
-                Faction = faction;
-                Size = size;
-                Production = production;
-                Orbit = orbit;
+                this.faction = faction;
+                this.size = size;
+                this.production = production;
+                this.orbit = orbit;
                 Sun = sun;
-                Power = 0;
-                Selected = false;
-                DayOfYear = 0;
-                Position = orbit.ToPosition(sun.Position, 0);
+                power = 0;
+                selected = false;
+                dayOfYear = 0;
+                position = orbit.ToPosition(sun.Position, 0);
             }
 
-            public Faction Faction;
-            public PlanetSize Size;
-            public int Production;
-            public Orbit Orbit;
+            public Faction faction;
+            public PlanetSize size;
+            public int production;
+            public Orbit orbit;
             public Sun Sun;
-            public int Power;
-            public bool Selected;
-            public int DayOfYear;
-            public Position Position;
+            public int power;
+            public bool selected;
+            public int dayOfYear;
+            public Position position;
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
-        public Faction Faction => ObjectState.Faction;
+        public Faction Faction => ObjectState.faction;
 
         public bool CanBeAttacked => true;
 
-        public PlanetSize Size => ObjectState.Size;
+        public PlanetSize Size => ObjectState.size;
 
-        public int Power => ObjectState.Power;
+        public int Power => ObjectState.power;
 
         public bool Selected
         {
-            get => ObjectState.Selected;
-            set => ObjectState.Selected = value;
+            get => ObjectState.selected;
+            set => ObjectState.selected = value;
         }
 
         public int DayOfYear
         {
-            get => ObjectState.DayOfYear;
+            get => ObjectState.dayOfYear;
             set
             {
-                ObjectState.DayOfYear = value;
+                ObjectState.dayOfYear = value;
                 UpdatePosition();
             }
         }
 
-        public Position Position => ObjectState.Position;
+        public Position Position => ObjectState.position;
 
         public UniTask ExecuteProductionCycle()
         {
-            if (Faction == Faction.Neutral && ObjectState.Power >= GameConstants.NeutralPlanetMaxPower)
+            if (Faction == Faction.Neutral && ObjectState.power >= GameConstants.NeutralPlanetMaxPower)
                 return UniTask.CompletedTask;
 
-            ObjectState.Power += ObjectState.Production;
+            ObjectState.power += ObjectState.production;
             return UniTask.CompletedTask;
         }
 
         public int Recruit(Percentage powerToRecruit)
         {
-            var powerToRecruitAbs = Mathf.FloorToInt(ObjectState.Power * powerToRecruit.Amount);
+            var powerToRecruitAbs = Mathf.FloorToInt(ObjectState.power * powerToRecruit.Amount);
 
             if (powerToRecruitAbs > GameConstants.SoftCapArmyPower)
                 powerToRecruitAbs = GameConstants.SoftCapArmyPower;
 
-            ObjectState.Power -= powerToRecruitAbs;
+            ObjectState.power -= powerToRecruitAbs;
             return powerToRecruitAbs;
 
 
@@ -103,24 +103,24 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
         public void Reinforce(Army army)
         {
-            ObjectState.Power += army.Power;
+            ObjectState.power += army.Power;
         }
 
         public FightRoundResult SufferFightRound(Faction enemyFaction, int damage = GameConstants.UnifiedDamage)
         {
-            ObjectState.Power -= damage;
+            ObjectState.power -= damage;
 
-            if (ObjectState.Power < 0)
+            if (ObjectState.power < 0)
             {
-                ObjectState.Power *= -1;
-                ObjectState.Faction = enemyFaction;
+                ObjectState.power *= -1;
+                ObjectState.faction = enemyFaction;
                 return FightRoundResult.Defeated;
             }
 
             return FightRoundResult.StillAlive;
         }
 
-        private void UpdatePosition() => ObjectState.Position =
-            ObjectState.Orbit.ToPosition(ObjectState.Sun.Position, ObjectState.DayOfYear);
+        private void UpdatePosition() => ObjectState.position =
+            ObjectState.orbit.ToPosition(ObjectState.Sun.Position, ObjectState.dayOfYear);
     }
 }

@@ -2,12 +2,12 @@
 {
     public enum PlanetSize
     {
-        Unspecified,
-        Mercury,
-        Mars,
-        Earth,
-        Uranus,
-        Saturn,
-        Jupiter
+        Unspecified = 0,
+        Mercury = 1,
+        Mars = 2,
+        Earth = 3,
+        Uranus = 4,
+        Saturn = 5,
+        Jupiter = 6
     }
 }

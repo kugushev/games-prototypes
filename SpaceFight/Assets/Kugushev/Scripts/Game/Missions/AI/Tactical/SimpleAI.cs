@@ -32,7 +32,7 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
         {
             public Fleet Fleet;
             public Faction AgentFaction;
-            public readonly List<Planet> NeighboursPlanetsBuffer = new List<Planet>(8);
+            public readonly List<Planet> NeighboursPlanetsBuffer = new List<Planet>(16);
             public readonly PlanetsDistanceComparer PlanetsDistanceComparer = new PlanetsDistanceComparer();
         }
 
@@ -172,9 +172,6 @@ namespace Kugushev.Scripts.Game.Missions.AI.Tactical
 
             // Sort
             buffer.Sort(comparer);
-
-            // Limit
-            buffer.RemoveRange(top, buffer.Count - top);
         }
     }
 }

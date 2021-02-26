@@ -20,16 +20,16 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             public State(Planet planet, Percentage power)
             {
                 Power = power;
-                SourcePlanet = planet;
-                TargetPlanet = null;
-                Status = OrderStatus.Created;
+                sourcePlanet = planet;
+                targetPlanet = null;
+                status = OrderStatus.Created;
                 LastRegisteredPosition = null;
             }
 
-            public Planet SourcePlanet;
+            public Planet sourcePlanet;
             public Percentage Power;
-            [CanBeNull] public Planet TargetPlanet;
-            public OrderStatus Status;
+            [CanBeNull] public Planet targetPlanet;
+            public OrderStatus status;
             public Vector3? LastRegisteredPosition;
         }
 
@@ -40,14 +40,14 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         }
 
         public IReadOnlyList<Vector3> Path => path;
-        public Planet SourcePlanet => ObjectState.SourcePlanet;
-        public Planet TargetPlanet => ObjectState.TargetPlanet;
+        public Planet SourcePlanet => ObjectState.sourcePlanet;
+        public Planet TargetPlanet => ObjectState.targetPlanet;
         public Percentage Power => ObjectState.Power;
 
         public OrderStatus Status
         {
-            get => ObjectState.Status;
-            internal set => ObjectState.Status = value;
+            get => ObjectState.status;
+            internal set => ObjectState.status = value;
         }
 
         internal void RegisterMovement(Vector3 position, float gapBetweenWaypoints = GameConstants.GapBetweenWaypoints)
@@ -72,8 +72,8 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             if (ObjectState.LastRegisteredPosition != null)
                 path.Add(ObjectState.LastRegisteredPosition.Value);
 
-            ObjectState.TargetPlanet = target;
-            ObjectState.Status = OrderStatus.Execution;
+            ObjectState.targetPlanet = target;
+            ObjectState.status = OrderStatus.Execution;
         }
 
         protected override void OnClear(State state) => path.Clear();

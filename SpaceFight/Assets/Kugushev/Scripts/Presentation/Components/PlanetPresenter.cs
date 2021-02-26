@@ -30,11 +30,11 @@ namespace Kugushev.Scripts.Presentation.Components
             transform.localScale = Model.Size switch
             {
                 PlanetSize.Mercury => new Vector3(0.05f, 0.05f, 0.05f),
-                PlanetSize.Mars => new Vector3(0.08f, 0.08f, 0.08f),
-                PlanetSize.Earth => new Vector3(0.11f, 0.11f, 0.11f),
-                PlanetSize.Uranus => new Vector3(0.14f, 0.14f, 0.14f),
-                PlanetSize.Saturn => new Vector3(0.17f, 0.17f, 0.17f),
-                PlanetSize.Jupiter => new Vector3(0.2f, 0.2f, 0.2f),
+                PlanetSize.Mars => new Vector3(0.06f, 0.06f, 0.06f),
+                PlanetSize.Earth => new Vector3(0.07f, 0.07f, 0.07f),
+                PlanetSize.Uranus => new Vector3(0.09f, 0.09f, 0.09f),
+                PlanetSize.Saturn => new Vector3(0.11f, 0.11f, 0.11f),
+                PlanetSize.Jupiter => new Vector3(0.13f, 0.13f, 0.13f),
                 _ => Vector3.one
             };
         }
