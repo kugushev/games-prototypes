@@ -1,7 +1,9 @@
-﻿using Kugushev.Scripts.Common.ValueObjects;
+﻿using System;
+using Kugushev.Scripts.Common.ValueObjects;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
 {
+    [Serializable]
     public readonly struct Sun
     {
         public Sun(Position position, float size)

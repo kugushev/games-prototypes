@@ -83,6 +83,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\Faction.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\MissionEventsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\MissionEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\MissionEventType.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\Abstractions\AbstractAchievement.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\AchievementId.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\Invader.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

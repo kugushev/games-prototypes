@@ -4,6 +4,7 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Game.Missions.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,6 +14,7 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
     public class PlanetarySystemGenerator : ScriptableObject
     {
         [SerializeField] private ObjectsPool objectsPool;
+        [SerializeField] private MissionManager missionManager;
 
         [Header("Rules")] [SerializeField] private float systemRadius = 0.8f;
         [SerializeField] private Vector3 center = new Vector3(0f, 1.5f, 0.5f);
@@ -56,7 +58,7 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
                 int production = Random.Range(rule.MinProduction, rule.MaxProduction);
 
                 var planet = objectsPool.GetObject<Planet, Planet.State>(
-                    new Planet.State(faction, rule.Size, production, orbit, sun));
+                    new Planet.State(faction, rule.Size, production, orbit, sun, missionManager.EventsManager));
 
                 planetarySystem.AddPlanet(planet);
             }
@@ -108,7 +110,6 @@ namespace Kugushev.Scripts.Game.Missions.ProceduralGeneration
             {
                 int ruleIndex = Random.Range(0, planetRules.Length);
                 rule = planetRules[ruleIndex];
-                
             } while (rule.Size < PlanetSize.Earth);
 
             return rule;

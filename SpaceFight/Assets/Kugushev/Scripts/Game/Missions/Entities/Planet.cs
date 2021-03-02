@@ -6,6 +6,7 @@ using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Common.Entities.Abstractions;
 using Kugushev.Scripts.Game.Missions.Enums;
 using Kugushev.Scripts.Game.Missions.Interfaces;
+using Kugushev.Scripts.Game.Missions.Managers;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Missions.Entities
@@ -16,13 +17,15 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         [Serializable]
         public struct State
         {
-            public State(Faction faction, PlanetSize size, int production, Orbit orbit, Sun sun)
+            public State(Faction faction, PlanetSize size, int production, Orbit orbit, Sun sun,
+                MissionEventsManager eventsManager)
             {
                 this.faction = faction;
                 this.size = size;
                 this.production = production;
                 this.orbit = orbit;
-                Sun = sun;
+                this.sun = sun;
+                EventsManager = eventsManager;
                 power = 0;
                 selected = false;
                 dayOfYear = 0;
@@ -33,11 +36,12 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             public PlanetSize size;
             public int production;
             public Orbit orbit;
-            public Sun Sun;
+            public Sun sun;
             public int power;
             public bool selected;
             public int dayOfYear;
             public Position position;
+            public readonly MissionEventsManager EventsManager;
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)
@@ -88,17 +92,6 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
             ObjectState.power -= powerToRecruitAbs;
             return powerToRecruitAbs;
-
-
-            // if (ObjectState.Power <= GameConstants.SoftCapArmyPower)
-            // {
-            //     var allPower = ObjectState.Power;
-            //     ObjectState.Power = 0;
-            //     return allPower;
-            // }
-            //
-            // ObjectState.Power -= GameConstants.SoftCapArmyPower;
-            // return GameConstants.SoftCapArmyPower;
         }
 
         public void Reinforce(Army army)
@@ -112,8 +105,13 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
             if (ObjectState.power < 0)
             {
+                var previousOwner = ObjectState.faction;
+
                 ObjectState.power *= -1;
                 ObjectState.faction = enemyFaction;
+
+                ObjectState.EventsManager.PlanetCaptured(enemyFaction, previousOwner, ObjectState.power);
+
                 return FightRoundResult.Defeated;
             }
 
@@ -121,6 +119,6 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         }
 
         private void UpdatePosition() => ObjectState.position =
-            ObjectState.orbit.ToPosition(ObjectState.Sun.Position, ObjectState.dayOfYear);
+            ObjectState.orbit.ToPosition(ObjectState.sun.Position, ObjectState.dayOfYear);
     }
 }

@@ -15,6 +15,8 @@ namespace Kugushev.Scripts.Game.Missions.Managers
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Missions Manager")]
     public class MissionManager : ScriptableObject
     {
+        [SerializeField] private MissionEventsManager eventsManager;
+        
         public MissionState? State { get; private set; }
         public Faction? LastWinner { get; private set; }
         
@@ -22,6 +24,8 @@ namespace Kugushev.Scripts.Game.Missions.Managers
         public int Looses { get; private set; }
 
         public event Action<Faction> MissionFinished;
+
+        public MissionEventsManager EventsManager => eventsManager;
 
         public async UniTask NextMission(PlanetarySystem planetarySystem, ConflictParty green, ConflictParty red, 
             bool preparation)
