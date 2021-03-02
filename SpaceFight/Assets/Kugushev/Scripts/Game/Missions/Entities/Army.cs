@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
@@ -50,7 +51,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             }
         }
 
-        private readonly HashSet<IFighter> _targets = new HashSet<IFighter>();
+        private readonly List<IFighter> _targets = new List<IFighter>();
         private readonly List<IFighter> _targetsToRemoveBuffer = new List<IFighter>(8);
 
         public ArmyStatus Status
@@ -68,7 +69,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         public bool CanBeAttacked => ObjectState.status != ArmyStatus.Arriving &&
                                      ObjectState.status != ArmyStatus.Disbanded;
 
-        public IReadOnlyCollection<IFighter> CurrentTargets => _targets;
+        public IEnumerable<IFighter> TargetsUnderFire => _targets.Take(3);
 
         public void NextStep(float deltaTime)
         {
@@ -154,7 +155,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             {
                 ObjectState.fightingTimeCollector = 0f;
 
-                foreach (var target in _targets)
+                foreach (var target in TargetsUnderFire)
                     if (target is Planet targetPlanet)
                     {
                         bool captured = !target.CanBeAttacked;
@@ -205,7 +206,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             {
                 ObjectState.fightingTimeCollector = 0f;
 
-                foreach (var target in _targets)
+                foreach (var target in TargetsUnderFire)
                 {
                     if (target is Army targetArmy)
                     {
@@ -293,7 +294,10 @@ namespace Kugushev.Scripts.Game.Missions.Entities
             else if (planet.Faction == Faction.Neutral || planet.Faction == opposite)
             {
                 ObjectState.status = ArmyStatus.OnSiege;
-                _targets.Add(planet);
+                if (!_targets.Contains(planet))
+                    _targets.Add(planet);
+                else
+                    Debug.LogWarning("Planet is already in targets");
             }
             else
             {
@@ -308,7 +312,7 @@ namespace Kugushev.Scripts.Game.Missions.Entities
 
         public void HandleArmyInteraction(Army otherPartyArmy)
         {
-            if (ObjectState.status != ArmyStatus.OnMatch)
+            if (ObjectState.status != ArmyStatus.OnMatch && ObjectState.status != ArmyStatus.Fighting)
                 return;
 
             if (otherPartyArmy.Faction == ObjectState.faction)
@@ -318,7 +322,11 @@ namespace Kugushev.Scripts.Game.Missions.Entities
                 return;
 
             ObjectState.status = ArmyStatus.Fighting;
-            _targets.Add(otherPartyArmy);
+            
+            if (!_targets.Contains(otherPartyArmy))
+                _targets.Add(otherPartyArmy);
+            else
+                Debug.LogWarning("Other army is already in targets");
         }
 
         private void Arrive()

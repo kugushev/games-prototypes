@@ -1,4 +1,6 @@
-﻿namespace Kugushev.Scripts.Game.Missions.Enums
+﻿using System;
+
+namespace Kugushev.Scripts.Game.Missions.Enums
 {
     public enum ArmyStatus
     {

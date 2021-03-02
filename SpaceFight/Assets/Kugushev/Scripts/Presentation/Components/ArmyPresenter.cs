@@ -15,7 +15,9 @@ namespace Kugushev.Scripts.Presentation.Components
         [SerializeField] private float maxScale = 0.05f;
         [SerializeField] private Transform mesh;
         [SerializeField] private TextMeshProUGUI powerText;
-        [SerializeField] private ParticleSystem projectilesParticleSystem;
+        [SerializeField] private ParticleSystem siegeCannon;
+        [SerializeField] private ParticleSystem[] fightCannons;
+
         [SerializeReference] private Army army;
 
         private FleetPresenter _fleet;
@@ -53,10 +55,12 @@ namespace Kugushev.Scripts.Presentation.Components
             powerText.text = StringBag.FromInt(Army.Power);
 
             ApplyFight();
+            ApplySiege();
 
             if (Army.Disbanded)
                 _fleet.ReturnArmyToPool(this);
         }
+
 
         private void ApplyTransformChanges()
         {
@@ -69,16 +73,62 @@ namespace Kugushev.Scripts.Presentation.Components
 
         private void ApplyFight()
         {
-            if (Army.Status == ArmyStatus.Fighting || Army.Status == ArmyStatus.OnSiege)
+            if (Army.Status == ArmyStatus.Fighting)
             {
-                if (!projectilesParticleSystem.isPlaying)
-                    projectilesParticleSystem.Play();
+                var targetsEnumerator = Army.TargetsUnderFire.GetEnumerator();
+                foreach (var cannon in fightCannons)
+                {
+                    bool hasTarget = targetsEnumerator.MoveNext();
+                    if (!hasTarget)
+                    {
+                        StopCannon(cannon);
+                        continue;
+                    }
 
-                if (Army.CurrentTargets.Count > 0)
-                    projectilesParticleSystem.gameObject.transform.LookAt(Army.CurrentTargets.First().Position.Point);
+                    var target = targetsEnumerator.Current;
+                    if (target == null)
+                    {
+                        Debug.LogWarning("Target is null");
+                        StopCannon(cannon);
+                        continue;
+                    }
+                    
+                    if (!target.Active)
+                    {
+                        Debug.LogWarning("Target is not active");
+                        StopCannon(cannon);
+                        continue;
+                    }
+                    
+                    if (!cannon.isPlaying)
+                        cannon.Play();
+                    cannon.transform.LookAt(target.Position.Point);
+                }
             }
-            else if (projectilesParticleSystem.isPlaying)
-                projectilesParticleSystem.Stop();
+            else
+                foreach (var cannon in fightCannons)
+                    StopCannon(cannon);
+
+            void StopCannon(ParticleSystem cannon)
+            {
+                if (cannon.isPlaying)
+                    cannon.Stop();
+            }
+        }
+
+        private void ApplySiege()
+        {
+            if (Army.Status == ArmyStatus.OnSiege)
+            {
+                if (!siegeCannon.isPlaying)
+                    siegeCannon.Play();
+
+                var target = Army.TargetsUnderFire.FirstOrDefault();
+                if (target != null)
+                    siegeCannon.transform.LookAt(target.Position.Point);
+            }
+            else if (siegeCannon.isPlaying)
+                siegeCannon.Stop();
         }
 
         private Vector3 GetAdjustedScale()
