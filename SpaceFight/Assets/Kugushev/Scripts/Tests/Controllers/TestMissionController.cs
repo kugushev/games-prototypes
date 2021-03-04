@@ -18,7 +18,6 @@ namespace Kugushev.Scripts.Tests.Controllers
         
         [Header("Planetary System")]
         [SerializeField] private PlanetarySystemGenerator planetarySystemGenerator;
-        [SerializeField] private int seed;
 
         [Header("Mission Related Assets")]
         [SerializeField] private SimpleAI greenAi;
@@ -26,20 +25,24 @@ namespace Kugushev.Scripts.Tests.Controllers
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
-
-        // todo: use a dedicated controller for testing purposes
         public static bool MissionFinished { get; private set; }
+        public static int Seed { get; set; }
 
         private void Start()
         {
-            StartCoroutine(RunSingleRun().ToCoroutine());
+            StartCoroutine(RunMission().ToCoroutine());
         }
 
-        private async UniTask RunSingleRun()
+        private async UniTask RunMission()
         {
-            missionManager.MissionFinished += _ => MissionFinished = true;
+            MissionFinished = false;
+            missionManager.MissionFinished += _ =>
+            {
+                MissionFinished = true;
+                return true;
+            };
 
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(seed);
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(Seed);
             
             var green = new ConflictParty(Faction.Green, greenFleet, greenAi);
             var red = new ConflictParty(Faction.Red, redFleet, redAi);

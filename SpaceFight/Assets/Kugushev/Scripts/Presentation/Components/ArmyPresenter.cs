@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using JetBrains.Annotations;
 using Kugushev.Scripts.Game.Common;
 using Kugushev.Scripts.Game.Missions.Entities;
 using Kugushev.Scripts.Game.Missions.Enums;
@@ -30,6 +32,7 @@ namespace Kugushev.Scripts.Presentation.Components
             _fleet = owner;
         }
 
+        [CanBeNull]
         public Army Army
         {
             get => army;
@@ -38,20 +41,30 @@ namespace Kugushev.Scripts.Presentation.Components
 
         public void SendFollowingOrder()
         {
-            Army.Status = ArmyStatus.OnMatch;
+            if (Army != null)
+                Army.Status = ArmyStatus.OnMatch;
+        }
+
+        private void OnDestroy()
+        {
+            army?.Dispose();
+            army = null;
         }
 
         private void Update()
         {
-            Army.NextStep(Time.deltaTime);
+            Army?.NextStep(Time.deltaTime);
 
             ApplyModelChanges();
         }
 
         private void ApplyModelChanges()
         {
-            ApplyTransformChanges();
+            if (Army == null)
+                return;
 
+            ApplyTransformChanges();
+            
             powerText.text = StringBag.FromInt(Army.Power);
 
             ApplyFight();
@@ -92,14 +105,14 @@ namespace Kugushev.Scripts.Presentation.Components
                         StopCannon(cannon);
                         continue;
                     }
-                    
+
                     if (!target.Active)
                     {
                         Debug.LogWarning("Target is not active");
                         StopCannon(cannon);
                         continue;
                     }
-                    
+
                     if (!cannon.isPlaying)
                         cannon.Play();
                     cannon.transform.LookAt(target.Position.Point);
@@ -146,13 +159,13 @@ namespace Kugushev.Scripts.Presentation.Components
                 if (!ReferenceEquals(ppm, null))
                 {
                     var planet = ppm.Planet;
-                    Army.HandlePlanetVisiting(planet);
+                    Army?.HandlePlanetVisiting(planet);
                 }
             }
 
             if (other.CompareTag("Zone"))
             {
-                Army.HandleCrash();
+                Army?.HandleCrash();
             }
 
             if (other.CompareTag("Army"))
@@ -160,7 +173,7 @@ namespace Kugushev.Scripts.Presentation.Components
                 var presenter = other.GetComponent<ArmyPresenter>();
                 if (!ReferenceEquals(presenter, null))
                 {
-                    Army.HandleArmyInteraction(presenter.Army);
+                    Army?.HandleArmyInteraction(presenter.Army);
                 }
             }
         }

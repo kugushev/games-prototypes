@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Tests\Controllers\TestMissionController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\BigFight.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\SingleMissionTests.cs" />
      <None Include="Assets\Kugushev\Scripts\Tests\Tests.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

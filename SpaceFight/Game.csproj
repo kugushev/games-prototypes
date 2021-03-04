@@ -52,14 +52,18 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\AchievementId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Interfaces\ICommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\ConflictParty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Order.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\UnityConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\MissionEventsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\Abstractions\AbstractAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Utils\PlanetsDistanceComparer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Player\OrdersManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Presets\PlanetPreset.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\Invader.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ProceduralGeneration\PlanetRule.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\OrderStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Fleet.cs" />
@@ -77,18 +81,14 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\ArmyStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Entities\Sun.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\MissionEventType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\Enums\HandType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\Interfaces\IAIAgent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\MissionEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Common\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\Faction.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Managers\MissionEventsManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\ValueObjects\MissionEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Enums\MissionEventType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\Abstractions\AbstractAchievement.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\AchievementId.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Missions\Achievements\Invader.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
