@@ -674,6 +674,10 @@
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="Game.csproj">
+      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
+      <Name>Game</Name>
+    </ProjectReference>
     <ProjectReference Include="Mission.csproj">
       <Project>{4bb77603-8265-6539-8dee-dc93ef428a60}</Project>
       <Name>Mission</Name>

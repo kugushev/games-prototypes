@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994fa9c08bd7452f8b887804a4f5e2a6, type: 3}
+  m_Name: Orders Player Commander
+  m_EditorClassIdentifier: 
+  leftHandOrders: {fileID: 11400000, guid: 96471764dcf2e0543b6363439ded1890, type: 2}
+  rightHandOrders: {fileID: 11400000, guid: 0bb62fe45467b524db4b7a626dfd356b, type: 2}

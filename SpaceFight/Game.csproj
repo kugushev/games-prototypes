@@ -52,8 +52,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Manager\GameManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\GameModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Manager\MainMenuState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\MainMenu.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Constants\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Controllers\MainMenuController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Manager\ToMainMenuTransition.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

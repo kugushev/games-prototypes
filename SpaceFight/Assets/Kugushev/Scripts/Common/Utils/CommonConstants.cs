@@ -2,6 +2,6 @@
 {
     public static class CommonConstants
     {
-        public const string MenuPrefix = "Game/";
+        public const string MenuPrefix = "SpaceFight/";
     }
 }

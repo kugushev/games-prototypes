@@ -69,6 +69,9 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionAttribute.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Enums\HandType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IAIAgent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\FiniteStateMachine\BaseState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\FiniteStateMachine\Tools\EntryState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\FiniteStateMachine\Tools\ImmediateTransition.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

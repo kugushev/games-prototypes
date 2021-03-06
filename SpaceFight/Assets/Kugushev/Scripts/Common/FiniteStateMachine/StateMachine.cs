@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using Kugushev.Scripts.Common.FiniteStateMachine.Tools;
 
 namespace Kugushev.Scripts.Common.FiniteStateMachine
 {
@@ -11,25 +13,28 @@ namespace Kugushev.Scripts.Common.FiniteStateMachine
         public StateMachine(IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> transitions)
         {
             _transitions = transitions;
+            _currentState = EntryState.Instance;
         }
 
-        public void Update(float deltaTime)
+        public async UniTask UpdateAsync(Func<float> deltaTimeProvider)
         {
             if (_transitions.TryGetValue(_currentState, out var transitions))
                 foreach (var (transition, targetState) in transitions)
                     if (transition.ToTransition)
-                        SetState(targetState);
+                        await SetState(targetState);
 
-            _currentState?.OnUpdate(deltaTime);
+            // by reason of async SetState this OnUpdate execution might be in the another frame than tha start of this method
+            var deltaTime = deltaTimeProvider();
+            _currentState.OnUpdate(deltaTime);
         }
 
-        public void SetState(IState state)
+        public async UniTask SetState(IState state)
         {
-            _currentState?.OnExitAsync();
+            await _currentState.OnExitAsync();
             _currentState = null;
 
             _currentState = state;
-            _currentState.OnEnterAsync();
+            await _currentState.OnEnterAsync();
         }
     }
 }

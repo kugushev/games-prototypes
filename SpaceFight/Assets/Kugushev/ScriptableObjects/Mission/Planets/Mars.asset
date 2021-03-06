@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4fbec6572146738877cbc0cdbab333, type: 3}
+  m_Name: Mars
+  m_EditorClassIdentifier: 
+  faction: 3
+  size: 2
+  production: 9
+  position: {x: 0.314, y: 2.074, z: 0.99}
+  isStub: 0

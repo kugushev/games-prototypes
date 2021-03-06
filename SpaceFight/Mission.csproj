@@ -56,7 +56,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Interfaces\ICommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Managers\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ConflictParty.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Managers\MissionManagerEx.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Entities\Order.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Managers\MissionEventsManager.cs" />
