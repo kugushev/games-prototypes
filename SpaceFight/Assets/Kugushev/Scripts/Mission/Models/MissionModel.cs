@@ -6,12 +6,12 @@ using UnityEngine;
 namespace Kugushev.Scripts.Mission.Models
 {
     [Serializable]
-    internal class MissionModel : IDisposable
+    public class MissionModel : IDisposable
     {
         [SerializeField] private MissionInfo missionInfo;
-        [SerializeField] private PlanetarySystem planetarySystem;
-        [SerializeField] private ConflictParty green;
-        [SerializeField] private ConflictParty red;
+        private PlanetarySystem planetarySystem;
+        private ConflictParty green;
+        private ConflictParty red;
 
         public MissionModel(MissionInfo missionInfo)
         {
@@ -37,6 +37,8 @@ namespace Kugushev.Scripts.Mission.Models
             get => red;
             set => red = value;
         }
+
+        public bool ReadyToExecute { get; set; }
 
         public void Dispose()
         {

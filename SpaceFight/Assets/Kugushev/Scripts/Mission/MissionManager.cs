@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Mission
 {
-    internal class MissionManager : BaseManager<MissionModel>
+    public class MissionManager : BaseManager<MissionModel>
     {
         [Header("Boilerplate")] [SerializeField]
         private MissionModelProvider modelProvider;

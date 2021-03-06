@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
 
 namespace Kugushev.Scripts.Mission.Models

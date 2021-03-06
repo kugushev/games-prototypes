@@ -1487,6 +1487,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 858581590997245251, guid: 6b71a37865f02004285dbcc8c46a782d, type: 3}
+      propertyPath: missionModelProvider
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b71a37865f02004285dbcc8c46a782d, type: 3}
 --- !u!1 &972730086
@@ -1687,7 +1691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5492965f3f7f46318ded413fd76e59c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
+  missionManager: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
 --- !u!1 &1264777165
 GameObject:
   m_ObjectHideFlags: 0
