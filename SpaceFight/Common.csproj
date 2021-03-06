@@ -58,6 +58,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\ObjectsPool.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\IPoolable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\CommonConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Entities\Abstractions\IModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IGameLoopParticipant.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\FiniteStateMachine\ITransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\FiniteStateMachine\IState.cs" />
@@ -65,6 +67,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Percentage.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\FiniteStateMachine\TransitionRecord.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionAttribute.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Enums\HandType.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IAIAgent.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

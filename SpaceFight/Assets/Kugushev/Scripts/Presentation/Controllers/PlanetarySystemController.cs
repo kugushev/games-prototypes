@@ -1,8 +1,5 @@
-﻿using System;
-using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Missions;
-using Kugushev.Scripts.Game.Missions.Entities;
-using Kugushev.Scripts.Game.Missions.Managers;
+﻿using Kugushev.Scripts.Mission.Entities;
+using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;
 using UnityEngine.Serialization;

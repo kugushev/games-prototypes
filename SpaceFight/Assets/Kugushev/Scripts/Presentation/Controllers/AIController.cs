@@ -1,6 +1,5 @@
-using Kugushev.Scripts.Game.Common.Interfaces;
-using Kugushev.Scripts.Game.Missions;
-using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Common.Interfaces;
+using Kugushev.Scripts.Mission.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 

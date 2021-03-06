@@ -1,13 +1,12 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Missions.AI.Tactical;
-using Kugushev.Scripts.Game.Missions.Entities;
-using Kugushev.Scripts.Game.Missions.Enums;
-using Kugushev.Scripts.Game.Missions.Interfaces;
-using Kugushev.Scripts.Game.Missions.Managers;
-using Kugushev.Scripts.Game.Missions.ProceduralGeneration;
-using Kugushev.Scripts.Game.Missions.ValueObjects;
+using Kugushev.Scripts.Mission.AI.Tactical;
+using Kugushev.Scripts.Mission.Entities;
+using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.ProceduralGeneration;
+using Kugushev.Scripts.Mission.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Tests.Controllers

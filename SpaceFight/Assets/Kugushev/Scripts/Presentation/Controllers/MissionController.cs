@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Game.Missions;
-using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Mission.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 

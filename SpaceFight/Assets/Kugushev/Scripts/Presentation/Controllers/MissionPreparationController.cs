@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Managers;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.Controllers

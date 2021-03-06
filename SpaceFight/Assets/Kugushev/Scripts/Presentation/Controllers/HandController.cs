@@ -1,6 +1,6 @@
 ﻿using System;
+using Kugushev.Scripts.Common.Enums;
 using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Common.Enums;
 using Kugushev.Scripts.Presentation.Events;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;

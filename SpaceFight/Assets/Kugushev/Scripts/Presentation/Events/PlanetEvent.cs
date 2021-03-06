@@ -1,6 +1,5 @@
 ﻿using System;
-using Kugushev.Scripts.Game.Missions.Entities;
-using Kugushev.Scripts.Game.Missions.Presets;
+using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Presentation.Controllers;
 using UnityEngine.Events;
 

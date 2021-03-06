@@ -8,7 +8,8 @@
         "Game",
         "Common",
         "UniTask",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Mission"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

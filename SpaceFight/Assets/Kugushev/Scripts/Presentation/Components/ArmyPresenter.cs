@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using JetBrains.Annotations;
-using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Missions.Entities;
-using Kugushev.Scripts.Game.Missions.Enums;
+using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Entities;
+using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using TMPro;

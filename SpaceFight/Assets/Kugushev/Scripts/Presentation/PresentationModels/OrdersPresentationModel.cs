@@ -1,6 +1,5 @@
-﻿using Kugushev.Scripts.Game.Common.Entities.Abstractions;
-using Kugushev.Scripts.Game.Missions.Managers;
-using Kugushev.Scripts.Game.Missions.Player;
+﻿using Kugushev.Scripts.Common.Entities.Abstractions;
+using Kugushev.Scripts.Mission.Player;
 using Kugushev.Scripts.Presentation.PresentationModels.Abstractions;
 using UnityEngine;
 

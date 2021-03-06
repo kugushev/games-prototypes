@@ -1,0 +1,1010 @@
+Using pre-set license
+Built from '2020.2/staging' branch; Version is '2020.2.6f1 (8a2143876886) revision 9052483'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 18363.1379; Version 1909; 64bit' Language: 'en' Physical Memory: 16335 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.2.6f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Projects/games-prototypes-vr/SpaceFight
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+57641
+Successfully changed project path to: C:/Projects/games-prototypes-vr/SpaceFight
+C:/Projects/games-prototypes-vr/SpaceFight
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 56.43 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.91 ms.
+Initialize engine version: 2020.2.6f1 (8a2143876886)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Projects/games-prototypes-vr/SpaceFight/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
+    Vendor:   
+    VRAM:     6052 MB
+    Driver:   27.21.14.6109
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56596
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001520 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 53.79 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.824 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.002309 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 56.93 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.15 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.144 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 3148 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 139.9 MB.
+System memory in use after: 140.1 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3601.
+Total: 2.908300 ms (FindLiveObjects: 0.441300 ms CreateObjectMapping: 0.092600 ms MarkObjects: 2.290600 ms  DeleteObjects: 0.082600 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine/Transition.cs
+  artifactKey: Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine/Transition.cs using Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a583d1d0e6f11f24b4c6715992066858') in 0.032836 seconds
+  Import took 0.039084 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000474 seconds.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine
+  artifactKey: Guid(0d5cfad0195346c4a7e63fef026f817c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine using Guid(0d5cfad0195346c4a7e63fef026f817c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73ac5ad184320c196202fa685cac6c23') in 0.001956 seconds
+  Import took 0.007773 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 87.257599 seconds.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs
+  artifactKey: Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs using Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afd35f83f82e778c5bf713706a96a47c') in 0.001903 seconds
+  Import took 0.007172 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.011102 seconds.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs
+  artifactKey: Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs using Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afd35f83f82e778c5bf713706a96a47c') in 0.002687 seconds
+  Import took 0.007908 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002828 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.037 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3017 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.7 MB.
+System memory in use after: 130.9 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3604.
+Total: 2.518700 ms (FindLiveObjects: 0.329400 ms CreateObjectMapping: 0.091500 ms MarkObjects: 2.078600 ms  DeleteObjects: 0.018200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 9.308354 seconds.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs
+  artifactKey: Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs using Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2122664895bbcd513d91449f093563c') in 0.005531 seconds
+  Import took 0.010665 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.150091 seconds.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs
+  artifactKey: Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs using Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd276e55fef3510613c87e8fad952db87') in 0.002341 seconds
+  Import took 0.009651 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010069 seconds.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs
+  artifactKey: Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs using Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd276e55fef3510613c87e8fad952db87') in 0.001517 seconds
+  Import took 0.005928 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002968 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.925 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3018 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.7 MB.
+System memory in use after: 131.0 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3608.
+Total: 2.666800 ms (FindLiveObjects: 0.334500 ms CreateObjectMapping: 0.091300 ms MarkObjects: 2.221100 ms  DeleteObjects: 0.019000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 251.076490 seconds.
+  path: Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs
+  artifactKey: Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common/FiniteStateMachine/ITransition.cs using Guid(abacefd41cd34507a3c82c8c5c7fccf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '438dd02585a590d8f281b6fbb06f39fd') in 0.005321 seconds
+  Import took 0.010530 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.935111 seconds.
+  path: Assets/Kugushev/Scripts/Presentation/Presentation.asmdef
+  artifactKey: Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Presentation/Presentation.asmdef using Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8938fd4a89fd619751893543a67787f3') in 0.008331 seconds
+  Import took 0.013654 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004831 seconds.
+  path: Assets/Kugushev/Scripts/Presentation/Presentation.asmdef
+  artifactKey: Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Presentation/Presentation.asmdef using Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8938fd4a89fd619751893543a67787f3') in 0.001407 seconds
+  Import took 0.006108 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002323 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.68 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.111 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3018 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.0 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3611.
+Total: 2.550500 ms (FindLiveObjects: 0.379800 ms CreateObjectMapping: 0.090200 ms MarkObjects: 2.056100 ms  DeleteObjects: 0.023200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002948 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.012 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3019 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3615.
+Total: 2.730600 ms (FindLiveObjects: 0.379600 ms CreateObjectMapping: 0.091800 ms MarkObjects: 2.238100 ms  DeleteObjects: 0.020100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001964 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.938 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.81 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.16 ms.
+Unloading 3019 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3618.
+Total: 2.359500 ms (FindLiveObjects: 0.326700 ms CreateObjectMapping: 0.090900 ms MarkObjects: 1.924900 ms  DeleteObjects: 0.015900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011994 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.81 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.131 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 3019 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3621.
+Total: 9.244600 ms (FindLiveObjects: 1.169000 ms CreateObjectMapping: 0.093800 ms MarkObjects: 7.895200 ms  DeleteObjects: 0.083800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 8882.647001 seconds.
+  path: Assets/Kugushev/Scripts/Campaingn
+  artifactKey: Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Campaingn using Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd08b2d02659540d0c33e4eca5c58c5d1') in 0.006939 seconds
+  Import took 0.013065 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002410 seconds.
+  path: Assets/Kugushev/Scripts/Campaingn
+  artifactKey: Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Campaingn using Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd08b2d02659540d0c33e4eca5c58c5d1') in 0.001453 seconds
+  Import took 0.007463 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.095443 seconds.
+  path: Assets/Kugushev/Scripts/Campaign
+  artifactKey: Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Campaign using Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee8fe6f1cee2c520cc1b9fff625d75f0') in 0.001766 seconds
+  Import took 0.007205 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006717 seconds.
+  path: Assets/Kugushev/Scripts/Campaign
+  artifactKey: Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Campaign using Guid(62a8b7e42b89eb441841f75e6fe85194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee8fe6f1cee2c520cc1b9fff625d75f0') in 0.001607 seconds
+  Import took 0.006020 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.981583 seconds.
+  path: Assets/Kugushev/Scripts/Campaign/Campaign.asmdef
+  artifactKey: Guid(f361d04403cdfb94f8b5f5422742255d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Campaign/Campaign.asmdef using Guid(f361d04403cdfb94f8b5f5422742255d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '644fec8e2ea6963e01df57ea7e9c9c37') in 0.001945 seconds
+  Import took 0.007868 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.016512 seconds.
+  path: Assets/Kugushev/Scripts/Campaign/Campaign.asmdef
+  artifactKey: Guid(f361d04403cdfb94f8b5f5422742255d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Campaign/Campaign.asmdef using Guid(f361d04403cdfb94f8b5f5422742255d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '644fec8e2ea6963e01df57ea7e9c9c37') in 0.001556 seconds
+  Import took 0.006648 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003082 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.68 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.035 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3019 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3624.
+Total: 2.368700 ms (FindLiveObjects: 0.331200 ms CreateObjectMapping: 0.093300 ms MarkObjects: 1.927000 ms  DeleteObjects: 0.016300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 26.466869 seconds.
+  path: Assets/Kugushev/Scripts
+  artifactKey: Guid(58edaecb3bba12445bdc8aa8ea4fe0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts using Guid(58edaecb3bba12445bdc8aa8ea4fe0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4976013e049ce95ab456c7345aa689a0') in 0.005550 seconds
+  Import took 0.010991 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003968 seconds.
+  path: Assets/Kugushev/Scripts
+  artifactKey: Guid(58edaecb3bba12445bdc8aa8ea4fe0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts using Guid(58edaecb3bba12445bdc8aa8ea4fe0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4976013e049ce95ab456c7345aa689a0') in 0.001543 seconds
+  Import took 0.005082 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.464323 seconds.
+  path: Assets/Kugushev/Scripts/Missions
+  artifactKey: Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Missions using Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a41409d44c027e0b4d710ef95cb0fa8') in 0.001631 seconds
+  Import took 0.007112 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006457 seconds.
+  path: Assets/Kugushev/Scripts/Missions
+  artifactKey: Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Missions using Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a41409d44c027e0b4d710ef95cb0fa8') in 0.001602 seconds
+  Import took 0.006110 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.631198 seconds.
+  path: Assets/Kugushev/Scripts/Game
+  artifactKey: Guid(a26d1863cab141caa3967da72a9c0d33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game using Guid(a26d1863cab141caa3967da72a9c0d33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39ffff89395d363ae5a010cc6543f3fb') in 0.002090 seconds
+  Import took 0.007472 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.182504 seconds.
+  path: Assets/Kugushev/Scripts/Common
+  artifactKey: Guid(6b58140605874811a9cdd8037e3cfdd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Common using Guid(6b58140605874811a9cdd8037e3cfdd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29de63eb47b544d0c66cb1d5d94c164e') in 0.001899 seconds
+  Import took 0.007216 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.452098 seconds.
+  path: Assets/Kugushev/Scripts/Mission
+  artifactKey: Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission using Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6bf90b4c4cdddaa7ef5b43c7fc1d265') in 0.001655 seconds
+  Import took 0.006971 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006973 seconds.
+  path: Assets/Kugushev/Scripts/Mission
+  artifactKey: Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission using Guid(06c1959356848b2439c5919bf5f603a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6bf90b4c4cdddaa7ef5b43c7fc1d265') in 0.001514 seconds
+  Import took 0.006653 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.197872 seconds.
+  path: Assets/Kugushev/Scripts/Mission/Mission.asmdef
+  artifactKey: Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission/Mission.asmdef using Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43a93407d186f2b95a5e6f97081f440d') in 0.001631 seconds
+  Import took 0.007594 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.019225 seconds.
+  path: Assets/Kugushev/Scripts/Mission/Mission.asmdef
+  artifactKey: Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission/Mission.asmdef using Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43a93407d186f2b95a5e6f97081f440d') in 0.001505 seconds
+  Import took 0.006083 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002011 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.98 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.947 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.68 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3019 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3627.
+Total: 2.477000 ms (FindLiveObjects: 0.367400 ms CreateObjectMapping: 0.085900 ms MarkObjects: 2.005300 ms  DeleteObjects: 0.017500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002051 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.934 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3018 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 3629.
+Total: 2.380300 ms (FindLiveObjects: 0.344300 ms CreateObjectMapping: 0.095300 ms MarkObjects: 1.922000 ms  DeleteObjects: 0.017400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 317.135929 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/Entities/Game.cs
+  artifactKey: Guid(7ddcdeb7c8fb4e60902ee053fd256e1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/Entities/Game.cs using Guid(7ddcdeb7c8fb4e60902ee053fd256e1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea639dbe7272cfb64073a941ad16997d') in 0.005189 seconds
+  Import took 0.010245 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004727 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/Entities/Game.cs
+  artifactKey: Guid(7ddcdeb7c8fb4e60902ee053fd256e1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/Entities/Game.cs using Guid(7ddcdeb7c8fb4e60902ee053fd256e1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea639dbe7272cfb64073a941ad16997d') in 0.001791 seconds
+  Import took 0.006467 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002010 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.949 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3017 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 3631.
+Total: 2.408000 ms (FindLiveObjects: 0.339600 ms CreateObjectMapping: 0.094500 ms MarkObjects: 1.955300 ms  DeleteObjects: 0.017900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 9.022513 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/Interfaces/IGameLoopParticipant.cs
+  artifactKey: Guid(83987f4e128b431f9d1a64e54bcb8797) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/Interfaces/IGameLoopParticipant.cs using Guid(83987f4e128b431f9d1a64e54bcb8797) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e20fc71122e2d6eaeed63d4984db821') in 0.006045 seconds
+  Import took 0.010970 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.469673 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/Interfaces/IAIAgent.cs
+  artifactKey: Guid(47d67faaa1b548a181c23edcbff0bef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/Interfaces/IAIAgent.cs using Guid(47d67faaa1b548a181c23edcbff0bef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ce226051c5e1fb8676f94d6a3347c4c') in 0.001891 seconds
+  Import took 0.007067 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003300 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/Interfaces/IAIAgent.cs
+  artifactKey: Guid(47d67faaa1b548a181c23edcbff0bef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/Interfaces/IAIAgent.cs using Guid(47d67faaa1b548a181c23edcbff0bef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ce226051c5e1fb8676f94d6a3347c4c') in 0.001418 seconds
+  Import took 0.005242 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001919 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.963 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3017 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.8 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3634.
+Total: 2.399700 ms (FindLiveObjects: 0.376500 ms CreateObjectMapping: 0.092200 ms MarkObjects: 1.913800 ms  DeleteObjects: 0.016500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 40.804327 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/GameConstants.cs
+  artifactKey: Guid(d30ba6a033cf40998ef1a5e79dd275b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/GameConstants.cs using Guid(d30ba6a033cf40998ef1a5e79dd275b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33d6d49bdeb2df80271b82058bd9039d') in 0.005686 seconds
+  Import took 0.010839 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.021164 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/GameConstants.cs
+  artifactKey: Guid(d30ba6a033cf40998ef1a5e79dd275b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/GameConstants.cs using Guid(d30ba6a033cf40998ef1a5e79dd275b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33d6d49bdeb2df80271b82058bd9039d') in 0.001679 seconds
+  Import took 0.005777 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.672320 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/UnityConstants.cs
+  artifactKey: Guid(4403d99153884419a343fd5f565822d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/UnityConstants.cs using Guid(4403d99153884419a343fd5f565822d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9eaf77e73d8acab67dd47ba10c82f3ab') in 0.001591 seconds
+  Import took 0.006895 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001907 seconds.
+  path: Assets/Kugushev/Scripts/Game/Common/UnityConstants.cs
+  artifactKey: Guid(4403d99153884419a343fd5f565822d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Common/UnityConstants.cs using Guid(4403d99153884419a343fd5f565822d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9eaf77e73d8acab67dd47ba10c82f3ab') in 0.001442 seconds
+  Import took 0.005816 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001946 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.948 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3017 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3637.
+Total: 2.625500 ms (FindLiveObjects: 0.349600 ms CreateObjectMapping: 0.089100 ms MarkObjects: 2.165100 ms  DeleteObjects: 0.020500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 21.927741 seconds.
+  path: Assets/Kugushev/Scripts/Game/GameManager.cs
+  artifactKey: Guid(92ce562a33cc469d8290f7055920b143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/GameManager.cs using Guid(92ce562a33cc469d8290f7055920b143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8390729b25cd884340ec2a5b9a6c023') in 0.005248 seconds
+  Import took 0.010003 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001892 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.955 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3016 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 3639.
+Total: 2.539500 ms (FindLiveObjects: 0.449000 ms CreateObjectMapping: 0.092000 ms MarkObjects: 1.979100 ms  DeleteObjects: 0.018100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002133 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.967 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3016 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3642.
+Total: 2.904800 ms (FindLiveObjects: 0.368400 ms CreateObjectMapping: 0.090200 ms MarkObjects: 2.425800 ms  DeleteObjects: 0.019200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 52.311475 seconds.
+  path: Assets/Kugushev/Scripts/Game/Missions
+  artifactKey: Guid(03e9e53b79394e858332440588f353b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Missions using Guid(03e9e53b79394e858332440588f353b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1b0f107ec7e30f3f5a4bab3287b33e2') in 0.006166 seconds
+  Import took 0.011518 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004150 seconds.
+  path: Assets/Kugushev/Scripts/Game/Missions
+  artifactKey: Guid(03e9e53b79394e858332440588f353b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Missions using Guid(03e9e53b79394e858332440588f353b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1b0f107ec7e30f3f5a4bab3287b33e2') in 0.001598 seconds
+  Import took 0.005878 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 36.285892 seconds.
+  path: Assets/Kugushev/Scripts/Mission/Constants
+  artifactKey: Guid(e916262a164f604499ffe25d42cd22aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission/Constants using Guid(e916262a164f604499ffe25d42cd22aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1495332ff354f415224bf9d51a759fd4') in 0.001649 seconds
+  Import took 0.006793 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007249 seconds.
+  path: Assets/Kugushev/Scripts/Mission/Constants
+  artifactKey: Guid(e916262a164f604499ffe25d42cd22aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission/Constants using Guid(e916262a164f604499ffe25d42cd22aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1495332ff354f415224bf9d51a759fd4') in 0.001504 seconds
+  Import took 0.005658 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.677579 seconds.
+  path: Assets/Kugushev/Scripts/Game/Game.asmdef
+  artifactKey: Guid(c87475c4b9e537449a07db347c180713) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Game.asmdef using Guid(c87475c4b9e537449a07db347c180713) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a55e030a4c5fef74694aa30b4b451c8a') in 0.001538 seconds
+  Import took 0.006464 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.016614 seconds.
+  path: Assets/Kugushev/Scripts/Game/Game.asmdef
+  artifactKey: Guid(c87475c4b9e537449a07db347c180713) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Game/Game.asmdef using Guid(c87475c4b9e537449a07db347c180713) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a55e030a4c5fef74694aa30b4b451c8a') in 0.001558 seconds
+  Import took 0.005831 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.578809 seconds.
+  path: Assets/Kugushev/Scripts/Mission/Mission.asmdef
+  artifactKey: Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission/Mission.asmdef using Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f76f4170d6b60705f19a66824c7863bd') in 0.002127 seconds
+  Import took 0.008148 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010509 seconds.
+  path: Assets/Kugushev/Scripts/Mission/Mission.asmdef
+  artifactKey: Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Mission/Mission.asmdef using Guid(aaffdae9790919a499ec7b48e4593d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f76f4170d6b60705f19a66824c7863bd') in 0.002272 seconds
+  Import took 0.007571 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.797055 seconds.
+  path: Assets/Kugushev/Scripts/Presentation/Presentation.asmdef
+  artifactKey: Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Presentation/Presentation.asmdef using Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5757697a5328a44621fd175d5e7943f') in 0.002318 seconds
+  Import took 0.007756 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.014555 seconds.
+  path: Assets/Kugushev/Scripts/Presentation/Presentation.asmdef
+  artifactKey: Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Presentation/Presentation.asmdef using Guid(c6fc31f3a6cdd7548b130dbb68d74769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5757697a5328a44621fd175d5e7943f') in 0.001534 seconds
+  Import took 0.006659 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.787506 seconds.
+  path: Assets/Kugushev/Scripts/Tests/SingleMissionTests.cs
+  artifactKey: Guid(02d036ee3434c0d44a9b0cd506030275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Tests/SingleMissionTests.cs using Guid(02d036ee3434c0d44a9b0cd506030275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e55067f50a512ade256533f46823c716') in 0.001817 seconds
+  Import took 0.006422 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001458 seconds.
+  path: Assets/Kugushev/Scripts/Tests/SingleMissionTests.cs
+  artifactKey: Guid(02d036ee3434c0d44a9b0cd506030275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Tests/SingleMissionTests.cs using Guid(02d036ee3434c0d44a9b0cd506030275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e55067f50a512ade256533f46823c716') in 0.001467 seconds
+  Import took 0.005765 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.977950 seconds.
+  path: Assets/Kugushev/Scripts/Tests/Tests.asmdef
+  artifactKey: Guid(da07aba77a2d9cb46a184e4f7705f90e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Tests/Tests.asmdef using Guid(da07aba77a2d9cb46a184e4f7705f90e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d3b0ca65bf81edbcb8c051cf1831e09') in 0.001623 seconds
+  Import took 0.007062 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.013075 seconds.
+  path: Assets/Kugushev/Scripts/Tests/Tests.asmdef
+  artifactKey: Guid(da07aba77a2d9cb46a184e4f7705f90e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/Tests/Tests.asmdef using Guid(da07aba77a2d9cb46a184e4f7705f90e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d3b0ca65bf81edbcb8c051cf1831e09') in 0.001944 seconds
+  Import took 0.006759 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002035 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.976 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3016 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3645.
+Total: 2.400600 ms (FindLiveObjects: 0.335900 ms CreateObjectMapping: 0.091400 ms MarkObjects: 1.956600 ms  DeleteObjects: 0.015800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002115 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:243 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.7.0\Runtime\OculusLoader.cs:228 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.7.0/Runtime/OculusLoader.cs Line: 243)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.978 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(536870912) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 3016 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 130.9 MB.
+System memory in use after: 131.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3648.
+Total: 2.824800 ms (FindLiveObjects: 0.428400 ms CreateObjectMapping: 0.088500 ms MarkObjects: 2.283100 ms  DeleteObjects: 0.023700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000

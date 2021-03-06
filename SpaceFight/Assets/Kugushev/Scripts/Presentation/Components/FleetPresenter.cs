@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.Game.Common;
-using Kugushev.Scripts.Game.Missions.Entities;
-using Kugushev.Scripts.Game.Missions.Managers;
+using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
 using UnityEngine;
 
