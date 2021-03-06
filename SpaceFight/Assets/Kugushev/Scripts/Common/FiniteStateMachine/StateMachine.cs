@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Common.FiniteStateMachine.Tools;
+using Kugushev.Scripts.Common.FiniteStateMachine.StatesAndTransitions;
 
 namespace Kugushev.Scripts.Common.FiniteStateMachine
 {

@@ -52,13 +52,17 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Manager\GameManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\GameModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Manager\MainMenuState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\MainMenu.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Constants\GameConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Controllers\MainMenuController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Manager\ToMainMenuTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\MainMenuState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\ToCampaignTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\MainMenuWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Utils\CampaignSceneParametersPipeline.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\GameManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\CampaignInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Utils\GameModelProvider.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\CampaignState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\GameModel.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -635,6 +639,9 @@
  </Reference>
  <Reference Include="UniTask.Linq">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

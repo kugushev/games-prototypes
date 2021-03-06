@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models
 {
-    [CreateAssetMenu(menuName = GameConstants.MenuPrefix + "GameModel")]
-    public class GameModel: ScriptableObject
+    [Serializable]
+    internal class GameModel
     {
-        [SerializeField] private MainMenu mainMenu;
+        [SerializeField] private MainMenu mainMenu = new MainMenu();
 
         public MainMenu MainMenu => mainMenu; 
         public object CurrentCampaign { get; set; }

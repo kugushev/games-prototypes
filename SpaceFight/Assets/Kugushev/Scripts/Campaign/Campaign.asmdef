@@ -1,3 +1,18 @@
 {
-	"name": "Campaign"
+    "name": "Campaign",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5c579371518534e4d8001af00472fa0c",
+        "GUID:c87475c4b9e537449a07db347c180713",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

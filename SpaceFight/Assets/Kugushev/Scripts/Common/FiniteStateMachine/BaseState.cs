@@ -10,8 +10,6 @@ namespace Kugushev.Scripts.Common.FiniteStateMachine
         {
             Model = model;
         }
-        
-        public abstract bool CanEnter { get; }
 
         public virtual UniTask OnEnterAsync()
         {

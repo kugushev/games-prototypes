@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common.Utils;
+﻿using Kugushev.Scripts.Common;
+using Kugushev.Scripts.Common.Utils;
 
 namespace Kugushev.Scripts.Game.Constants
 {

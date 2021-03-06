@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Common.Entities.Abstractions;
+using Kugushev.Scripts.Common;
+using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Enums;

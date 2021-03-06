@@ -59,7 +59,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\ArmyPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\FlatModeController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\Utils\StringBag.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\Utils\CameraFacingUI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\OrdersPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\AIController.cs" />
@@ -74,8 +73,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionPreparationController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\FleetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlanetPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionBriefingController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\GamePresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionBriefingController.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
