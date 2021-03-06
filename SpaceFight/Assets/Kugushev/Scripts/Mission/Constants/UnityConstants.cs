@@ -1,10 +1,10 @@
 ﻿namespace Kugushev.Scripts.Mission.Constants
 {
-    public static class UnityConstants
+    internal static class UnityConstants
     {
-        public static class Scenes
+        internal static class Scenes
         {
-            public static readonly string MissionScene = "MissionScene";
+            public static readonly string MissionExecutionScene = "MissionExecutionScene";
             public static readonly string MissionPreparationScene = "MissionPreparationScene";
             public static readonly string MissionBriefingScene = "MissionBriefingScene";
         }

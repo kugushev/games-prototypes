@@ -4,8 +4,8 @@ using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.Models;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.AI
@@ -13,10 +13,10 @@ namespace Kugushev.Scripts.Mission.AI
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Pathfinder")]
     public class Pathfinder : ScriptableObject
     {
-        [SerializeField] private MissionManager missionManager;
-        [SerializeField] private float stepSize = GameConstants.GapBetweenWaypoints;
-        [SerializeField] private int maxLength = GameConstants.OrderPathCapacity;
-        [SerializeField] private float collisionError = GameConstants.CollisionError;
+        [SerializeField] private MissionManagerOld missionManager;
+        [SerializeField] private float stepSize = GameplayConstants.GapBetweenWaypoints;
+        [SerializeField] private int maxLength = GameplayConstants.OrderPathCapacity;
+        [SerializeField] private float collisionError = GameplayConstants.CollisionError;
 
         public float StepSize => stepSize;
 

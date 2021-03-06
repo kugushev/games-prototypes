@@ -1,5 +1,5 @@
 ﻿using System;
-using Kugushev.Scripts.Mission.Entities;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Presentation.Controllers;
 using UnityEngine.Events;
 

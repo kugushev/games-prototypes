@@ -1,5 +1,5 @@
-﻿using Kugushev.Scripts.Mission.Entities;
-using Kugushev.Scripts.Mission.Managers;
+﻿using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
     public class PlanetarySystemController : MonoBehaviour
     {
         [FormerlySerializedAs("missionsManager")] [SerializeField]
-        private MissionManager missionManager;
+        private MissionManagerOld missionManager;
 
         [SerializeField] private Transform sun;
         [SerializeField] private GameObject planetPrefab;

@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Mission.Entities;
+﻿using Kugushev.Scripts.Mission.Models;
 
 namespace Kugushev.Scripts.Mission.ValueObjects
 {

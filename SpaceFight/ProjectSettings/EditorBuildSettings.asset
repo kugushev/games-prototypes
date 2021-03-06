@@ -18,13 +18,16 @@ EditorBuildSettings:
     path: Assets/Kugushev/Scenes/Campaign/CampaignProgressScene.unity
     guid: 0b28bddcf5e34504985639bbeae6706b
   - enabled: 1
-    path: Assets/Kugushev/Scenes/MissionScene.unity
+    path: Assets/Kugushev/Scenes/Mission/MissionManagementScene.unity
+    guid: 6150334849e987d4e9e1bd1913ec4aa4
+  - enabled: 1
+    path: Assets/Kugushev/Scenes/Mission/MissionExecutionScene.unity
     guid: 31afbd9f2e3ae054288ae5e1f06c433c
   - enabled: 1
-    path: Assets/Kugushev/Scenes/MissionPreparationScene.unity
+    path: Assets/Kugushev/Scenes/Mission/MissionBriefingScene.unity
     guid: cc6be404953a0b742895d9a137096a77
   - enabled: 1
-    path: Assets/Kugushev/Scenes/MissionBriefingScene.unity
+    path: Assets/Kugushev/Scenes/MissionBriefingSceneOld.unity
     guid: d0a4aebf9c7d08348a723cb769160605
   - enabled: 1
     path: Assets/Kugushev/Scenes/TestingScene.unity

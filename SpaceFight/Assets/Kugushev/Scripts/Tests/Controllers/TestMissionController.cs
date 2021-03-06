@@ -2,9 +2,9 @@
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.AI.Tactical;
-using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.ProceduralGeneration;
 using Kugushev.Scripts.Mission.ValueObjects;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Kugushev.Scripts.Tests.Controllers
 {
     public class TestMissionController : MonoBehaviour
     {
-        [SerializeField] private MissionManager missionManager;
+        [SerializeField] private MissionManagerOld missionManager;
         
         [Header("Planetary System")]
         [SerializeField] private PlanetarySystemGenerator planetarySystemGenerator;

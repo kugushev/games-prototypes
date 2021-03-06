@@ -6,11 +6,11 @@ using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Managers;
-using Kugushev.Scripts.Mission.Utils;
+using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Tools;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.AI.Tactical
@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Simple AI")]
     public class SimpleAI : ScriptableObject, IAIAgent, ICommander
     {
-        [SerializeField] private MissionManager missionManager;
+        [SerializeField] private MissionManagerOld missionManager;
         [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private Pathfinder pathfinder;
         [SerializeField] private int neighboursCount = 2;
@@ -90,7 +90,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
                     SendFleet(planet, weakestVictim);
                 }
-                else if (planet.Power * DefaultRecruitment.Amount >= GameConstants.SoftCapArmyPower)
+                else if (planet.Power * DefaultRecruitment.Amount >= GameplayConstants.SoftCapArmyPower)
                 {
                     SendFleet(planet, weakestVictim);
                 }

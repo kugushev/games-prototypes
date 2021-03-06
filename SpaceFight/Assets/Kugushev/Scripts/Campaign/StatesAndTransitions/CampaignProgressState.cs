@@ -1,31 +1,24 @@
-﻿using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Campaign.Constants;
+﻿using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Common.FiniteStateMachine;
-using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Common.StatesAndTransitions;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
-    internal class CampaignProgressState : BaseState<CampaignModel>
+    internal class CampaignProgressState : BaseSceneLoadingState<CampaignModel>
     {
-        private const string SceneName = "CampaignProgressScene";
-
-        public CampaignProgressState(CampaignModel model) : base(model)
+        public CampaignProgressState(CampaignModel model) : base(model, UnityConstants.CampaignProgressScene, true)
         {
         }
 
-        public override async UniTask OnEnterAsync()
+        protected override void OnEnterBeforeLoadScene()
         {
             Model.NextMissionSeed = Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
-            
-            await SceneManagerHelper.LoadAndSetActiveAsync(SceneName);
         }
 
-        public override async UniTask OnExitAsync()
+        protected override void OnExitBeforeUnloadScene()
         {
-            await SceneManager.UnloadSceneAsync(SceneName);
+            Model.ReadyToNextMission = false;
         }
     }
 }

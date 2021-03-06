@@ -1,6 +1,6 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Enums;
-using Kugushev.Scripts.Mission.Entities;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Player;
 using UnityEngine;
 

@@ -34,7 +34,7 @@ namespace Kugushev.Scripts.Game.Widgets
         public void StartCampaign()
         {
             if (gameModelProvider.TryGetModel(out var gameModel)) 
-                gameModel.MainMenu.StartClicked = true;
+                gameModel.MainMenu.ReadyToStartCampaign = true;
         }
     }
 }

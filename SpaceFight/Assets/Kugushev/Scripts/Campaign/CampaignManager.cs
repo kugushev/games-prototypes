@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.StatesAndTransitions;
-using Kugushev.Scripts.Common.FiniteStateMachine;
-using Kugushev.Scripts.Common.FiniteStateMachine.StatesAndTransitions;
+using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
+using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Game.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,6 +16,7 @@ namespace Kugushev.Scripts.Campaign
     {
         [SerializeField] private CampaignModelProvider modelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
+        [SerializeField] private MissionSceneParametersPipeline missionSceneParametersPipeline;
 
         protected override CampaignModel InitRootModel()
         {
@@ -30,6 +32,7 @@ namespace Kugushev.Scripts.Campaign
             CampaignModel rootModel)
         {
             var campaignProgressState = new CampaignProgressState(rootModel);
+            var missionState = new MissionState(rootModel, missionSceneParametersPipeline);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
@@ -38,20 +41,19 @@ namespace Kugushev.Scripts.Campaign
                     {
                         new TransitionRecord(ImmediateTransition.Instance, campaignProgressState)
                     }
+                },
+                {
+                    campaignProgressState, new[]
+                    {
+                        new TransitionRecord(new ToMissionTransition(rootModel), missionState)
+                    }
                 }
             };
         }
-        
+
         protected override void OnStart()
         {
-            if (!modelProvider.TryGetModel(out var model))
-            {
-                Debug.LogError("Unable to get model");
-                return;
-            }
-
-            // let's init all required things here
-            Random.InitState(model.CampaignInfo.Seed);
+            Random.InitState(RootModel.CampaignInfo.Seed);
         }
 
         private void OnDestroy()

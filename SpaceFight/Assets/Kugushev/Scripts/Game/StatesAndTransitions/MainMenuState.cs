@@ -1,28 +1,18 @@
-﻿using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Common.FiniteStateMachine;
-using Kugushev.Scripts.Common.Utils;
+﻿using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Models;
-using UnityEngine.SceneManagement;
 
 namespace Kugushev.Scripts.Game.StatesAndTransitions
 {
-    internal class MainMenuState : BaseState<GameModel>
+    internal class MainMenuState : BaseSceneLoadingState<GameModel>
     {
-        const string SceneName = "MainMenuScene";
-
-        public MainMenuState(GameModel model) : base(model)
+        public MainMenuState(GameModel model) : base(model, UnityConstants.MainMenuScene, true)
         {
         }
 
-        public override async UniTask OnEnterAsync()
+        protected override void OnExitBeforeUnloadScene()
         {
-            await SceneManagerHelper.LoadAndSetActiveAsync(SceneName);
-        }
-
-        public override async UniTask OnExitAsync()
-        {
-            Model.MainMenu.StartClicked = false;
-            await SceneManager.UnloadSceneAsync(SceneName);
+            Model.MainMenu.ReadyToStartCampaign = false;
         }
     }
 }

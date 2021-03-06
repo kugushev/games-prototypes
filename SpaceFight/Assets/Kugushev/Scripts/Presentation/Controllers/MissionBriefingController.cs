@@ -2,9 +2,9 @@
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.AI.Tactical;
-using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Player;
 using Kugushev.Scripts.Mission.ProceduralGeneration;
 using Kugushev.Scripts.Mission.ValueObjects;
@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class MissionBriefingController : MonoBehaviour
     {
-        [SerializeField] private MissionManager missionManager;
+        [SerializeField] private MissionManagerOld missionManager;
 
         [Header("Menu")] [SerializeField] private TextMeshProUGUI countdownText;
         [SerializeField] private int countDownStart = 5;

@@ -1,6 +1,6 @@
-﻿using Kugushev.Scripts.Mission.Entities;
-using Kugushev.Scripts.Mission.Enums;
+﻿using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
+using Kugushev.Scripts.Mission.Models;
 
 namespace Kugushev.Scripts.Mission.ValueObjects
 {

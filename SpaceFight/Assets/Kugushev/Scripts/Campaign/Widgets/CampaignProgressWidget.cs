@@ -1,5 +1,6 @@
 ﻿using System;
 using Kugushev.Scripts.Campaign.Models;
+using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Utils;
 using TMPro;
 using UnityEngine;

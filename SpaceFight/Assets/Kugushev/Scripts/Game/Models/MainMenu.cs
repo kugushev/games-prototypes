@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.Game.Constants;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models
@@ -6,13 +7,13 @@ namespace Kugushev.Scripts.Game.Models
     [Serializable]
     internal class MainMenu
     {
-        [SerializeField] private bool startClicked;
-        [SerializeField] private int seed = 42;
+        [SerializeField] private bool readyToStartCampaign;
+        [SerializeField] private int seed = GameConstants.DefaultCampaignSeed;
 
-        public bool StartClicked
+        public bool ReadyToStartCampaign
         {
-            get => startClicked;
-            set => startClicked = value;
+            get => readyToStartCampaign;
+            set => readyToStartCampaign = value;
         }
 
         public int Seed

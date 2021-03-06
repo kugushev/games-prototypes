@@ -7,13 +7,13 @@ namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class MissionPreparationController : MonoBehaviour
     {
-        [SerializeField] private MissionManager missionManager;
+        [SerializeField] private MissionManagerOld missionManager;
 
         public void AdjustTime(float sliderValue)
         {
             if (missionManager.State != null)
             {
-                var dayOfYear = Mathf.FloorToInt(GameConstants.DaysInYear * sliderValue);
+                var dayOfYear = Mathf.FloorToInt(GameplayConstants.DaysInYear * sliderValue);
                 missionManager.State.Value.CurrentPlanetarySystem.SetDayOfYear(dayOfYear);
             }
         }

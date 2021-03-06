@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Common.FiniteStateMachine;
-using Kugushev.Scripts.Common.FiniteStateMachine.StatesAndTransitions;
 using Kugushev.Scripts.Common.Manager;
+using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.StatesAndTransitions;
 using Kugushev.Scripts.Game.Utils;

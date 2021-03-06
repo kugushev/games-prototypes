@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Common.FiniteStateMachine;
+﻿using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Game.Models;
 
 namespace Kugushev.Scripts.Game.StatesAndTransitions
@@ -12,6 +12,6 @@ namespace Kugushev.Scripts.Game.StatesAndTransitions
             _mainMenu = mainMenu;
         }
         
-        public bool ToTransition => _mainMenu.StartClicked;
+        public bool ToTransition => _mainMenu.ReadyToStartCampaign;
     }
 }

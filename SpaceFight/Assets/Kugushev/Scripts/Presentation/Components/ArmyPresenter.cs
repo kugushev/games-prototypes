@@ -3,8 +3,8 @@ using System.Linq;
 using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Presentation.Common.Utils;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using TMPro;
@@ -147,7 +147,7 @@ namespace Kugushev.Scripts.Presentation.Components
 
         private Vector3 GetAdjustedScale()
         {
-            var relativePower = (float) Army.Power / GameConstants.SoftCapArmyPower;
+            var relativePower = (float) Army.Power / GameplayConstants.SoftCapArmyPower;
             var scale = Mathf.Lerp(minScale, maxScale, relativePower);
             return new Vector3(scale, scale, scale);
         }

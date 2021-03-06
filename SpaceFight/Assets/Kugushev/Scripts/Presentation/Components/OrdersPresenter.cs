@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Player;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
 using UnityEngine;
@@ -12,8 +12,8 @@ namespace Kugushev.Scripts.Presentation.Components
     {
         [SerializeField] private GameObject waypointPrefab;
 
-        private readonly Queue<GameObject> _waypointsPool = new Queue<GameObject>(GameConstants.OrderPathCapacity);
-        private readonly List<GameObject> _displayedWaypoints = new List<GameObject>(GameConstants.OrderPathCapacity);
+        private readonly Queue<GameObject> _waypointsPool = new Queue<GameObject>(GameplayConstants.OrderPathCapacity);
+        private readonly List<GameObject> _displayedWaypoints = new List<GameObject>(GameplayConstants.OrderPathCapacity);
 
         protected override void OnAwake()
         {

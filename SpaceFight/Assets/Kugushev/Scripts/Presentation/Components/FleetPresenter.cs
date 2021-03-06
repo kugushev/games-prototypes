@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Entities;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Presentation.Components.Abstractions;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Kugushev.Scripts.Presentation.Components
         [SerializeField] private GameObject armyPrefab;
 
         private readonly Queue<ArmyPresenter> _armiesPool =
-            new Queue<ArmyPresenter>(GameConstants.ArmiesPerFleetCapacity);
+            new Queue<ArmyPresenter>(GameplayConstants.ArmiesPerFleetCapacity);
 
         protected override void OnAwake()
         {

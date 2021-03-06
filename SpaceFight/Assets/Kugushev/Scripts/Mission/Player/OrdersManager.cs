@@ -5,9 +5,9 @@ using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Entities;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
+using Kugushev.Scripts.Mission.Models;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Player
@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Mission.Player
     public class OrdersManager : ScriptableObject, IModel, ICommander
     {
         [SerializeField] private ObjectsPool pool;
-        [SerializeField] private float gapBetweenWaypoints = GameConstants.GapBetweenWaypoints;
+        [SerializeField] private float gapBetweenWaypoints = GameplayConstants.GapBetweenWaypoints;
         private readonly TempState _state = new TempState();
 
         private class TempState

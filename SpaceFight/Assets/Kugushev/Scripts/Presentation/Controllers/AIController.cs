@@ -7,7 +7,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
 {
     public class AIController : MonoBehaviour
     {
-        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManager missionManager;
+        [FormerlySerializedAs("missionsManager")] [SerializeField] private MissionManagerOld missionManager;
 
         void Update()
         {

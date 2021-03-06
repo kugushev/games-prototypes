@@ -1,34 +1,25 @@
-﻿using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Common.FiniteStateMachine;
+﻿using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Utils;
 using Kugushev.Scripts.Game.ValueObjects;
-using UnityEngine.SceneManagement;
 
 namespace Kugushev.Scripts.Game.StatesAndTransitions
 {
-    internal class CampaignState : BaseState<GameModel>
+    internal class CampaignState : BaseSceneLoadingState<GameModel>
     {
         private readonly CampaignSceneParametersPipeline _sceneParametersPipeline;
-        const string SceneName = "CampaignManagementScene";
 
-        public CampaignState(GameModel model,
-            CampaignSceneParametersPipeline sceneParametersPipeline) : base(model)
+        public CampaignState(GameModel model, CampaignSceneParametersPipeline sceneParametersPipeline)
+            : base(model, UnityConstants.CampaignManagementScene)
         {
             _sceneParametersPipeline = sceneParametersPipeline;
         }
 
-        public override async UniTask OnEnterAsync()
+        protected override void OnEnterBeforeLoadScene()
         {
             var campaignInfo = new CampaignInfo(Model.MainMenu.Seed);
             _sceneParametersPipeline.Set(campaignInfo);
-
-            await SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);
-        }
-
-        public override async UniTask OnExitAsync()
-        {
-            await SceneManager.UnloadSceneAsync(SceneName);
         }
     }
 }

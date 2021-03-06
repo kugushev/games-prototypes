@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Presentation.Controllers
         [SerializeField] private float productionTimeoutSeconds;
 
         [FormerlySerializedAs("missionsManager")] [SerializeField]
-        private MissionManager missionManager;
+        private MissionManagerOld missionManager;
 
         private WaitForSeconds _productionTimeout;
 

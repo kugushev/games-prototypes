@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Common.FiniteStateMachine;
+using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Manager
@@ -9,12 +9,15 @@ namespace Kugushev.Scripts.Common.Manager
     public abstract class BaseManager<TRootModel> : MonoBehaviour
     {
         private StateMachine _stateMachine;
+        private TRootModel _rootModel;
+
+        protected TRootModel RootModel => _rootModel;
 
         private void Awake()
         {
-            var rootModel = InitRootModel();
+            _rootModel = InitRootModel();
 
-            var transitions = ComposeStateMachine(rootModel);
+            var transitions = ComposeStateMachine(_rootModel);
             _stateMachine = new StateMachine(transitions);
         }
 
