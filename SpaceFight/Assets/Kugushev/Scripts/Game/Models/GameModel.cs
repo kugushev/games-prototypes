@@ -11,6 +11,5 @@ namespace Kugushev.Scripts.Game.Models
         [SerializeField] private MainMenu mainMenu = new MainMenu();
 
         public MainMenu MainMenu => mainMenu; 
-        public object CurrentCampaign { get; set; }
     }
 }

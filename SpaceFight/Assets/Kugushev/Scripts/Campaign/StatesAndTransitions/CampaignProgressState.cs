@@ -1,7 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
+using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Common.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
@@ -16,6 +18,8 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         public override async UniTask OnEnterAsync()
         {
+            Model.NextMissionSeed = Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
+            
             await SceneManagerHelper.LoadAndSetActiveAsync(SceneName);
         }
 

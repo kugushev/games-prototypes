@@ -263,8 +263,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 50, y: -106.80001}
-  m_SizeDelta: {x: 100, y: 25}
+  m_AnchoredPosition: {x: 80, y: -106.80001}
+  m_SizeDelta: {x: 40, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &352538835
 MonoBehaviour:
@@ -1179,8 +1179,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.MainMenuWidget, Game
+      - m_Target: {fileID: 2118038357}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Campaign.Widgets.CampaignProgressWidget,
+          Campaign
         m_MethodName: SetSeed
         m_Mode: 0
         m_Arguments:
@@ -1203,7 +1204,7 @@ GameObject:
   - component: {fileID: 1703691112}
   - component: {fileID: 1703691111}
   m_Layer: 5
-  m_Name: Your Score
+  m_Name: Player Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1536,9 +1537,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.MainMenuWidget, Game
-        m_MethodName: StartGame
+      - m_Target: {fileID: 2118038357}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Campaign.Widgets.CampaignProgressWidget,
+          Campaign
+        m_MethodName: StartMission
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1616,7 +1618,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2040521681}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1749,8 +1751,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1703691110}
-  - {fileID: 1980918161}
   - {fileID: 2135272161}
+  - {fileID: 1980918161}
   m_Father: {fileID: 62579549}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1801,8 +1803,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -50, y: -106.80001}
-  m_SizeDelta: {x: 100, y: 25}
+  m_AnchoredPosition: {x: -20, y: -106.80001}
+  m_SizeDelta: {x: 160, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2098334903
 MonoBehaviour:
@@ -1824,7 +1826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Seed:
+  m_text: 'Mission Seed:
 
 '
   m_isRightToLeft: 0
@@ -1912,6 +1914,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2118038356}
+  - component: {fileID: 2118038357}
   m_Layer: 0
   m_Name: CampaignMenu
   m_TagString: Untagged
@@ -1934,6 +1937,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118038357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118038355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a2c2567f4141c098a7abc7689aa6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
+  playerScoreText: {fileID: 1703691111}
+  aiScoreText: {fileID: 1980918162}
+  seedValueText: {fileID: 352538835}
+  seedSlider: {fileID: 1695839398}
 --- !u!1 &2135272160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +1984,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2040521681}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

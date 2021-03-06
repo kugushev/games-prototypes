@@ -1,12 +1,18 @@
-﻿namespace Kugushev.Scripts.Game.ValueObjects
+﻿using System;
+using UnityEngine;
+
+namespace Kugushev.Scripts.Game.ValueObjects
 {
-    public readonly struct CampaignInfo
+    [Serializable]
+    public struct CampaignInfo
     {
+        [SerializeField] private int seed;
+
         public CampaignInfo(int seed)
         {
-            Seed = seed;
+            this.seed = seed;
         }
 
-        public int Seed { get; }
+        public int Seed => seed;
     }
 }

@@ -20,6 +20,7 @@ namespace Kugushev.Scripts.Common.Manager
 
         private void Start()
         {
+            OnStart();
             StartCoroutine(Loop().ToCoroutine());
         }
 
@@ -27,6 +28,10 @@ namespace Kugushev.Scripts.Common.Manager
 
         protected abstract IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             TRootModel rootModel);
+
+        protected virtual void OnStart()
+        {
+        }
 
         private async UniTask Loop()
         {

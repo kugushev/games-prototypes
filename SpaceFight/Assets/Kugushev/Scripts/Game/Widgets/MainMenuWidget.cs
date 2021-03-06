@@ -1,6 +1,5 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Utils;
 using TMPro;
 using UnityEngine;
@@ -28,18 +27,14 @@ namespace Kugushev.Scripts.Game.Widgets
         {
             int value = Convert.ToInt32(sliderValue);
             seedValueText.text = StringBag.FromInt(value);
-            if (gameModelProvider.TryGetModel(out var gameModel))
-            {
+            if (gameModelProvider.TryGetModel(out var gameModel)) 
                 gameModel.MainMenu.Seed = value;
-            }
         }
 
-        public void StartGame()
+        public void StartCampaign()
         {
-            if (gameModelProvider.TryGetModel(out var gameModel))
-            {
+            if (gameModelProvider.TryGetModel(out var gameModel)) 
                 gameModel.MainMenu.StartClicked = true;
-            }
         }
     }
 }

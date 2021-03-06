@@ -57,6 +57,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\CampaignProgressState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\CampaignModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\CampaignManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\CampaignProgressWidget.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Campaign.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -630,6 +631,9 @@
  </Reference>
  <Reference Include="UniTask">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

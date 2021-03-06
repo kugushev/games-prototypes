@@ -988,7 +988,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 782397223}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.MainMenuWidget, Game
-        m_MethodName: StartGame
+        m_MethodName: StartCampaign
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
