@@ -17,10 +17,6 @@ namespace Kugushev.Scripts.Game.Missions.Entities
     [Serializable]
     public class Army : Poolable<Army.State>, IGameLoopParticipant, IFighter
     {
-        public Army(ObjectsPool objectsPool) : base(objectsPool)
-        {
-        }
-
         [Serializable]
         public struct State
         {
@@ -58,6 +54,10 @@ namespace Kugushev.Scripts.Game.Missions.Entities
         private readonly List<IFighter> _targets = new List<IFighter>();
         private readonly List<IFighter> _targetsToRemoveBuffer = new List<IFighter>(8);
 
+        public Army(ObjectsPool objectsPool) : base(objectsPool)
+        {
+        }
+        
         public ArmyStatus Status
         {
             get => ObjectState.status;

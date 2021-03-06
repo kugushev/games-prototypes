@@ -13,11 +13,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7bd4ba8a-fa49-a8fb-658f-1f25ad0a0ddd}</ProjectGuid>
+    <ProjectGuid>{8263b0c7-b404-7c8e-bd5e-3007514a4828}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Tests</AssemblyName>
+    <AssemblyName>Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -52,9 +52,31 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Controllers\TestMissionController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\SingleMissionTests.cs" />
-     <None Include="Assets\Kugushev\Scripts\Tests\Tests.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\PlanetEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\PlayerController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\OrdersPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\ArmyPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\FlatModeController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\Utils\StringBag.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\Utils\CameraFacingUI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\OrdersPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\AIController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\FleetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\Abstractions\BaseComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\PlanetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\MovingEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\HandEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\PlanetarySystemController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionPreparationController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\FleetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlanetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionBriefingController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\GamePresenter.cs" />
+     <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -268,8 +290,17 @@
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
- <Reference Include="nunit.framework">
- <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Android.Extensions">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="ICSharpCode.NRefactory">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -616,14 +647,17 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <Reference Include="Unity.XR.Interaction.Toolkit">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <Reference Include="Unity.InputSystem">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
  </Reference>
  <Reference Include="UniTask">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ </Reference>
+ <Reference Include="UniTask.Linq">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
@@ -636,13 +670,13 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Game.csproj">
-      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
-      <Name>Game</Name>
-    </ProjectReference>
     <ProjectReference Include="Common.csproj">
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.csproj">
+      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
+      <Name>Game</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
