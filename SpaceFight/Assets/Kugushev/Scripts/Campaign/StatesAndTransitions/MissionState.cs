@@ -19,6 +19,10 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
             _missionSceneResultPipeline = missionSceneResultPipeline;
         }
 
+        protected override void AssertModel()
+        {
+        }
+
         protected override void OnEnterBeforeLoadScene()
         {
             var campaignInfo = new MissionInfo(Model.NextMissionSeed);

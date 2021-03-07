@@ -16,6 +16,10 @@ namespace Kugushev.Scripts.Game.StatesAndTransitions
             _sceneParametersPipeline = sceneParametersPipeline;
         }
 
+        protected override void AssertModel()
+        {
+        }
+
         protected override void OnEnterBeforeLoadScene()
         {
             var campaignInfo = new CampaignInfo(Model.MainMenu.Seed);

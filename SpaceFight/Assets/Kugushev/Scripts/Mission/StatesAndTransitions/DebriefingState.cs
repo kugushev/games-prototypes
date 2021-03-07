@@ -19,6 +19,12 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             _missionSceneResultPipeline = missionSceneResultPipeline;
         }
 
+        protected override void AssertModel()
+        {
+            if (Model.ExecutionResult == null)
+                Alert();
+        }
+
         protected override void OnExitBeforeUnloadScene()
         {
             if (Model.ExecutionResult != null)
@@ -33,7 +39,9 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
                 _missionSceneResultPipeline.Set(new MissionResult(playerWin));
             }
             else
-                Debug.LogError("No Execution Result found");
+                Alert();
         }
+
+        private static void Alert() => Debug.LogError("No execution result found");
     }
 }

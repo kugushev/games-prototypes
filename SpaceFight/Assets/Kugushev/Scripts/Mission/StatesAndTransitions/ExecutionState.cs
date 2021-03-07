@@ -13,6 +13,18 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
         {
         }
 
+        protected override void AssertModel()
+        {
+            if (Model.PlanetarySystem == null)
+                Debug.LogError("PlanetarySystem is not set");
+
+            if (Equals(Model.Green, default(ConflictParty)))
+                Debug.LogError("Green is not set");
+
+            if (Equals(Model.Red, default(ConflictParty)))
+                Debug.LogError("Green is not set");
+        }
+
         protected override void OnEnterBeforeLoadScene()
         {
             Model.Green.Commander.AssignFleet(Model.Green.Fleet, Model.Green.Faction);
@@ -26,7 +38,7 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
                 Debug.LogError("Mission is not finished");
                 return;
             }
-            
+
             Model.ExecutionResult = new ExecutionResult(winner);
         }
     }

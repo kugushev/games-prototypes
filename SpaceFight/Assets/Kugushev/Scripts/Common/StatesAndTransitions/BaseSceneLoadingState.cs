@@ -16,13 +16,17 @@ namespace Kugushev.Scripts.Common.StatesAndTransitions
             _setActive = setActive;
         }
 
+        protected abstract void AssertModel();
+
         protected virtual void OnEnterBeforeLoadScene()
         {
         }
 
         public sealed override async UniTask OnEnterAsync()
         {
+            AssertModel();
             OnEnterBeforeLoadScene();
+            
             await SceneManager.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
             if (_setActive)
             {
