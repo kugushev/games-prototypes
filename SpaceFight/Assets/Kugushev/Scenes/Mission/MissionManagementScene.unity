@@ -174,3 +174,4 @@ MonoBehaviour:
   enemyAi: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
   greenFleet: {fileID: 11400000, guid: 610ef38f2dfd1284f9a9bb436330e682, type: 2}
   redFleet: {fileID: 11400000, guid: 93e61a212f79adc4783e4bb3b236593f, type: 2}
+  eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}

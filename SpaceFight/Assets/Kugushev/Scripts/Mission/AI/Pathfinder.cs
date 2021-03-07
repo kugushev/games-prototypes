@@ -4,8 +4,8 @@ using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.AI
@@ -13,7 +13,7 @@ namespace Kugushev.Scripts.Mission.AI
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Pathfinder")]
     public class Pathfinder : ScriptableObject
     {
-        [SerializeField] private MissionManagerOld missionManager;
+        [SerializeField] private MissionModelProvider missionModelProvider;
         [SerializeField] private float stepSize = GameplayConstants.GapBetweenWaypoints;
         [SerializeField] private int maxLength = GameplayConstants.OrderPathCapacity;
         [SerializeField] private float collisionError = GameplayConstants.CollisionError;
@@ -22,7 +22,7 @@ namespace Kugushev.Scripts.Mission.AI
 
         public bool FindPath(Position from, Position to, float hitRadius, out int length) =>
             FindPath<object>(from, to, hitRadius, null, default, out length);
-        
+
         public bool FindPath<T>(Position from, Position to, float hitRadius, [CanBeNull] Action<Position, T> filler,
             T objectToFill) =>
             FindPath(from, to, hitRadius, filler, objectToFill, out _);
@@ -30,13 +30,13 @@ namespace Kugushev.Scripts.Mission.AI
         public bool FindPath<T>(Position from, Position to, float hitRadius, [CanBeNull] Action<Position, T> filler,
             T objectToFill, out int length)
         {
-            if (missionManager.State == null)
+            if (!missionModelProvider.TryGetModel(out var missionModel))
             {
                 length = 0;
                 return false;
             }
 
-            ref readonly var sun = ref missionManager.State.Value.CurrentPlanetarySystem.GetSun();
+            ref readonly var sun = ref missionModel.PlanetarySystem.GetSun();
 
             length = 0;
             var previous = from.Point;
@@ -56,7 +56,7 @@ namespace Kugushev.Scripts.Mission.AI
                 if (length > maxLength)
                     return false;
             }
-            
+
             return true;
         }
 

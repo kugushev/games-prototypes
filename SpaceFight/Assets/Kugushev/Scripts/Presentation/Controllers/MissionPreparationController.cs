@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 

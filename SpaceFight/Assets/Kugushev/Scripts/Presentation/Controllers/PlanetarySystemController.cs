@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.Mission.Managers;
-using Kugushev.Scripts.Mission.Models;
+﻿using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Presentation.PresentationModels;
 using UnityEngine;

@@ -33,6 +33,8 @@ namespace Kugushev.Scripts.Mission
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
+        [SerializeField] private MissionEventsCollector eventsCollector;
+        
         protected override MissionModel InitRootModel()
         {
             var missionInfo = missionSceneParametersPipeline.Get();
@@ -47,6 +49,8 @@ namespace Kugushev.Scripts.Mission
             MissionModel rootModel)
         {
             var briefingState = new BriefingState(rootModel);
+            var executionState = new ExecutionState(rootModel);
+            var debriefingState = new DebriefingState(rootModel);
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
                 {
@@ -58,7 +62,19 @@ namespace Kugushev.Scripts.Mission
                 {
                     briefingState, new[]
                     {
-                        new TransitionRecord(new ToExecutionTransition(rootModel), missionExitState)
+                        new TransitionRecord(new ToExecutionTransition(rootModel), executionState)
+                    }
+                },
+                {
+                    executionState, new[]
+                    {
+                        new TransitionRecord(new ToDebriefingTransition(rootModel), debriefingState)
+                    }
+                },
+                {
+                    debriefingState, new[]
+                    {
+                        new TransitionRecord(new ToExitMissionTransition(), missionExitState)
                     }
                 }
             };
@@ -66,6 +82,7 @@ namespace Kugushev.Scripts.Mission
 
         protected override void OnStart()
         {
+            eventsCollector.Cleanup();
             RootModel.PlanetarySystem = planetarySystemGenerator.CreatePlanetarySystem(RootModel.Info.Seed);
             RootModel.Green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
             RootModel.Red = new ConflictParty(Faction.Red, redFleet, enemyAi);
@@ -73,6 +90,7 @@ namespace Kugushev.Scripts.Mission
 
         protected override void Dispose()
         {
+            eventsCollector.Cleanup();
             modelProvider.Cleanup(this);
             RootModel.Dispose();
         }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8cf818ca4d4492befbac567194c6a0, type: 3}
   m_Name: Simple AI (Red)
   m_EditorClassIdentifier: 
-  missionManager: {fileID: 11400000, guid: a4e7cace4ec518544be1027ad6f0d28d, type: 2}
+  missionModelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
   objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   pathfinder: {fileID: 11400000, guid: a9c7fbb9e5889dd4d870d4bcf37e6e52, type: 2}
   neighboursCount: 2

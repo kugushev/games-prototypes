@@ -6,7 +6,7 @@ using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
-using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -18,14 +18,14 @@ namespace Kugushev.Scripts.Mission.Models
         public struct State
         {
             public State(Faction faction, PlanetSize size, int production, Orbit orbit, Sun sun,
-                MissionEventsManager eventsManager)
+                MissionEventsCollector eventsCollector)
             {
                 this.faction = faction;
                 this.size = size;
                 this.production = production;
                 this.orbit = orbit;
                 this.sun = sun;
-                EventsManager = eventsManager;
+                EventsCollector = eventsCollector;
                 power = 0;
                 selected = false;
                 dayOfYear = 0;
@@ -41,7 +41,7 @@ namespace Kugushev.Scripts.Mission.Models
             public bool selected;
             public int dayOfYear;
             public Position position;
-            public readonly MissionEventsManager EventsManager;
+            public readonly MissionEventsCollector EventsCollector;
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)
@@ -110,7 +110,7 @@ namespace Kugushev.Scripts.Mission.Models
                 ObjectState.power *= -1;
                 ObjectState.faction = enemyFaction;
 
-                ObjectState.EventsManager?.PlanetCaptured(enemyFaction, previousOwner, ObjectState.power);
+                ObjectState.EventsCollector?.PlanetCaptured(enemyFaction, previousOwner, ObjectState.power);
 
                 return FightRoundResult.Defeated;
             }

@@ -54,17 +54,15 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\AchievementId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Interfaces\ICommander.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Managers\MissionManagerOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ConflictParty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Order.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\MissionConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Managers\MissionEventsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionEventsCollector.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\AbstractAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Tools\PlanetsDistanceComparer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Player\OrdersManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Presets\PlanetPreset.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Invader.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetRule.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\OrderStatus.cs" />
@@ -77,7 +75,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Player\PlayerCommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\MissionModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Pathfinder.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Presets\SunPreset.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ExecutionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\BriefingState.cs" />
@@ -93,6 +90,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToExecutionTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToDebriefingTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToExitMissionTransition.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

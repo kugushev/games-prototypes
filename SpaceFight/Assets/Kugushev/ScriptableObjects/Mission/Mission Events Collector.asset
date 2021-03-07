@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c4fbec6572146738877cbc0cdbab333, type: 3}
-  m_Name: Mars
+  m_Script: {fileID: 11500000, guid: a163e9070e814732987520d259b56f27, type: 3}
+  m_Name: Mission Events Collector
   m_EditorClassIdentifier: 
-  faction: 3
-  size: 2
-  production: 9
-  position: {x: 0.314, y: 2.074, z: 0.99}
-  isStub: 0

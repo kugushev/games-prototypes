@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Game.StatesAndTransitions
         private readonly CampaignSceneParametersPipeline _sceneParametersPipeline;
 
         public CampaignState(GameModel model, CampaignSceneParametersPipeline sceneParametersPipeline)
-            : base(model, UnityConstants.CampaignManagementScene)
+            : base(model, UnityConstants.CampaignManagementScene, false)
         {
             _sceneParametersPipeline = sceneParametersPipeline;
         }

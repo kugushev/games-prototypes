@@ -8,9 +8,9 @@ using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
-using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Tools;
+using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.AI.Tactical
@@ -18,13 +18,13 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Simple AI")]
     public class SimpleAI : ScriptableObject, IAIAgent, ICommander
     {
-        [SerializeField] private MissionManagerOld missionManager;
+        [SerializeField] private MissionModelProvider missionModelProvider;
         [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private Pathfinder pathfinder;
         [SerializeField] private int neighboursCount = 2;
         [SerializeField] private int minPowerToAct = 15;
         private const float ArmyRadius = 5f * 0.02f;
-        private static readonly Percentage DefaultRecruitment = new Percentage(0.75f); 
+        private static readonly Percentage DefaultRecruitment = new Percentage(0.75f);
 
         private readonly TempState _state = new TempState();
 
@@ -56,9 +56,9 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
         public void Act()
         {
-            if (missionManager.State != null)
+            if (missionModelProvider.TryGetModel(out var missionModel))
             {
-                var planetarySystem = missionManager.State.Value.CurrentPlanetarySystem;
+                var planetarySystem = missionModel.PlanetarySystem;
                 foreach (var planet in planetarySystem.Planets)
                 {
                     if (planet.Faction == _state.AgentFaction)

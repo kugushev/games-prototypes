@@ -10,5 +10,7 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             : base(model, UnityConstants.Scenes.MissionBriefingScene, true)
         {
         }
+        
+        
     }
 }

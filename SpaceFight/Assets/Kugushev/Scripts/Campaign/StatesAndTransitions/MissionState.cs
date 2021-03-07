@@ -11,11 +11,11 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
         private readonly MissionSceneParametersPipeline _missionSceneParametersPipeline;
 
         public MissionState(CampaignModel model, MissionSceneParametersPipeline missionSceneParametersPipeline)
-            : base(model, UnityConstants.MissionManagementScene)
+            : base(model, UnityConstants.MissionManagementScene, false)
         {
             _missionSceneParametersPipeline = missionSceneParametersPipeline;
         }
-        
+
         protected override void OnEnterBeforeLoadScene()
         {
             var campaignInfo = new MissionInfo(Model.NextMissionSeed);

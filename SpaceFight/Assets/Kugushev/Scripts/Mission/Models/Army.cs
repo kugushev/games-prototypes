@@ -7,7 +7,7 @@ using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
-using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -29,17 +29,17 @@ namespace Kugushev.Scripts.Mission.Models
             public int currentWaypoint;
             public float waypointRotationProgress;
             public float fightingTimeCollector;
-            public readonly MissionEventsManager EventsManager;
+            public readonly MissionEventsCollector EventsCollector;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, int power,
-                MissionEventsManager eventsManager)
+                MissionEventsCollector eventsCollector)
             {
                 this.order = order;
                 this.speed = speed;
                 this.angularSpeed = angularSpeed;
                 this.faction = faction;
                 this.power = power;
-                EventsManager = eventsManager;
+                EventsCollector = eventsCollector;
                 status = ArmyStatus.Recruiting;
                 currentPosition = order.Path[0];
                 currentRotation = Quaternion.identity;

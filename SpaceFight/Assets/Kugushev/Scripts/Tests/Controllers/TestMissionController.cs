@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.AI.Tactical;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.ProceduralGeneration;
 using Kugushev.Scripts.Mission.ValueObjects;
@@ -13,7 +12,6 @@ namespace Kugushev.Scripts.Tests.Controllers
 {
     public class TestMissionController : MonoBehaviour
     {
-        [SerializeField] private MissionManagerOld missionManager;
         
         [Header("Planetary System")]
         [SerializeField] private PlanetarySystemGenerator planetarySystemGenerator;
@@ -34,19 +32,19 @@ namespace Kugushev.Scripts.Tests.Controllers
 
         private async UniTask RunMission()
         {
-            MissionFinished = false;
-            missionManager.MissionFinished += _ =>
-            {
-                MissionFinished = true;
-                return true;
-            };
-
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(Seed);
-            
-            var green = new ConflictParty(Faction.Green, greenFleet, greenAi);
-            var red = new ConflictParty(Faction.Red, redFleet, redAi);
-
-            await missionManager.NextMission(planetarySystem, green, red, false);
+            // MissionFinished = false;
+            // missionManager.MissionFinished += _ =>
+            // {
+            //     MissionFinished = true;
+            //     return true;
+            // };
+            //
+            // var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(Seed);
+            //
+            // var green = new ConflictParty(Faction.Green, greenFleet, greenAi);
+            // var red = new ConflictParty(Faction.Red, redFleet, redAi);
+            //
+            // await missionManager.NextMission(planetarySystem, green, red, false);
         }
     }
 }

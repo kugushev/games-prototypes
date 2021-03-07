@@ -4,9 +4,10 @@
     {
         internal static class Scenes
         {
-            public static readonly string MissionExecutionScene = "MissionExecutionScene";
-            public static readonly string MissionPreparationScene = "MissionPreparationScene";
-            public static readonly string MissionBriefingScene = "MissionBriefingScene";
+            public const string MissionExecutionScene = "MissionExecutionScene";
+            public const string MissionPreparationScene = "MissionPreparationScene";
+            public const string MissionBriefingScene = "MissionBriefingScene";
+            public const string MissionDebriefingScene = "MissionDebriefingScene";
         }
     }
 }

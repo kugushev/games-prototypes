@@ -3,7 +3,7 @@ using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Managers;
+using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -12,7 +12,7 @@ namespace Kugushev.Scripts.Mission.Models
     public class Fleet : ScriptableObject, IModel
     {
         [SerializeField] private ObjectsPool pool;
-        [SerializeField] private MissionManagerOld missionManager;
+        [SerializeField] private MissionEventsCollector eventsCollector;
         [SerializeField] private float armySpeed = 0.2f;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;
@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 var power = order.SourcePlanet.Recruit(order.Power);
                 var army = pool.GetObject<Army, Army.State>(
-                    new Army.State(order, armySpeed, armyAngularSpeed, faction, power, missionManager.EventsManager));
+                    new Army.State(order, armySpeed, armyAngularSpeed, faction, power, eventsCollector));
                 ArmiesToSent.Enqueue(army);
             }
             else
