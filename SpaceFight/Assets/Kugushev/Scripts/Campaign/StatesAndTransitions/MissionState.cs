@@ -9,17 +9,29 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
     internal class MissionState : BaseSceneLoadingState<CampaignModel>
     {
         private readonly MissionSceneParametersPipeline _missionSceneParametersPipeline;
+        private readonly MissionSceneResultPipeline _missionSceneResultPipeline;
 
-        public MissionState(CampaignModel model, MissionSceneParametersPipeline missionSceneParametersPipeline)
+        public MissionState(CampaignModel model, MissionSceneParametersPipeline missionSceneParametersPipeline,
+            MissionSceneResultPipeline missionSceneResultPipeline)
             : base(model, UnityConstants.MissionManagementScene, false)
         {
             _missionSceneParametersPipeline = missionSceneParametersPipeline;
+            _missionSceneResultPipeline = missionSceneResultPipeline;
         }
 
         protected override void OnEnterBeforeLoadScene()
         {
             var campaignInfo = new MissionInfo(Model.NextMissionSeed);
             _missionSceneParametersPipeline.Set(campaignInfo);
+        }
+
+        protected override void OnExitBeforeUnloadScene()
+        {
+            var result = _missionSceneResultPipeline.Get();
+            if (result.PlayerWin)
+                Model.PlayerScore++;
+            else
+                Model.AIScore++;
         }
     }
 }

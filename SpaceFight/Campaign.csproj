@@ -63,6 +63,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\CampaignManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Utils\MissionSceneResultPipeline.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionResult.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Campaign.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

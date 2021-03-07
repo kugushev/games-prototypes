@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Common.Utils
             {
                 const string message = "Parameters are not set";
                 Debug.LogError(message);
-                throw new Exception(message);
+                return default;
             }
 
             var result = _parameters.Value;

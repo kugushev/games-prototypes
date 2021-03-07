@@ -21,6 +21,7 @@ namespace Kugushev.Scripts.Mission
         private MissionModelProvider modelProvider;
 
         [SerializeField] private MissionSceneParametersPipeline missionSceneParametersPipeline;
+        [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
         [SerializeField] private ExitState missionExitState;
 
         [Header("Planetary System")] [SerializeField]
@@ -50,7 +51,7 @@ namespace Kugushev.Scripts.Mission
         {
             var briefingState = new BriefingState(rootModel);
             var executionState = new ExecutionState(rootModel);
-            var debriefingState = new DebriefingState(rootModel);
+            var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline);
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
                 {
