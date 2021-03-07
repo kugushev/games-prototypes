@@ -54,6 +54,7 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Orbit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ModelProvider.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\BaseSceneLoadingState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\SceneParametersPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\StateMachine.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\Poolable.cs" />
@@ -76,7 +77,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Enums\HandType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IAIAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ImmediateTransition.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\BaseSceneLoadingState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ExitState.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

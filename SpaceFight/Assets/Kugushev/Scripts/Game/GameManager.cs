@@ -44,7 +44,7 @@ namespace Kugushev.Scripts.Game
             };
         }
 
-        private void OnDestroy()
+        protected override void Dispose()
         {
             gameModelProvider.Cleanup(this);
         }

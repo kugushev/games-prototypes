@@ -28,11 +28,15 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             _currentState.OnUpdate(deltaTime);
         }
 
-        public async UniTask SetState(IState state)
+        public async UniTask DisposeAsync()
         {
             await _currentState.OnExitAsync();
             _currentState = null;
+        }
 
+        private async UniTask SetState(IState state)
+        {
+            await _currentState.OnExitAsync();
             _currentState = state;
             await _currentState.OnEnterAsync();
         }

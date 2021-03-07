@@ -21,6 +21,7 @@ namespace Kugushev.Scripts.Mission
         private MissionModelProvider modelProvider;
 
         [SerializeField] private MissionSceneParametersPipeline missionSceneParametersPipeline;
+        [SerializeField] private ExitState missionExitState;
 
         [Header("Planetary System")] [SerializeField]
         private PlanetarySystemGenerator planetarySystemGenerator;
@@ -53,6 +54,12 @@ namespace Kugushev.Scripts.Mission
                     {
                         new TransitionRecord(ImmediateTransition.Instance, briefingState)
                     }
+                },
+                {
+                    briefingState, new[]
+                    {
+                        new TransitionRecord(new ToExecutionTransition(rootModel), missionExitState)
+                    }
                 }
             };
         }
@@ -64,7 +71,7 @@ namespace Kugushev.Scripts.Mission
             RootModel.Red = new ConflictParty(Faction.Red, redFleet, enemyAi);
         }
 
-        private void OnDestroy()
+        protected override void Dispose()
         {
             modelProvider.Cleanup(this);
             RootModel.Dispose();

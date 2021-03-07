@@ -169,3 +169,4 @@ MonoBehaviour:
   modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
   campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
   missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}
+  onMissionExitTransition: {fileID: 11400000, guid: 00af9102f2df3804daf3508b4486ebb1, type: 2}

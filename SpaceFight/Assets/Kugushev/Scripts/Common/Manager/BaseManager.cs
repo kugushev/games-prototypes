@@ -27,6 +27,13 @@ namespace Kugushev.Scripts.Common.Manager
             StartCoroutine(Loop().ToCoroutine());
         }
 
+        private void OnDestroy()
+        {
+            // there is not way to run coroutine OnDestroy
+            _stateMachine?.DisposeAsync();
+            Dispose();
+        }
+
         protected abstract TRootModel InitRootModel();
 
         protected abstract IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
@@ -35,6 +42,8 @@ namespace Kugushev.Scripts.Common.Manager
         protected virtual void OnStart()
         {
         }
+
+        protected abstract void Dispose();
 
         private async UniTask Loop()
         {
