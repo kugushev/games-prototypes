@@ -13,11 +13,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4bb77603-8265-6539-8dee-dc93ef428a60}</ProjectGuid>
+    <ProjectGuid>{dd0927c7-5ae9-f95c-5de2-76addd5bf83b}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Mission</AssemblyName>
+    <AssemblyName>MissionPresentation</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -52,46 +52,30 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\AchievementId.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Interfaces\ICommander.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ConflictParty.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Order.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\MissionConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionEventsCollector.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\MissionManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\AbstractAchievement.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Tools\PlanetsDistanceComparer.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Player\OrdersManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Invader.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetRule.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\OrderStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Fleet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\FightRoundResult.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Interfaces\IFighter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Planet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetarySystemGenerator.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\PlanetarySystem.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Player\PlayerCommander.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\MissionModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Pathfinder.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionModelProvider.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ExecutionState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\BriefingState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\DebriefingState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Tactical\SimpleAI.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Army.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\ArmyStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Sun.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\MissionEventType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\PlanetSize.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToDebriefingTransition.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ExecutionResult.cs" />
-     <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Events\PlanetEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\MissionController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\PlayerController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\OrdersPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\ArmyPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Common\AnimatorParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\FlatModeController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Common\Utils\CameraFacingUI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\OrdersPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\AIController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\FleetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\Abstractions\BaseComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\PlanetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Events\MovingEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Events\HandEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\PlanetarySystemController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\HandController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Widgets\MissionBriefingWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\FleetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\PlanetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\GamePresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Widgets\MissionDebriefingWidget.cs" />
+     <None Include="Assets\Kugushev\Scripts\MissionPresentation\MissionPresentation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -662,8 +646,20 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.XR.Interaction.Toolkit">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.InputSystem">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+ </Reference>
  <Reference Include="UniTask">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ </Reference>
+ <Reference Include="UniTask.Linq">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -677,9 +673,13 @@
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="Campaign.csproj">
-      <Project>{7aa78939-98e6-d360-4819-405b1aa1d00b}</Project>
-      <Name>Campaign</Name>
+    <ProjectReference Include="Game.csproj">
+      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
+      <Name>Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mission.csproj">
+      <Project>{4bb77603-8265-6539-8dee-dc93ef428a60}</Project>
+      <Name>Mission</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

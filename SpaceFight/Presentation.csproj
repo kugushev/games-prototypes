@@ -52,29 +52,31 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\PlanetEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\PlayerController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\OrdersPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\ArmyPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\FlatModeController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\Utils\CameraFacingUI.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\OrdersPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\AIController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\FleetPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\Abstractions\BaseComponent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\PlanetPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\MovingEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Events\HandEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\PlanetarySystemController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\FleetPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlanetPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\GamePresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionBriefingController.cs" />
-     <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Events\PlanetEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\MissionController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\PlayerController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\OrdersPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\ArmyPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Common\AnimatorParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\FlatModeController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Common\Utils\CameraFacingUI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\OrdersPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\AIController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\FleetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\Abstractions\BaseComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\PlanetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Events\MovingEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Events\HandEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\PlanetarySystemController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\HandController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Widgets\MissionBriefingWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\FleetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\PlanetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\GamePresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\MissionBriefingController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Widgets\MissionDebriefingWidget.cs" />
+     <None Include="Assets\Kugushev\Scripts\MissionPresentation\MissionPresentation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
