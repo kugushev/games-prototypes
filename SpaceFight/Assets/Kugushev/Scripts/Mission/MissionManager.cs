@@ -74,7 +74,7 @@ namespace Kugushev.Scripts.Mission
                 {
                     debriefingState, new[]
                     {
-                        new TransitionRecord(new ToExitMissionTransition(), missionExitState)
+                        new TransitionRecord(new ToExitMissionTransition(rootModel), missionExitState)
                     }
                 }
             };

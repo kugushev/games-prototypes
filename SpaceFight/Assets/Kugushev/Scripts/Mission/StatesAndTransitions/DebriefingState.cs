@@ -6,11 +6,15 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
 {
     public class DebriefingState : BaseSceneLoadingState<MissionModel>
     {
-        // show winner + achievements
-
         public DebriefingState(MissionModel model)
             : base(model, UnityConstants.Scenes.MissionDebriefingScene, true)
         {
+        }
+
+        protected override void OnExitBeforeUnloadScene()
+        {
+            //todo:  add winner to result payload
+            Model.ReadyToFinish = false;
         }
     }
 }

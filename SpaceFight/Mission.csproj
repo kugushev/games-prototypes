@@ -92,6 +92,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToExecutionTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToDebriefingTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToExitMissionTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Widgets\MissionDebriefingWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ExecutionResult.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -665,6 +667,9 @@
  </Reference>
  <Reference Include="UniTask">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

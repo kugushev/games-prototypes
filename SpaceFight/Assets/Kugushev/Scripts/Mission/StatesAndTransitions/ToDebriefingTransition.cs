@@ -1,7 +1,6 @@
 ﻿using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
-using Kugushev.Scripts.Mission.ValueObjects;
 
 namespace Kugushev.Scripts.Mission.StatesAndTransitions
 {
@@ -14,10 +13,12 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             _model = model;
         }
 
-        public bool ToTransition => IsMissionFinished(_model.PlanetarySystem);
+        public bool ToTransition => IsMissionFinished(_model.PlanetarySystem, out _);
 
-        private static bool IsMissionFinished(PlanetarySystem planetarySystem)
+        public static bool IsMissionFinished(PlanetarySystem planetarySystem, out Faction winner)
         {
+            winner = Faction.Unspecified;
+            
             bool greedIsAlive = false;
             bool redIsAlive = false;
 
@@ -36,6 +37,14 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
                 if (greedIsAlive && redIsAlive)
                     return false;
             }
+            
+            winner = (greedIsAlive, redIsAlive) switch
+            {
+                (true, false) => Faction.Green,
+                (false, true) => Faction.Red,
+                (false, false) => Faction.Neutral,
+                _ => Faction.Unspecified
+            };
 
             return true;
         }

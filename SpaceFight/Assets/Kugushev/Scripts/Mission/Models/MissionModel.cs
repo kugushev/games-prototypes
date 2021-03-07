@@ -13,10 +13,7 @@ namespace Kugushev.Scripts.Mission.Models
         private ConflictParty green;
         private ConflictParty red;
 
-        public MissionModel(MissionInfo missionInfo)
-        {
-            this.missionInfo = missionInfo;
-        }
+        public MissionModel(MissionInfo missionInfo) => this.missionInfo = missionInfo;
 
         public MissionInfo Info => missionInfo;
 
@@ -39,6 +36,10 @@ namespace Kugushev.Scripts.Mission.Models
         }
 
         public bool ReadyToExecute { get; set; }
+        
+        public ExecutionResult? ExecutionResult { get; set; }
+        
+        public bool ReadyToFinish { get; set; }
 
         public void Dispose()
         {

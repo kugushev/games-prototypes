@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 1021403140}
   - component: {fileID: 1021403139}
   m_Layer: 5
-  m_Name: ContinueButton
+  m_Name: FinishButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,7 +441,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1021403140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1952645861}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Mission.Widgets.MissionDebriefingWidget,
+          Mission
+        m_MethodName: Finish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1021403140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,7 +700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Finish
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -967,6 +980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1952645860}
+  - component: {fileID: 1952645861}
   m_Layer: 0
   m_Name: DebriefingMenu
   m_TagString: Untagged
@@ -989,6 +1003,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952645861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952645859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231e9f6242904c3198aa11d4152f111c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionModelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
+  youWinText: {fileID: 803968705}
+  aiWinText: {fileID: 1589818210}
 --- !u!1 &2055979412
 GameObject:
   m_ObjectHideFlags: 0
