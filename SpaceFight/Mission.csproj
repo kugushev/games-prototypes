@@ -82,6 +82,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Tactical\SimpleAI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\ArmyStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Widgets\MissionBriefingWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Sun.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\MissionEventType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionState.cs" />
@@ -89,9 +90,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToExecutionTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToDebriefingTransition.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToExitMissionTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Widgets\MissionDebriefingWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ExecutionResult.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />

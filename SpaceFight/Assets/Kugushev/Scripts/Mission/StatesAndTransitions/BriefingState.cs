@@ -11,10 +11,5 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             : base(model, UnityConstants.Scenes.MissionBriefingScene, true)
         {
         }
-
-        protected override void OnExitBeforeUnloadScene()
-        {
-            Model.ReadyToExecute = false;
-        }
     }
 }

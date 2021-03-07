@@ -35,11 +35,7 @@ namespace Kugushev.Scripts.Mission.Models
             set => red = value;
         }
 
-        public bool ReadyToExecute { get; set; }
-        
         public ExecutionResult? ExecutionResult { get; set; }
-        
-        public bool ReadyToFinish { get; set; }
 
         public void Dispose()
         {

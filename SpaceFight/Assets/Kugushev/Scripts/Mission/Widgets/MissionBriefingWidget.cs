@@ -1,11 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
-using Kugushev.Scripts.Mission.Constants;
+﻿using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Presentation.Controllers
+namespace Kugushev.Scripts.Mission.Widgets
 {
-    public class MissionPreparationController : MonoBehaviour
+    public class MissionBriefingWidget : MonoBehaviour
     {
         [SerializeField] private MissionModelProvider missionManager;
 
@@ -15,14 +14,6 @@ namespace Kugushev.Scripts.Presentation.Controllers
             {
                 var dayOfYear = Mathf.FloorToInt(GameplayConstants.DaysInYear * sliderValue);
                 model.PlanetarySystem.SetDayOfYear(dayOfYear);
-            }
-        }
-
-        public void StartMission()
-        {
-            if (missionManager.TryGetModel(out var model))
-            {
-                model.ReadyToExecute = true;
             }
         }
     }

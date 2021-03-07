@@ -70,7 +70,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\PlanetarySystemController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\HandController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Controllers\MissionPreparationController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationModels\FleetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\PlanetPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Components\GamePresenter.cs" />

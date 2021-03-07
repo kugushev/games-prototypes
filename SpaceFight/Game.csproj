@@ -55,7 +55,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\MainMenu.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Constants\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\MainMenuState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\ToCampaignTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\MainMenuWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Utils\CampaignSceneParametersPipeline.cs" />

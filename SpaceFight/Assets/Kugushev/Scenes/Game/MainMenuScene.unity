@@ -986,9 +986,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 782397223}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.MainMenuWidget, Game
-        m_MethodName: StartCampaign
+      - m_Target: {fileID: 11400000, guid: 2894980caa9a2db47a18566acbbb7c77, type: 2}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Common.StatesAndTransitions.TriggerTransition,
+          Common
+        m_MethodName: Set
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

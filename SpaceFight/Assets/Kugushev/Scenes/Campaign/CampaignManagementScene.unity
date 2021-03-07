@@ -171,3 +171,4 @@ MonoBehaviour:
   missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}
   missionSceneResultPipeline: {fileID: 11400000, guid: 54996aacfcd26644ab31e4ee7f10a718, type: 2}
   onMissionExitTransition: {fileID: 11400000, guid: 00af9102f2df3804daf3508b4486ebb1, type: 2}
+  toMissionTransition: {fileID: 11400000, guid: 4b9f5fc21be9d4443bd3f5e3f861d94b, type: 2}

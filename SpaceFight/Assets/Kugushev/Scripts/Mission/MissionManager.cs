@@ -17,12 +17,18 @@ namespace Kugushev.Scripts.Mission
 {
     public class MissionManager : BaseManager<MissionModel>
     {
-        [Header("Boilerplate")] [SerializeField]
-        private MissionModelProvider modelProvider;
+        [SerializeField] private MissionModelProvider modelProvider;
 
-        [SerializeField] private MissionSceneParametersPipeline missionSceneParametersPipeline;
+        [Header("Parameters")] [SerializeField]
+        private MissionSceneParametersPipeline missionSceneParametersPipeline;
+
         [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
-        [SerializeField] private ExitState missionExitState;
+
+        [Header("States and Transitions")] [SerializeField]
+        private ExitState missionExitState;
+
+        [SerializeField] private TriggerTransition toExecutionTransition;
+        [SerializeField] private TriggerTransition toFinishMissionTransition;
 
         [Header("Planetary System")] [SerializeField]
         private PlanetarySystemGenerator planetarySystemGenerator;
@@ -35,7 +41,7 @@ namespace Kugushev.Scripts.Mission
         [SerializeField] private Fleet redFleet;
 
         [SerializeField] private MissionEventsCollector eventsCollector;
-        
+
         protected override MissionModel InitRootModel()
         {
             var missionInfo = missionSceneParametersPipeline.Get();
@@ -63,7 +69,7 @@ namespace Kugushev.Scripts.Mission
                 {
                     briefingState, new[]
                     {
-                        new TransitionRecord(new ToExecutionTransition(rootModel), executionState)
+                        new TransitionRecord(toExecutionTransition, executionState)
                     }
                 },
                 {
@@ -75,7 +81,7 @@ namespace Kugushev.Scripts.Mission
                 {
                     debriefingState, new[]
                     {
-                        new TransitionRecord(new ToExitMissionTransition(rootModel), missionExitState)
+                        new TransitionRecord(toFinishMissionTransition, missionExitState)
                     }
                 }
             };

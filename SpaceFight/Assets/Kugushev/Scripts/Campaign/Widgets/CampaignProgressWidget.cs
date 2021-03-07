@@ -34,11 +34,5 @@ namespace Kugushev.Scripts.Campaign.Widgets
             if (modelProvider.TryGetModel(out var model))
                 model.NextMissionSeed = value;
         }
-
-        public void StartMission()
-        {
-            if (modelProvider.TryGetModel(out var gameModel)) 
-                gameModel.ReadyToNextMission = true;
-        }
     }
 }

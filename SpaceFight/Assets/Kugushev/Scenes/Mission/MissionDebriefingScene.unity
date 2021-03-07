@@ -442,10 +442,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1952645861}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Mission.Widgets.MissionDebriefingWidget,
-          Mission
-        m_MethodName: Finish
+      - m_Target: {fileID: 11400000, guid: 32d8c8e97f5103d40aa50530d4ac7864, type: 2}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Common.StatesAndTransitions.TriggerTransition,
+          Common
+        m_MethodName: Set
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

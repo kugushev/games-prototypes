@@ -15,10 +15,5 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
         {
             Model.NextMissionSeed = Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
         }
-
-        protected override void OnExitBeforeUnloadScene()
-        {
-            Model.ReadyToNextMission = false;
-        }
     }
 }

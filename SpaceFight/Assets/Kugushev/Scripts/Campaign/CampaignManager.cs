@@ -16,10 +16,17 @@ namespace Kugushev.Scripts.Campaign
     {
         [SerializeField] private CampaignModelProvider modelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
-        [SerializeField] private MissionSceneParametersPipeline missionSceneParametersPipeline;
+
+        [Header("Mission Parameters")] [SerializeField]
+        private MissionSceneParametersPipeline missionSceneParametersPipeline;
+
         [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
-        [SerializeField] private ExitState onMissionExitTransition;
-        
+
+        [Header("Transitions")] [SerializeField]
+        private ExitState onMissionExitTransition;
+
+        [SerializeField] private TriggerTransition toMissionTransition;
+
         protected override CampaignModel InitRootModel()
         {
             var campaignInfo = campaignSceneParametersPipeline.Get();
@@ -47,11 +54,11 @@ namespace Kugushev.Scripts.Campaign
                 {
                     campaignProgressState, new[]
                     {
-                        new TransitionRecord(new ToMissionTransition(rootModel), missionState)
+                        new TransitionRecord(toMissionTransition, missionState)
                     }
                 },
                 {
-                    missionState, new []
+                    missionState, new[]
                     {
                         new TransitionRecord(onMissionExitTransition, campaignProgressState)
                     }

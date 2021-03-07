@@ -36,11 +36,5 @@ namespace Kugushev.Scripts.Mission.Widgets
                 }
             }
         }
-
-        public void Finish()
-        {
-            if (missionModelProvider.TryGetModel(out var missionModel)) 
-                missionModel.ReadyToFinish = true;
-        }
     }
 }

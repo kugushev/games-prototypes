@@ -1,7 +1,7 @@
 ﻿namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
 {
-    public interface ITransition
+    public interface IReusableTransition : ITransition
     {
-        bool ToTransition { get; }
+        void Reset();
     }
 }

@@ -78,6 +78,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IAIAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ImmediateTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ExitState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\IReusableTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\TriggerTransition.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

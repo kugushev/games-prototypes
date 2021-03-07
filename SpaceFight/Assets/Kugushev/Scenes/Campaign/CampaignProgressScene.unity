@@ -1537,10 +1537,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2118038357}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Campaign.Widgets.CampaignProgressWidget,
-          Campaign
-        m_MethodName: StartMission
+      - m_Target: {fileID: 11400000, guid: 4b9f5fc21be9d4443bd3f5e3f861d94b, type: 2}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Common.StatesAndTransitions.TriggerTransition,
+          Common
+        m_MethodName: Set
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

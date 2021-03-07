@@ -12,7 +12,9 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
 
         public StateMachine(IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> transitions)
         {
+            ResetTransitions(transitions);
             _transitions = transitions;
+
             _currentState = EntryState.Instance;
         }
 
@@ -21,7 +23,11 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             if (_transitions.TryGetValue(_currentState, out var transitions))
                 foreach (var (transition, targetState) in transitions)
                     if (transition.ToTransition)
+                    {
+                        if (transition is IReusableTransition reusableTransition)
+                            reusableTransition.Reset();
                         await SetState(targetState);
+                    }
 
             // by reason of async SetState this OnUpdate execution might be in the another frame than tha start of this method
             var deltaTime = deltaTimeProvider();
@@ -39,6 +45,14 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             await _currentState.OnExitAsync();
             _currentState = state;
             await _currentState.OnEnterAsync();
+        }
+
+        private static void ResetTransitions(IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> transitions)
+        {
+            foreach (var pair in transitions)
+            foreach (var (transition, _) in pair.Value)
+                if (transition is IReusableTransition reusableTransition)
+                    reusableTransition.Reset();
         }
     }
 }

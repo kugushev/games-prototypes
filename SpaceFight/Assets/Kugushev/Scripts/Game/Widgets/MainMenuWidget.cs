@@ -30,11 +30,5 @@ namespace Kugushev.Scripts.Game.Widgets
             if (gameModelProvider.TryGetModel(out var gameModel)) 
                 gameModel.MainMenu.Seed = value;
         }
-
-        public void StartCampaign()
-        {
-            if (gameModelProvider.TryGetModel(out var gameModel)) 
-                gameModel.MainMenu.ReadyToStartCampaign = true;
-        }
     }
 }

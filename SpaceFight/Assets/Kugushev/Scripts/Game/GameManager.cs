@@ -13,6 +13,7 @@ namespace Kugushev.Scripts.Game
     {
         [SerializeField] private GameModelProvider gameModelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
+        [SerializeField] private TriggerTransition toCampaignTransition;
 
         protected override GameModel InitRootModel()
         {
@@ -38,7 +39,7 @@ namespace Kugushev.Scripts.Game
                 {
                     mainMenuState, new[]
                     {
-                        new TransitionRecord(new ToCampaignTransition(rootModel.MainMenu), campaignState)
+                        new TransitionRecord(toCampaignTransition, campaignState)
                     }
                 }
             };

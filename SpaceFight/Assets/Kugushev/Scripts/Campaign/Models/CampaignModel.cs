@@ -11,7 +11,6 @@ namespace Kugushev.Scripts.Campaign.Models
         [SerializeField] private int playerScore;
         [SerializeField] private int aiScore;
         [SerializeField] private int nextMissionSeed;
-        [SerializeField] private bool readyToNextMission;
 
         public CampaignModel(CampaignInfo campaignInfo) => this.campaignInfo = campaignInfo;
 
@@ -33,12 +32,6 @@ namespace Kugushev.Scripts.Campaign.Models
         {
             get => nextMissionSeed;
             set => nextMissionSeed = value;
-        }
-
-        public bool ReadyToNextMission
-        {
-            get => readyToNextMission;
-            set => readyToNextMission = value;
         }
     }
 }

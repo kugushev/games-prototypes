@@ -58,7 +58,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Utils\MissionSceneParametersPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\CampaignProgressState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\CampaignProgressWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\ToMissionTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\CampaignModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\CampaignManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionState.cs" />

@@ -34,9 +34,6 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             }
             else
                 Debug.LogError("No Execution Result found");
-
-
-            Model.ReadyToFinish = false;
         }
     }
 }

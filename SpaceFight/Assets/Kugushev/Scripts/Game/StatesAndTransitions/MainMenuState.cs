@@ -9,10 +9,5 @@ namespace Kugushev.Scripts.Game.StatesAndTransitions
         public MainMenuState(GameModel model) : base(model, UnityConstants.MainMenuScene, true)
         {
         }
-
-        protected override void OnExitBeforeUnloadScene()
-        {
-            Model.MainMenu.ReadyToStartCampaign = false;
-        }
     }
 }

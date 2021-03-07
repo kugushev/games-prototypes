@@ -170,6 +170,8 @@ MonoBehaviour:
   missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}
   missionSceneResultPipeline: {fileID: 11400000, guid: 54996aacfcd26644ab31e4ee7f10a718, type: 2}
   missionExitState: {fileID: 11400000, guid: 00af9102f2df3804daf3508b4486ebb1, type: 2}
+  toExecutionTransition: {fileID: 11400000, guid: c3ac5a48a9b461f428f70e67378f4278, type: 2}
+  toFinishMissionTransition: {fileID: 11400000, guid: 32d8c8e97f5103d40aa50530d4ac7864, type: 2}
   planetarySystemGenerator: {fileID: 11400000, guid: 120e09c12db9c2841a0ac2a2e0cf0a85, type: 2}
   playerCommander: {fileID: 11400000, guid: c2930a428602cc443901b922d905f9d4, type: 2}
   enemyAi: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
