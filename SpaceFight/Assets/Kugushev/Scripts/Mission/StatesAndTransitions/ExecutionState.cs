@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.StatesAndTransitions
 {
-    internal class ExecutionState : BaseSceneLoadingState<MissionModel>
+    public class ExecutionState : BaseSceneLoadingState<MissionModel>
     {
         public ExecutionState(MissionModel model)
             : base(model, UnityConstants.Scenes.MissionExecutionScene, true)

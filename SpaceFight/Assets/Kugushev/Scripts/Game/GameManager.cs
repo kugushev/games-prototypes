@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.Game
         protected override GameModel InitRootModel()
         {
             var model = new GameModel();
-            gameModelProvider.Set(this, model);
+            gameModelProvider.Set(model);
             return model;
         }
 
@@ -47,7 +47,7 @@ namespace Kugushev.Scripts.Game
 
         protected override void Dispose()
         {
-            gameModelProvider.Cleanup(this);
+            gameModelProvider.Cleanup();
         }
     }
 }

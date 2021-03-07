@@ -4,12 +4,13 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Representation",
         "Game",
         "Common",
         "UniTask",
         "Unity.TextMeshPro",
-        "Mission"
+        "Mission",
+        "MissionPresentation",
+        "Campaign"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

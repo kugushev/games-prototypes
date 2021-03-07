@@ -30,8 +30,8 @@ EditorBuildSettings:
     path: Assets/Kugushev/Scenes/Mission/MissionDebriefingScene.unity
     guid: 6b80c8ae13b1e5e4eb88b0bd360e3960
   - enabled: 1
-    path: Assets/Kugushev/Scenes/TestingScene.unity
-    guid: 9279637eefa32e74eb9c293e742cb1b4
+    path: Assets/Kugushev/Scenes/Testing/MissionExecutionTestingManagementScene.unity
+    guid: 1b1354e99912a2842bf5d3d747b4e1fc
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa10df11bcc983e4985af45914d72194, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f020f889886cc8d44bfd8136d122800d, type: 2}

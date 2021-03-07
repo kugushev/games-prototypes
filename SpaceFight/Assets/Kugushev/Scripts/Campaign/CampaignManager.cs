@@ -32,7 +32,7 @@ namespace Kugushev.Scripts.Campaign
             var campaignInfo = campaignSceneParametersPipeline.Get();
 
             var model = new CampaignModel(campaignInfo);
-            modelProvider.Set(this, model);
+            modelProvider.Set(model);
 
             return model;
         }
@@ -73,7 +73,7 @@ namespace Kugushev.Scripts.Campaign
 
         protected override void Dispose()
         {
-            modelProvider.Cleanup(this);
+            modelProvider.Cleanup();
         }
     }
 }

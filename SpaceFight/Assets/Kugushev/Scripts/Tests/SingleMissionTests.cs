@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using Kugushev.Scripts.Tests.Controllers;
+using Kugushev.Scripts.Tests.Setup;
+using Kugushev.Scripts.Tests.Utils;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,20 +32,23 @@ namespace Kugushev.Scripts.Tests
         [UnityTest]
         [Timeout(10 * 60 * 1000)]
         public IEnumerator Fight_FlyAroundSun() => RunFightWithSeed(193);
-        
+
         [UnityTest]
         public IEnumerator Fight_Backstabbers() => RunFightWithSeed(540);
-        
+
         [UnityTest]
         public IEnumerator Fight_LongPath() => RunFightWithSeed(950);
 
         private static IEnumerator RunFightWithSeed(int seed, [CallerMemberName] string caller = null)
         {
             Debug.Log($"Start test {caller}");
-            TestMissionController.Seed = seed;
-            SceneManager.LoadScene("TestingScene");
-            yield return new WaitForSeconds(1); // to allow setup Test Scene 
-            yield return  new WaitUntil(() => TestMissionController.MissionFinished);
+            
+            SingletonState.Instance.Reset();
+
+            MissionExecutionTestingManager.Seed = seed;
+            SceneManager.LoadScene("MissionExecutionTestingManagementScene");
+
+            yield return new WaitUntil(() => SingletonState.Instance.Entered);
         }
     }
 }

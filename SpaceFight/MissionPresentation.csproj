@@ -63,6 +63,7 @@
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\OrdersPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\AIController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\FleetPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Widgets\MissionDebriefingWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\Abstractions\BaseComponent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\PlanetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Events\MovingEvent.cs" />
@@ -74,7 +75,6 @@
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\FleetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\PlanetPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\GamePresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Widgets\MissionDebriefingWidget.cs" />
      <None Include="Assets\Kugushev\Scripts\MissionPresentation\MissionPresentation.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

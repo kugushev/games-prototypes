@@ -19,8 +19,8 @@ namespace Kugushev.Scripts.Common.Utils
             return false;
         }
 
-        public void Set(TManager owner, TModel value) => model = value;
+        public void Set(TModel value) => model = value;
 
-        public void Cleanup(TManager owner) => model = null;
+        public void Cleanup() => model = null;
     }
 }
