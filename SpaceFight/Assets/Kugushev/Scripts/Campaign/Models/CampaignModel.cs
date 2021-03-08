@@ -12,7 +12,7 @@ namespace Kugushev.Scripts.Campaign.Models
         [SerializeField] private int playerScore;
         [SerializeField] private int aiScore;
         [SerializeField] private int nextMissionSeed;
-        [SerializeReference] private List<AchievementInfo> achievements = new List<AchievementInfo>();
+        [SerializeReference] private List<AchievementInfo> _playerAchievements = new List<AchievementInfo>();
 
         public CampaignModel(CampaignInfo campaignInfo) => this.campaignInfo = campaignInfo;
 
@@ -36,7 +36,7 @@ namespace Kugushev.Scripts.Campaign.Models
             set => nextMissionSeed = value;
         }
 
-        public IReadOnlyList<AchievementInfo> Achievements => achievements;
-        public void AddAchievement(AchievementInfo achievementInfo) => achievements.Add(achievementInfo);
+        public IReadOnlyList<AchievementInfo> PlayerAchievements => _playerAchievements;
+        public void AddAchievement(AchievementInfo achievementInfo) => _playerAchievements.Add(achievementInfo);
     }
 }

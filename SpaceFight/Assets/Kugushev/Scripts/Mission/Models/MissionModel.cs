@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.ValueObjects;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -12,12 +13,13 @@ namespace Kugushev.Scripts.Mission.Models
         public struct State
         {
             public State(MissionInfo missionInfo, PlanetarySystem planetarySystem, ConflictParty green,
-                ConflictParty red)
+                ConflictParty red, Faction playerFaction)
             {
                 MissionInfo = missionInfo;
                 PlanetarySystem = planetarySystem;
                 Green = green;
                 Red = red;
+                PlayerFaction = playerFaction;
                 ExecutionResult = null;
                 DebriefingSummary = null;
             }
@@ -26,6 +28,7 @@ namespace Kugushev.Scripts.Mission.Models
             public PlanetarySystem PlanetarySystem;
             public ConflictParty Green;
             public ConflictParty Red;
+            public Faction PlayerFaction;
             public ExecutionResult? ExecutionResult;
             [CanBeNull] public DebriefingSummary DebriefingSummary;
         }
@@ -36,30 +39,20 @@ namespace Kugushev.Scripts.Mission.Models
 
         public MissionInfo Info => ObjectState.MissionInfo;
 
-        public PlanetarySystem PlanetarySystem
-        {
-            get => ObjectState.PlanetarySystem;
-            set => ObjectState.PlanetarySystem = value;
-        }
+        public PlanetarySystem PlanetarySystem => ObjectState.PlanetarySystem;
 
-        public ConflictParty Green
-        {
-            get => ObjectState.Green;
-            set => ObjectState.Green = value;
-        }
+        public ConflictParty Green => ObjectState.Green;
 
-        public ConflictParty Red
-        {
-            get => ObjectState.Red;
-            set => ObjectState.Red = value;
-        }
+        public ConflictParty Red => ObjectState.Red;
+
+        public Faction PlayerFaction => ObjectState.PlayerFaction;
 
         public ExecutionResult? ExecutionResult
         {
             get => ObjectState.ExecutionResult;
             set => ObjectState.ExecutionResult = value;
         }
-        
+
         public DebriefingSummary DebriefingSummary
         {
             get => ObjectState.DebriefingSummary;

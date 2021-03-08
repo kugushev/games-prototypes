@@ -16,5 +16,25 @@ namespace Kugushev.Scripts.Game.ValueObjects
         public int Level { get; }
         public string Caption { get; }
         public string Description { get; }
+
+        #region Equality
+
+        public bool Equals(AchievementInfo other) => Id == other.Id && Level == other.Level;
+
+        public override bool Equals(object obj) => obj is AchievementInfo other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((int) Id * 397) ^ Level;
+            }
+        }
+
+        public static bool operator ==(AchievementInfo left, AchievementInfo right) => left.Equals(right);
+
+        public static bool operator !=(AchievementInfo left, AchievementInfo right) => !left.Equals(right);
+
+        #endregion
     }
 }

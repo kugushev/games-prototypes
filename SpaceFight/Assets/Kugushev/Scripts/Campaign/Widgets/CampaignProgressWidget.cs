@@ -30,7 +30,7 @@ namespace Kugushev.Scripts.Campaign.Widgets
                 seedValueText.text = StringBag.FromInt(model.NextMissionSeed);
                 seedSlider.value = model.NextMissionSeed;
 
-                foreach (var achievement in model.Achievements)
+                foreach (var achievement in model.PlayerAchievements)
                 {
                     var go = Instantiate(achievementCardPrefab, achievementsPanel);
                     var widget = go.GetComponent<AchievementCardWidget>();

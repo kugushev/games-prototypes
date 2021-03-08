@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.AI.Tactical;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
@@ -36,14 +38,14 @@ namespace Kugushev.Scripts.Tests.Setup
 
         protected override MissionModel InitRootModel()
         {
-            var missionInfo = new MissionInfo(Seed);
+            var missionInfo = new MissionInfo(Seed, Array.Empty<AchievementInfo>());
             var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.Seed);
             var green = new ConflictParty(Faction.Green, greenFleet, greenAi);
             var red = new ConflictParty(Faction.Red, redFleet, redAi);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(
-                new MissionModel.State(missionInfo, planetarySystem, green, red));
-            
+                new MissionModel.State(missionInfo, planetarySystem, green, red, Faction.Green));
+
             modelProvider.Set(model);
             return model;
         }

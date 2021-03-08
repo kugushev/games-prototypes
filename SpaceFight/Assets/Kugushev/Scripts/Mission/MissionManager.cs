@@ -56,7 +56,7 @@ namespace Kugushev.Scripts.Mission
             var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(
-                new MissionModel.State(missionInfo, planetarySystem, green, red));
+                new MissionModel.State(missionInfo, planetarySystem, green, red, Faction.Red));
 
             modelProvider.Set(model);
 
@@ -69,7 +69,7 @@ namespace Kugushev.Scripts.Mission
             var briefingState = new BriefingState(rootModel);
             var executionState = new ExecutionState(rootModel);
             var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline, achievementsManager,
-                objectsPool, Faction.Green);
+                objectsPool);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {

@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Mission.Achievements
             AchievementId.Invader,
             level,
             nameof(Invader),
-            "Invade to a planet");
+            "Invade to a planet. Bonus: Increased siege damage");
 
         public override bool Check(IReadOnlyList<MissionEvent> missionEvents, Faction faction)
         {
@@ -27,6 +27,11 @@ namespace Kugushev.Scripts.Mission.Achievements
                 if (missionEvent.EventType == MissionEventType.PlanetCaptured && missionEvent.Active == faction)
                     return true;
             return false;
+        }
+
+        public override void Apply(ref FleetPropertiesBuilder fleetProperties)
+        {
+            fleetProperties.SiegeMultiplier += 1;
         }
     }
 }

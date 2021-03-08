@@ -18,17 +18,15 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
         private readonly MissionSceneResultPipeline _missionSceneResultPipeline;
         private readonly AchievementsManager _achievementsManager;
         private readonly ObjectsPool _objectsPool;
-        private readonly Faction _playerFaction;
         private readonly List<AbstractAchievement> _achievementsBuffer = new List<AbstractAchievement>(64);
 
         public DebriefingState(MissionModel model, MissionSceneResultPipeline missionSceneResultPipeline,
-            AchievementsManager achievementsManager, ObjectsPool objectsPool, Faction playerFaction)
+            AchievementsManager achievementsManager, ObjectsPool objectsPool)
             : base(model, UnityConstants.Scenes.MissionDebriefingScene, true)
         {
             _missionSceneResultPipeline = missionSceneResultPipeline;
             _achievementsManager = achievementsManager;
             _objectsPool = objectsPool;
-            _playerFaction = Faction.Red; // playerFaction;
         }
 
         protected override void AssertModel()
@@ -41,10 +39,10 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
         {
             var debriefingInfo = _objectsPool.GetObject<DebriefingSummary, DebriefingSummary.State>(default);
 
-            if (Model.ExecutionResult?.Winner == _playerFaction)
+            if (Model.ExecutionResult?.Winner == Model.PlayerFaction)
             {
                 _achievementsBuffer.Clear();
-                _achievementsManager.FindSuitableAchievements(_achievementsBuffer, _playerFaction);
+                _achievementsManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction);
 
                 debriefingInfo.Fill(_achievementsBuffer);
 

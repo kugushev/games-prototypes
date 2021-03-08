@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            var campaignInfo = new MissionInfo(Model.NextMissionSeed);
+            var campaignInfo = new MissionInfo(Model.NextMissionSeed, Model.PlayerAchievements);
             _missionSceneParametersPipeline.Set(campaignInfo);
         }
 
