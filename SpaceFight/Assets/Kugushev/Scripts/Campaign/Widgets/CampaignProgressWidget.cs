@@ -16,6 +16,11 @@ namespace Kugushev.Scripts.Campaign.Widgets
         [SerializeField] private TextMeshProUGUI seedValueText;
         [SerializeField] private Slider seedSlider;
 
+        [Header("Achievements Panel")] [SerializeField]
+        private Transform achievementsPanel;
+
+        [SerializeField] private GameObject achievementCardPrefab;
+
         private void Start()
         {
             if (modelProvider.TryGetModel(out var model))
@@ -24,6 +29,13 @@ namespace Kugushev.Scripts.Campaign.Widgets
                 aiScoreText.text = StringBag.FromInt(model.AIScore);
                 seedValueText.text = StringBag.FromInt(model.NextMissionSeed);
                 seedSlider.value = model.NextMissionSeed;
+
+                foreach (var achievement in model.Achievements)
+                {
+                    var go = Instantiate(achievementCardPrefab, achievementsPanel);
+                    var widget = go.GetComponent<AchievementCardWidget>();
+                    widget.SetUp(achievement);
+                }
             }
         }
 

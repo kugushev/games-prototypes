@@ -51,7 +51,7 @@ namespace Kugushev.Scripts.Mission
         {
             var missionInfo = missionSceneParametersPipeline.Get();
 
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(RootModel.Info.Seed);
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.Seed);
             var green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
             var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
 

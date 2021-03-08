@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.ValueObjects;
@@ -11,10 +13,13 @@ namespace Kugushev.Scripts.Mission.Achievements
     {
         [SerializeField] private int level;
 
-        public override AchievementId Id => AchievementId.Invader;
-        public override int Level => level;
-        public override string Caption => nameof(Invader);
-        public override string Description => "Invade to a planet";
+        private AchievementInfo? _info;
+
+        public override AchievementInfo Info => _info ??= new AchievementInfo(
+            AchievementId.Invader,
+            level,
+            nameof(Invader),
+            "Invade to a planet");
 
         public override bool Check(IReadOnlyList<MissionEvent> missionEvents, Faction faction)
         {

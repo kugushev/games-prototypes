@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Kugushev.Scripts.Campaign.Models
         [SerializeField] private int playerScore;
         [SerializeField] private int aiScore;
         [SerializeField] private int nextMissionSeed;
+        [SerializeReference] private List<AchievementInfo> achievements = new List<AchievementInfo>();
 
         public CampaignModel(CampaignInfo campaignInfo) => this.campaignInfo = campaignInfo;
 
@@ -33,5 +35,8 @@ namespace Kugushev.Scripts.Campaign.Models
             get => nextMissionSeed;
             set => nextMissionSeed = value;
         }
+
+        public IReadOnlyList<AchievementInfo> Achievements => achievements;
+        public void AddAchievement(AchievementInfo achievementInfo) => achievements.Add(achievementInfo);
     }
 }

@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Mission.Models
                 Green = green;
                 Red = red;
                 ExecutionResult = null;
-                DebriefingInfo = null;
+                DebriefingSummary = null;
             }
 
             public MissionInfo MissionInfo;
@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Mission.Models
             public ConflictParty Green;
             public ConflictParty Red;
             public ExecutionResult? ExecutionResult;
-            [CanBeNull] public DebriefingInfo DebriefingInfo;
+            [CanBeNull] public DebriefingSummary DebriefingSummary;
         }
 
         public MissionModel(ObjectsPool objectsPool) : base(objectsPool)
@@ -59,12 +59,11 @@ namespace Kugushev.Scripts.Mission.Models
             get => ObjectState.ExecutionResult;
             set => ObjectState.ExecutionResult = value;
         }
-
-        [CanBeNull]
-        public DebriefingInfo DebriefingInfo
+        
+        public DebriefingSummary DebriefingSummary
         {
-            get => ObjectState.DebriefingInfo;
-            set => ObjectState.DebriefingInfo = value;
+            get => ObjectState.DebriefingSummary;
+            set => ObjectState.DebriefingSummary = value;
         }
 
         protected override void OnClear(State state)

@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191cf78f899d4427950f185a2b3bb616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   modelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
   missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}
   missionSceneResultPipeline: {fileID: 11400000, guid: 54996aacfcd26644ab31e4ee7f10a718, type: 2}
@@ -173,8 +174,9 @@ MonoBehaviour:
   toExecutionTransition: {fileID: 11400000, guid: c3ac5a48a9b461f428f70e67378f4278, type: 2}
   toFinishMissionTransition: {fileID: 11400000, guid: 32d8c8e97f5103d40aa50530d4ac7864, type: 2}
   planetarySystemGenerator: {fileID: 11400000, guid: 120e09c12db9c2841a0ac2a2e0cf0a85, type: 2}
+  eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}
+  achievementsManager: {fileID: 11400000, guid: 53c761ba89736a347b7f7ff5fce23584, type: 2}
   playerCommander: {fileID: 11400000, guid: c2930a428602cc443901b922d905f9d4, type: 2}
   enemyAi: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
   greenFleet: {fileID: 11400000, guid: 610ef38f2dfd1284f9a9bb436330e682, type: 2}
   redFleet: {fileID: 11400000, guid: 93e61a212f79adc4783e4bb3b236593f, type: 2}
-  eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}

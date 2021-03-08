@@ -9,7 +9,6 @@ using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
-using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.StatesAndTransitions
@@ -29,7 +28,7 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             _missionSceneResultPipeline = missionSceneResultPipeline;
             _achievementsManager = achievementsManager;
             _objectsPool = objectsPool;
-            _playerFaction = playerFaction;
+            _playerFaction = Faction.Red; // playerFaction;
         }
 
         protected override void AssertModel()
@@ -40,19 +39,19 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            var debriefingInfo = _objectsPool.GetObject<DebriefingInfo, DebriefingInfo.State>(default);
+            var debriefingInfo = _objectsPool.GetObject<DebriefingSummary, DebriefingSummary.State>(default);
 
             if (Model.ExecutionResult?.Winner == _playerFaction)
             {
                 _achievementsBuffer.Clear();
                 _achievementsManager.FindSuitableAchievements(_achievementsBuffer, _playerFaction);
-                
+
                 debriefingInfo.Fill(_achievementsBuffer);
-                
+
                 _achievementsBuffer.Clear();
             }
 
-            Model.DebriefingInfo = debriefingInfo;
+            Model.DebriefingSummary = debriefingInfo;
 
             base.OnEnterBeforeLoadScene();
         }
@@ -68,7 +67,9 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
                     _ => throw new ArgumentOutOfRangeException(nameof(Model.ExecutionResult.Value.Winner),
                         $"Unexpected winner {Model.ExecutionResult.Value.Winner}")
                 };
-                _missionSceneResultPipeline.Set(new MissionResult(playerWin));
+                var reward = Model.DebriefingSummary.SelectedAchievement;
+
+                _missionSceneResultPipeline.Set(new MissionResult(playerWin, reward));
             }
             else
                 Alert();

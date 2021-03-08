@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Mission.Achievements;
+using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 
 namespace Kugushev.Scripts.Mission.Models
 {
-    public class DebriefingInfo : Poolable<DebriefingInfo.State>
+    public class DebriefingSummary : Poolable<DebriefingSummary.State>
     {
         public struct State
         {
-            public AchievementId? SelectedAchievement;
+            public AchievementInfo? SelectedAchievement;
         }
 
         private readonly List<AbstractAchievement> _allAchievements = new List<AbstractAchievement>(64);
 
-        public DebriefingInfo(ObjectsPool objectsPool) : base(objectsPool)
+        public DebriefingSummary(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
         public IReadOnlyList<AbstractAchievement> AllAchievements => _allAchievements;
 
-        public AchievementId? SelectedAchievement
+        public AchievementInfo? SelectedAchievement
         {
             get => ObjectState.SelectedAchievement;
             set => ObjectState.SelectedAchievement = value;

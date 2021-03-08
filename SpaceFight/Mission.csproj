@@ -52,7 +52,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\AchievementId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Interfaces\ICommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ConflictParty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Order.cs" />
@@ -92,7 +91,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\DebriefingInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\DebriefingSummary.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -682,6 +681,10 @@
     <ProjectReference Include="Campaign.csproj">
       <Project>{7aa78939-98e6-d360-4819-405b1aa1d00b}</Project>
       <Name>Campaign</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.csproj">
+      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
+      <Name>Game</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

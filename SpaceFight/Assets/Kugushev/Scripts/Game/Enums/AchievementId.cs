@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Mission.Achievements
+﻿namespace Kugushev.Scripts.Game.Enums
 {
     public enum AchievementId
     {

@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774f3883cc984d51a13c96cd7d2c5d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   modelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
   planetarySystemGenerator: {fileID: 11400000, guid: 120e09c12db9c2841a0ac2a2e0cf0a85, type: 2}
   eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}
