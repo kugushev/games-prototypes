@@ -679,3 +679,14 @@ AssetImportParameters requested are different than current active one (requested
   custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
 ========================================================================
 Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.49 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 74.0 MB.
+System memory in use after: 74.2 MB.
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 3698.
+Total: 2.856900 ms (FindLiveObjects: 0.388700 ms CreateObjectMapping: 0.097100 ms MarkObjects: 2.333100 ms  DeleteObjects: 0.036300 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
