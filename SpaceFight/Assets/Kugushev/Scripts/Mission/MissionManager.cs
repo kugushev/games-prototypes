@@ -56,7 +56,7 @@ namespace Kugushev.Scripts.Mission
             var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(
-                new MissionModel.State(missionInfo, planetarySystem, green, red, Faction.Red));
+                new MissionModel.State(missionInfo, planetarySystem, green, red, Faction.Green));
 
             modelProvider.Set(model);
 

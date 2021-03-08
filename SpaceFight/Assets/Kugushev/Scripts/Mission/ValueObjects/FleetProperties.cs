@@ -7,12 +7,16 @@ namespace Kugushev.Scripts.Mission.ValueObjects
     public struct FleetProperties
     {
         [SerializeField] private int siegeMultiplier;
+        [SerializeField] private int fightMultiplier;
 
         public FleetProperties(FleetPropertiesBuilder builder)
         {
             siegeMultiplier = builder.SiegeMultiplier;
+            fightMultiplier = builder.FightMultiplier;
         }
 
         public int SiegeMultiplier => siegeMultiplier;
+
+        public int FightMultiplier => fightMultiplier;
     }
 }

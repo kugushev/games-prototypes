@@ -234,6 +234,8 @@ namespace Kugushev.Scripts.Mission.Models
 
                         if (enemyIsDefeated)
                         {
+                            ObjectState.EventsCollector.ArmyDestroyedInFight(ObjectState.faction, targetArmy.Faction,
+                                ObjectState.power);
                             _targetsToRemoveBuffer.Add(targetArmy);
                         }
                     }
@@ -245,15 +247,20 @@ namespace Kugushev.Scripts.Mission.Models
             if (_targets.Count == 0)
                 ObjectState.status = ArmyStatus.OnMatch;
 
-            bool ExecuteFight(Army targetPlanet)
+            bool ExecuteFight(Army targetArmy)
             {
-                if (targetPlanet.Faction == Faction)
+                if (targetArmy.Faction == Faction)
                 {
                     Debug.LogError($"We're trying to hit our allies {ObjectState.faction}");
                     return false;
                 }
 
-                var result = targetPlanet.SufferFightRound(Faction);
+                int damage = GameplayConstants.UnifiedDamage;
+
+                if (ObjectState.fleetProperties.FightMultiplier > 0)
+                    damage *= ObjectState.fleetProperties.FightMultiplier;
+
+                var result = targetArmy.SufferFightRound(Faction, damage);
                 return result == FightRoundResult.Defeated;
             }
         }

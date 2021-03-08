@@ -16,26 +16,26 @@ MonoBehaviour:
   eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}
   systemRadius: 0.8
   center: {x: 0, y: 1.5, z: 0.5}
-  sunMaxRadius: 0.05
-  sunMinRadius: 0.2
+  sunMinRadius: 0.05
+  sunMaxRadius: 0.15
   minPlanets: 3
   maxPlanets: 6
   planetRules:
   - planetSize: 1
     minProduction: 1
-    maxProduction: 3
+    maxProduction: 1
   - planetSize: 2
-    minProduction: 2
-    maxProduction: 5
-  - planetSize: 3
     minProduction: 3
-    maxProduction: 7
+    maxProduction: 3
+  - planetSize: 3
+    minProduction: 6
+    maxProduction: 6
   - planetSize: 4
-    minProduction: 5
-    maxProduction: 9
+    minProduction: 8
+    maxProduction: 8
   - planetSize: 5
-    minProduction: 7
-    maxProduction: 11
+    minProduction: 12
+    maxProduction: 12
   - planetSize: 6
-    minProduction: 9
-    maxProduction: 13
+    minProduction: 15
+    maxProduction: 15

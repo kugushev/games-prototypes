@@ -7,11 +7,11 @@ namespace Kugushev.Scripts.MissionPresentation.PresentationModels
 {
     public class PlanetPresentationModel : BasePresentationModel
     {
+        private Planet _planet;
         protected override IModel Model => _planet;
 
         public override bool IsInPrefab => true;
 
-        private Planet _planet;
 
         public Planet Planet
         {

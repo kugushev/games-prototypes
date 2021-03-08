@@ -8,30 +8,26 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Achievements
 {
-    [CreateAssetMenu(menuName = MenuName + nameof(Invader))]
-    public class Invader : AbstractAchievement
+    [CreateAssetMenu(menuName = MenuName + nameof(Brawler))]
+    public class Brawler : AbstractAchievement
     {
-        [SerializeField] private int level;
-
-        private AchievementInfo? _info;
-
-        public override AchievementInfo Info => _info ??= new AchievementInfo(
-            AchievementId.Invader,
-            level,
-            nameof(Invader),
-            "Invade to a planet. Bonus: Increased army to planet damage");
+        public override AchievementInfo Info { get; } = new AchievementInfo(
+            AchievementId.Brawler,
+            1,
+            nameof(Brawler),
+            "Destroy enemy army by your army. Bonus: Increased army to army damage");
 
         public override bool Check(IReadOnlyList<MissionEvent> missionEvents, Faction faction)
         {
             foreach (var missionEvent in missionEvents)
-                if (missionEvent.EventType == MissionEventType.PlanetCaptured && missionEvent.Active == faction)
+                if (missionEvent.EventType == MissionEventType.ArmyDestroyedInFight && missionEvent.Active == faction)
                     return true;
             return false;
         }
 
         public override void Apply(ref FleetPropertiesBuilder fleetProperties)
         {
-            fleetProperties.SiegeMultiplier += 1;
+            fleetProperties.FightMultiplier += 1;
         }
     }
 }

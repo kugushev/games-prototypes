@@ -18,5 +18,8 @@ namespace Kugushev.Scripts.Mission.Utils
 
         public void PlanetCaptured(Faction newOwner, Faction previousOwner, int overpower) =>
             _events.Add(new MissionEvent(MissionEventType.PlanetCaptured, newOwner, previousOwner, overpower));
+
+        public void ArmyDestroyedInFight(Faction destroyer, Faction victim, int overpower) =>
+            _events.Add(new MissionEvent(MissionEventType.ArmyDestroyedInFight, destroyer, victim, overpower));
     }
 }

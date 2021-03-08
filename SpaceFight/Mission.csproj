@@ -94,6 +94,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\DebriefingSummary.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\FleetProperties.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\FleetPropertiesBuilder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Brawler.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

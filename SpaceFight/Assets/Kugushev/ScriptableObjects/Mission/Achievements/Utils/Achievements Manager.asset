@@ -15,3 +15,4 @@ MonoBehaviour:
   eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}
   achievements:
   - {fileID: 11400000, guid: 03d7476e65799ad4d82cb4738c6eb8b6, type: 2}
+  - {fileID: 11400000, guid: 879cfd205b804324f833f988b76a778a, type: 2}

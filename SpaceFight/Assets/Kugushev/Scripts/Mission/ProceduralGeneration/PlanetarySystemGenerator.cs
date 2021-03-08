@@ -19,8 +19,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
         [Header("Rules")] [SerializeField] private float systemRadius = 0.8f;
         [SerializeField] private Vector3 center = new Vector3(0f, 1.5f, 0.5f);
-        [SerializeField] private float sunMaxRadius = 0.05f;
-        [SerializeField] private float sunMinRadius = 0.2f;
+        [SerializeField] private float sunMinRadius = 0.05f;
+        [SerializeField] private float sunMaxRadius = 0.15f;
         [SerializeField] private int minPlanets = 3;
         [SerializeField] private int maxPlanets = 6;
         [SerializeField] private PlanetRule[] planetRules;
@@ -46,6 +46,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             int planetsCount = Random.Range(minPlanets, maxPlanets);
 
             (int greenHome, int redHome) = GetHomePlanets(planetsCount);
+            var homePlanetRule = GetHomePlanetRule();
 
             float t = 0f;
             for (int i = 0; i < planetsCount; i++)
@@ -54,7 +55,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 var orbit = CreateOrbit(t);
 
                 var faction = GetFaction(i, greenHome, redHome);
-                var rule = GetPlanetRule(faction);
+                var rule = GetPlanetRule(faction, homePlanetRule);
 
                 int production = Random.Range(rule.MinProduction, rule.MaxProduction);
 
@@ -65,7 +66,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             }
         }
 
-        private PlanetRule GetPlanetRule(Faction faction)
+        private PlanetRule GetPlanetRule(Faction faction, PlanetRule homePlanetRule)
         {
             switch (faction)
             {
@@ -74,7 +75,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                     return planetRules[ruleIndex];
                 case Faction.Red:
                 case Faction.Green:
-                    return GetSidesRule();
+                    return homePlanetRule;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(faction), faction, null);
             }
@@ -104,7 +105,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             return (green, red);
         }
 
-        private PlanetRule GetSidesRule()
+        private PlanetRule GetHomePlanetRule()
         {
             PlanetRule rule;
             do

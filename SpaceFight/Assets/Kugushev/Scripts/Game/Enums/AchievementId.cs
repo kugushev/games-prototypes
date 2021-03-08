@@ -5,6 +5,7 @@
         Unspecified = 0,
         // Common achievements
         Invader = 1,
+        Brawler = 2
         // Epic achievements
         
     }

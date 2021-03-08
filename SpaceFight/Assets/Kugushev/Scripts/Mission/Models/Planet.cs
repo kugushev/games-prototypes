@@ -110,7 +110,7 @@ namespace Kugushev.Scripts.Mission.Models
                 ObjectState.power *= -1;
                 ObjectState.faction = enemyFaction;
 
-                ObjectState.EventsCollector?.PlanetCaptured(enemyFaction, previousOwner, ObjectState.power);
+                ObjectState.EventsCollector.PlanetCaptured(enemyFaction, previousOwner, ObjectState.power);
 
                 return FightRoundResult.Defeated;
             }
