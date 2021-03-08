@@ -3,6 +3,7 @@ using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.AI.Tactical;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
@@ -17,6 +18,7 @@ namespace Kugushev.Scripts.Tests.Setup
 {
     public class MissionExecutionTestingManager : BaseManager<MissionModel>
     {
+        [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private MissionModelProvider modelProvider;
 
         [Header("Planetary System")] [SerializeField]
@@ -34,7 +36,14 @@ namespace Kugushev.Scripts.Tests.Setup
 
         protected override MissionModel InitRootModel()
         {
-            var model = new MissionModel(new MissionInfo(Seed));
+            var missionInfo = new MissionInfo(Seed);
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(RootModel.Info.Seed);
+            var green = new ConflictParty(Faction.Green, greenFleet, greenAi);
+            var red = new ConflictParty(Faction.Red, redFleet, redAi);
+
+            var model = objectsPool.GetObject<MissionModel, MissionModel.State>(
+                new MissionModel.State(missionInfo, planetarySystem, green, red));
+            
             modelProvider.Set(model);
             return model;
         }
@@ -63,9 +72,6 @@ namespace Kugushev.Scripts.Tests.Setup
         protected override void OnStart()
         {
             eventsCollector.Cleanup();
-            RootModel.PlanetarySystem = planetarySystemGenerator.CreatePlanetarySystem(RootModel.Info.Seed);
-            RootModel.Green = new ConflictParty(Faction.Green, greenFleet, greenAi);
-            RootModel.Red = new ConflictParty(Faction.Red, redFleet, redAi);
         }
 
         protected override void Dispose()

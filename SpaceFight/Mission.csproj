@@ -68,6 +68,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ExecutionResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\OrderStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Fleet.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Managers\AchievementsManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\FightRoundResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Interfaces\IFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Planet.cs" />
@@ -91,6 +92,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\DebriefingInfo.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

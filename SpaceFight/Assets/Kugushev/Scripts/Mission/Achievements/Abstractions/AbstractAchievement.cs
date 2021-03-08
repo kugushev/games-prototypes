@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Abstractions
 {
     public abstract class AbstractAchievement: ScriptableObject
     {
-        protected const string MenuName = CommonConstants.MenuPrefix + "Achievement/";
+        protected const string MenuName = CommonConstants.MenuPrefix + "Achievements/";
         
         // todo: use for localization https://docs.unity3d.com/Packages/com.unity.localization@0.10/manual/QuickStartGuide.html
         

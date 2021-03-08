@@ -1,47 +1,77 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.ValueObjects;
-using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
 {
     [Serializable]
-    public class MissionModel : IDisposable
+    public class MissionModel : Poolable<MissionModel.State>
     {
-        [SerializeField] private MissionInfo missionInfo;
-        private PlanetarySystem planetarySystem;
-        private ConflictParty green;
-        private ConflictParty red;
+        public struct State
+        {
+            public State(MissionInfo missionInfo, PlanetarySystem planetarySystem, ConflictParty green,
+                ConflictParty red)
+            {
+                MissionInfo = missionInfo;
+                PlanetarySystem = planetarySystem;
+                Green = green;
+                Red = red;
+                ExecutionResult = null;
+                DebriefingInfo = null;
+            }
 
-        public MissionModel(MissionInfo missionInfo) => this.missionInfo = missionInfo;
+            public MissionInfo MissionInfo;
+            public PlanetarySystem PlanetarySystem;
+            public ConflictParty Green;
+            public ConflictParty Red;
+            public ExecutionResult? ExecutionResult;
+            [CanBeNull] public DebriefingInfo DebriefingInfo;
+        }
 
-        public MissionInfo Info => missionInfo;
+        public MissionModel(ObjectsPool objectsPool) : base(objectsPool)
+        {
+        }
+
+        public MissionInfo Info => ObjectState.MissionInfo;
 
         public PlanetarySystem PlanetarySystem
         {
-            get => planetarySystem;
-            set => planetarySystem = value;
+            get => ObjectState.PlanetarySystem;
+            set => ObjectState.PlanetarySystem = value;
         }
 
         public ConflictParty Green
         {
-            get => green;
-            set => green = value;
+            get => ObjectState.Green;
+            set => ObjectState.Green = value;
         }
 
         public ConflictParty Red
         {
-            get => red;
-            set => red = value;
+            get => ObjectState.Red;
+            set => ObjectState.Red = value;
         }
 
-        public ExecutionResult? ExecutionResult { get; set; }
-
-        public void Dispose()
+        public ExecutionResult? ExecutionResult
         {
-            planetarySystem?.Dispose();
-            green.Dispose();
-            red.Dispose();
+            get => ObjectState.ExecutionResult;
+            set => ObjectState.ExecutionResult = value;
+        }
+
+        [CanBeNull]
+        public DebriefingInfo DebriefingInfo
+        {
+            get => ObjectState.DebriefingInfo;
+            set => ObjectState.DebriefingInfo = value;
+        }
+
+        protected override void OnClear(State state)
+        {
+            state.PlanetarySystem?.Dispose();
+            state.Green.Dispose();
+            state.Red.Dispose();
         }
     }
 }

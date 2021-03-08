@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Kugushev.Scripts.Common;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.ValueObjects;
@@ -10,8 +10,9 @@ namespace Kugushev.Scripts.Mission.Utils
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(MissionEventsCollector))]
     public class MissionEventsCollector : ScriptableObject
     {
-        // todo: use array and abuse managed pointers
-        private List<MissionEvent> _events = new List<MissionEvent>(512);
+        [NonSerialized] private readonly List<MissionEvent> _events = new List<MissionEvent>(512);
+
+        public IReadOnlyList<MissionEvent> Events => _events;
 
         public void Cleanup() => _events.Clear();
 

@@ -3,8 +3,10 @@ using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.AI.Tactical;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Player;
 using Kugushev.Scripts.Mission.ProceduralGeneration;
@@ -17,6 +19,7 @@ namespace Kugushev.Scripts.Mission
 {
     public class MissionManager : BaseManager<MissionModel>
     {
+        [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private MissionModelProvider modelProvider;
 
         [Header("Parameters")] [SerializeField]
@@ -36,6 +39,8 @@ namespace Kugushev.Scripts.Mission
         [Header("Mission Related Assets")] [SerializeField]
         private MissionEventsCollector eventsCollector;
 
+        [SerializeField] private AchievementsManager achievementsManager;
+
         [SerializeField] private PlayerCommander playerCommander;
         [SerializeField] private SimpleAI enemyAi;
         [SerializeField] private Fleet greenFleet;
@@ -46,7 +51,13 @@ namespace Kugushev.Scripts.Mission
         {
             var missionInfo = missionSceneParametersPipeline.Get();
 
-            var model = new MissionModel(missionInfo);
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(RootModel.Info.Seed);
+            var green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
+            var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
+
+            var model = objectsPool.GetObject<MissionModel, MissionModel.State>(
+                new MissionModel.State(missionInfo, planetarySystem, green, red));
+
             modelProvider.Set(model);
 
             return model;
@@ -57,7 +68,9 @@ namespace Kugushev.Scripts.Mission
         {
             var briefingState = new BriefingState(rootModel);
             var executionState = new ExecutionState(rootModel);
-            var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline);
+            var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline, achievementsManager,
+                objectsPool, Faction.Green);
+
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
                 {
@@ -90,9 +103,6 @@ namespace Kugushev.Scripts.Mission
         protected override void OnStart()
         {
             eventsCollector.Cleanup();
-            RootModel.PlanetarySystem = planetarySystemGenerator.CreatePlanetarySystem(RootModel.Info.Seed);
-            RootModel.Green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
-            RootModel.Red = new ConflictParty(Faction.Red, redFleet, enemyAi);
         }
 
         protected override void Dispose()
