@@ -2,6 +2,7 @@
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.ValueObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,13 +31,19 @@ namespace Kugushev.Scripts.Campaign.Widgets
                 seedValueText.text = StringBag.FromInt(model.NextMissionSeed);
                 seedSlider.value = model.NextMissionSeed;
 
-                foreach (var achievement in model.PlayerAchievements)
-                {
-                    var go = Instantiate(achievementCardPrefab, achievementsPanel);
-                    var widget = go.GetComponent<AchievementCardWidget>();
-                    widget.SetUp(achievement);
-                }
+                foreach (var achievement in model.PlayerAchievements.CommonAchievements)
+                    CreateAchievementCard(achievement);
+
+                foreach (var achievement in model.PlayerAchievements.EpicAchievements.Values)
+                    CreateAchievementCard(achievement);
             }
+        }
+
+        private void CreateAchievementCard(AchievementInfo achievement)
+        {
+            var go = Instantiate(achievementCardPrefab, achievementsPanel);
+            var widget = go.GetComponent<AchievementCardWidget>();
+            widget.SetUp(achievement);
         }
 
         public void SetSeed(float sliderValue)

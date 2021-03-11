@@ -39,7 +39,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
         private void Update()
         {
             // todo: use UniRx to track changes
-            
+
             transform.position = Model.Position.Point;
 
             _meshRenderer.material = Model.Faction switch
@@ -50,7 +50,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
                 _ => null
             };
 
-            armyCaption.text = StringBag.FromInt(Model.Power);
+            armyCaption.text = StringBag.FromInt(Mathf.CeilToInt(Model.Power));
         }
     }
 }

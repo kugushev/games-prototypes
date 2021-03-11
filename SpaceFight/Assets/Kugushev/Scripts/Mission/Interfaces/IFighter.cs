@@ -10,6 +10,6 @@ namespace Kugushev.Scripts.Mission.Interfaces
         Position Position { get; }
         Faction Faction { get; }
         bool CanBeAttacked { get; }
-        FightRoundResult SufferFightRound(Faction enemyFaction, int damage = GameplayConstants.UnifiedDamage);
+        FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage);
     }
 }

@@ -59,17 +59,19 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private void ApplyModelChanges()
         {
-            if (Army == null)
+            var model = Army;
+
+            if (model == null)
                 return;
 
             ApplyTransformChanges();
-            
-            powerText.text = StringBag.FromInt(Army.Power);
+
+            powerText.text = StringBag.FromInt(Mathf.CeilToInt(model.Power));
 
             ApplyFight();
             ApplySiege();
 
-            if (Army.Disbanded)
+            if (model.Disbanded)
                 _fleet.ReturnArmyToPool(this);
         }
 

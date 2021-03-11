@@ -23,7 +23,7 @@ namespace Kugushev.Scripts.Mission.Models
             public float speed;
             public float angularSpeed;
             public Faction faction;
-            public int power;
+            public float power;
             public FleetProperties fleetProperties;
             public ArmyStatus status;
             public Vector3 currentPosition;
@@ -67,7 +67,7 @@ namespace Kugushev.Scripts.Mission.Models
 
         public Position Position => new Position(ObjectState.currentPosition);
         public Quaternion Rotation => ObjectState.currentRotation;
-        public int Power => ObjectState.power;
+        public float Power => ObjectState.power;
         public bool Disbanded => ObjectState.status == ArmyStatus.Disbanded;
         public Faction Faction => ObjectState.faction;
 
@@ -183,7 +183,7 @@ namespace Kugushev.Scripts.Mission.Models
                 if (target.Faction != ObjectState.faction)
                 {
                     // execute fight
-                    int damage = GameplayConstants.UnifiedDamage;
+                    float damage = GameplayConstants.UnifiedDamage;
 
                     if (ObjectState.fleetProperties.SiegeMultiplier > 0)
                         damage *= ObjectState.fleetProperties.SiegeMultiplier;
@@ -255,7 +255,7 @@ namespace Kugushev.Scripts.Mission.Models
                     return false;
                 }
 
-                int damage = GameplayConstants.UnifiedDamage;
+                float damage = GameplayConstants.UnifiedDamage;
 
                 if (ObjectState.fleetProperties.FightMultiplier > 0)
                     damage *= ObjectState.fleetProperties.FightMultiplier;
@@ -273,7 +273,7 @@ namespace Kugushev.Scripts.Mission.Models
 
         #region IFighter
 
-        public FightRoundResult SufferFightRound(Faction enemyFaction, int damage = GameplayConstants.UnifiedDamage)
+        public FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
         {
             if (enemyFaction == Faction)
             {

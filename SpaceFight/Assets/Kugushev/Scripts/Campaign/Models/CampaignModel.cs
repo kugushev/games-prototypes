@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Models
 {
+    // todo: add pooling
     [Serializable]
     internal class CampaignModel
     {
@@ -12,7 +14,9 @@ namespace Kugushev.Scripts.Campaign.Models
         [SerializeField] private int playerScore;
         [SerializeField] private int aiScore;
         [SerializeField] private int nextMissionSeed;
-        [SerializeReference] private List<AchievementInfo> _playerAchievements = new List<AchievementInfo>();
+
+        
+        [SerializeReference] private PlayerAchievements playerAchievements = new PlayerAchievements();
 
         public CampaignModel(CampaignInfo campaignInfo) => this.campaignInfo = campaignInfo;
 
@@ -36,7 +40,7 @@ namespace Kugushev.Scripts.Campaign.Models
             set => nextMissionSeed = value;
         }
 
-        public IReadOnlyList<AchievementInfo> PlayerAchievements => _playerAchievements;
-        public void AddAchievement(AchievementInfo achievementInfo) => _playerAchievements.Add(achievementInfo);
+
+        public PlayerAchievements PlayerAchievements => playerAchievements;
     }
 }

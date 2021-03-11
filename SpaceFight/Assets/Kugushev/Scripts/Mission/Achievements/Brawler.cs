@@ -12,9 +12,7 @@ namespace Kugushev.Scripts.Mission.Achievements
     public class Brawler : AbstractAchievement
     {
         public override AchievementInfo Info { get; } = new AchievementInfo(
-            AchievementId.Brawler,
-            1,
-            nameof(Brawler),
+            AchievementId.Brawler, null, AchievementType.Common, nameof(Brawler),
             "Destroy enemy army by your army. Bonus: Increased army to army damage");
 
         public override bool Check(IReadOnlyList<MissionEvent> missionEvents, Faction faction)
@@ -27,7 +25,7 @@ namespace Kugushev.Scripts.Mission.Achievements
 
         public override void Apply(ref FleetPropertiesBuilder fleetProperties)
         {
-            fleetProperties.FightMultiplier += 1;
+            fleetProperties.FightMultiplier += 0.1f;
         }
     }
 }

@@ -42,7 +42,8 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             if (Model.ExecutionResult?.Winner == Model.PlayerFaction)
             {
                 _achievementsBuffer.Clear();
-                _achievementsManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction);
+                _achievementsManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction, 
+                    Model.Info.PlayerAchievements);
 
                 debriefingInfo.Fill(_achievementsBuffer);
 

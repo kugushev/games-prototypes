@@ -11,15 +11,11 @@ namespace Kugushev.Scripts.Mission.Achievements
     [CreateAssetMenu(menuName = MenuName + nameof(Invader))]
     public class Invader : AbstractAchievement
     {
-        [SerializeField] private int level;
-
         private AchievementInfo? _info;
 
         public override AchievementInfo Info => _info ??= new AchievementInfo(
-            AchievementId.Invader,
-            level,
-            nameof(Invader),
-            "Invade to a planet. Bonus: Increased army to planet damage");
+            AchievementId.Invader, null, AchievementType.Common, nameof(Invader),
+            "Invade to a planet. Bonus: Increased siege damage");
 
         public override bool Check(IReadOnlyList<MissionEvent> missionEvents, Faction faction)
         {
@@ -31,7 +27,7 @@ namespace Kugushev.Scripts.Mission.Achievements
 
         public override void Apply(ref FleetPropertiesBuilder fleetProperties)
         {
-            fleetProperties.SiegeMultiplier += 1;
+            fleetProperties.SiegeMultiplier += 0.1f;
         }
     }
 }

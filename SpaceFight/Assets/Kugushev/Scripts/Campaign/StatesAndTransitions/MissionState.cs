@@ -38,7 +38,7 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
                 Model.AIScore++;
 
             if (result.Reward != null)
-                Model.AddAchievement(result.Reward.Value);
+                Model.PlayerAchievements.AddAchievement(result.Reward.Value);
         }
     }
 }

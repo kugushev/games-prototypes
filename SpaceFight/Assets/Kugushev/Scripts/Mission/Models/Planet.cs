@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Mission.Models
             public int production;
             public Orbit orbit;
             public Sun sun;
-            public int power;
+            public float power;
             public bool selected;
             public int dayOfYear;
             public Position position;
@@ -54,7 +54,7 @@ namespace Kugushev.Scripts.Mission.Models
 
         public PlanetSize Size => ObjectState.size;
 
-        public int Power => ObjectState.power;
+        public float Power => ObjectState.power;
 
         public bool Selected
         {
@@ -99,7 +99,7 @@ namespace Kugushev.Scripts.Mission.Models
             ObjectState.power += army.Power;
         }
 
-        public FightRoundResult SufferFightRound(Faction enemyFaction, int damage = GameplayConstants.UnifiedDamage)
+        public FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
         {
             ObjectState.power -= damage;
 

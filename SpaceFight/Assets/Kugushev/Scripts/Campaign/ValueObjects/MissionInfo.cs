@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Campaign.Models;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.ValueObjects
@@ -10,13 +9,13 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
     {
         [SerializeField] private int seed;
 
-        public MissionInfo(int seed, IReadOnlyList<AchievementInfo> playerAchievements)
+        public MissionInfo(int seed, PlayerAchievements playerAchievements)
         {
             PlayerAchievements = playerAchievements;
             this.seed = seed;
         }
 
         public int Seed => seed;
-        public IReadOnlyList<AchievementInfo> PlayerAchievements { get; }
+        public PlayerAchievements PlayerAchievements { get; }
     }
 }

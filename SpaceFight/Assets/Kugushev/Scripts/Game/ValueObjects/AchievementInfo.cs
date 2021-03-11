@@ -4,18 +4,22 @@ namespace Kugushev.Scripts.Game.ValueObjects
 {
     public readonly struct AchievementInfo
     {
-        public AchievementInfo(AchievementId id, int level, string caption, string description)
+        public AchievementInfo(AchievementId id, int? level, AchievementType type, string caption, string description)
         {
             Id = id;
             Level = level;
+            Type = type;
             Caption = caption;
             Description = description;
         }
 
         public AchievementId Id { get; }
-        public int Level { get; }
+        public int? Level { get; }
+        public AchievementType Type { get; }
         public string Caption { get; }
         public string Description { get; }
+
+        public override string ToString() => $"{Id}. Lvl {Level}";
 
         #region Equality
 
@@ -27,7 +31,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
         {
             unchecked
             {
-                return ((int) Id * 397) ^ Level;
+                return ((int) Id * 397) ^ Level.GetHashCode();
             }
         }
 

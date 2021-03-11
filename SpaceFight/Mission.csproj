@@ -80,8 +80,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToDebriefingTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ExecutionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\BriefingState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\FleetProperties.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\DebriefingState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Tactical\SimpleAI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\FleetPropertiesBuilder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\DebriefingSummary.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\ArmyStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Sun.cs" />
@@ -91,9 +94,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Models\DebriefingSummary.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\FleetProperties.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\FleetPropertiesBuilder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Brawler.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">

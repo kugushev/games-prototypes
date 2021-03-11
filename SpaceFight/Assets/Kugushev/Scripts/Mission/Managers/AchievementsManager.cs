@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Campaign.Models;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Managers
@@ -15,19 +15,76 @@ namespace Kugushev.Scripts.Mission.Managers
         [SerializeField] private MissionEventsCollector eventsCollector;
         [SerializeField] private AbstractAchievement[] achievements;
 
-        public void FindAchieved(List<AbstractAchievement> listToFill, Faction playerFaction)
+        public void FindAchieved(List<AbstractAchievement> listToFill, Faction playerFaction,
+            PlayerAchievements playerAchievements)
         {
             foreach (var achievement in achievements)
+            {
+                if (!IsAllowedToCheck(playerAchievements, achievement))
+                    continue;
+
+
                 if (achievement.Check(eventsCollector.Events, playerFaction))
                     listToFill.Add(achievement);
+            }
         }
 
-        public void FindMatched(List<AbstractAchievement> listToFill, IReadOnlyList<AchievementInfo> achievementsInfo)
+        private static bool IsAllowedToCheck(PlayerAchievements playerAchievements, AbstractAchievement achievement)
         {
-            foreach (var achievementInfo in achievementsInfo)
+            switch (achievement.Info.Type)
+            {
+                case AchievementType.Common:
+                    return true;
+                case AchievementType.Epic:
+                    if (achievement.Info.Level != null)
+                    {
+                        var expectedLevel = GetExpectedLevel(playerAchievements, achievement);
+                        return achievement.Info.Level == expectedLevel;
+                    }
+                    else
+                    {
+                        Debug.LogError($"Epic achievement with null level {achievement.Info}");
+                        return false;
+                    }
+                default:
+                {
+                    Debug.LogError($"Unexpected achievement type {achievement.Info}");
+                    return false;
+                }
+            }
+        }
+
+        private static int GetExpectedLevel(PlayerAchievements playerAchievements, AbstractAchievement achievement)
+        {
+            if (playerAchievements.EpicAchievements.TryGetValue(achievement.Info.Id, out var achieved))
+            {
+                if (achieved.Level == null)
+                {
+                    Debug.LogError($"Epic achievement with null level in the list {achieved}");
+                    return 1;
+                }
+
+                return achieved.Level.Value + 1;
+            }
+
+            return 1;
+        }
+
+        public void FindMatched(List<AbstractAchievement> listToFill, PlayerAchievements playerAchievements)
+        {
             foreach (var achievement in achievements)
-                if (achievement.Info == achievementInfo)
+            {
+                if (playerAchievements.EpicAchievements.TryGetValue(achievement.Info.Id, out var epicAchievement)
+                    && epicAchievement == achievement.Info)
+                {
                     listToFill.Add(achievement);
+                    continue;
+                }
+
+                foreach (var commonAchievement in playerAchievements.CommonAchievements)
+                    if (commonAchievement == achievement.Info)
+                        listToFill.Add(achievement);
+            }
         }
     }
 }
