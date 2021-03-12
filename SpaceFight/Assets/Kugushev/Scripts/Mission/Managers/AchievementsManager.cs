@@ -4,6 +4,7 @@ using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
@@ -14,17 +15,20 @@ namespace Kugushev.Scripts.Mission.Managers
     {
         [SerializeField] private MissionEventsCollector eventsCollector;
         [SerializeField] private AbstractAchievement[] achievements;
+        [SerializeField] private MissionModelProvider modelProvider;
 
         public void FindAchieved(List<AbstractAchievement> listToFill, Faction playerFaction,
             PlayerAchievements playerAchievements)
         {
+            modelProvider.TryGetModel(out var model);
+
             foreach (var achievement in achievements)
             {
                 if (!IsAllowedToCheck(playerAchievements, achievement))
                     continue;
 
 
-                if (achievement.Check(eventsCollector.Events, playerFaction))
+                if (achievement.Check(eventsCollector, playerFaction, model))
                     listToFill.Add(achievement);
             }
         }

@@ -16,7 +16,6 @@ namespace Kugushev.Scripts.Mission.ValueObjects
         }
 
         public float SiegeMultiplier => siegeMultiplier;
-
         public float FightMultiplier => fightMultiplier;
     }
 }

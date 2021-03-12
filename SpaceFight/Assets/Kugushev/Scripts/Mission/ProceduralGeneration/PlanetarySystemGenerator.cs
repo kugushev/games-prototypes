@@ -6,6 +6,7 @@ using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
+using Kugushev.Scripts.Mission.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,13 +26,13 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         [SerializeField] private int maxPlanets = 6;
         [SerializeField] private PlanetRule[] planetRules;
 
-        public PlanetarySystem CreatePlanetarySystem(int seed)
+        public PlanetarySystem CreatePlanetarySystem(int seed, PlanetarySystemProperties planetarySystemProperties)
         {
             Random.InitState(seed);
 
             var sun = CreateSun();
             var result = objectsPool.GetObject<PlanetarySystem, PlanetarySystem.State>(new PlanetarySystem.State(sun));
-            AddPlanets(result, sun);
+            AddPlanets(result, sun, planetarySystemProperties);
             return result;
         }
 
@@ -41,7 +42,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             return new Sun(new Position(center), radius);
         }
 
-        private void AddPlanets(PlanetarySystem planetarySystem, Sun sun)
+        private void AddPlanets(PlanetarySystem planetarySystem, Sun sun,
+            PlanetarySystemProperties planetarySystemProperties)
         {
             int planetsCount = Random.Range(minPlanets, maxPlanets);
 
@@ -59,8 +61,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
                 int production = Random.Range(rule.MinProduction, rule.MaxProduction);
 
-                var planet = objectsPool.GetObject<Planet, Planet.State>(
-                    new Planet.State(faction, rule.Size, production, orbit, sun, eventsCollector));
+                var planet = objectsPool.GetObject<Planet, Planet.State>(new Planet.State(
+                    faction, rule.Size, production, orbit, sun, eventsCollector, planetarySystemProperties));
 
                 planetarySystem.AddPlanet(planet);
             }

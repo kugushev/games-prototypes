@@ -37,6 +37,9 @@ namespace Kugushev.Scripts.Tests
             yield return RunExecutionWithSeed(42);
             var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
 
+            foreach (var achievement in allAchievements)
+                Debug.Log(achievement);
+
             Assert.That(allAchievements,
                 Has.Exactly(1).Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Invader));
         }
@@ -47,12 +50,12 @@ namespace Kugushev.Scripts.Tests
             Debug.Log($"Start test {caller}");
 
             SingletonState.Instance.Reset();
-            
+
             BaseExecutionTestingManager.Seed = seed;
             SceneManager.LoadScene("MissionExecutionAndDebriefingTestingManagementScene");
-            
+
             // we need to wait for the mission finished to init BaseExecutionTestingManager.MissionModel.DebriefingSummary
-            yield return new WaitUntil(() => SingletonState.Instance.Entered); 
+            yield return new WaitUntil(() => SingletonState.Instance.Entered);
             yield return new WaitUntil(() => BaseExecutionTestingManager.MissionModel.DebriefingSummary != null);
         }
     }

@@ -7,6 +7,8 @@ using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Utils;
+using Kugushev.Scripts.Mission.ValueObjects;
+using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -18,7 +20,7 @@ namespace Kugushev.Scripts.Mission.Models
         public struct State
         {
             public State(Faction faction, PlanetSize size, int production, Orbit orbit, Sun sun,
-                MissionEventsCollector eventsCollector)
+                MissionEventsCollector eventsCollector, PlanetarySystemProperties planetarySystemProperties)
             {
                 this.faction = faction;
                 this.size = size;
@@ -26,6 +28,7 @@ namespace Kugushev.Scripts.Mission.Models
                 this.orbit = orbit;
                 this.sun = sun;
                 EventsCollector = eventsCollector;
+                PlanetarySystemProperties = planetarySystemProperties;
                 power = 0;
                 selected = false;
                 dayOfYear = 0;
@@ -42,6 +45,7 @@ namespace Kugushev.Scripts.Mission.Models
             public int dayOfYear;
             public Position position;
             public readonly MissionEventsCollector EventsCollector;
+            public readonly PlanetarySystemProperties PlanetarySystemProperties;
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)
@@ -79,8 +83,24 @@ namespace Kugushev.Scripts.Mission.Models
             if (Faction == Faction.Neutral && ObjectState.power >= GameplayConstants.NeutralPlanetMaxPower)
                 return UniTask.CompletedTask;
 
-            ObjectState.power += ObjectState.production;
+            ObjectState.power += CalculateProductionIncrement();
             return UniTask.CompletedTask;
+        }
+
+        private float CalculateProductionIncrement()
+        {
+            var properties = ObjectState.PlanetarySystemProperties;
+            if (Faction == properties.ApplyToFaction && properties.LowProductionCap != null)
+            {
+                if (properties.LowProductionMultiplier != null && ObjectState.power <= properties.LowProductionCap)
+                    return ObjectState.production * properties.LowProductionMultiplier.Value;
+
+                if (properties.AboveLowProductionMultiplier != null &&
+                    ObjectState.power > properties.LowProductionCap)
+                    return ObjectState.production * properties.AboveLowProductionMultiplier.Value;
+            }
+
+            return ObjectState.production;
         }
 
         public int Recruit(Percentage powerToRecruit)
@@ -110,7 +130,8 @@ namespace Kugushev.Scripts.Mission.Models
                 ObjectState.power *= -1;
                 ObjectState.faction = enemyFaction;
 
-                ObjectState.EventsCollector.PlanetCaptured(enemyFaction, previousOwner, ObjectState.power);
+                ObjectState.EventsCollector.PlanetCaptured.Add(
+                    new PlanetCaptured(enemyFaction, previousOwner, ObjectState.power));
 
                 return FightRoundResult.Defeated;
             }

@@ -34,7 +34,8 @@ namespace Kugushev.Scripts.Tests.Setup.Abstractions
         protected override MissionModel InitRootModel()
         {
             var missionInfo = new MissionInfo(Seed, new PlayerAchievements());
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.Seed);
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.Seed,
+                new PlanetarySystemProperties());
             var green = new ConflictParty(Faction.Green, greenFleet, greenAi);
             var red = new ConflictParty(Faction.Red, redFleet, redAi);
 

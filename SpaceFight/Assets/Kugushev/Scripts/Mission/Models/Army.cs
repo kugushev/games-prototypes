@@ -9,6 +9,7 @@ using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
+using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -34,7 +35,7 @@ namespace Kugushev.Scripts.Mission.Models
             public readonly MissionEventsCollector EventsCollector;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, int power,
-                FleetProperties fleetProperties, MissionEventsCollector eventsCollector)
+                in FleetProperties fleetProperties, MissionEventsCollector eventsCollector)
             {
                 this.order = order;
                 this.speed = speed;
@@ -234,8 +235,9 @@ namespace Kugushev.Scripts.Mission.Models
 
                         if (enemyIsDefeated)
                         {
-                            ObjectState.EventsCollector.ArmyDestroyedInFight(ObjectState.faction, targetArmy.Faction,
-                                ObjectState.power);
+                            ObjectState.EventsCollector.ArmyDestroyedInFight.Add(
+                                new ArmyDestroyedInFight(ObjectState.faction, targetArmy.Faction, ObjectState.power));
+
                             _targetsToRemoveBuffer.Add(targetArmy);
                         }
                     }

@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Utils;
+using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.AI.Tactical;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
@@ -37,8 +40,9 @@ namespace Kugushev.Scripts.Mission
         private PlanetarySystemGenerator planetarySystemGenerator;
 
         [Header("Mission Related Assets")] [SerializeField]
-        private MissionEventsCollector eventsCollector;
+        private Faction playerFaction = Faction.Green;
 
+        [SerializeField] private MissionEventsCollector eventsCollector;
         [SerializeField] private AchievementsManager achievementsManager;
 
         [SerializeField] private PlayerCommander playerCommander;
@@ -46,21 +50,52 @@ namespace Kugushev.Scripts.Mission
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
+        private readonly List<AbstractAchievement> _achievementBuffer = new List<AbstractAchievement>(128);
 
         protected override MissionModel InitRootModel()
         {
             var missionInfo = missionSceneParametersPipeline.Get();
 
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.Seed);
+            var (planetarySystemProperties, fleetProperties) = GetPlayerProperties(missionInfo);
+
+            switch (playerFaction)
+            {
+                case Faction.Green:
+                    greenFleet.SetFleetProperties(fleetProperties);
+                    break;
+                case Faction.Red:
+                    redFleet.SetFleetProperties(fleetProperties);
+                    break;
+            }
+
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(
+                missionInfo.Seed, planetarySystemProperties);
+
             var green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
             var red = new ConflictParty(Faction.Red, redFleet, enemyAi);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(
-                new MissionModel.State(missionInfo, planetarySystem, green, red, Faction.Green));
-
+                new MissionModel.State(missionInfo, planetarySystem, green, red, playerFaction));
             modelProvider.Set(model);
 
             return model;
+        }
+
+        private (PlanetarySystemProperties, FleetProperties) GetPlayerProperties(MissionInfo info)
+        {
+            _achievementBuffer.Clear();
+            achievementsManager.FindMatched(_achievementBuffer, info.PlayerAchievements);
+
+            var planetarySystemBuilder = new PlanetarySystemPropertiesBuilder();
+            var fleetBuilder = new FleetPropertiesBuilder();
+            foreach (var achievement in _achievementBuffer)
+                achievement.Apply(ref fleetBuilder, ref planetarySystemBuilder);
+
+            _achievementBuffer.Clear();
+
+            var planetarySystemProperties = new PlanetarySystemProperties(playerFaction, planetarySystemBuilder);
+            var fleetProperties = new FleetProperties(fleetBuilder);
+            return (planetarySystemProperties, fleetProperties);
         }
 
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
@@ -110,6 +145,8 @@ namespace Kugushev.Scripts.Mission
             eventsCollector.Cleanup();
             modelProvider.Cleanup();
             RootModel.Dispose();
+            greenFleet.ClearFleetProperties();
+            redFleet.ClearFleetProperties();
         }
     }
 }

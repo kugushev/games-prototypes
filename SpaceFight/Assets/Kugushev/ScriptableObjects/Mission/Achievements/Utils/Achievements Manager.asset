@@ -16,3 +16,7 @@ MonoBehaviour:
   achievements:
   - {fileID: 11400000, guid: 03d7476e65799ad4d82cb4738c6eb8b6, type: 2}
   - {fileID: 11400000, guid: 879cfd205b804324f833f988b76a778a, type: 2}
+  - {fileID: 11400000, guid: 29ef8bc906f4f2149840dbbcf52d0858, type: 2}
+  - {fileID: 11400000, guid: aa500e99be2ce8341a055c601d821551, type: 2}
+  - {fileID: 11400000, guid: aff7345905fd7a04ab1a1b08fbe29891, type: 2}
+  modelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}

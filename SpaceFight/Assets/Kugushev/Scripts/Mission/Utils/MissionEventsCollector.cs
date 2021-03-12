@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.ValueObjects;
+using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Utils
@@ -10,16 +8,16 @@ namespace Kugushev.Scripts.Mission.Utils
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(MissionEventsCollector))]
     public class MissionEventsCollector : ScriptableObject
     {
-        [NonSerialized] private readonly List<MissionEvent> _events = new List<MissionEvent>(512);
+        private const int Capacity = 128;
 
-        public IReadOnlyList<MissionEvent> Events => _events;
+        public List<PlanetCaptured> PlanetCaptured { get; } = new List<PlanetCaptured>(Capacity);
+        public List<ArmyDestroyedInFight> ArmyDestroyedInFight { get; } = new List<ArmyDestroyedInFight>(Capacity);
+        public List<ArmySent> ArmySent { get; } = new List<ArmySent>(Capacity);
 
-        public void Cleanup() => _events.Clear();
-
-        public void PlanetCaptured(Faction newOwner, Faction previousOwner, float overpower) =>
-            _events.Add(new MissionEvent(MissionEventType.PlanetCaptured, newOwner, previousOwner, overpower));
-
-        public void ArmyDestroyedInFight(Faction destroyer, Faction victim, float overpower) =>
-            _events.Add(new MissionEvent(MissionEventType.ArmyDestroyedInFight, destroyer, victim, overpower));
+        public void Cleanup()
+        {
+            PlanetCaptured.Clear();
+            ArmyDestroyedInFight.Clear();
+        }
     }
 }

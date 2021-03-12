@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Interfaces;
+using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
 using UnityEngine;
 
@@ -15,8 +18,10 @@ namespace Kugushev.Scripts.Mission.Achievements.Abstractions
 
         public abstract AchievementInfo Info { get; }
 
-        public abstract bool Check(IReadOnlyList<MissionEvent> missionEvents, Faction faction);
+        public abstract bool Check(MissionEventsCollector missionEvents, Faction faction,
+            [CanBeNull] MissionModel model);
 
-        public abstract void Apply(ref FleetPropertiesBuilder fleetProperties);
+        public abstract void Apply(ref FleetPropertiesBuilder fleetProperties,
+            ref PlanetarySystemPropertiesBuilder planetarySystemProperties);
     }
 }

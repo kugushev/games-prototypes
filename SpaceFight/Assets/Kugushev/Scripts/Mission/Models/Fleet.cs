@@ -7,6 +7,7 @@ using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
+using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -21,11 +22,12 @@ namespace Kugushev.Scripts.Mission.Models
         [SerializeField] private float armySpeed = 0.2f;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;
-
-        private readonly List<AbstractAchievement> _achievementBuffer = new List<AbstractAchievement>(128);
+        private FleetProperties _fleetProperties;
 
         public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
 
+        public void SetFleetProperties(FleetProperties fleetProperties) => _fleetProperties = fleetProperties;
+        public void ClearFleetProperties() => _fleetProperties = default;
 
         public void CommitOrder(Order order, Planet target)
         {
@@ -34,34 +36,16 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 var power = order.SourcePlanet.Recruit(order.Power);
                 var army = pool.GetObject<Army, Army.State>(
-                    new Army.State(order, armySpeed, armyAngularSpeed, faction, power, CreateFleetProperties(),
+                    new Army.State(order, armySpeed, armyAngularSpeed, faction, power, in _fleetProperties,
                         eventsCollector));
                 ArmiesToSent.Enqueue(army);
+                eventsCollector.ArmySent.Add(new ArmySent(faction, power, order.SourcePlanet.Power));
             }
             else
             {
                 Debug.LogWarning("Planet power is zero");
                 order.Dispose();
             }
-        }
-
-        private FleetProperties CreateFleetProperties()
-        {
-            if (modelProvider.TryGetModel(out var missionModel) && faction == missionModel.PlayerFaction)
-            {
-                _achievementBuffer.Clear();
-                achievementsManager.FindMatched(_achievementBuffer, missionModel.Info.PlayerAchievements);
-
-                var builder = new FleetPropertiesBuilder();
-                foreach (var achievement in _achievementBuffer)
-                    achievement.Apply(ref builder);
-
-                _achievementBuffer.Clear();
-
-                return new FleetProperties(builder);
-            }
-
-            return new FleetProperties();
         }
 
         public void Dispose()

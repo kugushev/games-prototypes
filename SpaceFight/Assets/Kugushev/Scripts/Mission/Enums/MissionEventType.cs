@@ -4,6 +4,7 @@
     {
         Unspecified,
         PlanetCaptured,
-        ArmyDestroyedInFight
+        ArmyDestroyedInFight,
+        ArmySent
     }
 }

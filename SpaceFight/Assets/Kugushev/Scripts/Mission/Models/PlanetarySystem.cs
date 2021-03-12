@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Mission.ValueObjects;
 
 namespace Kugushev.Scripts.Mission.Models
 {
@@ -38,7 +39,7 @@ namespace Kugushev.Scripts.Mission.Models
 
         public void SetDayOfYear(int dayOfYear)
         {
-            foreach (var planet in _planets) 
+            foreach (var planet in _planets)
                 planet.DayOfYear = dayOfYear;
         }
     }

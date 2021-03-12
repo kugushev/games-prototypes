@@ -2,11 +2,13 @@
 {
     public enum AchievementId
     {
-        Unspecified = 0,
+        Unspecified,
+
         // Common achievements
-        Invader = 1,
-        Brawler = 2
+        Invader,
+        Brawler,
+
         // Epic achievements
-        
+        Startup
     }
 }
