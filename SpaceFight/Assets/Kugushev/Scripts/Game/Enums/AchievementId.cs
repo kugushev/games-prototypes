@@ -9,6 +9,7 @@
         Brawler,
 
         // Epic achievements
-        Startup
+        Startup,
+        Moska
     }
 }

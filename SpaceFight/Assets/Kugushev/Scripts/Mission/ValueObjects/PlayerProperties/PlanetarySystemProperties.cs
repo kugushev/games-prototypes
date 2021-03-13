@@ -2,7 +2,7 @@
 using Kugushev.Scripts.Mission.Enums;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Mission.ValueObjects
+namespace Kugushev.Scripts.Mission.ValueObjects.PlayerProperties
 {
     [Serializable]
     public struct PlanetarySystemProperties

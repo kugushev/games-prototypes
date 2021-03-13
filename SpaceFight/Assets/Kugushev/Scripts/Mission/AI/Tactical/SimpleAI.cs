@@ -21,8 +21,9 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
         [SerializeField] private Pathfinder pathfinder;
         [SerializeField] private int neighboursCount = 2;
         [SerializeField] private int minPowerToAct = 15;
+        [SerializeField] private float recruitment = 0.75f;
+        [SerializeField] private float forceRecruitCap = GameplayConstants.SoftCapArmyPower;
         private const float ArmyRadius = 5f * 0.02f;
-        private static readonly Percentage DefaultRecruitment = new Percentage(0.75f);
 
         private readonly TempState _state = new TempState();
 
@@ -33,6 +34,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
             public readonly List<Planet> NeighboursPlanetsBuffer = new List<Planet>(16);
             public readonly PlanetsDistanceComparer PlanetsDistanceComparer = new PlanetsDistanceComparer();
         }
+
+        private Percentage DefaultRecruitment => new Percentage(recruitment);
 
         #region ICommander
 
@@ -87,7 +90,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
                     SendFleet(planet, weakestVictim);
                 }
-                else if (planet.Power * DefaultRecruitment.Amount >= GameplayConstants.SoftCapArmyPower)
+                else if (planet.Power * DefaultRecruitment.Amount >= forceRecruitCap)
                 {
                     SendFleet(planet, weakestVictim);
                 }

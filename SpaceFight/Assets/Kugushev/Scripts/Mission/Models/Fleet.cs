@@ -4,8 +4,8 @@ using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
+using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models

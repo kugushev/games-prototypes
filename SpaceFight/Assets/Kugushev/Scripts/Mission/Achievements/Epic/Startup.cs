@@ -5,7 +5,7 @@ using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects;
+using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Achievements.Epic
@@ -35,7 +35,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
                 Debug.LogError("Model is null");
 
             foreach (var missionEvent in missionEvents.ArmySent)
-                if (missionEvent.RemainingPower > maxPower)
+                if (missionEvent.Owner == faction && missionEvent.RemainingPower > maxPower)
                     return false;
 
             return true;

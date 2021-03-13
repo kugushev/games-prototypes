@@ -8,8 +8,8 @@ using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
+using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -186,14 +186,14 @@ namespace Kugushev.Scripts.Mission.Models
                     // execute fight
                     float damage = GameplayConstants.UnifiedDamage;
 
-                    if (ObjectState.fleetProperties.SiegeMultiplier > 0)
-                        damage *= ObjectState.fleetProperties.SiegeMultiplier;
+                    if (ObjectState.fleetProperties.SiegeMultiplier != null)
+                        damage *= ObjectState.fleetProperties.SiegeMultiplier.Value;
 
                     var result = target.SufferFightRound(Faction, damage);
                     captured = result == FightRoundResult.Defeated;
 
                     if (!captured)
-                        SufferFightRound(target.Faction);
+                        ExecuteSuffer(target.Faction);
                 }
                 else
                     captured = true;
@@ -259,8 +259,16 @@ namespace Kugushev.Scripts.Mission.Models
 
                 float damage = GameplayConstants.UnifiedDamage;
 
-                if (ObjectState.fleetProperties.FightMultiplier > 0)
-                    damage *= ObjectState.fleetProperties.FightMultiplier;
+                var fleetProperties = ObjectState.fleetProperties;
+
+                if (fleetProperties.FightMultiplier != null)
+                    damage *= fleetProperties.FightMultiplier.Value;
+
+                var multiplier = fleetProperties.FightDamageMultiplication.GetEffect(Power);
+                if (multiplier != null)
+                    damage *= multiplier.Value.Amount;
+
+                // todo: support all gradated effect
 
                 var result = targetArmy.SufferFightRound(Faction, damage);
                 return result == FightRoundResult.Defeated;
@@ -276,6 +284,15 @@ namespace Kugushev.Scripts.Mission.Models
         #region IFighter
 
         public FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
+        {
+            var protection = ObjectState.fleetProperties.FightProtectionMultiplication.GetEffect(Power);
+            if (protection != null)
+                damage *= protection.Value.Amount;
+
+            return ExecuteSuffer(enemyFaction, damage);
+        }
+
+        private FightRoundResult ExecuteSuffer(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
         {
             if (enemyFaction == Faction)
             {

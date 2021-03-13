@@ -42,10 +42,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
                 var planetarySystem = missionModel.PlanetarySystem;
                 foreach (var planet in planetarySystem.Planets)
                 {
-                    if (planet.Faction == _agentFaction)
-                    {
+                    if (planet.Faction == _agentFaction && planet.Power > 0)
                         Act(planet, planetarySystem);
-                    }
                 }
             }
         }
@@ -64,7 +62,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
             // go to target
             pathfinder.FindPath(sun.Position, to.Position, ArmyRadius, (p, o) => o.RegisterMovement(p.Point), order);
-            
+
             _fleet.CommitOrder(order, to);
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kugushev.Scripts.Mission.ValueObjects
+namespace Kugushev.Scripts.Mission.ValueObjects.PlayerProperties
 {
     [Serializable]
     public struct PlanetarySystemPropertiesBuilder

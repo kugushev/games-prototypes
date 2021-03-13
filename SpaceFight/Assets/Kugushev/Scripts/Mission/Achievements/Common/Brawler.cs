@@ -4,7 +4,7 @@ using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects;
+using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Achievements.Common
@@ -28,7 +28,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Common
         public override void Apply(ref FleetPropertiesBuilder fleetProperties,
             ref PlanetarySystemPropertiesBuilder planetarySystemProperties)
         {
-            fleetProperties.FightMultiplier += 0.1f;
+            fleetProperties.FightDamageMultiplier += 0.1f;
         }
     }
 }

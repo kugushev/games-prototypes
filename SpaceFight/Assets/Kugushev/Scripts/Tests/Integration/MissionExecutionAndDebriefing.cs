@@ -33,7 +33,7 @@ namespace Kugushev.Scripts.Tests.Integration
         }
 
         [UnityTest]
-        public IEnumerator Fight_3PlanetsFight_NoAchievements_AchieveStartupLvl2()
+        public IEnumerator Fight_3PlanetsFight_NoAchievements_AchieveStartupAndMoskaLvl1()
         {
             yield return RunExecutionWithSeed(42, new (AchievementId, int level, AchievementType)[0]);
 
@@ -46,14 +46,18 @@ namespace Kugushev.Scripts.Tests.Integration
 
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 1));
+            
+            Assert.That(allAchievements, Has.Exactly(1)
+                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Moska && a.Info.Level == 1));
         }
 
         [UnityTest]
-        public IEnumerator Fight_3PlanetsFight_HasStartupLvl1Achievement_AchieveStartupLvl2()
+        public IEnumerator Fight_3PlanetsFight_HasStartupAndMoskaLvl1Achievement_AchieveStartupAndMoskaLvl2()
         {
             yield return RunExecutionWithSeed(42, new[]
             {
-                (AchievementId.Startup, 1, AchievementType.Epic)
+                (AchievementId.Startup, 1, AchievementType.Epic),
+                (AchievementId.Moska, 1, AchievementType.Epic)
             });
 
             LogAllAchievements();
@@ -62,14 +66,17 @@ namespace Kugushev.Scripts.Tests.Integration
             var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 2));
+            Assert.That(allAchievements, Has.Exactly(1)
+                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 2));
         }
         
         [UnityTest]
-        public IEnumerator Fight_3PlanetsFight_HasStartupLvl2Achievement_AchieveStartupLvl3()
+        public IEnumerator Fight_3PlanetsFight_HasStartupAndMoskaLvl2Achievement_AchieveStartupAndMoskaLvl3()
         {
             yield return RunExecutionWithSeed(42, new[]
             {
-                (AchievementId.Startup, 2, AchievementType.Epic)
+                (AchievementId.Startup, 2, AchievementType.Epic),
+                (AchievementId.Moska, 2, AchievementType.Epic)
             });
 
             LogAllAchievements();

@@ -16,12 +16,6 @@ namespace Kugushev.Scripts.Common.ValueObjects
                     Debug.LogError($"Unexpected percentage {_amount}");
                     return 0f;
                 }
-
-                if (_amount > 1f)
-                {
-                    Debug.LogError($"Unexpected percentage {_amount}");
-                    return 1f;                    
-                }
                 return _amount;
             }
         }
