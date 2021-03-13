@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.StatesAndTransitions;
 using Kugushev.Scripts.Campaign.Utils;

@@ -2,7 +2,7 @@
 
 namespace Kugushev.Scripts.Common.Utils
 {
-    public abstract class ModelProvider<TModel, TManager> : ScriptableObject
+    public abstract class ModelProvider<TModel> : ScriptableObject
         where TModel : class
     {
         [SerializeReference] private TModel model;

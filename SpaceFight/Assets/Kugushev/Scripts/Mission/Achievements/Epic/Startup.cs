@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
@@ -26,7 +24,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
             $"Increase production by {multiplier} if power is less than {maxPower}, decreased if more");
 
         public override bool Check(MissionEventsCollector missionEvents, Faction faction,
-            [CanBeNull] MissionModel model)
+            MissionModel model)
         {
             if (model != null)
             {

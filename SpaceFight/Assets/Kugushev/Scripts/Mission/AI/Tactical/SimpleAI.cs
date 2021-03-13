@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Interfaces;
-using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
@@ -15,7 +13,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.AI.Tactical
 {
-    [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Simple AI")]
+    [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(SimpleAI))]
     public class SimpleAI : ScriptableObject, IAIAgent, ICommander
     {
         [SerializeField] private MissionModelProvider missionModelProvider;
@@ -46,8 +44,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
         public void WithdrawFleet()
         {
-            _state.Fleet = null;
-            _state.AgentFaction = Faction.Unspecified;
+            _state.Fleet = default;
+            _state.AgentFaction = default;
         }
 
         #endregion
@@ -74,7 +72,6 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
         private void Act(Planet planet, PlanetarySystem planetarySystem)
         {
-            // todo: cache path
             FillWithNearestPlanets(planet, planetarySystem, neighboursCount, _state.NeighboursPlanetsBuffer,
                 _state.PlanetsDistanceComparer);
 

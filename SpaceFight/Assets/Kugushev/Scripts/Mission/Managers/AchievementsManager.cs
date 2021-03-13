@@ -4,7 +4,6 @@ using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Mission.Utils
 {
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(MissionModelProvider))]
-    public class MissionModelProvider : ModelProvider<MissionModel, MissionManager>
+    public class MissionModelProvider : ModelProvider<MissionModel>
     {
     }
 }

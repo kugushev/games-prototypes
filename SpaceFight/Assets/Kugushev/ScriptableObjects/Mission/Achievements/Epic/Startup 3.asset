@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Startup 3
   m_EditorClassIdentifier: 
   level: 3
-  maxPower: 10
+  maxPower: 15
   multiplier: 4

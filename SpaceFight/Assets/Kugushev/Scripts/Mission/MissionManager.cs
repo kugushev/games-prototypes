@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Utils;
-using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.AI.Tactical;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Player;
 using Kugushev.Scripts.Mission.ProceduralGeneration;
+using Kugushev.Scripts.Mission.Services;
 using Kugushev.Scripts.Mission.StatesAndTransitions;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
@@ -42,6 +40,7 @@ namespace Kugushev.Scripts.Mission
         [Header("Mission Related Assets")] [SerializeField]
         private Faction playerFaction = Faction.Green;
 
+        [SerializeField] private PlayerPropertiesService playerPropertiesService;
         [SerializeField] private MissionEventsCollector eventsCollector;
         [SerializeField] private AchievementsManager achievementsManager;
 
@@ -50,13 +49,13 @@ namespace Kugushev.Scripts.Mission
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
-        private readonly List<AbstractAchievement> _achievementBuffer = new List<AbstractAchievement>(128);
 
         protected override MissionModel InitRootModel()
         {
             var missionInfo = missionSceneParametersPipeline.Get();
 
-            var (planetarySystemProperties, fleetProperties) = GetPlayerProperties(missionInfo);
+            var (planetarySystemProperties, fleetProperties) =
+                playerPropertiesService.GetPlayerProperties(playerFaction, missionInfo);
 
             switch (playerFaction)
             {
@@ -79,23 +78,6 @@ namespace Kugushev.Scripts.Mission
             modelProvider.Set(model);
 
             return model;
-        }
-
-        private (PlanetarySystemProperties, FleetProperties) GetPlayerProperties(MissionInfo info)
-        {
-            _achievementBuffer.Clear();
-            achievementsManager.FindMatched(_achievementBuffer, info.PlayerAchievements);
-
-            var planetarySystemBuilder = new PlanetarySystemPropertiesBuilder();
-            var fleetBuilder = new FleetPropertiesBuilder();
-            foreach (var achievement in _achievementBuffer)
-                achievement.Apply(ref fleetBuilder, ref planetarySystemBuilder);
-
-            _achievementBuffer.Clear();
-
-            var planetarySystemProperties = new PlanetarySystemProperties(playerFaction, planetarySystemBuilder);
-            var fleetProperties = new FleetProperties(fleetBuilder);
-            return (planetarySystemProperties, fleetProperties);
         }
 
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(

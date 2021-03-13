@@ -60,8 +60,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionEventsCollector.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\AbstractAchievement.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\PlanetarySystemPropertiesBuilder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Tools\PlanetsDistanceComparer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Player\OrdersManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmySent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedInFight.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Invader.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetRule.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ExecutionResult.cs" />
@@ -74,8 +77,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetarySystemGenerator.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\PlanetarySystem.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Player\PlayerCommander.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\PlanetarySystemProperties.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\MissionModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Pathfinder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\PlanetCaptured.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ToDebriefingTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\ExecutionState.cs" />
@@ -92,15 +97,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\PlanetSize.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Startup.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Startup.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\PlanetCaptured.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedInFight.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmySent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\PlanetarySystemProperties.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\PlanetarySystemPropertiesBuilder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Services\PlayerPropertiesService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Tactical\SuicideAI.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

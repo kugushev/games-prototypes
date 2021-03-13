@@ -1,5 +1,4 @@
 ﻿using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Interfaces;
 
 namespace Kugushev.Scripts.Mission.ValueObjects.MissionEvents
 {

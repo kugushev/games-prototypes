@@ -1,5 +1,4 @@
-﻿using System;
-using Kugushev.Scripts.Mission.Enums;
+﻿using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models;
 

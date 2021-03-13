@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Mission.Models
         [Serializable]
         public struct State
         {
-            public State(Faction faction, PlanetSize size, int production, Orbit orbit, Sun sun,
+            public State(Faction faction, PlanetSize size, float production, Orbit orbit, Sun sun,
                 MissionEventsCollector eventsCollector, PlanetarySystemProperties planetarySystemProperties)
             {
                 this.faction = faction;
@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Mission.Models
 
             public Faction faction;
             public PlanetSize size;
-            public int production;
+            public float production;
             public Orbit orbit;
             public Sun sun;
             public float power;

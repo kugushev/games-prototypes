@@ -64,32 +64,32 @@ namespace Kugushev.Scripts.MissionPresentation.Components
             if (model == null)
                 return;
 
-            ApplyTransformChanges();
+            ApplyTransformChanges(model);
 
             powerText.text = StringBag.FromInt(Mathf.CeilToInt(model.Power));
 
-            ApplyFight();
-            ApplySiege();
+            ApplyFight(model);
+            ApplySiege(model);
 
             if (model.Disbanded)
                 _fleet.ReturnArmyToPool(this);
         }
 
 
-        private void ApplyTransformChanges()
+        private void ApplyTransformChanges(Army model)
         {
             var t = transform;
 
-            t.position = Army.Position.Point;
-            t.rotation = Army.Rotation;
-            mesh.localScale = GetAdjustedScale();
+            t.position = model.Position.Point;
+            t.rotation = model.Rotation;
+            mesh.localScale = GetAdjustedScale(model);
         }
 
-        private void ApplyFight()
+        private void ApplyFight(Army model)
         {
-            if (Army.Status == ArmyStatus.Fighting)
+            if (model.Status == ArmyStatus.Fighting)
             {
-                var targetsEnumerator = Army.TargetsUnderFire.GetEnumerator();
+                using var targetsEnumerator = model.TargetsUnderFire.GetEnumerator();
                 foreach (var cannon in fightCannons)
                 {
                     bool hasTarget = targetsEnumerator.MoveNext();
@@ -130,14 +130,14 @@ namespace Kugushev.Scripts.MissionPresentation.Components
             }
         }
 
-        private void ApplySiege()
+        private void ApplySiege(Army model)
         {
-            if (Army.Status == ArmyStatus.OnSiege)
+            if (model.Status == ArmyStatus.OnSiege)
             {
                 if (!siegeCannon.isPlaying)
                     siegeCannon.Play();
 
-                var target = Army.TargetsUnderFire.FirstOrDefault();
+                var target = model.TargetsUnderFire.FirstOrDefault();
                 if (target != null)
                     siegeCannon.transform.LookAt(target.Position.Point);
             }
@@ -145,9 +145,9 @@ namespace Kugushev.Scripts.MissionPresentation.Components
                 siegeCannon.Stop();
         }
 
-        private Vector3 GetAdjustedScale()
+        private Vector3 GetAdjustedScale(Army model)
         {
-            var relativePower = (float) Army.Power / GameplayConstants.SoftCapArmyPower;
+            var relativePower = model.Power / GameplayConstants.SoftCapArmyPower;
             var scale = Mathf.Lerp(minScale, maxScale, relativePower);
             return new Vector3(scale, scale, scale);
         }

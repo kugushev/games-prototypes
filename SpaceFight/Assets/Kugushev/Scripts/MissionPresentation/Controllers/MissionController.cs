@@ -37,6 +37,8 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 
                 yield return _productionTimeout;
             }
+
+            // ReSharper disable once IteratorNeverReturns
         }
     }
 }

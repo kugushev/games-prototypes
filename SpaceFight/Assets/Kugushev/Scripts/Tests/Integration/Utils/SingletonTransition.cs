@@ -1,6 +1,6 @@
 ﻿using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 
-namespace Kugushev.Scripts.Tests.Utils
+namespace Kugushev.Scripts.Tests.Integration.Utils
 {
     public class SingletonTransition : ITransition
     {

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: befb80c91d394b4c9ee9eda20bab43bd, type: 3}
+  m_Name: Suicide AI (Red)
+  m_EditorClassIdentifier: 
+  missionModelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
+  pathfinder: {fileID: 11400000, guid: a9c7fbb9e5889dd4d870d4bcf37e6e52, type: 2}
+  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}

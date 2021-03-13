@@ -1,7 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 
-namespace Kugushev.Scripts.Tests.Utils
+namespace Kugushev.Scripts.Tests.Integration.Utils
 {
     public class SingletonState: IState
     {

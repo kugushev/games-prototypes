@@ -58,7 +58,6 @@
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\OrdersPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Components\ArmyPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Common\AnimatorParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\FlatModeController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Common\Utils\CameraFacingUI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\PresentationModels\OrdersPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\MissionPresentation\Controllers\AIController.cs" />

@@ -169,10 +169,12 @@ MonoBehaviour:
   objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   modelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
   planetarySystemGenerator: {fileID: 11400000, guid: 120e09c12db9c2841a0ac2a2e0cf0a85, type: 2}
+  playerFaction: 1
+  playerPropertiesService: {fileID: 11400000, guid: 37ba66ab1d594ad4a9ae6b82759b0703, type: 2}
   eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}
-  greenAi: {fileID: 11400000, guid: f4c174ac53180c846be9f8e1645e9278, type: 2}
-  redAi: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}
   greenFleet: {fileID: 11400000, guid: 610ef38f2dfd1284f9a9bb436330e682, type: 2}
   redFleet: {fileID: 11400000, guid: 93e61a212f79adc4783e4bb3b236593f, type: 2}
   achievementsManager: {fileID: 11400000, guid: 53c761ba89736a347b7f7ff5fce23584, type: 2}
   missionSceneResultPipeline: {fileID: 11400000, guid: 766e9d28f16963142878cb68ffefdc9a, type: 2}
+  suicideAI: {fileID: 11400000, guid: b1068c6fa182e0241abad80fae28fbb4, type: 2}
+  aggressiveAI: {fileID: 11400000, guid: d9a9a257044938243b7b5c347473b7f0, type: 2}

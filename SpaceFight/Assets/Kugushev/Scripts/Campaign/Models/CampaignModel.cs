@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 

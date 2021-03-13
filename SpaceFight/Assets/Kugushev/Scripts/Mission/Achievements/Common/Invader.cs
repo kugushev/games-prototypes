@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using Kugushev.Scripts.Game.Enums;
+﻿using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
@@ -20,7 +19,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Common
             "Invade to a planet", "Increased siege damage on 10%");
 
         public override bool Check(MissionEventsCollector missionEvents, Faction faction,
-            [CanBeNull] MissionModel model)
+            MissionModel model)
         {
             foreach (var missionEvent in  missionEvents.PlanetCaptured)
                 if (missionEvent.NewOwner == faction)

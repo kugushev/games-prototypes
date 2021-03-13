@@ -2,9 +2,7 @@
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
@@ -16,9 +14,7 @@ namespace Kugushev.Scripts.Mission.Models
     public class Fleet : ScriptableObject, IModel
     {
         [SerializeField] private ObjectsPool pool;
-        [SerializeField] private MissionModelProvider modelProvider;
         [SerializeField] private MissionEventsCollector eventsCollector;
-        [SerializeField] private AchievementsManager achievementsManager;
         [SerializeField] private float armySpeed = 0.2f;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;

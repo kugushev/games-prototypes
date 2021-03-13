@@ -2,7 +2,6 @@
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;

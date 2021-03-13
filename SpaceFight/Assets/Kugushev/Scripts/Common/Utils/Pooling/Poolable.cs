@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.CodeAnalysis;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Utils.Pooling
 {
+    [SuppressMessage("ReSharper", "Unity.RedundantSerializeFieldAttribute", Justification = "Used by inheritors")]
     public abstract class Poolable<TState> : IPoolable<TState>
         where TState : struct
     {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using UnityEngine;
@@ -52,6 +51,7 @@ namespace Kugushev.Scripts.Common.Manager
                 await _stateMachine.UpdateAsync(() => Time.deltaTime);
                 await UniTask.NextFrame();
             }
+            // ReSharper disable once FunctionNeverReturns
         }
     }
 }
