@@ -36,14 +36,14 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
         public override void Apply(ref FleetPropertiesBuilder fleetProperties,
             ref PlanetarySystemPropertiesBuilder planetarySystemProperties)
         {
-            var damage = fleetProperties.FightDamageMultiplication;
+            ref var damage = ref fleetProperties.FightDamageMultiplication;
             if (damage.Cap != null || damage.UnderCapEffect != null)
                 Debug.LogError($"Damage effect is already specified {damage.Cap} {damage.UnderCapEffect}");
 
             damage.Cap = powerCap;
             damage.UnderCapEffect = new Percentage(multiplication);
 
-            var protection = fleetProperties.FightProtectionMultiplication;
+            ref var protection = ref fleetProperties.FightProtectionMultiplication;
             if (protection.Cap != null || protection.UnderCapEffect != null)
                 Debug.LogError($"Protection effect is already specified {damage.Cap} {damage.UnderCapEffect}");
 

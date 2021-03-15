@@ -1,6 +1,5 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using ICSharpCode.NRefactory.PrettyPrinter;
 using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
@@ -104,15 +103,23 @@ namespace Kugushev.Scripts.Mission.Models
             return ObjectState.production;
         }
 
-        public int Recruit(Percentage powerToRecruit)
+        public bool TryRecruit(Percentage powerToRecruit, out int armyPower)
         {
             var powerToRecruitAbs = Mathf.FloorToInt(ObjectState.power * powerToRecruit.Amount);
 
             if (powerToRecruitAbs > GameplayConstants.SoftCapArmyPower)
                 powerToRecruitAbs = GameplayConstants.SoftCapArmyPower;
 
+            if (powerToRecruitAbs < 1)
+            {
+                armyPower = 0;
+                return false;
+            }
+
             ObjectState.power -= powerToRecruitAbs;
-            return powerToRecruitAbs;
+            
+            armyPower = powerToRecruitAbs;
+            return true;
         }
 
         public void Reinforce(Army army)

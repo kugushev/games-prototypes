@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Mission.Models
             public float angularSpeed;
             public Faction faction;
             public float power;
-            public FleetProperties fleetProperties;
+            public FleetProperties FleetProperties;
             public ArmyStatus status;
             public Vector3 currentPosition;
             public Quaternion currentRotation;
@@ -34,7 +34,7 @@ namespace Kugushev.Scripts.Mission.Models
             public float fightingTimeCollector;
             public readonly MissionEventsCollector EventsCollector;
 
-            public State(Order order, float speed, float angularSpeed, Faction faction, int power,
+            public State(Order order, float speed, float angularSpeed, Faction faction, float power,
                 in FleetProperties fleetProperties, MissionEventsCollector eventsCollector)
             {
                 this.order = order;
@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Mission.Models
                 this.angularSpeed = angularSpeed;
                 this.faction = faction;
                 this.power = power;
-                this.fleetProperties = fleetProperties;
+                FleetProperties = fleetProperties;
                 EventsCollector = eventsCollector;
                 status = ArmyStatus.Recruiting;
                 currentPosition = order.Path[0];
@@ -186,8 +186,8 @@ namespace Kugushev.Scripts.Mission.Models
                     // execute fight
                     float damage = GameplayConstants.UnifiedDamage;
 
-                    if (ObjectState.fleetProperties.SiegeMultiplier != null)
-                        damage *= ObjectState.fleetProperties.SiegeMultiplier.Value;
+                    if (ObjectState.FleetProperties.SiegeMultiplier != null)
+                        damage *= ObjectState.FleetProperties.SiegeMultiplier.Value;
 
                     var result = target.SufferFightRound(Faction, damage);
                     captured = result == FightRoundResult.Defeated;
@@ -259,7 +259,7 @@ namespace Kugushev.Scripts.Mission.Models
 
                 float damage = GameplayConstants.UnifiedDamage;
 
-                var fleetProperties = ObjectState.fleetProperties;
+                var fleetProperties = ObjectState.FleetProperties;
 
                 if (fleetProperties.FightMultiplier != null)
                     damage *= fleetProperties.FightMultiplier.Value;
@@ -285,7 +285,7 @@ namespace Kugushev.Scripts.Mission.Models
 
         public FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
         {
-            var protection = ObjectState.fleetProperties.FightProtectionMultiplication.GetEffect(Power);
+            var protection = ObjectState.FleetProperties.FightProtectionMultiplication.GetEffect(Power);
             if (protection != null)
                 damage *= protection.Value.Amount;
 
@@ -346,7 +346,7 @@ namespace Kugushev.Scripts.Mission.Models
             Disband();
         }
 
-        public void HandleArmyInteraction(Army otherPartyArmy)
+        public void HandleArmyInteraction(IFighter otherPartyArmy)
         {
             if (ObjectState.status != ArmyStatus.OnMatch && ObjectState.status != ArmyStatus.Fighting)
                 return;

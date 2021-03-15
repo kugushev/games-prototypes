@@ -26,13 +26,14 @@ namespace Kugushev.Scripts.Common.StatesAndTransitions
         {
             AssertModel();
             OnEnterBeforeLoadScene();
-            
+
             await SceneManager.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
             if (_setActive)
             {
                 var scene = SceneManager.GetSceneByName(_sceneName);
                 bool loaded = SceneManager.SetActiveScene(scene);
-                if (!loaded) Debug.LogError("Main Menu Scene isn't loaded");
+                if (!loaded)
+                    Debug.LogError("Main Menu Scene isn't loaded");
             }
         }
 

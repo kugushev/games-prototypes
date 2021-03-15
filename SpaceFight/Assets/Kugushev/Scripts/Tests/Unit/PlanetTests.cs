@@ -1,5 +1,6 @@
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
@@ -7,6 +8,7 @@ using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Services;
 using Kugushev.Scripts.Tests.Unit.Utils;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Tests.Unit
 {
@@ -65,21 +67,11 @@ namespace Kugushev.Scripts.Tests.Unit
         }
 
         private Planet CreateAllyPlanet(float production,
-            params (AchievementId, int level, AchievementType)[] achievements)
+            params (AchievementId, int? level, AchievementType)[] achievements)
         {
-            var service = AssetBundleHelper.LoadAsset<PlayerPropertiesService>("Test Player Properties Service");
+            var (planetarySystemProperties, _) = PlayerPropertiesHelper.GetPlayerProperties(achievements);
 
-            var achievementsModel = new PlayerAchievements();
-            foreach (var (achievementId, level, achievementType) in achievements)
-            {
-                achievementsModel.AddAchievement(
-                    new AchievementInfo(achievementId, level, achievementType, "", "", ""));
-            }
-
-            var (planetarySystemProperties, _) =
-                service.GetPlayerProperties(Faction.Green, new MissionInfo(default, achievementsModel));
-
-            var planet = new Planet(null);
+            var planet = new Planet(ScriptableObject.CreateInstance<ObjectsPool>());
 
             planet.SetState(new Planet.State(Faction.Green, default, production, default, default, default,
                 planetarySystemProperties));

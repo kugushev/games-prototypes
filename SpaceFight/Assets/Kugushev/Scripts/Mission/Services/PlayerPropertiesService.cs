@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Mission.Services
             var fleetBuilder = new FleetPropertiesBuilder();
             foreach (var achievement in _achievementBuffer)
                 achievement.Apply(ref fleetBuilder, ref planetarySystemBuilder);
-
+           
             _achievementBuffer.Clear();
 
             var planetarySystemProperties = new PlanetarySystemProperties(playerFaction, planetarySystemBuilder);

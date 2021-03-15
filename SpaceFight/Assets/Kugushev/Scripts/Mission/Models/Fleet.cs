@@ -28,12 +28,11 @@ namespace Kugushev.Scripts.Mission.Models
         public void CommitOrder(Order order, Planet target)
         {
             order.Commit(target);
-            if (order.SourcePlanet.Power > 0)
+            if (order.SourcePlanet.Power > 0 && order.SourcePlanet.TryRecruit(order.Power, out var power))
             {
-                var power = order.SourcePlanet.Recruit(order.Power);
-                var army = pool.GetObject<Army, Army.State>(
-                    new Army.State(order, armySpeed, armyAngularSpeed, faction, power, in _fleetProperties,
-                        eventsCollector));
+                var army = pool.GetObject<Army, Army.State>(new Army.State(
+                    order, armySpeed, armyAngularSpeed, faction, power, in _fleetProperties, eventsCollector));
+
                 ArmiesToSent.Enqueue(army);
                 eventsCollector.ArmySent.Add(new ArmySent(faction, power, order.SourcePlanet.Power));
             }
