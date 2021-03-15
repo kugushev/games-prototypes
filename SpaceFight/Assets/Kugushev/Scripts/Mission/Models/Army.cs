@@ -33,6 +33,7 @@ namespace Kugushev.Scripts.Mission.Models
             public float waypointRotationProgress;
             public float fightingTimeCollector;
             public readonly MissionEventsCollector EventsCollector;
+            public bool nearDeath;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, float power,
                 in FleetProperties fleetProperties, MissionEventsCollector eventsCollector)
@@ -50,6 +51,7 @@ namespace Kugushev.Scripts.Mission.Models
                 currentWaypoint = 0;
                 waypointRotationProgress = 0f;
                 fightingTimeCollector = 0f;
+                nearDeath = false;
             }
         }
 
@@ -75,7 +77,8 @@ namespace Kugushev.Scripts.Mission.Models
         public bool CanBeAttacked => ObjectState.status != ArmyStatus.Arriving &&
                                      ObjectState.status != ArmyStatus.Disbanded;
 
-        public IEnumerable<IFighter> TargetsUnderFire => _targets.Take(3);
+        public IEnumerable<IFighter> GetTargetsUnderFire(int targets = GameplayConstants.ArmyCannonsCount) =>
+            _targets.Take(targets);
 
         public void NextStep(float deltaTime)
         {
@@ -161,7 +164,7 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 ObjectState.fightingTimeCollector = 0f;
 
-                foreach (var target in TargetsUnderFire)
+                foreach (var target in GetTargetsUnderFire())
                     if (target is Planet targetPlanet)
                     {
                         bool captured = !target.CanBeAttacked;
@@ -202,7 +205,7 @@ namespace Kugushev.Scripts.Mission.Models
             }
         }
 
-        private void FightStep(float deltaTime)
+        private void FightStep(float deltaTime, bool force = false, int targets = GameplayConstants.ArmyCannonsCount)
         {
             if (_targets.Count == 0)
             {
@@ -213,11 +216,11 @@ namespace Kugushev.Scripts.Mission.Models
             _targetsToRemoveBuffer.Clear();
 
             ObjectState.fightingTimeCollector += deltaTime;
-            if (ObjectState.fightingTimeCollector > GameplayConstants.FightRoundDelay)
+            if (force || ObjectState.fightingTimeCollector > GameplayConstants.FightRoundDelay)
             {
                 ObjectState.fightingTimeCollector = 0f;
 
-                foreach (var target in TargetsUnderFire)
+                foreach (var target in GetTargetsUnderFire(targets))
                 {
                     if (target is Army targetArmy)
                     {
@@ -268,7 +271,8 @@ namespace Kugushev.Scripts.Mission.Models
                 if (multiplier != null)
                     damage *= multiplier.Value.Amount;
 
-                // todo: support all gradated effect
+                if (ObjectState.nearDeath && fleetProperties.DeathStrike != null)
+                    damage = fleetProperties.DeathStrike.Value;
 
                 var result = targetArmy.SufferFightRound(Faction, damage);
                 return result == FightRoundResult.Defeated;
@@ -289,7 +293,15 @@ namespace Kugushev.Scripts.Mission.Models
             if (protection != null)
                 damage *= protection.Value.Amount;
 
-            return ExecuteSuffer(enemyFaction, damage);
+            var result = ExecuteSuffer(enemyFaction, damage);
+
+            if (result == FightRoundResult.Defeated && ObjectState.FleetProperties.DeathStrike != null)
+            {
+                ObjectState.nearDeath = true;
+                FightStep(GameplayConstants.FightRoundDelay, true, 1);
+            }
+
+            return result;
         }
 
         private FightRoundResult ExecuteSuffer(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)

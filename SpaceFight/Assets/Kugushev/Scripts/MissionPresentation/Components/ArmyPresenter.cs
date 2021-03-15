@@ -89,7 +89,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
         {
             if (model.Status == ArmyStatus.Fighting)
             {
-                using var targetsEnumerator = model.TargetsUnderFire.GetEnumerator();
+                using var targetsEnumerator = model.GetTargetsUnderFire().GetEnumerator();
                 foreach (var cannon in fightCannons)
                 {
                     bool hasTarget = targetsEnumerator.MoveNext();
@@ -137,7 +137,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
                 if (!siegeCannon.isPlaying)
                     siegeCannon.Play();
 
-                var target = model.TargetsUnderFire.FirstOrDefault();
+                var target = model.GetTargetsUnderFire().FirstOrDefault();
                 if (target != null)
                     siegeCannon.transform.LookAt(target.Position.Point);
             }

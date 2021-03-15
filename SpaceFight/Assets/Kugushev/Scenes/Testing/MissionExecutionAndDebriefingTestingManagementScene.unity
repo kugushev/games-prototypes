@@ -178,3 +178,5 @@ MonoBehaviour:
   missionSceneResultPipeline: {fileID: 11400000, guid: 766e9d28f16963142878cb68ffefdc9a, type: 2}
   suicideAI: {fileID: 11400000, guid: b1068c6fa182e0241abad80fae28fbb4, type: 2}
   aggressiveAI: {fileID: 11400000, guid: d9a9a257044938243b7b5c347473b7f0, type: 2}
+  normalAIGreen: {fileID: 11400000, guid: 98d41c3a08eee60459d21b174873734c, type: 2}
+  normalAIRed: {fileID: 11400000, guid: 5690afa5836640e4693477327aaeb7f4, type: 2}

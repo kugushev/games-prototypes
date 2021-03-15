@@ -25,15 +25,15 @@ namespace Kugushev.Scripts.Tests.Integration
         }
 
         [UnityTest]
-        public IEnumerator Fight_3PlanetsFight() => RunExecutionWithSeed(42);
+        public IEnumerator Fight_3PlanetsFight() => RunExecutionWithSeed(Seeds.ThreePlanets);
 
         [UnityTest]
         [Timeout(5 * 60 * 1000)]
-        public IEnumerator Fight_ArmiesFight() => RunExecutionWithSeed(268);
+        public IEnumerator Fight_ArmiesFight() => RunExecutionWithSeed(Seeds.ArmiesFight);
 
         [UnityTest]
         [Timeout(10 * 60 * 1000)]
-        public IEnumerator Fight_FlyAroundSun() => RunExecutionWithSeed(193);
+        public IEnumerator Fight_FlyAroundSun() => RunExecutionWithSeed(Seeds.FlyAroundSun);
 
         [UnityTest]
         public IEnumerator Fight_Backstabbers() => RunExecutionWithSeed(540);

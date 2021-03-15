@@ -7,6 +7,7 @@ using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
+using Kugushev.Scripts.Tests.Integration.Setup;
 using Kugushev.Scripts.Tests.Integration.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using NUnit.Framework;
@@ -35,7 +36,7 @@ namespace Kugushev.Scripts.Tests.Integration
         [UnityTest]
         public IEnumerator Fight_3PlanetsFight_NoAchievements_AchieveStartupAndMoskaLvl1()
         {
-            yield return RunExecutionWithSeed(42, new (AchievementId, int level, AchievementType)[0]);
+            yield return RunExecutionWithSeed(Seeds.ThreePlanets, new (AchievementId, int level, AchievementType)[0]);
 
             LogAllAchievements();
 
@@ -46,7 +47,7 @@ namespace Kugushev.Scripts.Tests.Integration
 
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 1));
-            
+
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Moska && a.Info.Level == 1));
         }
@@ -54,7 +55,7 @@ namespace Kugushev.Scripts.Tests.Integration
         [UnityTest]
         public IEnumerator Fight_3PlanetsFight_HasStartupAndMoskaLvl1Achievement_AchieveStartupAndMoskaLvl2()
         {
-            yield return RunExecutionWithSeed(42, new[]
+            yield return RunExecutionWithSeed(Seeds.ThreePlanets, new[]
             {
                 (AchievementId.Startup, 1, AchievementType.Epic),
                 (AchievementId.Moska, 1, AchievementType.Epic)
@@ -69,11 +70,11 @@ namespace Kugushev.Scripts.Tests.Integration
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 2));
         }
-        
+
         [UnityTest]
         public IEnumerator Fight_3PlanetsFight_HasStartupAndMoskaLvl2Achievement_AchieveStartupAndMoskaLvl3()
         {
-            yield return RunExecutionWithSeed(42, new[]
+            yield return RunExecutionWithSeed(Seeds.ThreePlanets, new[]
             {
                 (AchievementId.Startup, 2, AchievementType.Epic),
                 (AchievementId.Moska, 2, AchievementType.Epic)
@@ -85,6 +86,22 @@ namespace Kugushev.Scripts.Tests.Integration
             var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 3));
+        }
+
+        [UnityTest]
+        public IEnumerator Fight_ArmiesFight_NoAchievements_AchieveKamikazeLvl1()
+        {
+            MissionExecutionAndDebriefingTestingManager.GreenIsNormal = true;
+            MissionExecutionAndDebriefingTestingManager.RedIsNormal = true;
+
+            yield return RunExecutionWithSeed(Seeds.ArmiesFight, new (AchievementId, int level, AchievementType)[0]);
+
+            LogAllAchievements();
+
+            // assert
+            var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            Assert.That(allAchievements, Has.Exactly(1)
+                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Kamikaze && a.Info.Level == 1));
         }
 
         private static IEnumerator RunExecutionWithSeed(int seed,
@@ -109,6 +126,9 @@ namespace Kugushev.Scripts.Tests.Integration
             // we need to wait for the mission finished to init BaseExecutionTestingManager.MissionModel.DebriefingSummary
             yield return new WaitUntil(() => SingletonState.Instance.Entered);
             yield return new WaitUntil(() => BaseExecutionTestingManager.MissionModel.DebriefingSummary != null);
+
+            MissionExecutionAndDebriefingTestingManager.GreenIsNormal = default;
+            MissionExecutionAndDebriefingTestingManager.RedIsNormal = default;
         }
 
         private static void LogAllAchievements()

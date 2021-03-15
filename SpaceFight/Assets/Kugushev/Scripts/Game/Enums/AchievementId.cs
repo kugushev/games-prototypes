@@ -10,6 +10,7 @@
 
         // Epic achievements
         Startup,
-        Moska
+        Moska,
+        Kamikaze
     }
 }

@@ -1,18 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
-using Kugushev.Scripts.Tests.Unit.Stubs;
 using Kugushev.Scripts.Tests.Unit.Utils;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Tests.Unit
@@ -21,6 +17,8 @@ namespace Kugushev.Scripts.Tests.Unit
     {
         private const float ArmyPower = 50f;
         private const float DeltaTime = GameplayConstants.FightRoundDelay + 1f;
+
+        #region NextStep
 
         [Test]
         public void NextStep_FightingStatus_NoAchievements_DamageUnifiedDamage()
@@ -152,7 +150,7 @@ namespace Kugushev.Scripts.Tests.Unit
             Assert.AreEqual(testCase.expected, enemy.Power);
         }
 
-        
+
         private static IEnumerable<(int level, float power, float expected)> BrawlerAndMoskaCases => new[]
         {
             (1, 19f, 49.23f),
@@ -162,7 +160,8 @@ namespace Kugushev.Scripts.Tests.Unit
 
         [Test]
         public void NextStep_FightingStatus_BrawlerXAndMoskaY_DamageZ(
-            [ValueSource(nameof(BrawlerAndMoskaCases))] (int level, float power, float expected) testCase)
+            [ValueSource(nameof(BrawlerAndMoskaCases))]
+            (int level, float power, float expected) testCase)
         {
             // arrange
             var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
@@ -180,6 +179,44 @@ namespace Kugushev.Scripts.Tests.Unit
             // assert
             Assert.AreEqual(testCase.expected, enemy.Power);
         }
+
+        #endregion
+
+        #region SufferFightRound
+
+        private static IEnumerable<(int level, float expected)> KamikazeCases => new[]
+        {
+            (1, 48f),
+            (2, 45f),
+            (3, 40f),
+        };
+
+        [Test]
+        public void SufferFightRound_KamikazeLvlX_2Targets_DealDeathStrikeToOneTarget(
+            [ValueSource(nameof(KamikazeCases))] (int level, float expected) testCase)
+        {
+            // arrange
+            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+                (AchievementId.Kamikaze, testCase.level, AchievementType.Epic));
+
+            var army = CreateArmy(fleetProperties, Faction.Green, 1f);
+            var enemy1 = CreateArmy(default, Faction.Red);
+            var enemy2 = CreateArmy(default, Faction.Red);
+
+            // act
+            army.Status = ArmyStatus.OnMatch;
+            army.HandleArmyInteraction(enemy1);
+            army.HandleArmyInteraction(enemy2);
+
+            army.SufferFightRound(Faction.Red);
+
+            // assert
+            Assert.AreEqual(testCase.expected, enemy1.Power);
+            Assert.AreEqual(ArmyPower, enemy2.Power);
+        }
+
+        #endregion
+
 
         private static Army CreateArmy(FleetProperties fleetProperties, Faction faction, float power = ArmyPower)
         {

@@ -8,5 +8,6 @@ namespace Kugushev.Scripts.Mission.ValueObjects.PlayerProperties
         public float FightDamageMultiplier;
         public GradatedEffectsBuilder FightDamageMultiplication;
         public GradatedEffectsBuilder FightProtectionMultiplication;
+        public float? DeathStrike;
     }
 }

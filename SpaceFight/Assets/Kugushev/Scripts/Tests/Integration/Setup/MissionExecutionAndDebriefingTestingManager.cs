@@ -21,6 +21,11 @@ namespace Kugushev.Scripts.Tests.Integration.Setup
         [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
         [SerializeField] private SuicideAI suicideAI;
         [SerializeField] private SimpleAI aggressiveAI;
+        [SerializeField] private SimpleAI normalAIGreen;
+        [SerializeField] private SimpleAI normalAIRed;
+
+        public static bool GreenIsNormal { get; set; }
+        public static bool RedIsNormal { get; set; }
 
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             MissionModel rootModel)
@@ -52,7 +57,7 @@ namespace Kugushev.Scripts.Tests.Integration.Setup
             };
         }
 
-        protected override ICommander GreenCommander => aggressiveAI;
-        protected override ICommander RedCommander => suicideAI;
+        protected override ICommander GreenCommander => GreenIsNormal ? normalAIGreen : aggressiveAI;
+        protected override ICommander RedCommander => RedIsNormal ? (ICommander) normalAIRed : suicideAI;
     }
 }
