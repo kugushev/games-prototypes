@@ -32,8 +32,6 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
                 if (missionEvent.Victim == faction)
                     deaths++;
             }
-
-            Debug.Log($"Deaths: {deaths}");
             return deaths >= losses;
         }
 

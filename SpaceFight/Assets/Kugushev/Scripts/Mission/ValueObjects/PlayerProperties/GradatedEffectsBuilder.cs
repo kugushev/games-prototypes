@@ -7,7 +7,8 @@ namespace Kugushev.Scripts.Mission.ValueObjects.PlayerProperties
     public struct GradatedEffectsBuilder
     {
         public Percentage? UnderCapEffect;
-        public float? Cap;
+        public float? LowCap;
+        public float? HighCap;
         public Percentage? OverCapEffect;
     }
 }

@@ -186,12 +186,18 @@ namespace Kugushev.Scripts.Mission.Models
                 bool captured;
                 if (target.Faction != ObjectState.faction)
                 {
-                    // execute fight
+                    var fleetProperties = ObjectState.FleetProperties;
+                    
+                    // execute siege
                     float damage = GameplayConstants.UnifiedDamage;
 
-                    if (ObjectState.FleetProperties.SiegeMultiplier != null)
-                        damage *= ObjectState.FleetProperties.SiegeMultiplier.Value;
+                    if (fleetProperties.SiegeMultiplier != null)
+                        damage *= fleetProperties.SiegeMultiplier.Value;
 
+                    var multiplier = fleetProperties.FightDamageMultiplication.GetEffect(Power);
+                    if (multiplier != null)
+                        damage *= multiplier.Value.Amount;
+                    
                     var result = target.SufferFightRound(Faction, damage);
                     captured = result == FightRoundResult.Defeated;
 
@@ -260,9 +266,9 @@ namespace Kugushev.Scripts.Mission.Models
                     return false;
                 }
 
-                float damage = GameplayConstants.UnifiedDamage;
-
                 var fleetProperties = ObjectState.FleetProperties;
+                
+                float damage = GameplayConstants.UnifiedDamage;
 
                 if (fleetProperties.FightMultiplier != null)
                     damage *= fleetProperties.FightMultiplier.Value;

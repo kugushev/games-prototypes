@@ -8,6 +8,7 @@
             FightMultiplier = 1 + builder.FightDamageMultiplier;
             FightDamageMultiplication = new GradatedEffects(builder.FightDamageMultiplication);
             FightProtectionMultiplication = new GradatedEffects(builder.FightProtectionMultiplication);
+            SiegeDamageMultiplication = new GradatedEffects(builder.SiegeDamageMultiplication);
             DeathStrike = builder.DeathStrike;
         }
 
@@ -15,6 +16,7 @@
         public readonly float? FightMultiplier;
         public readonly GradatedEffects FightDamageMultiplication;
         public readonly GradatedEffects FightProtectionMultiplication;
+        public readonly GradatedEffects SiegeDamageMultiplication;
         public readonly float? DeathStrike;
     }
 }

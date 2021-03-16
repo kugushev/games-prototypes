@@ -4,27 +4,26 @@ namespace Kugushev.Scripts.Mission.ValueObjects.PlayerProperties
 {
     public readonly struct GradatedEffects
     {
+        private readonly Percentage? _underCapEffect;
+        private readonly float? _lowCap;
+        private readonly float? _highCap;
+        private readonly Percentage? _overCapEffect;
+
         public GradatedEffects(GradatedEffectsBuilder gradatedEffectsBuilder)
         {
-            UnderCapEffect = gradatedEffectsBuilder.UnderCapEffect;
-            Cap = gradatedEffectsBuilder.Cap;
-            OverCapEffect = gradatedEffectsBuilder.OverCapEffect;
+            _underCapEffect = gradatedEffectsBuilder.UnderCapEffect;
+            _lowCap = gradatedEffectsBuilder.LowCap;
+            _highCap = gradatedEffectsBuilder.HighCap;
+            _overCapEffect = gradatedEffectsBuilder.OverCapEffect;
         }
-
-        public readonly Percentage? UnderCapEffect;
-        public readonly float? Cap;
-        public readonly Percentage? OverCapEffect;
 
         public Percentage? GetEffect(float value)
         {
-            if (Cap != null)
-            {
-                if (UnderCapEffect != null && value <= Cap)
-                    return UnderCapEffect.Value;
+            if (_lowCap != null && _underCapEffect != null && value <= _lowCap)
+                return _underCapEffect.Value;
 
-                if (OverCapEffect != null && value > Cap)
-                    return OverCapEffect.Value;
-            }
+            if (_highCap != null && _overCapEffect != null && value > _lowCap)
+                return _overCapEffect.Value;
 
             return null;
         }

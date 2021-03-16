@@ -22,7 +22,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
         public override AchievementInfo Info => _info ??= new AchievementInfo(
             AchievementId.Moska, level, AchievementType.Epic, nameof(Moska),
             $"Have armies only with no more {powerCap} power",
-            $"Armies with power {powerCap} receive and deal less damage by {multiplication}");
+            $"Armies with less than {powerCap} power receive and deal less damage by {multiplication} on fights");
 
         public override bool Check(MissionEventsCollector missionEvents, Faction faction, MissionModel model)
         {
@@ -37,17 +37,17 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
             ref PlanetarySystemPropertiesBuilder planetarySystemProperties)
         {
             ref var damage = ref fleetProperties.FightDamageMultiplication;
-            if (damage.Cap != null || damage.UnderCapEffect != null)
-                Debug.LogError($"Damage effect is already specified {damage.Cap} {damage.UnderCapEffect}");
+            if (damage.LowCap != null || damage.UnderCapEffect != null)
+                Debug.LogError($"Damage effect is already specified {damage.LowCap} {damage.UnderCapEffect}");
 
-            damage.Cap = powerCap;
+            damage.LowCap = powerCap;
             damage.UnderCapEffect = new Percentage(multiplication);
 
             ref var protection = ref fleetProperties.FightProtectionMultiplication;
-            if (protection.Cap != null || protection.UnderCapEffect != null)
-                Debug.LogError($"Protection effect is already specified {damage.Cap} {damage.UnderCapEffect}");
+            if (protection.LowCap != null || protection.UnderCapEffect != null)
+                Debug.LogError($"Protection effect is already specified {damage.LowCap} {damage.UnderCapEffect}");
 
-            protection.Cap = powerCap;
+            protection.LowCap = powerCap;
             protection.UnderCapEffect = new Percentage(multiplication);
         }
     }

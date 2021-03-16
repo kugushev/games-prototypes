@@ -1,24 +1,20 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
-using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using Kugushev.Scripts.Tests.Unit.Utils;
 using NUnit.Framework;
-using UnityEngine;
+using static Kugushev.Scripts.Tests.Unit.Utils.Factory;
 
 namespace Kugushev.Scripts.Tests.Unit
 {
     public class ArmyTests
     {
-        private const float ArmyPower = 50f;
         private const float DeltaTime = GameplayConstants.FightRoundDelay + 1f;
 
         #region NextStep
+
+        #region Fighting
 
         [Test]
         public void NextStep_FightingStatus_NoAchievements_DamageUnifiedDamage()
@@ -182,6 +178,35 @@ namespace Kugushev.Scripts.Tests.Unit
 
         #endregion
 
+        #region OnSiege
+
+        [Test]
+        public void NextStep_OnSiegeStatus_NoAchievements_DamageUnifiedDamage()
+        {
+            // arrange
+            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties();
+
+            var planet = CreatePlanet(10f, Faction.Red);
+
+            var army = CreateArmy(fleetProperties, Faction.Green, targetPlanet: planet);
+
+            // act
+            planet.ExecuteProductionCycle();
+
+            army.Status = ArmyStatus.OnMatch;
+            army.HandlePlanetVisiting(planet);
+            army.NextStep(DeltaTime);
+
+            // assert
+            Assert.AreEqual(9f, planet.Power);
+        }
+        
+        // todo: finish test
+
+        #endregion
+
+        #endregion
+
         #region SufferFightRound
 
         private static IEnumerable<(int level, float expected)> KamikazeCases => new[]
@@ -216,22 +241,5 @@ namespace Kugushev.Scripts.Tests.Unit
         }
 
         #endregion
-
-
-        private static Army CreateArmy(FleetProperties fleetProperties, Faction faction, float power = ArmyPower)
-        {
-            const float magicNum = 42f;
-
-            var objectsPool = ScriptableObject.CreateInstance<ObjectsPool>();
-            var eventsCollector = ScriptableObject.CreateInstance<MissionEventsCollector>();
-
-            var targetPlanet = objectsPool.GetObject<Planet, Planet.State>(default);
-            var order = objectsPool.GetObject<Order, Order.State>(new Order.State(targetPlanet, new Percentage(1f)));
-            order.RegisterMovement(Vector3.zero);
-
-            var army = new Army(objectsPool);
-            army.SetState(new Army.State(order, magicNum, magicNum, faction, power, fleetProperties, eventsCollector));
-            return army;
-        }
     }
 }

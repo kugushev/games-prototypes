@@ -26,13 +26,14 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
         public override bool Check(MissionEventsCollector missionEvents, Faction faction,
             MissionModel model)
         {
-            if (model != null)
-            {
-                if (!AreAllPlanetsSatisfied(model.PlanetarySystem.Planets, faction))
-                    return false;
-            }
-            else
-                Debug.LogError("Model is null");
+            // todo: uncomment once I decided what to do with captured planet
+            // if (model != null)
+            // {
+            //     if (!AreAllPlanetsSatisfied(model.PlanetarySystem.Planets, faction))
+            //         return false;
+            // }
+            // else
+            //     Debug.LogError("Model is null");
 
             foreach (var missionEvent in missionEvents.ArmySent)
                 if (missionEvent.Owner == faction && missionEvent.RemainingPower > maxPower)
