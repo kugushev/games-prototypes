@@ -57,9 +57,12 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             int homeStartDay = Random.Range(0, Orbit.DaysInYear);
 
             float t = 0f;
+            int playerExtraPlanets = 0;
+            int enemyExtraPlanets = 0;
             for (int i = 0; i < planetsCount; i++)
             {
-                var faction = GetFaction(i, greenHome, redHome);
+                var faction = GetFaction(i, greenHome, redHome, missionProperties, playerFaction,
+                    ref playerExtraPlanets, ref enemyExtraPlanets);
                 t += 1f / planetsCount;
 
                 var startDay = CreateStartDay(homeStartDay, faction);
@@ -68,9 +71,11 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 var rule = GetPlanetRule(faction, homePlanetRule, t);
 
                 int production = GetPlanetProduction(rule, faction, missionProperties, playerFaction);
+                var power = GetPower(production, missionProperties, faction, playerFaction);
 
                 var planet = objectsPool.GetObject<Planet, Planet.State>(new Planet.State(
-                    faction, rule.Size, production, orbit, sun, eventsCollector, planetarySystemProperties));
+                    faction, rule.Size, production, orbit, sun, eventsCollector, planetarySystemProperties,
+                    power));
 
                 planetarySystem.AddPlanet(planet);
             }
@@ -110,12 +115,35 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             }
         }
 
-        private static Faction GetFaction(int i, int greenHome, int redHome)
+        private Faction GetFaction(int i, int greenHome, int redHome, MissionProperties missionProperties,
+            Faction playerFaction, ref int playerExtraPlanets, ref int enemyExtraPlanets)
         {
             var faction = Faction.Neutral;
             if (i == greenHome)
-                faction = Faction.Green;
-            if (i == redHome) faction = Faction.Red;
+                return Faction.Green;
+            if (i == redHome)
+                return Faction.Red;
+
+            // todo: refactor this ugly code
+            if (missionProperties.PlayerExtraPlanets > playerExtraPlanets)
+            {
+                if (missionProperties.EnemyExtraPlanets > enemyExtraPlanets && playerExtraPlanets > enemyExtraPlanets)
+                {
+                    enemyExtraPlanets++;
+                    return playerFaction.GetOpposite();
+                }
+
+                playerExtraPlanets++;
+                return playerFaction;
+            }
+
+            if (missionProperties.EnemyExtraPlanets > enemyExtraPlanets)
+            {
+                enemyExtraPlanets++;
+                return playerFaction.GetOpposite();
+            }
+
+
             return faction;
         }
 
@@ -159,6 +187,18 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 result *= missionProperties.EnemyHomeProductionMultiplier.Value;
 
             return result;
+        }
+
+        private float GetPower(int production, MissionProperties missionProperties, Faction faction,
+            Faction playerFaction)
+        {
+            int multiplier = 1;
+            if (faction == playerFaction && missionProperties.PlayerStartPower != null)
+                multiplier = missionProperties.PlayerStartPower.Value;
+            else if (faction == playerFaction.GetOpposite() && missionProperties.EnemyStartPower != null)
+                multiplier = missionProperties.EnemyStartPower.Value;
+
+            return production * multiplier;
         }
     }
 }

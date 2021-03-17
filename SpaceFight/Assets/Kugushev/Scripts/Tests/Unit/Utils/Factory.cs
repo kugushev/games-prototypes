@@ -41,7 +41,7 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
             var planet = new Planet(ScriptableObject.CreateInstance<ObjectsPool>());
 
             planet.SetState(new Planet.State(faction, default, production, default, default, default,
-                planetarySystemProperties));
+                planetarySystemProperties, 0));
 
             return planet;
         }

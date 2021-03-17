@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Mission.Models
         public struct State
         {
             public State(Faction faction, PlanetSize size, float production, Orbit orbit, Sun sun,
-                MissionEventsCollector eventsCollector, PlanetarySystemProperties planetarySystemProperties)
+                MissionEventsCollector eventsCollector, PlanetarySystemProperties planetarySystemProperties, float power)
             {
                 this.faction = faction;
                 this.size = size;
@@ -29,7 +29,7 @@ namespace Kugushev.Scripts.Mission.Models
                 this.sun = sun;
                 EventsCollector = eventsCollector;
                 PlanetarySystemProperties = planetarySystemProperties;
-                power = 0;
+                this.power = power;
                 selected = false;
                 dayOfYear = 0;
                 position = orbit.ToPosition(sun.Position, 0);
