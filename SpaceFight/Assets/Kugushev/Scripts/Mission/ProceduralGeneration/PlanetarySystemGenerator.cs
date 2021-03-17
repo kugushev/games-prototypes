@@ -17,13 +17,16 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private MissionEventsCollector eventsCollector;
 
-        [Header("Rules")] [SerializeField] private float systemRadius = 0.8f;
+        [Header("Rules")] [SerializeField] private float systemRadius = 0.9f;
+        [SerializeField] private float minDistanceToSun = 0.1f;
         [SerializeField] private Vector3 center = new Vector3(0f, 1.5f, 0.5f);
         [SerializeField] private float sunMinRadius = 0.05f;
         [SerializeField] private float sunMaxRadius = 0.15f;
         [SerializeField] private int minPlanets = 3;
         [SerializeField] private int maxPlanets = 6;
-        [SerializeField] private PlanetRule[] planetRules;
+        [SerializeField] private PlanetRule[] smallPlanetsRules;
+        [SerializeField] private PlanetRule[] mediumPlanetsRules;
+        [SerializeField] private PlanetRule[] bigPlanetsRules;
 
         public PlanetarySystem CreatePlanetarySystem(int seed, PlanetarySystemProperties planetarySystemProperties)
         {
@@ -48,15 +51,18 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
             (int greenHome, int redHome) = GetHomePlanets(planetsCount);
             var homePlanetRule = GetHomePlanetRule();
+            int homeStartDay = Random.Range(0, Orbit.DaysInYear);
 
             float t = 0f;
             for (int i = 0; i < planetsCount; i++)
             {
-                t += 1f / planetsCount;
-                var orbit = CreateOrbit(t);
-
                 var faction = GetFaction(i, greenHome, redHome);
-                var rule = GetPlanetRule(faction, homePlanetRule);
+                t += 1f / planetsCount;
+
+                var startDay = CreateStartDay(homeStartDay, faction);
+                var orbit = CreateOrbit(t, startDay);
+
+                var rule = GetPlanetRule(faction, homePlanetRule, t);
 
                 int production = Random.Range(rule.MinProduction, rule.MaxProduction);
 
@@ -67,13 +73,31 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             }
         }
 
-        private PlanetRule GetPlanetRule(Faction faction, PlanetRule homePlanetRule)
+        private int CreateStartDay(int homeStartDay, Faction faction)
+        {
+            switch (faction)
+            {
+                case Faction.Green:
+                    return homeStartDay;
+                case Faction.Red:
+                    return Orbit.DaysInYear - homeStartDay; // opposite to green
+                default:
+                    return Random.Range(0, Orbit.DaysInYear);
+            }
+        }
+
+        private PlanetRule GetPlanetRule(Faction faction, PlanetRule homePlanetRule, float t)
         {
             switch (faction)
             {
                 case Faction.Neutral:
-                    int ruleIndex = Random.Range(0, planetRules.Length);
-                    return planetRules[ruleIndex];
+                    PlanetRule[] rules;
+                    if (t < 0.33) rules = smallPlanetsRules;
+                    else if (t < 0.66) rules = mediumPlanetsRules;
+                    else rules = bigPlanetsRules;
+
+                    int ruleIndex = Random.Range(0, rules.Length);
+                    return rules[ruleIndex];
                 case Faction.Red:
                 case Faction.Green:
                     return homePlanetRule;
@@ -91,10 +115,18 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             return faction;
         }
 
-        private Orbit CreateOrbit(float t)
+        private Orbit CreateOrbit(float t, int startDay)
         {
-            float radius = Mathf.Lerp(0f, systemRadius, t);
-            return new Orbit(radius, Random.rotation);
+            float radius = Mathf.Lerp(0f, systemRadius, t) + minDistanceToSun;
+
+            float alphaVariation = (1f - t) * 180;
+            float alpha = Random.Range(-alphaVariation, alphaVariation);
+
+            // should be smaller to avoid touching player belly
+            float betaVariation = alphaVariation / 2;
+            float beta = Random.Range(-betaVariation, betaVariation);
+
+            return new Orbit(radius, new Degree(alpha), new Degree(beta), startDay);
         }
 
         private (int green, int red) GetHomePlanets(int planetsCount)
@@ -108,14 +140,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
         private PlanetRule GetHomePlanetRule()
         {
-            PlanetRule rule;
-            do
-            {
-                int ruleIndex = Random.Range(0, planetRules.Length);
-                rule = planetRules[ruleIndex];
-            } while (rule.Size < PlanetSize.Earth);
-
-            return rule;
+            int ruleIndex = Random.Range(0, mediumPlanetsRules.Length);
+            return mediumPlanetsRules[ruleIndex];
         }
     }
 }

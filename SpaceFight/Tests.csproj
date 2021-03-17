@@ -57,6 +57,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Setup\MissionExecutionAndDebriefingTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\MissionExecutionTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\PlayerPropertiesHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\Factory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Seeds.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonTransition.cs" />
@@ -65,7 +66,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\PlanetTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Setup\Abstractions\BaseExecutionTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\AssetBundleHelper.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\Factory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Setup\MissionBriefingTestingManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\MissionBriefingTests.cs" />
      <None Include="Assets\Kugushev\Scripts\Tests\Tests.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -24,16 +24,18 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         protected override void OnStart()
         {
-            transform.localScale = Model.Size switch
+            var scale = Model.Size switch
             {
-                PlanetSize.Mercury => new Vector3(0.05f, 0.05f, 0.05f),
-                PlanetSize.Mars => new Vector3(0.06f, 0.06f, 0.06f),
-                PlanetSize.Earth => new Vector3(0.07f, 0.07f, 0.07f),
-                PlanetSize.Uranus => new Vector3(0.09f, 0.09f, 0.09f),
-                PlanetSize.Saturn => new Vector3(0.11f, 0.11f, 0.11f),
-                PlanetSize.Jupiter => new Vector3(0.13f, 0.13f, 0.13f),
-                _ => Vector3.one
+                PlanetSize.Mercury => 0.05f,
+                PlanetSize.Mars => 0.06f,
+                PlanetSize.Earth => 0.07f,
+                PlanetSize.Uranus => 0.09f,
+                PlanetSize.Saturn => 0.10f,
+                PlanetSize.Jupiter => 0.11f,
+                _ => 0.05f
             };
+
+            transform.localScale = new Vector3(scale, scale, scale);
         }
 
         private void Update()

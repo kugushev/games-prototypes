@@ -58,6 +58,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\MissionConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionEventsCollector.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Bigshot.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\AbstractAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\PlayerProperties\PlanetarySystemPropertiesBuilder.cs" />
@@ -108,7 +109,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Bigshot.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
