@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
@@ -28,13 +29,14 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         [SerializeField] private PlanetRule[] mediumPlanetsRules;
         [SerializeField] private PlanetRule[] bigPlanetsRules;
 
-        public PlanetarySystem CreatePlanetarySystem(int seed, PlanetarySystemProperties planetarySystemProperties)
+        public PlanetarySystem CreatePlanetarySystem(MissionProperties properties, Faction playerFaction,
+            PlanetarySystemProperties planetarySystemProperties)
         {
-            Random.InitState(seed);
+            Random.InitState(properties.Seed);
 
             var sun = CreateSun();
             var result = objectsPool.GetObject<PlanetarySystem, PlanetarySystem.State>(new PlanetarySystem.State(sun));
-            AddPlanets(result, sun, planetarySystemProperties);
+            AddPlanets(result, sun, planetarySystemProperties, properties, playerFaction);
             return result;
         }
 
@@ -45,7 +47,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         }
 
         private void AddPlanets(PlanetarySystem planetarySystem, Sun sun,
-            PlanetarySystemProperties planetarySystemProperties)
+            PlanetarySystemProperties planetarySystemProperties, MissionProperties missionProperties,
+            Faction playerFaction)
         {
             int planetsCount = Random.Range(minPlanets, maxPlanets);
 
@@ -64,7 +67,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
                 var rule = GetPlanetRule(faction, homePlanetRule, t);
 
-                int production = Random.Range(rule.MinProduction, rule.MaxProduction);
+                int production = GetPlanetProduction(rule, faction, missionProperties, playerFaction);
 
                 var planet = objectsPool.GetObject<Planet, Planet.State>(new Planet.State(
                     faction, rule.Size, production, orbit, sun, eventsCollector, planetarySystemProperties));
@@ -72,6 +75,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 planetarySystem.AddPlanet(planet);
             }
         }
+
 
         private int CreateStartDay(int homeStartDay, Faction faction)
         {
@@ -142,6 +146,19 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         {
             int ruleIndex = Random.Range(0, mediumPlanetsRules.Length);
             return mediumPlanetsRules[ruleIndex];
+        }
+
+        private static int GetPlanetProduction(PlanetRule rule, Faction faction, MissionProperties missionProperties,
+            Faction playerFaction)
+        {
+            var result = Random.Range(rule.MinProduction, rule.MaxProduction);
+
+            if (missionProperties.PlayerHomeProductionMultiplier != null && faction == playerFaction)
+                result *= missionProperties.PlayerHomeProductionMultiplier.Value;
+            else if (missionProperties.EnemyHomeProductionMultiplier != null && faction.GetOpposite() == playerFaction)
+                result *= missionProperties.EnemyHomeProductionMultiplier.Value;
+
+            return result;
         }
     }
 }

@@ -53,8 +53,8 @@ namespace Kugushev.Scripts.Tests.Integration.Setup.Abstractions
                     break;
             }
 
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.Seed,
-                planetarySystemProperties);
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.MissionProperties,
+                Faction.Green, planetarySystemProperties);
             var green = new ConflictParty(Faction.Green, greenFleet, GreenCommander);
             var red = new ConflictParty(Faction.Red, redFleet, RedCommander);
 

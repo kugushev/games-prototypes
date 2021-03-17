@@ -17,7 +17,8 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            Model.NextMissionSeed = Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
+            Model.NextMissionProperties.Seed =
+                Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
         }
     }
 }

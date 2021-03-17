@@ -81,6 +81,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IAIAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ImmediateTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Degree.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Widgets\PanelWithSliderWidget.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -654,6 +655,9 @@
  </Reference>
  <Reference Include="UniTask">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

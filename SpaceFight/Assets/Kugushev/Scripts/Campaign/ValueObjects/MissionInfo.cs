@@ -5,17 +5,15 @@ using UnityEngine;
 namespace Kugushev.Scripts.Campaign.ValueObjects
 {
     [Serializable]
-    public struct MissionInfo
+    public readonly struct MissionInfo
     {
-        [SerializeField] private int seed;
-
-        public MissionInfo(int seed, PlayerAchievements playerAchievements)
+        public MissionInfo(MissionProperties missionProperties, PlayerAchievements playerAchievements)
         {
             PlayerAchievements = playerAchievements;
-            this.seed = seed;
+            MissionProperties = missionProperties;
         }
 
-        public int Seed => seed;
+        public MissionProperties MissionProperties { get; }
         public PlayerAchievements PlayerAchievements { get; }
     }
 }

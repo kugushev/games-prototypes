@@ -24,7 +24,27 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
         private bool _triggerPressed;
         private Vector2 _joystickAxis;
 
-        public Percentage ArmyPowerAllocated => new Percentage(_joystickAxis.x / 2f + 0.5f);
+        public Percentage ArmyPowerAllocated
+        {
+            get
+            {
+                //  _joystickAxis.x / 2f + 0.5f;
+                float percentage;
+                if (_joystickAxis.x < -0.75f) // full left
+                    percentage = 0.1f;
+                else if (_joystickAxis.x < -0.25f) // slight left
+                    percentage = 0.25f;
+                else if (_joystickAxis.x < 0.25f) // middle position
+                    percentage = 0.5f;
+                else if (_joystickAxis.x < 0.75f) // slight right
+                    percentage = 0.75f;
+                else // fill right
+                    percentage = 1f;
+
+                return new Percentage(percentage);
+            }
+        }
+
         public HandType HandType => handType;
 
 
@@ -36,7 +56,7 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
         private void Update()
         {
             var inputDevice = _xrController.inputDevice;
-            
+
             var newJoystickAxis = inputDevice.TryGetFeatureValue(primary2DAxis, out var joystickAxisOut)
                 ? joystickAxisOut
                 : default;

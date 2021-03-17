@@ -58,7 +58,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\MissionConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionEventsCollector.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Bigshot.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Elephant.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\AbstractAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\PlayerProperties\PlanetarySystemPropertiesBuilder.cs" />

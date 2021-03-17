@@ -10,8 +10,8 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Achievements.Epic
 {
-    [CreateAssetMenu(menuName = MenuName + nameof(Bigshot))]
-    public class Bigshot: AbstractAchievement
+    [CreateAssetMenu(menuName = MenuName + nameof(Elephant))]
+    public class Elephant: AbstractAchievement
     {
         [SerializeField] private int level;
         [SerializeField] private float powerCap;

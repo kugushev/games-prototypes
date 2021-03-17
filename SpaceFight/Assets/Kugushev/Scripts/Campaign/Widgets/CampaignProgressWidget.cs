@@ -1,6 +1,8 @@
 ﻿using System;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Common.Widgets;
 using Kugushev.Scripts.Game.ValueObjects;
 using TMPro;
 using UnityEngine;
@@ -13,8 +15,13 @@ namespace Kugushev.Scripts.Campaign.Widgets
         [SerializeField] private CampaignModelProvider modelProvider;
         [SerializeField] private TextMeshProUGUI playerScoreText;
         [SerializeField] private TextMeshProUGUI aiScoreText;
-        [SerializeField] private TextMeshProUGUI seedValueText;
-        [SerializeField] private Slider seedSlider;
+        [SerializeField] private PanelWithSliderWidget seed;
+        [SerializeField] private PanelWithSliderWidget playerHomeProduction;
+        [SerializeField] private PanelWithSliderWidget enemyHomeProduction;
+        [SerializeField] private PanelWithSliderWidget playerExtraPlanets;
+        [SerializeField] private PanelWithSliderWidget enemyExtraPlanets;
+        [SerializeField] private PanelWithSliderWidget playerStartPower;
+        [SerializeField] private PanelWithSliderWidget enemyStartPower;
 
         [Header("Achievements Panel")] [SerializeField]
         private Transform achievementsPanel;
@@ -27,8 +34,15 @@ namespace Kugushev.Scripts.Campaign.Widgets
             {
                 playerScoreText.text = StringBag.FromInt(model.PlayerScore);
                 aiScoreText.text = StringBag.FromInt(model.AIScore);
-                seedValueText.text = StringBag.FromInt(model.NextMissionSeed);
-                seedSlider.value = model.NextMissionSeed;
+
+                seed.Value = model.NextMissionProperties.Seed;
+                playerHomeProduction.Value = model.NextMissionProperties.EnemyHomeProductionMultiplier ?? 1;
+                enemyHomeProduction.Value = model.NextMissionProperties.EnemyHomeProductionMultiplier ?? 1;
+                playerExtraPlanets.Value = model.NextMissionProperties.PlayerExtraPlanets ?? 0;
+                enemyExtraPlanets.Value = model.NextMissionProperties.EnemyExtraPlanets ?? 0;
+                playerStartPower.Value = model.NextMissionProperties.PlayerStartPower ?? 0;
+                enemyStartPower.Value = model.NextMissionProperties.EnemyStartPower ?? 0;
+
 
                 foreach (var achievement in model.PlayerAchievements.CommonAchievements)
                     CreateAchievementCard(achievement);
@@ -47,10 +61,45 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         public void SetSeed(float sliderValue)
         {
-            int value = Convert.ToInt32(sliderValue);
-            seedValueText.text = StringBag.FromInt(value);
+            int value = Mathf.FloorToInt(sliderValue);
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionSeed = value;
+                model.NextMissionProperties.Seed = value;
+        }
+
+        public void SetPlayerHomeProductionMultiplier(float sliderValue)
+        {
+            if (modelProvider.TryGetModel(out var model))
+                model.NextMissionProperties.PlayerHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
+        }
+
+        public void SetEnemyHomeProductionMultiplier(float sliderValue)
+        {
+            if (modelProvider.TryGetModel(out var model))
+                model.NextMissionProperties.EnemyHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
+        }
+
+        public void SetPlayerExtraPlanets(float sliderValue)
+        {
+            if (modelProvider.TryGetModel(out var model))
+                model.NextMissionProperties.PlayerExtraPlanets = Mathf.FloorToInt(sliderValue);
+        }
+
+        public void SetEnemyExtraPlanets(float sliderValue)
+        {
+            if (modelProvider.TryGetModel(out var model))
+                model.NextMissionProperties.EnemyExtraPlanets = Mathf.FloorToInt(sliderValue);
+        }
+
+        public void SetPlayerStartPower(float sliderValue)
+        {
+            if (modelProvider.TryGetModel(out var model))
+                model.NextMissionProperties.PlayerStartPower = Mathf.FloorToInt(sliderValue);
+        }
+
+        public void SetEnemyStartPower(float sliderValue)
+        {
+            if (modelProvider.TryGetModel(out var model))
+                model.NextMissionProperties.EnemyStartPower = Mathf.FloorToInt(sliderValue);
         }
     }
 }

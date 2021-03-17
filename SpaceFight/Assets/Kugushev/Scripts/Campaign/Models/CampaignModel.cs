@@ -13,7 +13,7 @@ namespace Kugushev.Scripts.Campaign.Models
         [SerializeField] private int aiScore;
         [SerializeField] private int nextMissionSeed;
 
-        
+
         [SerializeReference] private PlayerAchievements playerAchievements = new PlayerAchievements();
 
         public CampaignModel(CampaignInfo campaignInfo) => this.campaignInfo = campaignInfo;
@@ -32,12 +32,7 @@ namespace Kugushev.Scripts.Campaign.Models
             set => aiScore = value;
         }
 
-        public int NextMissionSeed
-        {
-            get => nextMissionSeed;
-            set => nextMissionSeed = value;
-        }
-
+        public NextMissionProperties NextMissionProperties { get; } = new NextMissionProperties();
 
         public PlayerAchievements PlayerAchievements => playerAchievements;
     }

@@ -28,14 +28,16 @@ namespace Kugushev.Scripts.Tests.Integration.Setup
         protected override MissionModel InitRootModel()
         {
             var seed = Seed ?? DateTime.Now.Millisecond;
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(seed,
-                new PlanetarySystemProperties());
+            var missionProperties = new MissionProperties(seed);
+
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionProperties,
+                Faction.Green, new PlanetarySystemProperties());
 
             var green = new ConflictParty(Faction.Green, default, default);
             var red = new ConflictParty(Faction.Red, default, default);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(new MissionModel.State(
-                new MissionInfo(seed, new PlayerAchievements()),
+                new MissionInfo(missionProperties, new PlayerAchievements()),
                 planetarySystem, green, red, Faction.Green
             ));
 

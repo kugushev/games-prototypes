@@ -110,8 +110,12 @@ namespace Kugushev.Scripts.Mission.Models
             if (powerToRecruitAbs > GameplayConstants.SoftCapArmyPower)
                 powerToRecruitAbs = GameplayConstants.SoftCapArmyPower;
 
-            if (powerToRecruitAbs < 1)
+            if (powerToRecruitAbs < 1) 
+                powerToRecruitAbs = 1;
+
+            if (ObjectState.power - powerToRecruitAbs < 0)
             {
+                Debug.LogError($"Lack of power for {powerToRecruitAbs}. Planet has {ObjectState.power}");
                 armyPower = 0;
                 return false;
             }

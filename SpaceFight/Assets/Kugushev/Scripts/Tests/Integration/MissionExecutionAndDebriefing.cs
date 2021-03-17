@@ -119,7 +119,7 @@ namespace Kugushev.Scripts.Tests.Integration
                     new AchievementInfo(achievementId, level, achievementType, "", "", ""));
             }
 
-            BaseExecutionTestingManager.MissionInfo = new MissionInfo(seed, achievementsModel);
+            BaseExecutionTestingManager.MissionInfo = new MissionInfo(new MissionProperties(seed), achievementsModel);
 
             SceneManager.LoadScene("MissionExecutionAndDebriefingTestingManagementScene");
 

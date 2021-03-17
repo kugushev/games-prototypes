@@ -44,10 +44,11 @@ namespace Kugushev.Scripts.Tests.Integration
         private static IEnumerator RunExecutionWithSeed(int seed, [CallerMemberName] string caller = null)
         {
             Debug.Log($"Start test {caller}");
-            
+
             SingletonState.Instance.Reset();
 
-            BaseExecutionTestingManager.MissionInfo = new MissionInfo(seed, new PlayerAchievements());
+            BaseExecutionTestingManager.MissionInfo =
+                new MissionInfo(new MissionProperties(seed), new PlayerAchievements());
             SceneManager.LoadScene("MissionExecutionTestingManagementScene");
 
             yield return new WaitUntil(() => SingletonState.Instance.Entered);
