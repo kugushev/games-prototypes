@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fleet Manager Stub
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
-  armySpeed: 0.2
+  eventsCollector: {fileID: 0}
+  armySpeed: 0.1
   armyAngularSpeed: 1
   faction: 0

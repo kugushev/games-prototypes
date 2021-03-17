@@ -25,6 +25,7 @@ namespace Kugushev.Scripts.Mission.Models
             public float angularSpeed;
             public Faction faction;
             public float power;
+            public Sun sun;
             public FleetProperties FleetProperties;
             public ArmyStatus status;
             public Vector3 currentPosition;
@@ -35,7 +36,7 @@ namespace Kugushev.Scripts.Mission.Models
             public readonly MissionEventsCollector EventsCollector;
             public bool nearDeath;
 
-            public State(Order order, float speed, float angularSpeed, Faction faction, float power,
+            public State(Order order, float speed, float angularSpeed, Faction faction, float power, in Sun sun,
                 in FleetProperties fleetProperties, MissionEventsCollector eventsCollector)
             {
                 this.order = order;
@@ -43,6 +44,7 @@ namespace Kugushev.Scripts.Mission.Models
                 this.angularSpeed = angularSpeed;
                 this.faction = faction;
                 this.power = power;
+                this.sun = sun;
                 FleetProperties = fleetProperties;
                 EventsCollector = eventsCollector;
                 status = ArmyStatus.Recruiting;
@@ -123,7 +125,7 @@ namespace Kugushev.Scripts.Mission.Models
             void ChangePosition()
             {
                 var lookVector = (next - previous).normalized;
-                var newPosition = ObjectState.currentPosition + lookVector * (deltaTime * ObjectState.speed);
+                var newPosition = ObjectState.currentPosition + lookVector * (deltaTime * CalcSpeed(lookVector));
                 var dot = Vector3.Dot((next - newPosition).normalized, lookVector);
                 if (dot <= 0f || ObjectState.currentPosition == next)
                 {
@@ -146,6 +148,24 @@ namespace Kugushev.Scripts.Mission.Models
                     ObjectState.currentRotation = Quaternion.Slerp(ObjectState.currentRotation, lookRotation,
                         ObjectState.waypointRotationProgress);
                 }
+            }
+
+            float CalcSpeed(Vector3 lookVector)
+            {
+                var sunFallVector = (ObjectState.currentPosition - ObjectState.sun.Position.Point).normalized;
+                lookVector = lookVector.normalized;
+
+                var dot = Vector3.Dot(sunFallVector, lookVector);
+
+                float multiplication;
+                if (dot >= 0.5f) // less than 60 deg
+                    multiplication = GameplayConstants.SunPowerSpeedMultiplier;
+                else if (dot > -0.5) // between 60 and 120 deg
+                    multiplication = 1;
+                else // more than 120 deg
+                    multiplication = 1 / GameplayConstants.SunPowerSpeedMultiplier;
+
+                return ObjectState.speed * multiplication;
             }
         }
 
@@ -187,7 +207,7 @@ namespace Kugushev.Scripts.Mission.Models
                 if (target.Faction != ObjectState.faction)
                 {
                     var fleetProperties = ObjectState.FleetProperties;
-                    
+
                     // execute siege
                     float damage = GameplayConstants.UnifiedDamage;
 
@@ -197,7 +217,7 @@ namespace Kugushev.Scripts.Mission.Models
                     var multiplier = fleetProperties.FightDamageMultiplication.GetEffect(Power);
                     if (multiplier != null)
                         damage *= multiplier.Value.Amount;
-                    
+
                     var result = target.SufferFightRound(Faction, damage);
                     captured = result == FightRoundResult.Defeated;
 
@@ -267,7 +287,7 @@ namespace Kugushev.Scripts.Mission.Models
                 }
 
                 var fleetProperties = ObjectState.FleetProperties;
-                
+
                 float damage = GameplayConstants.UnifiedDamage;
 
                 if (fleetProperties.FightMultiplier != null)

@@ -2,6 +2,7 @@
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
@@ -14,8 +15,9 @@ namespace Kugushev.Scripts.Mission.Models
     public class Fleet : ScriptableObject, IModel
     {
         [SerializeField] private ObjectsPool pool;
+        [SerializeField] private MissionModelProvider modelProvider;
         [SerializeField] private MissionEventsCollector eventsCollector;
-        [SerializeField] private float armySpeed = 0.2f;
+        [SerializeField] private float armySpeed = GameplayConstants.ArmySpeed;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;
         private FleetProperties _fleetProperties;
@@ -27,11 +29,18 @@ namespace Kugushev.Scripts.Mission.Models
 
         public void CommitOrder(Order order, Planet target)
         {
+            if (!modelProvider.TryGetModel(out var model))
+            {
+                Debug.LogError("Unable to get model");
+                return;
+            }
+
             order.Commit(target);
             if (order.SourcePlanet.Power > 0 && order.SourcePlanet.TryRecruit(order.Power, out var power))
             {
                 var army = pool.GetObject<Army, Army.State>(new Army.State(
-                    order, armySpeed, armyAngularSpeed, faction, power, in _fleetProperties, eventsCollector));
+                    order, armySpeed, armyAngularSpeed, faction, power,
+                    in model.PlanetarySystem.GetSun(), in _fleetProperties, eventsCollector));
 
                 ArmiesToSent.Enqueue(army);
                 eventsCollector.ArmySent.Add(new ArmySent(faction, power, order.SourcePlanet.Power));

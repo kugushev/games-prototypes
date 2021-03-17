@@ -27,7 +27,9 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
             order.Commit(targetPlanet ?? objectsPool.GetObject<Planet, Planet.State>(default));
 
             var army = new Army(objectsPool);
-            army.SetState(new Army.State(order, magicNum, magicNum, faction, power, fleetProperties, eventsCollector));
+            army.SetState(new Army.State(order, magicNum, magicNum, faction, power,
+                new Sun(new Position(Vector3.zero), 0.5f),
+                fleetProperties, eventsCollector));
             return army;
         }
 

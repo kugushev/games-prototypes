@@ -15,7 +15,6 @@ MonoBehaviour:
   pool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   modelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
   eventsCollector: {fileID: 11400000, guid: 7249c8a3d55755546a461f6913e11b68, type: 2}
-  achievementsManager: {fileID: 11400000, guid: 53c761ba89736a347b7f7ff5fce23584, type: 2}
-  armySpeed: 0.2
+  armySpeed: 0.1
   armyAngularSpeed: 1
   faction: 1
