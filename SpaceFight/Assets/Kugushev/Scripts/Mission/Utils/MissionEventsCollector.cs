@@ -18,6 +18,7 @@ namespace Kugushev.Scripts.Mission.Utils
         {
             PlanetCaptured.Clear();
             ArmyDestroyedInFight.Clear();
+            ArmySent.Clear();
         }
     }
 }

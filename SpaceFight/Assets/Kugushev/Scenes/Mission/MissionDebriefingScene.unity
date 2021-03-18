@@ -1237,6 +1237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Front Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5135465391979653226, guid: e6a66591254bf1a43b20ce9ec7d82165, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1227378931}
     - target: {fileID: 5135465391979653227, guid: e6a66591254bf1a43b20ce9ec7d82165, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

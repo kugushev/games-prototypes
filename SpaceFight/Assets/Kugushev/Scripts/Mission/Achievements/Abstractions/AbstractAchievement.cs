@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+﻿ using JetBrains.Annotations;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
