@@ -60,7 +60,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Utils\MissionSceneParametersPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\AchievementCardWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\NextMissionProperties.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\CampaignProgressState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\PlaygroundState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\CampaignProgressWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Utils\MissionSceneResultPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\CampaignModel.cs" />
@@ -69,6 +69,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\PlayerAchievements.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\MissionCardWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Enums\Difficulty.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\MissionSelection.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\MissionSelectionWidget.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Campaign.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

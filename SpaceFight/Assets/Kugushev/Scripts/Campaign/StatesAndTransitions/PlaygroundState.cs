@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
-    internal class CampaignProgressState : BaseSceneLoadingState<CampaignModel>
+    internal class PlaygroundState : BaseSceneLoadingState<CampaignModel>
     {
-        public CampaignProgressState(CampaignModel model) : base(model, UnityConstants.CampaignProgressScene, true)
+        public PlaygroundState(CampaignModel model) : base(model, UnityConstants.PlaygroundScene, true)
         {
         }
 

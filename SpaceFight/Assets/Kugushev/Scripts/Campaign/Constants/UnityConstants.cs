@@ -2,7 +2,7 @@
 {
     internal static class UnityConstants
     {
-        public const string CampaignProgressScene = "CampaignProgressScene";
+        public const string PlaygroundScene = "PlaygroundScene";
         public const string MissionManagementScene = "MissionManagementScene";
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.StatesAndTransitions;
 using Kugushev.Scripts.Campaign.Utils;
@@ -39,30 +40,40 @@ namespace Kugushev.Scripts.Campaign
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             CampaignModel rootModel)
         {
-            var campaignProgressState = new CampaignProgressState(rootModel);
-            var missionState = new MissionState(rootModel, missionSceneParametersPipeline, missionSceneResultPipeline);
-
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            if (rootModel.CampaignInfo.IsPlaygroundMode)
             {
+                return GetPlayground();
+            }
+
+            throw new NotImplementedException();
+
+            IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetPlayground()
+            {
+                var campaignProgressState = new PlaygroundState(rootModel);
+                var missionState = new MissionState(rootModel, missionSceneParametersPipeline, missionSceneResultPipeline);
+
+                return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
                 {
-                    EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, campaignProgressState)
-                    }
-                },
-                {
-                    campaignProgressState, new[]
+                        EntryState.Instance, new[]
+                        {
+                            new TransitionRecord(ImmediateTransition.Instance, campaignProgressState)
+                        }
+                    },
                     {
-                        new TransitionRecord(toMissionTransition, missionState)
-                    }
-                },
-                {
-                    missionState, new[]
+                        campaignProgressState, new[]
+                        {
+                            new TransitionRecord(toMissionTransition, missionState)
+                        }
+                    },
                     {
-                        new TransitionRecord(onMissionExitTransition, campaignProgressState)
+                        missionState, new[]
+                        {
+                            new TransitionRecord(onMissionExitTransition, campaignProgressState)
+                        }
                     }
-                }
-            };
+                };
+            }
         }
 
         protected override void OnStart()

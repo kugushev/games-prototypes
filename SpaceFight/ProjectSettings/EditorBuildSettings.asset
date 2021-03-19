@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Kugushev/Scenes/Campaign/CampaignManagementScene.unity
     guid: 11bfd0ea47159a54486261a5183ef4a4
   - enabled: 1
-    path: Assets/Kugushev/Scenes/Campaign/CampaignProgressScene.unity
+    path: Assets/Kugushev/Scenes/Campaign/PlaygroundScene.unity
     guid: 0b28bddcf5e34504985639bbeae6706b
   - enabled: 1
     path: Assets/Kugushev/Scenes/Mission/MissionManagementScene.unity

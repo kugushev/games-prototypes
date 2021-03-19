@@ -14,5 +14,6 @@ namespace Kugushev.Scripts.Game.ValueObjects
         }
 
         public int Seed => seed;
+        public bool IsPlaygroundMode => true;
     }
 }

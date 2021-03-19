@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Campaign.Models;
+﻿using Kugushev.Scripts.Campaign.Enums;
+using Kugushev.Scripts.Campaign.Models;
 
 namespace Kugushev.Scripts.Campaign.ValueObjects
 {
@@ -6,6 +7,7 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
     {
         public MissionProperties(NextMissionProperties builder)
         {
+            Difficulty = Difficulty.Normal;
             Seed = builder.Seed;
             PlayerHomeProductionMultiplier = builder.PlayerHomeProductionMultiplier;
             EnemyHomeProductionMultiplier = builder.EnemyHomeProductionMultiplier;
@@ -16,6 +18,7 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
         }
 
         public MissionProperties(int seed,
+            Difficulty difficulty = Difficulty.Normal,
             int? playerHomeProductionMultiplier = null,
             int? enemyHomeProductionMultiplier = null,
             int? playerExtraPlanets = null,
@@ -24,6 +27,7 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
             int? enemyStartPower = null)
         {
             Seed = seed;
+            Difficulty = difficulty;
             PlayerHomeProductionMultiplier = playerHomeProductionMultiplier;
             EnemyHomeProductionMultiplier = enemyHomeProductionMultiplier;
             PlayerExtraPlanets = playerExtraPlanets;
@@ -33,6 +37,7 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
         }
 
         public int Seed { get; }
+        public Difficulty Difficulty { get; }
         public int? PlayerHomeProductionMultiplier { get; }
         public int? EnemyHomeProductionMultiplier { get; }
         public int? PlayerExtraPlanets { get; }
