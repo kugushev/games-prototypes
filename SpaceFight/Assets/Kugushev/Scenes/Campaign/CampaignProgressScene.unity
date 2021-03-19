@@ -2758,7 +2758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194174306246306042, guid: b7e861199cecdfa439740add17f50e80, type: 3}
       propertyPath: m_text
-      value: 'Player Start Power:'
+      value: 'Enemy Start Power:'
       objectReference: {fileID: 0}
     - target: {fileID: 8194174306359606817, guid: b7e861199cecdfa439740add17f50e80, type: 3}
       propertyPath: m_AnchorMax.x

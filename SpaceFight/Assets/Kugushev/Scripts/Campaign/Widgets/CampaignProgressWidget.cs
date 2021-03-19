@@ -36,7 +36,7 @@ namespace Kugushev.Scripts.Campaign.Widgets
                 aiScoreText.text = StringBag.FromInt(model.AIScore);
 
                 seed.Value = model.NextMissionProperties.Seed;
-                playerHomeProduction.Value = model.NextMissionProperties.EnemyHomeProductionMultiplier ?? 1;
+                playerHomeProduction.Value = model.NextMissionProperties.PlayerHomeProductionMultiplier ?? 1;
                 enemyHomeProduction.Value = model.NextMissionProperties.EnemyHomeProductionMultiplier ?? 1;
                 playerExtraPlanets.Value = model.NextMissionProperties.PlayerExtraPlanets ?? 0;
                 enemyExtraPlanets.Value = model.NextMissionProperties.EnemyExtraPlanets ?? 0;

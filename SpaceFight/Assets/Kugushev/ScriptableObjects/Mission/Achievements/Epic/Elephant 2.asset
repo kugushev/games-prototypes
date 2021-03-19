@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90fe84a9df949f2bacde35d35eadcf9, type: 3}
   m_Name: Elephant 2
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   powerCap: 25
   multiplication: 2.5
