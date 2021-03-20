@@ -20,32 +20,14 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
 
         public override AchievementInfo Info => _info ??= new AchievementInfo(
             AchievementId.Startup, level, AchievementType.Epic, nameof(Startup),
-            $"Keep no more {maxPower} power on planets",
+            $"Recruit only on planets that have less than {maxPower} power",
             $"Increase production by {multiplier} if power is less than {maxPower}, decreased if more");
 
         public override bool Check(MissionEventsCollector missionEvents, Faction faction,
             MissionModel model)
         {
-            // todo: uncomment once I decided what to do with captured planet
-            // if (model != null)
-            // {
-            //     if (!AreAllPlanetsSatisfied(model.PlanetarySystem.Planets, faction))
-            //         return false;
-            // }
-            // else
-            //     Debug.LogError("Model is null");
-
             foreach (var missionEvent in missionEvents.ArmySent)
-                if (missionEvent.Owner == faction && missionEvent.RemainingPower > maxPower)
-                    return false;
-
-            return true;
-        }
-
-        private bool AreAllPlanetsSatisfied(IReadOnlyList<Planet> planets, Faction faction)
-        {
-            foreach (var planet in planets)
-                if (planet.Faction == faction && planet.Power > maxPower)
+                if (missionEvent.Owner == faction && missionEvent.RemainingPower + missionEvent.Power > maxPower)
                     return false;
 
             return true;
