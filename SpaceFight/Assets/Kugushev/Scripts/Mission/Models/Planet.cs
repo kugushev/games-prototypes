@@ -80,7 +80,7 @@ namespace Kugushev.Scripts.Mission.Models
 
         public UniTask ExecuteProductionCycle()
         {
-            if (Faction == Faction.Neutral && ObjectState.power >= GameplayConstants.NeutralPlanetMaxPower)
+            if (Faction == Faction.Neutral)
                 return UniTask.CompletedTask;
 
             ObjectState.power += CalculateProductionIncrement();

@@ -17,7 +17,7 @@
         public const float GapBetweenWaypoints = 0.05f;
         public const float CollisionError = 0.05f;
 
-        public const int NeutralPlanetMaxPower = 15;
+        public const int NeutralStartPowerMultiplier = 3;
 
         public const int DaysInYear = 360;
     }

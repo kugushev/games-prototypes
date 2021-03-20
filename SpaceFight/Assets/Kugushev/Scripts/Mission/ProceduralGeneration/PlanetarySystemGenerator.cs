@@ -3,6 +3,7 @@ using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
@@ -193,7 +194,9 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             Faction playerFaction)
         {
             int multiplier = 1;
-            if (faction == playerFaction && missionInfo.PlayerStartPowerMultiplier != null)
+            if (faction == Faction.Neutral)
+                multiplier = GameplayConstants.NeutralStartPowerMultiplier;
+            else if (faction == playerFaction && missionInfo.PlayerStartPowerMultiplier != null)
                 multiplier = missionInfo.PlayerStartPowerMultiplier.Value;
             else if (faction == playerFaction.GetOpposite() && missionInfo.EnemyStartPowerMultiplier != null)
                 multiplier = missionInfo.EnemyStartPowerMultiplier.Value;
