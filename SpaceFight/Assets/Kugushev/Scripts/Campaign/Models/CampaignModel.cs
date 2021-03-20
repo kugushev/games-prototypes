@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
@@ -35,5 +36,7 @@ namespace Kugushev.Scripts.Campaign.Models
         public NextMissionProperties NextMissionProperties { get; } = new NextMissionProperties();
 
         public PlayerAchievements PlayerAchievements => playerAchievements;
+
+        [CanBeNull] public MissionSelection MissionSelection { get; } = new MissionSelection();
     }
 }

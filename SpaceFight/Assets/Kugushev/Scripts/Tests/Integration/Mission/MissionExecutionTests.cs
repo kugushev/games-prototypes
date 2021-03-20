@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
-using Kugushev.Scripts.Tests.Integration.Setup.Abstractions;
+using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-namespace Kugushev.Scripts.Tests.Integration
+namespace Kugushev.Scripts.Tests.Integration.Mission
 {
     public class MissionExecutionTests
     {
@@ -47,8 +48,8 @@ namespace Kugushev.Scripts.Tests.Integration
 
             SingletonState.Instance.Reset();
 
-            BaseExecutionTestingManager.MissionInfo =
-                new MissionInfo(new MissionProperties(seed), new PlayerAchievements());
+            BaseMissionTestingManager.MissionInfo =
+                new MissionParameters(new MissionInfo(seed, Difficulty.Normal), new PlayerAchievements());
             SceneManager.LoadScene("MissionExecutionTestingManagementScene");
 
             yield return new WaitUntil(() => SingletonState.Instance.Entered);

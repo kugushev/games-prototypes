@@ -68,7 +68,7 @@ namespace Kugushev.Scripts.Mission
             }
 
             var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(
-                missionInfo.MissionProperties, playerFaction, planetarySystemProperties);
+                missionInfo.MissionInfo, playerFaction, planetarySystemProperties);
 
             var green = new ConflictParty(Faction.Green, greenFleet, playerCommander);
             var red = new ConflictParty(Faction.Red, redFleet, enemyAi);

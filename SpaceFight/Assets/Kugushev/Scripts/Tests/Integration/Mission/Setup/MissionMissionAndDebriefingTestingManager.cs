@@ -7,15 +7,15 @@ using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.StatesAndTransitions;
-using Kugushev.Scripts.Tests.Integration.Setup.Abstractions;
+using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Tests.Integration.Setup
+namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
 {
-    public class MissionExecutionAndDebriefingTestingManager : BaseExecutionTestingManager
+    public class MissionMissionAndDebriefingTestingManager : BaseMissionTestingManager
     {
-        [Header(nameof(MissionExecutionAndDebriefingTestingManager))] [SerializeField]
+        [Header(nameof(MissionMissionAndDebriefingTestingManager))] [SerializeField]
         private AchievementsManager achievementsManager;
 
         [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;

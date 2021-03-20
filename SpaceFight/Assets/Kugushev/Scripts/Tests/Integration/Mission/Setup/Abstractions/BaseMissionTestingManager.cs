@@ -11,9 +11,9 @@ using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Tests.Integration.Setup.Abstractions
+namespace Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions
 {
-    public abstract class BaseExecutionTestingManager : BaseManager<MissionModel>
+    public abstract class BaseMissionTestingManager : BaseManager<MissionModel>
     {
         [SerializeField] protected ObjectsPool objectsPool;
         [SerializeField] private MissionModelProvider modelProvider;
@@ -30,7 +30,7 @@ namespace Kugushev.Scripts.Tests.Integration.Setup.Abstractions
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;
 
-        public static MissionInfo? MissionInfo { get; set; }
+        public static MissionParameters? MissionInfo { get; set; }
         public static MissionModel MissionModel { get; private set; }
 
         protected override MissionModel InitRootModel()
@@ -53,7 +53,7 @@ namespace Kugushev.Scripts.Tests.Integration.Setup.Abstractions
                     break;
             }
 
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.MissionProperties,
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.MissionInfo,
                 Faction.Green, planetarySystemProperties);
             var green = new ConflictParty(Faction.Green, greenFleet, GreenCommander);
             var red = new ConflictParty(Faction.Red, redFleet, RedCommander);

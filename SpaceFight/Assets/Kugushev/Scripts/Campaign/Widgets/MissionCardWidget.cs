@@ -25,19 +25,19 @@ namespace Kugushev.Scripts.Campaign.Widgets
         private MissionInfo _model;
         private MissionSelection _rootModel;
 
-        public void SetUp(MissionInfo missionInfo, MissionSelection rootModel, ToggleGroup toggleGroup)
+        public void SetUp(MissionInfo model, MissionSelection rootModel, ToggleGroup toggleGroup)
         {
-            _model = missionInfo;
+            _model = model;
             _rootModel = rootModel;
             toggle.group = toggleGroup;
         }
 
         void Start()
         {
-            seedText.text = StringBag.FromInt(_model.MissionProperties.Seed);
+            seedText.text = StringBag.FromInt(_model.Seed);
             rewardText.text = "Lorem ipsum" + Environment.NewLine + "Lust: 3" + Environment.NewLine + "Greed: -2";
 
-            switch (_model.MissionProperties.Difficulty)
+            switch (_model.Difficulty)
             {
                 case Difficulty.Normal:
                     background.color = normal;
@@ -49,7 +49,7 @@ namespace Kugushev.Scripts.Campaign.Widgets
                     background.color = insane;
                     break;
                 default:
-                    Debug.LogError($"Unexpected difficulty {_model.MissionProperties.Difficulty}");
+                    Debug.LogError($"Unexpected difficulty {_model.Difficulty}");
                     break;
             }
         }
@@ -58,6 +58,10 @@ namespace Kugushev.Scripts.Campaign.Widgets
         {
             if (selected)
                 _rootModel.SelectedMission = _model;
+            else if (_rootModel.SelectedMission == _model)
+            {
+                _rootModel.SelectedMission = null;
+            }
         }
     }
 }

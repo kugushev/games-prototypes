@@ -12,10 +12,10 @@ namespace Kugushev.Scripts.Mission.Models
     {
         public struct State
         {
-            public State(MissionInfo missionInfo, PlanetarySystem planetarySystem, ConflictParty green,
+            public State(MissionParameters missionParameters, PlanetarySystem planetarySystem, ConflictParty green,
                 ConflictParty red, Faction playerFaction)
             {
-                MissionInfo = missionInfo;
+                MissionParameters = missionParameters;
                 PlanetarySystem = planetarySystem;
                 Green = green;
                 Red = red;
@@ -24,7 +24,7 @@ namespace Kugushev.Scripts.Mission.Models
                 DebriefingSummary = null;
             }
 
-            public MissionInfo MissionInfo;
+            public MissionParameters MissionParameters;
             public PlanetarySystem PlanetarySystem;
             public ConflictParty Green;
             public ConflictParty Red;
@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Mission.Models
         {
         }
 
-        public MissionInfo Info => ObjectState.MissionInfo;
+        public MissionParameters Parameters => ObjectState.MissionParameters;
 
         public PlanetarySystem PlanetarySystem => ObjectState.PlanetarySystem;
 

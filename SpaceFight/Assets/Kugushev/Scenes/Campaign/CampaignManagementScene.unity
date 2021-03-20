@@ -168,7 +168,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
   campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
+  missionsGenerationService: {fileID: 11400000, guid: 6765412051dbf524baabd4666761576a, type: 2}
   missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}
   missionSceneResultPipeline: {fileID: 11400000, guid: 54996aacfcd26644ab31e4ee7f10a718, type: 2}
+  campaignExitState: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
+  toFinishTransition: {fileID: 11400000, guid: 6464fd1c81d2b5b49b8cab8a3e568853, type: 2}
   onMissionExitTransition: {fileID: 11400000, guid: 00af9102f2df3804daf3508b4486ebb1, type: 2}
   toMissionTransition: {fileID: 11400000, guid: 4b9f5fc21be9d4443bd3f5e3f861d94b, type: 2}

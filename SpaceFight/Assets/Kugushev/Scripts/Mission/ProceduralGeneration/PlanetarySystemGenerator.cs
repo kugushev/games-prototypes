@@ -29,14 +29,14 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         [SerializeField] private PlanetRule[] mediumPlanetsRules;
         [SerializeField] private PlanetRule[] bigPlanetsRules;
 
-        public PlanetarySystem CreatePlanetarySystem(MissionProperties properties, Faction playerFaction,
+        public PlanetarySystem CreatePlanetarySystem(MissionInfo info, Faction playerFaction,
             PlanetarySystemProperties planetarySystemProperties)
         {
-            Random.InitState(properties.Seed);
+            Random.InitState(info.Seed);
 
             var sun = CreateSun();
             var result = objectsPool.GetObject<PlanetarySystem, PlanetarySystem.State>(new PlanetarySystem.State(sun));
-            AddPlanets(result, sun, planetarySystemProperties, properties, playerFaction);
+            AddPlanets(result, sun, planetarySystemProperties, info, playerFaction);
             return result;
         }
 
@@ -47,7 +47,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         }
 
         private void AddPlanets(PlanetarySystem planetarySystem, Sun sun,
-            PlanetarySystemProperties planetarySystemProperties, MissionProperties missionProperties,
+            PlanetarySystemProperties planetarySystemProperties, MissionInfo missionInfo,
             Faction playerFaction)
         {
             int planetsCount = Random.Range(minPlanets, maxPlanets);
@@ -61,7 +61,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             int enemyExtraPlanets = 0;
             for (int i = 0; i < planetsCount; i++)
             {
-                var faction = GetFaction(i, greenHome, redHome, missionProperties, playerFaction,
+                var faction = GetFaction(i, greenHome, redHome, missionInfo, playerFaction,
                     ref playerExtraPlanets, ref enemyExtraPlanets);
                 t += 1f / planetsCount;
 
@@ -70,8 +70,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
                 var rule = GetPlanetRule(faction, homePlanetRule, t);
 
-                int production = GetPlanetProduction(rule, faction, missionProperties, playerFaction);
-                var power = GetPower(production, missionProperties, faction, playerFaction);
+                int production = GetPlanetProduction(rule, faction, missionInfo, playerFaction);
+                var power = GetPower(production, missionInfo, faction, playerFaction);
 
                 var planet = objectsPool.GetObject<Planet, Planet.State>(new Planet.State(
                     faction, rule.Size, production, orbit, sun, eventsCollector, planetarySystemProperties,
@@ -115,7 +115,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             }
         }
 
-        private Faction GetFaction(int i, int greenHome, int redHome, MissionProperties missionProperties,
+        private Faction GetFaction(int i, int greenHome, int redHome, MissionInfo missionInfo,
             Faction playerFaction, ref int playerExtraPlanets, ref int enemyExtraPlanets)
         {
             var faction = Faction.Neutral;
@@ -125,9 +125,9 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 return Faction.Red;
 
             // todo: refactor this ugly code
-            if (missionProperties.PlayerExtraPlanets > playerExtraPlanets)
+            if (missionInfo.PlayerExtraPlanets > playerExtraPlanets)
             {
-                if (missionProperties.EnemyExtraPlanets > enemyExtraPlanets && playerExtraPlanets > enemyExtraPlanets)
+                if (missionInfo.EnemyExtraPlanets > enemyExtraPlanets && playerExtraPlanets > enemyExtraPlanets)
                 {
                     enemyExtraPlanets++;
                     return playerFaction.GetOpposite();
@@ -137,7 +137,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 return playerFaction;
             }
 
-            if (missionProperties.EnemyExtraPlanets > enemyExtraPlanets)
+            if (missionInfo.EnemyExtraPlanets > enemyExtraPlanets)
             {
                 enemyExtraPlanets++;
                 return playerFaction.GetOpposite();
@@ -176,27 +176,27 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             return mediumPlanetsRules[ruleIndex];
         }
 
-        private static int GetPlanetProduction(PlanetRule rule, Faction faction, MissionProperties missionProperties,
+        private static int GetPlanetProduction(PlanetRule rule, Faction faction, MissionInfo missionInfo,
             Faction playerFaction)
         {
             var result = Random.Range(rule.MinProduction, rule.MaxProduction);
 
-            if (missionProperties.PlayerHomeProductionMultiplier != null && faction == playerFaction)
-                result *= missionProperties.PlayerHomeProductionMultiplier.Value;
-            else if (missionProperties.EnemyHomeProductionMultiplier != null && faction.GetOpposite() == playerFaction)
-                result *= missionProperties.EnemyHomeProductionMultiplier.Value;
+            if (missionInfo.PlayerHomeProductionMultiplier != null && faction == playerFaction)
+                result *= missionInfo.PlayerHomeProductionMultiplier.Value;
+            else if (missionInfo.EnemyHomeProductionMultiplier != null && faction.GetOpposite() == playerFaction)
+                result *= missionInfo.EnemyHomeProductionMultiplier.Value;
 
             return result;
         }
 
-        private float GetPower(int production, MissionProperties missionProperties, Faction faction,
+        private float GetPower(int production, MissionInfo missionInfo, Faction faction,
             Faction playerFaction)
         {
             int multiplier = 1;
-            if (faction == playerFaction && missionProperties.PlayerStartPower != null)
-                multiplier = missionProperties.PlayerStartPower.Value;
-            else if (faction == playerFaction.GetOpposite() && missionProperties.EnemyStartPower != null)
-                multiplier = missionProperties.EnemyStartPower.Value;
+            if (faction == playerFaction && missionInfo.PlayerStartPowerMultiplier != null)
+                multiplier = missionInfo.PlayerStartPowerMultiplier.Value;
+            else if (faction == playerFaction.GetOpposite() && missionInfo.EnemyStartPowerMultiplier != null)
+                multiplier = missionInfo.EnemyStartPowerMultiplier.Value;
 
             return production * multiplier;
         }

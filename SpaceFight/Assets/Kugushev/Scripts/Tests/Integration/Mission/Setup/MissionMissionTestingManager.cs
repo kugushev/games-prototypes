@@ -5,15 +5,15 @@ using Kugushev.Scripts.Mission.AI.Tactical;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.StatesAndTransitions;
-using Kugushev.Scripts.Tests.Integration.Setup.Abstractions;
+using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Tests.Integration.Setup
+namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
 {
-    public class MissionExecutionTestingManager : BaseExecutionTestingManager
+    public class MissionMissionTestingManager : BaseMissionTestingManager
     {
-        [Header(nameof(MissionExecutionTestingManager))] [SerializeField]
+        [Header(nameof(MissionMissionTestingManager))] [SerializeField]
         private SimpleAI greenAi;
 
         [SerializeField] private SimpleAI redAi;

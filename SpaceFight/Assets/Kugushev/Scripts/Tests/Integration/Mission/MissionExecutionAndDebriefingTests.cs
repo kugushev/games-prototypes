@@ -2,22 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
-using Kugushev.Scripts.Tests.Integration.Setup;
-using Kugushev.Scripts.Tests.Integration.Setup.Abstractions;
+using Kugushev.Scripts.Tests.Integration.Mission.Setup;
+using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-namespace Kugushev.Scripts.Tests.Integration
+namespace Kugushev.Scripts.Tests.Integration.Mission
 {
-    public class MissionExecutionAndDebriefing
+    public class MissionExecutionAndDebriefingTests
     {
         [UnityTest]
         [Timeout(10 * 60 * 1000)]
@@ -28,7 +29,7 @@ namespace Kugushev.Scripts.Tests.Integration
 
             yield return RunExecutionWithSeed(seed, new (AchievementId, int level, AchievementType)[0]);
 
-            CollectionAssert.IsNotEmpty(BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements);
+            CollectionAssert.IsNotEmpty(BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements);
 
             LogAllAchievements();
         }
@@ -41,7 +42,7 @@ namespace Kugushev.Scripts.Tests.Integration
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Invader));
 
@@ -64,7 +65,7 @@ namespace Kugushev.Scripts.Tests.Integration
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 2));
             Assert.That(allAchievements, Has.Exactly(1)
@@ -83,7 +84,7 @@ namespace Kugushev.Scripts.Tests.Integration
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 3));
         }
@@ -91,15 +92,15 @@ namespace Kugushev.Scripts.Tests.Integration
         [UnityTest]
         public IEnumerator Fight_ArmiesFight_NoAchievements_AchieveKamikazeLvl1()
         {
-            MissionExecutionAndDebriefingTestingManager.GreenIsNormal = true;
-            MissionExecutionAndDebriefingTestingManager.RedIsNormal = true;
+            MissionMissionAndDebriefingTestingManager.GreenIsNormal = true;
+            MissionMissionAndDebriefingTestingManager.RedIsNormal = true;
 
             yield return RunExecutionWithSeed(Seeds.ArmiesFight, new (AchievementId, int level, AchievementType)[0]);
 
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Kamikaze && a.Info.Level == 1));
         }
@@ -119,22 +120,24 @@ namespace Kugushev.Scripts.Tests.Integration
                     new AchievementInfo(achievementId, level, achievementType, "", "", ""));
             }
 
-            BaseExecutionTestingManager.MissionInfo = new MissionInfo(new MissionProperties(seed), achievementsModel);
+            BaseMissionTestingManager.MissionInfo = new MissionParameters(
+                new MissionInfo(seed, Difficulty.Normal), 
+                achievementsModel);
 
             SceneManager.LoadScene("MissionExecutionAndDebriefingTestingManagementScene");
 
             // we need to wait for the mission finished to init BaseExecutionTestingManager.MissionModel.DebriefingSummary
             yield return new WaitUntil(() => SingletonState.Instance.Entered);
-            yield return new WaitUntil(() => BaseExecutionTestingManager.MissionModel.DebriefingSummary != null);
+            yield return new WaitUntil(() => BaseMissionTestingManager.MissionModel.DebriefingSummary != null);
 
-            MissionExecutionAndDebriefingTestingManager.GreenIsNormal = default;
-            MissionExecutionAndDebriefingTestingManager.RedIsNormal = default;
+            MissionMissionAndDebriefingTestingManager.GreenIsNormal = default;
+            MissionMissionAndDebriefingTestingManager.RedIsNormal = default;
         }
 
         private static void LogAllAchievements()
         {
             Debug.Log("Achievements");
-            foreach (var achievement in BaseExecutionTestingManager.MissionModel.DebriefingSummary.AllAchievements)
+            foreach (var achievement in BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements)
                 Debug.Log(achievement);
         }
     }

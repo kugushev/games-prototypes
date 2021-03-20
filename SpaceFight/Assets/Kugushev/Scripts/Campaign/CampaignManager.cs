@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Models;
+using Kugushev.Scripts.Campaign.Services;
 using Kugushev.Scripts.Campaign.StatesAndTransitions;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
@@ -16,15 +17,19 @@ namespace Kugushev.Scripts.Campaign
     {
         [SerializeField] private CampaignModelProvider modelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
+        [SerializeField] private MissionsGenerationService missionsGenerationService;
 
         [Header("Mission Parameters")] [SerializeField]
         private MissionSceneParametersPipeline missionSceneParametersPipeline;
 
         [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
 
-        [Header("Transitions")] [SerializeField]
-        private ExitState onMissionExitTransition;
+        [Header("States and Transitions")] [SerializeField]
+        private ExitState campaignExitState;
 
+        [SerializeField] private TriggerTransition toFinishTransition;
+
+        [SerializeField] private ExitState onMissionExitTransition;
         [SerializeField] private TriggerTransition toMissionTransition;
 
         protected override CampaignModel InitRootModel()
@@ -42,34 +47,68 @@ namespace Kugushev.Scripts.Campaign
         {
             if (rootModel.CampaignInfo.IsPlaygroundMode)
             {
-                return GetPlayground();
+                return GetPlaygroundStates();
             }
 
-            throw new NotImplementedException();
+            return GetCampaignStates();
 
-            IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetPlayground()
+            IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetPlaygroundStates()
             {
-                var campaignProgressState = new PlaygroundState(rootModel);
-                var missionState = new MissionState(rootModel, missionSceneParametersPipeline, missionSceneResultPipeline);
+                var playgroundState = new PlaygroundState(rootModel);
+                var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
+                    missionSceneResultPipeline);
 
                 return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
                 {
                     {
                         EntryState.Instance, new[]
                         {
-                            new TransitionRecord(ImmediateTransition.Instance, campaignProgressState)
+                            new TransitionRecord(ImmediateTransition.Instance, playgroundState)
                         }
                     },
                     {
-                        campaignProgressState, new[]
+                        playgroundState, new[]
                         {
-                            new TransitionRecord(toMissionTransition, missionState)
+                            new TransitionRecord(toMissionTransition, missionState),
+                            new TransitionRecord(toFinishTransition, campaignExitState)
                         }
                     },
                     {
                         missionState, new[]
                         {
-                            new TransitionRecord(onMissionExitTransition, campaignProgressState)
+                            new TransitionRecord(onMissionExitTransition, playgroundState)
+                        }
+                    }
+                };
+            }
+
+            IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetCampaignStates()
+            {
+                var missionSelectionState = new MissionSelectionState(RootModel.MissionSelection,
+                    missionsGenerationService);
+
+                var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
+                    missionSceneResultPipeline);
+
+                return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+                {
+                    {
+                        EntryState.Instance, new[]
+                        {
+                            new TransitionRecord(ImmediateTransition.Instance, missionSelectionState)
+                        }
+                    },
+                    {
+                        missionSelectionState, new[]
+                        {
+                            new TransitionRecord(toMissionTransition, missionState),
+                            new TransitionRecord(toFinishTransition, campaignExitState)
+                        }
+                    },
+                    {
+                        missionState, new[]
+                        {
+                            new TransitionRecord(onMissionExitTransition, missionSelectionState)
                         }
                     }
                 };

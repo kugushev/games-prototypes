@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Campaign.Widgets
 {
-    public class CampaignProgressWidget : MonoBehaviour
+    public class PlaygroundWidget : MonoBehaviour
     {
         [SerializeField] private CampaignModelProvider modelProvider;
         [SerializeField] private TextMeshProUGUI playerScoreText;
@@ -22,11 +22,6 @@ namespace Kugushev.Scripts.Campaign.Widgets
         [SerializeField] private PanelWithSliderWidget enemyExtraPlanets;
         [SerializeField] private PanelWithSliderWidget playerStartPower;
         [SerializeField] private PanelWithSliderWidget enemyStartPower;
-
-        [Header("Achievements Panel")] [SerializeField]
-        private Transform achievementsPanel;
-
-        [SerializeField] private GameObject achievementCardPrefab;
 
         private void Start()
         {
@@ -40,23 +35,9 @@ namespace Kugushev.Scripts.Campaign.Widgets
                 enemyHomeProduction.Value = model.NextMissionProperties.EnemyHomeProductionMultiplier ?? 1;
                 playerExtraPlanets.Value = model.NextMissionProperties.PlayerExtraPlanets ?? 0;
                 enemyExtraPlanets.Value = model.NextMissionProperties.EnemyExtraPlanets ?? 0;
-                playerStartPower.Value = model.NextMissionProperties.PlayerStartPower ?? 0;
-                enemyStartPower.Value = model.NextMissionProperties.EnemyStartPower ?? 0;
-
-
-                foreach (var achievement in model.PlayerAchievements.CommonAchievements)
-                    CreateAchievementCard(achievement);
-
-                foreach (var achievement in model.PlayerAchievements.EpicAchievements.Values)
-                    CreateAchievementCard(achievement);
+                playerStartPower.Value = model.NextMissionProperties.PlayerStartPowerMultiplier ?? 0;
+                enemyStartPower.Value = model.NextMissionProperties.EnemyStartPowerMultiplier ?? 0;
             }
-        }
-
-        private void CreateAchievementCard(AchievementInfo achievement)
-        {
-            var go = Instantiate(achievementCardPrefab, achievementsPanel);
-            var widget = go.GetComponent<AchievementCardWidget>();
-            widget.SetUp(achievement);
         }
 
         public void SetSeed(float sliderValue)
@@ -93,13 +74,13 @@ namespace Kugushev.Scripts.Campaign.Widgets
         public void SetPlayerStartPower(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.PlayerStartPower = Mathf.FloorToInt(sliderValue);
+                model.NextMissionProperties.PlayerStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetEnemyStartPower(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.EnemyStartPower = Mathf.FloorToInt(sliderValue);
+                model.NextMissionProperties.EnemyStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
         }
     }
 }

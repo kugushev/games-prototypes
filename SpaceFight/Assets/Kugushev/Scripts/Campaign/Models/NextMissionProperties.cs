@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.Campaign.Models
         public int? EnemyHomeProductionMultiplier { get; set; }
         public int? PlayerExtraPlanets { get; set; }
         public int? EnemyExtraPlanets { get; set; }
-        public int? PlayerStartPower { get; set; }
-        public int? EnemyStartPower { get; set; }
+        public int? PlayerStartPowerMultiplier { get; set; }
+        public int? EnemyStartPowerMultiplier { get; set; }
     }
 }

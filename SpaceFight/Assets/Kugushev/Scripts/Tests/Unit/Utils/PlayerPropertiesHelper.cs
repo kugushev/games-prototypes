@@ -22,7 +22,7 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
                     new AchievementInfo(achievementId, level, achievementType, "", "", ""));
             }
 
-            return service.GetPlayerProperties(Faction.Green, new MissionInfo(default, achievementsModel));
+            return service.GetPlayerProperties(Faction.Green, new MissionParameters(default, achievementsModel));
         }
     }
 }

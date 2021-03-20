@@ -43,7 +43,7 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             {
                 _achievementsBuffer.Clear();
                 _achievementsManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction, 
-                    Model.Info.PlayerAchievements);
+                    Model.Parameters.PlayerAchievements);
 
                 debriefingInfo.Fill(_achievementsBuffer);
 

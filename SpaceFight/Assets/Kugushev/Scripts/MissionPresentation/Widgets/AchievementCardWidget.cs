@@ -26,6 +26,8 @@ namespace Kugushev.Scripts.MissionPresentation.Widgets
         {
             if (selected)
                 _rootModel.SelectedAchievement = _model;
+            else if (_rootModel.SelectedAchievement == _model)
+                _rootModel.SelectedAchievement = null;
         }
 
         private void Start()

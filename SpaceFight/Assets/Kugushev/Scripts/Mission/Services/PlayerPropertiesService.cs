@@ -16,10 +16,10 @@ namespace Kugushev.Scripts.Mission.Services
 
         private readonly List<AbstractAchievement> _achievementBuffer = new List<AbstractAchievement>(128);
 
-        public (PlanetarySystemProperties, FleetProperties) GetPlayerProperties(Faction playerFaction, MissionInfo info)
+        public (PlanetarySystemProperties, FleetProperties) GetPlayerProperties(Faction playerFaction, MissionParameters parameters)
         {
             _achievementBuffer.Clear();
-            achievementsManager.FindMatched(_achievementBuffer, info.PlayerAchievements);
+            achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerAchievements);
 
             var planetarySystemBuilder = new PlanetarySystemPropertiesBuilder();
             var fleetBuilder = new FleetPropertiesBuilder();

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Campaign.Utils
 {
     [CreateAssetMenu(menuName = CampaignConstants.MenuPrefix + nameof(MissionSceneParametersPipeline))]
-    public class MissionSceneParametersPipeline: SceneParametersPipeline<MissionInfo>
+    public class MissionSceneParametersPipeline: SceneParametersPipeline<MissionParameters>
     {
         
     }

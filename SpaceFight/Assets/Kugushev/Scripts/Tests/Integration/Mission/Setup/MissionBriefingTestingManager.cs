@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
@@ -15,7 +16,7 @@ using Kugushev.Scripts.Mission.ValueObjects;
 using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Tests.Integration.Setup
+namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
 {
     public class MissionBriefingTestingManager : BaseManager<MissionModel>
     {
@@ -28,7 +29,7 @@ namespace Kugushev.Scripts.Tests.Integration.Setup
         protected override MissionModel InitRootModel()
         {
             var seed = Seed ?? DateTime.Now.Millisecond;
-            var missionProperties = new MissionProperties(seed);
+            var missionProperties = new MissionInfo(seed, Difficulty.Normal);
 
             var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionProperties,
                 Faction.Green, new PlanetarySystemProperties());
@@ -37,7 +38,7 @@ namespace Kugushev.Scripts.Tests.Integration.Setup
             var red = new ConflictParty(Faction.Red, default, default);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(new MissionModel.State(
-                new MissionInfo(missionProperties, new PlayerAchievements()),
+                new MissionParameters(missionProperties, new PlayerAchievements()),
                 planetarySystem, green, red, Faction.Green
             ));
 
