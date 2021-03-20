@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             if (Model.ExecutionResult?.Winner == Model.PlayerFaction)
             {
                 _achievementsBuffer.Clear();
-                _achievementsManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction, 
+                _achievementsManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction,
                     Model.Parameters.PlayerAchievements);
 
                 debriefingInfo.Fill(_achievementsBuffer);
@@ -68,7 +68,7 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
                 };
                 var reward = Model.DebriefingSummary.SelectedAchievement;
 
-                _missionSceneResultPipeline.Set(new MissionResult(playerWin, reward));
+                _missionSceneResultPipeline.Set(new MissionResult(playerWin, Model.Parameters.MissionInfo, reward));
             }
             else
                 Alert();

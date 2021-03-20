@@ -110,7 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d79bfcf0204e51bf99ce376ba442b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 11400000, guid: dd2dbcb9415788941828b307eac168a9, type: 2}
 --- !u!114 &5842988920487544334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +136,10 @@ PrefabInstance:
     - target: {fileID: 3094713882153815673, guid: b2daef8387b621648bbf80dc75ce1582, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094713882153815673, guid: b2daef8387b621648bbf80dc75ce1582, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3681737186951758964, guid: b2daef8387b621648bbf80dc75ce1582, type: 3}
       propertyPath: m_Pivot.x
@@ -221,6 +224,10 @@ PrefabInstance:
     - target: {fileID: 3681737186951758964, guid: b2daef8387b621648bbf80dc75ce1582, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546867413465220463, guid: b2daef8387b621648bbf80dc75ce1582, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2daef8387b621648bbf80dc75ce1582, type: 3}

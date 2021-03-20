@@ -5,18 +5,6 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
 {
     public readonly struct MissionInfo
     {
-        public MissionInfo(NextMissionProperties builder)
-        {
-            Difficulty = Difficulty.Normal;
-            Seed = builder.Seed;
-            PlayerHomeProductionMultiplier = builder.PlayerHomeProductionMultiplier;
-            EnemyHomeProductionMultiplier = builder.EnemyHomeProductionMultiplier;
-            PlayerExtraPlanets = builder.PlayerExtraPlanets;
-            EnemyExtraPlanets = builder.EnemyExtraPlanets;
-            PlayerStartPowerMultiplier = builder.PlayerStartPowerMultiplier;
-            EnemyStartPowerMultiplier = builder.EnemyStartPowerMultiplier;
-        }
-
         public MissionInfo(int seed,
             Difficulty difficulty,
             int? playerHomeProductionMultiplier = null,

@@ -11,6 +11,7 @@ namespace Kugushev.Scripts.MissionPresentation.Widgets
         [SerializeField] private MissionModelProvider missionModelProvider;
         [SerializeField] private TextMeshProUGUI youWinText;
         [SerializeField] private TextMeshProUGUI aiWinText;
+        [SerializeField] private TextMeshProUGUI tipText;
         [SerializeField] private Transform achievementsPanel;
         [SerializeField] private GameObject achievementCardPrefab;
         [SerializeField] private ToggleGroup toggleGroup;
@@ -25,18 +26,18 @@ namespace Kugushev.Scripts.MissionPresentation.Widgets
                     return;
                 }
 
-                switch (missionModel.ExecutionResult.Value.Winner)
+                if (missionModel.ExecutionResult.Value.Winner == missionModel.PlayerFaction)
                 {
-                    case Faction.Green:
-                        aiWinText.enabled = false;
-                        break;
-                    case Faction.Red:
-                        youWinText.enabled = false;
-                        break;
-                    default:
-                        Debug.LogError($"Unexpected winner {missionModel.ExecutionResult.Value.Winner}");
-                        break;
+                    aiWinText.enabled = false;
+                    tipText.enabled = true;
                 }
+                else if (missionModel.ExecutionResult.Value.Winner == missionModel.PlayerFaction.GetOpposite())
+                {
+                    youWinText.enabled = false;
+                    tipText.enabled = false;
+                }
+                else
+                    Debug.LogError($"Unexpected winner {missionModel.ExecutionResult.Value.Winner}");
 
                 foreach (var achievement in missionModel.DebriefingSummary.AllAchievements)
                 {

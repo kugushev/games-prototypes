@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c23e549aca64841828e9da10588d82e, type: 3}
   m_Name: Missions Generation Service
   m_EditorClassIdentifier: 
-  maxSeed: 999
+  maxSeed: 99

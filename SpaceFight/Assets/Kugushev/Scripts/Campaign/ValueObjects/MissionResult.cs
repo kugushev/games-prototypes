@@ -4,13 +4,15 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
 {
     public readonly struct MissionResult
     {
-        public MissionResult(bool playerWin, AchievementInfo? reward)
+        public MissionResult(bool playerWins, MissionInfo missionInfo, AchievementInfo? reward)
         {
-            PlayerWin = playerWin;
+            PlayerWins = playerWins;
+            MissionInfo = missionInfo;
             Reward = reward;
         }
 
-        public bool PlayerWin { get; }
+        public bool PlayerWins { get; }
+        public MissionInfo MissionInfo { get; }
         public AchievementInfo? Reward { get; }
     }
 }

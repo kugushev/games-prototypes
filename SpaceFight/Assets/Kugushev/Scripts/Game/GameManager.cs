@@ -13,7 +13,13 @@ namespace Kugushev.Scripts.Game
     {
         [SerializeField] private GameModelProvider gameModelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
+
+        [Header("States and Transitions")] [SerializeField]
+        private ExitState onCampaignExitTransition;
+
         [SerializeField] private TriggerTransition toCampaignTransition;
+        [SerializeField] private TriggerTransition toPlaygroundTransition;
+
 
         protected override GameModel InitRootModel()
         {
@@ -26,7 +32,8 @@ namespace Kugushev.Scripts.Game
             GameModel rootModel)
         {
             var mainMenuState = new MainMenuState(rootModel);
-            var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline);
+            var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline, false);
+            var playgroundState = new CampaignState(rootModel, campaignSceneParametersPipeline, true);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
@@ -39,7 +46,20 @@ namespace Kugushev.Scripts.Game
                 {
                     mainMenuState, new[]
                     {
-                        new TransitionRecord(toCampaignTransition, campaignState)
+                        new TransitionRecord(toCampaignTransition, campaignState),
+                        new TransitionRecord(toPlaygroundTransition, playgroundState)
+                    }
+                },
+                {
+                    campaignState, new[]
+                    {
+                        new TransitionRecord(onCampaignExitTransition, mainMenuState)
+                    }
+                },
+                {
+                    playgroundState, new[]
+                    {
+                        new TransitionRecord(onCampaignExitTransition, mainMenuState)
                     }
                 }
             };

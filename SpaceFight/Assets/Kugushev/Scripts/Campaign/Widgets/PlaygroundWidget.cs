@@ -25,18 +25,19 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         private void Start()
         {
-            if (modelProvider.TryGetModel(out var model))
+            if (modelProvider.TryGetModel(out var rootModel))
             {
+                var model = rootModel.Playground;
                 playerScoreText.text = StringBag.FromInt(model.PlayerScore);
                 aiScoreText.text = StringBag.FromInt(model.AIScore);
 
-                seed.Value = model.NextMissionProperties.Seed;
-                playerHomeProduction.Value = model.NextMissionProperties.PlayerHomeProductionMultiplier ?? 1;
-                enemyHomeProduction.Value = model.NextMissionProperties.EnemyHomeProductionMultiplier ?? 1;
-                playerExtraPlanets.Value = model.NextMissionProperties.PlayerExtraPlanets ?? 0;
-                enemyExtraPlanets.Value = model.NextMissionProperties.EnemyExtraPlanets ?? 0;
-                playerStartPower.Value = model.NextMissionProperties.PlayerStartPowerMultiplier ?? 0;
-                enemyStartPower.Value = model.NextMissionProperties.EnemyStartPowerMultiplier ?? 0;
+                seed.Value = model.Seed;
+                playerHomeProduction.Value = model.PlayerHomeProductionMultiplier ?? 1;
+                enemyHomeProduction.Value = model.EnemyHomeProductionMultiplier ?? 1;
+                playerExtraPlanets.Value = model.PlayerExtraPlanets ?? 0;
+                enemyExtraPlanets.Value = model.EnemyExtraPlanets ?? 0;
+                playerStartPower.Value = model.PlayerStartPowerMultiplier ?? 0;
+                enemyStartPower.Value = model.EnemyStartPowerMultiplier ?? 0;
             }
         }
 
@@ -44,43 +45,43 @@ namespace Kugushev.Scripts.Campaign.Widgets
         {
             int value = Mathf.FloorToInt(sliderValue);
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.Seed = value;
+                model.Playground.Seed = value;
         }
 
         public void SetPlayerHomeProductionMultiplier(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.PlayerHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
+                model.Playground.PlayerHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetEnemyHomeProductionMultiplier(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.EnemyHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
+                model.Playground.EnemyHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetPlayerExtraPlanets(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.PlayerExtraPlanets = Mathf.FloorToInt(sliderValue);
+                model.Playground.PlayerExtraPlanets = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetEnemyExtraPlanets(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.EnemyExtraPlanets = Mathf.FloorToInt(sliderValue);
+                model.Playground.EnemyExtraPlanets = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetPlayerStartPower(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.PlayerStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
+                model.Playground.PlayerStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetEnemyStartPower(float sliderValue)
         {
             if (modelProvider.TryGetModel(out var model))
-                model.NextMissionProperties.EnemyStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
+                model.Playground.EnemyStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
         }
     }
 }

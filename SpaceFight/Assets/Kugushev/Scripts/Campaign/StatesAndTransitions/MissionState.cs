@@ -3,6 +3,8 @@ using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
@@ -21,24 +23,29 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         protected override void AssertModel()
         {
+            if (Model.NextMission == null)
+                Debug.LogError("Next Mission has not specified");
         }
 
         protected override void OnEnterBeforeLoadScene()
         {
-            var campaignInfo = new MissionParameters(new MissionInfo(Model.NextMissionProperties), Model.PlayerAchievements);
+            Model.LastMissionResult = null;
+
+            var missionInfo = Model.NextMission ?? new MissionInfo();
+            var campaignInfo = new MissionParameters(missionInfo, Model.PlayerAchievements);
             _missionSceneParametersPipeline.Set(campaignInfo);
         }
 
         protected override void OnExitBeforeUnloadScene()
         {
             var result = _missionSceneResultPipeline.Get();
-            if (result.PlayerWin)
-                Model.PlayerScore++;
-            else
-                Model.AIScore++;
 
-            if (result.Reward != null)
-                Model.PlayerAchievements.AddAchievement(result.Reward.Value);
+            Model.LastMissionResult = result;
+
+            if (result.Reward is { } reward)
+                Model.PlayerAchievements.AddAchievement(reward);
+
+            Model.NextMission = null;
         }
     }
 }

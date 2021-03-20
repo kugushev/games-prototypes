@@ -1,5 +1,8 @@
-﻿using Kugushev.Scripts.Campaign.Models;
+﻿using System;
+using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
+using Kugushev.Scripts.Common.Utils;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +15,14 @@ namespace Kugushev.Scripts.Campaign.Widgets
         [SerializeField] private Transform missionsPanel;
         [SerializeField] private GameObject missionCardPrefab;
         [SerializeField] private ToggleGroup missionsToggleGroup;
+        [SerializeField] private Button startMissionButton;
+        [SerializeField] private TextMeshProUGUI budgetText;
 
         private void Start()
         {
             if (TryGetModel(out var model))
             {
+                budgetText.text = StringBag.FromInt(model.Budget);
                 SetupMissions(model);
             }
         }
@@ -46,6 +52,12 @@ namespace Kugushev.Scripts.Campaign.Widgets
             }
 
             return false;
+        }
+
+        private void Update()
+        {
+            if (TryGetModel(out var model))
+                startMissionButton.interactable = model.SelectedMission != null && model.Budget > 0;
         }
     }
 }

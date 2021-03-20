@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Campaign
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             CampaignModel rootModel)
         {
-            if (rootModel.CampaignInfo.IsPlaygroundMode)
+            if (rootModel.CampaignInfo.IsPlayground)
             {
                 return GetPlaygroundStates();
             }
@@ -84,8 +84,7 @@ namespace Kugushev.Scripts.Campaign
 
             IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetCampaignStates()
             {
-                var missionSelectionState = new MissionSelectionState(RootModel.MissionSelection,
-                    missionsGenerationService);
+                var missionSelectionState = new MissionSelectionState(RootModel, missionsGenerationService);
 
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
                     missionSceneResultPipeline);

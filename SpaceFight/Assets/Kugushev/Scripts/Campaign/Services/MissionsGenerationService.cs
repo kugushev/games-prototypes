@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Enums;
-using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,15 +11,13 @@ namespace Kugushev.Scripts.Campaign.Services
     [CreateAssetMenu(menuName = CampaignConstants.MenuPrefix + nameof(MissionsGenerationService))]
     public class MissionsGenerationService : ScriptableObject
     {
-        [SerializeField] private int maxSeed = 999;
-
-        public IReadOnlyList<MissionInfo> GenerateMissions()
+        public List<MissionInfo> GenerateMissions()
         {
-            int normalMissionsCount = MissionSelection.NormalMissionsCount;
-            int hardMissionsCount = MissionSelection.HardMissionsCount;
-            int insaneMissionsCount = MissionSelection.InsaneMissionsCount;
+            int normalMissionsCount = CampaignConstants.NormalMissionsCount;
+            int hardMissionsCount = CampaignConstants.HardMissionsCount;
+            int insaneMissionsCount = CampaignConstants.InsaneMissionsCount;
 
-            var missions = new List<MissionInfo>(MissionSelection.MissionsCount);
+            var missions = new List<MissionInfo>(CampaignConstants.MissionsCount);
 
             while (normalMissionsCount > 0 || hardMissionsCount > 0 || insaneMissionsCount > 0)
             {
@@ -78,6 +75,6 @@ namespace Kugushev.Scripts.Campaign.Services
                 enemyHomeProductionMultiplier: 2);
         }
 
-        private int NextSeed => Random.Range(0, maxSeed + 1);
+        private int NextSeed => Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
     }
 }

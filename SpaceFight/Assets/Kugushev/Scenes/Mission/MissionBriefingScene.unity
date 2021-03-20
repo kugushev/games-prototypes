@@ -389,7 +389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3814144272359308333, guid: 0c2d854342743d44aa7be294f0728eec, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 23
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 3814144272359308335, guid: 0c2d854342743d44aa7be294f0728eec, type: 3}
       propertyPath: m_Cameras.Array.size
@@ -1310,7 +1310,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 64
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

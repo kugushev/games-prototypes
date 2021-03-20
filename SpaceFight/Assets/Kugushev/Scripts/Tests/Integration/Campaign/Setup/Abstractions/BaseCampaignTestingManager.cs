@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup.Abstractions
 
         protected override CampaignModel InitRootModel()
         {
-            var campaignInfo = new CampaignInfo(Seed ?? DateTime.UtcNow.Millisecond);
+            var campaignInfo = new CampaignInfo(Seed ?? DateTime.UtcNow.Millisecond, false);
 
             var model = new CampaignModel(campaignInfo);
             modelProvider.Set(model);

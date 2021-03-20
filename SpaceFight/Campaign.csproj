@@ -61,7 +61,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Utils\MissionSceneParametersPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\MissionSelectionWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\AchievementCardWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\NextMissionProperties.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\Playground.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\PlaygroundState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\PlaygroundWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Enums\Difficulty.cs" />

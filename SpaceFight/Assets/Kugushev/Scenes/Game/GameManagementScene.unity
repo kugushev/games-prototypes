@@ -168,4 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameModelProvider: {fileID: 11400000, guid: 1f265bbda814ec940bbc416b87670e23, type: 2}
   campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
-  toCampaignTransition: {fileID: 11400000, guid: 2894980caa9a2db47a18566acbbb7c77, type: 2}
+  onCampaignExitTransition: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
+  toCampaignTransition: {fileID: 11400000, guid: afef6bfeb09978d498d4651ff00d7a4f, type: 2}
+  toPlaygroundTransition: {fileID: 11400000, guid: 2894980caa9a2db47a18566acbbb7c77, type: 2}

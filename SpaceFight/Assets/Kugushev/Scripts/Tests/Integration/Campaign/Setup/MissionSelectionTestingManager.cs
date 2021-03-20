@@ -9,12 +9,14 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup
 {
-    internal class MissionSelectionTestingManager: BaseCampaignTestingManager
+    internal class MissionSelectionTestingManager : BaseCampaignTestingManager
     {
         [SerializeField] private MissionsGenerationService missionsGenerationService;
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(CampaignModel rootModel)
+
+        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+            CampaignModel rootModel)
         {
-            var missionSelectionState = new MissionSelectionState(rootModel.MissionSelection, missionsGenerationService);
+            var missionSelectionState = new MissionSelectionState(rootModel, missionsGenerationService);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {

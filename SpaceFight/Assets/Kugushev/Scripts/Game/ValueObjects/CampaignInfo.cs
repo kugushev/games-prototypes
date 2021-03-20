@@ -7,13 +7,15 @@ namespace Kugushev.Scripts.Game.ValueObjects
     public struct CampaignInfo
     {
         [SerializeField] private int seed;
+        [SerializeField] private bool isPlayground;
 
-        public CampaignInfo(int seed)
+        public CampaignInfo(int seed, bool isPlayground)
         {
+            this.isPlayground = isPlayground;
             this.seed = seed;
         }
 
         public int Seed => seed;
-        public bool IsPlaygroundMode => true;
+        public bool IsPlayground => isPlayground;
     }
 }

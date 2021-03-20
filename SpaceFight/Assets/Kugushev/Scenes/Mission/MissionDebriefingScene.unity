@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 384836445}
   - component: {fileID: 384836444}
   m_Layer: 5
-  m_Name: Achievements Caption
+  m_Name: Tip Caption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 1589818211}
   - component: {fileID: 1589818210}
   m_Layer: 5
-  m_Name: AI Win
+  m_Name: AI Wins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AI Win
+  m_text: AI Wins
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1410,6 +1410,7 @@ MonoBehaviour:
   missionModelProvider: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
   youWinText: {fileID: 803968705}
   aiWinText: {fileID: 1589818210}
+  tipText: {fileID: 384836444}
   achievementsPanel: {fileID: 299449014}
   achievementCardPrefab: {fileID: 1688288680055327300, guid: 4adc6cbbd1cf35b4ba14c4bf0baad3df, type: 3}
   toggleGroup: {fileID: 299449017}

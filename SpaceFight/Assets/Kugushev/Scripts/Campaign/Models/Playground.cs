@@ -2,8 +2,11 @@
 
 namespace Kugushev.Scripts.Campaign.Models
 {
-    public class NextMissionProperties
+    public class Playground
     {
+        public int PlayerScore { get; set; }
+        public int AIScore { get; set; }
+
         public int Seed { get; set; }
         public int? PlayerHomeProductionMultiplier { get; set; }
         public int? EnemyHomeProductionMultiplier { get; set; }
