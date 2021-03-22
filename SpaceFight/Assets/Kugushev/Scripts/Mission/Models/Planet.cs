@@ -6,9 +6,9 @@ using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Mission.Models
         public struct State
         {
             public State(Faction faction, PlanetSize size, float production, Orbit orbit, Sun sun,
-                MissionEventsCollector eventsCollector, PlanetarySystemProperties planetarySystemProperties, float power)
+                MissionEventsCollector eventsCollector, PlanetarySystemPerks planetarySystemPerks, float power)
             {
                 this.faction = faction;
                 this.size = size;
@@ -28,7 +28,7 @@ namespace Kugushev.Scripts.Mission.Models
                 this.orbit = orbit;
                 this.sun = sun;
                 EventsCollector = eventsCollector;
-                PlanetarySystemProperties = planetarySystemProperties;
+                PlanetarySystemPerks = planetarySystemPerks;
                 this.power = power;
                 selected = false;
                 dayOfYear = 0;
@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Mission.Models
             public int dayOfYear;
             public Position position;
             public readonly MissionEventsCollector EventsCollector;
-            public readonly PlanetarySystemProperties PlanetarySystemProperties;
+            public readonly PlanetarySystemPerks PlanetarySystemPerks;
         }
 
         public Planet(ObjectsPool objectsPool) : base(objectsPool)
@@ -89,17 +89,10 @@ namespace Kugushev.Scripts.Mission.Models
 
         private float CalculateProductionIncrement()
         {
-            var properties = ObjectState.PlanetarySystemProperties;
-            if (Faction == properties.ApplyToFaction && properties.LowProductionCap != null)
+            if (ObjectState.PlanetarySystemPerks.ApplicantFaction == Faction)
             {
-                if (properties.LowProductionMultiplier != null && ObjectState.power <= properties.LowProductionCap)
-                    return ObjectState.production * properties.LowProductionMultiplier.Value;
-
-                if (properties.AboveLowProductionMultiplier != null &&
-                    ObjectState.power > properties.LowProductionCap)
-                    return ObjectState.production * properties.AboveLowProductionMultiplier.Value;
+                return ObjectState.PlanetarySystemPerks.Production.Calculate(ObjectState.production, this);
             }
-
             return ObjectState.production;
         }
 

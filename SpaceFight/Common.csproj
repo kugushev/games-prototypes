@@ -53,6 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\TriggerTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ValuesProcessing\ValuePipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Orbit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\BaseSceneLoadingState.cs" />
@@ -71,6 +72,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Models\Abstractions\IModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IGameLoopParticipant.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IPercentPerk.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\ITransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\IState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ValueObjects\Position.cs" />
@@ -82,6 +84,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Enums\HandType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IAIAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ImmediateTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IValuePipeline.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IMultiplierPerk.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

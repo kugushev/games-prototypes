@@ -4,8 +4,8 @@ using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Achievements.Epic
@@ -32,15 +32,13 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
                 if (missionEvent.Victim == faction)
                     deaths++;
             }
+
             return deaths >= losses;
         }
 
-        public override void Apply(ref FleetPropertiesBuilder fleetProperties,
-            ref PlanetarySystemPropertiesBuilder planetarySystemProperties)
+        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
         {
-            if (fleetProperties.DeathStrike != null)
-                Debug.LogError($"Death strike is already specified {fleetProperties.DeathStrike}");
-            fleetProperties.DeathStrike = deathStrike;
+            fleetPerks.deathStrike += deathStrike;
         }
     }
 }

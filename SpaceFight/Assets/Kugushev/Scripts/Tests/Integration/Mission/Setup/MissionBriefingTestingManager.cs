@@ -9,11 +9,11 @@ using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.ProceduralGeneration;
 using Kugushev.Scripts.Mission.StatesAndTransitions;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
@@ -31,8 +31,10 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
             var seed = Seed ?? DateTime.Now.Millisecond;
             var missionProperties = new MissionInfo(seed, Difficulty.Normal);
 
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionProperties,
-                Faction.Green, new PlanetarySystemProperties());
+            var planetarySystemPerks = objectsPool.GetObject<PlanetarySystemPerks, PlanetarySystemPerks.State>(
+                new PlanetarySystemPerks.State());
+            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionProperties, Faction.Green,
+                planetarySystemPerks);
 
             var green = new ConflictParty(Faction.Green, default, default);
             var red = new ConflictParty(Faction.Red, default, default);

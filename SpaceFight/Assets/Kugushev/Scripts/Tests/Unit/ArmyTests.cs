@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void NextStep_FightingStatus_NoAchievements_DamageUnifiedDamage()
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties();
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties();
 
             var army = CreateArmy(fleetProperties, Faction.Green);
             var enemy = CreateArmy(default, Faction.Red);
@@ -38,7 +38,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void NextStep_FightingStatus_BrawlerX1_Damage1d1()
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
                 (AchievementId.Brawler, null, AchievementType.Common));
 
             var army = CreateArmy(fleetProperties, Faction.Green);
@@ -57,7 +57,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void NextStep_FightingStatus_BrawlerX2_Damage1d2()
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
                 (AchievementId.Brawler, null, AchievementType.Common),
                 (AchievementId.Brawler, null, AchievementType.Common));
 
@@ -77,7 +77,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void NextStep_FightingStatus_MoskaLvl1But50Power_DamageUnifiedDamage()
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
                 (AchievementId.Moska, 1, AchievementType.Epic));
 
             var army = CreateArmy(fleetProperties, Faction.Green);
@@ -104,7 +104,7 @@ namespace Kugushev.Scripts.Tests.Unit
             [ValueSource(nameof(MoskaCases))] (int level, float power, float expected) testCase)
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
                 (AchievementId.Moska, testCase.level, AchievementType.Epic));
 
             var army = CreateArmy(fleetProperties, Faction.Green, testCase.power);
@@ -133,7 +133,7 @@ namespace Kugushev.Scripts.Tests.Unit
             // arrange
             var army = CreateArmy(default, Faction.Green);
 
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
                 (AchievementId.Moska, testCase.level, AchievementType.Epic));
             var enemy = CreateArmy(fleetProperties, Faction.Red, testCase.power);
 
@@ -160,7 +160,7 @@ namespace Kugushev.Scripts.Tests.Unit
             (int level, float power, float expected) testCase)
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
                 (AchievementId.Moska, testCase.level, AchievementType.Epic),
                 (AchievementId.Brawler, null, AchievementType.Common));
 
@@ -184,7 +184,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void NextStep_OnSiegeStatus_NoAchievements_DamageUnifiedDamage()
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties();
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties();
 
             var planet = CreatePlanet(10f, Faction.Red);
 
@@ -221,7 +221,7 @@ namespace Kugushev.Scripts.Tests.Unit
             [ValueSource(nameof(KamikazeCases))] (int level, float expected) testCase)
         {
             // arrange
-            var (_, fleetProperties) = PlayerPropertiesHelper.GetPlayerProperties(
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
                 (AchievementId.Kamikaze, testCase.level, AchievementType.Epic));
 
             var army = CreateArmy(fleetProperties, Faction.Green, 1f);

@@ -6,8 +6,8 @@ using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -31,13 +31,13 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         [SerializeField] private PlanetRule[] bigPlanetsRules;
 
         public PlanetarySystem CreatePlanetarySystem(MissionInfo info, Faction playerFaction,
-            PlanetarySystemProperties planetarySystemProperties)
+            PlanetarySystemPerks planetarySystemPerks)
         {
             Random.InitState(info.Seed);
 
             var sun = CreateSun();
             var result = objectsPool.GetObject<PlanetarySystem, PlanetarySystem.State>(new PlanetarySystem.State(sun));
-            AddPlanets(result, sun, planetarySystemProperties, info, playerFaction);
+            AddPlanets(result, sun, planetarySystemPerks, info, playerFaction);
             return result;
         }
 
@@ -48,7 +48,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         }
 
         private void AddPlanets(PlanetarySystem planetarySystem, Sun sun,
-            PlanetarySystemProperties planetarySystemProperties, MissionInfo missionInfo,
+            PlanetarySystemPerks planetarySystemPerks, MissionInfo missionInfo,
             Faction playerFaction)
         {
             int planetsCount = Random.Range(minPlanets, maxPlanets);
@@ -75,7 +75,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 var power = GetPower(production, missionInfo, faction, playerFaction);
 
                 var planet = objectsPool.GetObject<Planet, Planet.State>(new Planet.State(
-                    faction, rule.Size, production, orbit, sun, eventsCollector, planetarySystemProperties,
+                    faction, rule.Size, production, orbit, sun, eventsCollector, planetarySystemPerks,
                     power));
 
                 planetarySystem.AddPlanet(planet);

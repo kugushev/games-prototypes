@@ -1,10 +1,10 @@
-﻿ using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Achievements.Abstractions
@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Abstractions
         public abstract bool Check(MissionEventsCollector missionEvents, Faction faction,
             [CanBeNull] MissionModel model);
 
-        public abstract void Apply(ref FleetPropertiesBuilder fleetProperties,
-            ref PlanetarySystemPropertiesBuilder planetarySystemProperties);
+        public abstract void Apply(ref FleetPerks.State fleetPerks,
+            ref PlanetarySystemPerks.State planetarySystemPerks);
     }
 }

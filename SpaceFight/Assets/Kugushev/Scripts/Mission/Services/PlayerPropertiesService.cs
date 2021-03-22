@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Common.Utils.ValuesProcessing;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
+using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Models.Effects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Services
@@ -13,24 +16,34 @@ namespace Kugushev.Scripts.Mission.Services
     public class PlayerPropertiesService : ScriptableObject
     {
         [SerializeField] private AchievementsManager achievementsManager;
+        [SerializeField] private ObjectsPool objectsPool;
 
         private readonly List<AbstractAchievement> _achievementBuffer = new List<AbstractAchievement>(128);
 
-        public (PlanetarySystemProperties, FleetProperties) GetPlayerProperties(Faction playerFaction, MissionParameters parameters)
+        public (PlanetarySystemPerks, FleetPerks) GetPlayerProperties(Faction playerFaction,
+            MissionParameters parameters)
         {
             _achievementBuffer.Clear();
             achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerAchievements);
 
-            var planetarySystemBuilder = new PlanetarySystemPropertiesBuilder();
-            var fleetBuilder = new FleetPropertiesBuilder();
+            var fleetPerksBuilder = new FleetPerks.State(
+                objectsPool.GetObject<ValuePipeline<Army>, int>(0),
+                objectsPool.GetObject<ValuePipeline<Army>, int>(0),
+                objectsPool.GetObject<ValuePipeline<Army>, int>(0)
+            );
+            var planetarySystemPerksBuilder = new PlanetarySystemPerks.State(
+                playerFaction, objectsPool.GetObject<ValuePipeline<Planet>, int>(0));
+
             foreach (var achievement in _achievementBuffer)
-                achievement.Apply(ref fleetBuilder, ref planetarySystemBuilder);
-           
+                achievement.Apply(ref fleetPerksBuilder, ref planetarySystemPerksBuilder);
+
             _achievementBuffer.Clear();
 
-            var planetarySystemProperties = new PlanetarySystemProperties(playerFaction, planetarySystemBuilder);
-            var fleetProperties = new FleetProperties(fleetBuilder);
-            return (planetarySystemProperties, fleetProperties);
+            var fleetPerks = objectsPool.GetObject<FleetPerks, FleetPerks.State>(fleetPerksBuilder);
+            var planetarySystemPerks = objectsPool.GetObject<PlanetarySystemPerks, PlanetarySystemPerks.State>(
+                planetarySystemPerksBuilder);
+
+            return (planetarySystemPerks, fleetPerks);
         }
     }
 }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Test Player Properties Service
   m_EditorClassIdentifier: 
   achievementsManager: {fileID: 11400000, guid: 53c761ba89736a347b7f7ff5fce23584, type: 2}
+  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}

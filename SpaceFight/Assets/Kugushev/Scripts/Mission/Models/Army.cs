@@ -7,9 +7,9 @@ using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Mission.Models
             public Faction faction;
             public float power;
             public Sun sun;
-            public FleetProperties FleetProperties;
+            public FleetPerks FleetPerks;
             public ArmyStatus status;
             public Vector3 currentPosition;
             public Quaternion currentRotation;
@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Mission.Models
             public bool nearDeath;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, float power, in Sun sun,
-                in FleetProperties fleetProperties, MissionEventsCollector eventsCollector)
+                in FleetPerks fleetPerks, MissionEventsCollector eventsCollector)
             {
                 this.order = order;
                 this.speed = speed;
@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Mission.Models
                 this.faction = faction;
                 this.power = power;
                 this.sun = sun;
-                FleetProperties = fleetProperties;
+                FleetPerks = fleetPerks;
                 EventsCollector = eventsCollector;
                 status = ArmyStatus.Recruiting;
                 currentPosition = order.Path[0];
@@ -206,17 +206,8 @@ namespace Kugushev.Scripts.Mission.Models
                 bool captured;
                 if (target.Faction != ObjectState.faction)
                 {
-                    var fleetProperties = ObjectState.FleetProperties;
-
                     // execute siege
-                    float damage = GameplayConstants.UnifiedDamage;
-
-                    if (fleetProperties.SiegeMultiplier != null)
-                        damage *= fleetProperties.SiegeMultiplier.Value;
-
-                    var multiplier = fleetProperties.FightDamageMultiplication.GetEffect(Power);
-                    if (multiplier != null)
-                        damage *= multiplier.Value.Amount;
+                    float damage = ObjectState.FleetPerks.SiegeDamage.Calculate(GameplayConstants.UnifiedDamage, this);
 
                     var result = target.SufferFightRound(Faction, damage);
                     captured = result == FightRoundResult.Defeated;
@@ -286,19 +277,12 @@ namespace Kugushev.Scripts.Mission.Models
                     return false;
                 }
 
-                var fleetProperties = ObjectState.FleetProperties;
+                var fleetPerks = ObjectState.FleetPerks;
 
-                float damage = GameplayConstants.UnifiedDamage;
+                float damage = fleetPerks.FightDamage.Calculate(GameplayConstants.UnifiedDamage, this);
 
-                if (fleetProperties.FightMultiplier != null)
-                    damage *= fleetProperties.FightMultiplier.Value;
-
-                var multiplier = fleetProperties.FightDamageMultiplication.GetEffect(Power);
-                if (multiplier != null)
-                    damage *= multiplier.Value.Amount;
-
-                if (ObjectState.nearDeath && fleetProperties.DeathStrike != null)
-                    damage = fleetProperties.DeathStrike.Value;
+                if (ObjectState.nearDeath && fleetPerks.DeathStrike > 0)
+                    damage = fleetPerks.DeathStrike;
 
                 var result = targetArmy.SufferFightRound(Faction, damage);
                 return result == FightRoundResult.Defeated;
@@ -315,13 +299,11 @@ namespace Kugushev.Scripts.Mission.Models
 
         public FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
         {
-            var protection = ObjectState.FleetProperties.FightProtectionMultiplication.GetEffect(Power);
-            if (protection != null)
-                damage *= protection.Value.Amount;
+            damage = ObjectState.FleetPerks.FightProtection.Calculate(damage, this);
 
             var result = ExecuteSuffer(enemyFaction, damage);
 
-            if (result == FightRoundResult.Defeated && ObjectState.FleetProperties.DeathStrike != null)
+            if (result == FightRoundResult.Defeated && ObjectState.FleetPerks.DeathStrike > 0)
             {
                 ObjectState.nearDeath = true;
                 FightStep(GameplayConstants.FightRoundDelay, true, 1);

@@ -11,6 +11,7 @@
         // Epic achievements
         Startup,
         Moska,
-        Kamikaze
+        Kamikaze,
+        Elephant
     }
 }

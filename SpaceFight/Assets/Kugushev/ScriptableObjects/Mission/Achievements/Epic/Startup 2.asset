@@ -15,3 +15,4 @@ MonoBehaviour:
   level: 2
   maxPower: 25
   multiplier: 2.5
+  percent: 150

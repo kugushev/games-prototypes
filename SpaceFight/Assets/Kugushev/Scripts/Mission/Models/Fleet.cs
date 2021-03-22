@@ -4,9 +4,9 @@ using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Models
@@ -20,12 +20,12 @@ namespace Kugushev.Scripts.Mission.Models
         [SerializeField] private float armySpeed = GameplayConstants.ArmySpeed;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;
-        private FleetProperties _fleetProperties;
+        private FleetPerks _fleetPerks;
 
         public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
 
-        public void SetFleetProperties(FleetProperties fleetProperties) => _fleetProperties = fleetProperties;
-        public void ClearFleetProperties() => _fleetProperties = default;
+        public void SetFleetProperties(FleetPerks fleetPerks) => _fleetPerks = fleetPerks;
+        public void ClearFleetProperties() => _fleetPerks = default;
 
         public void CommitOrder(Order order, Planet target)
         {
@@ -40,7 +40,7 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 var army = pool.GetObject<Army, Army.State>(new Army.State(
                     order, armySpeed, armyAngularSpeed, faction, power,
-                    in model.PlanetarySystem.GetSun(), in _fleetProperties, eventsCollector));
+                    in model.PlanetarySystem.GetSun(), in _fleetPerks, eventsCollector));
 
                 ArmiesToSent.Enqueue(army);
                 eventsCollector.ArmySent.Add(new ArmySent(faction, power, order.SourcePlanet.Power));

@@ -56,10 +56,13 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\ArmyTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionMissionAndDebriefingTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\MissionExecutionTests.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\PlayerPropertiesHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\Abstractions\BaseCampaignTestingManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\PerksHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\Factory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Seeds.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\MissionSelectionTestingManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\MissionSelectionTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Stubs\FighterStub.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionMissionTestingManager.cs" />
@@ -68,9 +71,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionBriefingTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\MissionBriefingTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\AssetBundleHelper.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\MissionSelectionTests.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\Abstractions\BaseCampaignTestingManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\MissionSelectionTestingManager.cs" />
      <None Include="Assets\Kugushev\Scripts\Tests\Tests.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -5,13 +5,13 @@ namespace Kugushev.Scripts.Game.ValueObjects
     public readonly struct AchievementInfo
     {
         public AchievementInfo(AchievementId id, int? level, AchievementType type, string caption, string criteria,
-            string effect)
+            string perk)
         {
             Id = id;
             Level = level;
             Type = type;
             Caption = caption;
-            Description = $"{criteria}. Effect: {effect}";
+            Description = $"{criteria}. Effect: {perk}";
         }
 
         public AchievementId Id { get; }

@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.Common.Interfaces;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
-using Kugushev.Scripts.Mission.ValueObjects.PlayerProperties;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Achievements.Epic
 {
     [CreateAssetMenu(menuName = MenuName + nameof(Startup))]
-    public class Startup : AbstractAchievement
+    public class Startup : AbstractAchievement, IMultiplierPerk<Planet>
     {
         [SerializeField] private int level;
         [SerializeField] private float maxPower;
@@ -21,7 +23,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
         public override AchievementInfo Info => _info ??= new AchievementInfo(
             AchievementId.Startup, level, AchievementType.Epic, nameof(Startup),
             $"Recruit only on planets that have less than {maxPower} power",
-            $"Increase production by {multiplier} if power is less than {maxPower}, decreased if more");
+            $"Increase production to {multiplier} if power is less than {maxPower}, decreased if more");
 
         public override bool Check(MissionEventsCollector missionEvents, Faction faction,
             MissionModel model)
@@ -33,17 +35,14 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
             return true;
         }
 
-        public override void Apply(ref FleetPropertiesBuilder fleetProperties,
-            ref PlanetarySystemPropertiesBuilder planetarySystemProperties)
-        {
-            if (planetarySystemProperties.LowProductionCap != null ||
-                planetarySystemProperties.LowProductionMultiplier != null ||
-                planetarySystemProperties.AboveLowProductionMultiplier != null)
-                Debug.LogError("Properties are already set");
+        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
+            => planetarySystemPerks.production.AddPerk(this);
 
-            planetarySystemProperties.LowProductionCap = maxPower;
-            planetarySystemProperties.LowProductionMultiplier = multiplier;
-            planetarySystemProperties.AboveLowProductionMultiplier = 1 / multiplier;
+        public float? GetMultiplier(Planet criteria)
+        {
+            if (criteria.Power <= maxPower)
+                return multiplier;
+            return 1 / multiplier;
         }
     }
 }

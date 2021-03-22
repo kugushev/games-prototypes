@@ -55,6 +55,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Utils\CampaignModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\AchievementsPanelWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Constants\CampaignConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\MissionCardWidget.cs" />
@@ -69,13 +70,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\CampaignModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\CampaignManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Properties\AssemblyInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionSelectionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\MissionSelection.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\PlayerAchievements.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionSelectionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Services\MissionsGenerationService.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\AchievementsPanelWidget.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Campaign.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Elephant 2
   m_EditorClassIdentifier: 
   level: 2
+  count: 6
   powerCap: 25
   multiplication: 2.5
+  percent: 150

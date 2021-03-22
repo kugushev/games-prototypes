@@ -15,3 +15,4 @@ MonoBehaviour:
   level: 3
   powerCap: 5
   multiplication: 0.1
+  percent: 10
