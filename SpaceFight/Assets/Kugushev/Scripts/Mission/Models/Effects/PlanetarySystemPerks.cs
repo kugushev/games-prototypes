@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.Utils.ValuesProcessing;
@@ -14,11 +15,13 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         {
             public Faction applicantFaction;
             public ValuePipeline<Planet> production;
+            [CanBeNull] public Func<float, bool> IsFreeRecruitment;
 
             public State(Faction applicantFaction, ValuePipeline<Planet> production)
             {
                 this.applicantFaction = applicantFaction;
                 this.production = production;
+                IsFreeRecruitment = null;
             }
         }
 
@@ -29,6 +32,9 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         public Faction ApplicantFaction => ObjectState.applicantFaction;
 
         public IValuePipeline<Planet> Production => ObjectState.production;
+
+        public bool IsFreeRecruitment(float powerToRecruit) =>
+            ObjectState.IsFreeRecruitment?.Invoke(powerToRecruit) ?? false;
 
         protected override void OnClear(State state)
         {

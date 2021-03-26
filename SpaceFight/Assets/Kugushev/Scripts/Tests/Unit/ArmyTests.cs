@@ -4,7 +4,7 @@ using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Tests.Unit.Utils;
 using NUnit.Framework;
-using static Kugushev.Scripts.Tests.Unit.Utils.Factory;
+using static Kugushev.Scripts.Tests.Unit.Utils.TestData;
 
 namespace Kugushev.Scripts.Tests.Unit
 {
@@ -176,6 +176,36 @@ namespace Kugushev.Scripts.Tests.Unit
             Assert.AreEqual(testCase.expected, enemy.Power);
         }
 
+        private static IEnumerable<(int level, float power, float expected)> ElephantCases => new[]
+        {
+            (1, 14f, 49f),
+            (1, 15f, 48.5f),
+            (2, 24f, 49f),
+            (2, 25f, 47.5f),
+            (3, 44f, 49f),
+            (3, 45f, 45f),
+        };
+
+        [Test]
+        public void NextStep_FightingStatus_Elephant_DamageIfBigEnough(
+            [ValueSource(nameof(ElephantCases))] (int level, float power, float expected) testCase)
+        {
+            // arrange
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
+                (AchievementId.Elephant, testCase.level, AchievementType.Epic));
+
+            var army = CreateArmy(fleetProperties, Faction.Green, testCase.power);
+            var enemy = CreateArmy(default, Faction.Red);
+
+            // act
+            army.Status = ArmyStatus.OnMatch;
+            army.HandleArmyInteraction(enemy);
+            army.NextStep(DeltaTime);
+
+            // assert
+            Assert.AreEqual(testCase.expected, enemy.Power);
+        }
+
         #endregion
 
         #region OnSiege
@@ -200,7 +230,7 @@ namespace Kugushev.Scripts.Tests.Unit
             // assert
             Assert.AreEqual(9f, planet.Power);
         }
-        
+
         // todo: finish test
 
         #endregion

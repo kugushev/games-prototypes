@@ -90,31 +90,37 @@ namespace Kugushev.Scripts.Mission.Models
         private float CalculateProductionIncrement()
         {
             if (ObjectState.PlanetarySystemPerks.ApplicantFaction == Faction)
-            {
                 return ObjectState.PlanetarySystemPerks.Production.Calculate(ObjectState.production, this);
-            }
             return ObjectState.production;
         }
 
         public bool TryRecruit(Percentage powerToRecruit, out int armyPower)
         {
+            if (powerToRecruit.Amount == 0f)
+            {
+                armyPower = 0;
+                return false;
+            }
+
             var powerToRecruitAbs = Mathf.FloorToInt(ObjectState.power * powerToRecruit.Amount);
 
             if (powerToRecruitAbs > GameplayConstants.SoftCapArmyPower)
                 powerToRecruitAbs = GameplayConstants.SoftCapArmyPower;
 
-            if (powerToRecruitAbs < 1) 
+            if (powerToRecruitAbs < 1)
                 powerToRecruitAbs = 1;
 
             if (ObjectState.power - powerToRecruitAbs < 0)
             {
-                Debug.LogError($"Lack of power for {powerToRecruitAbs}. Planet has {ObjectState.power}");
+                Debug.LogWarning($"Lack of power for {powerToRecruitAbs}. Planet has {ObjectState.power}");
                 armyPower = 0;
                 return false;
             }
 
-            ObjectState.power -= powerToRecruitAbs;
-            
+            if (ObjectState.PlanetarySystemPerks.ApplicantFaction != Faction ||
+                !ObjectState.PlanetarySystemPerks.IsFreeRecruitment(powerToRecruitAbs))
+                ObjectState.power -= powerToRecruitAbs;
+
             armyPower = powerToRecruitAbs;
             return true;
         }

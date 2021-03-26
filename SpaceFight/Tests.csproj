@@ -58,7 +58,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\MissionExecutionTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\Abstractions\BaseCampaignTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\PerksHelper.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\Factory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\TestData.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Seeds.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\MissionSelectionTestingManager.cs" />

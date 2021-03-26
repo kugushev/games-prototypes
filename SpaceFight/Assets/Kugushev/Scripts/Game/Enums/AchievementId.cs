@@ -12,6 +12,7 @@
         Startup,
         Moska,
         Kamikaze,
-        Elephant
+        Elephant,
+        LuckyIndustrialist
     }
 }

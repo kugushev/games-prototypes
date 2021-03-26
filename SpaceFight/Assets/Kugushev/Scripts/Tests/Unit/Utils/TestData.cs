@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Tests.Unit.Utils
 {
-    public static class Factory
+    public static class TestData
     {
         public const float ArmyPower = 50f;
 

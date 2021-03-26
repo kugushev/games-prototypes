@@ -65,6 +65,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Player\OrdersManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Kamikaze.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmySent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\EpicAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedInFight.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Invader.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetRule.cs" />
@@ -96,6 +97,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Tactical\SuicideAI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\ArmyStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\LuckyIndustrialist.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Sun.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\MissionEventType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionState.cs" />
@@ -105,7 +107,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\EpicAchievement.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
