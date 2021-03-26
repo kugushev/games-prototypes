@@ -57,8 +57,11 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             var homePlanetRule = GetHomePlanetRule();
             int homeStartDay = Random.Range(0, Orbit.DaysInYear);
 
+            var oneExtraPlanetForPlayer = planetarySystemPerks.TryGetPerks(playerFaction, out var perks) &&
+                                          perks.GetExtraPlanetOnStart?.Invoke() == true;
+
             float t = 0f;
-            int playerExtraPlanets = 0;
+            int playerExtraPlanets = oneExtraPlanetForPlayer ? -1 : 0;
             int enemyExtraPlanets = 0;
             for (int i = 0; i < planetsCount; i++)
             {
@@ -117,7 +120,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         }
 
         private Faction GetFaction(int i, int greenHome, int redHome, MissionInfo missionInfo,
-            Faction playerFaction, ref int playerExtraPlanets, ref int enemyExtraPlanets)
+            Faction playerFaction, ref int playerGotExtraPlanets, ref int enemyGotExtraPlanets)
         {
             var faction = Faction.Neutral;
             if (i == greenHome)
@@ -126,21 +129,22 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 return Faction.Red;
 
             // todo: refactor this ugly code
-            if (missionInfo.PlayerExtraPlanets > playerExtraPlanets)
+            if (missionInfo.PlayerExtraPlanets > playerGotExtraPlanets)
             {
-                if (missionInfo.EnemyExtraPlanets > enemyExtraPlanets && playerExtraPlanets > enemyExtraPlanets)
+                if (missionInfo.EnemyExtraPlanets > enemyGotExtraPlanets &&
+                    playerGotExtraPlanets > enemyGotExtraPlanets)
                 {
-                    enemyExtraPlanets++;
+                    enemyGotExtraPlanets++;
                     return playerFaction.GetOpposite();
                 }
 
-                playerExtraPlanets++;
+                playerGotExtraPlanets++;
                 return playerFaction;
             }
 
-            if (missionInfo.EnemyExtraPlanets > enemyExtraPlanets)
+            if (missionInfo.EnemyExtraPlanets > enemyGotExtraPlanets)
             {
-                enemyExtraPlanets++;
+                enemyGotExtraPlanets++;
                 return playerFaction.GetOpposite();
             }
 

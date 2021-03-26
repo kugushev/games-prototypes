@@ -20,17 +20,23 @@ namespace Kugushev.Scripts.Mission.Services
 
         private readonly List<AbstractAchievement> _achievementBuffer = new List<AbstractAchievement>(128);
 
+        public static FleetPerks.State CreateDefaultFleetPerksState(ObjectsPool objectsPool)
+        {
+            return new FleetPerks.State(
+                objectsPool.GetObject<ValuePipeline<Army>, int>(0),
+                objectsPool.GetObject<ValuePipeline<Army>, int>(0),
+                objectsPool.GetObject<ValuePipeline<Army>, int>(0),
+                objectsPool.GetObject<ValuePipeline<(Planet target, Faction playerFaction)>, int>(0)
+            );
+        }
+
         public (PlanetarySystemPerks, FleetPerks) GetPlayerProperties(Faction playerFaction,
             MissionParameters parameters)
         {
             _achievementBuffer.Clear();
             achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerAchievements);
 
-            var fleetPerksBuilder = new FleetPerks.State(
-                objectsPool.GetObject<ValuePipeline<Army>, int>(0),
-                objectsPool.GetObject<ValuePipeline<Army>, int>(0),
-                objectsPool.GetObject<ValuePipeline<Army>, int>(0)
-            );
+            var fleetPerksBuilder = CreateDefaultFleetPerksState(objectsPool);
             var planetarySystemPerksBuilder = new PlanetarySystemPerks.State(
                 playerFaction, objectsPool.GetObject<ValuePipeline<Planet>, int>(0));
 

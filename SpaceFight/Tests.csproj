@@ -54,7 +54,7 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\MissionExecutionAndDebriefingTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\ArmyTests.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionMissionAndDebriefingTestingManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionExecutionAndDebriefingTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\MissionExecutionTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\Abstractions\BaseCampaignTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\PerksHelper.cs" />
@@ -65,7 +65,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\MissionSelectionTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Stubs\FighterStub.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionMissionTestingManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionExecutionTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\PlanetTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\Abstractions\BaseMissionTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionBriefingTestingManager.cs" />

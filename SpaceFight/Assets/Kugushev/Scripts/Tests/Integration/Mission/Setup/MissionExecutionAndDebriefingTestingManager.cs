@@ -7,15 +7,16 @@ using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.StatesAndTransitions;
+using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
 {
-    public class MissionMissionAndDebriefingTestingManager : BaseMissionTestingManager
+    public class MissionExecutionAndDebriefingTestingManager : BaseMissionTestingManager
     {
-        [Header(nameof(MissionMissionAndDebriefingTestingManager))] [SerializeField]
+        [Header(nameof(MissionExecutionAndDebriefingTestingManager))] [SerializeField]
         private AchievementsManager achievementsManager;
 
         [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
@@ -30,7 +31,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             MissionModel rootModel)
         {
-            var executionState = new ExecutionState(rootModel);
+            var executionState = new ExecutionState(rootModel, eventsCollector);
             var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline, achievementsManager,
                 objectsPool);
 

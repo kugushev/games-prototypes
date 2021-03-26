@@ -14,6 +14,8 @@
         Kamikaze,
         Elephant,
         LuckyIndustrialist,
-        Negotiator
+        Negotiator,
+        Briber,
+        Transporter
     }
 }

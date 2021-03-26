@@ -5,6 +5,7 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models.Effects;
+using Kugushev.Scripts.Mission.Services;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
 using UnityEngine;
@@ -20,7 +21,9 @@ namespace Kugushev.Scripts.Mission.Models
         [SerializeField] private float armySpeed = GameplayConstants.ArmySpeed;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;
+
         private FleetPerks _fleetPerks;
+        private FleetPerks _emptyFleetPerks;
 
         public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
 
@@ -40,7 +43,7 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 var army = pool.GetObject<Army, Army.State>(new Army.State(
                     order, armySpeed, armyAngularSpeed, faction, power,
-                    in model.PlanetarySystem.GetSun(), in _fleetPerks, eventsCollector));
+                    in model.PlanetarySystem.GetSun(), GetFleetPerks(), eventsCollector));
 
                 ArmiesToSent.Enqueue(army);
                 eventsCollector.ArmySent.Add(new ArmySent(faction, power, order.SourcePlanet.Power));
@@ -50,6 +53,18 @@ namespace Kugushev.Scripts.Mission.Models
                 Debug.LogWarning("Planet power is zero");
                 order.Dispose();
             }
+        }
+
+        private FleetPerks GetFleetPerks()
+        {
+            if (_fleetPerks != null)
+                return _fleetPerks;
+
+            _emptyFleetPerks ??=
+                pool.GetObject<FleetPerks, FleetPerks.State>(PlayerPropertiesService
+                    .CreateDefaultFleetPerksState(pool));
+
+            return _emptyFleetPerks;
         }
 
         public void Dispose()

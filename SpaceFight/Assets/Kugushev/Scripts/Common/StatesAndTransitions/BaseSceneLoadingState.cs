@@ -22,6 +22,10 @@ namespace Kugushev.Scripts.Common.StatesAndTransitions
         {
         }
 
+        protected virtual void OnEnterAfterLoadScene()
+        {
+        }
+
         public sealed override async UniTask OnEnterAsync()
         {
             AssertModel();
@@ -35,6 +39,8 @@ namespace Kugushev.Scripts.Common.StatesAndTransitions
                 if (!loaded)
                     Debug.LogError("Main Menu Scene isn't loaded");
             }
+
+            OnEnterAfterLoadScene();
         }
 
         protected virtual void OnExitBeforeUnloadScene()

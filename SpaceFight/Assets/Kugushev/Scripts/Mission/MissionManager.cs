@@ -84,7 +84,7 @@ namespace Kugushev.Scripts.Mission
             MissionModel rootModel)
         {
             var briefingState = new BriefingState(rootModel);
-            var executionState = new ExecutionState(rootModel);
+            var executionState = new ExecutionState(rootModel, eventsCollector);
             var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline, achievementsManager,
                 objectsPool);
 

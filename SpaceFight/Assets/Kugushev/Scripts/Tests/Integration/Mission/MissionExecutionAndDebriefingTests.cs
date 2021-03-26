@@ -92,8 +92,8 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         [UnityTest]
         public IEnumerator Fight_ArmiesFight_NoAchievements_AchieveKamikazeLvl1()
         {
-            MissionMissionAndDebriefingTestingManager.GreenIsNormal = true;
-            MissionMissionAndDebriefingTestingManager.RedIsNormal = true;
+            MissionExecutionAndDebriefingTestingManager.GreenIsNormal = true;
+            MissionExecutionAndDebriefingTestingManager.RedIsNormal = true;
 
             yield return RunExecutionWithSeed(Seeds.ArmiesFight, new (AchievementId, int level, AchievementType)[0]);
 
@@ -130,8 +130,8 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             yield return new WaitUntil(() => SingletonState.Instance.Entered);
             yield return new WaitUntil(() => BaseMissionTestingManager.MissionModel.DebriefingSummary != null);
 
-            MissionMissionAndDebriefingTestingManager.GreenIsNormal = default;
-            MissionMissionAndDebriefingTestingManager.RedIsNormal = default;
+            MissionExecutionAndDebriefingTestingManager.GreenIsNormal = default;
+            MissionExecutionAndDebriefingTestingManager.RedIsNormal = default;
         }
 
         private static void LogAllAchievements()

@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions
         private Faction playerFaction = Faction.Green;
 
         [SerializeField] private PlayerPropertiesService playerPropertiesService;
-        [SerializeField] private MissionEventsCollector eventsCollector;
+        [SerializeField] protected MissionEventsCollector eventsCollector;
 
         [SerializeField] private Fleet greenFleet;
         [SerializeField] private Fleet redFleet;

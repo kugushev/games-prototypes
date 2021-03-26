@@ -144,7 +144,8 @@ namespace Kugushev.Scripts.Mission.Models
                 ObjectState.faction = enemyFaction;
 
                 ObjectState.EventsCollector.PlanetCaptured.Add(
-                    new PlanetCaptured(enemyFaction, previousOwner, ObjectState.power + enemy.Power));
+                    new PlanetCaptured(ObjectState.EventsCollector.Elapsed,
+                        enemyFaction, previousOwner, ObjectState.power + enemy.Power));
 
                 return FightRoundResult.Defeated;
             }

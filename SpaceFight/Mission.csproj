@@ -109,6 +109,9 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Brawler.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Negotiator.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\SiegeUltimatum.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Briber.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Transporter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyArrived.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

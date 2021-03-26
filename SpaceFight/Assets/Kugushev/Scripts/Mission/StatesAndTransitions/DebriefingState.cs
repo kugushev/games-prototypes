@@ -51,8 +51,6 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             }
 
             Model.DebriefingSummary = debriefingInfo;
-
-            base.OnEnterBeforeLoadScene();
         }
 
         protected override void OnExitBeforeUnloadScene()

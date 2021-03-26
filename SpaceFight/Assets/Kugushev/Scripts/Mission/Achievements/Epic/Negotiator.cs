@@ -41,7 +41,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
         public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
         {
             if (fleetPerks.ToNeutralPlanetUltimatum.Initialized)
-                Debug.LogError($"{fleetPerks.ToNeutralPlanetUltimatum} has already specified");
+                Debug.LogError($"{fleetPerks.ToNeutralPlanetUltimatum} is already specified");
 
             fleetPerks.ToNeutralPlanetUltimatum = new SiegeUltimatum(new Percentage(surrendered), predominance);
         }

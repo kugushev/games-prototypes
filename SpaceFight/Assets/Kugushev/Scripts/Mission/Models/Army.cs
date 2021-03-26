@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Mission.Models
             public bool nearDeath;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, float power, in Sun sun,
-                in FleetPerks fleetPerks, MissionEventsCollector eventsCollector)
+                FleetPerks fleetPerks, MissionEventsCollector eventsCollector)
             {
                 this.order = order;
                 this.speed = speed;
@@ -149,23 +149,32 @@ namespace Kugushev.Scripts.Mission.Models
                         ObjectState.waypointRotationProgress);
                 }
             }
+        }
 
-            float CalcSpeed(Vector3 lookVector)
+        float CalcSpeed(Vector3 lookVector)
+        {
+            var sunMultiplier = GetSunMultiplier();
+
+            var speed = ObjectState.fleetPerks.ArmySpeed.Calculate(ObjectState.speed,
+                (ObjectState.order.TargetPlanet, Faction));
+
+            return speed * sunMultiplier;
+
+            float GetSunMultiplier()
             {
                 var sunFallVector = (ObjectState.currentPosition - ObjectState.sun.Position.Point).normalized;
                 lookVector = lookVector.normalized;
 
                 var dot = Vector3.Dot(sunFallVector, lookVector);
 
-                float multiplication;
+                float multiplier;
                 if (dot >= 0.5f) // less than 60 deg
-                    multiplication = GameplayConstants.SunPowerSpeedMultiplier;
+                    multiplier = GameplayConstants.SunPowerSpeedMultiplier;
                 else if (dot > -0.5) // between 60 and 120 deg
-                    multiplication = 1;
+                    multiplier = 1;
                 else // more than 120 deg
-                    multiplication = 1 / GameplayConstants.SunPowerSpeedMultiplier;
-
-                return ObjectState.speed * multiplication;
+                    multiplier = 1 / GameplayConstants.SunPowerSpeedMultiplier;
+                return multiplier;
             }
         }
 
@@ -399,8 +408,12 @@ namespace Kugushev.Scripts.Mission.Models
 
         private void Arrive()
         {
+            var armyArrived = new ArmyArrived(Faction, Power);
+
             ObjectState.status = ArmyStatus.Arriving;
             ObjectState.order.TargetPlanet.Reinforce(this);
+
+            ObjectState.EventsCollector.ArmyArrived.Add(armyArrived);
         }
 
         private void Disband() => ObjectState.status = ArmyStatus.Disbanded;
