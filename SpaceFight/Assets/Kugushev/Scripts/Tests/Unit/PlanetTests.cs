@@ -91,9 +91,9 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var planet = CreatePlanet(testCase.planetPower, Faction.Green);
-            planet.ExecuteProductionCycle();
 
             // act
+            planet.ExecuteProductionCycle();
             var recruited = planet.TryRecruit(new Percentage(testCase.percent), out var armyPower);
 
             // assert
@@ -126,11 +126,11 @@ namespace Kugushev.Scripts.Tests.Unit
             // arrange
             var planet = CreatePlanet(testCase.planetPower, Faction.Green,
                 (AchievementId.LuckyIndustrialist, testCase.level, AchievementType.Epic));
-            planet.ExecuteProductionCycle();
 
             SubstitutiveRandom.SubstituteNextRange(testCase.substitudeRandomRange);
 
             // act
+            planet.ExecuteProductionCycle();
             var recruited = planet.TryRecruit(new Percentage(testCase.percent), out var armyPower);
 
             // assert

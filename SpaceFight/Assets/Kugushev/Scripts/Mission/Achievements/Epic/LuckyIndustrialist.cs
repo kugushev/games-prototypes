@@ -22,6 +22,7 @@ namespace Kugushev.Scripts.Mission.Achievements.Epic
         private float probability;
 
         protected override AchievementId AchievementId => AchievementId.LuckyIndustrialist;
+        
         protected override string Name => "Lucky Industrialist";
 
         protected override string Criteria =>

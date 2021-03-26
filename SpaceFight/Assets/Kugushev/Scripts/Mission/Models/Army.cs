@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Mission.Models
             public Faction faction;
             public float power;
             public Sun sun;
-            public FleetPerks FleetPerks;
+            public FleetPerks fleetPerks;
             public ArmyStatus status;
             public Vector3 currentPosition;
             public Quaternion currentRotation;
@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Mission.Models
                 this.faction = faction;
                 this.power = power;
                 this.sun = sun;
-                FleetPerks = fleetPerks;
+                this.fleetPerks = fleetPerks;
                 EventsCollector = eventsCollector;
                 status = ArmyStatus.Recruiting;
                 currentPosition = order.Path[0];
@@ -206,10 +206,22 @@ namespace Kugushev.Scripts.Mission.Models
                 bool captured;
                 if (target.Faction != ObjectState.faction)
                 {
-                    // execute siege
-                    float damage = ObjectState.FleetPerks.SiegeDamage.Calculate(GameplayConstants.UnifiedDamage, this);
+                    // consider ultimatum
+                    if (target.Faction == Faction.Neutral)
+                    {
+                        ref readonly var ultimatum = ref ObjectState.fleetPerks.GetToNeutralPlanetUltimatum();
+                        if (ultimatum.Initialized)
+                        {
+                            captured = target.Consider(in ultimatum, this);
+                            if (captured)
+                                return true;
+                        }
+                    }
 
-                    var result = target.SufferFightRound(Faction, damage);
+                    // execute siege
+                    float damage = ObjectState.fleetPerks.SiegeDamage.Calculate(GameplayConstants.UnifiedDamage, this);
+
+                    var result = target.SufferFightRound(Faction, damage, this);
                     captured = result == FightRoundResult.Defeated;
 
                     if (!captured)
@@ -277,7 +289,7 @@ namespace Kugushev.Scripts.Mission.Models
                     return false;
                 }
 
-                var fleetPerks = ObjectState.FleetPerks;
+                var fleetPerks = ObjectState.fleetPerks;
 
                 float damage = fleetPerks.FightDamage.Calculate(GameplayConstants.UnifiedDamage, this);
 
@@ -299,11 +311,11 @@ namespace Kugushev.Scripts.Mission.Models
 
         public FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
         {
-            damage = ObjectState.FleetPerks.FightProtection.Calculate(damage, this);
+            damage = ObjectState.fleetPerks.FightProtection.Calculate(damage, this);
 
             var result = ExecuteSuffer(enemyFaction, damage);
 
-            if (result == FightRoundResult.Defeated && ObjectState.FleetPerks.DeathStrike > 0)
+            if (result == FightRoundResult.Defeated && ObjectState.fleetPerks.DeathStrike > 0)
             {
                 ObjectState.nearDeath = true;
                 FightStep(GameplayConstants.FightRoundDelay, true, 1);

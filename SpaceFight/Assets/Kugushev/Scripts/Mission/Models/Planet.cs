@@ -8,6 +8,7 @@ using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
+using Kugushev.Scripts.Mission.ValueObjects;
 using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
 using UnityEngine;
 
@@ -89,8 +90,8 @@ namespace Kugushev.Scripts.Mission.Models
 
         private float CalculateProductionIncrement()
         {
-            if (ObjectState.PlanetarySystemPerks.ApplicantFaction == Faction)
-                return ObjectState.PlanetarySystemPerks.Production.Calculate(ObjectState.production, this);
+            if (ObjectState.PlanetarySystemPerks.TryGetPerks(Faction, out var perks))
+                return perks.production.Calculate(ObjectState.production, this);
             return ObjectState.production;
         }
 
@@ -117,9 +118,10 @@ namespace Kugushev.Scripts.Mission.Models
                 return false;
             }
 
-            if (ObjectState.PlanetarySystemPerks.ApplicantFaction != Faction ||
-                !ObjectState.PlanetarySystemPerks.IsFreeRecruitment(powerToRecruitAbs))
+            if (!ObjectState.PlanetarySystemPerks.TryGetPerks(Faction, out var perks) ||
+                perks.IsFreeRecruitment?.Invoke(powerToRecruitAbs) != true)
                 ObjectState.power -= powerToRecruitAbs;
+
 
             armyPower = powerToRecruitAbs;
             return true;
@@ -130,7 +132,7 @@ namespace Kugushev.Scripts.Mission.Models
             ObjectState.power += army.Power;
         }
 
-        public FightRoundResult SufferFightRound(Faction enemyFaction, float damage = GameplayConstants.UnifiedDamage)
+        public FightRoundResult SufferFightRound(Faction enemyFaction, float damage, Army enemy)
         {
             ObjectState.power -= damage;
 
@@ -142,12 +144,33 @@ namespace Kugushev.Scripts.Mission.Models
                 ObjectState.faction = enemyFaction;
 
                 ObjectState.EventsCollector.PlanetCaptured.Add(
-                    new PlanetCaptured(enemyFaction, previousOwner, ObjectState.power));
+                    new PlanetCaptured(enemyFaction, previousOwner, ObjectState.power + enemy.Power));
 
                 return FightRoundResult.Defeated;
             }
 
             return FightRoundResult.StillAlive;
+        }
+
+        public bool Consider(in SiegeUltimatum ultimatum, Army sender)
+        {
+            if (!ultimatum.Initialized)
+                return false;
+
+            if (ObjectState.faction == Faction.Neutral)
+            {
+                if (sender.Power >= ObjectState.power + ultimatum.Predominance)
+                {
+                    // surrender
+                    ObjectState.power *= ultimatum.Surrendered.Amount;
+                    ObjectState.faction = sender.Faction;
+
+                    // todo: add PlanetSurrendered event
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void UpdatePosition() => ObjectState.position =

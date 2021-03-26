@@ -38,6 +38,10 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
         }
 
         public static Planet CreatePlanet(float production, Faction faction,
+            params (AchievementId, int? level, AchievementType)[] achievements) =>
+            CreatePlanet(production, faction, 0f, achievements);
+
+        public static Planet CreatePlanet(float production, Faction faction, float power,
             params (AchievementId, int? level, AchievementType)[] achievements)
         {
             var (planetarySystemProperties, _) = PerksHelper.GetPlayerProperties(achievements);
@@ -45,7 +49,7 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
             var planet = new Planet(ScriptableObject.CreateInstance<ObjectsPool>());
 
             planet.SetState(new Planet.State(faction, default, production, default, default, default,
-                planetarySystemProperties, 0));
+                planetarySystemProperties, power));
 
             return planet;
         }

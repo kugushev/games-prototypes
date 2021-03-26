@@ -13,6 +13,7 @@
         Moska,
         Kamikaze,
         Elephant,
-        LuckyIndustrialist
+        LuckyIndustrialist,
+        Negotiator
     }
 }

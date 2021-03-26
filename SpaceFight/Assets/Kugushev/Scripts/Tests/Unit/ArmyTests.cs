@@ -231,7 +231,66 @@ namespace Kugushev.Scripts.Tests.Unit
             Assert.AreEqual(9f, planet.Power);
         }
 
-        // todo: finish test
+        [Test]
+        public void NextStep_OnSiegeStatus_Elephant_DamageIfBigEnough(
+            [ValueSource(nameof(ElephantCases))] (int level, float power, float expected) testCase)
+        {
+            // arrange
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
+                (AchievementId.Elephant, testCase.level, AchievementType.Epic));
+
+            var planet = CreatePlanet(50f, Faction.Red);
+
+            var army = CreateArmy(fleetProperties, Faction.Green, testCase.power, planet);
+
+            // act
+            planet.ExecuteProductionCycle();
+
+            army.Status = ArmyStatus.OnMatch;
+            army.HandlePlanetVisiting(planet);
+            army.NextStep(DeltaTime);
+
+            // assert
+            Assert.AreEqual(testCase.expected, planet.Power);
+        }
+
+        private const float NegotiatorCasesPlanetPower = 20f;
+
+        private static IEnumerable<(int level, float power, Faction expectedPlanetFaction, float? expectedPlanetPower)>
+            NegotiatorCases
+            => new[]
+            {
+                (1, 29f, Faction.Neutral, default(float?)),
+                (1, 30f, Faction.Green, 30f),
+                (2, 34f, Faction.Neutral, default),
+                (2, 35f, Faction.Green, 35f + NegotiatorCasesPlanetPower / 2),
+                (3, 39f, Faction.Neutral, default),
+                (3, 40f, Faction.Green, 40f + NegotiatorCasesPlanetPower),
+            };
+
+        [Test]
+        public void NextStep_OnSiegeStatus_Negotiator_SurrenderPlanetIfPossible(
+            [ValueSource(nameof(NegotiatorCases))]
+            (int level, float power, Faction expectedPlanetFaction, float? expectedPlanetPower) testCase)
+        {
+            // arrange
+            var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
+                (AchievementId.Negotiator, testCase.level, AchievementType.Epic));
+
+            var planet = CreatePlanet(0f, Faction.Neutral, power: NegotiatorCasesPlanetPower);
+
+            var army = CreateArmy(fleetProperties, Faction.Green, testCase.power, planet);
+
+            // act
+            army.Status = ArmyStatus.OnMatch;
+            army.HandlePlanetVisiting(planet);
+            army.NextStep(DeltaTime);
+
+            // assert
+            Assert.AreEqual(testCase.expectedPlanetFaction, planet.Faction);
+            if (testCase.expectedPlanetPower != null)
+                Assert.AreEqual(testCase.expectedPlanetPower.Value, planet.Power);
+        }
 
         #endregion
 

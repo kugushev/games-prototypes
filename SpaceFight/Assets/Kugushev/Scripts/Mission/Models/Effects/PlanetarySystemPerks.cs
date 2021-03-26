@@ -29,9 +29,17 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         {
         }
 
-        public Faction ApplicantFaction => ObjectState.applicantFaction;
+        public bool TryGetPerks(Faction faction, out State perks)
+        {
+            if (ObjectState.applicantFaction == faction)
+            {
+                perks = ObjectState;
+                return true;
+            }
 
-        public IValuePipeline<Planet> Production => ObjectState.production;
+            perks = default;
+            return false;
+        }
 
         public bool IsFreeRecruitment(float powerToRecruit) =>
             ObjectState.IsFreeRecruitment?.Invoke(powerToRecruit) ?? false;
