@@ -1,6 +1,4 @@
-﻿using Kugushev.Scripts.Common.ValueObjects;
-
-namespace Kugushev.Scripts.Common.Interfaces
+﻿namespace Kugushev.Scripts.Common.Interfaces
 {
     public interface IMultiplierPerk<in T>
     {

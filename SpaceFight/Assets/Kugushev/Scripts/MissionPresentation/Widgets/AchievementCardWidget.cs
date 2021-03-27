@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Mission.Models;
 using TMPro;
 using UnityEngine;

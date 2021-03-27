@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.Campaign.Models;
+﻿using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Services;

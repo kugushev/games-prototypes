@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Kugushev.Scripts.Common.ValueObjects
+﻿namespace Kugushev.Scripts.Common.ValueObjects
 {
     public readonly struct Percentage
     {

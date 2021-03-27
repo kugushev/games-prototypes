@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.App.ValueObjects
 {
     [Serializable]
     public struct CampaignInfo

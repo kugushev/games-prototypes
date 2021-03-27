@@ -1,12 +1,8 @@
-﻿using System;
-using Kugushev.Scripts.Campaign.Utils;
+﻿using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Common.Widgets;
-using Kugushev.Scripts.Game.ValueObjects;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Campaign.Widgets
 {

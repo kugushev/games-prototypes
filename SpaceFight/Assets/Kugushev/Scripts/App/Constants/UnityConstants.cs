@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Game.Constants
+﻿namespace Kugushev.Scripts.App.Constants
 {
     internal static class UnityConstants
     {

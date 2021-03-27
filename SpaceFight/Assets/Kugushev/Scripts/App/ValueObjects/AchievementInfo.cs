@@ -1,6 +1,6 @@
-﻿using Kugushev.Scripts.Game.Enums;
+﻿using Kugushev.Scripts.App.Enums;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.App.ValueObjects
 {
     public readonly struct AchievementInfo
     {

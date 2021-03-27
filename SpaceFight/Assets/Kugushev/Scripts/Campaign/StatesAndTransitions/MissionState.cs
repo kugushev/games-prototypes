@@ -4,7 +4,6 @@ using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {

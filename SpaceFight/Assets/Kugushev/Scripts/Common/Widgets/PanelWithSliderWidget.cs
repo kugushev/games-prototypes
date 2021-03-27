@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Kugushev.Scripts.Common.Utils;
+﻿using Kugushev.Scripts.Common.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

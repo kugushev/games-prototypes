@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.App.Models
 {
     [Serializable]
     internal class GameModel

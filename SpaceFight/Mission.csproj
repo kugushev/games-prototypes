@@ -704,9 +704,9 @@
       <Project>{7aa78939-98e6-d360-4819-405b1aa1d00b}</Project>
       <Name>Campaign</Name>
     </ProjectReference>
-    <ProjectReference Include="Game.csproj">
-      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
-      <Name>Game</Name>
+    <ProjectReference Include="App.csproj">
+      <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>
+      <Name>App</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

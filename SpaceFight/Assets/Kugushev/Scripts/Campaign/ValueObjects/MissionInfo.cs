@@ -1,5 +1,4 @@
 ﻿using Kugushev.Scripts.Campaign.Enums;
-using Kugushev.Scripts.Campaign.Models;
 
 namespace Kugushev.Scripts.Campaign.ValueObjects
 {

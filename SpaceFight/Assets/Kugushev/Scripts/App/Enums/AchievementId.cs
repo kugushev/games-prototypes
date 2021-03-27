@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Game.Enums
+﻿namespace Kugushev.Scripts.App.Enums
 {
     public enum AchievementId
     {

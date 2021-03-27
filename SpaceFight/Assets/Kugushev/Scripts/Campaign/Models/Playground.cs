@@ -1,6 +1,4 @@
-﻿using Kugushev.Scripts.Common.ValueObjects;
-
-namespace Kugushev.Scripts.Campaign.Models
+﻿namespace Kugushev.Scripts.Campaign.Models
 {
     public class Playground
     {

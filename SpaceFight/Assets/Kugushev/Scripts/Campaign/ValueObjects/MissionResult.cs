@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.App.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.ValueObjects
 {

@@ -1,8 +1,8 @@
 ﻿using System;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
-using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

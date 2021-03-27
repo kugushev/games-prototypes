@@ -1,9 +1,9 @@
-﻿using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
+﻿using Kugushev.Scripts.App.Constants;
+using Kugushev.Scripts.App.Models;
+using Kugushev.Scripts.Common.StatesAndTransitions;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.StatesAndTransitions
+namespace Kugushev.Scripts.App.StatesAndTransitions
 {
     internal class MainMenuState : BaseSceneLoadingState<GameModel>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;

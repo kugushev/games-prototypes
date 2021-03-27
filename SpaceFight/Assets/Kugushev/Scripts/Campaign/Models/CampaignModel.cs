@@ -1,6 +1,6 @@
 ﻿using System;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.ValueObjects;
-using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Models

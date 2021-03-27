@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Common.Interfaces;
-using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;

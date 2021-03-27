@@ -7,7 +7,6 @@ using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.StatesAndTransitions;
-using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using UnityEngine;

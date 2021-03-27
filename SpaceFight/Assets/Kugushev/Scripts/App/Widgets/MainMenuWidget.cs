@@ -1,11 +1,11 @@
 ﻿using System;
+using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.App.Widgets
 {
     internal class MainMenuWidget : MonoBehaviour
     {

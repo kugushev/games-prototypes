@@ -1,6 +1,5 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.Utils.ValuesProcessing;
 using Kugushev.Scripts.Mission.Enums;

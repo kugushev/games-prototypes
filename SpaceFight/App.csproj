@@ -13,11 +13,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</ProjectGuid>
+    <ProjectGuid>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Game</AssemblyName>
+    <AssemblyName>App</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -52,7 +52,21 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Enums\AchievementId.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\AchievementInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Models\MainMenu.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Constants\AppConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\MainMenuState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Enums\AchievementType.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Constants\UnityConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Widgets\MainMenuWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Utils\CampaignSceneParametersPipeline.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\AppManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\CampaignInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Utils\GameModelProvider.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\CampaignState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Models\GameModel.cs" />
+     <None Include="Assets\Kugushev\Scripts\App\App.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -625,9 +639,6 @@
  </Reference>
  <Reference Include="UniTask">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
- </Reference>
- <Reference Include="UniTask.Linq">
- <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>

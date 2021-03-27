@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.App.Models;
+using Kugushev.Scripts.App.StatesAndTransitions;
+using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.StatesAndTransitions;
-using Kugushev.Scripts.Game.Utils;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game
+namespace Kugushev.Scripts.App
 {
-    internal class GameManager : BaseManager<GameModel>
+    internal class AppManager : BaseManager<GameModel>
     {
         [SerializeField] private GameModelProvider gameModelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;

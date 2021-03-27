@@ -1,13 +1,13 @@
 ﻿using System;
-using Kugushev.Scripts.Game.Constants;
+using Kugushev.Scripts.App.Constants;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.App.Models
 {
     [Serializable]
     internal class MainMenu
     {
-        [SerializeField] private int seed = GameConstants.DefaultCampaignSeed;
+        [SerializeField] private int seed = AppConstants.DefaultCampaignSeed;
 
         public int Seed
         {

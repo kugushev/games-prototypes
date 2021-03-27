@@ -1,10 +1,10 @@
-﻿using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.Utils;
-using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.App.Constants;
+using Kugushev.Scripts.App.Models;
+using Kugushev.Scripts.App.Utils;
+using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Common.StatesAndTransitions;
 
-namespace Kugushev.Scripts.Game.StatesAndTransitions
+namespace Kugushev.Scripts.App.StatesAndTransitions
 {
     internal class CampaignState : BaseSceneLoadingState<GameModel>
     {

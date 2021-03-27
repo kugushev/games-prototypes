@@ -1,5 +1,5 @@
-﻿using Kugushev.Scripts.Campaign.Utils;
-using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Campaign.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Widgets

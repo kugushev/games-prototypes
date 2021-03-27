@@ -10,7 +10,8 @@
         "Unity.TextMeshPro",
         "Mission",
         "MissionPresentation",
-        "Campaign"
+        "Campaign",
+        "App"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
