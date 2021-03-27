@@ -16,6 +16,7 @@
         LuckyIndustrialist,
         Negotiator,
         Briber,
-        Transporter
+        Transporter,
+        Impregnable
     }
 }

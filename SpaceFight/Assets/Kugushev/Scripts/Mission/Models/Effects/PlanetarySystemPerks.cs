@@ -15,13 +15,15 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         {
             public Faction applicantFaction;
             public ValuePipeline<Planet> production;
+            public ValuePipeline<Planet> damage;
             [CanBeNull] public Func<float, bool> IsFreeRecruitment;
             [CanBeNull] public Func<bool> GetExtraPlanetOnStart;
 
-            public State(Faction applicantFaction, ValuePipeline<Planet> production)
+            public State(Faction applicantFaction, ValuePipeline<Planet> production, ValuePipeline<Planet> damage)
             {
                 this.applicantFaction = applicantFaction;
                 this.production = production;
+                this.damage = damage;
                 IsFreeRecruitment = null;
                 GetExtraPlanetOnStart = null;
             }

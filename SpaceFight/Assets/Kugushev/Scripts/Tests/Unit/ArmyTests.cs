@@ -292,6 +292,38 @@ namespace Kugushev.Scripts.Tests.Unit
                 Assert.AreEqual(testCase.expectedPlanetPower.Value, planet.Power);
         }
 
+        private static IEnumerable<(int level, float planetPower, float expectedArmyPower)>
+            PlanetIsImpregnable
+            => new[]
+            {
+                (1, 19f + GameplayConstants.UnifiedDamage, 49f),
+                (1, 20f + GameplayConstants.UnifiedDamage, 48f),
+                (2, 34f + GameplayConstants.UnifiedDamage, 49f),
+                (2, 35f + GameplayConstants.UnifiedDamage, 46f),
+                (3, 49f + GameplayConstants.UnifiedDamage, 49f),
+                (3, 50f + GameplayConstants.UnifiedDamage, 42f),
+            };
+
+        [Test]
+        public void NextStep_OnSiegeStatus_PlanetIsImpregnable_SufferHighDamage(
+            [ValueSource(nameof(PlanetIsImpregnable))]
+            (int level, float planetPower, float expectedArmyPower) testCase)
+        {
+            // arrange
+            var planet = CreatePlanet(0f, Faction.Green, testCase.planetPower,
+                (AchievementId.Impregnable, testCase.level, AchievementType.Epic));
+
+            var army = CreateArmy(null, Faction.Red, 50f, planet);
+
+            // act
+            army.Status = ArmyStatus.OnMatch;
+            army.HandlePlanetVisiting(planet);
+            army.NextStep(DeltaTime);
+
+            // assert
+            Assert.AreEqual(testCase.expectedArmyPower, army.Power);
+        }
+
         #endregion
 
         #endregion

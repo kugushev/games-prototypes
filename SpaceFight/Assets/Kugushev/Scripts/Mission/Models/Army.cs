@@ -35,6 +35,7 @@ namespace Kugushev.Scripts.Mission.Models
             public float fightingTimeCollector;
             public readonly MissionEventsCollector EventsCollector;
             public bool nearDeath;
+            public readonly float StartPower;
 
             public State(Order order, float speed, float angularSpeed, Faction faction, float power, in Sun sun,
                 FleetPerks fleetPerks, MissionEventsCollector eventsCollector)
@@ -54,6 +55,7 @@ namespace Kugushev.Scripts.Mission.Models
                 waypointRotationProgress = 0f;
                 fightingTimeCollector = 0f;
                 nearDeath = false;
+                StartPower = power;
             }
         }
 
@@ -234,7 +236,7 @@ namespace Kugushev.Scripts.Mission.Models
                     captured = result == FightRoundResult.Defeated;
 
                     if (!captured)
-                        ExecuteSuffer(target.Faction);
+                        SufferFromPlanet(target);
                 }
                 else
                     captured = true;
@@ -328,6 +330,21 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 ObjectState.nearDeath = true;
                 FightStep(GameplayConstants.FightRoundDelay, true, 1);
+            }
+
+            return result;
+        }
+
+        private FightRoundResult SufferFromPlanet(Planet enemy)
+        {
+            var damage = enemy.GetDamage();
+
+            var result = ExecuteSuffer(enemy.Faction, damage);
+
+            if (result == FightRoundResult.Defeated)
+            {
+                ObjectState.EventsCollector.ArmyDestroyedOnSiege.Add(new ArmyDestroyedOnSiege(
+                    enemy.Faction, Faction, ObjectState.StartPower, enemy.Power));
             }
 
             return result;

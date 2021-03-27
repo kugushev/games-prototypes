@@ -15,6 +15,7 @@ namespace Kugushev.Scripts.Mission.Utils
 
         public List<PlanetCaptured> PlanetCaptured { get; } = new List<PlanetCaptured>(Capacity);
         public List<ArmyDestroyedInFight> ArmyDestroyedInFight { get; } = new List<ArmyDestroyedInFight>(Capacity);
+        public List<ArmyDestroyedOnSiege> ArmyDestroyedOnSiege { get; } = new List<ArmyDestroyedOnSiege>(Capacity);
         public List<ArmySent> ArmySent { get; } = new List<ArmySent>(Capacity);
         public List<ArmyArrived> ArmyArrived { get; } = new List<ArmyArrived>(Capacity);
 
@@ -32,7 +33,9 @@ namespace Kugushev.Scripts.Mission.Utils
         {
             PlanetCaptured.Clear();
             ArmyDestroyedInFight.Clear();
+            ArmyDestroyedOnSiege.Clear();
             ArmySent.Clear();
+            ArmyArrived.Clear();
         }
     }
 }

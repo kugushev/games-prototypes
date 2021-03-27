@@ -37,8 +37,9 @@ namespace Kugushev.Scripts.Mission.Services
             achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerAchievements);
 
             var fleetPerksBuilder = CreateDefaultFleetPerksState(objectsPool);
-            var planetarySystemPerksBuilder = new PlanetarySystemPerks.State(
-                playerFaction, objectsPool.GetObject<ValuePipeline<Planet>, int>(0));
+            var planetarySystemPerksBuilder = new PlanetarySystemPerks.State(playerFaction,
+                objectsPool.GetObject<ValuePipeline<Planet>, int>(0),
+                objectsPool.GetObject<ValuePipeline<Planet>, int>(0));
 
             foreach (var achievement in _achievementBuffer)
                 achievement.Apply(ref fleetPerksBuilder, ref planetarySystemPerksBuilder);

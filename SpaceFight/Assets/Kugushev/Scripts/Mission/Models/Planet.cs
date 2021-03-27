@@ -174,6 +174,14 @@ namespace Kugushev.Scripts.Mission.Models
             return false;
         }
 
+        public float GetDamage()
+        {
+            if (ObjectState.PlanetarySystemPerks.TryGetPerks(Faction, out var perks))
+                return perks.damage.Calculate(GameplayConstants.UnifiedDamage, this);
+
+            return GameplayConstants.UnifiedDamage;
+        }
+
         private void UpdatePosition() => ObjectState.position =
             ObjectState.orbit.ToPosition(ObjectState.sun.Position, ObjectState.dayOfYear);
     }

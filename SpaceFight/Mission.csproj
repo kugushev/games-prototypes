@@ -60,11 +60,14 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Utils\MissionEventsCollector.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Elephant.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Briber.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\AbstractAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Tools\PlanetsDistanceComparer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Player\OrdersManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyArrived.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Kamikaze.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmySent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Negotiator.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\EpicAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedInFight.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Invader.cs" />
@@ -94,6 +97,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\StatesAndTransitions\DebriefingState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Tactical\SimpleAI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\DebriefingSummary.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\SiegeUltimatum.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\AI\Tactical\SuicideAI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\ArmyStatus.cs" />
@@ -105,13 +109,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Startup.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Constants\GameplayConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Transporter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Negotiator.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\SiegeUltimatum.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Briber.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Transporter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyArrived.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Impregnable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedOnSiege.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
