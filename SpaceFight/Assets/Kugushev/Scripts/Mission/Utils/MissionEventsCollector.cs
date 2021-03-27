@@ -24,10 +24,15 @@ namespace Kugushev.Scripts.Mission.Utils
         public void Start()
         {
             _stopwatch ??= new Stopwatch();
+            _stopwatch.Reset();
             _stopwatch.Start();
         }
 
-        public void Stop() => _stopwatch.Stop();
+        public void Stop()
+        {
+            _stopwatch.Stop();
+            _stopwatch.Reset();
+        }
 
         public void Cleanup()
         {

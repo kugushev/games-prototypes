@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.App.StatesAndTransitions
 {
-    internal class MainMenuState : BaseSceneLoadingState<GameModel>
+    internal class MainMenuState : BaseSceneLoadingState<AppModel>
     {
-        public MainMenuState(GameModel model) : base(model, UnityConstants.MainMenuScene, true)
+        public MainMenuState(AppModel model) : base(model, UnityConstants.MainMenuScene, true)
         {
         }
 

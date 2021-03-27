@@ -71,6 +71,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Abstractions\EpicAchievement.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedInFight.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Invader.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedOnSiege.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetRule.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\ExecutionResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\OrderStatus.cs" />
@@ -82,6 +83,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Interfaces\IFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Planet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\ProceduralGeneration\PlanetarySystemGenerator.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Impregnable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\PlanetarySystem.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Player\PlayerCommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Models\Effects\PlanetarySystemPerks.cs" />
@@ -112,8 +114,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Transporter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Achievements\Epic\Impregnable.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\ValueObjects\MissionEvents\ArmyDestroyedOnSiege.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Mission.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -703,6 +703,10 @@
     <ProjectReference Include="Campaign.csproj">
       <Project>{7aa78939-98e6-d360-4819-405b1aa1d00b}</Project>
       <Name>Campaign</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.csproj">
+      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
+      <Name>Game</Name>
     </ProjectReference>
     <ProjectReference Include="App.csproj">
       <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>

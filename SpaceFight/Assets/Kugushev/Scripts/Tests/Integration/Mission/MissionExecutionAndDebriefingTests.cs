@@ -104,6 +104,15 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Kamikaze && a.Info.Level == 1));
         }
+        
+        [UnityTest]
+        public IEnumerator Fight_TestBriber()
+        {
+            yield return RunExecutionWithSeed(Seeds.ThreePlanets, new[]
+            {
+                (AchievementId.Briber, 3, AchievementType.Epic)
+            });
+        }
 
         private static IEnumerator RunExecutionWithSeed(int seed,
             IEnumerable<(AchievementId, int level, AchievementType)> achievements,

@@ -129,7 +129,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
                 return Faction.Red;
 
             // todo: refactor this ugly code
-            if (missionInfo.PlayerExtraPlanets > playerGotExtraPlanets)
+            if ((missionInfo.PlayerExtraPlanets ?? 0) > playerGotExtraPlanets)
             {
                 if (missionInfo.EnemyExtraPlanets > enemyGotExtraPlanets &&
                     playerGotExtraPlanets > enemyGotExtraPlanets)

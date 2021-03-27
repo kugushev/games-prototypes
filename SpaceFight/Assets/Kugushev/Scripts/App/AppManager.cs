@@ -9,10 +9,11 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.App
 {
-    internal class AppManager : BaseManager<GameModel>
+    internal class AppManager : BaseManager<AppModel>
     {
-        [SerializeField] private GameModelProvider gameModelProvider;
+        [SerializeField] private AppModelProvider gameModelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
+        [SerializeField] private GameSceneParametersPipeline gameSceneParametersPipeline;
 
         [Header("States and Transitions")] [SerializeField]
         private ExitState onCampaignExitTransition;
@@ -20,20 +21,22 @@ namespace Kugushev.Scripts.App
         [SerializeField] private TriggerTransition toCampaignTransition;
         [SerializeField] private TriggerTransition toPlaygroundTransition;
 
+        [SerializeField] private TriggerTransition toNewGameTransition;
 
-        protected override GameModel InitRootModel()
+        protected override AppModel InitRootModel()
         {
-            var model = new GameModel();
+            var model = new AppModel();
             gameModelProvider.Set(model);
             return model;
         }
 
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
-            GameModel rootModel)
+            AppModel rootModel)
         {
             var mainMenuState = new MainMenuState(rootModel);
             var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline, false);
             var playgroundState = new CampaignState(rootModel, campaignSceneParametersPipeline, true);
+            var newGameState = new GameState(rootModel, gameSceneParametersPipeline);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
@@ -47,7 +50,8 @@ namespace Kugushev.Scripts.App
                     mainMenuState, new[]
                     {
                         new TransitionRecord(toCampaignTransition, campaignState),
-                        new TransitionRecord(toPlaygroundTransition, playgroundState)
+                        new TransitionRecord(toPlaygroundTransition, playgroundState),
+                        new TransitionRecord(toNewGameTransition, newGameState)
                     }
                 },
                 {

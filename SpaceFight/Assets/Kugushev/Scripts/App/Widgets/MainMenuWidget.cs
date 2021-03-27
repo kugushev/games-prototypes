@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.App.Widgets
 {
     internal class MainMenuWidget : MonoBehaviour
     {
-        [SerializeField] private GameModelProvider gameModelProvider;
+        [SerializeField] private AppModelProvider gameModelProvider;
         [SerializeField] private TextMeshProUGUI seedValueText;
         [SerializeField] private Slider seedSlider;
 

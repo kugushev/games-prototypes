@@ -6,12 +6,12 @@ using Kugushev.Scripts.Common.StatesAndTransitions;
 
 namespace Kugushev.Scripts.App.StatesAndTransitions
 {
-    internal class CampaignState : BaseSceneLoadingState<GameModel>
+    internal class CampaignState : BaseSceneLoadingState<AppModel>
     {
         private readonly CampaignSceneParametersPipeline _sceneParametersPipeline;
         private readonly bool _isPlayground;
 
-        public CampaignState(GameModel model, CampaignSceneParametersPipeline sceneParametersPipeline,
+        public CampaignState(AppModel model, CampaignSceneParametersPipeline sceneParametersPipeline,
             bool isPlayground)
             : base(model, UnityConstants.CampaignManagementScene, false)
         {

@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.App.Utils
 {
-    [CreateAssetMenu(menuName = AppConstants.MenuPrefix + nameof(GameModelProvider))]
-    internal class GameModelProvider : ModelProvider<GameModel>
+    [CreateAssetMenu(menuName = AppConstants.MenuPrefix + nameof(AppModelProvider))]
+    internal class AppModelProvider : ModelProvider<AppModel>
     {
     }
 }
