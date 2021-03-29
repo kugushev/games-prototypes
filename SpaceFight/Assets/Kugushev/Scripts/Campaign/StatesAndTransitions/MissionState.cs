@@ -41,8 +41,11 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
             Model.LastMissionResult = result;
 
-            if (result.Reward is { } reward)
+            if (result.ChosenPerk is { } reward)
                 Model.PlayerAchievements.AddAchievement(reward);
+
+            if (result.PlayerWins)
+                Model.AddReward(result.MissionInfo.Reward);
 
             Model.NextMission = null;
         }

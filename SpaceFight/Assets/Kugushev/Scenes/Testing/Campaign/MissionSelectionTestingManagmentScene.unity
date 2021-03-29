@@ -166,6 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389c8ecb901b4765a1570bcca9bb931f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
-  campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
   missionsGenerationService: {fileID: 11400000, guid: 6765412051dbf524baabd4666761576a, type: 2}

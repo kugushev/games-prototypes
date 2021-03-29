@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
@@ -131,7 +130,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             }
 
             BaseMissionTestingManager.MissionInfo = new MissionParameters(
-                new MissionInfo(seed, Difficulty.Normal), 
+                new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<PoliticalAction>()), 
                 achievementsModel);
 
             SceneManager.LoadScene("MissionExecutionAndDebriefingTestingManagementScene");

@@ -1,8 +1,8 @@
 using System;
-using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

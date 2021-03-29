@@ -1,16 +1,21 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
-using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Services;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
     internal class PlaygroundState : BaseSceneLoadingState<CampaignModel>
     {
-        public PlaygroundState(CampaignModel model) : base(model, UnityConstants.PlaygroundScene, true)
+        private readonly PoliticalActionsRepository _politicalActionsRepository;
+
+        public PlaygroundState(CampaignModel model, PoliticalActionsRepository politicalActionsRepository)
+            : base(model, UnityConstants.PlaygroundScene, true)
         {
+            _politicalActionsRepository = politicalActionsRepository;
         }
 
         protected override void AssertModel()
@@ -34,6 +39,7 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
             Model.NextMission = new MissionInfo(
                 seed: playground.Seed,
                 difficulty: Difficulty.Normal,
+                reward: _politicalActionsRepository.Stub,
                 playerHomeProductionMultiplier: playground.PlayerHomeProductionMultiplier,
                 enemyHomeProductionMultiplier: playground.EnemyHomeProductionMultiplier,
                 playerExtraPlanets: playground.PlayerExtraPlanets,

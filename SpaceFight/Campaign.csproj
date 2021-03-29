@@ -65,7 +65,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\Playground.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\PlaygroundState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Widgets\PlaygroundWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Enums\Difficulty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Utils\MissionSceneResultPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\CampaignModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\CampaignManager.cs" />
@@ -75,7 +74,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\PlayerAchievements.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Services\MissionsGenerationService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\ProceduralGeneration\MissionsGenerator.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Interfaces\IMissionsSet.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Campaign.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

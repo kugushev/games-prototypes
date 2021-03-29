@@ -15,7 +15,13 @@ namespace Kugushev.Scripts.Game.Models
 
         public IReadOnlyList<Politician> Politicians => _politicians;
 
-        protected override void OnRestore(int state) => _politicians.Clear();
+        protected override void OnRestore(int state)
+        {
+            foreach (var politician in _politicians)
+                politician.Dispose();
+            _politicians.Clear();
+        }
+
         protected override void OnClear(int state) => _politicians.Clear();
     }
 }

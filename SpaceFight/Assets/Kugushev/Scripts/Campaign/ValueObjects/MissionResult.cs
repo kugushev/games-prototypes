@@ -5,15 +5,15 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
 {
     public readonly struct MissionResult
     {
-        public MissionResult(bool playerWins, MissionInfo missionInfo, PerkInfo? reward)
+        public MissionResult(bool playerWins, MissionInfo missionInfo, PerkInfo? chosenPerk)
         {
             PlayerWins = playerWins;
             MissionInfo = missionInfo;
-            Reward = reward;
+            ChosenPerk = chosenPerk;
         }
 
         public bool PlayerWins { get; }
         public MissionInfo MissionInfo { get; }
-        public PerkInfo? Reward { get; }
+        public PerkInfo? ChosenPerk { get; }
     }
 }

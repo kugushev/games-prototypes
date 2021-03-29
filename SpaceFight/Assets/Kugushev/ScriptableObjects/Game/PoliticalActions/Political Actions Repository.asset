@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437cc4181d8a4f3d91aba12495cd6b5a, type: 3}
+  m_Name: Political Actions Repository
+  m_EditorClassIdentifier: 
+  normal:
+  - {fileID: 11400000, guid: 3bedbdcddc8ff8142b2ca1110dc52da5, type: 2}
+  - {fileID: 11400000, guid: 1afdb690d493f6045903de524c6c3569, type: 2}
+  - {fileID: 11400000, guid: c11f5d7398ec1da4ea2f3323ccbfa8df, type: 2}
+  - {fileID: 11400000, guid: 66311951ed55efa47bf18067239020f5, type: 2}
+  - {fileID: 11400000, guid: 5dd257a3080ae93438d4b13be890a886, type: 2}
+  - {fileID: 11400000, guid: 67b3995257111c041adad64a25e3b808, type: 2}
+  - {fileID: 11400000, guid: 6ada830b3c7430045b0c05df2153e216, type: 2}
+  hard:
+  - {fileID: 11400000, guid: 862f1bde316353145b348a98ae2464cb, type: 2}
+  - {fileID: 11400000, guid: 1761d745bf8e51c45b45b4f60a52562b, type: 2}
+  - {fileID: 11400000, guid: b77dc17316ca5ae4d8fa700124c9e141, type: 2}
+  - {fileID: 11400000, guid: 560238cd34fcdd14888951793b0c7260, type: 2}
+  insane:
+  - {fileID: 11400000, guid: cd429b13316409d48ba729bf8236a733, type: 2}
+  - {fileID: 11400000, guid: 5ef0a5afcba751c47ba953b1807d655a, type: 2}
+  - {fileID: 11400000, guid: 3af04985de94b2b47a209afe9926ca27, type: 2}
+  stub: {fileID: 11400000, guid: 5dd257a3080ae93438d4b13be890a886, type: 2}

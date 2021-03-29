@@ -1,18 +1,18 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Campaign.Services;
+using Kugushev.Scripts.Campaign.ProceduralGeneration;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
     internal class MissionSelectionState : BaseSceneLoadingState<CampaignModel>
     {
-        private readonly MissionsGenerationService _missionsGenerationService;
+        private readonly MissionsGenerator _missionsGenerator;
 
-        public MissionSelectionState(CampaignModel model, MissionsGenerationService missionsGenerationService)
+        public MissionSelectionState(CampaignModel model, MissionsGenerator missionsGenerationService)
             : base(model, UnityConstants.MissionSelectionScene, true)
         {
-            _missionsGenerationService = missionsGenerationService;
+            _missionsGenerator = missionsGenerationService;
         }
 
         protected override void AssertModel()
@@ -24,11 +24,8 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
             var modelMissionSelection = Model.MissionSelection;
 
             Model.NextMission = null;
-            if (modelMissionSelection.Missions == null)
-            {
-                var missions = _missionsGenerationService.GenerateMissions();
-                modelMissionSelection.SetMissions(missions);
-            }
+            if (modelMissionSelection.Missions.Count == 0)
+                _missionsGenerator.GenerateMissions(modelMissionSelection);
 
             if (Model.LastMissionResult is {PlayerWins: true} lastMissionResult)
                 modelMissionSelection.OnMissionFinished(lastMissionResult.MissionInfo);

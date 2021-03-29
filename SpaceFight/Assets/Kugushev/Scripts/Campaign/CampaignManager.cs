@@ -1,22 +1,28 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.App.Utils;
+using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Campaign.Services;
+using Kugushev.Scripts.Campaign.ProceduralGeneration;
 using Kugushev.Scripts.Campaign.StatesAndTransitions;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
+using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Campaign
 {
     internal class CampaignManager : BaseManager<CampaignModel>
     {
+        [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private CampaignModelProvider modelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
-        [SerializeField] private MissionsGenerationService missionsGenerationService;
+        [SerializeField] private MissionsGenerator missionsGenerationService;
+        [SerializeField] private PoliticalActionsRepository politicalActionsRepository;
 
         [Header("Mission Parameters")] [SerializeField]
         private MissionSceneParametersPipeline missionSceneParametersPipeline;
@@ -34,8 +40,13 @@ namespace Kugushev.Scripts.Campaign
         protected override CampaignModel InitRootModel()
         {
             var campaignInfo = campaignSceneParametersPipeline.Get();
+            var budget = campaignInfo.Budget ?? CampaignConstants.MaxBudget;
 
-            var model = new CampaignModel(campaignInfo);
+            var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
+                objectsPool.GetObject<MissionSelection, MissionSelection.State>(new MissionSelection.State(budget)),
+                objectsPool.GetObject<Playground, Playground.State>(new Playground.State())
+            ));
+
             modelProvider.Set(model);
 
             return model;
@@ -53,7 +64,7 @@ namespace Kugushev.Scripts.Campaign
 
             IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetPlaygroundStates()
             {
-                var playgroundState = new PlaygroundState(rootModel);
+                var playgroundState = new PlaygroundState(rootModel, politicalActionsRepository);
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
 

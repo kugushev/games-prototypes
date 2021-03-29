@@ -9,7 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c23e549aca64841828e9da10588d82e, type: 3}
-  m_Name: Missions Generation Service
+  m_Script: {fileID: 11500000, guid: 1533ea5b35634021846d3e07fb43cdef, type: 3}
+  m_Name: Present the Relics
   m_EditorClassIdentifier: 
-  maxSeed: 99
+  caption: Present the Relics
+  difficulty: 1
+  intel: 2
+  business: 0
+  greed: 0
+  lust: -1
+  brute: 0
+  vanity: 2

@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
-using Kugushev.Scripts.Campaign.Enums;
+using Kugushev.Scripts.Campaign.Interfaces;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Campaign.Services
+namespace Kugushev.Scripts.Campaign.ProceduralGeneration
 {
-    [CreateAssetMenu(menuName = CampaignConstants.MenuPrefix + nameof(MissionsGenerationService))]
-    public class MissionsGenerationService : ScriptableObject
+    [CreateAssetMenu(menuName = CampaignConstants.MenuPrefix + nameof(MissionsGenerator))]
+    public class MissionsGenerator : ScriptableObject
     {
-        public List<MissionInfo> GenerateMissions()
+        [SerializeField] private PoliticalActionsRepository politicalActionsRepository;
+
+        public void GenerateMissions(IMissionsSet setToFill)
         {
             int normalMissionsCount = CampaignConstants.NormalMissionsCount;
             int hardMissionsCount = CampaignConstants.HardMissionsCount;
             int insaneMissionsCount = CampaignConstants.InsaneMissionsCount;
 
-            var missions = new List<MissionInfo>(CampaignConstants.MissionsCount);
 
             while (normalMissionsCount > 0 || hardMissionsCount > 0 || insaneMissionsCount > 0)
             {
@@ -26,42 +30,42 @@ namespace Kugushev.Scripts.Campaign.Services
                 if (random < normalMissionsCount) // normal difficulty
                 {
                     normalMissionsCount--;
-                    missions.Add(CreateNormalMission());
+                    setToFill.AddMission(CreateNormalMission());
                 }
                 else if (random < normalMissionsCount + hardMissionsCount) // hard difficulty
                 {
                     hardMissionsCount--;
-                    missions.Add(CreateHardMission());
+                    setToFill.AddMission(CreateHardMission());
                 }
                 else // insane difficulty
                 {
                     insaneMissionsCount--;
-                    missions.Add(CreateInsaneMission());
+                    setToFill.AddMission(CreateInsaneMission());
                 }
             }
-
-
-            return missions;
         }
 
         private MissionInfo CreateNormalMission()
         {
-            return new MissionInfo(NextSeed, Difficulty.Normal);
+            var difficulty = Difficulty.Normal;
+            var politicalAction = politicalActionsRepository.GetRandom(difficulty);
+            return new MissionInfo(NextSeed, difficulty, politicalAction);
         }
 
         private MissionInfo CreateHardMission()
         {
-            var seed = NextSeed;
             var difficulty = Difficulty.Hard;
+            var politicalAction = politicalActionsRepository.GetRandom(difficulty);
+            var seed = NextSeed;
             var range = Random.Range(0, 3);
             switch (range)
             {
                 case 0:
-                    return new MissionInfo(seed, difficulty, enemyStartPowerMultiplier: 4);
+                    return new MissionInfo(seed, difficulty, politicalAction, enemyStartPowerMultiplier: 4);
                 case 1:
-                    return new MissionInfo(seed, difficulty, enemyExtraPlanets: 1);
+                    return new MissionInfo(seed, difficulty, politicalAction, enemyExtraPlanets: 1);
                 case 2:
-                    return new MissionInfo(seed, difficulty, enemyHomeProductionMultiplier: 2);
+                    return new MissionInfo(seed, difficulty, politicalAction, enemyHomeProductionMultiplier: 2);
                 default:
                     throw new Exception($"Invalid random range {range}");
             }
@@ -69,7 +73,9 @@ namespace Kugushev.Scripts.Campaign.Services
 
         private MissionInfo CreateInsaneMission()
         {
-            return new MissionInfo(NextSeed, Difficulty.Insane,
+            var difficulty = Difficulty.Insane;
+            var politicalAction = politicalActionsRepository.GetRandom(difficulty);
+            return new MissionInfo(NextSeed, difficulty, politicalAction,
                 enemyStartPowerMultiplier: 4,
                 enemyExtraPlanets: 1,
                 enemyHomeProductionMultiplier: 2);

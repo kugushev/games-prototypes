@@ -166,9 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553071ebf798ea845a509800203798e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
   campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
   missionsGenerationService: {fileID: 11400000, guid: 6765412051dbf524baabd4666761576a, type: 2}
+  politicalActionsRepository: {fileID: 11400000, guid: f8ac77f1181847f48a9b5ca661601613, type: 2}
   missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}
   missionSceneResultPipeline: {fileID: 11400000, guid: 54996aacfcd26644ab31e4ee7f10a718, type: 2}
   campaignExitState: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}

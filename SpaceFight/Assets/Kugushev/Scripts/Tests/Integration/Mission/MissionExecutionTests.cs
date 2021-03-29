@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using NUnit.Framework;
@@ -49,7 +50,9 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             SingletonState.Instance.Reset();
 
             BaseMissionTestingManager.MissionInfo =
-                new MissionParameters(new MissionInfo(seed, Difficulty.Normal), new PlayerAchievements());
+                new MissionParameters(
+                    new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<PoliticalAction>()),
+                    new PlayerAchievements());
             SceneManager.LoadScene("MissionExecutionTestingManagementScene");
 
             yield return new WaitUntil(() => SingletonState.Instance.Entered);

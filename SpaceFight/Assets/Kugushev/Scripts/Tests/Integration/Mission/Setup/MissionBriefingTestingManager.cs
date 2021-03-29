@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
@@ -29,7 +30,8 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
         protected override MissionModel InitRootModel()
         {
             var seed = Seed ?? DateTime.Now.Millisecond;
-            var missionProperties = new MissionInfo(seed, Difficulty.Normal);
+            var missionProperties = new MissionInfo(seed, Difficulty.Normal,
+                ScriptableObject.CreateInstance<PoliticalAction>());
 
             var planetarySystemPerks = objectsPool.GetObject<PlanetarySystemPerks, PlanetarySystemPerks.State>(
                 new PlanetarySystemPerks.State());

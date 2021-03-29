@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Campaign.Enums
+﻿namespace Kugushev.Scripts.Game.Enums
 {
     public enum Difficulty
     {

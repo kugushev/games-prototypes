@@ -68,6 +68,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianCardWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Relation.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Constants\UnityConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Difficulty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Utils\GameModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\GameManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Events\PoliticianSelectedEvent.cs" />
@@ -76,6 +77,9 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticsWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\ProceduralGeneration\ParliamentGenerator.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianDetailsWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticalActionWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticalActionsWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Services\PoliticalActionsRepository.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

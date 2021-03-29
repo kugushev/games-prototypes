@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            var campaignInfo = new CampaignInfo(Model.MainMenu.Seed, _isPlayground);
+            var campaignInfo = new CampaignInfo(Model.MainMenu.Seed, null, _isPlayground);
             _sceneParametersPipeline.Set(campaignInfo);
         }
     }
