@@ -30,7 +30,7 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
         {
             Random.InitState(seed);
 
-            var parliament = objectsPool.GetObject<Parliament, int>(0);
+            var parliament = objectsPool.GetObject<Parliament, Parliament.State>(new Parliament.State());
 
             FillIndexesBuffer();
             while (_indexesBuffer.Count > 0)

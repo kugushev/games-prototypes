@@ -2688,6 +2688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f941dffa93154e67bb44002604385cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  politicsWidget: {fileID: 1953618097}
   applyButton: {fileID: 1823383400}
   politicalActionsPanel: {fileID: 572113476}
   toggleGroup: {fileID: 572113479}
@@ -7667,7 +7668,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1823383401}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 572113480}
+        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.PoliticalActionsWidget,
+          Game
+        m_MethodName: OnApplyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1823383401
 MonoBehaviour:
   m_ObjectHideFlags: 0

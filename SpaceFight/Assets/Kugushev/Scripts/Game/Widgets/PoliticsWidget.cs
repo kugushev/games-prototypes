@@ -15,10 +15,15 @@ namespace Kugushev.Scripts.Game.Widgets
             if (gameModelProvider.TryGetModel(out var model))
             {
                 parliament.Setup(model.Parliament);
-                politicalActions.Setup(model.PoliticalActions);
+                politicalActions.Setup(model.PoliticalActions, model.Parliament);
             }
             else
                 Debug.LogError("Unable to get model");
+        }
+
+        public void UpdateView()
+        {
+            parliament.UpdateView();
         }
     }
 }

@@ -28,17 +28,19 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private Color insane;
 
         private PoliticalAction _model;
-        private Action<PoliticalAction> _onCardSelected;
+        private Action<PoliticalActionWidget> _onCardSelected;
+
+        public PoliticalAction Model => _model;
 
         public void ToggleChanged(bool isOn)
         {
             if (!IsModelValid())
                 return;
 
-            _onCardSelected?.Invoke(isOn ? _model : null);
+            _onCardSelected?.Invoke(isOn ? this : null);
         }
 
-        public void SetUp(PoliticalAction model, ToggleGroup toggleGroup, Action<PoliticalAction> onCardSelected)
+        public void SetUp(PoliticalAction model, ToggleGroup toggleGroup, Action<PoliticalActionWidget> onCardSelected)
         {
             _model = model;
             toggle.group = toggleGroup;

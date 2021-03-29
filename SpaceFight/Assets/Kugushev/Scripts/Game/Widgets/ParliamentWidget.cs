@@ -27,6 +27,8 @@ namespace Kugushev.Scripts.Game.Widgets
 
         public void PoliticianSelected([CanBeNull] Politician politician)
         {
+            _model.SelectedPolitician = politician;
+
             if (politician == null)
             {
                 politicianDetailsWidget.Deselect();
@@ -34,6 +36,13 @@ namespace Kugushev.Scripts.Game.Widgets
             }
 
             politicianDetailsWidget.Select(politician);
+        }
+
+        public void UpdateView()
+        {
+            foreach (var politicianCard in politicianCards)
+                politicianCard.UpdateView();
+            politicianDetailsWidget.UpdateView();
         }
     }
 }

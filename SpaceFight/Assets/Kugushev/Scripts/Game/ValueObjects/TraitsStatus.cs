@@ -46,7 +46,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
 
         private bool RevealTrait(ref bool isTraitRevealed, int intel, int politicianTrait)
         {
-            if (!isTraitRevealed && intel >= politicianTrait)
+            if (!isTraitRevealed && intel >= Math.Abs(politicianTrait))
             {
                 isTraitRevealed = true;
                 return true;
