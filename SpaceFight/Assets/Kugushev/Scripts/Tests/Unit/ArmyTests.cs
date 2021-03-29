@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Tests.Unit.Utils;
@@ -39,7 +39,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Brawler, null, AchievementType.Common));
+                (PerkId.Brawler, null, PerkType.Common));
 
             var army = CreateArmy(fleetProperties, Faction.Green);
             var enemy = CreateArmy(default, Faction.Red);
@@ -58,8 +58,8 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Brawler, null, AchievementType.Common),
-                (AchievementId.Brawler, null, AchievementType.Common));
+                (PerkId.Brawler, null, PerkType.Common),
+                (PerkId.Brawler, null, PerkType.Common));
 
             var army = CreateArmy(fleetProperties, Faction.Green);
             var enemy = CreateArmy(default, Faction.Red);
@@ -78,7 +78,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Moska, 1, AchievementType.Epic));
+                (PerkId.Moska, 1, PerkType.Epic));
 
             var army = CreateArmy(fleetProperties, Faction.Green);
             var enemy = CreateArmy(default, Faction.Red);
@@ -105,7 +105,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Moska, testCase.level, AchievementType.Epic));
+                (PerkId.Moska, testCase.level, PerkType.Epic));
 
             var army = CreateArmy(fleetProperties, Faction.Green, testCase.power);
             var enemy = CreateArmy(default, Faction.Red);
@@ -134,7 +134,7 @@ namespace Kugushev.Scripts.Tests.Unit
             var army = CreateArmy(default, Faction.Green);
 
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Moska, testCase.level, AchievementType.Epic));
+                (PerkId.Moska, testCase.level, PerkType.Epic));
             var enemy = CreateArmy(fleetProperties, Faction.Red, testCase.power);
 
             // act
@@ -161,8 +161,8 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Moska, testCase.level, AchievementType.Epic),
-                (AchievementId.Brawler, null, AchievementType.Common));
+                (PerkId.Moska, testCase.level, PerkType.Epic),
+                (PerkId.Brawler, null, PerkType.Common));
 
             var army = CreateArmy(fleetProperties, Faction.Green, testCase.power);
             var enemy = CreateArmy(default, Faction.Red);
@@ -192,7 +192,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Elephant, testCase.level, AchievementType.Epic));
+                (PerkId.Elephant, testCase.level, PerkType.Epic));
 
             var army = CreateArmy(fleetProperties, Faction.Green, testCase.power);
             var enemy = CreateArmy(default, Faction.Red);
@@ -237,7 +237,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Elephant, testCase.level, AchievementType.Epic));
+                (PerkId.Elephant, testCase.level, PerkType.Epic));
 
             var planet = CreatePlanet(50f, Faction.Red);
 
@@ -275,7 +275,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Negotiator, testCase.level, AchievementType.Epic));
+                (PerkId.Negotiator, testCase.level, PerkType.Epic));
 
             var planet = CreatePlanet(0f, Faction.Neutral, power: NegotiatorCasesPlanetPower);
 
@@ -311,7 +311,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var planet = CreatePlanet(0f, Faction.Green, testCase.planetPower,
-                (AchievementId.Impregnable, testCase.level, AchievementType.Epic));
+                (PerkId.Impregnable, testCase.level, PerkType.Epic));
 
             var army = CreateArmy(null, Faction.Red, 50f, planet);
 
@@ -343,7 +343,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var (_, fleetProperties) = PerksHelper.GetPlayerProperties(
-                (AchievementId.Kamikaze, testCase.level, AchievementType.Epic));
+                (PerkId.Kamikaze, testCase.level, PerkType.Epic));
 
             var army = CreateArmy(fleetProperties, Faction.Green, 1f);
             var enemy1 = CreateArmy(default, Faction.Red);

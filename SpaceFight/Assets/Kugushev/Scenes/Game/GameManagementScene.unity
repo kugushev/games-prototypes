@@ -167,5 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameModelProvider: {fileID: 11400000, guid: 72035b249cb703242845fac535a24b95, type: 2}
+  gameSceneParametersPipeline: {fileID: 11400000, guid: 0e33eb78891c5af44a5761e485c7f800, type: 2}
+  parliamentGenerator: {fileID: 11400000, guid: 108b2bc1512242c42b1d2606f13186b2, type: 2}
   onCampaignExitTransition: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
   toCampaignTransition: {fileID: 11400000, guid: 45501c8e37f7a7540b160d5faaa97fbf, type: 2}

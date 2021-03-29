@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Models;
 using TMPro;
 using UnityEngine;
@@ -13,9 +14,9 @@ namespace Kugushev.Scripts.MissionPresentation.Widgets
         [SerializeField] private Toggle selector;
 
         private DebriefingSummary _rootModel;
-        private AchievementInfo _model;
+        private PerkInfo _model;
 
-        public void SetUp(AchievementInfo model, DebriefingSummary rootModel, ToggleGroup toggleGroup)
+        public void SetUp(PerkInfo model, DebriefingSummary rootModel, ToggleGroup toggleGroup)
         {
             _model = model;
             _rootModel = rootModel;

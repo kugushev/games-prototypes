@@ -2,12 +2,12 @@
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.Utils.ValuesProcessing;
-using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
+using Kugushev.Scripts.Mission.Perks.Abstractions;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Services
@@ -15,10 +15,10 @@ namespace Kugushev.Scripts.Mission.Services
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(PlayerPropertiesService))]
     public class PlayerPropertiesService : ScriptableObject
     {
-        [SerializeField] private AchievementsManager achievementsManager;
+        [SerializeField] private PerksManager achievementsManager;
         [SerializeField] private ObjectsPool objectsPool;
 
-        private readonly List<AbstractAchievement> _achievementBuffer = new List<AbstractAchievement>(128);
+        private readonly List<BasePerk> _achievementBuffer = new List<BasePerk>(128);
 
         public static FleetPerks.State CreateDefaultFleetPerksState(ObjectsPool objectsPool)
         {

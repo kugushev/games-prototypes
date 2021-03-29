@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0d12d1fba14cb1a33310bff600f9f5, type: 3}
+  m_Name: Kofi Annan
+  m_EditorClassIdentifier: 
+  fullName: Kofi Annan
+  perksLvl1: {fileID: 11400000, guid: 4e47306b9cc565e4c9befe0261a46c2c, type: 2}
+  perksLvl2: {fileID: 11400000, guid: 1e0bc285ed64e6a42b323692439b1c68, type: 2}
+  perksLvl3: {fileID: 11400000, guid: f59b4953e8f541849a7d9009372df0bb, type: 2}

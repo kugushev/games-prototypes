@@ -4,11 +4,11 @@ using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Mission.Achievements.Abstractions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
+using Kugushev.Scripts.Mission.Perks.Abstractions;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.StatesAndTransitions
@@ -16,16 +16,16 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
     public class DebriefingState : BaseSceneLoadingState<MissionModel>
     {
         private readonly MissionSceneResultPipeline _missionSceneResultPipeline;
-        private readonly AchievementsManager _achievementsManager;
+        private readonly PerksManager _perksManager;
         private readonly ObjectsPool _objectsPool;
-        private readonly List<AbstractAchievement> _achievementsBuffer = new List<AbstractAchievement>(64);
+        private readonly List<BasePerk> _achievementsBuffer = new List<BasePerk>(64);
 
         public DebriefingState(MissionModel model, MissionSceneResultPipeline missionSceneResultPipeline,
-            AchievementsManager achievementsManager, ObjectsPool objectsPool)
+            PerksManager achievementsManager, ObjectsPool objectsPool)
             : base(model, UnityConstants.Scenes.MissionDebriefingScene, true)
         {
             _missionSceneResultPipeline = missionSceneResultPipeline;
-            _achievementsManager = achievementsManager;
+            _perksManager = achievementsManager;
             _objectsPool = objectsPool;
         }
 
@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             if (Model.ExecutionResult?.Winner == Model.PlayerFaction)
             {
                 _achievementsBuffer.Clear();
-                _achievementsManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction,
+                _perksManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction,
                     Model.Parameters.PlayerAchievements);
 
                 debriefingInfo.Fill(_achievementsBuffer);

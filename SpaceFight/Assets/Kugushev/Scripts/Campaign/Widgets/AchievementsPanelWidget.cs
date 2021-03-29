@@ -1,5 +1,6 @@
 ﻿using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.Utils;
+using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Widgets
@@ -22,11 +23,11 @@ namespace Kugushev.Scripts.Campaign.Widgets
             }
         }
 
-        private void CreateAchievementCard(AchievementInfo achievement)
+        private void CreateAchievementCard(PerkInfo perk)
         {
             var go = Instantiate(achievementCardPrefab, achievementsPanel);
             var widget = go.GetComponent<AchievementCardWidget>();
-            widget.SetUp(achievement);
+            widget.SetUp(perk);
         }
     }
 }

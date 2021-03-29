@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0d12d1fba14cb1a33310bff600f9f5, type: 3}
+  m_Name: "Javier P\xE9rez"
+  m_EditorClassIdentifier: 
+  fullName: "Javier P\xE9rez"
+  perksLvl1: {fileID: 11400000, guid: e7ce3bdb4c1dba04983c8d4ff3e383be, type: 2}
+  perksLvl2: {fileID: 11400000, guid: 04fcacf60baf9ad488d4d5861545f2a0, type: 2}
+  perksLvl3: {fileID: 11400000, guid: bcbc6213c2e9b1743a70010491464b1a, type: 2}

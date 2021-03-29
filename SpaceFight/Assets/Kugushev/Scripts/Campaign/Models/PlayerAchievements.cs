@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Models
@@ -10,49 +11,49 @@ namespace Kugushev.Scripts.Campaign.Models
     [Serializable]
     public class PlayerAchievements
     {
-        [SerializeReference] private List<AchievementInfo> commonAchievements = new List<AchievementInfo>();
+        [SerializeReference] private List<PerkInfo> commonAchievements = new List<PerkInfo>();
 
         // stop thinking that using struct in dictionary cause boxing. It's not true right now, just turn on profiler and check
-        [SerializeReference] private Dictionary<AchievementId, AchievementInfo> epicAchievements =
-            new Dictionary<AchievementId, AchievementInfo>();
+        [SerializeReference] private Dictionary<PerkId, PerkInfo> epicAchievements =
+            new Dictionary<PerkId, PerkInfo>();
 
-        public IReadOnlyList<AchievementInfo> CommonAchievements => commonAchievements;
-        public IReadOnlyDictionary<AchievementId, AchievementInfo> EpicAchievements => epicAchievements;
+        public IReadOnlyList<PerkInfo> CommonAchievements => commonAchievements;
+        public IReadOnlyDictionary<PerkId, PerkInfo> EpicAchievements => epicAchievements;
 
-        internal void AddAchievement(AchievementInfo achievementInfo)
+        internal void AddAchievement(PerkInfo perkInfo)
         {
-            switch (achievementInfo.Type)
+            switch (perkInfo.Type)
             {
-                case AchievementType.Common:
-                    AddCommon(achievementInfo);
+                case PerkType.Common:
+                    AddCommon(perkInfo);
                     break;
-                case AchievementType.Epic:
-                    AddEpic(achievementInfo);
+                case PerkType.Epic:
+                    AddEpic(perkInfo);
                     break;
                 default:
-                    Debug.LogError($"Unexpected achievement type {achievementInfo}");
+                    Debug.LogError($"Unexpected achievement type {perkInfo}");
                     break;
             }
         }
 
-        private void AddCommon(AchievementInfo achievementInfo)
+        private void AddCommon(PerkInfo perkInfo)
         {
-            if (achievementInfo.Level != null)
-                Debug.LogError($"Common achievement with non null level: {achievementInfo}");
+            if (perkInfo.Level != null)
+                Debug.LogError($"Common achievement with non null level: {perkInfo}");
 
-            commonAchievements.Add(achievementInfo);
+            commonAchievements.Add(perkInfo);
         }
 
-        private void AddEpic(AchievementInfo achievementInfo)
+        private void AddEpic(PerkInfo perkInfo)
         {
-            if (epicAchievements.TryGetValue(achievementInfo.Id, out var current) &&
-                (current.Level >= achievementInfo.Level || achievementInfo.Level == null || current.Level == null))
+            if (epicAchievements.TryGetValue(perkInfo.Id, out var current) &&
+                (current.Level >= perkInfo.Level || perkInfo.Level == null || current.Level == null))
             {
-                Debug.LogError($"Unexpected achievement. Current {current}, new {achievementInfo}");
+                Debug.LogError($"Unexpected achievement. Current {current}, new {perkInfo}");
                 return;
             }
 
-            epicAchievements[achievementInfo.Id] = achievementInfo;
+            epicAchievements[perkInfo.Id] = perkInfo;
         }
     }
 }

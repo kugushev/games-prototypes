@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Mission.Achievements.Abstractions;
+using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Mission.Perks.Abstractions;
 
 namespace Kugushev.Scripts.Mission.Models
 {
@@ -9,24 +10,24 @@ namespace Kugushev.Scripts.Mission.Models
     {
         public struct State
         {
-            public AchievementInfo? SelectedAchievement;
+            public PerkInfo? SelectedAchievement;
         }
 
-        private readonly List<AbstractAchievement> _allAchievements = new List<AbstractAchievement>(64);
+        private readonly List<BasePerk> _allAchievements = new List<BasePerk>(64);
 
         public DebriefingSummary(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
-        public IReadOnlyList<AbstractAchievement> AllAchievements => _allAchievements;
+        public IReadOnlyList<BasePerk> AllAchievements => _allAchievements;
 
-        public AchievementInfo? SelectedAchievement
+        public PerkInfo? SelectedAchievement
         {
             get => ObjectState.SelectedAchievement;
             set => ObjectState.SelectedAchievement = value;
         }
 
-        public void Fill(IReadOnlyCollection<AbstractAchievement> allAchievements)
+        public void Fill(IReadOnlyCollection<BasePerk> allAchievements)
         {
             foreach (var achievement in allAchievements)
                 _allAchievements.Add(achievement);

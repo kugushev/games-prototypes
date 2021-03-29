@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0d12d1fba14cb1a33310bff600f9f5, type: 3}
+  m_Name: Boutros-Ghali
+  m_EditorClassIdentifier: 
+  fullName: Boutros-Ghali
+  perksLvl1: {fileID: 11400000, guid: e4c6316234ecf684eab5ebf330ea5af3, type: 2}
+  perksLvl2: {fileID: 11400000, guid: 04ded110a2e4e284eb479b8ed0ddcc41, type: 2}
+  perksLvl3: {fileID: 11400000, guid: e02d29c2f8a6b2243b1f60419a3fbe8c, type: 2}

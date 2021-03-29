@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
-using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
@@ -38,11 +38,11 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
         }
 
         public static Planet CreatePlanet(float production, Faction faction,
-            params (AchievementId, int? level, AchievementType)[] achievements) =>
+            params (PerkId, int? level, PerkType)[] achievements) =>
             CreatePlanet(production, faction, 0f, achievements);
 
         public static Planet CreatePlanet(float production, Faction faction, float power,
-            params (AchievementId, int? level, AchievementType)[] achievements)
+            params (PerkId, int? level, PerkType)[] achievements)
         {
             var (planetarySystemProperties, _) = PerksHelper.GetPlayerProperties(achievements);
 

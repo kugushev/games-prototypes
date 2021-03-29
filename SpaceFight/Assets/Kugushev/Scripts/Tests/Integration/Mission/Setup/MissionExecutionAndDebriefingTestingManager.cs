@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
     public class MissionExecutionAndDebriefingTestingManager : BaseMissionTestingManager
     {
         [Header(nameof(MissionExecutionAndDebriefingTestingManager))] [SerializeField]
-        private AchievementsManager achievementsManager;
+        private PerksManager achievementsManager;
 
         [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
         [SerializeField] private SuicideAI suicideAI;

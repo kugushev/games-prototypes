@@ -1,10 +1,11 @@
 ﻿using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Game.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.ValueObjects
 {
     public readonly struct MissionResult
     {
-        public MissionResult(bool playerWins, MissionInfo missionInfo, AchievementInfo? reward)
+        public MissionResult(bool playerWins, MissionInfo missionInfo, PerkInfo? reward)
         {
             PlayerWins = playerWins;
             MissionInfo = missionInfo;
@@ -13,6 +14,6 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
 
         public bool PlayerWins { get; }
         public MissionInfo MissionInfo { get; }
-        public AchievementInfo? Reward { get; }
+        public PerkInfo? Reward { get; }
     }
 }

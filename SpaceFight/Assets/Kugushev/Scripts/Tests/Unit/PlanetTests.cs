@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using NUnit.Framework;
@@ -30,7 +30,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void ExecuteProductionCycle_AchievedStartupLvl3_IncreasePowerX4OfProduction()
         {
             // arrange
-            var planet = CreatePlanet(4f, Faction.Green, (AchievementId.Startup, 3, AchievementType.Epic));
+            var planet = CreatePlanet(4f, Faction.Green, (PerkId.Startup, 3, PerkType.Epic));
 
             // act
             planet.ExecuteProductionCycle();
@@ -43,7 +43,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void ExecuteProductionCycle_AchievedStartupLvl2_IncreasePowerX2d5fProduction()
         {
             // arrange
-            var planet = CreatePlanet(4f, Faction.Green, (AchievementId.Startup, 2, AchievementType.Epic));
+            var planet = CreatePlanet(4f, Faction.Green, (PerkId.Startup, 2, PerkType.Epic));
 
             // act
             planet.ExecuteProductionCycle();
@@ -56,7 +56,7 @@ namespace Kugushev.Scripts.Tests.Unit
         public void ExecuteProductionCycle_AchievedStartupLvl1_IncreasePowerX1d5fProduction()
         {
             // arrange
-            var planet = CreatePlanet(4f, Faction.Green, (AchievementId.Startup, 1, AchievementType.Epic));
+            var planet = CreatePlanet(4f, Faction.Green, (PerkId.Startup, 1, PerkType.Epic));
 
             // act
             planet.ExecuteProductionCycle();
@@ -125,7 +125,7 @@ namespace Kugushev.Scripts.Tests.Unit
         {
             // arrange
             var planet = CreatePlanet(testCase.planetPower, Faction.Green,
-                (AchievementId.LuckyIndustrialist, testCase.level, AchievementType.Epic));
+                (PerkId.LuckyIndustrialist, testCase.level, PerkType.Epic));
 
             SubstitutiveRandom.SubstituteNextRange(testCase.substitudeRandomRange);
 

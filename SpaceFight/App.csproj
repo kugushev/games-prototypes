@@ -52,14 +52,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\App\Enums\AchievementId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Utils\GameSceneParametersPipeline.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\AchievementInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Models\MainMenu.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\GameState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Constants\AppConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\MainMenuState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Enums\AchievementType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Widgets\MainMenuWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Utils\CampaignSceneParametersPipeline.cs" />

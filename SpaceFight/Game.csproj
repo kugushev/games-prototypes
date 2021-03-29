@@ -52,12 +52,30 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Game\Services\RelationsService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PerkId.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticalAction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\PoliticsState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PerkInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Perk.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\Traits.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\GameModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\TraitsStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticianCharacter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PerkType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Constants\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Politician.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianCardWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Relation.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Utils\GameModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\GameManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Events\PoliticianSelectedEvent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\ParliamentWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Parliament.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticsWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ProceduralGeneration\ParliamentGenerator.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianDetailsWidget.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -649,6 +667,10 @@
     <ProjectReference Include="Common.csproj">
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="App.csproj">
+      <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>
+      <Name>App</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

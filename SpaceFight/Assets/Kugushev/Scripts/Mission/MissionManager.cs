@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Mission
 
         [SerializeField] private PlayerPropertiesService playerPropertiesService;
         [SerializeField] private MissionEventsCollector eventsCollector;
-        [SerializeField] private AchievementsManager achievementsManager;
+        [SerializeField] private PerksManager achievementsManager;
 
         [SerializeField] private PlayerCommander playerCommander;
         [SerializeField] private SimpleAI enemyAi;

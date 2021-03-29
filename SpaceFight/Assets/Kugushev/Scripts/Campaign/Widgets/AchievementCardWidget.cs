@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Game.ValueObjects;
 using TMPro;
 using UnityEngine;
 
@@ -8,9 +9,9 @@ namespace Kugushev.Scripts.Campaign.Widgets
     {
         [SerializeField] private TextMeshProUGUI captionText;
 
-        private AchievementInfo _model;
+        private PerkInfo _model;
 
-        public void SetUp(AchievementInfo model) => _model = model;
+        public void SetUp(PerkInfo model) => _model = model;
 
         private void Start() => captionText.text = _model.Caption;
     }

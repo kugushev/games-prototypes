@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
-using Kugushev.Scripts.Mission.Achievements.Abstractions;
+using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
@@ -27,7 +28,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             int seed = DateTime.UtcNow.Millisecond;
             Debug.Log($"Seed {seed}");
 
-            yield return RunExecutionWithSeed(seed, new (AchievementId, int level, AchievementType)[0]);
+            yield return RunExecutionWithSeed(seed, new (PerkId, int level, PerkType)[0]);
 
             CollectionAssert.IsNotEmpty(BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements);
 
@@ -37,20 +38,20 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         [UnityTest]
         public IEnumerator Fight_3PlanetsFight_NoAchievements_AchieveStartupAndMoskaLvl1()
         {
-            yield return RunExecutionWithSeed(Seeds.ThreePlanets, new (AchievementId, int level, AchievementType)[0]);
+            yield return RunExecutionWithSeed(Seeds.ThreePlanets, new (PerkId, int level, PerkType)[0]);
 
             LogAllAchievements();
 
             // assert
             var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
-                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Invader));
+                .Matches<BasePerk>(a => a.Info.Id == PerkId.Invader));
 
             Assert.That(allAchievements, Has.Exactly(1)
-                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 1));
+                .Matches<BasePerk>(a => a.Info.Id == PerkId.Startup && a.Info.Level == 1));
 
             Assert.That(allAchievements, Has.Exactly(1)
-                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Moska && a.Info.Level == 1));
+                .Matches<BasePerk>(a => a.Info.Id == PerkId.Moska && a.Info.Level == 1));
         }
 
         [UnityTest]
@@ -58,8 +59,8 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         {
             yield return RunExecutionWithSeed(Seeds.ThreePlanets, new[]
             {
-                (AchievementId.Startup, 1, AchievementType.Epic),
-                (AchievementId.Moska, 1, AchievementType.Epic)
+                (PerkId.Startup, 1, PerkType.Epic),
+                (PerkId.Moska, 1, PerkType.Epic)
             });
 
             LogAllAchievements();
@@ -67,9 +68,9 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             // assert
             var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
-                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 2));
+                .Matches<BasePerk>(a => a.Info.Id == PerkId.Startup && a.Info.Level == 2));
             Assert.That(allAchievements, Has.Exactly(1)
-                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 2));
+                .Matches<BasePerk>(a => a.Info.Id == PerkId.Startup && a.Info.Level == 2));
         }
 
         [UnityTest]
@@ -77,8 +78,8 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         {
             yield return RunExecutionWithSeed(Seeds.ThreePlanets, new[]
             {
-                (AchievementId.Startup, 2, AchievementType.Epic),
-                (AchievementId.Moska, 2, AchievementType.Epic)
+                (PerkId.Startup, 2, PerkType.Epic),
+                (PerkId.Moska, 2, PerkType.Epic)
             });
 
             LogAllAchievements();
@@ -86,7 +87,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             // assert
             var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
-                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Startup && a.Info.Level == 3));
+                .Matches<BasePerk>(a => a.Info.Id == PerkId.Startup && a.Info.Level == 3));
         }
 
         [UnityTest]
@@ -95,14 +96,14 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             MissionExecutionAndDebriefingTestingManager.GreenIsNormal = true;
             MissionExecutionAndDebriefingTestingManager.RedIsNormal = true;
 
-            yield return RunExecutionWithSeed(Seeds.ArmiesFight, new (AchievementId, int level, AchievementType)[0]);
+            yield return RunExecutionWithSeed(Seeds.ArmiesFight, new (PerkId, int level, PerkType)[0]);
 
             LogAllAchievements();
 
             // assert
             var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
             Assert.That(allAchievements, Has.Exactly(1)
-                .Matches<AbstractAchievement>(a => a.Info.Id == AchievementId.Kamikaze && a.Info.Level == 1));
+                .Matches<BasePerk>(a => a.Info.Id == PerkId.Kamikaze && a.Info.Level == 1));
         }
         
         [UnityTest]
@@ -110,12 +111,12 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         {
             yield return RunExecutionWithSeed(Seeds.ThreePlanets, new[]
             {
-                (AchievementId.Briber, 3, AchievementType.Epic)
+                (PerkId.Briber, 3, PerkType.Epic)
             });
         }
 
         private static IEnumerator RunExecutionWithSeed(int seed,
-            IEnumerable<(AchievementId, int level, AchievementType)> achievements,
+            IEnumerable<(PerkId, int level, PerkType)> achievements,
             [CallerMemberName] string caller = null)
         {
             Debug.Log($"Start test {caller}");
@@ -126,7 +127,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             foreach (var (achievementId, level, achievementType) in achievements)
             {
                 achievementsModel.AddAchievement(
-                    new AchievementInfo(achievementId, level, achievementType, "", "", ""));
+                    new PerkInfo(achievementId, level, achievementType, "", "", ""));
             }
 
             BaseMissionTestingManager.MissionInfo = new MissionParameters(
