@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Game.Models
             }
         }
 
-        private readonly List<PoliticalAction> _politicalActions = new List<PoliticalAction>(64);
+        private readonly List<PoliticalActionInfo> _politicalActions = new List<PoliticalActionInfo>(64);
 
 
         public GameModel(ObjectsPool objectsPool) : base(objectsPool)
@@ -37,10 +37,15 @@ namespace Kugushev.Scripts.Game.Models
 
         public Parliament Parliament => ObjectState.Parliament;
         public CampaignPreparation CampaignPreparation => ObjectState.CampaignPreparation;
-        public IReadOnlyList<PoliticalAction> PoliticalActions => _politicalActions;
+        public IReadOnlyList<PoliticalActionInfo> PoliticalActions => _politicalActions;
 
-        public void AddPoliticalActions(IReadOnlyList<PoliticalAction> politicalActions) =>
-            _politicalActions.AddRange(politicalActions);
+        public void AddPoliticalActions(IReadOnlyList<PoliticalAction> politicalActions)
+        {
+            foreach (var politicalAction in politicalActions)
+                _politicalActions.Add(new PoliticalActionInfo(politicalAction));
+        }
+
+        public void RemovePoliticalAction(PoliticalActionInfo info) => _politicalActions.Remove(info);
 
         protected override void OnClear(State state)
         {

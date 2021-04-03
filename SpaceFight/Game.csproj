@@ -85,6 +85,9 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\CampaignState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Utils\CampaignSceneResultPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\CampaignResult.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\RevolutionWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\RevolutionState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticalActionInfo.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -170,6 +170,7 @@ MonoBehaviour:
   campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
   gameSceneParametersPipeline: {fileID: 11400000, guid: 0e33eb78891c5af44a5761e485c7f800, type: 2}
   onCampaignExitTransition: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
+  onGameExitTransition: {fileID: 11400000, guid: b229c7abe47da64418f123ed14584b68, type: 2}
   toCampaignTransition: {fileID: 11400000, guid: afef6bfeb09978d498d4651ff00d7a4f, type: 2}
   toPlaygroundTransition: {fileID: 11400000, guid: 2894980caa9a2db47a18566acbbb7c77, type: 2}
   toNewGameTransition: {fileID: 11400000, guid: 0b83c14b7f7a5194ea6908d32786912f, type: 2}

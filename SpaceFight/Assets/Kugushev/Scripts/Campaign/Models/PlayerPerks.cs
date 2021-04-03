@@ -15,12 +15,12 @@ namespace Kugushev.Scripts.Campaign.Models
     {
         public readonly struct State
         {
-            public State(IReadOnlyList<PerkId> availablePerks)
+            public State(ISet<PerkId> availablePerks)
             {
                 AvailablePerks = availablePerks;
             }
 
-            public IReadOnlyList<PerkId> AvailablePerks { get; }
+            public ISet<PerkId> AvailablePerks { get; }
         }
 
         public PlayerPerks(ObjectsPool objectsPool) : base(objectsPool)
@@ -35,6 +35,8 @@ namespace Kugushev.Scripts.Campaign.Models
 
         public IReadOnlyList<PerkInfo> CommonPerks => commonPerks;
         public IReadOnlyDictionary<PerkId, PerkInfo> EpicPerks => epicPerks;
+
+        public ISet<PerkId> AvailablePerks => ObjectState.AvailablePerks;
 
         internal void AddPerk(PerkInfo perkInfo)
         {
@@ -62,12 +64,6 @@ namespace Kugushev.Scripts.Campaign.Models
 
         private void AddEpic(PerkInfo perkInfo)
         {
-            if (!ObjectState.AvailablePerks.Contains(perkInfo.Id))
-            {
-                // epic perks are related to selected available list
-                return;
-            }
-
             if (epicPerks.TryGetValue(perkInfo.Id, out var current) &&
                 (current.Level >= perkInfo.Level || perkInfo.Level == null || current.Level == null))
             {

@@ -4,5 +4,6 @@
     {
         public const string PoliticsMenuScene = "PoliticsScene";
         public const string CampaignManagementScene = App.Constants.UnityConstants.CampaignManagementScene;
+        public const string RevolutionScene = "RevolutionScene";
     }
 }

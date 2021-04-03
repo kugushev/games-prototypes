@@ -12,6 +12,7 @@ using Kugushev.Scripts.Game.StatesAndTransitions;
 using Kugushev.Scripts.Game.Utils;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Game
 {
@@ -27,9 +28,13 @@ namespace Kugushev.Scripts.Game
         [SerializeField] private PoliticalActionsRepository tempPoliticalActionsRepository;
 
         [Header("States and Transitions")] [SerializeField]
-        private ExitState onCampaignExitTransition;
+        private ExitState gameExitState;
 
+        [SerializeField] private ExitState onCampaignExitTransition;
         [SerializeField] private TriggerTransition toCampaignTransition;
+        [SerializeField] private TriggerTransition toRevolutionTransition;
+        [SerializeField] private TriggerTransition toMainMenuTransition;
+
 
         [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
         [SerializeField] private CampaignSceneResultPipeline campaignSceneResultPipeline;
@@ -64,6 +69,7 @@ namespace Kugushev.Scripts.Game
             var politicsState = new PoliticsState(rootModel);
             var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline,
                 campaignSceneResultPipeline);
+            var revolutionState = new RevolutionState(rootModel);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
@@ -76,13 +82,20 @@ namespace Kugushev.Scripts.Game
                 {
                     politicsState, new[]
                     {
-                        new TransitionRecord(toCampaignTransition, campaignState)
+                        new TransitionRecord(toCampaignTransition, campaignState),
+                        new TransitionRecord(toRevolutionTransition, revolutionState)
                     }
                 },
                 {
                     campaignState, new[]
                     {
                         new TransitionRecord(onCampaignExitTransition, politicsState)
+                    }
+                },
+                {
+                    revolutionState, new[]
+                    {
+                        new TransitionRecord(toMainMenuTransition, gameExitState)
                     }
                 }
             };

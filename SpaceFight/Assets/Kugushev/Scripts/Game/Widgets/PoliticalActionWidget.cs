@@ -27,10 +27,10 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private Color hard;
         [SerializeField] private Color insane;
 
-        private PoliticalAction _model;
+        private PoliticalActionInfo _model;
         private Action<PoliticalActionWidget> _onCardSelected;
 
-        public PoliticalAction Model => _model;
+        public PoliticalActionInfo Model => _model;
 
         public void ToggleChanged(bool isOn)
         {
@@ -40,7 +40,8 @@ namespace Kugushev.Scripts.Game.Widgets
             _onCardSelected?.Invoke(isOn ? this : null);
         }
 
-        public void SetUp(PoliticalAction model, ToggleGroup toggleGroup, Action<PoliticalActionWidget> onCardSelected)
+        public void SetUp(PoliticalActionInfo model, ToggleGroup toggleGroup,
+            Action<PoliticalActionWidget> onCardSelected)
         {
             _model = model;
             toggle.group = toggleGroup;
@@ -53,15 +54,15 @@ namespace Kugushev.Scripts.Game.Widgets
             if (!IsModelValid())
                 return;
 
-            caption.text = _model.Caption;
-            intelValue.text = StringBag.FromInt(_model.Intel);
+            caption.text = _model.PoliticalAction.Caption;
+            intelValue.text = StringBag.FromInt(_model.PoliticalAction.Intel);
             UpdateDifficultyView();
             UpdateTraitsView();
         }
 
         private void UpdateDifficultyView()
         {
-            switch (_model.Difficulty)
+            switch (_model.PoliticalAction.Difficulty)
             {
                 case Difficulty.Normal:
                     background.color = normal;
@@ -73,25 +74,25 @@ namespace Kugushev.Scripts.Game.Widgets
                     background.color = insane;
                     break;
                 default:
-                    Debug.LogError($"Unexpected difficulty {_model.Difficulty}");
+                    Debug.LogError($"Unexpected difficulty {_model.PoliticalAction.Difficulty}");
                     break;
             }
         }
 
         private void UpdateTraitsView()
         {
-            UpdateTraitView(traitBusinessValue, _model.Traits.Business);
-            UpdateTraitView(traitGreedValue, _model.Traits.Greed);
-            UpdateTraitView(traitLustValue, _model.Traits.Lust);
-            UpdateTraitView(traitBruteValue, _model.Traits.Brute);
-            UpdateTraitView(traitVanityValue, _model.Traits.Vanity);
+            UpdateTraitView(traitBusinessValue, _model.PoliticalAction.Traits.Business);
+            UpdateTraitView(traitGreedValue, _model.PoliticalAction.Traits.Greed);
+            UpdateTraitView(traitLustValue, _model.PoliticalAction.Traits.Lust);
+            UpdateTraitView(traitBruteValue, _model.PoliticalAction.Traits.Brute);
+            UpdateTraitView(traitVanityValue, _model.PoliticalAction.Traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, int value) => label.text = StringBag.FromInt(value);
         }
 
         private bool IsModelValid()
         {
-            if (_model == null)
+            if (_model == default)
             {
                 Debug.LogError($"Model is not active: {_model}");
                 return false;

@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
+﻿using System;
+using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Common.StatesAndTransitions
@@ -6,7 +7,7 @@ namespace Kugushev.Scripts.Common.StatesAndTransitions
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + nameof(TriggerTransition))]
     public class TriggerTransition : ScriptableObject, IReusableTransition
     {
-        [SerializeField] private bool isSet;
+        [NonSerialized] private bool isSet;
 
         public void Set() => isSet = true;
 

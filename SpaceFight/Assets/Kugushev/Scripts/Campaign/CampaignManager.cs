@@ -13,7 +13,6 @@ using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Game.Utils;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Campaign
@@ -49,9 +48,10 @@ namespace Kugushev.Scripts.Campaign
 
             var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
                 objectsPool.GetObject<MissionSelection, MissionSelection.State>(new MissionSelection.State(budget)),
-                objectsPool.GetObject<Playground, Playground.State>(new Playground.State()),
-                objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State()),
-                objectsPool.GetObject<CampaignResult, CampaignResult.State>(new CampaignResult.State())
+                objectsPool.GetObject<Playground, Playground.State>(default),
+                objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(
+                    new PlayerPerks.State(campaignInfo.AvailablePerks)),
+                objectsPool.GetObject<CampaignResult, CampaignResult.State>(default)
             ));
 
             modelProvider.Set(model);

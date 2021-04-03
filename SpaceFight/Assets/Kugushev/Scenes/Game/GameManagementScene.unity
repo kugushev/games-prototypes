@@ -171,7 +171,10 @@ MonoBehaviour:
   gameSceneParametersPipeline: {fileID: 11400000, guid: 0e33eb78891c5af44a5761e485c7f800, type: 2}
   parliamentGenerator: {fileID: 11400000, guid: 108b2bc1512242c42b1d2606f13186b2, type: 2}
   tempPoliticalActionsRepository: {fileID: 11400000, guid: f8ac77f1181847f48a9b5ca661601613, type: 2}
+  gameExitState: {fileID: 11400000, guid: b229c7abe47da64418f123ed14584b68, type: 2}
   onCampaignExitTransition: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
   toCampaignTransition: {fileID: 11400000, guid: 45501c8e37f7a7540b160d5faaa97fbf, type: 2}
+  toRevolutionTransition: {fileID: 11400000, guid: e69770bee9cf4c54d8a76ce30648e03e, type: 2}
+  toMainMenuTransition: {fileID: 11400000, guid: 611d990ea8cdf454fa92b13590d2857e, type: 2}
   campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
   campaignSceneResultPipeline: {fileID: 11400000, guid: 31575198679508649a82c0d4550a976b, type: 2}

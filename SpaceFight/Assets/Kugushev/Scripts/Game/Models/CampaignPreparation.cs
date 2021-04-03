@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Game.Models
         }
 
         private readonly HashSet<Politician> _sponsors = new HashSet<Politician>();
-        private readonly List<PerkId> _perksBuffer = new List<PerkId>(9);
+        private readonly HashSet<PerkId> _perksBuffer = new HashSet<PerkId>();
 
         public IReadOnlyCollection<Politician> Sponsors => _sponsors;
 
@@ -78,7 +78,7 @@ namespace Kugushev.Scripts.Game.Models
             _perksBuffer.Clear();
         }
 
-        public (int budget, IReadOnlyList<PerkId> availablePerks) PrepareCampaign()
+        public (int budget, ISet<PerkId> availablePerks) PrepareCampaign()
         {
             var budget = CampaignBudget;
 

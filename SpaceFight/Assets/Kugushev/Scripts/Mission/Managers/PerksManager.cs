@@ -40,6 +40,9 @@ namespace Kugushev.Scripts.Mission.Managers
                 case PerkType.Common:
                     return true;
                 case PerkType.Epic:
+                    if (!playerPerks.AvailablePerks.Contains(perk.Info.Id))
+                        return false;
+
                     if (perk.Info.Level != null)
                     {
                         var expectedLevel = GetExpectedLevel(playerPerks, perk);

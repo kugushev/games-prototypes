@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Models;
 using TMPro;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace Kugushev.Scripts.Game.Widgets
                 return;
             }
 
-            budgetSponsors.text = StringBag.FromInt(_model.CampaignBudget);
+            budgetSponsors.text = StringBag.FromInt(_model.CampaignBudget - GameConstants.PlayerCampaignBudget);
 
             UpdateSponsorsView();
         }
@@ -51,13 +52,13 @@ namespace Kugushev.Scripts.Game.Widgets
         public void AddSelectedPolitician()
         {
             _model?.AddSelectedPoliticianAsSponsor();
-            UpdateSponsorsView();
+            UpdateView();
         }
 
         public void RemoveSelectedPolitician()
         {
             _model?.RemoveSelectedPoliticianFromSponsors();
-            UpdateSponsorsView();
+            UpdateView();
         }
     }
 }

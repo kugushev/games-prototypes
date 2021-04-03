@@ -7,7 +7,7 @@ namespace Kugushev.Scripts.App.ValueObjects
 {
     public readonly struct CampaignInfo
     {
-        public CampaignInfo(int seed, int? budget, IReadOnlyList<PerkId> availablePerks, bool isPlayground,
+        public CampaignInfo(int seed, int? budget, ISet<PerkId> availablePerks, bool isPlayground,
             bool isStandalone)
         {
             IsPlayground = isPlayground;
@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.App.ValueObjects
 
         public int Seed { get; }
         public bool IsPlayground { get; }
-        public IReadOnlyList<PerkId> AvailablePerks { get; }
+        public ISet<PerkId> AvailablePerks { get; }
         public int? Budget { get; }
         public bool IsStandalone { get; }
     }

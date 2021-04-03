@@ -25,11 +25,11 @@ namespace Kugushev.Scripts.App.Enums
 
     public static class PerkIdHelper
     {
-        public static readonly IReadOnlyList<PerkId> AllPerks;
+        public static readonly ISet<PerkId> AllPerks;
 
         static PerkIdHelper()
         {
-            var perks = new List<PerkId>();
+            var perks = new HashSet<PerkId>();
             foreach (PerkId perk in Enum.GetValues(typeof(PerkId)))
                 perks.Add(perk);
             AllPerks = perks;

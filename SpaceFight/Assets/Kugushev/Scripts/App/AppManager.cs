@@ -18,6 +18,8 @@ namespace Kugushev.Scripts.App
         [Header("States and Transitions")] [SerializeField]
         private ExitState onCampaignExitTransition;
 
+        [SerializeField] private ExitState onGameExitTransition;
+
         [SerializeField] private TriggerTransition toCampaignTransition;
         [SerializeField] private TriggerTransition toPlaygroundTransition;
 
@@ -64,6 +66,12 @@ namespace Kugushev.Scripts.App
                     playgroundState, new[]
                     {
                         new TransitionRecord(onCampaignExitTransition, mainMenuState)
+                    }
+                },
+                {
+                    newGameState, new[]
+                    {
+                        new TransitionRecord(onGameExitTransition, mainMenuState)
                     }
                 }
             };

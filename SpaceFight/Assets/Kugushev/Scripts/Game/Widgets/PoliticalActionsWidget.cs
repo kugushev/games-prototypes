@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,13 +16,17 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private UnityEvent onActionApplied;
 
         [CanBeNull] private PoliticalActionWidget _selectedPoliticalAction;
+        private GameModel _rootModel;
         private IPoliticianSelector _politicianSelector;
 
-        public void Setup(IReadOnlyList<PoliticalAction> models, IPoliticianSelector politicianSelector)
+
+        public void Setup(GameModel rootModel, IPoliticianSelector politicianSelector)
         {
+            _rootModel = rootModel;
             _politicianSelector = politicianSelector;
 
-            foreach (var model in models)
+            // todo: use prefab pool
+            foreach (var model in _rootModel.PoliticalActions)
             {
                 var go = Instantiate(politicalActionCardPrefab, politicalActionsPanel);
                 var widget = go.GetComponent<PoliticalActionWidget>();
@@ -48,10 +50,16 @@ namespace Kugushev.Scripts.Game.Widgets
         {
             if (_selectedPoliticalAction != null && _politicianSelector.SelectedPolitician != null)
             {
-                _politicianSelector.SelectedPolitician.ApplyPoliticalAction(_selectedPoliticalAction.Model);
+                var selectedModel = _selectedPoliticalAction.Model;
+                _politicianSelector.SelectedPolitician.ApplyPoliticalAction(selectedModel.PoliticalAction);
+
+                _rootModel.RemovePoliticalAction(selectedModel);
 
                 Destroy(_selectedPoliticalAction.gameObject);
                 onActionApplied?.Invoke();
+
+                _selectedPoliticalAction = null;
+                applyButton.interactable = false;
             }
         }
     }

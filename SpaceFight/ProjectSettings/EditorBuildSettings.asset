@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Kugushev/Scenes/Game/PoliticsScene.unity
     guid: f73e3dbd355835541b10bb9e3a9037ff
   - enabled: 1
+    path: Assets/Kugushev/Scenes/Game/RevolutionScene.unity
+    guid: abe353dd41172364aa3415aa036b3914
+  - enabled: 1
     path: Assets/Kugushev/Scenes/Campaign/CampaignManagementScene.unity
     guid: 11bfd0ea47159a54486261a5183ef4a4
   - enabled: 1

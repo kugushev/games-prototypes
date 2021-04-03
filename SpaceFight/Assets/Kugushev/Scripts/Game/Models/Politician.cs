@@ -14,7 +14,7 @@ namespace Kugushev.Scripts.Game.Models
     {
         public struct State
         {
-            public PoliticianCharacter Character;
+            public readonly PoliticianCharacter Character;
             public readonly Percentage IncomeProbability;
             public int RelationLevel;
             public int Budget;
