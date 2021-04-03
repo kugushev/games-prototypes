@@ -162,11 +162,15 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 if (sender.Power >= ObjectState.power + ultimatum.Predominance)
                 {
+                    var previousOwner = ObjectState.faction;
+                    var previousPower = ObjectState.power;
                     // surrender
                     ObjectState.power *= ultimatum.Surrendered.Amount;
                     ObjectState.faction = sender.Faction;
 
-                    // todo: add PlanetSurrendered event
+                    ObjectState.EventsCollector.PlanetCaptured.Add(
+                        new PlanetCaptured(ObjectState.EventsCollector.Elapsed,
+                            sender.Faction, previousOwner, sender.Power - previousPower));
                     return true;
                 }
             }

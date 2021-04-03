@@ -49,7 +49,7 @@ namespace Kugushev.Scripts.Campaign.ProceduralGeneration
         {
             var difficulty = Difficulty.Normal;
             var politicalAction = politicalActionsRepository.GetRandom(difficulty);
-            return new MissionInfo(NextSeed, difficulty, politicalAction);
+            return new MissionInfo(NextSeed, difficulty, politicalAction, playerHomeProductionMultiplier: 2);
         }
 
         private MissionInfo CreateHardMission()

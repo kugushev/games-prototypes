@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.Game.Constants
         public const int PlayerCampaignBudget = 5;
         public const int MaxCampaignBudget = 15;
 
-        public const int PoliticianIncome = 2;
+        public const int PoliticianIncome = 1;
         public const int MaxStartBudget = 4;
         public const int MaxBudget = 5;
 
