@@ -39,7 +39,6 @@ namespace Kugushev.Scripts.Game.Models
         public CampaignPreparation CampaignPreparation => ObjectState.CampaignPreparation;
         public IReadOnlyList<PoliticalAction> PoliticalActions => _politicalActions;
 
-
         public void AddPoliticalActions(IReadOnlyList<PoliticalAction> politicalActions) =>
             _politicalActions.AddRange(politicalActions);
 

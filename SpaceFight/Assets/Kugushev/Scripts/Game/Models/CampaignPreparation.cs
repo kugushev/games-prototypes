@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Constants;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Interfaces;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models
 {
     public class CampaignPreparation : Poolable<CampaignPreparation.State>
     {
-        public struct State
+        public readonly struct State
         {
             public State(IPoliticianSelector politicianSelector)
             {
@@ -22,6 +25,7 @@ namespace Kugushev.Scripts.Game.Models
         }
 
         private readonly HashSet<Politician> _sponsors = new HashSet<Politician>();
+        private readonly List<PerkId> _perksBuffer = new List<PerkId>(9);
 
         public IReadOnlyCollection<Politician> Sponsors => _sponsors;
 
@@ -32,12 +36,19 @@ namespace Kugushev.Scripts.Game.Models
                 int budget = GameConstants.PlayerCampaignBudget;
                 foreach (var sponsor in _sponsors)
                     budget += sponsor.Budget;
-                return budget;
+
+                return Mathf.Min(budget, GameConstants.MaxCampaignBudget);
             }
         }
 
-        public bool SelectedPoliticianIsReadyToInvest => ObjectState.PoliticianSelector.SelectedPolitician != null &&
-                                       ObjectState.PoliticianSelector.SelectedPolitician.IsReadyToInvest;
+        public bool SelectedPoliticianIsReadyToInvest
+        {
+            get
+            {
+                var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
+                return selectedPolitician != null && selectedPolitician.IsReadyToInvest;
+            }
+        }
 
         public bool SelectedPoliticianIsAlreadySponsor
         {
@@ -61,7 +72,25 @@ namespace Kugushev.Scripts.Game.Models
                 _sponsors.Remove(ObjectState.PoliticianSelector.SelectedPolitician);
         }
 
-        public void RemoveAllSponsors() => _sponsors.Clear();
+        public void RemoveAllSponsors()
+        {
+            _sponsors.Clear();
+            _perksBuffer.Clear();
+        }
+
+        public (int budget, IReadOnlyList<PerkId> availablePerks) PrepareCampaign()
+        {
+            var budget = CampaignBudget;
+
+            _perksBuffer.Clear();
+            foreach (var sponsor in _sponsors)
+            {
+                _perksBuffer.Add(sponsor.Character.PerkLvl1.Id);
+                sponsor.CollectMoney();
+            }
+
+            return (budget, _perksBuffer);
+        }
 
         protected override void OnClear(State state) => _sponsors.Clear();
     }

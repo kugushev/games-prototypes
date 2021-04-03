@@ -23,12 +23,16 @@ namespace Kugushev.Scripts.Game
 
         [SerializeField] private ParliamentGenerator parliamentGenerator;
 
+
         [SerializeField] private PoliticalActionsRepository tempPoliticalActionsRepository;
 
         [Header("States and Transitions")] [SerializeField]
         private ExitState onCampaignExitTransition;
 
         [SerializeField] private TriggerTransition toCampaignTransition;
+
+        [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
+        [SerializeField] private CampaignSceneResultPipeline campaignSceneResultPipeline;
 
         protected override GameModel InitRootModel()
         {
@@ -40,14 +44,14 @@ namespace Kugushev.Scripts.Game
             var model = objectsPool.GetObject<GameModel, GameModel.State>(
                 new GameModel.State(parliament, campaignPreparation));
 
-            var action = new List<PoliticalAction>();
-            for (int i = 0; i < 7; i++)
-                action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Normal));
-            for (int i = 0; i < 3; i++)
-                action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Hard));
-            for (int i = 0; i < 2; i++)
-                action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Insane));
-            model.AddPoliticalActions(action);
+            // var action = new List<PoliticalAction>();
+            // for (int i = 0; i < 7; i++)
+            //     action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Normal));
+            // for (int i = 0; i < 3; i++)
+            //     action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Hard));
+            // for (int i = 0; i < 2; i++)
+            //     action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Insane));
+            // model.AddPoliticalActions(action);
 
 
             gameModelProvider.Set(model);
@@ -58,12 +62,27 @@ namespace Kugushev.Scripts.Game
             GameModel rootModel)
         {
             var politicsState = new PoliticsState(rootModel);
+            var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline,
+                campaignSceneResultPipeline);
+
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
                 {
                     EntryState.Instance, new[]
                     {
                         new TransitionRecord(ImmediateTransition.Instance, politicsState)
+                    }
+                },
+                {
+                    politicsState, new[]
+                    {
+                        new TransitionRecord(toCampaignTransition, campaignState)
+                    }
+                },
+                {
+                    campaignState, new[]
+                    {
+                        new TransitionRecord(onCampaignExitTransition, politicsState)
                     }
                 }
             };

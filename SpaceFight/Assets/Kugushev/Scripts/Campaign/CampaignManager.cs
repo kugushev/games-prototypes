@@ -44,7 +44,8 @@ namespace Kugushev.Scripts.Campaign
 
             var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
                 objectsPool.GetObject<MissionSelection, MissionSelection.State>(new MissionSelection.State(budget)),
-                objectsPool.GetObject<Playground, Playground.State>(new Playground.State())
+                objectsPool.GetObject<Playground, Playground.State>(new Playground.State()),
+                objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State())
             ));
 
             modelProvider.Set(model);

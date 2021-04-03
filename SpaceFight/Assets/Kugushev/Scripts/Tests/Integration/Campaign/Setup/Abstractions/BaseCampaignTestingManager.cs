@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
@@ -19,12 +20,14 @@ namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup.Abstractions
 
         protected override CampaignModel InitRootModel()
         {
-            var campaignInfo = new CampaignInfo(Seed ?? DateTime.UtcNow.Millisecond, null, false);
+            var campaignInfo = new CampaignInfo(Seed ?? DateTime.UtcNow.Millisecond,
+                null, PerkIdHelper.AllPerks, false);
 
             var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
                 objectsPool.GetObject<MissionSelection, MissionSelection.State>(
                     new MissionSelection.State(CampaignConstants.MaxBudget)),
-                objectsPool.GetObject<Playground, Playground.State>(new Playground.State())));
+                objectsPool.GetObject<Playground, Playground.State>(new Playground.State()),
+                objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State())));
 
             modelProvider.Set(model);
 

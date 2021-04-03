@@ -18,13 +18,13 @@ namespace Kugushev.Scripts.Mission.Managers
         [SerializeField] private MissionModelProvider modelProvider;
 
         public void FindAchieved(List<BasePerk> listToFill, Faction playerFaction,
-            PlayerAchievements playerAchievements)
+            PlayerPerks playerPerks)
         {
             modelProvider.TryGetModel(out var model);
 
             foreach (var achievement in perks)
             {
-                if (!IsAllowedToCheck(playerAchievements, achievement))
+                if (!IsAllowedToCheck(playerPerks, achievement))
                     continue;
 
 
@@ -33,7 +33,7 @@ namespace Kugushev.Scripts.Mission.Managers
             }
         }
 
-        private static bool IsAllowedToCheck(PlayerAchievements playerAchievements, BasePerk perk)
+        private static bool IsAllowedToCheck(PlayerPerks playerPerks, BasePerk perk)
         {
             switch (perk.Info.Type)
             {
@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Mission.Managers
                 case PerkType.Epic:
                     if (perk.Info.Level != null)
                     {
-                        var expectedLevel = GetExpectedLevel(playerAchievements, perk);
+                        var expectedLevel = GetExpectedLevel(playerPerks, perk);
                         return perk.Info.Level == expectedLevel;
                     }
                     else
@@ -58,9 +58,9 @@ namespace Kugushev.Scripts.Mission.Managers
             }
         }
 
-        private static int GetExpectedLevel(PlayerAchievements playerAchievements, BasePerk perk)
+        private static int GetExpectedLevel(PlayerPerks playerPerks, BasePerk perk)
         {
-            if (playerAchievements.EpicAchievements.TryGetValue(perk.Info.Id, out var achieved))
+            if (playerPerks.EpicPerks.TryGetValue(perk.Info.Id, out var achieved))
             {
                 if (achieved.Level == null)
                 {
@@ -74,18 +74,18 @@ namespace Kugushev.Scripts.Mission.Managers
             return 1;
         }
 
-        public void FindMatched(List<BasePerk> listToFill, PlayerAchievements playerAchievements)
+        public void FindMatched(List<BasePerk> listToFill, PlayerPerks playerPerks)
         {
             foreach (var achievement in perks)
             {
-                if (playerAchievements.EpicAchievements.TryGetValue(achievement.Info.Id, out var epicAchievement)
+                if (playerPerks.EpicPerks.TryGetValue(achievement.Info.Id, out var epicAchievement)
                     && epicAchievement == achievement.Info)
                 {
                     listToFill.Add(achievement);
                     continue;
                 }
 
-                foreach (var commonAchievement in playerAchievements.CommonAchievements)
+                foreach (var commonAchievement in playerPerks.CommonPerks)
                     if (commonAchievement == achievement.Info)
                         listToFill.Add(achievement);
             }

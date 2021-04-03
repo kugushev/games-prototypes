@@ -9,14 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1533ea5b35634021846d3e07fb43cdef, type: 3}
-  m_Name: Exotic Sexy Gift
+  m_Script: {fileID: 11500000, guid: 360e836c6864448cb3414c0102f24f32, type: 3}
+  m_Name: Campaign Scene Result Pipeline
   m_EditorClassIdentifier: 
-  caption: Exotic Sexy Gift
-  difficulty: 2
-  intel: 3
-  business: 0
-  greed: 2
-  lust: 2
-  brute: 0
-  vanity: -2

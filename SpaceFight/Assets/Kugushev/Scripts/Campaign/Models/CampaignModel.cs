@@ -15,20 +15,21 @@ namespace Kugushev.Scripts.Campaign.Models
         public struct State
         {
             public CampaignInfo CampaignInfo;
-            public readonly PlayerAchievements PlayerAchievements;
+            public readonly PlayerPerks PlayerPerks;
             public readonly MissionSelection MissionSelection;
             public readonly Playground Playground;
             public MissionInfo? NextMission;
             public MissionResult? LastMissionResult;
 
-            public State(CampaignInfo campaignInfo, MissionSelection missionSelection, Playground playground)
+            public State(CampaignInfo campaignInfo, MissionSelection missionSelection, Playground playground,
+                PlayerPerks playerPerks)
             {
                 CampaignInfo = campaignInfo;
                 MissionSelection = missionSelection;
                 Playground = playground;
                 NextMission = null;
                 LastMissionResult = null;
-                PlayerAchievements = new PlayerAchievements();
+                PlayerPerks = playerPerks;
             }
         }
 
@@ -53,7 +54,7 @@ namespace Kugushev.Scripts.Campaign.Models
             internal set => ObjectState.LastMissionResult = value;
         }
 
-        public PlayerAchievements PlayerAchievements => ObjectState.PlayerAchievements;
+        public PlayerPerks PlayerPerks => ObjectState.PlayerPerks;
         public MissionSelection MissionSelection => ObjectState.MissionSelection;
         public Playground Playground => ObjectState.Playground;
 
@@ -63,6 +64,7 @@ namespace Kugushev.Scripts.Campaign.Models
         {
             state.MissionSelection.Dispose();
             state.Playground.Dispose();
+            state.PlayerPerks.Dispose();
             rewardedPoliticalActions.Clear();
         }
 

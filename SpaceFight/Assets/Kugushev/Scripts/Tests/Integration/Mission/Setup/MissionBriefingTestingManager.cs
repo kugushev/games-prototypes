@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
@@ -42,7 +43,8 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
             var red = new ConflictParty(Faction.Red, default, default);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(new MissionModel.State(
-                new MissionParameters(missionProperties, new PlayerAchievements()),
+                new MissionParameters(missionProperties, objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(
+                    new PlayerPerks.State(PerkIdHelper.AllPerks))),
                 planetarySystem, green, red, Faction.Green
             ));
 

@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.App.ValueObjects;
+﻿using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;

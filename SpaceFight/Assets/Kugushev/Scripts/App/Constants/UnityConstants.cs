@@ -1,6 +1,6 @@
 ﻿namespace Kugushev.Scripts.App.Constants
 {
-    internal static class UnityConstants
+    public static class UnityConstants
     {
         public const string GameManagementScene = "GameManagementScene";
         public const string CampaignManagementScene = "CampaignManagementScene";

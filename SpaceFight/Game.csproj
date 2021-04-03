@@ -53,7 +53,6 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Game\Services\RelationsService.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PerkId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticalAction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\PoliticsState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PerkInfo.cs" />
@@ -83,6 +82,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\CampaignPreparationWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\CampaignPreparation.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IPoliticianSelector.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\CampaignState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Utils\CampaignSceneResultPipeline.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

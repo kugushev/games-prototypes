@@ -1,10 +1,12 @@
-﻿using Kugushev.Scripts.Common.Utils.Pooling;
+﻿using System;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Game.Models
 {
@@ -80,10 +82,15 @@ namespace Kugushev.Scripts.Game.Models
             var range = Random.Range(0f, 1f);
             if (range > ObjectState.IncomeProbability.Amount)
             {
-                ObjectState.Budget += GameConstants.PoliticianIncome;
-                if (ObjectState.Budget > GameConstants.MaxBudget)
-                    ObjectState.Budget = GameConstants.MaxBudget;
+                ObjectState.Budget = Mathf.Min(
+                    ObjectState.Budget + GameConstants.PoliticianIncome,
+                    GameConstants.MaxBudget);
             }
+        }
+
+        public void CollectMoney()
+        {
+            ObjectState.Budget = 0;
         }
     }
 }

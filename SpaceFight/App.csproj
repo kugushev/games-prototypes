@@ -52,6 +52,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Utils\GameSceneParametersPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Models\MainMenu.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\GameState.cs" />
@@ -64,7 +65,7 @@
      <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\CampaignInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\GameInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Utils\AppModelProvider.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\CampaignState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\CustomCampaignState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Models\AppModel.cs" />
      <None Include="Assets\Kugushev\Scripts\App\App.asmdef" />
  <Reference Include="UnityEngine">

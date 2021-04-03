@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.App.ValueObjects;
+﻿using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Enums;

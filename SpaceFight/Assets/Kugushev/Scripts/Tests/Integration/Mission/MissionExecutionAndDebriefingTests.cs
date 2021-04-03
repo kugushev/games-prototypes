@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
@@ -29,7 +31,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
 
             yield return RunExecutionWithSeed(seed, new (PerkId, int level, PerkType)[0]);
 
-            CollectionAssert.IsNotEmpty(BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements);
+            CollectionAssert.IsNotEmpty(BaseMissionTestingManager.MissionModel.DebriefingSummary.AllPerks);
 
             LogAllAchievements();
         }
@@ -42,7 +44,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllPerks;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<BasePerk>(a => a.Info.Id == PerkId.Invader));
 
@@ -65,7 +67,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllPerks;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<BasePerk>(a => a.Info.Id == PerkId.Startup && a.Info.Level == 2));
             Assert.That(allAchievements, Has.Exactly(1)
@@ -84,7 +86,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllPerks;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<BasePerk>(a => a.Info.Id == PerkId.Startup && a.Info.Level == 3));
         }
@@ -100,11 +102,11 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
             LogAllAchievements();
 
             // assert
-            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements;
+            var allAchievements = BaseMissionTestingManager.MissionModel.DebriefingSummary.AllPerks;
             Assert.That(allAchievements, Has.Exactly(1)
                 .Matches<BasePerk>(a => a.Info.Id == PerkId.Kamikaze && a.Info.Level == 1));
         }
-        
+
         [UnityTest]
         public IEnumerator Fight_TestBriber()
         {
@@ -122,16 +124,18 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
 
             SingletonState.Instance.Reset();
 
-            var achievementsModel = new PlayerAchievements();
+            var playerPerks = ScriptableObject.CreateInstance<ObjectsPool>()
+                .GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State(PerkIdHelper.AllPerks));
+
             foreach (var (achievementId, level, achievementType) in achievements)
             {
-                achievementsModel.AddAchievement(
+                playerPerks.AddPerk(
                     new PerkInfo(achievementId, level, achievementType, "", "", ""));
             }
 
             BaseMissionTestingManager.MissionInfo = new MissionParameters(
-                new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<PoliticalAction>()), 
-                achievementsModel);
+                new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<PoliticalAction>()),
+                playerPerks);
 
             SceneManager.LoadScene("MissionExecutionAndDebriefingTestingManagementScene");
 
@@ -146,7 +150,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         private static void LogAllAchievements()
         {
             Debug.Log("Achievements");
-            foreach (var achievement in BaseMissionTestingManager.MissionModel.DebriefingSummary.AllAchievements)
+            foreach (var achievement in BaseMissionTestingManager.MissionModel.DebriefingSummary.AllPerks)
                 Debug.Log(achievement);
         }
     }

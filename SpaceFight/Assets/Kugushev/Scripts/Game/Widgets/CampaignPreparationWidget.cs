@@ -54,7 +54,7 @@ namespace Kugushev.Scripts.Game.Widgets
             UpdateSponsorsView();
         }
 
-        public ``void RemoveSelectedPolitician()
+        public void RemoveSelectedPolitician()
         {
             _model?.RemoveSelectedPoliticianFromSponsors();
             UpdateSponsorsView();

@@ -15,10 +15,10 @@ namespace Kugushev.Scripts.Campaign.Widgets
         {
             if (modelProvider.TryGetModel(out var model))
             {
-                foreach (var achievement in model.PlayerAchievements.CommonAchievements)
+                foreach (var achievement in model.PlayerPerks.CommonPerks)
                     CreateAchievementCard(achievement);
 
-                foreach (var achievement in model.PlayerAchievements.EpicAchievements.Values)
+                foreach (var achievement in model.PlayerPerks.EpicPerks.Values)
                     CreateAchievementCard(achievement);
             }
         }

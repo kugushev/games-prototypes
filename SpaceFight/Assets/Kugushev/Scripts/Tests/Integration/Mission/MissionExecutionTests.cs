@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
@@ -49,10 +51,12 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
 
             SingletonState.Instance.Reset();
 
+            var pool = ScriptableObject.CreateInstance<ObjectsPool>();
+
             BaseMissionTestingManager.MissionInfo =
                 new MissionParameters(
                     new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<PoliticalAction>()),
-                    new PlayerAchievements());
+                    pool.GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State(PerkIdHelper.AllPerks)));
             SceneManager.LoadScene("MissionExecutionTestingManagementScene");
 
             yield return new WaitUntil(() => SingletonState.Instance.Entered);

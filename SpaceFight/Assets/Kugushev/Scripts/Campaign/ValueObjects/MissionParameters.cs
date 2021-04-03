@@ -6,13 +6,13 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
     [Serializable]
     public readonly struct MissionParameters
     {
-        public MissionParameters(MissionInfo missionInfo, PlayerAchievements playerAchievements)
+        public MissionParameters(MissionInfo missionInfo, PlayerPerks playerPerks)
         {
-            PlayerAchievements = playerAchievements;
+            PlayerPerks = playerPerks;
             MissionInfo = missionInfo;
         }
 
         public MissionInfo MissionInfo { get; }
-        public PlayerAchievements PlayerAchievements { get; }
+        public PlayerPerks PlayerPerks { get; }
     }
 }

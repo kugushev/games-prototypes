@@ -34,7 +34,7 @@ namespace Kugushev.Scripts.Mission.Services
             MissionParameters parameters)
         {
             _achievementBuffer.Clear();
-            achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerAchievements);
+            achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerPerks);
 
             var fleetPerksBuilder = CreateDefaultFleetPerksState(objectsPool);
             var planetarySystemPerksBuilder = new PlanetarySystemPerks.State(playerFaction,

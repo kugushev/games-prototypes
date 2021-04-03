@@ -34,8 +34,8 @@ namespace Kugushev.Scripts.App
             AppModel rootModel)
         {
             var mainMenuState = new MainMenuState(rootModel);
-            var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline, false);
-            var playgroundState = new CampaignState(rootModel, campaignSceneParametersPipeline, true);
+            var campaignState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, false);
+            var playgroundState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, true);
             var newGameState = new GameState(rootModel, gameSceneParametersPipeline);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>

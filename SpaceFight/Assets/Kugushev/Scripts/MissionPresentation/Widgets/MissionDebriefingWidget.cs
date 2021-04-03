@@ -39,11 +39,11 @@ namespace Kugushev.Scripts.MissionPresentation.Widgets
                 else
                     Debug.LogError($"Unexpected winner {missionModel.ExecutionResult.Value.Winner}");
 
-                foreach (var achievement in missionModel.DebriefingSummary.AllAchievements)
+                foreach (var perk in missionModel.DebriefingSummary.AllPerks)
                 {
                     var go = Instantiate(achievementCardPrefab, achievementsPanel);
-                    var widget = go.GetComponent<AchievementCardWidget>();
-                    widget.SetUp(achievement.Info, missionModel.DebriefingSummary, toggleGroup);
+                    var widget = go.GetComponent<PerkCardWidget>();
+                    widget.SetUp(perk.Info, missionModel.DebriefingSummary, toggleGroup);
                 }
             }
         }

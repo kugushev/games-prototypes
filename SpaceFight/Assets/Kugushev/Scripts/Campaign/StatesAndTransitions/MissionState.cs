@@ -31,7 +31,7 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
             Model.LastMissionResult = null;
 
             var missionInfo = Model.NextMission ?? new MissionInfo();
-            var campaignInfo = new MissionParameters(missionInfo, Model.PlayerAchievements);
+            var campaignInfo = new MissionParameters(missionInfo, Model.PlayerPerks);
             _missionSceneParametersPipeline.Set(campaignInfo);
         }
 
@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
             Model.LastMissionResult = result;
 
             if (result.ChosenPerk is { } reward)
-                Model.PlayerAchievements.AddAchievement(reward);
+                Model.PlayerPerks.AddPerk(reward);
 
             if (result.PlayerWins)
                 Model.AddReward(result.MissionInfo.Reward);

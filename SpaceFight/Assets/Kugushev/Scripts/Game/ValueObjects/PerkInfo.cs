@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Game.Enums;
+﻿using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.Game.Enums;
 
 namespace Kugushev.Scripts.Game.ValueObjects
 {

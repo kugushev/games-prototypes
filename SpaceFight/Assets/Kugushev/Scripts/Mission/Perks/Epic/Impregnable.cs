@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common.Interfaces;
+﻿using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;

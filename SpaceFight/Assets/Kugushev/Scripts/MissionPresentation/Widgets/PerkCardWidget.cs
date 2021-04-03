@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Kugushev.Scripts.MissionPresentation.Widgets
 {
-    public class AchievementCardWidget : MonoBehaviour
+    public class PerkCardWidget : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI captionText;
         [SerializeField] private TextMeshProUGUI descriptionText;

@@ -74,7 +74,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Interfaces\IMissionsSet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\StatesAndTransitions\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ValueObjects\MissionParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\PlayerAchievements.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Models\PlayerPerks.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\ProceduralGeneration\MissionsGenerator.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Campaign.asmdef" />
  <Reference Include="UnityEngine">
