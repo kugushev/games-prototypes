@@ -9,6 +9,7 @@ namespace Kugushev.Scripts.Game.Widgets
 
         [SerializeField] private ParliamentWidget parliament;
         [SerializeField] private PoliticalActionsWidget politicalActions;
+        [SerializeField] private CampaignPreparationWidget campaignPreparation;
 
         private void Start()
         {
@@ -16,6 +17,7 @@ namespace Kugushev.Scripts.Game.Widgets
             {
                 parliament.Setup(model.Parliament);
                 politicalActions.Setup(model.PoliticalActions, model.Parliament);
+                campaignPreparation.SetUp(model.CampaignPreparation);
             }
             else
                 Debug.LogError("Unable to get model");
@@ -24,6 +26,7 @@ namespace Kugushev.Scripts.Game.Widgets
         public void UpdateView()
         {
             parliament.UpdateView();
+            campaignPreparation.UpdateView();
         }
     }
 }

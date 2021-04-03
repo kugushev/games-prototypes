@@ -21,7 +21,7 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
         [SerializeField] [Range(0.5f, 1f)] private float maxIncomeProbability = 1f;
 
         [SerializeField] private int minStartBudget = 0;
-        [SerializeField] private int maxStartBudget = 4;
+        [SerializeField] private int maxStartBudget = GameConstants.MaxStartBudget;
 
 
         private readonly List<int> _indexesBuffer = new List<int>(9);

@@ -10,20 +10,35 @@ namespace Kugushev.Scripts.Game.Models
         {
             public readonly Parliament Parliament;
 
-            public State(Parliament parliament)
+            public readonly CampaignPreparation CampaignPreparation;
+
+            public State(Parliament parliament, CampaignPreparation campaignPreparation)
             {
                 Parliament = parliament;
+                CampaignPreparation = campaignPreparation;
             }
         }
 
         private readonly List<PoliticalAction> _politicalActions = new List<PoliticalAction>(64);
 
+
         public GameModel(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
+        public void PrepareNextRound()
+        {
+            ObjectState.CampaignPreparation.RemoveAllSponsors();
+            foreach (var politician in Parliament.Politicians)
+            {
+                politician.ApplyIncome();
+            }
+        }
+
         public Parliament Parliament => ObjectState.Parliament;
+        public CampaignPreparation CampaignPreparation => ObjectState.CampaignPreparation;
         public IReadOnlyList<PoliticalAction> PoliticalActions => _politicalActions;
+
 
         public void AddPoliticalActions(IReadOnlyList<PoliticalAction> politicalActions) =>
             _politicalActions.AddRange(politicalActions);
@@ -31,6 +46,7 @@ namespace Kugushev.Scripts.Game.Models
         protected override void OnClear(State state)
         {
             state.Parliament.Dispose();
+            state.CampaignPreparation.Dispose();
             _politicalActions.Clear();
         }
 

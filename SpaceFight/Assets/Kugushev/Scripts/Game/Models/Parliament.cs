@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Interfaces;
 
 namespace Kugushev.Scripts.Game.Models
 {
-    public class Parliament : Poolable<Parliament.State>
+    public class Parliament : Poolable<Parliament.State>, IPoliticianSelector
     {
         public struct State
         {

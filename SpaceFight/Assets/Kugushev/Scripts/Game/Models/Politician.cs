@@ -4,6 +4,7 @@ using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Game.ValueObjects;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models
 {
@@ -39,7 +40,9 @@ namespace Kugushev.Scripts.Game.Models
         public Relation Relation => RelationsService.FromLevel(ObjectState.RelationLevel);
 
         public int Budget => ObjectState.Budget;
-        public bool IsReadyToInvest => ObjectState.Budget > 0;
+
+        public bool IsReadyToInvest => ObjectState.Budget > 0 &&
+                                       (Relation == Relation.Partner || Relation == Relation.Loyalist);
 
         public Traits Traits => ObjectState.Traits;
         public TraitsStatus TraitsStatus => ObjectState.TraitsStatus;
@@ -52,17 +55,17 @@ namespace Kugushev.Scripts.Game.Models
                 ObjectState.TraitsStatus =
                     ObjectState.TraitsStatus.RevealOne(ObjectState.Traits, politicalAction.Intel);
 
-            ApplyIntrigueTraits(intrigueTraits);
+            ApplyTraitsEffect(intrigueTraits);
         }
 
-        public void ApplyIntrigueTraits(Traits intrigueTraits)
+        private void ApplyTraitsEffect(Traits traits)
         {
             int relationChange = 0;
-            relationChange += ObjectState.Traits.Business * intrigueTraits.Business;
-            relationChange += ObjectState.Traits.Greed * intrigueTraits.Greed;
-            relationChange += ObjectState.Traits.Lust * intrigueTraits.Lust;
-            relationChange += ObjectState.Traits.Brute * intrigueTraits.Brute;
-            relationChange += ObjectState.Traits.Vanity * intrigueTraits.Vanity;
+            relationChange += ObjectState.Traits.Business * traits.Business;
+            relationChange += ObjectState.Traits.Greed * traits.Greed;
+            relationChange += ObjectState.Traits.Lust * traits.Lust;
+            relationChange += ObjectState.Traits.Brute * traits.Brute;
+            relationChange += ObjectState.Traits.Vanity * traits.Vanity;
 
             ObjectState.RelationLevel += relationChange;
 
@@ -70,6 +73,17 @@ namespace Kugushev.Scripts.Game.Models
                 ObjectState.RelationLevel = GameConstants.MinRelationLevel;
             if (ObjectState.RelationLevel > GameConstants.MaxRelationLevel)
                 ObjectState.RelationLevel = GameConstants.MaxRelationLevel;
+        }
+
+        public void ApplyIncome()
+        {
+            var range = Random.Range(0f, 1f);
+            if (range > ObjectState.IncomeProbability.Amount)
+            {
+                ObjectState.Budget += GameConstants.PoliticianIncome;
+                if (ObjectState.Budget > GameConstants.MaxBudget)
+                    ObjectState.Budget = GameConstants.MaxBudget;
+            }
         }
     }
 }

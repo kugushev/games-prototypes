@@ -35,7 +35,10 @@ namespace Kugushev.Scripts.Game
             var info = gameSceneParametersPipeline.Get();
 
             var parliament = parliamentGenerator.Generate(info.Seed);
-            var model = objectsPool.GetObject<GameModel, GameModel.State>(new GameModel.State(parliament));
+            var campaignPreparation = objectsPool.GetObject<CampaignPreparation, CampaignPreparation.State>(
+                new CampaignPreparation.State(parliament));
+            var model = objectsPool.GetObject<GameModel, GameModel.State>(
+                new GameModel.State(parliament, campaignPreparation));
 
             var action = new List<PoliticalAction>();
             for (int i = 0; i < 7; i++)

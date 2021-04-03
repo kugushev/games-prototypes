@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Kugushev.Scripts.Game.Models;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
@@ -8,6 +9,7 @@ namespace Kugushev.Scripts.Game.Widgets
     {
         [SerializeField] private PoliticianCardWidget[] politicianCards;
         [SerializeField] private PoliticianDetailsWidget politicianDetailsWidget;
+        [SerializeField] private UnityEvent onPoliticianSelected;
 
         private Parliament _model;
 
@@ -30,12 +32,11 @@ namespace Kugushev.Scripts.Game.Widgets
             _model.SelectedPolitician = politician;
 
             if (politician == null)
-            {
                 politicianDetailsWidget.Deselect();
-                return;
-            }
+            else
+                politicianDetailsWidget.Select(politician);
 
-            politicianDetailsWidget.Select(politician);
+            onPoliticianSelected?.Invoke();
         }
 
         public void UpdateView()

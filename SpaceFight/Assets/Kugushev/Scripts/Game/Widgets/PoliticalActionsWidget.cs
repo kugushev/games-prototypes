@@ -1,26 +1,28 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
     public class PoliticalActionsWidget : MonoBehaviour
     {
-        [SerializeField] private PoliticsWidget politicsWidget;
         [SerializeField] private Button applyButton;
         [SerializeField] private Transform politicalActionsPanel;
         [SerializeField] private ToggleGroup toggleGroup;
         [SerializeField] private GameObject politicalActionCardPrefab;
+        [SerializeField] private UnityEvent onActionApplied;
 
         [CanBeNull] private PoliticalActionWidget _selectedPoliticalAction;
-        private Parliament _parliamentModel;
+        private IPoliticianSelector _politicianSelector;
 
-        public void Setup(IReadOnlyList<PoliticalAction> models, Parliament parliamentModel)
+        public void Setup(IReadOnlyList<PoliticalAction> models, IPoliticianSelector politicianSelector)
         {
-            _parliamentModel = parliamentModel;
+            _politicianSelector = politicianSelector;
 
             foreach (var model in models)
             {
@@ -30,20 +32,26 @@ namespace Kugushev.Scripts.Game.Widgets
             }
         }
 
+        public void UpdateView()
+        {
+            applyButton.interactable = _selectedPoliticalAction != null &&
+                                       _politicianSelector.SelectedPolitician != null;
+        }
+
         private void OnCardSelected([CanBeNull] PoliticalActionWidget politicalAction)
         {
             _selectedPoliticalAction = politicalAction;
-            applyButton.interactable = _selectedPoliticalAction != null;
+            UpdateView();
         }
 
         public void OnApplyButton()
         {
-            if (_selectedPoliticalAction != null && _parliamentModel.SelectedPolitician != null)
+            if (_selectedPoliticalAction != null && _politicianSelector.SelectedPolitician != null)
             {
-                _parliamentModel.SelectedPolitician.ApplyPoliticalAction(_selectedPoliticalAction.Model);
-                
+                _politicianSelector.SelectedPolitician.ApplyPoliticalAction(_selectedPoliticalAction.Model);
+
                 Destroy(_selectedPoliticalAction.gameObject);
-                politicsWidget.UpdateView();
+                onActionApplied?.Invoke();
             }
         }
     }

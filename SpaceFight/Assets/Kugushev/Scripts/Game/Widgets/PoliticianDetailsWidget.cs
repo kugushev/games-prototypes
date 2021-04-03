@@ -4,6 +4,7 @@ using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
@@ -20,6 +21,7 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private GameObject relationLoyalist;
 
         [Header("Budget")] [SerializeField] private TextMeshProUGUI budgetValueLabel;
+        [SerializeField] private Toggle budgetFundCampaign;
         [SerializeField] private GameObject budgetIsReadyToInvest;
         [SerializeField] private GameObject budgetIsNotReadyToInvest;
 
@@ -40,7 +42,7 @@ namespace Kugushev.Scripts.Game.Widgets
         const string UnknownTrait = "?";
 
         private Politician _model;
-
+        
         public void Select(Politician model)
         {
             gameObject.SetActive(true);
