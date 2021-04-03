@@ -126,7 +126,6 @@ namespace Kugushev.Scripts.Mission
         {
             eventsCollector.Cleanup();
             modelProvider.Cleanup();
-            RootModel.Dispose();
             greenFleet.ClearFleetProperties();
             redFleet.ClearFleetProperties();
         }

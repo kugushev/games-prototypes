@@ -5,25 +5,22 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.App.ValueObjects
 {
-    [Serializable]
-    public struct CampaignInfo
+    public readonly struct CampaignInfo
     {
-        [SerializeField] private int seed;
-        [SerializeField] private int? budget;
-        [SerializeField] private bool isPlayground;
-
-        public CampaignInfo(int seed, int? budget, IReadOnlyList<PerkId> availablePerks, bool isPlayground)
+        public CampaignInfo(int seed, int? budget, IReadOnlyList<PerkId> availablePerks, bool isPlayground,
+            bool isStandalone)
         {
+            IsPlayground = isPlayground;
+            IsStandalone = isStandalone;
             AvailablePerks = availablePerks;
-            this.isPlayground = isPlayground;
-            this.seed = seed;
-            this.budget = budget;
+            Seed = seed;
+            Budget = budget;
         }
 
-
-        public int Seed => seed;
-        public bool IsPlayground => isPlayground;
+        public int Seed { get; }
+        public bool IsPlayground { get; }
         public IReadOnlyList<PerkId> AvailablePerks { get; }
-        public int? Budget => budget;
+        public int? Budget { get; }
+        public bool IsStandalone { get; }
     }
 }

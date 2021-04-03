@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Common.Manager
 {
     public abstract class BaseManager<TRootModel> : MonoBehaviour
+        where TRootModel : IDisposable
     {
         private StateMachine _stateMachine;
         private TRootModel _rootModel;
@@ -31,6 +33,7 @@ namespace Kugushev.Scripts.Common.Manager
             // there is not way to run coroutine OnDestroy
             _stateMachine?.DisposeAsync();
             Dispose();
+            _rootModel.Dispose();
         }
 
         protected abstract TRootModel InitRootModel();
@@ -51,6 +54,7 @@ namespace Kugushev.Scripts.Common.Manager
                 await _stateMachine.UpdateAsync(() => Time.deltaTime);
                 await UniTask.NextFrame();
             }
+
             // ReSharper disable once FunctionNeverReturns
         }
     }

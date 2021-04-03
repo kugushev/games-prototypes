@@ -169,6 +169,7 @@ MonoBehaviour:
   objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
   modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
   campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
+  campaignSceneResultPipeline: {fileID: 11400000, guid: 31575198679508649a82c0d4550a976b, type: 2}
   missionsGenerationService: {fileID: 11400000, guid: 6765412051dbf524baabd4666761576a, type: 2}
   politicalActionsRepository: {fileID: 11400000, guid: f8ac77f1181847f48a9b5ca661601613, type: 2}
   missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}

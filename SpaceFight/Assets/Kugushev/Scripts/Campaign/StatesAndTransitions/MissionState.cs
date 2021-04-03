@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
                 Model.PlayerPerks.AddPerk(reward);
 
             if (result.PlayerWins)
-                Model.AddReward(result.MissionInfo.Reward);
+                Model.CampaignResult.AddReward(result.MissionInfo.Reward);
 
             Model.NextMission = null;
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.App.Constants;
+﻿using Kugushev.Scripts.App.Constants;
 using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.App.Models;
 using Kugushev.Scripts.App.Utils;
@@ -28,7 +26,7 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            var campaignInfo = new CampaignInfo(Model.MainMenu.Seed, null, PerkIdHelper.AllPerks, _isPlayground);
+            var campaignInfo = new CampaignInfo(Model.MainMenu.Seed, null, PerkIdHelper.AllPerks, _isPlayground, true);
             _sceneParametersPipeline.Set(campaignInfo);
         }
     }

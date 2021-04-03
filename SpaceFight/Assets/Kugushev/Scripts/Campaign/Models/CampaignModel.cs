@@ -21,8 +21,11 @@ namespace Kugushev.Scripts.Campaign.Models
             public MissionInfo? NextMission;
             public MissionResult? LastMissionResult;
 
+            // don't need to dispose: the lifetime of the object passes to Game
+            public CampaignResult CampaignResult;
+
             public State(CampaignInfo campaignInfo, MissionSelection missionSelection, Playground playground,
-                PlayerPerks playerPerks)
+                PlayerPerks playerPerks, CampaignResult campaignResult)
             {
                 CampaignInfo = campaignInfo;
                 MissionSelection = missionSelection;
@@ -30,6 +33,7 @@ namespace Kugushev.Scripts.Campaign.Models
                 NextMission = null;
                 LastMissionResult = null;
                 PlayerPerks = playerPerks;
+                CampaignResult = campaignResult;
             }
         }
 
@@ -57,8 +61,7 @@ namespace Kugushev.Scripts.Campaign.Models
         public PlayerPerks PlayerPerks => ObjectState.PlayerPerks;
         public MissionSelection MissionSelection => ObjectState.MissionSelection;
         public Playground Playground => ObjectState.Playground;
-
-        public void AddReward(PoliticalAction politicalAction) => rewardedPoliticalActions.Add(politicalAction);
+        public CampaignResult CampaignResult => ObjectState.CampaignResult;
 
         protected override void OnClear(State state)
         {

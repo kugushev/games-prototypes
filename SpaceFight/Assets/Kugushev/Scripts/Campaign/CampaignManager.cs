@@ -10,6 +10,8 @@ using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Services;
+using Kugushev.Scripts.Game.Utils;
+using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -21,6 +23,7 @@ namespace Kugushev.Scripts.Campaign
         [SerializeField] private ObjectsPool objectsPool;
         [SerializeField] private CampaignModelProvider modelProvider;
         [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
+        [SerializeField] private CampaignSceneResultPipeline campaignSceneResultPipeline;
         [SerializeField] private MissionsGenerator missionsGenerationService;
         [SerializeField] private PoliticalActionsRepository politicalActionsRepository;
 
@@ -37,6 +40,8 @@ namespace Kugushev.Scripts.Campaign
         [SerializeField] private ExitState onMissionExitTransition;
         [SerializeField] private TriggerTransition toMissionTransition;
 
+        private readonly CampaignFinalizationState _finalizationState = new CampaignFinalizationState();
+
         protected override CampaignModel InitRootModel()
         {
             var campaignInfo = campaignSceneParametersPipeline.Get();
@@ -45,7 +50,8 @@ namespace Kugushev.Scripts.Campaign
             var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
                 objectsPool.GetObject<MissionSelection, MissionSelection.State>(new MissionSelection.State(budget)),
                 objectsPool.GetObject<Playground, Playground.State>(new Playground.State()),
-                objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State())
+                objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State()),
+                objectsPool.GetObject<CampaignResult, CampaignResult.State>(new CampaignResult.State())
             ));
 
             modelProvider.Set(model);
@@ -69,6 +75,8 @@ namespace Kugushev.Scripts.Campaign
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
 
+                _finalizationState.Setup(rootModel.CampaignResult, null);
+
                 return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
                 {
                     {
@@ -81,13 +89,19 @@ namespace Kugushev.Scripts.Campaign
                         playgroundState, new[]
                         {
                             new TransitionRecord(toMissionTransition, missionState),
-                            new TransitionRecord(toFinishTransition, campaignExitState)
+                            new TransitionRecord(toFinishTransition, _finalizationState)
                         }
                     },
                     {
                         missionState, new[]
                         {
                             new TransitionRecord(onMissionExitTransition, playgroundState)
+                        }
+                    },
+                    {
+                        _finalizationState, new[]
+                        {
+                            new TransitionRecord(ImmediateTransition.Instance, campaignExitState)
                         }
                     }
                 };
@@ -99,6 +113,9 @@ namespace Kugushev.Scripts.Campaign
 
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
+
+                _finalizationState.Setup(rootModel.CampaignResult,
+                    rootModel.CampaignInfo.IsStandalone ? null : campaignSceneResultPipeline);
 
                 return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
                 {
@@ -112,13 +129,19 @@ namespace Kugushev.Scripts.Campaign
                         missionSelectionState, new[]
                         {
                             new TransitionRecord(toMissionTransition, missionState),
-                            new TransitionRecord(toFinishTransition, campaignExitState)
+                            new TransitionRecord(toFinishTransition, _finalizationState)
                         }
                     },
                     {
                         missionState, new[]
                         {
                             new TransitionRecord(onMissionExitTransition, missionSelectionState)
+                        }
+                    },
+                    {
+                        _finalizationState, new[]
+                        {
+                            new TransitionRecord(ImmediateTransition.Instance, campaignExitState)
                         }
                     }
                 };

@@ -3,6 +3,7 @@ using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.ValueObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,6 @@ namespace Kugushev.Scripts.Campaign.Widgets
     public class MissionCardWidget : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI seedText;
-        [SerializeField] private TextMeshProUGUI rewardText;
         [SerializeField] private Toggle toggle;
 
         [Header("Background Colors")] [SerializeField]
@@ -21,6 +21,15 @@ namespace Kugushev.Scripts.Campaign.Widgets
         [SerializeField] private Color normal;
         [SerializeField] private Color hard;
         [SerializeField] private Color insane;
+
+        [Header("Reward")] [SerializeField] private TextMeshProUGUI rewardCaption;
+        [SerializeField] private TextMeshProUGUI intelValue;
+
+        [SerializeField] private TextMeshProUGUI traitBusinessValue;
+        [SerializeField] private TextMeshProUGUI traitGreedValue;
+        [SerializeField] private TextMeshProUGUI traitLustValue;
+        [SerializeField] private TextMeshProUGUI traitBruteValue;
+        [SerializeField] private TextMeshProUGUI traitVanityValue;
 
         private MissionInfo _model;
         private MissionSelection _rootModel;
@@ -34,9 +43,12 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         void Start()
         {
-            seedText.text = StringBag.FromInt(_model.Seed);
-            rewardText.text = "Lorem ipsum" + Environment.NewLine + "Lust: 3" + Environment.NewLine + "Greed: -2";
+            UpdateView();
+        }
 
+        private void UpdateView()
+        {
+            seedText.text = StringBag.FromInt(_model.Seed);
             switch (_model.Difficulty)
             {
                 case Difficulty.Normal:
@@ -52,6 +64,22 @@ namespace Kugushev.Scripts.Campaign.Widgets
                     Debug.LogError($"Unexpected difficulty {_model.Difficulty}");
                     break;
             }
+
+            UpdateRewardView(_model.Reward);
+        }
+
+        private void UpdateRewardView(PoliticalAction reward)
+        {
+            rewardCaption.text = reward.Caption;
+            intelValue.text = StringBag.FromInt(reward.Intel);
+
+            UpdateTraitView(traitBusinessValue, reward.Traits.Business);
+            UpdateTraitView(traitGreedValue, reward.Traits.Greed);
+            UpdateTraitView(traitLustValue, reward.Traits.Lust);
+            UpdateTraitView(traitBruteValue, reward.Traits.Brute);
+            UpdateTraitView(traitVanityValue, reward.Traits.Vanity);
+
+            void UpdateTraitView(TextMeshProUGUI label, int value) => label.text = StringBag.FromInt(value);
         }
 
         public void OnToggleChanged(bool selected)
