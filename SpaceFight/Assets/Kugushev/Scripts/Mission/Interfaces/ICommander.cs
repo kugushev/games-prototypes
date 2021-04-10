@@ -5,6 +5,7 @@ namespace Kugushev.Scripts.Mission.Interfaces
 {
     public interface ICommander
     {
+        bool Surrendered { get; }
         void AssignFleet(Fleet fleet, Faction faction);
         void WithdrawFleet();
     }

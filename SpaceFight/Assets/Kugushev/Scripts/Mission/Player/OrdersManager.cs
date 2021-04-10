@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Models.Abstractions;
 using Kugushev.Scripts.Common.Utils.Pooling;
@@ -86,15 +87,24 @@ namespace Kugushev.Scripts.Mission.Player
             }
         }
 
+        public void HandleSurrender()
+        {
+            Surrendered = true;
+        }
+
         #region ICommander
+
+        public bool Surrendered { get; private set; }
 
         public void AssignFleet(Fleet fleet, Faction faction)
         {
+            Surrendered = false;
             _state.Fleet = fleet;
         }
 
         public void WithdrawFleet()
         {
+            Surrendered = false;
             _state.Fleet = null;
         }
 

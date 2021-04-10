@@ -513,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06277ea8ca004f73926f4b4807747633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 3631119182514287516}
   slider: {fileID: 8865906814162299924}
   indexPoint: {fileID: 6836658276492667522}
 --- !u!1001 &9097351895320390580

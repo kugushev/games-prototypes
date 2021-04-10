@@ -6,18 +6,17 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Utils.ValuesProcessing
 {
-    [Serializable]
     public class ValuePipeline<T> : Poolable<int>, IValuePipeline<T>
     {
-        [SerializeReference] private List<IPercentPerk<T>> percentPerks = new List<IPercentPerk<T>>(16);
-        [SerializeReference] private List<IMultiplierPerk<T>> multiplierPerks = new List<IMultiplierPerk<T>>(16);
+        private readonly List<IPercentPerk<T>> _percentPerks = new List<IPercentPerk<T>>(16);
+        private readonly List<IMultiplierPerk<T>> _multiplierPerks = new List<IMultiplierPerk<T>>(16);
 
         public ValuePipeline(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
-        public void AddPerk(IMultiplierPerk<T> perk) => multiplierPerks.Add(perk);
-        public void AddPerk(IPercentPerk<T> perk) => percentPerks.Add(perk);
+        public void AddPerk(IMultiplierPerk<T> perk) => _multiplierPerks.Add(perk);
+        public void AddPerk(IPercentPerk<T> perk) => _percentPerks.Add(perk);
 
         public float Calculate(float value, T criteria)
         {
@@ -32,7 +31,7 @@ namespace Kugushev.Scripts.Common.Utils.ValuesProcessing
         private float GetPercentageAmount(T criteria)
         {
             var percentageAmount = 1f;
-            foreach (var perk in percentPerks)
+            foreach (var perk in _percentPerks)
             {
                 var percentage = perk.GetPercentage(criteria);
                 percentageAmount += percentage.Amount;
@@ -44,7 +43,7 @@ namespace Kugushev.Scripts.Common.Utils.ValuesProcessing
         private float GetMultiplier(T criteria)
         {
             var multiplier = 1f;
-            foreach (var perk in multiplierPerks)
+            foreach (var perk in _multiplierPerks)
             {
                 var m = perk.GetMultiplier(criteria);
                 if (m != null)
@@ -54,8 +53,8 @@ namespace Kugushev.Scripts.Common.Utils.ValuesProcessing
             return multiplier;
         }
 
-        protected override void OnRestore(int state) => percentPerks.Clear();
+        protected override void OnRestore(int state) => _percentPerks.Clear();
 
-        protected override void OnClear(int state) => percentPerks.Clear();
+        protected override void OnClear(int state) => _percentPerks.Clear();
     }
 }

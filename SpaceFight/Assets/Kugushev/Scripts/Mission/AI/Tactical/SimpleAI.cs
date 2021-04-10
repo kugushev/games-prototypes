@@ -39,6 +39,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
         #region ICommander
 
+        public bool Surrendered => false;
+
         public void AssignFleet(Fleet fleet, Faction faction)
         {
             _state.Fleet = fleet;

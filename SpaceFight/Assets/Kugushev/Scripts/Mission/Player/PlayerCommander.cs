@@ -12,6 +12,8 @@ namespace Kugushev.Scripts.Mission.Player
         [SerializeField] private OrdersManager leftHandOrders;
         [SerializeField] private OrdersManager rightHandOrders;
 
+        public bool Surrendered => leftHandOrders.Surrendered || rightHandOrders.Surrendered;
+
         public void AssignFleet(Fleet fleet, Faction faction)
         {
             leftHandOrders.AssignFleet(fleet, faction);

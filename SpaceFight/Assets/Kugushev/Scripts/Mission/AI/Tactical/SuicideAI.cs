@@ -23,6 +23,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
         [NonSerialized] private Fleet _fleet;
         [NonSerialized] private Faction _agentFaction;
 
+        public bool Surrendered => false;
+
         public void AssignFleet(Fleet fleet, Faction faction)
         {
             _fleet = fleet;

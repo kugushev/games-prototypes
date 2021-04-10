@@ -44,6 +44,12 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
             ordersManager.HandleMove(position);
         }
 
+        public void HandleSurrender(HandController sender)
+        {
+            var ordersManager = GetOrdersManager(sender);
+            ordersManager.HandleSurrender();
+        }
+
         private OrdersManager GetOrdersManager(HandController handController) => handController.HandType switch
         {
             HandType.Right => rightOrders,

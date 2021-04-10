@@ -39,13 +39,15 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
 
         protected override void OnExitBeforeUnloadScene()
         {
-            if (!ToDebriefingTransition.IsMissionFinished(Model.PlanetarySystem, out var winner))
+            var model = Model;
+            if (!ToDebriefingTransition.IsMissionFinished(model.PlanetarySystem, model.Green, model.Red, out var winner)
+            )
             {
                 Debug.LogError("Mission is not finished");
                 return;
             }
 
-            Model.ExecutionResult = new ExecutionResult(winner);
+            model.ExecutionResult = new ExecutionResult(winner);
             _eventsCollector.Stop();
         }
     }

@@ -5,6 +5,7 @@ using Kugushev.Scripts.MissionPresentation.Events;
 using Kugushev.Scripts.MissionPresentation.PresentationModels;
 using Kugushev.Scripts.MissionPresentation.Widgets;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using static UnityEngine.XR.CommonUsages;
@@ -20,6 +21,8 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
         [SerializeField] private HandEvent onSelect;
         [SerializeField] private HandEvent onSelectCancel;
         [SerializeField] private MovingEvent onMove;
+        [SerializeField] private HandEvent onSurrenderClick;
+        [SerializeField] private Camera mainCamera;
 
         private XRController _xrController;
         private HandWidget _handWidget;
@@ -127,9 +130,14 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
                 return false;
             }
 
-            _handWidget = _xrController.modelTransform.GetComponentInChildren<HandWidget>();
-            handWidget = _handWidget;
+            handWidget = _xrController.modelTransform.GetComponentInChildren<HandWidget>();
+            handWidget.Setup(mainCamera);
+            handWidget.SurrenderClick += OnSurrender;
+
+            _handWidget = handWidget;
             return true;
         }
+
+        private void OnSurrender() => onSurrenderClick?.Invoke(this);
     }
 }
