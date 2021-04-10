@@ -555,6 +555,10 @@ PrefabInstance:
       value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 2979085158365453579, guid: 213dd278d8c7df24c871b2977f2edd6b, type: 3}
+      propertyPath: m_AllowAnchorControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979085158365453579, guid: 213dd278d8c7df24c871b2977f2edd6b, type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 3814144271029611554}

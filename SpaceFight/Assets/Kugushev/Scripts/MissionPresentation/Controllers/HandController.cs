@@ -1,7 +1,9 @@
-﻿using Kugushev.Scripts.Common.Enums;
+﻿using JetBrains.Annotations;
+using Kugushev.Scripts.Common.Enums;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.MissionPresentation.Events;
 using Kugushev.Scripts.MissionPresentation.PresentationModels;
+using Kugushev.Scripts.MissionPresentation.Widgets;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -20,7 +22,7 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
         [SerializeField] private MovingEvent onMove;
 
         private XRController _xrController;
-        private Slider _armySlider;
+        private HandWidget _handWidget;
         private bool _triggerPressed;
         private Vector2 _joystickAxis;
 
@@ -55,14 +57,17 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 
         private void Update()
         {
+            if (!TryGetHand(out var hand))
+                return;
+
             var inputDevice = _xrController.inputDevice;
 
             var newJoystickAxis = inputDevice.TryGetFeatureValue(primary2DAxis, out var joystickAxisOut)
                 ? joystickAxisOut
                 : default;
-            if (_joystickAxis != newJoystickAxis && CanUseArmySlider())
+            if (_joystickAxis != newJoystickAxis)
             {
-                _armySlider.value = ArmyPowerAllocated.Amount;
+                hand.UpdateSlider(ArmyPowerAllocated.Amount);
                 _joystickAxis = newJoystickAxis;
             }
 
@@ -80,7 +85,7 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
                 _triggerPressed = false;
             }
 
-            onMove.Invoke(this, _xrController.modelTransform.position);
+            onMove.Invoke(this, hand.IndexPointPosition);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -108,15 +113,22 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
             }
         }
 
-        private bool CanUseArmySlider()
+        private bool TryGetHand(out HandWidget handWidget)
         {
-            if (!ReferenceEquals(_armySlider, null))
+            if (!ReferenceEquals(_handWidget, null))
+            {
+                handWidget = _handWidget;
                 return true;
+            }
 
             if (_xrController.modelTransform.childCount == 0)
+            {
+                handWidget = null;
                 return false;
+            }
 
-            _armySlider = _xrController.modelTransform.GetComponentInChildren<Slider>();
+            _handWidget = _xrController.modelTransform.GetComponentInChildren<HandWidget>();
+            handWidget = _handWidget;
             return true;
         }
     }

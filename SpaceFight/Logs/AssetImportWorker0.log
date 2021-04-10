@@ -1,0 +1,355 @@
+Using pre-set license
+Built from '2021.1/staging' branch; Version is '2021.1.2f1 (e5d502d80fbb) revision 15062274'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19042.867; Version 2009; 64bit' Language: 'en' Physical Memory: 16335 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.1.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Projects/games-prototypes-vr/SpaceFight
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+59379
+Successfully changed project path to: C:/Projects/games-prototypes-vr/SpaceFight
+C:/Projects/games-prototypes-vr/SpaceFight
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 52.53 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.81 ms.
+Initialize engine version: 2021.1.2f1 (e5d502d80fbb)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.1.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Projects/games-prototypes-vr/SpaceFight/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
+    Vendor:   NVIDIA
+    VRAM:     6052 MB
+    Driver:   27.21.14.6109
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.1.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.1.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.1.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56424
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.1.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001444 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 53.63 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.800 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001409 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 54.08 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.025 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3330 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 149.3 MB.
+System memory in use after: 149.5 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3790.
+Total: 3.043300 ms (FindLiveObjects: 0.372700 ms CreateObjectMapping: 0.099900 ms MarkObjects: 2.494200 ms  DeleteObjects: 0.075200 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Kugushev/Prefabs/XR
+  artifactKey: Guid(39d10c442dcb20f4ba632f2677147644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR using Guid(39d10c442dcb20f4ba632f2677147644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79ed99eb90c7c0bd5184a20e16a826e7') in 0.006245 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.459442 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_R.prefab
+  artifactKey: Guid(922667127f6c9b44399060d083aab5c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_R.prefab using Guid(922667127f6c9b44399060d083aab5c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57be00d46ad21835b058e22fa09788a9') in 0.497301 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001813 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.019 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3196 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 160.3 MB.
+System memory in use after: 160.5 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 3840.
+Total: 2.705000 ms (FindLiveObjects: 0.374500 ms CreateObjectMapping: 0.097600 ms MarkObjects: 2.217400 ms  DeleteObjects: 0.014400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 235.211059 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand Controller.prefab
+  artifactKey: Guid(213dd278d8c7df24c871b2977f2edd6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand Controller.prefab using Guid(213dd278d8c7df24c871b2977f2edd6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab340cfec74588c8d9d39394267612d7') in 0.040997 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002052 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.69 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.995 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3196 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 160.8 MB.
+System memory in use after: 161.1 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 3846.
+Total: 2.663300 ms (FindLiveObjects: 0.345800 ms CreateObjectMapping: 0.094800 ms MarkObjects: 2.207300 ms  DeleteObjects: 0.014400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.128665 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L.prefab
+  artifactKey: Guid(815652ab59cb71144b30a0b04a9da53b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L.prefab using Guid(815652ab59cb71144b30a0b04a9da53b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5353aab699f2129b07e4969a60c4dd73') in 0.162942 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 36.187789 seconds.
+  path: Assets/Kugushev/Scenes/Mission/MissionExecutionScene.unity
+  artifactKey: Guid(31afbd9f2e3ae054288ae5e1f06c433c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scenes/Mission/MissionExecutionScene.unity using Guid(31afbd9f2e3ae054288ae5e1f06c433c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88ec5a8ef9ed2b616a2545cf5df130f8') in 0.002046 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 49.059759 seconds.
+  path: Assets/Kugushev/Prefabs/XR/ControllerInMission.prefab
+  artifactKey: Guid(7e15d696520a7aa46b0e43fd6967dd20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/ControllerInMission.prefab using Guid(7e15d696520a7aa46b0e43fd6967dd20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b20a18c96b51fd9e396616ee94a14eb7') in 0.241651 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 30.085485 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_R.prefab
+  artifactKey: Guid(922667127f6c9b44399060d083aab5c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_R.prefab using Guid(922667127f6c9b44399060d083aab5c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ff4c3b3975c31c8aca4b7c2722f198a') in 0.012509 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 20.082676 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_R Mission.prefab
+  artifactKey: Guid(d59d9af873e6d684e8f56fd59d1369ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_R Mission.prefab using Guid(d59d9af873e6d684e8f56fd59d1369ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0cbb3b4a67770fbd0d0554ab2154356f') in 0.021212 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 445.402943 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L.prefab
+  artifactKey: Guid(815652ab59cb71144b30a0b04a9da53b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L.prefab using Guid(815652ab59cb71144b30a0b04a9da53b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cb91f2173fc7576e7a686a5da206a61') in 0.013635 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.865726 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '086782ec00237fb287e5305ea53fbb31') in 0.017803 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 68.752723 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_R Mission.prefab
+  artifactKey: Guid(d59d9af873e6d684e8f56fd59d1369ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_R Mission.prefab using Guid(d59d9af873e6d684e8f56fd59d1369ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f2f5abedca9c703f27d9e15cb377cc7') in 0.016791 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.164535 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2b1c7a6ca123625aeb20396e9c46780') in 0.014243 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.541274 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '740704a279aaef034d121a7e218bb9f2') in 0.014412 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 73.680020 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cba55d1545fbdd6e801b0492c643d045') in 0.017312 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 12.291614 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c1f31b46e3a274a9cfc606f45c2980c') in 0.017142 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 21.726889 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1608714226219b8d005588a720cb27a6') in 0.015305 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 38.358638 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf6a85d80e9296ff25b8e5df8fdf36d8') in 0.014990 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 94.410089 seconds.
+  path: Assets/Kugushev/Scripts/MissionPresentation/Controllers/HandController.cs
+  artifactKey: Guid(dde096e5db5752543a9f852fcaf91199) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/MissionPresentation/Controllers/HandController.cs using Guid(dde096e5db5752543a9f852fcaf91199) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47f05634e80fab62f58c89bb499fcd4c') in 0.010412 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 254.246344 seconds.
+  path: Assets/Kugushev/Scenes/App/AppManagementScene.unity
+  artifactKey: Guid(73b8d3a4e1f50544786d3cfecf1d86d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scenes/App/AppManagementScene.unity using Guid(73b8d3a4e1f50544786d3cfecf1d86d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc5ddbec9c5d678298e9cd0dc1b14723') in 0.002260 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 106.914614 seconds.
+  path: Assets/Kugushev/Scenes/Mission/MissionExecutionScene.unity
+  artifactKey: Guid(31afbd9f2e3ae054288ae5e1f06c433c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scenes/Mission/MissionExecutionScene.unity using Guid(31afbd9f2e3ae054288ae5e1f06c433c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10814857d52b55bf85028f83f6512283') in 0.001949 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.192246 seconds.
+  path: Assets/Kugushev/Scripts/MissionPresentation/Controllers/MissionController.cs
+  artifactKey: Guid(521c9ffbba914b8da7fd930a3d7e1513) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/MissionPresentation/Controllers/MissionController.cs using Guid(521c9ffbba914b8da7fd930a3d7e1513) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bee89bc7c4dc2371adbc4c73e978d32') in 0.001695 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002731 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.78 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.14 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.217 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3197 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.2 MB.
+System memory in use after: 161.5 MB.
+
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 3887.
+Total: 4.066000 ms (FindLiveObjects: 0.562800 ms CreateObjectMapping: 0.125400 ms MarkObjects: 3.342300 ms  DeleteObjects: 0.033500 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002944 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.70 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.021 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.80 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Unloading 3197 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.2 MB.
+System memory in use after: 161.5 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 3891.
+Total: 2.720400 ms (FindLiveObjects: 0.391700 ms CreateObjectMapping: 0.095500 ms MarkObjects: 2.219000 ms  DeleteObjects: 0.013100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 599.910071 seconds.
+  path: Assets/Kugushev/Scripts/MissionPresentation/Controllers/HandController.cs
+  artifactKey: Guid(dde096e5db5752543a9f852fcaf91199) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Scripts/MissionPresentation/Controllers/HandController.cs using Guid(dde096e5db5752543a9f852fcaf91199) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cf6525b39f023bf6c210a99e67303f6') in 0.005280 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 66.990808 seconds.
+  path: Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab
+  artifactKey: Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/Hand_L Mission.prefab using Guid(e8a96c4c43f9faa478e69df4310462dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd56346b671e9dd3780678d76fe6ef15a') in 0.171269 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001850 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.81 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x0004c] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x000b0] in C:\Projects\games-prototypes-vr\SpaceFight\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.011 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.85 ms, found 3 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 3197 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.3 MB.
+System memory in use after: 161.5 MB.
+
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 3931.
+Total: 2.702800 ms (FindLiveObjects: 0.364400 ms CreateObjectMapping: 0.095500 ms MarkObjects: 2.219100 ms  DeleteObjects: 0.022800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 147.307696 seconds.
+  path: Assets/Kugushev/Prefabs/XR/XR Ecosystem.prefab
+  artifactKey: Guid(0c2d854342743d44aa7be294f0728eec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Kugushev/Prefabs/XR/XR Ecosystem.prefab using Guid(0c2d854342743d44aa7be294f0728eec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ef057ee0e71ef9bf1b56bc61b4d7b6a') in 0.047742 seconds 
