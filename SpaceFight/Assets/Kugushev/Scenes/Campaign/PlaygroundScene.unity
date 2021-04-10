@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000008, guid: ced38cde0ee07014283d7fcf0ba4cb94, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -535,11 +535,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162761526}
   m_CullTransparentMesh: 1
---- !u!224 &352394851 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 352394851, guid: 6db2a84e5b87f4644ac3ca1d14a5b84e, type: 3}
-  m_PrefabInstance: {fileID: 3387667481097557052}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &543295984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2595,8 +2590,6 @@ MonoBehaviour:
   enemyExtraPlanets: {fileID: 727794332}
   playerStartPower: {fileID: 21064820}
   enemyStartPower: {fileID: 2033991841}
-  achievementsPanel: {fileID: 352394851}
-  achievementCardPrefab: {fileID: 2071978675700461681, guid: 5bf2faa435c9be94e9f4ade053a2e1fe, type: 3}
 --- !u!1 &2135272160
 GameObject:
   m_ObjectHideFlags: 0
