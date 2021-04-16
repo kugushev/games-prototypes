@@ -11,24 +11,25 @@ namespace Kugushev.Scripts.App
 {
     internal class AppManager : BaseManager<AppModel>
     {
-        [SerializeField] private AppModelProvider gameModelProvider;
-        [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
-        [SerializeField] private GameSceneParametersPipeline gameSceneParametersPipeline;
+        [SerializeField] private AppModelProvider? gameModelProvider;
+        [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
+        [SerializeField] private GameSceneParametersPipeline? gameSceneParametersPipeline;
 
         [Header("States and Transitions")] [SerializeField]
-        private ExitState onCampaignExitTransition;
+        private ExitState? onCampaignExitTransition;
 
-        [SerializeField] private ExitState onGameExitTransition;
+        [SerializeField] private ExitState? onGameExitTransition;
 
-        [SerializeField] private TriggerTransition toCampaignTransition;
-        [SerializeField] private TriggerTransition toPlaygroundTransition;
+        [SerializeField] private TriggerTransition? toCampaignTransition;
+        [SerializeField] private TriggerTransition? toPlaygroundTransition;
 
-        [SerializeField] private TriggerTransition toNewGameTransition;
+        [SerializeField] private TriggerTransition? toNewGameTransition;
 
         protected override AppModel InitRootModel()
         {
             var model = new AppModel();
             gameModelProvider.Set(model);
+
             return model;
         }
 
