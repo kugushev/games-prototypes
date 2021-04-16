@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;

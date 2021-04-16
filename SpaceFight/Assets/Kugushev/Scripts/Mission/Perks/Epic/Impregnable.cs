@@ -1,6 +1,5 @@
 ﻿using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Common.Interfaces;
-using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
@@ -38,7 +37,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
 
         public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
         {
-            planetarySystemPerks.damage.AddPerk(this);
+            planetarySystemPerks.Damage.AddPerk(this);
         }
 
         public float? GetMultiplier(Planet criteria)

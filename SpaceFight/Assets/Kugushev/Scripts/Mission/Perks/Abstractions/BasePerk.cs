@@ -1,12 +1,10 @@
 ﻿using JetBrains.Annotations;
-using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
-using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Perks.Abstractions
 {

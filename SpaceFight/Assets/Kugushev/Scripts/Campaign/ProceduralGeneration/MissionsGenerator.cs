@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Interfaces;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Campaign.ProceduralGeneration

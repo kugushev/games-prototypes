@@ -4,15 +4,12 @@ using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.ProceduralGeneration;
 using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Game.StatesAndTransitions;
 using Kugushev.Scripts.Game.Utils;
-using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Game
 {
@@ -25,6 +22,7 @@ namespace Kugushev.Scripts.Game
         [SerializeField] private ParliamentGenerator parliamentGenerator;
 
 
+        // ReSharper disable once NotAccessedField.Local
         [SerializeField] private PoliticalActionsRepository tempPoliticalActionsRepository;
 
         [Header("States and Transitions")] [SerializeField]
@@ -48,16 +46,6 @@ namespace Kugushev.Scripts.Game
                 new CampaignPreparation.State(parliament));
             var model = objectsPool.GetObject<GameModel, GameModel.State>(
                 new GameModel.State(parliament, campaignPreparation));
-
-            // var action = new List<PoliticalAction>();
-            // for (int i = 0; i < 7; i++)
-            //     action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Normal));
-            // for (int i = 0; i < 3; i++)
-            //     action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Hard));
-            // for (int i = 0; i < 2; i++)
-            //     action.Add(tempPoliticalActionsRepository.GetRandom(Difficulty.Insane));
-            // model.AddPoliticalActions(action);
-
 
             gameModelProvider.Set(model);
             return model;

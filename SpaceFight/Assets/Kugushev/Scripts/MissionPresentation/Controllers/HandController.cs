@@ -1,12 +1,9 @@
-﻿using JetBrains.Annotations;
-using Kugushev.Scripts.Common.Enums;
+﻿using Kugushev.Scripts.Common.Enums;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.MissionPresentation.Events;
 using Kugushev.Scripts.MissionPresentation.PresentationModels;
 using Kugushev.Scripts.MissionPresentation.Widgets;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using static UnityEngine.XR.CommonUsages;
 

@@ -91,7 +91,7 @@ namespace Kugushev.Scripts.Mission.Models
         private float CalculateProductionIncrement()
         {
             if (ObjectState.PlanetarySystemPerks.TryGetPerks(Faction, out var perks))
-                return perks.production.Calculate(ObjectState.production, this);
+                return perks.Production.Calculate(ObjectState.production, this);
             return ObjectState.production;
         }
 
@@ -181,7 +181,7 @@ namespace Kugushev.Scripts.Mission.Models
         public float GetDamage()
         {
             if (ObjectState.PlanetarySystemPerks.TryGetPerks(Faction, out var perks))
-                return perks.damage.Calculate(GameplayConstants.UnifiedDamage, this);
+                return perks.Damage.Calculate(GameplayConstants.UnifiedDamage, this);
 
             return GameplayConstants.UnifiedDamage;
         }

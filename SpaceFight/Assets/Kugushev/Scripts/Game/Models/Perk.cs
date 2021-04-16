@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models

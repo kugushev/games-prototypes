@@ -6,7 +6,6 @@ using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Mission.Managers
 {

@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.Campaign.Utils;
+﻿using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 

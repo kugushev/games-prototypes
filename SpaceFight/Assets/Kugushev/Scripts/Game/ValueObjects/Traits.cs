@@ -1,6 +1,4 @@
-﻿using Kugushev.Scripts.Common.Utils.Pooling;
-
-namespace Kugushev.Scripts.Game.ValueObjects
+﻿namespace Kugushev.Scripts.Game.ValueObjects
 {
     public readonly struct Traits
     {

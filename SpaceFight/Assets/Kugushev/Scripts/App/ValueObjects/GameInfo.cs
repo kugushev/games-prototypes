@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Kugushev.Scripts.App.ValueObjects
+﻿namespace Kugushev.Scripts.App.ValueObjects
 {
     public readonly struct GameInfo
     {

@@ -1,5 +1,4 @@
-﻿using System;
-using Kugushev.Scripts.App.Utils;
+﻿using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Game.Constants;

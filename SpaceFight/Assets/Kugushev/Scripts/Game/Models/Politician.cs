@@ -1,5 +1,4 @@
-﻿using System;
-using Kugushev.Scripts.Common.Utils.Pooling;
+﻿using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Enums;

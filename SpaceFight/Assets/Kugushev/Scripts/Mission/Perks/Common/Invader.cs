@@ -1,5 +1,4 @@
 ﻿using Kugushev.Scripts.App.Enums;
-using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
@@ -34,7 +33,7 @@ namespace Kugushev.Scripts.Mission.Perks.Common
         }
 
         public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
-            => fleetPerks.siegeDamage.AddPerk(this);
+            => fleetPerks.SiegeDamage.AddPerk(this);
 
         public Percentage GetPercentage(Army criteria) => new Percentage(percent);
     }

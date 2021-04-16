@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
         [Header("Rules")] [SerializeField] private float minIncomeProbability = 0.5f;
         [SerializeField] [Range(0.5f, 1f)] private float maxIncomeProbability = 1f;
 
-        [SerializeField] private int minStartBudget = 0;
+        [SerializeField] private int minStartBudget;
         [SerializeField] private int maxStartBudget = GameConstants.MaxStartBudget;
 
 

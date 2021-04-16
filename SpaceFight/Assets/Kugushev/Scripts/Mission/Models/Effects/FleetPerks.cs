@@ -13,29 +13,29 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         [Serializable]
         public struct State
         {
-            public ValuePipeline<Army> siegeDamage;
-            public ValuePipeline<Army> fightDamage;
-            public ValuePipeline<Army> fightProtection;
-            public ValuePipeline<(Planet target, Faction playerFaction)> armySpeed;
+            public ValuePipeline<Army> SiegeDamage;
+            public ValuePipeline<Army> FightDamage;
+            public ValuePipeline<Army> FightProtection;
+            public ValuePipeline<(Planet target, Faction playerFaction)> ArmySpeed;
             public float deathStrike;
             public SiegeUltimatum ToNeutralPlanetUltimatum;
 
             public State(ValuePipeline<Army> siegeDamage, ValuePipeline<Army> fightDamage,
                 ValuePipeline<Army> fightProtection, ValuePipeline<(Planet target, Faction playerFaction)> armySpeed)
             {
-                this.siegeDamage = siegeDamage;
-                this.fightDamage = fightDamage;
-                this.fightProtection = fightProtection;
-                this.armySpeed = armySpeed;
+                this.SiegeDamage = siegeDamage;
+                this.FightDamage = fightDamage;
+                this.FightProtection = fightProtection;
+                this.ArmySpeed = armySpeed;
                 deathStrike = 0;
                 ToNeutralPlanetUltimatum = default;
             }
         }
 
-        public IValuePipeline<Army> SiegeDamage => ObjectState.siegeDamage;
-        public IValuePipeline<Army> FightDamage => ObjectState.fightDamage;
-        public IValuePipeline<Army> FightProtection => ObjectState.fightProtection;
-        public IValuePipeline<(Planet target, Faction playerFaction)> ArmySpeed => ObjectState.armySpeed;
+        public IValuePipeline<Army> SiegeDamage => ObjectState.SiegeDamage;
+        public IValuePipeline<Army> FightDamage => ObjectState.FightDamage;
+        public IValuePipeline<Army> FightProtection => ObjectState.FightProtection;
+        public IValuePipeline<(Planet target, Faction playerFaction)> ArmySpeed => ObjectState.ArmySpeed;
         public float DeathStrike => ObjectState.deathStrike;
 
         public ref readonly SiegeUltimatum GetToNeutralPlanetUltimatum() => ref ObjectState.ToNeutralPlanetUltimatum;
@@ -46,9 +46,9 @@ namespace Kugushev.Scripts.Mission.Models.Effects
 
         protected override void OnClear(State state)
         {
-            state.siegeDamage.Dispose();
-            state.fightDamage.Dispose();
-            state.fightProtection.Dispose();
+            state.SiegeDamage.Dispose();
+            state.FightDamage.Dispose();
+            state.FightProtection.Dispose();
         }
     }
 }

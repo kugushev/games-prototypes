@@ -4,7 +4,6 @@ using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.Models

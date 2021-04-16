@@ -4,7 +4,6 @@ using Kugushev.Scripts.Game.Events;
 using Kugushev.Scripts.Game.Models;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.Game.Widgets
 {

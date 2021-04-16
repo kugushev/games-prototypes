@@ -2,7 +2,6 @@
 using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Interfaces;
 using UnityEngine;
 

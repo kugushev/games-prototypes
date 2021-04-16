@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.App.Enums;
-using UnityEngine;
 
 namespace Kugushev.Scripts.App.ValueObjects
 {
