@@ -48,7 +48,9 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
 
             var planet = new Planet(ScriptableObject.CreateInstance<ObjectsPool>());
 
-            planet.SetState(new Planet.State(faction, default, production, default, default, default!,
+            var eventsCollector = ScriptableObject.CreateInstance<MissionEventsCollector>();
+
+            planet.SetState(new Planet.State(faction, default, production, default, default, eventsCollector,
                 planetarySystemProperties, power));
 
             return planet;

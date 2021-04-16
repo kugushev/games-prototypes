@@ -78,11 +78,11 @@ namespace Kugushev.Scripts.Game.Models
 
         public void ApplyIncome()
         {
-            if (ObjectState.Budget <= 0)
-            {
-                ObjectState.Budget += GameConstants.PoliticianIncome;
-                return;
-            }
+            // if (ObjectState.Budget <= 0)
+            // {
+            //     ObjectState.Budget += GameConstants.PoliticianIncome;
+            //     return;
+            // }
 
             var range = Random.Range(0f, 1f);
             if (range > ObjectState.IncomeProbability.Amount)
