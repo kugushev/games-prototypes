@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Mission.Utils
     public class MissionEventsCollector : ScriptableObject
     {
         private const int Capacity = 128;
-        private Stopwatch _stopwatch;
+        private Stopwatch? _stopwatch;
 
         public List<PlanetCaptured> PlanetCaptured { get; } = new List<PlanetCaptured>(Capacity);
         public List<ArmyDestroyedInFight> ArmyDestroyedInFight { get; } = new List<ArmyDestroyedInFight>(Capacity);
@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Mission.Utils
         public List<ArmySent> ArmySent { get; } = new List<ArmySent>(Capacity);
         public List<ArmyArrived> ArmyArrived { get; } = new List<ArmyArrived>(Capacity);
 
-        public TimeSpan Elapsed => _stopwatch.Elapsed;
+        public TimeSpan Elapsed => _stopwatch?.Elapsed ?? TimeSpan.Zero;
 
         public void Start()
         {
@@ -30,8 +30,8 @@ namespace Kugushev.Scripts.Mission.Utils
 
         public void Stop()
         {
-            _stopwatch.Stop();
-            _stopwatch.Reset();
+            _stopwatch?.Stop();
+            _stopwatch?.Reset();
         }
 
         public void Cleanup()

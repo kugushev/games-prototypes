@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Enums;
@@ -30,7 +29,7 @@ namespace Kugushev.Scripts.Mission.Models
             public ConflictParty Red;
             public Faction PlayerFaction;
             public ExecutionResult? ExecutionResult;
-            [CanBeNull] public DebriefingSummary DebriefingSummary;
+            public DebriefingSummary? DebriefingSummary;
         }
 
         public MissionModel(ObjectsPool objectsPool) : base(objectsPool)
@@ -53,7 +52,7 @@ namespace Kugushev.Scripts.Mission.Models
             set => ObjectState.ExecutionResult = value;
         }
 
-        public DebriefingSummary DebriefingSummary
+        public DebriefingSummary? DebriefingSummary
         {
             get => ObjectState.DebriefingSummary;
             set => ObjectState.DebriefingSummary = value;
@@ -61,7 +60,7 @@ namespace Kugushev.Scripts.Mission.Models
 
         protected override void OnClear(State state)
         {
-            state.PlanetarySystem?.Dispose();
+            state.PlanetarySystem.Dispose();
             state.Green.Dispose();
             state.Red.Dispose();
         }

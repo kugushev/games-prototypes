@@ -15,23 +15,23 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions
 {
     public abstract class BaseMissionTestingManager : BaseManager<MissionModel>
     {
-        [SerializeField] protected ObjectsPool objectsPool;
-        [SerializeField] private MissionModelProvider modelProvider;
+        [SerializeField] protected ObjectsPool? objectsPool;
+        [SerializeField] private MissionModelProvider? modelProvider;
 
         [Header("Planetary System")] [SerializeField]
-        private PlanetarySystemGenerator planetarySystemGenerator;
+        private PlanetarySystemGenerator? planetarySystemGenerator;
 
         [Header("Mission Related Assets")] [SerializeField]
         private Faction playerFaction = Faction.Green;
 
-        [SerializeField] private PlayerPropertiesService playerPropertiesService;
-        [SerializeField] protected MissionEventsCollector eventsCollector;
+        [SerializeField] private PlayerPropertiesService? playerPropertiesService;
+        [SerializeField] protected MissionEventsCollector? eventsCollector;
 
-        [SerializeField] private Fleet greenFleet;
-        [SerializeField] private Fleet redFleet;
+        [SerializeField] private Fleet? greenFleet;
+        [SerializeField] private Fleet? redFleet;
 
         public static MissionParameters? MissionInfo { get; set; }
-        public static MissionModel MissionModel { get; private set; }
+        public static MissionModel? MissionModel { get; private set; }
 
         protected override MissionModel InitRootModel()
         {
@@ -41,27 +41,27 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions
             MissionInfo = null;
 
             var (planetarySystemProperties, fleetProperties) =
-                playerPropertiesService.GetPlayerProperties(playerFaction, missionInfo);
+                playerPropertiesService!.GetPlayerProperties(playerFaction, missionInfo);
 
             switch (playerFaction)
             {
                 case Faction.Green:
-                    greenFleet.SetFleetProperties(fleetProperties);
+                    greenFleet!.SetFleetProperties(fleetProperties);
                     break;
                 case Faction.Red:
-                    redFleet.SetFleetProperties(fleetProperties);
+                    redFleet!.SetFleetProperties(fleetProperties);
                     break;
             }
 
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionInfo.MissionInfo,
+            var planetarySystem = planetarySystemGenerator!.CreatePlanetarySystem(missionInfo.MissionInfo,
                 Faction.Green, planetarySystemProperties);
-            var green = new ConflictParty(Faction.Green, greenFleet, GreenCommander);
-            var red = new ConflictParty(Faction.Red, redFleet, RedCommander);
+            var green = new ConflictParty(Faction.Green, greenFleet!, GreenCommander);
+            var red = new ConflictParty(Faction.Red, redFleet!, RedCommander);
 
-            var model = objectsPool.GetObject<MissionModel, MissionModel.State>(
+            var model = objectsPool!.GetObject<MissionModel, MissionModel.State>(
                 new MissionModel.State(missionInfo, planetarySystem, green, red, playerFaction));
 
-            modelProvider.Set(model);
+            modelProvider!.Set(model);
 
             MissionModel = model;
 
@@ -73,13 +73,13 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions
 
         protected override void OnStart()
         {
-            eventsCollector.Cleanup();
+            eventsCollector!.Cleanup();
         }
 
         protected override void Dispose()
         {
-            eventsCollector.Cleanup();
-            modelProvider.Cleanup();
+            eventsCollector!.Cleanup();
+            modelProvider!.Cleanup();
             RootModel.Dispose();
         }
     }

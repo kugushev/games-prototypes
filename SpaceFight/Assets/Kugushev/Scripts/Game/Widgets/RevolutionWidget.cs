@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Game.Constants;
+﻿using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
 using UnityEngine;
@@ -8,9 +9,9 @@ namespace Kugushev.Scripts.Game.Widgets
 {
     public class RevolutionWidget : MonoBehaviour
     {
-        [SerializeField] private Button declareRevolutionButton;
+        [SerializeField] private Button? declareRevolutionButton;
 
-        private Parliament _model;
+        private Parliament? _model;
 
         public void SetUp(Parliament model)
         {
@@ -19,6 +20,8 @@ namespace Kugushev.Scripts.Game.Widgets
 
         public void UpdateView()
         {
+            Asserting.NotNull(_model, declareRevolutionButton);
+
             int loyalPolitics = 0;
             foreach (var politician in _model.Politicians)
                 if (politician.Relation == Relation.Loyalist)

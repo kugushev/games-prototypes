@@ -6,9 +6,11 @@ using UnityEngine.Serialization;
 
 namespace Kugushev.Scripts.MissionPresentation.PresentationModels
 {
-    public class FleetPresentationModel: BasePresentationModel
+    public class FleetPresentationModel : BasePresentationModel
     {
-        [FormerlySerializedAs("fleetManager")] [SerializeField] private Fleet fleet;
-        protected override IModel Model => fleet;
+        [FormerlySerializedAs("fleetManager")] [SerializeField]
+        private Fleet? fleet;
+
+        protected override IModel? Model => fleet;
     }
 }

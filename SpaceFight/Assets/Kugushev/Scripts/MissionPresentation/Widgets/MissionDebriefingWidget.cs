@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Mission.Enums;
+﻿using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Utils;
 using TMPro;
 using UnityEngine;
@@ -8,16 +9,19 @@ namespace Kugushev.Scripts.MissionPresentation.Widgets
 {
     public class MissionDebriefingWidget : MonoBehaviour
     {
-        [SerializeField] private MissionModelProvider missionModelProvider;
-        [SerializeField] private TextMeshProUGUI youWinText;
-        [SerializeField] private TextMeshProUGUI aiWinText;
-        [SerializeField] private TextMeshProUGUI tipText;
-        [SerializeField] private Transform achievementsPanel;
-        [SerializeField] private GameObject achievementCardPrefab;
-        [SerializeField] private ToggleGroup toggleGroup;
+        [SerializeField] private MissionModelProvider? missionModelProvider;
+        [SerializeField] private TextMeshProUGUI? youWinText;
+        [SerializeField] private TextMeshProUGUI? aiWinText;
+        [SerializeField] private TextMeshProUGUI? tipText;
+        [SerializeField] private Transform? achievementsPanel;
+        [SerializeField] private GameObject? achievementCardPrefab;
+        [SerializeField] private ToggleGroup? toggleGroup;
 
         private void Start()
         {
+            Asserting.NotNull(missionModelProvider, youWinText, aiWinText, tipText, achievementsPanel,
+                achievementCardPrefab, toggleGroup);
+
             if (missionModelProvider.TryGetModel(out var missionModel))
             {
                 if (missionModel.ExecutionResult == null)
@@ -39,12 +43,15 @@ namespace Kugushev.Scripts.MissionPresentation.Widgets
                 else
                     Debug.LogError($"Unexpected winner {missionModel.ExecutionResult.Value.Winner}");
 
-                foreach (var perk in missionModel.DebriefingSummary.AllPerks)
-                {
-                    var go = Instantiate(achievementCardPrefab, achievementsPanel);
-                    var widget = go.GetComponent<PerkCardWidget>();
-                    widget.SetUp(perk.Info, missionModel.DebriefingSummary, toggleGroup);
-                }
+                if (missionModel.DebriefingSummary != null)
+                    foreach (var perk in missionModel.DebriefingSummary.AllPerks)
+                    {
+                        var go = Instantiate(achievementCardPrefab, achievementsPanel);
+                        var widget = go.GetComponent<PerkCardWidget>();
+                        widget.SetUp(perk.Info, missionModel.DebriefingSummary, toggleGroup);
+                    }
+                else
+                    Debug.LogError("Debriefing summary is null");
             }
         }
     }

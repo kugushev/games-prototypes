@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
-using Kugushev.Scripts.Common;
+﻿using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Models.Abstractions;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
@@ -14,21 +14,23 @@ namespace Kugushev.Scripts.Mission.Player
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "OrdersManager")]
     public class OrdersManager : ScriptableObject, IModel, ICommander
     {
-        [SerializeField] private ObjectsPool pool;
+        [SerializeField] private ObjectsPool? pool;
         [SerializeField] private float gapBetweenWaypoints = GameplayConstants.GapBetweenWaypoints;
         private readonly TempState _state = new TempState();
 
         private class TempState
         {
-            public Order CurrentOrder;
-            public Planet HighlightedPlanet;
-            public Fleet Fleet;
+            public Order? CurrentOrder;
+            public Planet? HighlightedPlanet;
+            public Fleet? Fleet;
         }
 
-        [CanBeNull] public Order CurrentOrder => _state.CurrentOrder;
+        public Order? CurrentOrder => _state.CurrentOrder;
 
         public void HandlePlanetTouch(Planet planet)
         {
+            Asserting.NotNull(_state.Fleet);
+            
             if (_state.CurrentOrder == null)
             {
                 if (planet.Faction == Faction.Green)
@@ -53,6 +55,8 @@ namespace Kugushev.Scripts.Mission.Player
 
         public void HandleSelect(Percentage allocatedPower)
         {
+            Asserting.NotNull(pool);
+            
             if (_state.HighlightedPlanet != null)
             {
                 DropCurrentOrder();

@@ -14,14 +14,14 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
     public class MissionExecutionTestingManager : BaseMissionTestingManager
     {
         [Header(nameof(MissionExecutionTestingManager))] [SerializeField]
-        private SimpleAI greenAi;
+        private SimpleAI? greenAi;
 
-        [SerializeField] private SimpleAI redAi;
+        [SerializeField] private SimpleAI? redAi;
 
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             MissionModel rootModel)
         {
-            var executionState = new ExecutionState(rootModel, eventsCollector);
+            var executionState = new ExecutionState(rootModel, eventsCollector!);
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
                 {
@@ -40,7 +40,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
         }
 
 
-        protected override ICommander GreenCommander => greenAi;
-        protected override ICommander RedCommander => redAi;
+        protected override ICommander GreenCommander => greenAi!;
+        protected override ICommander RedCommander => redAi!;
     }
 }

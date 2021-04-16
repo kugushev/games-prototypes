@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.Models;
@@ -9,38 +10,38 @@ namespace Kugushev.Scripts.Game.Widgets
 {
     public class PoliticianDetailsWidget : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI nameLabel;
+        [SerializeField] private TextMeshProUGUI? nameLabel;
 
-        [Header("Relation")] [SerializeField] private TextMeshProUGUI relationValueLabel;
-        [SerializeField] private TextMeshProUGUI relationTip;
-        [SerializeField] private GameObject relationEnemy;
-        [SerializeField] private GameObject relationHater;
-        [SerializeField] private GameObject relationIndifferent;
-        [SerializeField] private GameObject relationPartner;
-        [SerializeField] private GameObject relationLoyalist;
+        [Header("Relation")] [SerializeField] private TextMeshProUGUI? relationValueLabel;
+        [SerializeField] private TextMeshProUGUI? relationTip;
+        [SerializeField] private GameObject? relationEnemy;
+        [SerializeField] private GameObject? relationHater;
+        [SerializeField] private GameObject? relationIndifferent;
+        [SerializeField] private GameObject? relationPartner;
+        [SerializeField] private GameObject? relationLoyalist;
 
-        [Header("Budget")] [SerializeField] private TextMeshProUGUI budgetValueLabel;
-        [SerializeField] private GameObject budgetIsReadyToInvest;
-        [SerializeField] private GameObject budgetIsNotReadyToInvest;
+        [Header("Budget")] [SerializeField] private TextMeshProUGUI? budgetValueLabel;
+        [SerializeField] private GameObject? budgetIsReadyToInvest;
+        [SerializeField] private GameObject? budgetIsNotReadyToInvest;
 
-        [Header("Traits")] [SerializeField] private TextMeshProUGUI traitBusinessValue;
-        [SerializeField] private TextMeshProUGUI traitGreedValue;
-        [SerializeField] private TextMeshProUGUI traitLustValue;
-        [SerializeField] private TextMeshProUGUI traitBruteValue;
-        [SerializeField] private TextMeshProUGUI traitVanityValue;
+        [Header("Traits")] [SerializeField] private TextMeshProUGUI? traitBusinessValue;
+        [SerializeField] private TextMeshProUGUI? traitGreedValue;
+        [SerializeField] private TextMeshProUGUI? traitLustValue;
+        [SerializeField] private TextMeshProUGUI? traitBruteValue;
+        [SerializeField] private TextMeshProUGUI? traitVanityValue;
 
-        [Header("Perks")] [SerializeField] private TextMeshProUGUI perkNameLabel;
-        [SerializeField] private TextMeshProUGUI perkLvl1Requirement;
-        [SerializeField] private TextMeshProUGUI perkLvl1Effect;
-        [SerializeField] private TextMeshProUGUI perkLvl2Requirement;
-        [SerializeField] private TextMeshProUGUI perkLvl2Effect;
-        [SerializeField] private TextMeshProUGUI perkLvl3Requirement;
-        [SerializeField] private TextMeshProUGUI perkLvl3Effect;
+        [Header("Perks")] [SerializeField] private TextMeshProUGUI? perkNameLabel;
+        [SerializeField] private TextMeshProUGUI? perkLvl1Requirement;
+        [SerializeField] private TextMeshProUGUI? perkLvl1Effect;
+        [SerializeField] private TextMeshProUGUI? perkLvl2Requirement;
+        [SerializeField] private TextMeshProUGUI? perkLvl2Effect;
+        [SerializeField] private TextMeshProUGUI? perkLvl3Requirement;
+        [SerializeField] private TextMeshProUGUI? perkLvl3Effect;
 
         const string UnknownTrait = "?";
 
-        private Politician _model;
-        
+        private Politician? _model;
+
         public void Select(Politician model)
         {
             gameObject.SetActive(true);
@@ -56,19 +57,24 @@ namespace Kugushev.Scripts.Game.Widgets
 
         public void UpdateView()
         {
-            if (!IsModelValid())
+            Asserting.NotNull(nameLabel);
+
+            if (!IsModelValid(out var model))
                 return;
 
-            nameLabel.text = _model.Character.FullName;
-            UpdateRelationView();
-            UpdateBudgetView();
-            UpdateTraitsView();
-            UpdatePerksView();
+            nameLabel.text = model.Character.FullName;
+            UpdateRelationView(model);
+            UpdateBudgetView(model);
+            UpdateTraitsView(model);
+            UpdatePerksView(model);
         }
 
-        private void UpdateRelationView()
+        private void UpdateRelationView(Politician model)
         {
-            relationValueLabel.text = StringBag.FromInt(_model.RelationLevel);
+            Asserting.NotNull(relationValueLabel, relationEnemy, relationHater, relationIndifferent, relationPartner,
+                relationLoyalist, relationTip);
+
+            relationValueLabel.text = StringBag.FromInt(model.RelationLevel);
 
             relationEnemy.SetActive(false);
             relationHater.SetActive(false);
@@ -76,7 +82,7 @@ namespace Kugushev.Scripts.Game.Widgets
             relationPartner.SetActive(false);
             relationLoyalist.SetActive(false);
 
-            switch (_model.Relation)
+            switch (model.Relation)
             {
                 case Relation.Enemy:
                     relationEnemy.SetActive(true);
@@ -99,50 +105,59 @@ namespace Kugushev.Scripts.Game.Widgets
                     relationTip.text = "Will vote for you";
                     break;
                 default:
-                    Debug.LogError($"Unexpected relation {_model.Relation}");
+                    Debug.LogError($"Unexpected relation {model.Relation}");
                     break;
             }
         }
 
-        private void UpdateBudgetView()
+        private void UpdateBudgetView(Politician model)
         {
-            budgetValueLabel.text = StringBag.FromInt(_model.Budget);
-            budgetIsReadyToInvest.SetActive(_model.IsReadyToInvest);
-            budgetIsNotReadyToInvest.SetActive(!_model.IsReadyToInvest);
+            Asserting.NotNull(budgetValueLabel, budgetIsReadyToInvest, budgetIsNotReadyToInvest);
+
+            budgetValueLabel.text = StringBag.FromInt(model.Budget);
+            budgetIsReadyToInvest.SetActive(model.IsReadyToInvest);
+            budgetIsNotReadyToInvest.SetActive(!model.IsReadyToInvest);
         }
 
-        private void UpdateTraitsView()
+        private void UpdateTraitsView(Politician model)
         {
-            UpdateTraitView(traitBusinessValue, _model.TraitsStatus.Business, _model.Traits.Business);
-            UpdateTraitView(traitGreedValue, _model.TraitsStatus.Greed, _model.Traits.Greed);
-            UpdateTraitView(traitLustValue, _model.TraitsStatus.Lust, _model.Traits.Lust);
-            UpdateTraitView(traitBruteValue, _model.TraitsStatus.Brute, _model.Traits.Brute);
-            UpdateTraitView(traitVanityValue, _model.TraitsStatus.Vanity, _model.Traits.Vanity);
+            Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
+
+            UpdateTraitView(traitBusinessValue, model.TraitsStatus.Business, model.Traits.Business);
+            UpdateTraitView(traitGreedValue, model.TraitsStatus.Greed, model.Traits.Greed);
+            UpdateTraitView(traitLustValue, model.TraitsStatus.Lust, model.Traits.Lust);
+            UpdateTraitView(traitBruteValue, model.TraitsStatus.Brute, model.Traits.Brute);
+            UpdateTraitView(traitVanityValue, model.TraitsStatus.Vanity, model.Traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, bool revealed, int value) =>
                 label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;
         }
 
-        private void UpdatePerksView()
+        private void UpdatePerksView(Politician model)
         {
-            perkNameLabel.text = _model.Character.PerkLvl1.Caption;
+            Asserting.NotNull(perkNameLabel, perkLvl1Requirement, perkLvl1Effect, perkLvl2Requirement, perkLvl2Effect,
+                perkLvl3Requirement, perkLvl3Effect);
 
-            perkLvl1Requirement.text = _model.Character.PerkLvl1.Requirement;
-            perkLvl1Effect.text = _model.Character.PerkLvl1.Effect;
-            perkLvl2Requirement.text = _model.Character.PerkLvl2.Requirement;
-            perkLvl2Effect.text = _model.Character.PerkLvl2.Effect;
-            perkLvl3Requirement.text = _model.Character.PerkLvl3.Requirement;
-            perkLvl3Effect.text = _model.Character.PerkLvl3.Effect;
+            perkNameLabel.text = model.Character.PerkLvl1.Caption;
+
+            perkLvl1Requirement.text = model.Character.PerkLvl1.Requirement;
+            perkLvl1Effect.text = model.Character.PerkLvl1.Effect;
+            perkLvl2Requirement.text = model.Character.PerkLvl2.Requirement;
+            perkLvl2Effect.text = model.Character.PerkLvl2.Effect;
+            perkLvl3Requirement.text = model.Character.PerkLvl3.Requirement;
+            perkLvl3Effect.text = model.Character.PerkLvl3.Effect;
         }
 
-        private bool IsModelValid()
+        private bool IsModelValid([NotNullWhen(true)] out Politician? model)
         {
             if (_model?.Active != true)
             {
                 Debug.LogError($"Model is not active: {_model}");
+                model = null;
                 return false;
             }
 
+            model = _model;
             return true;
         }
     }

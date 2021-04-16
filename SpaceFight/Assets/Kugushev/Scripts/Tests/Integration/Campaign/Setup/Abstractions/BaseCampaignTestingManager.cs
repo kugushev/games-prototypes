@@ -5,6 +5,7 @@ using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
@@ -14,13 +15,15 @@ namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup.Abstractions
 {
     internal abstract class BaseCampaignTestingManager : BaseManager<CampaignModel>
     {
-        [SerializeField] private ObjectsPool objectsPool;
-        [SerializeField] private CampaignModelProvider modelProvider;
+        [SerializeField] private ObjectsPool? objectsPool;
+        [SerializeField] private CampaignModelProvider? modelProvider;
 
         public static int? Seed { get; set; }
 
         protected override CampaignModel InitRootModel()
         {
+            Asserting.NotNull(objectsPool, modelProvider);
+
             var campaignInfo = new CampaignInfo(Seed ?? DateTime.UtcNow.Millisecond,
                 null, PerkIdHelper.AllPerks, false, true);
 
@@ -44,7 +47,8 @@ namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup.Abstractions
 
         protected override void Dispose()
         {
-            modelProvider.Cleanup();
+            if (modelProvider is { })
+                modelProvider.Cleanup();
         }
     }
 }

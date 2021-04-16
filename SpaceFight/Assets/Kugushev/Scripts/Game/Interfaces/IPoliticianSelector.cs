@@ -4,6 +4,6 @@ namespace Kugushev.Scripts.Game.Interfaces
 {
     public interface IPoliticianSelector
     {
-        Politician SelectedPolitician { get; }
+        Politician? SelectedPolitician { get; }
     }
 }

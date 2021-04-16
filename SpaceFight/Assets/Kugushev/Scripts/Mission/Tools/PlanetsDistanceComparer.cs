@@ -7,8 +7,8 @@ namespace Kugushev.Scripts.Mission.Tools
 {
     public class PlanetsDistanceComparer : IComparer<Planet>
     {
-        private Planet _rootPlanet;
-        private Pathfinder _pathfinder;
+        private Planet? _rootPlanet;
+        private Pathfinder? _pathfinder;
         private float _armyRadius;
 
         public void Setup(Planet rootPlanet, Pathfinder pathfinder, float armyRadius)
@@ -24,7 +24,7 @@ namespace Kugushev.Scripts.Mission.Tools
             _pathfinder = null;
         }
 
-        public int Compare(Planet x, Planet y)
+        public int Compare(Planet? x, Planet? y)
         {
             if (_pathfinder == null || _rootPlanet == null)
             {
@@ -35,9 +35,9 @@ namespace Kugushev.Scripts.Mission.Tools
             if (x == null || y == null)
                 return 0;
 
-            var validX = _pathfinder.FindPath(_rootPlanet.Position, x.Position, _armyRadius, out var lengthX);
-            var validY = _pathfinder.FindPath(_rootPlanet.Position, y.Position, _armyRadius, out var lengthY);
-            
+            var validX = _pathfinder.FindPathLength(_rootPlanet.Position, x.Position, _armyRadius, out var lengthX);
+            var validY = _pathfinder.FindPathLength(_rootPlanet.Position, y.Position, _armyRadius, out var lengthY);
+
             if (validX && validY)
                 return lengthX - lengthY;
 

@@ -1,6 +1,6 @@
 ﻿using System;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Interfaces;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
@@ -15,12 +15,12 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(SuicideAI))]
     public class SuicideAI : ScriptableObject, IAIAgent, ICommander
     {
-        [SerializeField] private MissionModelProvider missionModelProvider;
-        [SerializeField] private Pathfinder pathfinder;
-        [SerializeField] private ObjectsPool objectsPool;
+        [SerializeField] private MissionModelProvider? missionModelProvider;
+        [SerializeField] private Pathfinder? pathfinder;
+        [SerializeField] private ObjectsPool? objectsPool;
         private const float ArmyRadius = 5f * 0.02f;
 
-        [NonSerialized] private Fleet _fleet;
+        [NonSerialized] private Fleet? _fleet;
         [NonSerialized] private Faction _agentFaction;
 
         public bool Surrendered => false;
@@ -39,6 +39,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
         public void Act()
         {
+            Asserting.NotNull(missionModelProvider);
             if (missionModelProvider.TryGetModel(out var missionModel))
             {
                 var planetarySystem = missionModel.PlanetarySystem;
@@ -56,6 +57,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
             if (to == null)
                 return;
 
+            Asserting.NotNull(objectsPool, pathfinder, _fleet);
+
             var order = objectsPool.GetObject<Order, Order.State>(new Order.State(from, new Percentage(1f)));
 
             // go to sun
@@ -68,8 +71,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
             _fleet.CommitOrder(order, to);
         }
 
-        [CanBeNull]
-        private Planet FindNeutralOrEnemyPlanet(PlanetarySystem planetarySystem)
+        private Planet? FindNeutralOrEnemyPlanet(PlanetarySystem planetarySystem)
         {
             foreach (var planet in planetarySystem.Planets)
             {

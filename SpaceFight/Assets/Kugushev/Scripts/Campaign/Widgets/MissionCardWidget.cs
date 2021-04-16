@@ -11,30 +11,32 @@ namespace Kugushev.Scripts.Campaign.Widgets
 {
     public class MissionCardWidget : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI seedText;
-        [SerializeField] private Toggle toggle;
+        [SerializeField] private TextMeshProUGUI? seedText;
+        [SerializeField] private Toggle? toggle;
 
         [Header("Background Colors")] [SerializeField]
-        private Image background;
+        private Image? background;
 
         [SerializeField] private Color normal;
         [SerializeField] private Color hard;
         [SerializeField] private Color insane;
 
-        [Header("Reward")] [SerializeField] private TextMeshProUGUI rewardCaption;
-        [SerializeField] private TextMeshProUGUI intelValue;
+        [Header("Reward")] [SerializeField] private TextMeshProUGUI? rewardCaption;
+        [SerializeField] private TextMeshProUGUI? intelValue;
 
-        [SerializeField] private TextMeshProUGUI traitBusinessValue;
-        [SerializeField] private TextMeshProUGUI traitGreedValue;
-        [SerializeField] private TextMeshProUGUI traitLustValue;
-        [SerializeField] private TextMeshProUGUI traitBruteValue;
-        [SerializeField] private TextMeshProUGUI traitVanityValue;
+        [SerializeField] private TextMeshProUGUI? traitBusinessValue;
+        [SerializeField] private TextMeshProUGUI? traitGreedValue;
+        [SerializeField] private TextMeshProUGUI? traitLustValue;
+        [SerializeField] private TextMeshProUGUI? traitBruteValue;
+        [SerializeField] private TextMeshProUGUI? traitVanityValue;
 
         private MissionInfo _model;
-        private MissionSelection _rootModel;
+        private MissionSelection? _rootModel;
 
         public void SetUp(MissionInfo model, MissionSelection rootModel, ToggleGroup toggleGroup)
         {
+            Asserting.NotNull(toggle);
+
             _model = model;
             _rootModel = rootModel;
             toggle.group = toggleGroup;
@@ -47,6 +49,8 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         private void UpdateView()
         {
+            Asserting.NotNull(seedText, background);
+
             seedText.text = StringBag.FromInt(_model.Seed);
             switch (_model.Difficulty)
             {
@@ -69,6 +73,9 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         private void UpdateRewardView(PoliticalAction reward)
         {
+            Asserting.NotNull(rewardCaption, intelValue, traitBusinessValue, traitGreedValue, traitLustValue,
+                traitBruteValue, traitVanityValue);
+
             rewardCaption.text = reward.Caption;
             intelValue.text = StringBag.FromInt(reward.Intel);
 
@@ -83,6 +90,8 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         public void OnToggleChanged(bool selected)
         {
+            Asserting.NotNull(_rootModel);
+
             if (selected)
                 _rootModel.SelectedMission = _model;
             else if (_rootModel.SelectedMission == _model)

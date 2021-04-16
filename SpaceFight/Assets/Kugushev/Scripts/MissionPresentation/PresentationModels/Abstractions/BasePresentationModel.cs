@@ -5,11 +5,11 @@ namespace Kugushev.Scripts.MissionPresentation.PresentationModels.Abstractions
 {
     public abstract class BasePresentationModel : MonoBehaviour
     {
-        protected abstract IModel Model { get; }
+        protected abstract IModel? Model { get; }
 
         public virtual bool IsInPrefab => false;
 
-        public T GetModelAs<T>()
+        public T? GetModelAs<T>() where T : class
         {
             if (Model is T result)
                 return result;

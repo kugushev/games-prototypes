@@ -10,12 +10,12 @@ namespace Kugushev.Scripts.Game.Widgets
 {
     public class CampaignPreparationWidget : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI budgetSponsors;
-        [SerializeField] private Button addSponsorButton;
-        [SerializeField] private Button removeSponsorButton;
-        [SerializeField] private TextMeshProUGUI sponsorsList;
+        [SerializeField] private TextMeshProUGUI? budgetSponsors;
+        [SerializeField] private Button? addSponsorButton;
+        [SerializeField] private Button? removeSponsorButton;
+        [SerializeField] private TextMeshProUGUI? sponsorsList;
 
-        private CampaignPreparation _model;
+        private CampaignPreparation? _model;
         private readonly StringBuilder _sponsorsListBuilder = new StringBuilder();
 
         public void SetUp(CampaignPreparation model)
@@ -25,7 +25,9 @@ namespace Kugushev.Scripts.Game.Widgets
 
         public void UpdateView()
         {
-            if (_model == null || !_model.Active)
+            Asserting.NotNull(budgetSponsors);
+            
+            if (_model is null || !_model.Active)
             {
                 Debug.LogError($"Model is not valid {_model}");
                 return;
@@ -33,19 +35,22 @@ namespace Kugushev.Scripts.Game.Widgets
 
             budgetSponsors.text = StringBag.FromInt(_model.CampaignBudget - GameConstants.PlayerCampaignBudget);
 
-            UpdateSponsorsView();
+            UpdateSponsorsView(_model);
         }
 
-        private void UpdateSponsorsView()
+        private void UpdateSponsorsView(CampaignPreparation model)
         {
+            Asserting.NotNull(sponsorsList, addSponsorButton, removeSponsorButton);
+            
             // todo: pool this data to avoid allocations
             _sponsorsListBuilder.Clear();
-            foreach (var sponsor in _model.Sponsors)
+            foreach (var sponsor in model.Sponsors)
                 _sponsorsListBuilder.AppendLine(sponsor.Character.FullName);
+
             sponsorsList.text = _sponsorsListBuilder.ToString();
 
-            var selectedIsSponsor = _model.SelectedPoliticianIsAlreadySponsor;
-            addSponsorButton.interactable = _model.SelectedPoliticianIsReadyToInvest && !selectedIsSponsor;
+            var selectedIsSponsor = model.SelectedPoliticianIsAlreadySponsor;
+            addSponsorButton.interactable = model.SelectedPoliticianIsReadyToInvest && !selectedIsSponsor;
             removeSponsorButton.interactable = selectedIsSponsor;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Constants;
@@ -13,9 +14,9 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(ParliamentGenerator))]
     public class ParliamentGenerator : ScriptableObject
     {
-        [SerializeField] private ObjectsPool objectsPool;
+        [SerializeField] private ObjectsPool? objectsPool;
 
-        [SerializeField] private PoliticianCharacter[] characters;
+        [SerializeField] private PoliticianCharacter[]? characters;
 
         [Header("Rules")] [SerializeField] private float minIncomeProbability = 0.5f;
         [SerializeField] [Range(0.5f, 1f)] private float maxIncomeProbability = 1f;
@@ -28,6 +29,8 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
 
         public Parliament Generate(int seed)
         {
+            Asserting.NotNull(objectsPool);
+            
             Random.InitState(seed);
 
             var parliament = objectsPool.GetObject<Parliament, Parliament.State>(new Parliament.State());
@@ -47,6 +50,8 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
 
         private Politician CreatePolitician()
         {
+            Asserting.NotNull(characters, objectsPool);
+            
             int index = NextRandomIndex();
             var character = characters[index];
 
@@ -79,6 +84,8 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
 
         private void FillIndexesBuffer()
         {
+            Asserting.NotNull(characters);
+            
             _indexesBuffer.Clear();
             for (int i = 0; i < characters.Length; i++)
                 _indexesBuffer.Add(i);

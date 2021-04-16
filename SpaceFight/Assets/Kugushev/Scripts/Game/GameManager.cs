@@ -2,6 +2,7 @@
 using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Models;
@@ -15,30 +16,32 @@ namespace Kugushev.Scripts.Game
 {
     public class GameManager : BaseManager<GameModel>
     {
-        [SerializeField] private ObjectsPool objectsPool;
-        [SerializeField] private GameModelProvider gameModelProvider;
-        [SerializeField] private GameSceneParametersPipeline gameSceneParametersPipeline;
+        [SerializeField] private ObjectsPool? objectsPool;
+        [SerializeField] private GameModelProvider? gameModelProvider;
+        [SerializeField] private GameSceneParametersPipeline? gameSceneParametersPipeline;
 
-        [SerializeField] private ParliamentGenerator parliamentGenerator;
+        [SerializeField] private ParliamentGenerator? parliamentGenerator;
 
 
         // ReSharper disable once NotAccessedField.Local
-        [SerializeField] private PoliticalActionsRepository tempPoliticalActionsRepository;
+        [SerializeField] private PoliticalActionsRepository? tempPoliticalActionsRepository;
 
         [Header("States and Transitions")] [SerializeField]
-        private ExitState gameExitState;
+        private ExitState? gameExitState;
 
-        [SerializeField] private ExitState onCampaignExitTransition;
-        [SerializeField] private TriggerTransition toCampaignTransition;
-        [SerializeField] private TriggerTransition toRevolutionTransition;
-        [SerializeField] private TriggerTransition toMainMenuTransition;
+        [SerializeField] private ExitState? onCampaignExitTransition;
+        [SerializeField] private TriggerTransition? toCampaignTransition;
+        [SerializeField] private TriggerTransition? toRevolutionTransition;
+        [SerializeField] private TriggerTransition? toMainMenuTransition;
 
 
-        [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
-        [SerializeField] private CampaignSceneResultPipeline campaignSceneResultPipeline;
+        [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
+        [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
 
         protected override GameModel InitRootModel()
         {
+            Asserting.NotNull(gameSceneParametersPipeline, parliamentGenerator, objectsPool, gameModelProvider);
+
             var info = gameSceneParametersPipeline.Get();
 
             var parliament = parliamentGenerator.Generate(info.Seed);
@@ -54,6 +57,9 @@ namespace Kugushev.Scripts.Game
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             GameModel rootModel)
         {
+            Asserting.NotNull(campaignSceneParametersPipeline, campaignSceneResultPipeline, toCampaignTransition,
+                toRevolutionTransition, onCampaignExitTransition, toMainMenuTransition, gameExitState);
+
             var politicsState = new PoliticsState(rootModel);
             var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline,
                 campaignSceneResultPipeline);
@@ -91,7 +97,8 @@ namespace Kugushev.Scripts.Game
 
         protected override void Dispose()
         {
-            gameModelProvider.Cleanup();
+            if (gameModelProvider is { })
+                gameModelProvider.Cleanup();
         }
     }
 }

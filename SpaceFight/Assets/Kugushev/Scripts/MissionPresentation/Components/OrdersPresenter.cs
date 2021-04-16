@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
@@ -10,10 +11,12 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 {
     public class OrdersPresenter : BaseComponent<OrdersManager>
     {
-        [SerializeField] private GameObject waypointPrefab;
+        [SerializeField] private GameObject? waypointPrefab;
 
         private readonly Queue<GameObject> _waypointsPool = new Queue<GameObject>(GameplayConstants.OrderPathCapacity);
-        private readonly List<GameObject> _displayedWaypoints = new List<GameObject>(GameplayConstants.OrderPathCapacity);
+
+        private readonly List<GameObject> _displayedWaypoints =
+            new List<GameObject>(GameplayConstants.OrderPathCapacity);
 
         protected override void OnAwake()
         {
@@ -64,6 +67,8 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private GameObject GetWaypoint(Vector3 position)
         {
+            Asserting.NotNull(waypointPrefab, transform);
+
             var waypoint = _waypointsPool.Count > 0
                 ? _waypointsPool.Dequeue()
                 : Instantiate(waypointPrefab, transform);

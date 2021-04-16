@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.Utils.ValuesProcessing;
 using Kugushev.Scripts.Mission.Enums;
@@ -15,14 +14,14 @@ namespace Kugushev.Scripts.Mission.Models.Effects
             public Faction applicantFaction;
             public ValuePipeline<Planet> Production;
             public ValuePipeline<Planet> Damage;
-            [CanBeNull] public Func<float, bool> IsFreeRecruitment;
-            [CanBeNull] public Func<bool> GetExtraPlanetOnStart;
+            public Func<float, bool>? IsFreeRecruitment;
+            public Func<bool>? GetExtraPlanetOnStart;
 
             public State(Faction applicantFaction, ValuePipeline<Planet> production, ValuePipeline<Planet> damage)
             {
                 this.applicantFaction = applicantFaction;
-                this.Production = production;
-                this.Damage = damage;
+                Production = production;
+                Damage = damage;
                 IsFreeRecruitment = null;
                 GetExtraPlanetOnStart = null;
             }

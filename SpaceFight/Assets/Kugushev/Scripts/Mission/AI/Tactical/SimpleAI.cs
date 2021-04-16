@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Common.Interfaces;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
@@ -16,9 +17,9 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(SimpleAI))]
     public class SimpleAI : ScriptableObject, IAIAgent, ICommander
     {
-        [SerializeField] private MissionModelProvider missionModelProvider;
-        [SerializeField] private ObjectsPool objectsPool;
-        [SerializeField] private Pathfinder pathfinder;
+        [SerializeField] private MissionModelProvider? missionModelProvider;
+        [SerializeField] private ObjectsPool? objectsPool;
+        [SerializeField] private Pathfinder? pathfinder;
         [SerializeField] private int neighboursCount = 2;
         [SerializeField] private int minPowerToAct = 15;
         [SerializeField] private float recruitment = 0.75f;
@@ -29,7 +30,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
         private class TempState
         {
-            public Fleet Fleet;
+            public Fleet? Fleet;
             public Faction AgentFaction;
             public readonly List<Planet> NeighboursPlanetsBuffer = new List<Planet>(16);
             public readonly PlanetsDistanceComparer PlanetsDistanceComparer = new PlanetsDistanceComparer();
@@ -59,6 +60,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
         public void Act()
         {
+            Asserting.NotNull(missionModelProvider);
+
             if (missionModelProvider.TryGetModel(out var missionModel))
             {
                 var planetarySystem = missionModel.PlanetarySystem;
@@ -84,7 +87,7 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
             var weakestVictim = FindWeakest(planet, _state.NeighboursPlanetsBuffer,
                 faction => faction == _state.AgentFaction.GetOpposite() || faction == Faction.Neutral);
 
-            if (!ReferenceEquals(weakestVictim, null))
+            if (weakestVictim is { })
             {
                 if (planet.Power * DefaultRecruitment.Amount > weakestVictim.Power + 6)
                 {
@@ -96,25 +99,15 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
                 {
                     SendFleet(planet, weakestVictim);
                 }
-
-                // we're not sending reinforcements if have enemies
-                return;
             }
-
-            // send reinforcements (don't require)
-            // var weakestAllay = FindWeakest(planet, _state.NeighboursPlanetsBuffer,
-            //     faction => faction == _state.AgentFaction);
-            // if (!ReferenceEquals(weakestAllay, null))
-            // {
-            //     // todo: send reinforcements based on Random
-            //     SendFleet(planet, weakestAllay);
-            // }
 
             _state.NeighboursPlanetsBuffer.Clear();
         }
 
         private void SendFleet(Planet planet, Planet weakestVictim)
         {
+            Asserting.NotNull(objectsPool, pathfinder, _state.Fleet);
+
             var order = objectsPool.GetObject<Order, Order.State>(new Order.State(planet, DefaultRecruitment));
 
             var from = planet.Position;
@@ -132,10 +125,10 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
             }
         }
 
-        private static Planet FindWeakest(Planet exceptPlanet, IReadOnlyCollection<Planet> planets,
+        private static Planet? FindWeakest(Planet exceptPlanet, IReadOnlyCollection<Planet> planets,
             Predicate<Faction> predicate)
         {
-            Planet weakest = null;
+            Planet? weakest = null;
 
             foreach (var planet in planets)
             {
@@ -160,6 +153,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
             if (top > planetarySystem.Planets.Count - 1)
                 return;
 
+            Asserting.NotNull(pathfinder);
+
             // Prepare
             buffer.Clear();
             foreach (var planet in planetarySystem.Planets)
@@ -174,6 +169,8 @@ namespace Kugushev.Scripts.Mission.AI.Tactical
 
             // Sort
             buffer.Sort(comparer);
+            
+            comparer.TearDown();
         }
     }
 }

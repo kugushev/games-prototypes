@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.CodeAnalysis;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Utils
 {
     public abstract class ModelProvider<TModel> : ScriptableObject
         where TModel : class
     {
-        [SerializeReference] private TModel model;
+        [SerializeReference] private TModel? model;
 
-        public bool TryGetModel(out TModel result)
+        public bool TryGetModel([NotNullWhen(true)] out TModel? result)
         {
-            if (!ReferenceEquals(model, null))
+            if (model is { })
             {
                 result = model;
                 return true;
             }
-
             result = null;
             return false;
         }

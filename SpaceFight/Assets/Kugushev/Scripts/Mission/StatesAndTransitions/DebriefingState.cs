@@ -64,9 +64,15 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
                     _ => throw new ArgumentOutOfRangeException(nameof(Model.ExecutionResult.Value.Winner),
                         $"Unexpected winner {Model.ExecutionResult.Value.Winner}")
                 };
-                var reward = Model.DebriefingSummary.SelectedAchievement;
 
-                _missionSceneResultPipeline.Set(new MissionResult(playerWin, Model.Parameters.MissionInfo, reward));
+                if (Model.DebriefingSummary != null)
+                {
+                    var reward = Model.DebriefingSummary.SelectedAchievement;
+
+                    _missionSceneResultPipeline.Set(new MissionResult(playerWin, Model.Parameters.MissionInfo, reward));
+                }
+                else
+                    Debug.LogError("Reward is null");
             }
             else
                 Alert();

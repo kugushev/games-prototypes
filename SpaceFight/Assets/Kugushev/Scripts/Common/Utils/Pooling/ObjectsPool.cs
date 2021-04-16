@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Utils.Pooling
@@ -14,7 +13,7 @@ namespace Kugushev.Scripts.Common.Utils.Pooling
         private readonly Dictionary<Type, Queue<object>> _pools = new Dictionary<Type, Queue<object>>();
 
         private readonly Type[] _poolableObjectCtorParameters = {typeof(ObjectsPool)};
-        private object[] _poolableObjectCtorParametersValues;
+        private object[]? _poolableObjectCtorParametersValues;
         private readonly Dictionary<Type, ConstructorInfo> _constructors = new Dictionary<Type, ConstructorInfo>();
 
         public TObj GetObject<TObj, TState>(TState state)
@@ -47,14 +46,14 @@ namespace Kugushev.Scripts.Common.Utils.Pooling
                 _pools[type] = pool = new Queue<object>();
             pool.Enqueue(obj);
         }
-        
+
         private object InstantiateObject(Type type)
         {
             if (!_constructors.TryGetValue(type, out var ctor))
             {
-                ctor = FindCtor(type);
-                if (ctor != null)
-                    _constructors[type] = ctor;
+                var findCtor = FindCtor(type);
+                if (findCtor != null)
+                    ctor = _constructors[type] = findCtor;
                 else
                     throw new NotSupportedException($"Ctor of type {type} has not found");
             }
@@ -63,7 +62,6 @@ namespace Kugushev.Scripts.Common.Utils.Pooling
             return ctor.Invoke(_poolableObjectCtorParametersValues);
         }
 
-        [CanBeNull]
-        private ConstructorInfo FindCtor(Type type) => type.GetConstructor(_poolableObjectCtorParameters);
+        private ConstructorInfo? FindCtor(Type type) => type.GetConstructor(_poolableObjectCtorParameters);
     }
 }

@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using Kugushev.Scripts.App.Enums;
+﻿using Kugushev.Scripts.App.Enums;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Enums;
@@ -15,8 +14,8 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
     {
         public const float ArmyPower = 50f;
 
-        public static Army CreateArmy([CanBeNull] FleetPerks fleetPerks, Faction faction, float power = ArmyPower,
-            Planet targetPlanet = null)
+        public static Army CreateArmy(FleetPerks? fleetPerks, Faction faction, float power = ArmyPower,
+            Planet? targetPlanet = null)
         {
             const float magicNum = 42f;
 
@@ -49,7 +48,7 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
 
             var planet = new Planet(ScriptableObject.CreateInstance<ObjectsPool>());
 
-            planet.SetState(new Planet.State(faction, default, production, default, default, default,
+            planet.SetState(new Planet.State(faction, default, production, default, default, default!,
                 planetarySystemProperties, power));
 
             return planet;

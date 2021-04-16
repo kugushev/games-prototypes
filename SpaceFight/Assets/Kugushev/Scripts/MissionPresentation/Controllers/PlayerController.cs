@@ -1,5 +1,6 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Enums;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Player;
 using UnityEngine;
@@ -8,8 +9,8 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private OrdersManager leftOrders;
-        [SerializeField] private OrdersManager rightOrders;
+        [SerializeField] private OrdersManager? leftOrders;
+        [SerializeField] private OrdersManager? rightOrders;
 
         public void HandleTouchPlanet(HandController sender, Planet planet)
         {
@@ -50,12 +51,17 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
             ordersManager.HandleSurrender();
         }
 
-        private OrdersManager GetOrdersManager(HandController handController) => handController.HandType switch
+        private OrdersManager GetOrdersManager(HandController handController)
         {
-            HandType.Right => rightOrders,
-            HandType.Left => leftOrders,
-            _ => throw new ArgumentOutOfRangeException(nameof(handController.HandType), handController.HandType,
-                "Unexpected hand type")
-        };
+            Asserting.NotNull(rightOrders, leftOrders);
+
+            return handController.HandType switch
+            {
+                HandType.Right => rightOrders,
+                HandType.Left => leftOrders,
+                _ => throw new ArgumentOutOfRangeException(nameof(handController.HandType), handController.HandType,
+                    "Unexpected hand type")
+            };
+        }
     }
 }

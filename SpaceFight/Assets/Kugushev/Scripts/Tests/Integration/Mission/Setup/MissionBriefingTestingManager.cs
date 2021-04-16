@@ -22,9 +22,9 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
 {
     public class MissionBriefingTestingManager : BaseManager<MissionModel>
     {
-        [SerializeField] protected ObjectsPool objectsPool;
-        [SerializeField] private PlanetarySystemGenerator planetarySystemGenerator;
-        [SerializeField] private MissionModelProvider missionModelProvider;
+        [SerializeField] protected ObjectsPool? objectsPool;
+        [SerializeField] private PlanetarySystemGenerator? planetarySystemGenerator;
+        [SerializeField] private MissionModelProvider? missionModelProvider;
 
         public static int? Seed { get; set; }
 
@@ -34,13 +34,13 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
             var missionProperties = new MissionInfo(seed, Difficulty.Normal,
                 ScriptableObject.CreateInstance<PoliticalAction>());
 
-            var planetarySystemPerks = objectsPool.GetObject<PlanetarySystemPerks, PlanetarySystemPerks.State>(
+            var planetarySystemPerks = objectsPool!.GetObject<PlanetarySystemPerks, PlanetarySystemPerks.State>(
                 new PlanetarySystemPerks.State());
-            var planetarySystem = planetarySystemGenerator.CreatePlanetarySystem(missionProperties, Faction.Green,
+            var planetarySystem = planetarySystemGenerator!.CreatePlanetarySystem(missionProperties, Faction.Green,
                 planetarySystemPerks);
 
-            var green = new ConflictParty(Faction.Green, default, default);
-            var red = new ConflictParty(Faction.Red, default, default);
+            var green = new ConflictParty(Faction.Green, default!, default!);
+            var red = new ConflictParty(Faction.Red, default!, default!);
 
             var model = objectsPool.GetObject<MissionModel, MissionModel.State>(new MissionModel.State(
                 new MissionParameters(missionProperties, objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(
@@ -48,7 +48,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
                 planetarySystem, green, red, Faction.Green
             ));
 
-            missionModelProvider.Set(model);
+            missionModelProvider!.Set(model);
 
             return model;
         }

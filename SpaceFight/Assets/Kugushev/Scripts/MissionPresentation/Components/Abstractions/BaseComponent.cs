@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common.Utils.ComponentInjection;
+﻿using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Common.Utils.ComponentInjection;
 using Kugushev.Scripts.MissionPresentation.PresentationModels.Abstractions;
 using UnityEngine;
 
@@ -6,10 +7,20 @@ namespace Kugushev.Scripts.MissionPresentation.Components.Abstractions
 {
     [RequireComponent(typeof(BasePresentationModel))]
     public abstract class BaseComponent<T> : MonoBehaviour
+        where T : class
     {
-        private BasePresentationModel _presentationModel;
+        private BasePresentationModel? _presentationModel;
 
-        protected T Model => _presentationModel.GetModelAs<T>();
+        protected T Model
+        {
+            get
+            {
+                Asserting.NotNull(_presentationModel);
+                var model = _presentationModel.GetModelAs<T>();
+                Asserting.NotNull(model);
+                return model;
+            }
+        }
 
         protected abstract void OnAwake();
         protected abstract void OnStart();

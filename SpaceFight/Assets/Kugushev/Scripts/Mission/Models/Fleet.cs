@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Models.Abstractions;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
@@ -15,15 +16,15 @@ namespace Kugushev.Scripts.Mission.Models
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "FleetManager")]
     public class Fleet : ScriptableObject, IModel
     {
-        [SerializeField] private ObjectsPool pool;
-        [SerializeField] private MissionModelProvider modelProvider;
-        [SerializeField] private MissionEventsCollector eventsCollector;
+        [SerializeField] private ObjectsPool? pool;
+        [SerializeField] private MissionModelProvider? modelProvider;
+        [SerializeField] private MissionEventsCollector? eventsCollector;
         [SerializeField] private float armySpeed = GameplayConstants.ArmySpeed;
         [SerializeField] private float armyAngularSpeed = 1f;
         [SerializeField] private Faction faction;
 
-        private FleetPerks _fleetPerks;
-        private FleetPerks _emptyFleetPerks;
+        private FleetPerks? _fleetPerks;
+        private FleetPerks? _emptyFleetPerks;
 
         public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
 
@@ -32,6 +33,8 @@ namespace Kugushev.Scripts.Mission.Models
 
         public void CommitOrder(Order order, Planet target)
         {
+            Asserting.NotNull(modelProvider, pool, eventsCollector);
+
             if (!modelProvider.TryGetModel(out var model))
             {
                 Debug.LogError("Unable to get model");
@@ -43,7 +46,7 @@ namespace Kugushev.Scripts.Mission.Models
             {
                 var army = pool.GetObject<Army, Army.State>(new Army.State(
                     order, armySpeed, armyAngularSpeed, faction, power,
-                    in model.PlanetarySystem.GetSun(), GetFleetPerks(), eventsCollector));
+                    in model.PlanetarySystem.GetSun(), GetFleetPerks(pool), eventsCollector));
 
                 ArmiesToSent.Enqueue(army);
                 eventsCollector.ArmySent.Add(new ArmySent(faction, power, order.SourcePlanet.Power));
@@ -55,14 +58,14 @@ namespace Kugushev.Scripts.Mission.Models
             }
         }
 
-        private FleetPerks GetFleetPerks()
+        private FleetPerks GetFleetPerks(ObjectsPool objectsPool)
         {
             if (_fleetPerks != null)
                 return _fleetPerks;
 
             _emptyFleetPerks ??=
-                pool.GetObject<FleetPerks, FleetPerks.State>(PlayerPropertiesService
-                    .CreateDefaultFleetPerksState(pool));
+                objectsPool.GetObject<FleetPerks, FleetPerks.State>(PlayerPropertiesService
+                    .CreateDefaultFleetPerksState(objectsPool));
 
             return _emptyFleetPerks;
         }

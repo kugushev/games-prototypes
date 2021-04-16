@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+﻿using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Models;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,14 +7,16 @@ namespace Kugushev.Scripts.Game.Widgets
 {
     public class ParliamentWidget : MonoBehaviour
     {
-        [SerializeField] private PoliticianCardWidget[] politicianCards;
-        [SerializeField] private PoliticianDetailsWidget politicianDetailsWidget;
-        [SerializeField] private UnityEvent onPoliticianSelected;
+        [SerializeField] private PoliticianCardWidget[]? politicianCards;
+        [SerializeField] private PoliticianDetailsWidget? politicianDetailsWidget;
+        [SerializeField] private UnityEvent? onPoliticianSelected;
 
-        private Parliament _model;
+        private Parliament? _model;
 
         public void Setup(Parliament model)
         {
+            Asserting.NotNull(politicianCards);
+
             _model = model;
 
             if (politicianCards.Length != model.Politicians.Count)
@@ -27,8 +29,10 @@ namespace Kugushev.Scripts.Game.Widgets
                 politicianCards[i].SetUp(model.Politicians[i]);
         }
 
-        public void PoliticianSelected([CanBeNull] Politician politician)
+        public void PoliticianSelected(Politician? politician)
         {
+            Asserting.NotNull(_model, politicianDetailsWidget);
+
             _model.SelectedPolitician = politician;
 
             if (politician == null)
@@ -41,6 +45,8 @@ namespace Kugushev.Scripts.Game.Widgets
 
         public void UpdateView()
         {
+            Asserting.NotNull(politicianCards, politicianDetailsWidget);
+
             foreach (var politicianCard in politicianCards)
                 politicianCard.UpdateView();
             politicianDetailsWidget.UpdateView();

@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Enums;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Kugushev.Scripts.Game.ValueObjects
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(PoliticalAction))]
     public class PoliticalAction : ScriptableObject
     {
-        [SerializeField] private string caption;
+        [SerializeField] private string? caption;
         [SerializeField] private Difficulty difficulty;
         [SerializeField] private int intel;
 
@@ -21,7 +22,15 @@ namespace Kugushev.Scripts.Game.ValueObjects
         private Traits? _traits;
         private Traits? _sideEffect;
 
-        public string Caption => caption;
+        public string Caption
+        {
+            get
+            {
+                Asserting.NotNull(caption);
+                return caption;
+            }
+        }
+
         public Difficulty Difficulty => difficulty;
         public int Intel => intel;
         public Traits Traits => _traits ??= new Traits(business, greed, lust, brute, vanity);

@@ -28,7 +28,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         [Timeout(10 * 60 * 1000)]
         public IEnumerator Briefing_ForManualTest() => RunExecutionWithSeed(83);
 
-        private static IEnumerator RunExecutionWithSeed(int seed, [CallerMemberName] string caller = null)
+        private static IEnumerator RunExecutionWithSeed(int seed, [CallerMemberName] string caller = "")
         {
             Debug.Log($"Start test {caller}");
 

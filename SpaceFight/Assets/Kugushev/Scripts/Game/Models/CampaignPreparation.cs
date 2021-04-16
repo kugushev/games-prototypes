@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Game.Models
             get
             {
                 var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-                return selectedPolitician != null && selectedPolitician.IsReadyToInvest;
+                return selectedPolitician is { } && selectedPolitician.IsReadyToInvest;
             }
         }
 
@@ -54,21 +54,22 @@ namespace Kugushev.Scripts.Game.Models
             get
             {
                 var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-                return selectedPolitician != null && _sponsors.Contains(selectedPolitician);
+                return selectedPolitician is { } && _sponsors.Contains(selectedPolitician);
             }
         }
 
         public void AddSelectedPoliticianAsSponsor()
         {
             var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-            if (selectedPolitician != null && selectedPolitician.IsReadyToInvest)
+            if (selectedPolitician is { } && selectedPolitician.IsReadyToInvest)
                 _sponsors.Add(selectedPolitician);
         }
 
         public void RemoveSelectedPoliticianFromSponsors()
         {
             if (SelectedPoliticianIsAlreadySponsor)
-                _sponsors.Remove(ObjectState.PoliticianSelector.SelectedPolitician);
+                // because we check it in SelectedPoliticianIsAlreadySponsor
+                _sponsors.Remove(ObjectState.PoliticianSelector.SelectedPolitician!);
         }
 
         public void RemoveAllSponsors()

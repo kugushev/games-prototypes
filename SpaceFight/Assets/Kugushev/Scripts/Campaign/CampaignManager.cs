@@ -7,6 +7,7 @@ using Kugushev.Scripts.Campaign.StatesAndTransitions;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Services;
@@ -19,30 +20,32 @@ namespace Kugushev.Scripts.Campaign
 {
     internal class CampaignManager : BaseManager<CampaignModel>
     {
-        [SerializeField] private ObjectsPool objectsPool;
-        [SerializeField] private CampaignModelProvider modelProvider;
-        [SerializeField] private CampaignSceneParametersPipeline campaignSceneParametersPipeline;
-        [SerializeField] private CampaignSceneResultPipeline campaignSceneResultPipeline;
-        [SerializeField] private MissionsGenerator missionsGenerationService;
-        [SerializeField] private PoliticalActionsRepository politicalActionsRepository;
+        [SerializeField] private ObjectsPool? objectsPool;
+        [SerializeField] private CampaignModelProvider? modelProvider;
+        [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
+        [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
+        [SerializeField] private MissionsGenerator? missionsGenerationService;
+        [SerializeField] private PoliticalActionsRepository? politicalActionsRepository;
 
         [Header("Mission Parameters")] [SerializeField]
-        private MissionSceneParametersPipeline missionSceneParametersPipeline;
+        private MissionSceneParametersPipeline? missionSceneParametersPipeline;
 
-        [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
+        [SerializeField] private MissionSceneResultPipeline? missionSceneResultPipeline;
 
         [Header("States and Transitions")] [SerializeField]
-        private ExitState campaignExitState;
+        private ExitState? campaignExitState;
 
-        [SerializeField] private TriggerTransition toFinishTransition;
+        [SerializeField] private TriggerTransition? toFinishTransition;
 
-        [SerializeField] private ExitState onMissionExitTransition;
-        [SerializeField] private TriggerTransition toMissionTransition;
+        [SerializeField] private ExitState? onMissionExitTransition;
+        [SerializeField] private TriggerTransition? toMissionTransition;
 
         private readonly CampaignFinalizationState _finalizationState = new CampaignFinalizationState();
 
         protected override CampaignModel InitRootModel()
         {
+            Asserting.NotNull(campaignSceneParametersPipeline, objectsPool, modelProvider);
+
             var campaignInfo = campaignSceneParametersPipeline.Get();
             var budget = campaignInfo.Budget ?? CampaignConstants.MaxBudget;
 
@@ -71,6 +74,9 @@ namespace Kugushev.Scripts.Campaign
 
             IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetPlaygroundStates()
             {
+                Asserting.NotNull(politicalActionsRepository, missionSceneParametersPipeline, missionSceneResultPipeline,
+                    toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
+
                 var playgroundState = new PlaygroundState(rootModel, politicalActionsRepository);
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
@@ -109,6 +115,9 @@ namespace Kugushev.Scripts.Campaign
 
             IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetCampaignStates()
             {
+                Asserting.NotNull(missionsGenerationService, missionSceneParametersPipeline, missionSceneResultPipeline,
+                    toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
+                
                 var missionSelectionState = new MissionSelectionState(RootModel, missionsGenerationService);
 
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
@@ -155,7 +164,8 @@ namespace Kugushev.Scripts.Campaign
 
         protected override void Dispose()
         {
-            modelProvider.Cleanup();
+            if (modelProvider is { }) 
+                modelProvider.Cleanup();
         }
     }
 }

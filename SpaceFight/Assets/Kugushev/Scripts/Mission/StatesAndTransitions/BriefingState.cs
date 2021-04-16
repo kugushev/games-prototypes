@@ -1,7 +1,6 @@
 ﻿using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Models;
-using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.StatesAndTransitions
 {
@@ -14,8 +13,6 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
 
         protected override void AssertModel()
         {
-            if (Model.PlanetarySystem == null)
-                Debug.LogError("PlanetarySystem is not set");
         }
     }
 }

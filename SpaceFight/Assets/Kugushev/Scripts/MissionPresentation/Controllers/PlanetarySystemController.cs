@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Mission.Models;
+﻿using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using Kugushev.Scripts.MissionPresentation.PresentationModels;
 using UnityEngine;
@@ -7,12 +8,14 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 {
     public class PlanetarySystemController : MonoBehaviour
     {
-        [SerializeField] private MissionModelProvider missionModelProvider;
-        [SerializeField] private Transform sun;
-        [SerializeField] private GameObject planetPrefab;
+        [SerializeField] private MissionModelProvider? missionModelProvider;
+        [SerializeField] private Transform? sun;
+        [SerializeField] private GameObject? planetPrefab;
 
         private void Start()
         {
+            Asserting.NotNull(missionModelProvider);
+
             if (!missionModelProvider.TryGetModel(out var model))
             {
                 Debug.LogError("Model is not set");
@@ -25,6 +28,8 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 
         private void SetupSun(PlanetarySystem system)
         {
+            Asserting.NotNull(sun);
+
             ref readonly var sunModel = ref system.GetSun();
             sun.localScale = new Vector3(sunModel.Size, sunModel.Size, sunModel.Size);
             sun.position = sunModel.Position.Point;
@@ -32,6 +37,8 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 
         private void SetupPlanets(PlanetarySystem system)
         {
+            Asserting.NotNull(planetPrefab);
+
             var worldTransform = transform;
             foreach (var planet in system.Planets)
             {

@@ -10,25 +10,25 @@ namespace Kugushev.Scripts.Game.Widgets
 {
     public class PoliticalActionWidget : MonoBehaviour
     {
-        [SerializeField] private Toggle toggle;
-        [SerializeField] private TextMeshProUGUI caption;
-        [SerializeField] private TextMeshProUGUI intelValue;
+        [SerializeField] private Toggle? toggle;
+        [SerializeField] private TextMeshProUGUI? caption;
+        [SerializeField] private TextMeshProUGUI? intelValue;
 
-        [Header("Traits")] [SerializeField] private TextMeshProUGUI traitBusinessValue;
-        [SerializeField] private TextMeshProUGUI traitGreedValue;
-        [SerializeField] private TextMeshProUGUI traitLustValue;
-        [SerializeField] private TextMeshProUGUI traitBruteValue;
-        [SerializeField] private TextMeshProUGUI traitVanityValue;
+        [Header("Traits")] [SerializeField] private TextMeshProUGUI? traitBusinessValue;
+        [SerializeField] private TextMeshProUGUI? traitGreedValue;
+        [SerializeField] private TextMeshProUGUI? traitLustValue;
+        [SerializeField] private TextMeshProUGUI? traitBruteValue;
+        [SerializeField] private TextMeshProUGUI? traitVanityValue;
 
         [Header("Background")] [SerializeField]
-        private Image background;
+        private Image? background;
 
         [SerializeField] private Color normal;
         [SerializeField] private Color hard;
         [SerializeField] private Color insane;
 
         private PoliticalActionInfo _model;
-        private Action<PoliticalActionWidget> _onCardSelected;
+        private Action<PoliticalActionWidget?>? _onCardSelected;
 
         public PoliticalActionInfo Model => _model;
 
@@ -41,8 +41,10 @@ namespace Kugushev.Scripts.Game.Widgets
         }
 
         public void SetUp(PoliticalActionInfo model, ToggleGroup toggleGroup,
-            Action<PoliticalActionWidget> onCardSelected)
+            Action<PoliticalActionWidget?> onCardSelected)
         {
+            Asserting.NotNull(toggle, onCardSelected);
+
             _model = model;
             toggle.group = toggleGroup;
             _onCardSelected = onCardSelected;
@@ -51,6 +53,8 @@ namespace Kugushev.Scripts.Game.Widgets
 
         private void UpdateView()
         {
+            Asserting.NotNull(caption, intelValue);
+
             if (!IsModelValid())
                 return;
 
@@ -62,6 +66,8 @@ namespace Kugushev.Scripts.Game.Widgets
 
         private void UpdateDifficultyView()
         {
+            Asserting.NotNull(background);
+
             switch (_model.PoliticalAction.Difficulty)
             {
                 case Difficulty.Normal:
@@ -81,6 +87,8 @@ namespace Kugushev.Scripts.Game.Widgets
 
         private void UpdateTraitsView()
         {
+            Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
+            
             UpdateTraitView(traitBusinessValue, _model.PoliticalAction.Traits.Business);
             UpdateTraitView(traitGreedValue, _model.PoliticalAction.Traits.Greed);
             UpdateTraitView(traitLustValue, _model.PoliticalAction.Traits.Lust);

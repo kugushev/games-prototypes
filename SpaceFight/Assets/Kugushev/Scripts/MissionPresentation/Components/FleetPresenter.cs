@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.MissionPresentation.Components.Abstractions;
@@ -8,8 +9,8 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 {
     public class FleetPresenter : BaseComponent<Fleet>
     {
-        [SerializeField] private Transform limbo;
-        [SerializeField] private GameObject armyPrefab;
+        [SerializeField] private Transform? limbo;
+        [SerializeField] private GameObject? armyPrefab;
 
         private readonly Queue<ArmyPresenter> _armiesPool =
             new Queue<ArmyPresenter>(GameplayConstants.ArmiesPerFleetCapacity);
@@ -41,6 +42,8 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private ArmyPresenter GetArmy()
         {
+            Asserting.NotNull(armyPrefab, transform);
+
             if (_armiesPool.Count > 0)
             {
                 var fromPool = _armiesPool.Dequeue();
@@ -56,6 +59,11 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         public void ReturnArmyToPool(ArmyPresenter armyPresenter)
         {
+            Asserting.NotNull(limbo);
+
+            if (armyPresenter.Army == null)
+                return;
+
             armyPresenter.Army.Dispose();
             armyPresenter.Army = null;
 

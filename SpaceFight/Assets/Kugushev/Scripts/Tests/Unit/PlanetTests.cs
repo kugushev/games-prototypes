@@ -7,6 +7,7 @@ using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using NUnit.Framework;
 using static Kugushev.Scripts.Tests.Unit.Utils.TestData;
+using Assert = NUnit.Framework.Assert;
 
 namespace Kugushev.Scripts.Tests.Unit
 {

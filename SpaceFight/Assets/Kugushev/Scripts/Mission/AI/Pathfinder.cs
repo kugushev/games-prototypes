@@ -1,6 +1,6 @@
 ﻿using System;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Common;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Models;
@@ -12,23 +12,25 @@ namespace Kugushev.Scripts.Mission.AI
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Pathfinder")]
     public class Pathfinder : ScriptableObject
     {
-        [SerializeField] private MissionModelProvider missionModelProvider;
+        [SerializeField] private MissionModelProvider? missionModelProvider;
         [SerializeField] private float stepSize = GameplayConstants.GapBetweenWaypoints;
         [SerializeField] private int maxLength = GameplayConstants.OrderPathCapacity;
         [SerializeField] private float collisionError = GameplayConstants.CollisionError;
 
         public float StepSize => stepSize;
 
-        public bool FindPath(Position from, Position to, float hitRadius, out int length) =>
+        public bool FindPathLength(Position from, Position to, float hitRadius, out int length) =>
             FindPath<object>(from, to, hitRadius, null, default, out length);
 
-        public bool FindPath<T>(Position from, Position to, float hitRadius, [CanBeNull] Action<Position, T> filler,
-            T objectToFill) =>
+        public bool FindPath<T>(Position from, Position to, float hitRadius, Action<Position, T>? filler,
+            T objectToFill) where T : class =>
             FindPath(from, to, hitRadius, filler, objectToFill, out _);
 
-        public bool FindPath<T>(Position from, Position to, float hitRadius, [CanBeNull] Action<Position, T> filler,
-            T objectToFill, out int length)
+        public bool FindPath<T>(Position from, Position to, float hitRadius, Action<Position, T>? filler,
+            T? objectToFill, out int length) where T : class
         {
+            Asserting.NotNull(missionModelProvider);
+
             if (!missionModelProvider.TryGetModel(out var missionModel))
             {
                 length = 0;
@@ -47,7 +49,8 @@ namespace Kugushev.Scripts.Mission.AI
 
                 point = AvoidSun(hitRadius, sun, point);
 
-                filler?.Invoke(new Position(point), objectToFill);
+                if (objectToFill is { } && filler is { })
+                    filler(new Position(point), objectToFill);
 
                 previous = point;
                 length++;

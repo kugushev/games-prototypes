@@ -8,19 +8,22 @@ namespace Kugushev.Scripts.Campaign.Widgets
 {
     public class PlaygroundWidget : MonoBehaviour
     {
-        [SerializeField] private CampaignModelProvider modelProvider;
-        [SerializeField] private TextMeshProUGUI playerScoreText;
-        [SerializeField] private TextMeshProUGUI aiScoreText;
-        [SerializeField] private PanelWithSliderWidget seed;
-        [SerializeField] private PanelWithSliderWidget playerHomeProduction;
-        [SerializeField] private PanelWithSliderWidget enemyHomeProduction;
-        [SerializeField] private PanelWithSliderWidget playerExtraPlanets;
-        [SerializeField] private PanelWithSliderWidget enemyExtraPlanets;
-        [SerializeField] private PanelWithSliderWidget playerStartPower;
-        [SerializeField] private PanelWithSliderWidget enemyStartPower;
+        [SerializeField] private CampaignModelProvider? modelProvider;
+        [SerializeField] private TextMeshProUGUI? playerScoreText;
+        [SerializeField] private TextMeshProUGUI? aiScoreText;
+        [SerializeField] private PanelWithSliderWidget? seed;
+        [SerializeField] private PanelWithSliderWidget? playerHomeProduction;
+        [SerializeField] private PanelWithSliderWidget? enemyHomeProduction;
+        [SerializeField] private PanelWithSliderWidget? playerExtraPlanets;
+        [SerializeField] private PanelWithSliderWidget? enemyExtraPlanets;
+        [SerializeField] private PanelWithSliderWidget? playerStartPower;
+        [SerializeField] private PanelWithSliderWidget? enemyStartPower;
 
         private void Start()
         {
+            Asserting.NotNull(modelProvider, playerScoreText, aiScoreText, seed, playerHomeProduction,
+                enemyHomeProduction, playerExtraPlanets, enemyExtraPlanets, playerStartPower, enemyStartPower);
+
             if (modelProvider.TryGetModel(out var rootModel))
             {
                 var model = rootModel.Playground;
@@ -39,6 +42,7 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         public void SetSeed(float sliderValue)
         {
+            Asserting.NotNull(modelProvider);
             int value = Mathf.FloorToInt(sliderValue);
             if (modelProvider.TryGetModel(out var model))
                 model.Playground.Seed = value;
@@ -46,36 +50,42 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
         public void SetPlayerHomeProductionMultiplier(float sliderValue)
         {
+            Asserting.NotNull(modelProvider);
             if (modelProvider.TryGetModel(out var model))
                 model.Playground.PlayerHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetEnemyHomeProductionMultiplier(float sliderValue)
         {
+            Asserting.NotNull(modelProvider);
             if (modelProvider.TryGetModel(out var model))
                 model.Playground.EnemyHomeProductionMultiplier = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetPlayerExtraPlanets(float sliderValue)
         {
+            Asserting.NotNull(modelProvider);
             if (modelProvider.TryGetModel(out var model))
                 model.Playground.PlayerExtraPlanets = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetEnemyExtraPlanets(float sliderValue)
         {
+            Asserting.NotNull(modelProvider);
             if (modelProvider.TryGetModel(out var model))
                 model.Playground.EnemyExtraPlanets = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetPlayerStartPower(float sliderValue)
         {
+            Asserting.NotNull(modelProvider);
             if (modelProvider.TryGetModel(out var model))
                 model.Playground.PlayerStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
         }
 
         public void SetEnemyStartPower(float sliderValue)
         {
+            Asserting.NotNull(modelProvider);
             if (modelProvider.TryGetModel(out var model))
                 model.Playground.EnemyStartPowerMultiplier = Mathf.FloorToInt(sliderValue);
         }

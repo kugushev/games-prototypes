@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Models;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
@@ -12,14 +13,20 @@ namespace Kugushev.Scripts.Mission.Managers
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(PerksManager))]
     public class PerksManager : ScriptableObject
     {
-        [SerializeField] private MissionEventsCollector eventsCollector;
-        [SerializeField] private BasePerk[] perks;
-        [SerializeField] private MissionModelProvider modelProvider;
+        [SerializeField] private MissionEventsCollector? eventsCollector;
+        [SerializeField] private BasePerk[]? perks;
+        [SerializeField] private MissionModelProvider? modelProvider;
 
         public void FindAchieved(List<BasePerk> listToFill, Faction playerFaction,
             PlayerPerks playerPerks)
         {
-            modelProvider.TryGetModel(out var model);
+            Asserting.NotNull(modelProvider, perks, eventsCollector);
+
+            if (!modelProvider.TryGetModel(out var model))
+            {
+                Debug.LogError("Unable to get model");
+                return;
+            }
 
             foreach (var achievement in perks)
             {
@@ -78,6 +85,8 @@ namespace Kugushev.Scripts.Mission.Managers
 
         public void FindMatched(List<BasePerk> listToFill, PlayerPerks playerPerks)
         {
+            Asserting.NotNull(perks);
+
             foreach (var achievement in perks)
             {
                 if (playerPerks.EpicPerks.TryGetValue(achievement.Info.Id, out var epicAchievement)

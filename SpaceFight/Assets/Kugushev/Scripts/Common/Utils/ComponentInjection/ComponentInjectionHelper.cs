@@ -12,13 +12,13 @@ namespace Kugushev.Scripts.Common.Utils.ComponentInjection
         private static readonly Dictionary<Type, IReadOnlyList<Type>> InterfacesBag =
             new Dictionary<Type, IReadOnlyList<Type>>();
 
-        public static IReadOnlyList<PropertyInfo> FindInjectableProperties(object obj)
+        public static IReadOnlyList<PropertyInfo> FindInjectableProperties(object? obj)
         {
-            if (obj == null)
+            if (obj is null)
                 return Array.Empty<PropertyInfo>();
 
             var type = obj.GetType();
-            
+
             if (!PropertiesBag.TryGetValue(type, out var injectableProperties))
             {
                 var allProperties = type.GetProperties();
@@ -44,9 +44,9 @@ namespace Kugushev.Scripts.Common.Utils.ComponentInjection
             return injectableProperties;
         }
 
-        public static IReadOnlyList<Type> FindInterfaces(object obj)
+        public static IReadOnlyList<Type> FindInterfaces(object? obj)
         {
-            if (obj == null)
+            if (obj is null)
                 return Array.Empty<Type>();
 
             var type = obj.GetType();
@@ -57,9 +57,12 @@ namespace Kugushev.Scripts.Common.Utils.ComponentInjection
             return interfaces;
         }
 
-        public static void AssignIfPossible(object obj, PropertyInfo pi, object assignable,
+        public static void AssignIfPossible(object? obj, PropertyInfo pi, object assignable,
             IReadOnlyList<Type> interfaces)
         {
+            if (obj is null)
+                return;
+
             foreach (var type in interfaces)
                 if (pi.PropertyType == type)
                 {

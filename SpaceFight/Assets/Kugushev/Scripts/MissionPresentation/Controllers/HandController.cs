@@ -1,4 +1,6 @@
-﻿using Kugushev.Scripts.Common.Enums;
+﻿using System.Diagnostics.CodeAnalysis;
+using Kugushev.Scripts.Common.Enums;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.MissionPresentation.Events;
 using Kugushev.Scripts.MissionPresentation.PresentationModels;
@@ -13,16 +15,16 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
     public class HandController : MonoBehaviour
     {
         [SerializeField] private HandType handType;
-        [SerializeField] private PlanetEvent onHoverPlanet;
-        [SerializeField] private PlanetEvent onHoverPlanetCancel;
-        [SerializeField] private HandEvent onSelect;
-        [SerializeField] private HandEvent onSelectCancel;
-        [SerializeField] private MovingEvent onMove;
-        [SerializeField] private HandEvent onSurrenderClick;
-        [SerializeField] private Camera mainCamera;
+        [SerializeField] private PlanetEvent? onHoverPlanet;
+        [SerializeField] private PlanetEvent? onHoverPlanetCancel;
+        [SerializeField] private HandEvent? onSelect;
+        [SerializeField] private HandEvent? onSelectCancel;
+        [SerializeField] private MovingEvent? onMove;
+        [SerializeField] private HandEvent? onSurrenderClick;
+        [SerializeField] private Camera? mainCamera;
 
-        private XRController _xrController;
-        private HandWidget _handWidget;
+        private XRController? _xrController;
+        private HandWidget? _handWidget;
         private bool _triggerPressed;
         private Vector2 _joystickAxis;
 
@@ -57,7 +59,9 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 
         private void Update()
         {
-            if (!TryGetHand(out var hand))
+            Asserting.NotNull(_xrController, mainCamera);
+
+            if (!TryGetHand(_xrController, mainCamera, out var hand))
                 return;
 
             var inputDevice = _xrController.inputDevice;
@@ -75,17 +79,17 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
             {
                 if (!_triggerPressed)
                 {
-                    onSelect.Invoke(this);
+                    onSelect?.Invoke(this);
                     _triggerPressed = true;
                 }
             }
             else if (_triggerPressed)
             {
-                onSelectCancel.Invoke(this);
+                onSelectCancel?.Invoke(this);
                 _triggerPressed = false;
             }
 
-            onMove.Invoke(this, hand.IndexPointPosition);
+            onMove?.Invoke(this, hand.IndexPointPosition);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -96,7 +100,7 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
                 if (!ReferenceEquals(ppm, null))
                 {
                     var planet = ppm.Planet;
-                    onHoverPlanet.Invoke(this, planet);
+                    onHoverPlanet?.Invoke(this, planet);
                 }
             }
         }
@@ -108,12 +112,13 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
                 var ppm = other.GetComponent<PlanetPresentationModel>();
                 if (!ReferenceEquals(ppm, null))
                 {
-                    onHoverPlanetCancel.Invoke(this, ppm.Planet);
+                    onHoverPlanetCancel?.Invoke(this, ppm.Planet);
                 }
             }
         }
 
-        private bool TryGetHand(out HandWidget handWidget)
+        private bool TryGetHand(XRController xrController, Camera cam,
+            [NotNullWhen(true)] out HandWidget? handWidget)
         {
             if (!ReferenceEquals(_handWidget, null))
             {
@@ -121,14 +126,14 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
                 return true;
             }
 
-            if (_xrController.modelTransform.childCount == 0)
+            if (xrController.modelTransform.childCount == 0)
             {
                 handWidget = null;
                 return false;
             }
 
-            handWidget = _xrController.modelTransform.GetComponentInChildren<HandWidget>();
-            handWidget.Setup(mainCamera);
+            handWidget = xrController.modelTransform.GetComponentInChildren<HandWidget>();
+            handWidget.Setup(cam);
             handWidget.SurrenderClick += OnSurrender;
 
             _handWidget = handWidget;

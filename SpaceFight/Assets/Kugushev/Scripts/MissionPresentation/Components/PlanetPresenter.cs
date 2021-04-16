@@ -10,12 +10,12 @@ namespace Kugushev.Scripts.MissionPresentation.Components
     [RequireComponent(typeof(MeshRenderer))]
     public class PlanetPresenter : BaseComponent<Planet>
     {
-        [SerializeField] private TextMeshProUGUI armyCaption;
-        [SerializeField] private Material playerMaterial;
-        [SerializeField] private Material neutralMaterial;
-        [SerializeField] private Material enemyMaterial;
+        [SerializeField] private TextMeshProUGUI? armyCaption;
+        [SerializeField] private Material? playerMaterial;
+        [SerializeField] private Material? neutralMaterial;
+        [SerializeField] private Material? enemyMaterial;
 
-        private MeshRenderer _meshRenderer;
+        private MeshRenderer? _meshRenderer;
 
         protected override void OnAwake()
         {
@@ -40,6 +40,8 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private void Update()
         {
+            Asserting.NotNull(_meshRenderer, armyCaption);
+            
             // todo: use UniRx to track changes
 
             transform.position = Model.Position.Point;

@@ -1,19 +1,22 @@
-﻿using Kugushev.Scripts.Game.Utils;
+﻿using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
     public class PoliticsWidget : MonoBehaviour
     {
-        [SerializeField] private GameModelProvider gameModelProvider;
+        [SerializeField] private GameModelProvider? gameModelProvider;
 
-        [SerializeField] private ParliamentWidget parliament;
-        [SerializeField] private PoliticalActionsWidget politicalActions;
-        [SerializeField] private CampaignPreparationWidget campaignPreparation;
-        [SerializeField] public RevolutionWidget revolutionWidget;
+        [SerializeField] private ParliamentWidget? parliament;
+        [SerializeField] private PoliticalActionsWidget? politicalActions;
+        [SerializeField] private CampaignPreparationWidget? campaignPreparation;
+        [SerializeField] public RevolutionWidget? revolutionWidget;
 
         private void Start()
         {
+            Asserting.NotNull(gameModelProvider, parliament, politicalActions, campaignPreparation, revolutionWidget);
+
             if (gameModelProvider.TryGetModel(out var model))
             {
                 parliament.Setup(model.Parliament);

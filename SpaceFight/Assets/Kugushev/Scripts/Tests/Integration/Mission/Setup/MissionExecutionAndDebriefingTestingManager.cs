@@ -16,13 +16,13 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
     public class MissionExecutionAndDebriefingTestingManager : BaseMissionTestingManager
     {
         [Header(nameof(MissionExecutionAndDebriefingTestingManager))] [SerializeField]
-        private PerksManager achievementsManager;
+        private PerksManager? achievementsManager;
 
-        [SerializeField] private MissionSceneResultPipeline missionSceneResultPipeline;
-        [SerializeField] private SuicideAI suicideAI;
-        [SerializeField] private SimpleAI aggressiveAI;
-        [SerializeField] private SimpleAI normalAIGreen;
-        [SerializeField] private SimpleAI normalAIRed;
+        [SerializeField] private MissionSceneResultPipeline? missionSceneResultPipeline;
+        [SerializeField] private SuicideAI? suicideAI;
+        [SerializeField] private SimpleAI? aggressiveAI;
+        [SerializeField] private SimpleAI? normalAIGreen;
+        [SerializeField] private SimpleAI? normalAIRed;
 
         public static bool GreenIsNormal { get; set; }
         public static bool RedIsNormal { get; set; }
@@ -30,9 +30,9 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             MissionModel rootModel)
         {
-            var executionState = new ExecutionState(rootModel, eventsCollector);
-            var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline, achievementsManager,
-                objectsPool);
+            var executionState = new ExecutionState(rootModel, eventsCollector!);
+            var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline!, achievementsManager!,
+                objectsPool!);
 
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
@@ -57,7 +57,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
             };
         }
 
-        protected override ICommander GreenCommander => GreenIsNormal ? normalAIGreen : aggressiveAI;
-        protected override ICommander RedCommander => RedIsNormal ? (ICommander) normalAIRed : suicideAI;
+        protected override ICommander GreenCommander => GreenIsNormal ? normalAIGreen! : aggressiveAI!;
+        protected override ICommander RedCommander => RedIsNormal ? (ICommander) normalAIRed! : suicideAI!;
     }
 }

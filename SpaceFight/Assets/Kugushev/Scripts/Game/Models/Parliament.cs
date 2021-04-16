@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Interfaces;
 
@@ -9,7 +8,7 @@ namespace Kugushev.Scripts.Game.Models
     {
         public struct State
         {
-            public Politician SelectedPolitician;
+            public Politician? SelectedPolitician;
         }
 
         public Parliament(ObjectsPool objectsPool) : base(objectsPool)
@@ -22,8 +21,7 @@ namespace Kugushev.Scripts.Game.Models
 
         public IReadOnlyList<Politician> Politicians => _politicians;
 
-        [CanBeNull]
-        public Politician SelectedPolitician
+        public Politician? SelectedPolitician
         {
             get => ObjectState.SelectedPolitician;
             set => ObjectState.SelectedPolitician = value;

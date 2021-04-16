@@ -9,12 +9,14 @@ namespace Kugushev.Scripts.App.Widgets
 {
     internal class MainMenuWidget : MonoBehaviour
     {
-        [SerializeField] private AppModelProvider gameModelProvider;
-        [SerializeField] private TextMeshProUGUI seedValueText;
-        [SerializeField] private Slider seedSlider;
+        [SerializeField] private AppModelProvider? gameModelProvider;
+        [SerializeField] private TextMeshProUGUI? seedValueText;
+        [SerializeField] private Slider? seedSlider;
 
         private void Start()
         {
+            Asserting.NotNull(gameModelProvider, seedSlider, seedValueText);
+
             if (gameModelProvider.TryGetModel(out var gameModel))
             {
                 var seed = gameModel.MainMenu.Seed;
@@ -25,9 +27,11 @@ namespace Kugushev.Scripts.App.Widgets
 
         public void SetSeed(float sliderValue)
         {
+            Asserting.NotNull(gameModelProvider, seedValueText);
+
             int value = Convert.ToInt32(sliderValue);
             seedValueText.text = StringBag.FromInt(value);
-            if (gameModelProvider.TryGetModel(out var gameModel)) 
+            if (gameModelProvider.TryGetModel(out var gameModel))
                 gameModel.MainMenu.Seed = value;
         }
     }

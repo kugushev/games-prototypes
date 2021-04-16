@@ -4,6 +4,7 @@ using Kugushev.Scripts.App.StatesAndTransitions;
 using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using UnityEngine;
 
@@ -28,7 +29,8 @@ namespace Kugushev.Scripts.App
         protected override AppModel InitRootModel()
         {
             var model = new AppModel();
-            gameModelProvider.Set(model);
+            if (gameModelProvider is { })
+                gameModelProvider.Set(model);
 
             return model;
         }
@@ -36,6 +38,9 @@ namespace Kugushev.Scripts.App
         protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
             AppModel rootModel)
         {
+            Asserting.NotNull(campaignSceneParametersPipeline, gameSceneParametersPipeline, toCampaignTransition,
+                toPlaygroundTransition, toNewGameTransition, onCampaignExitTransition, onGameExitTransition);
+
             var mainMenuState = new MainMenuState(rootModel);
             var campaignState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, false);
             var playgroundState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, true);
@@ -80,7 +85,8 @@ namespace Kugushev.Scripts.App
 
         protected override void Dispose()
         {
-            gameModelProvider.Cleanup();
+            if (gameModelProvider is { })
+                gameModelProvider.Cleanup();
         }
     }
 }

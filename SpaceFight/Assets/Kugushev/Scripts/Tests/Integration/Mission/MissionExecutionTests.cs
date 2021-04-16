@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
         [UnityTest]
         public IEnumerator Fight_LongPath() => RunExecutionWithSeed(950);
 
-        private static IEnumerator RunExecutionWithSeed(int seed, [CallerMemberName] string caller = null)
+        private static IEnumerator RunExecutionWithSeed(int seed, [CallerMemberName] string caller = "")
         {
             Debug.Log($"Start test {caller}");
 

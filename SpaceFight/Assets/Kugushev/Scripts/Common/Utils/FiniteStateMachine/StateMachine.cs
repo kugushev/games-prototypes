@@ -37,7 +37,6 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
         public async UniTask DisposeAsync()
         {
             await _currentState.OnExitAsync();
-            _currentState = null;
         }
 
         private async UniTask SetState(IState state)

@@ -1,6 +1,7 @@
 ﻿using System;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
@@ -16,8 +17,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + "Planetary System Generator")]
     public class PlanetarySystemGenerator : ScriptableObject
     {
-        [SerializeField] private ObjectsPool objectsPool;
-        [SerializeField] private MissionEventsCollector eventsCollector;
+        [SerializeField] private ObjectsPool? objectsPool;
+        [SerializeField] private MissionEventsCollector? eventsCollector;
 
         [Header("Rules")] [SerializeField] private float systemRadius = 0.9f;
         [SerializeField] private float minDistanceToSun = 0.1f;
@@ -26,13 +27,15 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
         [SerializeField] private float sunMaxRadius = 0.15f;
         [SerializeField] private int minPlanets = 3;
         [SerializeField] private int maxPlanets = 6;
-        [SerializeField] private PlanetRule[] smallPlanetsRules;
-        [SerializeField] private PlanetRule[] mediumPlanetsRules;
-        [SerializeField] private PlanetRule[] bigPlanetsRules;
+        [SerializeField] private PlanetRule[]? smallPlanetsRules;
+        [SerializeField] private PlanetRule[]? mediumPlanetsRules;
+        [SerializeField] private PlanetRule[]? bigPlanetsRules;
 
         public PlanetarySystem CreatePlanetarySystem(MissionInfo info, Faction playerFaction,
             PlanetarySystemPerks planetarySystemPerks)
         {
+            Asserting.NotNull(objectsPool);
+            
             Random.InitState(info.Seed);
 
             var sun = CreateSun();
@@ -51,6 +54,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
             PlanetarySystemPerks planetarySystemPerks, MissionInfo missionInfo,
             Faction playerFaction)
         {
+            Asserting.NotNull(objectsPool, eventsCollector);
+            
             int planetsCount = Random.Range(minPlanets, maxPlanets);
 
             (int greenHome, int redHome) = GetHomePlanets(planetsCount);
@@ -101,6 +106,8 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
         private PlanetRule GetPlanetRule(Faction faction, PlanetRule homePlanetRule, float t)
         {
+            Asserting.NotNull(smallPlanetsRules, mediumPlanetsRules, bigPlanetsRules);
+            
             switch (faction)
             {
                 case Faction.Neutral:
@@ -177,6 +184,7 @@ namespace Kugushev.Scripts.Mission.ProceduralGeneration
 
         private PlanetRule GetHomePlanetRule()
         {
+            Asserting.NotNull(mediumPlanetsRules);
             int ruleIndex = Random.Range(0, mediumPlanetsRules.Length);
             return mediumPlanetsRules[ruleIndex];
         }

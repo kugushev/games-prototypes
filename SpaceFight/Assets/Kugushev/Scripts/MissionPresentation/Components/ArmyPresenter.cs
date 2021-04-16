@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
@@ -14,25 +13,24 @@ namespace Kugushev.Scripts.MissionPresentation.Components
     {
         [SerializeField] private float minScale = 0.005f;
         [SerializeField] private float maxScale = 0.05f;
-        [SerializeField] private Transform mesh;
-        [SerializeField] private TextMeshProUGUI powerText;
-        [SerializeField] private ParticleSystem siegeCannon;
-        [SerializeField] private ParticleSystem[] fightCannons;
+        [SerializeField] private Transform? mesh;
+        [SerializeField] private TextMeshProUGUI? powerText;
+        [SerializeField] private ParticleSystem? siegeCannon;
+        [SerializeField] private ParticleSystem[]? fightCannons;
 
-        [SerializeReference] private Army army;
+        [SerializeReference] private Army? army;
 
-        private FleetPresenter _fleet;
+        private FleetPresenter? _fleet;
 
         public void SetOwner(FleetPresenter owner)
         {
-            if (!ReferenceEquals(_fleet, null))
+            if (_fleet is { })
                 Debug.LogError("Fleet is already specified");
 
             _fleet = owner;
         }
 
-        [CanBeNull]
-        public Army Army
+        public Army? Army
         {
             get => army;
             internal set => army = value;
@@ -59,12 +57,14 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private void ApplyModelChanges()
         {
+            Asserting.NotNull(powerText, _fleet, mesh);
+
             var model = Army;
 
             if (model == null)
                 return;
 
-            ApplyTransformChanges(model);
+            ApplyTransformChanges(model, mesh);
 
             powerText.text = StringBag.FromInt(Mathf.CeilToInt(model.Power));
 
@@ -76,20 +76,23 @@ namespace Kugushev.Scripts.MissionPresentation.Components
         }
 
 
-        private void ApplyTransformChanges(Army model)
+        private void ApplyTransformChanges(Army model, Transform meshTransform)
         {
             var t = transform;
 
             t.position = model.Position.Point;
             t.rotation = model.Rotation;
-            mesh.localScale = GetAdjustedScale(model);
+            meshTransform.localScale = GetAdjustedScale(model);
         }
 
         private void ApplyFight(Army model)
         {
+            Asserting.NotNull(fightCannons);
+
             if (model.Status == ArmyStatus.Fighting)
             {
                 using var targetsEnumerator = model.GetTargetsUnderFire().GetEnumerator();
+
                 foreach (var cannon in fightCannons)
                 {
                     bool hasTarget = targetsEnumerator.MoveNext();
@@ -132,6 +135,8 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private void ApplySiege(Army model)
         {
+            Asserting.NotNull(siegeCannon);
+
             if (model.Status == ArmyStatus.OnSiege)
             {
                 if (!siegeCannon.isPlaying)
@@ -172,7 +177,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
             if (other.CompareTag("Army"))
             {
                 var presenter = other.GetComponent<ArmyPresenter>();
-                if (!ReferenceEquals(presenter, null))
+                if (presenter is {Army: { }})
                 {
                     Army?.HandleArmyInteraction(presenter.Army);
                 }

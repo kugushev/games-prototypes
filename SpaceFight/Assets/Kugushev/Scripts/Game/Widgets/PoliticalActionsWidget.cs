@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+﻿using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models;
 using UnityEngine;
@@ -9,23 +9,25 @@ namespace Kugushev.Scripts.Game.Widgets
 {
     public class PoliticalActionsWidget : MonoBehaviour
     {
-        [SerializeField] private Button applyButton;
-        [SerializeField] private Transform politicalActionsPanel;
-        [SerializeField] private ToggleGroup toggleGroup;
-        [SerializeField] private GameObject politicalActionCardPrefab;
-        [SerializeField] private UnityEvent onActionApplied;
+        [SerializeField] private Button? applyButton;
+        [SerializeField] private Transform? politicalActionsPanel;
+        [SerializeField] private ToggleGroup? toggleGroup;
+        [SerializeField] private GameObject? politicalActionCardPrefab;
+        [SerializeField] private UnityEvent? onActionApplied;
 
-        [CanBeNull] private PoliticalActionWidget _selectedPoliticalAction;
-        private GameModel _rootModel;
-        private IPoliticianSelector _politicianSelector;
+        private PoliticalActionWidget? _selectedPoliticalAction;
+        private GameModel? _rootModel;
+        private IPoliticianSelector? _politicianSelector;
 
 
         public void Setup(GameModel rootModel, IPoliticianSelector politicianSelector)
         {
+            Asserting.NotNull(politicalActionCardPrefab, politicalActionsPanel, toggleGroup);
+
             _rootModel = rootModel;
             _politicianSelector = politicianSelector;
 
-            // todo: use prefab pool
+            // todo: use pool
             foreach (var model in _rootModel.PoliticalActions)
             {
                 var go = Instantiate(politicalActionCardPrefab, politicalActionsPanel);
@@ -36,11 +38,13 @@ namespace Kugushev.Scripts.Game.Widgets
 
         public void UpdateView()
         {
-            applyButton.interactable = _selectedPoliticalAction != null &&
-                                       _politicianSelector.SelectedPolitician != null;
+            Asserting.NotNull(applyButton, _politicianSelector);
+
+            applyButton.interactable = _selectedPoliticalAction is { } &&
+                                       _politicianSelector.SelectedPolitician is { };
         }
 
-        private void OnCardSelected([CanBeNull] PoliticalActionWidget politicalAction)
+        private void OnCardSelected(PoliticalActionWidget? politicalAction)
         {
             _selectedPoliticalAction = politicalAction;
             UpdateView();
@@ -48,7 +52,9 @@ namespace Kugushev.Scripts.Game.Widgets
 
         public void OnApplyButton()
         {
-            if (_selectedPoliticalAction != null && _politicianSelector.SelectedPolitician != null)
+            Asserting.NotNull(_politicianSelector, _rootModel, applyButton);
+
+            if (_selectedPoliticalAction is { } && _politicianSelector.SelectedPolitician is { })
             {
                 var selectedModel = _selectedPoliticalAction.Model;
                 _politicianSelector.SelectedPolitician.ApplyPoliticalAction(selectedModel.PoliticalAction);

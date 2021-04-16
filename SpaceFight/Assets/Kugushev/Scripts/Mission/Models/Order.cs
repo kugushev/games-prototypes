@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
@@ -26,7 +25,7 @@ namespace Kugushev.Scripts.Mission.Models
 
             public Planet sourcePlanet;
             public Percentage Power;
-            [CanBeNull] public Planet targetPlanet;
+            public Planet? targetPlanet;
             public OrderStatus status;
             public Vector3? LastRegisteredPosition;
         }
@@ -39,7 +38,10 @@ namespace Kugushev.Scripts.Mission.Models
 
         public IReadOnlyList<Vector3> Path => path;
         public Planet SourcePlanet => ObjectState.sourcePlanet;
-        public Planet TargetPlanet => ObjectState.targetPlanet;
+
+        public Planet TargetPlanet => ObjectState.targetPlanet ??
+                                      throw new ArgumentNullException(nameof(ObjectState.targetPlanet));
+
         public Percentage Power => ObjectState.Power;
 
         public OrderStatus Status
@@ -48,7 +50,8 @@ namespace Kugushev.Scripts.Mission.Models
             internal set => ObjectState.status = value;
         }
 
-        internal void RegisterMovement(Vector3 position, float gapBetweenWaypoints = GameplayConstants.GapBetweenWaypoints)
+        internal void RegisterMovement(Vector3 position,
+            float gapBetweenWaypoints = GameplayConstants.GapBetweenWaypoints)
         {
             ObjectState.LastRegisteredPosition = position;
 

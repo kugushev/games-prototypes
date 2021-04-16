@@ -23,10 +23,10 @@ namespace Kugushev.Scripts.Mission.Models.Effects
             public State(ValuePipeline<Army> siegeDamage, ValuePipeline<Army> fightDamage,
                 ValuePipeline<Army> fightProtection, ValuePipeline<(Planet target, Faction playerFaction)> armySpeed)
             {
-                this.SiegeDamage = siegeDamage;
-                this.FightDamage = fightDamage;
-                this.FightProtection = fightProtection;
-                this.ArmySpeed = armySpeed;
+                SiegeDamage = siegeDamage;
+                FightDamage = fightDamage;
+                FightProtection = fightProtection;
+                ArmySpeed = armySpeed;
                 deathStrike = 0;
                 ToNeutralPlanetUltimatum = default;
             }

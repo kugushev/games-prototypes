@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.ValueObjects;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.Utils.ValuesProcessing;
 using Kugushev.Scripts.Mission.Constants;
@@ -15,8 +16,8 @@ namespace Kugushev.Scripts.Mission.Services
     [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(PlayerPropertiesService))]
     public class PlayerPropertiesService : ScriptableObject
     {
-        [SerializeField] private PerksManager achievementsManager;
-        [SerializeField] private ObjectsPool objectsPool;
+        [SerializeField] private PerksManager? achievementsManager;
+        [SerializeField] private ObjectsPool? objectsPool;
 
         private readonly List<BasePerk> _achievementBuffer = new List<BasePerk>(128);
 
@@ -33,7 +34,10 @@ namespace Kugushev.Scripts.Mission.Services
         public (PlanetarySystemPerks, FleetPerks) GetPlayerProperties(Faction playerFaction,
             MissionParameters parameters)
         {
+            Asserting.NotNull(achievementsManager, objectsPool);
+            
             _achievementBuffer.Clear();
+
             achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerPerks);
 
             var fleetPerksBuilder = CreateDefaultFleetPerksState(objectsPool);

@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using JetBrains.Annotations;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Game.Utils;
 using Kugushev.Scripts.Game.ValueObjects;
@@ -8,11 +8,11 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
     public class CampaignFinalizationState : IState
     {
-        private CampaignResult _campaignResult;
-        [CanBeNull] private CampaignSceneResultPipeline _campaignSceneResultPipeline;
+        private CampaignResult? _campaignResult;
+        private CampaignSceneResultPipeline? _campaignSceneResultPipeline;
 
         public void Setup(CampaignResult campaignResult,
-            [CanBeNull] CampaignSceneResultPipeline campaignSceneResultPipeline)
+            CampaignSceneResultPipeline? campaignSceneResultPipeline)
         {
             _campaignResult = campaignResult;
             _campaignSceneResultPipeline = campaignSceneResultPipeline;
@@ -20,6 +20,8 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         public UniTask OnEnterAsync()
         {
+            Asserting.NotNull(_campaignResult);
+            
             if (_campaignSceneResultPipeline != null)
                 _campaignSceneResultPipeline.Set(new CampaignResultInfo(_campaignResult));
             else

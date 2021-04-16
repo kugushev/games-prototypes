@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Cysharp.Threading.Tasks;
+using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
@@ -8,9 +9,9 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
     public class MissionController : MonoBehaviour
     {
         [SerializeField] private float productionTimeoutSeconds;
-        [SerializeField] private MissionModelProvider missionModelProvider;
+        [SerializeField] private MissionModelProvider? missionModelProvider;
 
-        private WaitForSeconds _productionTimeout;
+        private WaitForSeconds? _productionTimeout;
 
         private void Awake()
         {
@@ -24,6 +25,8 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
 
         private IEnumerator ProductionCycle()
         {
+            Asserting.NotNull(missionModelProvider);
+
             while (true)
             {
                 if (missionModelProvider.TryGetModel(out var missionModel))

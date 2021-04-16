@@ -7,7 +7,7 @@ namespace Kugushev.Scripts.MissionPresentation.PresentationModels
 {
     public class OrdersPresentationModel: BasePresentationModel
     {
-        [SerializeField] private OrdersManager model;
-        protected override IModel Model => model;
+        [SerializeField] private OrdersManager? model;
+        protected override IModel? Model => model;
     }
 }
