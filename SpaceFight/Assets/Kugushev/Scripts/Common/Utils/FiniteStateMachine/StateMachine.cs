@@ -41,6 +41,41 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
 
         private async UniTask SetState(IState state)
         {
+            // todo: refactor with lifetimes
+            /*
+            await _currentState.OnExitAsync(); 
+            _currentState = state;
+            await _currentState.OnEnterAsync();
+            
+            unload previous scene
+                now we can do everything with previous lifetime
+            
+                init new state
+                    Start Lifetime
+            
+            use dispatching of transition to pass parameters
+            
+                dispose previous lifetime
+            
+            load next scene
+            
+            
+            ----- impl -----
+             
+            var previous = _currentState;
+            var next = state;
+            
+            await previous.OnExitAsync();
+            
+            next.Setup(transition);
+            
+            _currentState = next;
+            
+            previous.TearDown();
+            
+            next.OnEnterAsync();
+             */
+            
             await _currentState.OnExitAsync();
             _currentState = state;
             await _currentState.OnEnterAsync();

@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</ProjectGuid>
+    <ProjectGuid>{6c5f9548-36cc-3f7c-305b-919285292bc1}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Game</AssemblyName>
+    <AssemblyName>AppPresentation</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,43 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Services\RelationsService.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticalAction.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\PoliticsState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PerkInfo.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\CampaignPreparationWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\CampaignState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticsWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Perk.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\Traits.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\GameModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\TraitsStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\CampaignPreparation.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticianCharacter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\PerkType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Utils\CampaignSceneResultPipeline.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Constants\GameConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Politician.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianCardWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Relation.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticalActionInfo.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Constants\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Difficulty.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\ParliamentWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticalActionsWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\RevolutionState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Utils\GameModelProvider.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianDetailsWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IPoliticianSelector.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Services\PoliticalActionsRepository.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Parliament.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Events\PoliticianSelectedEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ProceduralGeneration\ParliamentGenerator.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\RevolutionWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\CampaignResult.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\GameManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticalActionWidget.cs" />
-     <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\AppPresentation\ViewModels\MainMenuViewModel.cs" />
+     <None Include="Assets\Kugushev\Scripts\AppPresentation\AppPresentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -675,9 +640,6 @@
      <Reference Include="UniTask">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.dll</HintPath>
      </Reference>
-     <Reference Include="UniTask.Linq">
-     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.TextMeshPro">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
@@ -689,13 +651,13 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Common.csproj">
-      <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
     <ProjectReference Include="App.csproj">
       <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>
       <Name>App</Name>
+    </ProjectReference>
+    <ProjectReference Include="Common.csproj">
+      <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

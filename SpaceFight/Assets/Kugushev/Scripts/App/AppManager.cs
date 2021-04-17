@@ -46,6 +46,8 @@ namespace Kugushev.Scripts.App
             var playgroundState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, true);
             var newGameState = new GameState(rootModel, gameSceneParametersPipeline);
 
+            // SignalListenerTransition<NewGameSignal> toNewGameTransition = new();
+            
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
                 {

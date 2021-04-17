@@ -381,7 +381,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 782397223}
         m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.MainMenuWidget, Game
-        m_MethodName: SetSeed
+        m_MethodName: OnSeedValueChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
