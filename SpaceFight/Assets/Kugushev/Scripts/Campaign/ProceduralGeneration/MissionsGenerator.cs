@@ -82,6 +82,6 @@ namespace Kugushev.Scripts.Campaign.ProceduralGeneration
                 enemyHomeProductionMultiplier: 2);
         }
 
-        private int NextSeed => Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
+        private static int NextSeed => Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
     }
 }

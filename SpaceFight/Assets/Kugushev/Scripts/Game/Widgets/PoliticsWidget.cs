@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private ParliamentWidget? parliament;
         [SerializeField] private PoliticalActionsWidget? politicalActions;
         [SerializeField] private CampaignPreparationWidget? campaignPreparation;
-        [SerializeField] public RevolutionWidget? revolutionWidget;
+        [SerializeField] private RevolutionWidget? revolutionWidget;
 
         private void Start()
         {
