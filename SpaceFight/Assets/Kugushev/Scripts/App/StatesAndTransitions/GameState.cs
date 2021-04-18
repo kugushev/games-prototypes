@@ -40,85 +40,127 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
     interface IManagedState
     {
         // todo: use it to validate FSM on start
-        bool IsTransitionValid(ITransition transition);
+        bool IsInputValid(Type parametersType);
+        Type GetOutputType();
 
-        void Setup(ITransition transition);
-        UniTask OnEnterAsync();
+        UniTask OnEnterAsync(IParameters parameters);
 
-        UniTask OnExitAsync();
-        void TearDown();
+        UniTask<IParameters> OnExitAsync(IParametersPool pool);
     }
 
-    abstract class ManagedState<TInput> : IManagedState
+    interface IParameters
     {
-        public bool IsTransitionValid(ITransition transition) => transition is IInitializingTransition<TInput>;
+    }
 
+    class Parameters<T> : IParameters
+    {
+        public T Value { get; set; }
+    }
 
-        public void Setup(ITransition transition)
+    class EmptyParameters : IParameters
+    {
+        public static readonly EmptyParameters Instance = new EmptyParameters();
+
+        private EmptyParameters()
         {
-            var initializer = UnwrapInitializer(transition);
-            Setup(initializer);
-        }
-
-        protected virtual void Setup(IInitializingTransition<TInput> initializer)
-        {
-        }
-
-        public virtual UniTask OnEnterAsync() => UniTask.CompletedTask;
-
-        public virtual UniTask OnExitAsync() => UniTask.CompletedTask;
-
-        public virtual void TearDown()
-        {
-        }
-
-        private IInitializingTransition<TInput> UnwrapInitializer(ITransition transition)
-        {
-            if (transition is IInitializingTransition<TInput> initializer)
-                return initializer;
-            throw new Exception();
         }
     }
 
-    class ConcreteState : ManagedState<Seed>
+    interface IParametersPool
+    {
+        public IParameters GetInstance<T>(T value);
+    }
+
+    abstract class ManagedState<TInput, TOutput> : IManagedState
+    {
+        public bool IsInputValid(Type parametersType)
+        {
+            if (parametersType == typeof(EmptyParameters))
+                return true;
+
+            return parametersType == typeof(TInput);
+        }
+
+        public Type GetOutputType() => typeof(TOutput);
+
+        public UniTask OnEnterAsync(IParameters parameters) => parameters switch
+        {
+            Parameters<TInput> p => OnEnterAsync(p),
+            EmptyParameters _ => OnEnterAsyncNoInput(),
+            _ => throw new Exception()
+        };
+
+        protected abstract UniTask OnEnterAsync(Parameters<TInput> parameters);
+
+        protected abstract UniTask OnEnterAsyncNoInput();
+
+        public async UniTask<IParameters> OnExitAsync(IParametersPool pool)
+        {
+            var (value, success) = await OnExitAsync();
+
+            if (success)
+                return pool.GetInstance(value);
+
+            return EmptyParameters.Instance;
+        }
+
+        protected abstract UniTask<(TOutput result, bool success)> OnExitAsync();
+    }
+
+    class ConcreteState : ManagedState<Seed, TransferringRef<PoliticalActionInstance>>
     {
         private ILifetime _lifetime;
 
         public GameStore Store { get; private set; }
 
-        protected override void Setup(IInitializingTransition<Seed> initializer)
+        protected override UniTask OnEnterAsync(Parameters<Seed> parameters)
+        {
+            return OnEnterAsyncImpl(parameters.Value);
+        }
+
+        protected override UniTask OnEnterAsyncNoInput()
+        {
+            return OnEnterAsyncImpl(new Seed(42));
+        }
+
+        private UniTask OnEnterAsyncImpl(Seed seed)
         {
             _lifetime = null;
-            Store = new GameStore(_lifetime);
+            Store = new GameStore(_lifetime, seed);
+            return UniTask.CompletedTask;
+        }
+
+        protected async override UniTask<(TransferringRef<PoliticalActionInstance>, bool)> OnExitAsync()
+        {
+            if (Store.PoliticalActions.TryDeref(out var politicalActionsStore))
+            {
+                var transfer = politicalActionsStore.ExtractSelectedAction();
+                return (transfer, true);
+            }
+
+            return (default, false);
         }
     }
 
-    interface IInitializingTransition<T> : ITransition
+    interface IInitializerTransition<T>
     {
         public T Value { get; }
     }
 
-    class CustomTransition<T> : IInitializingTransition<T>
-    {
-        public T Value { get; set; }
-        public bool ToTransition { get; set; }
-    }
 
-    class MyTransition : IInitializingTransition<PoliticalActionInstance>
+    class OnSignalTransition<T> : IReusableTransition
     {
-        private readonly GameStore _gameStore;
+        public bool ToTransition { get; private set; }
 
-        public MyTransition(GameStore gameStore)
+        public void Reset()
         {
-            _gameStore = gameStore;
+            ToTransition = false;
         }
-        
-        
-        как делать это??? как transtiion сможешь инициализировать store???? как ему открыть доступ, не открывая дургим??
-        ОТВЕТ: интерфейс или тупо метод Initialize
 
-        public T Value { get; set; }
-        public bool ToTransition { get; set; }
+        public void OnSignal(T signal)
+        {
+            ToTransition = true;
+        }
     }
 
     readonly struct Seed
@@ -134,7 +176,11 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
         public bool IsTerminated { get; }
         public void Add(IDisposable item);
         public void TransferTo(IDisposable item, ILifetime newOwner);
+        bool Contains(IDisposable obj);
         public ILifetime CreateChild();
+
+        Ref<T> GetRef<T>(T obj) where T : class, IDisposable;
+        // { if(Contains(obj)) return new Ref(obj, this);
     }
 
     interface ILifetimeDefinition
@@ -144,7 +190,7 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
     }
 
     readonly struct Ref<T> : IEquatable<Ref<T>>
-        where T : class
+        where T : class, IDisposable
     {
         private readonly T _obj;
         private readonly ILifetime _lifetime;
@@ -159,7 +205,7 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
 
         public bool TryDeref([NotNullWhen(true)] out T? obj)
         {
-            if (!_initialized || _lifetime.IsTerminated)
+            if (!_initialized || _lifetime.IsTerminated || !_lifetime.Contains(_obj))
             {
                 obj = null;
                 return false;
@@ -179,7 +225,7 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
         }
 
         public Ref<TResult> Deref<TResult>(Func<T, Ref<TResult>> func)
-            where TResult : class
+            where TResult : class, IDisposable
         {
             if (TryDeref(out var obj))
             {
@@ -226,14 +272,24 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
             _lifetime = lifetime;
         }
 
-        public void TransferOwnership(ILifetime newOwner)
+        public bool TransferOwnership(ILifetime newOwner, out Ref<T> reference)
         {
+            reference = default;
+
             if (_lifetime is null || _obj is null)
-                return;
+                return false;
+
+            if (!_lifetime.Contains(_obj))
+                return false;
 
             _lifetime.TransferTo(_obj, newOwner);
+
+            reference = _lifetime.GetRef(_obj);
+
             _obj = null;
             _lifetime = null;
+
+            return true;
         }
     }
 
@@ -300,25 +356,33 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
     {
         private readonly ILifetime _lifetime;
 
-        public GameStore(ILifetime lifetime)
+        public GameStore(ILifetime lifetime, Seed seed)
         {
             _lifetime = lifetime;
+            Seed = seed;
             Parliament = new Ref<ParliamentEntity>(new ParliamentEntity(), lifetime);
             PoliticalActions =
                 new Ref<PoliticalActionsStore>(new PoliticalActionsStore(_lifetime.CreateChild()), _lifetime);
         }
+
+        public Seed Seed { get; }
 
         public Ref<ParliamentEntity> Parliament { get; }
 
         public Ref<PoliticalActionsStore> PoliticalActions { get; }
     }
 
-    class ParliamentEntity
+    class ParliamentEntity : IDisposable
     {
         public IReadOnlyList<Politician> Politicians { get; } = new[]
         {
             new Politician {Name = "Sasha"}
         };
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class Politician
@@ -330,10 +394,8 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
         }
     }
 
-    class PoliticalActionsStore
+    class PoliticalActionsStore : BaseStore, IDisposable
     {
-        private readonly ILifetime _lifetime;
-
         public PoliticalActionsStore(ILifetime lifetime)
         {
             _lifetime = lifetime;
@@ -341,7 +403,59 @@ namespace Kugushev.Scripts.App.StatesAndTransitions
 
         public Ref<PoliticalActionInstance> ActiveAction { get; }
 
+
+        public Ref<PoliticalActionInstance>? SelectedAction { get; private set; }
+
         public RefCollection<PoliticalActionInstance> PoliticalActions { get; }
+
+        public void OnActionSelected(TransferringRef<PoliticalActionInstance> action)
+        {
+            if (action.TransferOwnership(_lifetime, out var selectedAction))
+                SelectedAction = selectedAction;
+        }
+
+        // todo: make it available only via class + use IPoliticalActionStore for other things
+        // todo: or use dispatching
+        internal TransferringRef<PoliticalActionInstance> ExtractSelectedAction()
+        {
+            if (SelectedAction != null)
+            {
+                if (TryExtract(this, t => t.SelectedAction!.Value, t => t.SelectedAction = null,
+                    out var transfer))
+                {
+                    return transfer;
+                }
+            }
+
+            return default;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class BaseStore
+    {
+        protected ILifetime _lifetime;
+
+        protected bool TryExtract<TThis, TResult>(TThis that, Func<TThis, Ref<TResult>> selector, Action<TThis> cleanup,
+            out TransferringRef<TResult> transfer)
+            where TResult : class, IDisposable
+            where TThis : BaseStore
+        {
+            var valueRef = selector(that);
+            if (valueRef.TryDeref(out var value))
+            {
+                cleanup(that);
+                transfer = new TransferringRef<TResult>(value, _lifetime);
+                return true;
+            }
+
+            transfer = default;
+            return false;
+        }
     }
 
     class PoliticalActionInstance : IDisposable

@@ -65,9 +65,10 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             var previous = _currentState;
             var next = state;
             
-            await previous.OnExitAsync();
+            var parameters = await previous.OnExitAsync();
             
-            next.Setup(transition);
+            using(parameters)
+                next.Setup(parameters);
             
             _currentState = next;
             
