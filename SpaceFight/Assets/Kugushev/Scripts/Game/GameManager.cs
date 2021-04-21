@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.App.Utils;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils;
@@ -11,6 +12,7 @@ using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Game.StatesAndTransitions;
 using Kugushev.Scripts.Game.Utils;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.Game
 {
@@ -38,11 +40,13 @@ namespace Kugushev.Scripts.Game
         [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
 
+        [Inject] private GameModeParameters _gameModeParameters;
+        
         protected override GameModel InitRootModel()
         {
             Asserting.NotNull(gameSceneParametersPipeline, parliamentGenerator, objectsPool, gameModelProvider);
 
-            var info = gameSceneParametersPipeline.Get();
+            var info = _gameModeParameters;// gameSceneParametersPipeline.Get();
 
             var parliament = parliamentGenerator.Generate(info.Seed);
             var campaignPreparation = objectsPool.GetObject<CampaignPreparation, CampaignPreparation.State>(

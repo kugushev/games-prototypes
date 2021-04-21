@@ -1,9 +1,12 @@
 ﻿using System;
 using Kugushev.Scripts.App.Utils;
+using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.AppPresentation.Signals;
 using Kugushev.Scripts.Common.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Kugushev.Scripts.AppPresentation.ViewModels
 {
@@ -11,14 +14,17 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
     {
         // injected
         // private dynamic _serviceBus;
-        
+
         [SerializeField] private TextMeshProUGUI? seedValueText;
         [SerializeField] private Slider? seedSlider;
         [SerializeField] private Button? newGameButton;
         [SerializeField] private Button? customCampaignButton;
         [SerializeField] private Button? playgroundButton;
-        
+
         [SerializeField] private int seed = 42;
+
+        [Inject] private SignalBus _signalBus = default!;
+        [Inject] private NewGameSignal.Pool _newGameSignalPool = default!;
 
         private void Start()
         {
@@ -37,10 +43,7 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
 
         private void OnNewGameClicked()
         {
-            // _serviceBus.Pub(new NewGameSignal
-            // {
-            //     Seed = seed
-            // });
+            _signalBus.Fire(_newGameSignalPool.Spawn(new GameModeParameters(seed)));
         }
 
         private void OnCustomCampaignClicked()

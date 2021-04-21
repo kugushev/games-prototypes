@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.App.Utils
 {
     [CreateAssetMenu(menuName = AppConstants.MenuPrefix + nameof(GameSceneParametersPipeline))]
-    public class GameSceneParametersPipeline: SceneParametersPipeline<GameInfo>
+    public class GameSceneParametersPipeline: SceneParametersPipeline<GameModeParameters>
     {
         
     }

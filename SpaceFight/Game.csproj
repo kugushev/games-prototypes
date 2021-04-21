@@ -77,6 +77,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\CampaignResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\GameManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticalActionWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\GameInstaller.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -680,6 +681,9 @@
      </Reference>
      <Reference Include="Unity.TextMeshPro">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject">
+     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Zenject.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

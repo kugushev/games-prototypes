@@ -7,10 +7,11 @@ using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.App
 {
-    internal class AppManager : BaseManager<AppModel>
+    public class AppManager : BaseManager<AppModel>
     {
         [SerializeField] private AppModelProvider? gameModelProvider;
         [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
@@ -24,8 +25,8 @@ namespace Kugushev.Scripts.App
         [SerializeField] private TriggerTransition? toCampaignTransition;
         [SerializeField] private TriggerTransition? toPlaygroundTransition;
 
-        [SerializeField] private TriggerTransition? toNewGameTransition;
-
+        [Inject] private ToNewGameTransition _toNewGameTransition = default!;
+        
         protected override AppModel InitRootModel()
         {
             var model = new AppModel();
@@ -39,15 +40,15 @@ namespace Kugushev.Scripts.App
             AppModel rootModel)
         {
             Asserting.NotNull(campaignSceneParametersPipeline, gameSceneParametersPipeline, toCampaignTransition,
-                toPlaygroundTransition, toNewGameTransition, onCampaignExitTransition, onGameExitTransition);
+                toPlaygroundTransition, onCampaignExitTransition, onGameExitTransition);
 
+            print(_toNewGameTransition);
+            
             var mainMenuState = new MainMenuState(rootModel);
             var campaignState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, false);
             var playgroundState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, true);
             var newGameState = new GameState(rootModel, gameSceneParametersPipeline);
 
-            // SignalListenerTransition<NewGameSignal> toNewGameTransition = new();
-            
             return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
             {
                 {
@@ -61,7 +62,7 @@ namespace Kugushev.Scripts.App
                     {
                         new TransitionRecord(toCampaignTransition, campaignState),
                         new TransitionRecord(toPlaygroundTransition, playgroundState),
-                        new TransitionRecord(toNewGameTransition, newGameState)
+                        new TransitionRecord(_toNewGameTransition, newGameState)
                     }
                 },
                 {

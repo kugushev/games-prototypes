@@ -42,6 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\AppPresentation\ViewModels\MainMenuViewModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\AppPresentation\Signals\NewGameSignal.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\AppPresentation\AppPresentationInstaller.cs" />
      <None Include="Assets\Kugushev\Scripts\AppPresentation\AppPresentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -642,6 +644,9 @@
      </Reference>
      <Reference Include="Unity.TextMeshPro">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject">
+     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/Zenject.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
