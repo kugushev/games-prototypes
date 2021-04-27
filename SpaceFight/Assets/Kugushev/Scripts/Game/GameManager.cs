@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.Manager;
+using Kugushev.Scripts.Common.Modes;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
@@ -40,13 +42,14 @@ namespace Kugushev.Scripts.Game
         [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
 
-        [Inject] private GameModeParameters _gameModeParameters;
-        
+        [Inject] private ParametersPipeline<GameModeParameters> _parametersPipeline = default!;
+
+
         protected override GameModel InitRootModel()
         {
             Asserting.NotNull(gameSceneParametersPipeline, parliamentGenerator, objectsPool, gameModelProvider);
 
-            var info = _gameModeParameters;// gameSceneParametersPipeline.Get();
+            var info = _parametersPipeline.Pop();
 
             var parliament = parliamentGenerator.Generate(info.Seed);
             var campaignPreparation = objectsPool.GetObject<CampaignPreparation, CampaignPreparation.State>(
@@ -58,8 +61,9 @@ namespace Kugushev.Scripts.Game
             return model;
         }
 
-        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
-            GameModel rootModel)
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
+            ComposeStateMachine(
+                GameModel rootModel)
         {
             Asserting.NotNull(campaignSceneParametersPipeline, campaignSceneResultPipeline, toCampaignTransition,
                 toRevolutionTransition, onCampaignExitTransition, toMainMenuTransition, gameExitState);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Kugushev.Scripts.Common.Utils;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Modes
 {
@@ -8,7 +9,7 @@ namespace Kugushev.Scripts.Common.Modes
         private T _parameters;
         private bool _isSet;
 
-        public virtual void Push(T parameters)
+        public void Push(T parameters)
         {
             if (_isSet)
             {
@@ -20,18 +21,16 @@ namespace Kugushev.Scripts.Common.Modes
             _isSet = true;
         }
 
-        public virtual bool TryPop(out T value)
+        public T Pop()
         {
             if (!_isSet)
-            {
-                value = default;
-                return false;
-            }
+                throw new SpaceFightException($"Parameters {typeof(T)} are not set");
 
-            value = _parameters;
+            var value = _parameters;
+            
             _parameters = default;
             _isSet = false;
-            return true;
+            return value;
         }
     }
 #nullable enable

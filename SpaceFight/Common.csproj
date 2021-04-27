@@ -57,7 +57,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\Poolable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\Parameterized\ParameterizedStateMachine.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\ObjectsPool.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Modes\ParametersPipelineVoid.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\IReusableTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Unit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\Parameterized\Transitions.cs" />
@@ -100,6 +99,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ZenjectExtensions.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Modes\ZenjectExtensions.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Modes\SignalToTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\SpaceFightException.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
