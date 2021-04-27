@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
-    public class PoliticalActionsWidget : MonoBehaviour
+    public class IntriguesWidget : MonoBehaviour
     {
         [SerializeField] private Button? applyButton;
         [SerializeField] private Transform? politicalActionsPanel;
@@ -15,9 +15,14 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private GameObject? politicalActionCardPrefab;
         [SerializeField] private UnityEvent? onActionApplied;
 
-        private PoliticalActionWidget? _selectedPoliticalAction;
+        private IntrigueCardWidget? _selectedIntrigue;
         private GameModel? _rootModel;
         private IPoliticianSelector? _politicianSelector;
+
+        public void Init(GameDateStore gameDateStore)
+        {
+            
+        }
 
 
         public void Setup(GameModel rootModel, IPoliticianSelector politicianSelector)
@@ -31,7 +36,7 @@ namespace Kugushev.Scripts.Game.Widgets
             foreach (var model in _rootModel.PoliticalActions)
             {
                 var go = Instantiate(politicalActionCardPrefab, politicalActionsPanel);
-                var widget = go.GetComponent<PoliticalActionWidget>();
+                var widget = go.GetComponent<IntrigueCardWidget>();
                 widget.SetUp(model, toggleGroup, OnCardSelected);
             }
         }
@@ -40,13 +45,13 @@ namespace Kugushev.Scripts.Game.Widgets
         {
             Asserting.NotNull(applyButton, _politicianSelector);
 
-            applyButton.interactable = _selectedPoliticalAction is { } &&
+            applyButton.interactable = _selectedIntrigue is { } &&
                                        _politicianSelector.SelectedPolitician is { };
         }
 
-        private void OnCardSelected(PoliticalActionWidget? politicalAction)
+        private void OnCardSelected(IntrigueCardWidget? politicalAction)
         {
-            _selectedPoliticalAction = politicalAction;
+            _selectedIntrigue = politicalAction;
             UpdateView();
         }
 
@@ -54,17 +59,17 @@ namespace Kugushev.Scripts.Game.Widgets
         {
             Asserting.NotNull(_politicianSelector, _rootModel, applyButton);
 
-            if (_selectedPoliticalAction is { } && _politicianSelector.SelectedPolitician is { })
+            if (_selectedIntrigue is { } && _politicianSelector.SelectedPolitician is { })
             {
-                var selectedModel = _selectedPoliticalAction.Model;
-                _politicianSelector.SelectedPolitician.ApplyPoliticalAction(selectedModel.PoliticalAction);
+                var selectedModel = _selectedIntrigue.Model;
+                _politicianSelector.SelectedPolitician.ApplyPoliticalAction(selectedModel.Intrigue);
 
                 _rootModel.RemovePoliticalAction(selectedModel);
 
-                Destroy(_selectedPoliticalAction.gameObject);
+                Destroy(_selectedIntrigue.gameObject);
                 onActionApplied?.Invoke();
 
-                _selectedPoliticalAction = null;
+                _selectedIntrigue = null;
                 applyButton.interactable = false;
             }
         }

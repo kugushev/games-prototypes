@@ -4,7 +4,7 @@ using Zenject;
 namespace Kugushev.Scripts.Common.ContextManagement
 {
 #nullable disable
-    public class SignalToTransition<TParameters> : SelfDespawning<SignalToTransition<TParameters>.Pool>
+    public class SignalToTransition<TParameters> : SelfDespawning
     {
         public class Pool : MemoryPool<TParameters, SignalToTransition<TParameters>>
         {

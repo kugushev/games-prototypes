@@ -71,7 +71,7 @@ namespace Kugushev.Scripts.Campaign.Widgets
             UpdateRewardView(_model.Reward);
         }
 
-        private void UpdateRewardView(PoliticalAction reward)
+        private void UpdateRewardView(Intrigue reward)
         {
             Asserting.NotNull(rewardCaption, intelValue, traitBusinessValue, traitGreedValue, traitLustValue,
                 traitBruteValue, traitVanityValue);

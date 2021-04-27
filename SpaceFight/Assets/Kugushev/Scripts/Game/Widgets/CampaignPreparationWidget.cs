@@ -18,10 +18,10 @@ namespace Kugushev.Scripts.Game.Widgets
         private CampaignPreparation? _model;
         private readonly StringBuilder _sponsorsListBuilder = new StringBuilder();
 
-        public void SetUp(CampaignPreparation model)
-        {
-            _model = model;
-        }
+        // public void SetUp(CampaignPreparation model)
+        // {
+        //     _model = model;
+        // }
 
         public void UpdateView()
         {

@@ -7,7 +7,7 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
     {
         public MissionInfo(int seed,
             Difficulty difficulty,
-            PoliticalAction reward,
+            Intrigue reward,
             int? playerHomeProductionMultiplier = null,
             int? enemyHomeProductionMultiplier = null,
             int? playerExtraPlanets = null,
@@ -28,7 +28,7 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
 
         public int Seed { get; }
         public Difficulty Difficulty { get; }
-        public PoliticalAction Reward { get; }
+        public Intrigue Reward { get; }
         public int? PlayerHomeProductionMultiplier { get; }
         public int? EnemyHomeProductionMultiplier { get; }
         public int? PlayerExtraPlanets { get; }

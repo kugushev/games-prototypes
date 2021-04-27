@@ -4,7 +4,7 @@ using Kugushev.Scripts.Game.Models;
 
 namespace Kugushev.Scripts.Game.StatesAndTransitions
 {
-    public class RevolutionState : BaseSceneLoadingState<GameModel>
+    internal class RevolutionState : BaseSceneLoadingState<GameModel>
     {
         public RevolutionState(GameModel model)
             : base(model, UnityConstants.RevolutionScene, true)

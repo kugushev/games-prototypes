@@ -2,38 +2,39 @@
 using Kugushev.Scripts.Game.Models;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
     public class ParliamentWidget : MonoBehaviour
     {
-        [SerializeField] private PoliticianCardWidget[]? politicianCards;
-        [SerializeField] private PoliticianDetailsWidget? politicianDetailsWidget;
-        [SerializeField] private UnityEvent? onPoliticianSelected;
+        [SerializeField] private PoliticianCardWidget[] politicianCards = default!;
+        [SerializeField] private PoliticianDetailsWidget politicianDetailsWidget = default!;
+        [SerializeField] private UnityEvent onPoliticianSelected = default!;
 
-        private Parliament? _model;
+        private Parliament _model = default!;
 
-        public void Setup(Parliament model)
+        [Inject]
+        public void Init(GameDateStore gameDateStore)
         {
-            Asserting.NotNull(politicianCards);
+            _model = gameDateStore.Parliament;
 
-            _model = model;
-
-            if (politicianCards.Length != model.Politicians.Count)
+            if (politicianCards.Length != _model.Politicians.Count)
             {
-                Debug.LogError($"Inconsistent politicians count {politicianCards.Length != model.Politicians.Count}");
+                Debug.LogError($"Inconsistent politicians count {politicianCards.Length != _model.Politicians.Count}");
                 return;
             }
 
             for (int i = 0; i < politicianCards.Length; i++)
-                politicianCards[i].SetUp(model.Politicians[i]);
+                politicianCards[i].SetUp(_model.Politicians[i]);
         }
 
-        public void PoliticianSelected(Politician? politician)
-        {
-            Asserting.NotNull(_model, politicianDetailsWidget);
+        public IPolitician? SelectedPolitician { get; private set; }
 
-            _model.SelectedPolitician = politician;
+
+        public void PoliticianSelected(IPolitician? politician)
+        {
+            SelectedPolitician = politician;
 
             if (politician == null)
                 politicianDetailsWidget.Deselect();

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Kugushev.Scripts.Common.ContextManagement
 {
-    public class UnparameterizedSceneLoadingState : IUnparameterizedState
+    public abstract class UnparameterizedSceneLoadingState : IUnparameterizedState
     {
         private readonly string _sceneName;
         private readonly bool _setActive;
@@ -19,6 +19,7 @@ namespace Kugushev.Scripts.Common.ContextManagement
 
         public async UniTask OnEnterAsync()
         {
+            OnEnterBeforeLoadScene();
             await SceneManager.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
             if (_setActive)
             {
@@ -27,6 +28,8 @@ namespace Kugushev.Scripts.Common.ContextManagement
                 if (!loaded)
                     Debug.LogError($"{_sceneName} scene isn't loaded");
             }
+
+            OnEnterAfterLoadScene();
         }
 
         public void OnUpdate(float deltaTime)
@@ -35,7 +38,20 @@ namespace Kugushev.Scripts.Common.ContextManagement
 
         public async UniTask OnExitAsync()
         {
+            OnExitBeforeUnloadScene();
             await SceneManager.UnloadSceneAsync(_sceneName);
+        }
+
+        protected virtual void OnEnterBeforeLoadScene()
+        {
+        }
+
+        protected virtual void OnEnterAfterLoadScene()
+        {
+        }
+
+        protected virtual void OnExitBeforeUnloadScene()
+        {
         }
     }
 }

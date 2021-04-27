@@ -6,11 +6,17 @@ namespace Kugushev.Scripts.Game.Constants
     {
         public const string MenuPrefix = CommonConstants.MenuPrefix + "Game/";
 
+        public const int ParliamentSize = 9;
+
         public const int PlayerCampaignBudget = 5;
         public const int MaxCampaignBudget = 15;
 
+        public static float MinIncomeProbability = 0.5f;
+        public static float MaxIncomeProbability = 1f;
+
         public const int PoliticianIncome = 3;
-        public const int MaxStartBudget = 4;
+        public const int MinStartBudget = 1;
+        public const int MaxStartBudget = 3;
         public const int MaxBudget = 5;
 
         public const int StartRelationLevel = 0;

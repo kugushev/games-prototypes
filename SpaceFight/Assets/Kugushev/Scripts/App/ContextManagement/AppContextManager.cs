@@ -5,30 +5,27 @@ using Zenject;
 
 namespace Kugushev.Scripts.App.ContextManagement
 {
-    public class AppContextManager : AbstractContextManager
+    internal class AppContextManager : AbstractContextManager
     {
         [Inject] private MainMenuState _mainMenu = default!;
 
-        [Inject] private GameModeState _gameMode = default!;
-        [Inject] private SignaledTransition<GameContextParameters> _toGameMode = default!;
+        [Inject] private GameState _game = default!;
+        [Inject] private SignaledTransition<GameParameters> _onNewGameSignal = default!;
 
-        protected override Transitions ComposeStateMachine()
+        protected override Transitions ComposeStateMachine() => new Transitions
         {
-            return new Transitions
             {
+                Entry, new[]
                 {
-                    Entry, new[]
-                    {
-                        Immediate.TransitTo(_mainMenu)
-                    }
-                },
-                {
-                    _mainMenu, new[]
-                    {
-                        _toGameMode.TransitTo(_gameMode)
-                    }
+                    Immediate.TransitTo(_mainMenu)
                 }
-            };
-        }
+            },
+            {
+                _mainMenu, new[]
+                {
+                    _onNewGameSignal.TransitTo(_game)
+                }
+            }
+        };
     }
 }

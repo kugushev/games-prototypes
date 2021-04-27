@@ -55,7 +55,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
 
             BaseMissionTestingManager.MissionInfo =
                 new MissionParameters(
-                    new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<PoliticalAction>()),
+                    new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<Intrigue>()),
                     pool.GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State(PerkIdHelper.AllPerks)));
             SceneManager.LoadScene("MissionExecutionTestingManagementScene");
 

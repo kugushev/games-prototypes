@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.AppPresentation
         {
             SignalBusInstaller.Install(Container);
 
-            Container.InstallTransitiveSignal<GameContextParameters>();
+            Container.InstallTransitiveSignal<GameParameters>();
         }
     }
 }

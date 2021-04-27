@@ -2,10 +2,9 @@
 
 namespace Kugushev.Scripts.Common.Utils.Pooling
 {
-    public abstract class SelfDespawning<TPool> : ISelfDespawning
-        where TPool : class, IMemoryPool
+    public abstract class SelfDespawning : ISelfDespawning
     {
-        protected TPool? PoolReference;
+        protected IMemoryPool? PoolReference;
 
         public void DespawnSelf()
         {

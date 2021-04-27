@@ -12,7 +12,8 @@ namespace Kugushev.Scripts.Common.ContextManagement
         private readonly bool _setActive;
         private readonly ParametersPipeline<T> _parametersPipeline;
 
-        protected ParameterizedSceneLoadingState(string sceneName, bool setActive, ParametersPipeline<T> parametersPipeline)
+        protected ParameterizedSceneLoadingState(string sceneName, bool setActive,
+            ParametersPipeline<T> parametersPipeline)
         {
             _sceneName = sceneName;
             _setActive = setActive;
@@ -23,6 +24,8 @@ namespace Kugushev.Scripts.Common.ContextManagement
         {
             _parametersPipeline.Push(parameters);
 
+            OnEnterBeforeLoadScene();
+
             await SceneManager.LoadSceneAsync(_sceneName, LoadSceneMode.Additive);
             if (_setActive)
             {
@@ -31,11 +34,8 @@ namespace Kugushev.Scripts.Common.ContextManagement
                 if (!loaded)
                     Debug.LogError($"{_sceneName} scene isn't loaded");
             }
-        }
 
-        public UniTask OnEnterAsync()
-        {
-            throw new NotSupportedException();
+            OnEnterAfterLoadScene();
         }
 
         public void OnUpdate(float deltaTime)
@@ -44,7 +44,20 @@ namespace Kugushev.Scripts.Common.ContextManagement
 
         public async UniTask OnExitAsync()
         {
+            OnExitBeforeUnloadScene();
             await SceneManager.UnloadSceneAsync(_sceneName);
+        }
+
+        protected virtual void OnEnterBeforeLoadScene()
+        {
+        }
+
+        protected virtual void OnEnterAfterLoadScene()
+        {
+        }
+
+        protected virtual void OnExitBeforeUnloadScene()
+        {
         }
     }
 }

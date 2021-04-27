@@ -196,7 +196,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1606465855}
-  - component: {fileID: 1606465856}
   - component: {fileID: 1606465858}
   - component: {fileID: 1606465857}
   m_Layer: 0
@@ -220,25 +219,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1606465856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606465854}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ce562a33cc469d8290f7055920b143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameModelProvider: {fileID: 11400000, guid: 1f265bbda814ec940bbc416b87670e23, type: 2}
-  campaignSceneParametersPipeline: {fileID: 11400000, guid: c119f2db6f7e451448163eaec69a1c3c, type: 2}
-  gameSceneParametersPipeline: {fileID: 11400000, guid: 0e33eb78891c5af44a5761e485c7f800, type: 2}
-  onCampaignExitTransition: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
-  onGameExitTransition: {fileID: 11400000, guid: b229c7abe47da64418f123ed14584b68, type: 2}
-  toCampaignTransition: {fileID: 11400000, guid: afef6bfeb09978d498d4651ff00d7a4f, type: 2}
-  toPlaygroundTransition: {fileID: 11400000, guid: 2894980caa9a2db47a18566acbbb7c77, type: 2}
 --- !u!114 &1606465857
 MonoBehaviour:
   m_ObjectHideFlags: 0

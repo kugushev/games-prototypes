@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Game\Services\RelationsService.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticalAction.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\Intrigue.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\PoliticsState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PerkInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\CampaignPreparationWidget.cs" />
@@ -61,11 +61,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\Politician.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianCardWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Relation.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticalActionInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\IntrigueRecord.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Enums\Difficulty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\ParliamentWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticalActionsWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\IntriguesWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\StatesAndTransitions\RevolutionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Utils\GameModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticianDetailsWidget.cs" />
@@ -77,7 +77,15 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\RevolutionWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\CampaignResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\GameManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\PoliticalActionWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Widgets\IntrigueCardWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ContextManagement\GameContextManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ContextManagement\PoliticsState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\GameDateStore.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ContextManagement\GameStoreInitializedTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Services\ParliamentGenerationService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Repositories\PoliticianCharactersRepository.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\IntriguesSet.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\ValueObjects\PoliticsParameters.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

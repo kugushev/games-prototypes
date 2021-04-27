@@ -31,9 +31,9 @@ namespace Kugushev.Scripts.Game.Widgets
 
         const string UnknownTrait = "?";
 
-        private Politician? _model;
+        private IPolitician? _model;
 
-        public void SetUp(Politician model)
+        public void SetUp(IPolitician model)
         {
             _model = model;
             UpdateView();
@@ -62,7 +62,7 @@ namespace Kugushev.Scripts.Game.Widgets
             UpdateTraitsView(model);
         }
 
-        private void UpdateRelationView(Politician model)
+        private void UpdateRelationView(IPolitician model)
         {
             Asserting.NotNull(relationEnemy, relationHater, relationIndifferent, relationPartner, relationLoyalist);
 
@@ -95,7 +95,7 @@ namespace Kugushev.Scripts.Game.Widgets
             }
         }
 
-        private void UpdateTraitsView(Politician model)
+        private void UpdateTraitsView(IPolitician model)
         {
             Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
 
@@ -109,17 +109,10 @@ namespace Kugushev.Scripts.Game.Widgets
                 label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;
         }
 
-        private bool IsModelValid([NotNullWhen(true)] out Politician? model)
+        private bool IsModelValid([NotNullWhen(true)] out IPolitician? model)
         {
-            if (_model?.Active != true)
-            {
-                Debug.LogError($"Model is not active: {_model}");
-                model = null;
-                return false;
-            }
-
             model = _model;
-            return true;
+            return _model != null;
         }
     }
 }

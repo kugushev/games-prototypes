@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.App.Constants;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils;
@@ -11,19 +12,16 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
 {
     internal class MainMenuViewModel : MonoBehaviour
     {
-        // injected
-        // private dynamic _serviceBus;
-
         [SerializeField] private TextMeshProUGUI? seedValueText;
         [SerializeField] private Slider? seedSlider;
         [SerializeField] private Button? newGameButton;
         [SerializeField] private Button? customCampaignButton;
         [SerializeField] private Button? playgroundButton;
 
-        [SerializeField] private int seed = 42;
+        [SerializeField] private int seed = AppConstants.DefaultSeed;
 
         [Inject] private SignalBus _signalBus = default!;
-        [Inject] private SignalToTransition<GameContextParameters>.Pool _newGamePool = default!;
+        [Inject] private SignalToTransition<GameParameters>.Pool _newGamePool = default!;
 
         private void Start()
         {
@@ -35,14 +33,13 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
             playgroundButton.onClick.AddListener(OnPlaygroundClicked);
             seedSlider.onValueChanged.AddListener(OnSeedValueChanged);
 
-
             seedSlider.value = seed;
             seedValueText.text = StringBag.FromInt(seed);
         }
 
         private void OnNewGameClicked()
         {
-            _signalBus.Fire(_newGamePool.Spawn(new GameContextParameters(seed)));
+            _signalBus.Fire(_newGamePool.Spawn(new GameParameters(seed)));
         }
 
         private void OnCustomCampaignClicked()
@@ -52,12 +49,7 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
 
         private void OnPlaygroundClicked()
         {
-            // _serviceBus.Pub(new StartMissionSignal
-            // {
-            //     Seed = seed,
-            //     Perks = null,
-            //     MissionInfo = null
-            // });
+            // todo: start playground
         }
 
         private void OnSeedValueChanged(float sliderValue)

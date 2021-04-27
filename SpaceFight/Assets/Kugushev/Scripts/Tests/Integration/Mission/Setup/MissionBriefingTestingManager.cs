@@ -32,7 +32,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
         {
             var seed = Seed ?? DateTime.Now.Millisecond;
             var missionProperties = new MissionInfo(seed, Difficulty.Normal,
-                ScriptableObject.CreateInstance<PoliticalAction>());
+                ScriptableObject.CreateInstance<Intrigue>());
 
             var planetarySystemPerks = objectsPool!.GetObject<PlanetarySystemPerks, PlanetarySystemPerks.State>(
                 new PlanetarySystemPerks.State());

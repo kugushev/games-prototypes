@@ -9,52 +9,53 @@ using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Game.Models
 {
-    public class Politician : Poolable<Politician.State>
+    public interface IPolitician
     {
-        public struct State
-        {
-            public readonly PoliticianCharacter Character;
-            public readonly Percentage IncomeProbability;
-            public int RelationLevel;
-            public int Budget;
-            public Traits Traits;
-            public TraitsStatus TraitsStatus;
+        PoliticianCharacter Character { get; }
+        int RelationLevel { get; }
+        Relation Relation { get; }
+        int Budget { get; }
+        bool IsReadyToInvest { get; }
+        Traits Traits { get; }
+        TraitsStatus TraitsStatus { get; }
+    }
 
-            public State(PoliticianCharacter character, Percentage incomeProbability, int startBudget, Traits traits)
-            {
-                Character = character;
-                IncomeProbability = incomeProbability;
-                Budget = startBudget;
-                Traits = traits;
-                RelationLevel = GameConstants.StartRelationLevel;
-                TraitsStatus = new TraitsStatus();
-            }
+    internal class Politician : IPolitician
+    {
+        private readonly Percentage _incomeProbability;
+        private readonly Traits _traits;
+        private TraitsStatus _traitsStatus;
+        private int _budget;
+        private int _relationLevel;
+
+        public Politician(PoliticianCharacter character, Percentage incomeProbability, int startBudget, Traits traits)
+        {
+            Character = character;
+            _incomeProbability = incomeProbability;
+            _traits = traits;
+            _traitsStatus = new TraitsStatus();
+            _budget = startBudget;
+            _relationLevel = GameConstants.StartRelationLevel;
         }
 
-        public Politician(ObjectsPool objectsPool) : base(objectsPool)
+        public PoliticianCharacter Character { get; }
+
+        public int RelationLevel => _relationLevel;
+        public Relation Relation => RelationsService.FromLevel(_relationLevel);
+
+        public int Budget => _budget;
+
+        public bool IsReadyToInvest => _budget > 0 && (Relation == Relation.Partner || Relation == Relation.Loyalist);
+
+        public Traits Traits => _traits;
+        public TraitsStatus TraitsStatus => _traitsStatus;
+
+        internal void ApplyPoliticalAction(Intrigue intrigue)
         {
-        }
+            var intrigueTraits = intrigue.Traits;
 
-        public PoliticianCharacter Character => ObjectState.Character;
-
-        public int RelationLevel => ObjectState.RelationLevel;
-        public Relation Relation => RelationsService.FromLevel(ObjectState.RelationLevel);
-
-        public int Budget => ObjectState.Budget;
-
-        public bool IsReadyToInvest => ObjectState.Budget > 0 &&
-                                       (Relation == Relation.Partner || Relation == Relation.Loyalist);
-
-        public Traits Traits => ObjectState.Traits;
-        public TraitsStatus TraitsStatus => ObjectState.TraitsStatus;
-
-        public void ApplyPoliticalAction(PoliticalAction politicalAction)
-        {
-            var intrigueTraits = politicalAction.Traits;
-
-            if (politicalAction.Intel > 0)
-                ObjectState.TraitsStatus =
-                    ObjectState.TraitsStatus.RevealOne(ObjectState.Traits, politicalAction.Intel);
+            if (intrigue.Intel > 0)
+                _traitsStatus = _traitsStatus.RevealOne(_traits, intrigue.Intel);
 
             ApplyTraitsEffect(intrigueTraits);
         }
@@ -62,40 +63,31 @@ namespace Kugushev.Scripts.Game.Models
         private void ApplyTraitsEffect(Traits traits)
         {
             int relationChange = 0;
-            relationChange += ObjectState.Traits.Business * traits.Business;
-            relationChange += ObjectState.Traits.Greed * traits.Greed;
-            relationChange += ObjectState.Traits.Lust * traits.Lust;
-            relationChange += ObjectState.Traits.Brute * traits.Brute;
-            relationChange += ObjectState.Traits.Vanity * traits.Vanity;
+            relationChange += _traits.Business * traits.Business;
+            relationChange += _traits.Greed * traits.Greed;
+            relationChange += _traits.Lust * traits.Lust;
+            relationChange += _traits.Brute * traits.Brute;
+            relationChange += _traits.Vanity * traits.Vanity;
 
-            ObjectState.RelationLevel += relationChange;
+            _relationLevel += relationChange;
 
-            if (ObjectState.RelationLevel < GameConstants.MinRelationLevel)
-                ObjectState.RelationLevel = GameConstants.MinRelationLevel;
-            if (ObjectState.RelationLevel > GameConstants.MaxRelationLevel)
-                ObjectState.RelationLevel = GameConstants.MaxRelationLevel;
+            if (_relationLevel < GameConstants.MinRelationLevel)
+                _relationLevel = GameConstants.MinRelationLevel;
+            if (_relationLevel > GameConstants.MaxRelationLevel)
+                _relationLevel = GameConstants.MaxRelationLevel;
         }
 
-        public void ApplyIncome()
+        internal void ApplyIncome()
         {
-            // if (ObjectState.Budget <= 0)
-            // {
-            //     ObjectState.Budget += GameConstants.PoliticianIncome;
-            //     return;
-            // }
-
             var range = Random.Range(0f, 1f);
-            if (range > ObjectState.IncomeProbability.Amount)
+            if (range > _incomeProbability.Amount)
             {
-                ObjectState.Budget = Mathf.Min(
-                    ObjectState.Budget + GameConstants.PoliticianIncome,
+                _budget = Mathf.Min(
+                    _budget + GameConstants.PoliticianIncome,
                     GameConstants.MaxBudget);
             }
         }
 
-        public void CollectMoney()
-        {
-            ObjectState.Budget = 0;
-        }
+        public void CollectMoney() => _budget = 0;
     }
 }

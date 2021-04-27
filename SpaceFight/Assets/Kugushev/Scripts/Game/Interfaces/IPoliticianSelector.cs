@@ -2,7 +2,7 @@
 
 namespace Kugushev.Scripts.Game.Interfaces
 {
-    public interface IPoliticianSelector
+    internal interface IPoliticianSelector
     {
         Politician? SelectedPolitician { get; }
     }

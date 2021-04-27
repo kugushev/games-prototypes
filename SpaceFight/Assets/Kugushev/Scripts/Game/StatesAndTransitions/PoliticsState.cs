@@ -4,7 +4,7 @@ using Kugushev.Scripts.Game.Models;
 
 namespace Kugushev.Scripts.Game.StatesAndTransitions
 {
-    public class PoliticsState : BaseSceneLoadingState<GameModel>
+    internal class PoliticsState : BaseSceneLoadingState<GameModel>
     {
         public PoliticsState(GameModel model)
             : base(model, UnityConstants.PoliticsMenuScene, true)

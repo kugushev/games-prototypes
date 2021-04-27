@@ -4,9 +4,9 @@ using Kugushev.Scripts.Common.ContextManagement;
 
 namespace Kugushev.Scripts.App.ContextManagement
 {
-    public class GameModeState : ParameterizedSceneLoadingState<GameContextParameters>
+    internal class GameState : ParameterizedSceneLoadingState<GameParameters>
     {
-        public GameModeState(ParametersPipeline<GameContextParameters> parametersPipeline)
+        public GameState(ParametersPipeline<GameParameters> parametersPipeline)
             : base(AppConstants.Scenes.GameManagementScene, true, parametersPipeline)
         {
         }

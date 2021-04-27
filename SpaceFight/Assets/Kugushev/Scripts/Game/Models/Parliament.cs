@@ -4,36 +4,15 @@ using Kugushev.Scripts.Game.Interfaces;
 
 namespace Kugushev.Scripts.Game.Models
 {
-    public class Parliament : Poolable<Parliament.State>, IPoliticianSelector
+    public class Parliament
     {
-        public struct State
+        private readonly List<Politician> _politicians;
+
+        internal Parliament(List<Politician> politicians)
         {
-            public Politician? SelectedPolitician;
+            _politicians = politicians;
         }
 
-        public Parliament(ObjectsPool objectsPool) : base(objectsPool)
-        {
-        }
-
-        private readonly List<Politician> _politicians = new List<Politician>(9);
-
-        public void AddPolitician(Politician politician) => _politicians.Add(politician);
-
-        public IReadOnlyList<Politician> Politicians => _politicians;
-
-        public Politician? SelectedPolitician
-        {
-            get => ObjectState.SelectedPolitician;
-            set => ObjectState.SelectedPolitician = value;
-        }
-
-        protected override void OnRestore(State state)
-        {
-            foreach (var politician in _politicians)
-                politician.Dispose();
-            _politicians.Clear();
-        }
-
-        protected override void OnClear(State state) => _politicians.Clear();
+        public IReadOnlyList<IPolitician> Politicians => _politicians;
     }
 }

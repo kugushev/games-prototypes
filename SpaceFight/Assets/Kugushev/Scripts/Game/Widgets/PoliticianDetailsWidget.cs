@@ -40,9 +40,9 @@ namespace Kugushev.Scripts.Game.Widgets
 
         const string UnknownTrait = "?";
 
-        private Politician? _model;
+        private IPolitician? _model;
 
-        public void Select(Politician model)
+        public void Select(IPolitician model)
         {
             gameObject.SetActive(true);
             _model = model;
@@ -69,7 +69,7 @@ namespace Kugushev.Scripts.Game.Widgets
             UpdatePerksView(model);
         }
 
-        private void UpdateRelationView(Politician model)
+        private void UpdateRelationView(IPolitician model)
         {
             Asserting.NotNull(relationValueLabel, relationEnemy, relationHater, relationIndifferent, relationPartner,
                 relationLoyalist, relationTip);
@@ -110,7 +110,7 @@ namespace Kugushev.Scripts.Game.Widgets
             }
         }
 
-        private void UpdateBudgetView(Politician model)
+        private void UpdateBudgetView(IPolitician model)
         {
             Asserting.NotNull(budgetValueLabel, budgetIsReadyToInvest, budgetIsNotReadyToInvest);
 
@@ -119,7 +119,7 @@ namespace Kugushev.Scripts.Game.Widgets
             budgetIsNotReadyToInvest.SetActive(!model.IsReadyToInvest);
         }
 
-        private void UpdateTraitsView(Politician model)
+        private void UpdateTraitsView(IPolitician model)
         {
             Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
 
@@ -133,7 +133,7 @@ namespace Kugushev.Scripts.Game.Widgets
                 label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;
         }
 
-        private void UpdatePerksView(Politician model)
+        private void UpdatePerksView(IPolitician model)
         {
             Asserting.NotNull(perkNameLabel, perkLvl1Requirement, perkLvl1Effect, perkLvl2Requirement, perkLvl2Effect,
                 perkLvl3Requirement, perkLvl3Effect);
@@ -148,17 +148,10 @@ namespace Kugushev.Scripts.Game.Widgets
             perkLvl3Effect.text = model.Character.PerkLvl3.Effect;
         }
 
-        private bool IsModelValid([NotNullWhen(true)] out Politician? model)
+        private bool IsModelValid([NotNullWhen(true)] out IPolitician? model)
         {
-            if (_model?.Active != true)
-            {
-                Debug.LogError($"Model is not active: {_model}");
-                model = null;
-                return false;
-            }
-
             model = _model;
-            return true;
+            return _model != null;
         }
     }
 }

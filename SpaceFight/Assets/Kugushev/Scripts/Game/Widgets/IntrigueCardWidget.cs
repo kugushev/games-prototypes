@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
-    public class PoliticalActionWidget : MonoBehaviour
+    public class IntrigueCardWidget : MonoBehaviour
     {
         [SerializeField] private Toggle? toggle;
         [SerializeField] private TextMeshProUGUI? caption;
@@ -27,10 +27,10 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private Color hard;
         [SerializeField] private Color insane;
 
-        private PoliticalActionInfo _model;
-        private Action<PoliticalActionWidget?>? _onCardSelected;
+        private IntrigueRecord _model;
+        private Action<IntrigueCardWidget?>? _onCardSelected;
 
-        public PoliticalActionInfo Model => _model;
+        public IntrigueRecord Model => _model;
 
         public void ToggleChanged(bool isOn)
         {
@@ -40,8 +40,8 @@ namespace Kugushev.Scripts.Game.Widgets
             _onCardSelected?.Invoke(isOn ? this : null);
         }
 
-        public void SetUp(PoliticalActionInfo model, ToggleGroup toggleGroup,
-            Action<PoliticalActionWidget?> onCardSelected)
+        public void SetUp(IntrigueRecord model, ToggleGroup toggleGroup,
+            Action<IntrigueCardWidget?> onCardSelected)
         {
             Asserting.NotNull(toggle, onCardSelected);
 
@@ -58,8 +58,8 @@ namespace Kugushev.Scripts.Game.Widgets
             if (!IsModelValid())
                 return;
 
-            caption.text = _model.PoliticalAction.Caption;
-            intelValue.text = StringBag.FromInt(_model.PoliticalAction.Intel);
+            caption.text = _model.Intrigue.Caption;
+            intelValue.text = StringBag.FromInt(_model.Intrigue.Intel);
             UpdateDifficultyView();
             UpdateTraitsView();
         }
@@ -68,7 +68,7 @@ namespace Kugushev.Scripts.Game.Widgets
         {
             Asserting.NotNull(background);
 
-            switch (_model.PoliticalAction.Difficulty)
+            switch (_model.Intrigue.Difficulty)
             {
                 case Difficulty.Normal:
                     background.color = normal;
@@ -80,7 +80,7 @@ namespace Kugushev.Scripts.Game.Widgets
                     background.color = insane;
                     break;
                 default:
-                    Debug.LogError($"Unexpected difficulty {_model.PoliticalAction.Difficulty}");
+                    Debug.LogError($"Unexpected difficulty {_model.Intrigue.Difficulty}");
                     break;
             }
         }
@@ -89,11 +89,11 @@ namespace Kugushev.Scripts.Game.Widgets
         {
             Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
             
-            UpdateTraitView(traitBusinessValue, _model.PoliticalAction.Traits.Business);
-            UpdateTraitView(traitGreedValue, _model.PoliticalAction.Traits.Greed);
-            UpdateTraitView(traitLustValue, _model.PoliticalAction.Traits.Lust);
-            UpdateTraitView(traitBruteValue, _model.PoliticalAction.Traits.Brute);
-            UpdateTraitView(traitVanityValue, _model.PoliticalAction.Traits.Vanity);
+            UpdateTraitView(traitBusinessValue, _model.Intrigue.Traits.Business);
+            UpdateTraitView(traitGreedValue, _model.Intrigue.Traits.Greed);
+            UpdateTraitView(traitLustValue, _model.Intrigue.Traits.Lust);
+            UpdateTraitView(traitBruteValue, _model.Intrigue.Traits.Brute);
+            UpdateTraitView(traitVanityValue, _model.Intrigue.Traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, int value) => label.text = StringBag.FromInt(value);
         }

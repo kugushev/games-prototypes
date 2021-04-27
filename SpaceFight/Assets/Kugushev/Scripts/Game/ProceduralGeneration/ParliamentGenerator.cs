@@ -27,79 +27,79 @@ namespace Kugushev.Scripts.Game.ProceduralGeneration
 
         private readonly List<int> _indexesBuffer = new List<int>(9);
 
-        public Parliament Generate(int seed)
-        {
-            Asserting.NotNull(objectsPool);
-            
-            Random.InitState(seed);
+        // public Parliament Generate(int seed)
+        // {
+        //     Asserting.NotNull(objectsPool);
+        //     
+        //     Random.InitState(seed);
+        //
+        //     var parliament = objectsPool.GetObject<Parliament, Parliament.State>(new Parliament.State());
+        //
+        //     FillIndexesBuffer();
+        //     while (_indexesBuffer.Count > 0)
+        //     {
+        //         var politician = CreatePolitician();
+        //
+        //         parliament.AddPolitician(politician);
+        //     }
+        //
+        //     _indexesBuffer.Clear();
+        //
+        //     return parliament;
+        // }
 
-            var parliament = objectsPool.GetObject<Parliament, Parliament.State>(new Parliament.State());
-
-            FillIndexesBuffer();
-            while (_indexesBuffer.Count > 0)
-            {
-                var politician = CreatePolitician();
-
-                parliament.AddPolitician(politician);
-            }
-
-            _indexesBuffer.Clear();
-
-            return parliament;
-        }
-
-        private Politician CreatePolitician()
-        {
-            Asserting.NotNull(characters, objectsPool);
-            
-            int index = NextRandomIndex();
-            var character = characters[index];
-
-            var politician = objectsPool.GetObject<Politician, Politician.State>(new Politician.State(character,
-                NextIncomeProbability(),
-                NextStartBudget(),
-                NextTraits()
-            ));
-
-            return politician;
-        }
-
-        private Percentage NextIncomeProbability() => new Percentage(
-            Random.Range(minIncomeProbability, maxIncomeProbability));
-
-        private int NextStartBudget() => Random.Range(minStartBudget, maxStartBudget);
-
-        private Traits NextTraits()
-        {
-            return new Traits(
-                NextTrait(),
-                NextTrait(),
-                NextTrait(),
-                NextTrait(),
-                NextTrait()
-            );
-
-            int NextTrait() => Random.Range(GameConstants.MinTraitValue, GameConstants.MaxTraitValue + 1);
-        }
-
-        private void FillIndexesBuffer()
-        {
-            Asserting.NotNull(characters);
-            
-            _indexesBuffer.Clear();
-            for (int i = 0; i < characters.Length; i++)
-                _indexesBuffer.Add(i);
-        }
-
-        private int NextRandomIndex()
-        {
-            if (_indexesBuffer.Count == 0)
-                throw new Exception("Indexes buffer is empty");
-
-            var bufferIndex = Random.Range(0, _indexesBuffer.Count);
-            var index = _indexesBuffer[bufferIndex];
-            _indexesBuffer.RemoveAt(bufferIndex);
-            return index;
-        }
+        // private Politician CreatePolitician()
+        // {
+        //     Asserting.NotNull(characters, objectsPool);
+        //     
+        //     int index = NextRandomIndex();
+        //     var character = characters[index];
+        //
+        //     var politician = objectsPool.GetObject<Politician, Politician.State>(new Politician.State(character,
+        //         NextIncomeProbability(),
+        //         NextStartBudget(),
+        //         NextTraits()
+        //     ));
+        //
+        //     return politician;
+        // }
+        //
+        // private Percentage NextIncomeProbability() => new Percentage(
+        //     Random.Range(minIncomeProbability, maxIncomeProbability));
+        //
+        // private int NextStartBudget() => Random.Range(minStartBudget, maxStartBudget);
+        //
+        // private Traits NextTraits()
+        // {
+        //     return new Traits(
+        //         NextTrait(),
+        //         NextTrait(),
+        //         NextTrait(),
+        //         NextTrait(),
+        //         NextTrait()
+        //     );
+        //
+        //     int NextTrait() => Random.Range(GameConstants.MinTraitValue, GameConstants.MaxTraitValue + 1);
+        // }
+        //
+        // private void FillIndexesBuffer()
+        // {
+        //     Asserting.NotNull(characters);
+        //     
+        //     _indexesBuffer.Clear();
+        //     for (int i = 0; i < characters.Length; i++)
+        //         _indexesBuffer.Add(i);
+        // }
+        //
+        // private int NextRandomIndex()
+        // {
+        //     if (_indexesBuffer.Count == 0)
+        //         throw new Exception("Indexes buffer is empty");
+        //
+        //     var bufferIndex = Random.Range(0, _indexesBuffer.Count);
+        //     var index = _indexesBuffer[bufferIndex];
+        //     _indexesBuffer.RemoveAt(bufferIndex);
+        //     return index;
+        // }
     }
 }

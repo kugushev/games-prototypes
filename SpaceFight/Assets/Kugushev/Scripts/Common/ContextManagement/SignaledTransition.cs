@@ -5,7 +5,7 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 namespace Kugushev.Scripts.Common.ContextManagement
 {
 #nullable disable
-    public class SignaledTransition<T> : IParameterizedTransition<T>
+    public class SignaledTransition<T> : IParameterizedTransition<T>, IReusableTransition
     {
         private T _parameters;
         private bool _signaled;

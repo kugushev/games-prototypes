@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Game.ValueObjects
 {
-    [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(PoliticalAction))]
-    public class PoliticalAction : ScriptableObject
+    [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(Intrigue))]
+    public class Intrigue : ScriptableObject
     {
         [SerializeField] private string? caption;
         [SerializeField] private Difficulty difficulty;

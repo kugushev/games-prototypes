@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup.Abstractions
         {
             Asserting.NotNull(objectsPool, modelProvider);
 
-            var campaignInfo = new CampaignContextParameters(Seed ?? DateTime.UtcNow.Millisecond,
+            var campaignInfo = new CampaignParameters(Seed ?? DateTime.UtcNow.Millisecond,
                 null, PerkIdHelper.AllPerks, false, true);
 
             var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
@@ -43,7 +43,7 @@ namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup.Abstractions
 
         protected override void OnStart()
         {
-            Random.InitState(RootModel.CampaignContextParameters.Seed);
+            Random.InitState(RootModel.CampaignParameters.Seed);
         }
 
         protected override void Dispose()

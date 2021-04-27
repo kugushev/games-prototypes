@@ -15,10 +15,10 @@ namespace Kugushev.Scripts.Game.ValueObjects
 
         protected override void OnRestore(State state) => _rewardedPoliticalActions.Clear();
 
-        private readonly List<PoliticalAction> _rewardedPoliticalActions = new List<PoliticalAction>(16);
+        private readonly List<Intrigue> _rewardedPoliticalActions = new List<Intrigue>(16);
 
-        public List<PoliticalAction> RewardedPoliticalActions => _rewardedPoliticalActions;
-        public void AddReward(PoliticalAction politicalAction) => _rewardedPoliticalActions.Add(politicalAction);
+        public List<Intrigue> RewardedPoliticalActions => _rewardedPoliticalActions;
+        public void AddReward(Intrigue intrigue) => _rewardedPoliticalActions.Add(intrigue);
         protected override void OnClear(State state) => _rewardedPoliticalActions.Clear();
     }
 

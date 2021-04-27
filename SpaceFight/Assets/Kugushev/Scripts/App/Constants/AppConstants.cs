@@ -6,7 +6,7 @@ namespace Kugushev.Scripts.App.Constants
     {
         public const string MenuPrefix = CommonConstants.MenuPrefix + "App/";
 
-        public const int DefaultCampaignSeed = 42;
+        public const int DefaultSeed = 42;
 
         public static class Scenes
         {

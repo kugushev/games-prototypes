@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Game.StatesAndTransitions
 {
-    public class CampaignState : BaseSceneLoadingState<GameModel>
+    internal class CampaignState : BaseSceneLoadingState<GameModel>
     {
         private readonly CampaignSceneResultPipeline _campaignSceneResultPipeline;
 

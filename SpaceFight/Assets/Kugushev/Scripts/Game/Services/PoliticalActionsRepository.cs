@@ -11,12 +11,12 @@ namespace Kugushev.Scripts.Game.Services
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(PoliticalActionsRepository))]
     public class PoliticalActionsRepository : ScriptableObject
     {
-        [SerializeField] private PoliticalAction[]? normal;
-        [SerializeField] private PoliticalAction[]? hard;
-        [SerializeField] private PoliticalAction[]? insane;
-        [SerializeField] private PoliticalAction? stub;
+        [SerializeField] private Intrigue[]? normal;
+        [SerializeField] private Intrigue[]? hard;
+        [SerializeField] private Intrigue[]? insane;
+        [SerializeField] private Intrigue? stub;
 
-        public PoliticalAction Stub
+        public Intrigue Stub
         {
             get
             {
@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Game.Services
             }
         }
 
-        public PoliticalAction GetRandom(Difficulty difficulty)
+        public Intrigue GetRandom(Difficulty difficulty)
         {
             Asserting.NotNull(normal, hard, insane);
 
@@ -38,7 +38,7 @@ namespace Kugushev.Scripts.Game.Services
             };
         }
 
-        private PoliticalAction GetRandom(PoliticalAction[] actions)
+        private Intrigue GetRandom(Intrigue[] actions)
         {
             int index = Random.Range(0, actions.Length);
             return actions[index];

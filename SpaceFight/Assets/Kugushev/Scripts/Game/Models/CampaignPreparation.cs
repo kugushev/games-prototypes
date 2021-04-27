@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models
 {
-    public class CampaignPreparation : Poolable<CampaignPreparation.State>
+    internal class CampaignPreparation : Poolable<CampaignPreparation.State>
     {
         public readonly struct State
         {
@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Game.Models
         private readonly HashSet<Politician> _sponsors = new HashSet<Politician>();
         private readonly HashSet<PerkId> _perksBuffer = new HashSet<PerkId>();
 
-        public IReadOnlyCollection<Politician> Sponsors => _sponsors;
+        internal IReadOnlyCollection<Politician> Sponsors => _sponsors;
 
         public int CampaignBudget
         {

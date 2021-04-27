@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.App
             Container.Bind<AbstractContextManager>().FromComponentInHierarchy().AsSingle();
 
             Container.Bind<MainMenuState>().AsSingle();
-            Container.Bind<GameModeState>().AsSingle();
+            Container.Bind<GameState>().AsSingle();
         }
     }
 }

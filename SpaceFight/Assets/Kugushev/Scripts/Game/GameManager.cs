@@ -16,7 +16,7 @@ using Zenject;
 
 namespace Kugushev.Scripts.Game
 {
-    public class GameManager : BaseManager<GameModel>
+    internal class GameManager : BaseManager<GameModel>
     {
         [SerializeField] private ObjectsPool? objectsPool;
 
@@ -41,23 +41,23 @@ namespace Kugushev.Scripts.Game
         // [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
 
-        [Inject] private ParametersPipeline<GameContextParameters> _parametersPipeline = default!;
+        [Inject] private ParametersPipeline<GameParameters> _parametersPipeline = default!;
 
 
         protected override GameModel InitRootModel()
         {
-            Asserting.NotNull(parliamentGenerator, objectsPool, gameModelProvider);
-
-            var info = _parametersPipeline.Pop();
-
-            var parliament = parliamentGenerator.Generate(info.Seed);
-            var campaignPreparation = objectsPool.GetObject<CampaignPreparation, CampaignPreparation.State>(
-                new CampaignPreparation.State(parliament));
-            var model = objectsPool.GetObject<GameModel, GameModel.State>(
-                new GameModel.State(parliament, campaignPreparation));
-
-            gameModelProvider.Set(model);
-            return model;
+            // Asserting.NotNull(parliamentGenerator, objectsPool, gameModelProvider);
+            //
+            // var info = _parametersPipeline.Pop();
+            //
+            // var parliament = parliamentGenerator.Generate(info.Seed);
+            // // var campaignPreparation = objectsPool.GetObject<CampaignPreparation, CampaignPreparation.State>(
+            // //     new CampaignPreparation.State(parliament));
+            // var model = objectsPool.GetObject<GameModel, GameModel.State>(
+            //     new GameModel.State(parliament, campaignPreparation));
+            //
+            // gameModelProvider.Set(model);
+            return null;
         }
 
         protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>

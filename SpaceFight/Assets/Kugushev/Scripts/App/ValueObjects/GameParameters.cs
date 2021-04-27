@@ -1,10 +1,10 @@
 ﻿namespace Kugushev.Scripts.App.ValueObjects
 {
-    public readonly struct GameContextParameters
+    public readonly struct GameParameters
     {
         public readonly int Seed;
 
-        public GameContextParameters(int seed)
+        public GameParameters(int seed)
         {
             Seed = seed;
         }

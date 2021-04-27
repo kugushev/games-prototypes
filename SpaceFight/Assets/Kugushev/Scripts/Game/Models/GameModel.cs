@@ -4,9 +4,9 @@ using Kugushev.Scripts.Game.ValueObjects;
 
 namespace Kugushev.Scripts.Game.Models
 {
-    public class GameModel : Poolable<GameModel.State>
+    internal class GameModel : Poolable<GameModel.State>
     {
-        public readonly struct State
+        internal readonly struct State
         {
             public readonly Parliament Parliament;
 
@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Game.Models
             }
         }
 
-        private readonly List<PoliticalActionInfo> _politicalActions = new List<PoliticalActionInfo>(64);
+        private readonly List<IntrigueRecord> _politicalActions = new List<IntrigueRecord>(64);
 
 
         public GameModel(ObjectsPool objectsPool) : base(objectsPool)
@@ -31,25 +31,25 @@ namespace Kugushev.Scripts.Game.Models
             ObjectState.CampaignPreparation.RemoveAllSponsors();
             foreach (var politician in Parliament.Politicians)
             {
-                politician.ApplyIncome();
+                // politician.ApplyIncome();
             }
         }
 
         public Parliament Parliament => ObjectState.Parliament;
-        public CampaignPreparation CampaignPreparation => ObjectState.CampaignPreparation;
-        public IReadOnlyList<PoliticalActionInfo> PoliticalActions => _politicalActions;
+        internal CampaignPreparation CampaignPreparation => ObjectState.CampaignPreparation;
+        public IReadOnlyList<IntrigueRecord> PoliticalActions => _politicalActions;
 
-        public void AddPoliticalActions(IReadOnlyList<PoliticalAction> politicalActions)
+        public void AddPoliticalActions(IReadOnlyList<Intrigue> politicalActions)
         {
             foreach (var politicalAction in politicalActions)
-                _politicalActions.Add(new PoliticalActionInfo(politicalAction));
+                _politicalActions.Add(new IntrigueRecord(politicalAction));
         }
 
-        public void RemovePoliticalAction(PoliticalActionInfo info) => _politicalActions.Remove(info);
+        public void RemovePoliticalAction(IntrigueRecord @record) => _politicalActions.Remove(record);
 
         protected override void OnClear(State state)
         {
-            state.Parliament.Dispose();
+            // state.Parliament.Dispose();
             state.CampaignPreparation.Dispose();
             _politicalActions.Clear();
         }
