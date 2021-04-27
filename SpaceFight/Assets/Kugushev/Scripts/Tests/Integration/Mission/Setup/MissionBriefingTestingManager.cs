@@ -53,16 +53,16 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
             return model;
         }
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             MissionModel rootModel)
         {
             var briefingState = new BriefingState(rootModel);
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
                 {
                     EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, briefingState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, briefingState)
                     }
                 }
             };

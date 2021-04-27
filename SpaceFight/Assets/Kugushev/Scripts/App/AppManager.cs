@@ -25,10 +25,14 @@ namespace Kugushev.Scripts.App
         [SerializeField] private TriggerTransition? toCampaignTransition;
         [SerializeField] private TriggerTransition? toPlaygroundTransition;
 
-        [Inject] private ToNewGameTransition _toNewGameTransition = default!;
-        
+        private ToNewGameTransition _toNewGameTransition = default!;
+
         protected override AppModel InitRootModel()
         {
+            var sp = GetComponent<SpriteRenderer>();
+
+            print(sp);
+
             var model = new AppModel();
             if (gameModelProvider is { })
                 gameModelProvider.Set(model);
@@ -36,51 +40,49 @@ namespace Kugushev.Scripts.App
             return model;
         }
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             AppModel rootModel)
         {
             Asserting.NotNull(campaignSceneParametersPipeline, gameSceneParametersPipeline, toCampaignTransition,
                 toPlaygroundTransition, onCampaignExitTransition, onGameExitTransition);
 
-            print(_toNewGameTransition);
-            
             var mainMenuState = new MainMenuState(rootModel);
             var campaignState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, false);
             var playgroundState = new CustomCampaignState(rootModel, campaignSceneParametersPipeline, true);
             var newGameState = new GameState(rootModel, gameSceneParametersPipeline);
 
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
                 {
                     EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, mainMenuState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, mainMenuState)
                     }
                 },
                 {
                     mainMenuState, new[]
                     {
-                        new TransitionRecord(toCampaignTransition, campaignState),
-                        new TransitionRecord(toPlaygroundTransition, playgroundState),
-                        new TransitionRecord(_toNewGameTransition, newGameState)
+                        new TransitionRecordOld(toCampaignTransition, campaignState),
+                        new TransitionRecordOld(toPlaygroundTransition, playgroundState),
+                        new TransitionRecordOld(_toNewGameTransition, newGameState)
                     }
                 },
                 {
                     campaignState, new[]
                     {
-                        new TransitionRecord(onCampaignExitTransition, mainMenuState)
+                        new TransitionRecordOld(onCampaignExitTransition, mainMenuState)
                     }
                 },
                 {
                     playgroundState, new[]
                     {
-                        new TransitionRecord(onCampaignExitTransition, mainMenuState)
+                        new TransitionRecordOld(onCampaignExitTransition, mainMenuState)
                     }
                 },
                 {
                     newGameState, new[]
                     {
-                        new TransitionRecord(onGameExitTransition, mainMenuState)
+                        new TransitionRecordOld(onGameExitTransition, mainMenuState)
                     }
                 }
             };

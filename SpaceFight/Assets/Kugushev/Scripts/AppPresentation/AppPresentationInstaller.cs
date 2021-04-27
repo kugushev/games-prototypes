@@ -24,13 +24,9 @@ namespace Kugushev.Scripts.AppPresentation
                 .ToMethod<AppSceneLoader>((loader, signal) =>
                 {
                     loader.LoadNewGame(signal.Parameters);
-                    signal.DespawnMyself();
+                    signal.DespawnSelf();
                 })
                 .FromResolveAll();
-            
-            
-            
-            // todo: Despawn signal
         }
     }
 }

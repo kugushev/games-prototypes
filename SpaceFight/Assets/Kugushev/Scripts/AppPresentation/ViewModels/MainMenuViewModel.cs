@@ -48,11 +48,7 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
 
         private void OnCustomCampaignClicked()
         {
-            // _serviceBus.Pub(new StartCampaignSignal
-            // {
-            //     Seed = seed,
-            //     Perks = null
-            // });
+            // todo: start campaign
         }
 
         private void OnPlaygroundClicked()

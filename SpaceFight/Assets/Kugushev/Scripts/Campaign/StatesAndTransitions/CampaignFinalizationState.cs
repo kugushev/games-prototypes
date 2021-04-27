@@ -6,7 +6,7 @@ using Kugushev.Scripts.Game.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
-    public class CampaignFinalizationState : IState
+    public class CampaignFinalizationState : IUnparameterizedState
     {
         private CampaignResult? _campaignResult;
         private CampaignSceneResultPipeline? _campaignSceneResultPipeline;

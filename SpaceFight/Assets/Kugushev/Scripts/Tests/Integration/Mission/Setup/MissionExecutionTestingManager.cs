@@ -18,22 +18,22 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
 
         [SerializeField] private SimpleAI? redAi;
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             MissionModel rootModel)
         {
             var executionState = new ExecutionState(rootModel, eventsCollector!);
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
                 {
                     EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, executionState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, executionState)
                     }
                 },
                 {
                     executionState, new[]
                     {
-                        new TransitionRecord(new ToDebriefingTransition(rootModel), SingletonState.Instance)
+                        new TransitionRecordOld(new ToDebriefingTransition(rootModel), SingletonState.Instance)
                     }
                 }
             };

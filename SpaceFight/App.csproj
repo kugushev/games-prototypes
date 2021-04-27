@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Utils\GameSceneParametersPipeline.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\AppSceneLoader.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\ToNewGameTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Models\MainMenu.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\GameState.cs" />
@@ -56,8 +57,9 @@
      <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\GameModeParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Utils\AppModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\CustomCampaignState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Modes\AppModeManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Modes\MainMenuState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Models\AppModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\AppSceneLoader.cs" />
      <None Include="Assets\Kugushev\Scripts\App\App.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

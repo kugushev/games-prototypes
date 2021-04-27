@@ -27,31 +27,31 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
         public static bool GreenIsNormal { get; set; }
         public static bool RedIsNormal { get; set; }
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             MissionModel rootModel)
         {
             var executionState = new ExecutionState(rootModel, eventsCollector!);
             var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline!, achievementsManager!,
                 objectsPool!);
 
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
                 {
                     EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, executionState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, executionState)
                     }
                 },
                 {
                     executionState, new[]
                     {
-                        new TransitionRecord(new ToDebriefingTransition(rootModel), SingletonState.Instance)
+                        new TransitionRecordOld(new ToDebriefingTransition(rootModel), SingletonState.Instance)
                     }
                 },
                 {
                     SingletonState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, debriefingState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, debriefingState)
                     }
                 }
             };

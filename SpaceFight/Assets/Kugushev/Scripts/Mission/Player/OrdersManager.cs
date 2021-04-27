@@ -8,6 +8,7 @@ using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Kugushev.Scripts.Mission.Player
 {

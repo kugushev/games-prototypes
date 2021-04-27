@@ -14,19 +14,19 @@ namespace Kugushev.Scripts.Tests.Integration.Campaign.Setup
     {
         [SerializeField] private MissionsGenerator? missionsGenerationService;
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             CampaignModel rootModel)
         {
             Asserting.NotNull(missionsGenerationService);
             
             var missionSelectionState = new MissionSelectionState(rootModel, missionsGenerationService);
 
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
                 {
                     EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, missionSelectionState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, missionSelectionState)
                     }
                 }
             };

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using UnityEngine.Assertions;
 using AssertionMethod = JetBrains.Annotations.AssertionMethodAttribute;
 using NotNull = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 
@@ -165,9 +166,12 @@ namespace Kugushev.Scripts.Common.Utils
         private static void AssertNotNull([NotNull] object? obj, string parameterName, string callerMember,
             int callerLine)
         {
-            if (obj is null)
-                throw new ArgumentNullException(
-                    $"Parameter {parameterName} is null. Caller: {callerMember} at {callerLine}");
+#nullable disable
+            string message = obj != null
+                ? "" // to avoid extra gc we create a message only if assertion alerts
+                : $"Parameter {parameterName}, caller {callerMember} at {callerLine}";
+            Assert.IsNotNull(obj, message);
         }
+#nullable restore
     }
 }

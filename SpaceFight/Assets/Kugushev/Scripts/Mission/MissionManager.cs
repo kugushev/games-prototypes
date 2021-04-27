@@ -84,7 +84,7 @@ namespace Kugushev.Scripts.Mission
             return model;
         }
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             MissionModel rootModel)
         {
             Asserting.NotNull(eventsCollector, missionSceneResultPipeline, achievementsManager, objectsPool,
@@ -95,30 +95,30 @@ namespace Kugushev.Scripts.Mission
             var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline, achievementsManager,
                 objectsPool);
 
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
                 {
                     EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, briefingState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, briefingState)
                     }
                 },
                 {
                     briefingState, new[]
                     {
-                        new TransitionRecord(toExecutionTransition, executionState)
+                        new TransitionRecordOld(toExecutionTransition, executionState)
                     }
                 },
                 {
                     executionState, new[]
                     {
-                        new TransitionRecord(new ToDebriefingTransition(rootModel), debriefingState)
+                        new TransitionRecordOld(new ToDebriefingTransition(rootModel), debriefingState)
                     }
                 },
                 {
                     debriefingState, new[]
                     {
-                        new TransitionRecord(toFinishMissionTransition, missionExitState)
+                        new TransitionRecordOld(toFinishMissionTransition, missionExitState)
                     }
                 }
             };

@@ -3,7 +3,7 @@ using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 
 namespace Kugushev.Scripts.Common.StatesAndTransitions
 {
-    public class EntryState : IState
+    public class EntryState : IUnparameterizedState
     {
         public static EntryState Instance { get; } = new EntryState();
 

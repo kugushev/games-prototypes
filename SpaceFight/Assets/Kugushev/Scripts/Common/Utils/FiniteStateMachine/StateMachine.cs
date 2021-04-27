@@ -7,10 +7,10 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
 {
     public class StateMachine
     {
-        private readonly IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> _transitions;
-        private IState _currentState;
+        private readonly IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> _transitions;
+        private IUnparameterizedState _currentState;
 
-        public StateMachine(IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> transitions)
+        public StateMachine(IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> transitions)
         {
             ResetTransitions(transitions);
             _transitions = transitions;
@@ -39,7 +39,7 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             await _currentState.OnExitAsync();
         }
 
-        private async UniTask SetState(IState state)
+        private async UniTask SetState(IUnparameterizedState state)
         {
             // todo: refactor with lifetimes
             /*
@@ -82,7 +82,7 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             await _currentState.OnEnterAsync();
         }
 
-        private static void ResetTransitions(IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> transitions)
+        private static void ResetTransitions(IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> transitions)
         {
             foreach (var pair in transitions)
             foreach (var (transition, _) in pair.Value)

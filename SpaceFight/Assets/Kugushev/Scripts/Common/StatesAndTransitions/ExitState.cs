@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Common.StatesAndTransitions
 {
     [CreateAssetMenu(menuName = CommonConstants.MenuPrefix + nameof(ExitState))]
-    public class ExitState : ScriptableObject, IState, ITransition
+    public class ExitState : ScriptableObject, IUnparameterizedState, ITransition
     {
         [NonSerialized] private bool _entered;
 

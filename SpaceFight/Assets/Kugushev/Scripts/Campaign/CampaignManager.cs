@@ -62,7 +62,7 @@ namespace Kugushev.Scripts.Campaign
             return model;
         }
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             CampaignModel rootModel)
         {
             if (rootModel.CampaignInfo.IsPlayground)
@@ -72,7 +72,7 @@ namespace Kugushev.Scripts.Campaign
 
             return GetCampaignStates();
 
-            IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetPlaygroundStates()
+            IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> GetPlaygroundStates()
             {
                 Asserting.NotNull(politicalActionsRepository, missionSceneParametersPipeline, missionSceneResultPipeline,
                     toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
@@ -83,37 +83,37 @@ namespace Kugushev.Scripts.Campaign
 
                 _finalizationState.Setup(rootModel.CampaignResult, null);
 
-                return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+                return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
                 {
                     {
                         EntryState.Instance, new[]
                         {
-                            new TransitionRecord(ImmediateTransition.Instance, playgroundState)
+                            new TransitionRecordOld(ImmediateTransition.Instance, playgroundState)
                         }
                     },
                     {
                         playgroundState, new[]
                         {
-                            new TransitionRecord(toMissionTransition, missionState),
-                            new TransitionRecord(toFinishTransition, _finalizationState)
+                            new TransitionRecordOld(toMissionTransition, missionState),
+                            new TransitionRecordOld(toFinishTransition, _finalizationState)
                         }
                     },
                     {
                         missionState, new[]
                         {
-                            new TransitionRecord(onMissionExitTransition, playgroundState)
+                            new TransitionRecordOld(onMissionExitTransition, playgroundState)
                         }
                     },
                     {
                         _finalizationState, new[]
                         {
-                            new TransitionRecord(ImmediateTransition.Instance, campaignExitState)
+                            new TransitionRecordOld(ImmediateTransition.Instance, campaignExitState)
                         }
                     }
                 };
             }
 
-            IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> GetCampaignStates()
+            IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> GetCampaignStates()
             {
                 Asserting.NotNull(missionsGenerationService, missionSceneParametersPipeline, missionSceneResultPipeline,
                     toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
@@ -126,31 +126,31 @@ namespace Kugushev.Scripts.Campaign
                 _finalizationState.Setup(rootModel.CampaignResult,
                     rootModel.CampaignInfo.IsStandalone ? null : campaignSceneResultPipeline);
 
-                return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+                return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
                 {
                     {
                         EntryState.Instance, new[]
                         {
-                            new TransitionRecord(ImmediateTransition.Instance, missionSelectionState)
+                            new TransitionRecordOld(ImmediateTransition.Instance, missionSelectionState)
                         }
                     },
                     {
                         missionSelectionState, new[]
                         {
-                            new TransitionRecord(toMissionTransition, missionState),
-                            new TransitionRecord(toFinishTransition, _finalizationState)
+                            new TransitionRecordOld(toMissionTransition, missionState),
+                            new TransitionRecordOld(toFinishTransition, _finalizationState)
                         }
                     },
                     {
                         missionState, new[]
                         {
-                            new TransitionRecord(onMissionExitTransition, missionSelectionState)
+                            new TransitionRecordOld(onMissionExitTransition, missionSelectionState)
                         }
                     },
                     {
                         _finalizationState, new[]
                         {
-                            new TransitionRecord(ImmediateTransition.Instance, campaignExitState)
+                            new TransitionRecordOld(ImmediateTransition.Instance, campaignExitState)
                         }
                     }
                 };

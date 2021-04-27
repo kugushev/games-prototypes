@@ -2,7 +2,7 @@
 
 namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
 {
-    public abstract class BaseState<TModel> : IState
+    public abstract class BaseState<TModel> : IUnparameterizedState
     {
         protected readonly TModel Model;
 

@@ -1,23 +1,21 @@
 ﻿using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Common.Utils.Pooling;
 using Zenject;
 
 namespace Kugushev.Scripts.AppPresentation.Signals
 {
-    public class NewGameSignal
+    internal class NewGameSignal : SelfDespawning<NewGameSignal.Pool>
     {
-        public class Pool : MemoryPool<GameModeParameters, NewGameSignal>
+        internal class Pool : MemoryPool<GameModeParameters, NewGameSignal>
         {
             protected override void Reinitialize(GameModeParameters parameters, NewGameSignal item)
             {
                 item._pool = this;
+                
                 item.Parameters = parameters;
             }
         }
 
-        private Pool _pool;
-
         public GameModeParameters Parameters { get; private set; }
-
-        public void DespawnMyself() => _pool.Despawn(this);
     }
 }

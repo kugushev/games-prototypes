@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\AppPresentation\Signals\StartCampaignSignal.cs" />
      <Compile Include="Assets\Kugushev\Scripts\AppPresentation\ViewModels\MainMenuViewModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\AppPresentation\Signals\NewGameSignal.cs" />
      <Compile Include="Assets\Kugushev\Scripts\AppPresentation\AppPresentationInstaller.cs" />

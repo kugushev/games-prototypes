@@ -51,7 +51,7 @@ namespace Kugushev.Scripts.Common.Manager
 
         protected abstract TRootModel InitRootModel();
 
-        protected abstract IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected abstract IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             TRootModel rootModel);
 
         protected virtual void OnStart()

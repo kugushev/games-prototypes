@@ -58,7 +58,7 @@ namespace Kugushev.Scripts.Game
             return model;
         }
 
-        protected override IReadOnlyDictionary<IState, IReadOnlyList<TransitionRecord>> ComposeStateMachine(
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
             GameModel rootModel)
         {
             Asserting.NotNull(campaignSceneParametersPipeline, campaignSceneResultPipeline, toCampaignTransition,
@@ -69,31 +69,31 @@ namespace Kugushev.Scripts.Game
                 campaignSceneResultPipeline);
             var revolutionState = new RevolutionState(rootModel);
 
-            return new Dictionary<IState, IReadOnlyList<TransitionRecord>>
+            return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
                 {
                     EntryState.Instance, new[]
                     {
-                        new TransitionRecord(ImmediateTransition.Instance, politicsState)
+                        new TransitionRecordOld(ImmediateTransition.Instance, politicsState)
                     }
                 },
                 {
                     politicsState, new[]
                     {
-                        new TransitionRecord(toCampaignTransition, campaignState),
-                        new TransitionRecord(toRevolutionTransition, revolutionState)
+                        new TransitionRecordOld(toCampaignTransition, campaignState),
+                        new TransitionRecordOld(toRevolutionTransition, revolutionState)
                     }
                 },
                 {
                     campaignState, new[]
                     {
-                        new TransitionRecord(onCampaignExitTransition, politicsState)
+                        new TransitionRecordOld(onCampaignExitTransition, politicsState)
                     }
                 },
                 {
                     revolutionState, new[]
                     {
-                        new TransitionRecord(toMainMenuTransition, gameExitState)
+                        new TransitionRecordOld(toMainMenuTransition, gameExitState)
                     }
                 }
             };

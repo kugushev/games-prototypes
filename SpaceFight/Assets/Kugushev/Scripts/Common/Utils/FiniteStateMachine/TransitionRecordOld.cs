@@ -1,17 +1,17 @@
 ﻿namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
 {
-    public readonly struct TransitionRecord
+    public readonly struct TransitionRecordOld
     {
-        public TransitionRecord(ITransition transition, IState target)
+        public TransitionRecordOld(ITransition transition, IUnparameterizedState target)
         {
             Transition = transition;
             Target = target;
         }
 
         public ITransition Transition { get; }
-        public IState Target { get; }
+        public IUnparameterizedState Target { get; }
 
-        public void Deconstruct(out ITransition transition, out IState target)
+        public void Deconstruct(out ITransition transition, out IUnparameterizedState target)
         {
             transition = Transition;
             target = Target;
