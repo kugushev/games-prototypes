@@ -10,7 +10,10 @@ namespace Kugushev.Scripts.Common
     {
         public override void InstallBindings()
         {
-            Container.Bind<ParametersPipeline<Void>>().FromInstance(new ParametersPipelineVoid()).AsSingle();
+            //Container.Bind<ParametersPipeline<Void>>().FromInstance(new ParametersPipelineVoid()).AsSingle();
+
+            Container.Bind(typeof(SignaledTransition<>)).AsSingle();
+            Container.Bind(typeof(ParametersPipeline<>)).AsSingle();
         }
     }
 }

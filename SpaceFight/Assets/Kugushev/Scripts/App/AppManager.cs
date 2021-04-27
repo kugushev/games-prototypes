@@ -29,10 +29,6 @@ namespace Kugushev.Scripts.App
 
         protected override AppModel InitRootModel()
         {
-            var sp = GetComponent<SpriteRenderer>();
-
-            print(sp);
-
             var model = new AppModel();
             if (gameModelProvider is { })
                 gameModelProvider.Set(model);
@@ -40,8 +36,9 @@ namespace Kugushev.Scripts.App
             return model;
         }
 
-        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
-            AppModel rootModel)
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
+            ComposeStateMachine(
+                AppModel rootModel)
         {
             Asserting.NotNull(campaignSceneParametersPipeline, gameSceneParametersPipeline, toCampaignTransition,
                 toPlaygroundTransition, onCampaignExitTransition, onGameExitTransition);

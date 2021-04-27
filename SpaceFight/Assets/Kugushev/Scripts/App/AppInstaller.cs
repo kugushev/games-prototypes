@@ -1,4 +1,5 @@
 using Kugushev.Scripts.App.Modes;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Common.Modes;
 using Zenject;
 
@@ -21,6 +22,8 @@ namespace Kugushev.Scripts.App
             Container.Bind<AbstractModeManager>().FromComponentInHierarchy().AsSingle();
 
             Container.Bind<MainMenuState>().AsSingle();
+            
+            Container.Bind<GameModeState>().AsSingle();
         }
     }
 }

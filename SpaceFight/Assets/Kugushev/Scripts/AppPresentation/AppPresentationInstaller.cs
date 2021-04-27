@@ -1,6 +1,6 @@
-using Kugushev.Scripts.App;
-using Kugushev.Scripts.AppPresentation.Signals;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.AppPresentation.ViewModels;
+using Kugushev.Scripts.Common.Modes;
 using Zenject;
 
 namespace Kugushev.Scripts.AppPresentation
@@ -18,15 +18,7 @@ namespace Kugushev.Scripts.AppPresentation
         {
             SignalBusInstaller.Install(Container);
 
-            Container.DeclareSignal<NewGameSignal>();
-            Container.BindMemoryPool<NewGameSignal, NewGameSignal.Pool>();
-            Container.BindSignal<NewGameSignal>()
-                .ToMethod<AppSceneLoader>((loader, signal) =>
-                {
-                    loader.LoadNewGame(signal.Parameters);
-                    signal.DespawnSelf();
-                })
-                .FromResolveAll();
+            Container.SetupTransitiveSignal<GameModeParameters>();
         }
     }
 }

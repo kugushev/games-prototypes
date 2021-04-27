@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.Common.Utils;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Kugushev.Scripts.Common.Modes
 {
@@ -7,32 +6,33 @@ namespace Kugushev.Scripts.Common.Modes
     public class ParametersPipeline<T>
     {
         private T _parameters;
+        private bool _isSet;
 
         public virtual void Push(T parameters)
         {
-            if (_parameters != null)
+            if (_isSet)
             {
-                Debug.LogError("Parameters are already set");
+                Debug.LogError($"Parameters {typeof(T)} are already set: {_parameters}");
                 return;
             }
 
             _parameters = parameters;
+            _isSet = true;
         }
 
         public virtual bool TryPop(out T value)
         {
-            if (_parameters == null)
+            if (!_isSet)
             {
-                const string message = "Parameters are not set";
-                Debug.LogError(message);
                 value = default;
                 return false;
             }
 
             value = _parameters;
             _parameters = default;
+            _isSet = false;
             return true;
         }
     }
-#nullable restore
+#nullable enable
 }

@@ -7,25 +7,25 @@ namespace Kugushev.Scripts.Common.Modes
 #nullable disable
     public class SignaledTransition<T> : IParameterizedTransition<T>
     {
-        private T _signal;
+        private T _parameters;
         private bool _signaled;
 
         public void Signalise(T signal)
         {
             _signaled = true;
-            _signal = signal;
+            _parameters = signal;
         }
 
         bool ITransition.ToTransition => _signaled;
 
-        T IParameterizedTransition<T>.ExtractParameters() => _signal;
+        T IParameterizedTransition<T>.ExtractParameters() => _parameters;
 
         void IReusableTransition.Reset()
         {
             _signaled = false;
-            if (_signal is ISelfDespawning selfDespawning)
+            if (_parameters is ISelfDespawning selfDespawning)
                 selfDespawning.DespawnSelf();
-            _signal = default;
+            _parameters = default;
         }
     }
 

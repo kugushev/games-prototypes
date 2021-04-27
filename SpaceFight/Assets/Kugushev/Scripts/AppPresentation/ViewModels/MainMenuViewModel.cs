@@ -2,6 +2,7 @@
 using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.AppPresentation.Signals;
+using Kugushev.Scripts.Common.Modes;
 using Kugushev.Scripts.Common.Utils;
 using TMPro;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
         [SerializeField] private int seed = 42;
 
         [Inject] private SignalBus _signalBus = default!;
-        [Inject] private NewGameSignal.Pool _newGameSignalPool = default!;
+        [Inject] private SignalToTransition<GameModeParameters>.Pool _newGamePool = default!;
 
         private void Start()
         {
@@ -43,7 +44,7 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
 
         private void OnNewGameClicked()
         {
-            _signalBus.Fire(_newGameSignalPool.Spawn(new GameModeParameters(seed)));
+            _signalBus.Fire(_newGamePool.Spawn(new GameModeParameters(seed)));
         }
 
         private void OnCustomCampaignClicked()

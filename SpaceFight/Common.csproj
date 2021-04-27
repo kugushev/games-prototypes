@@ -96,6 +96,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Modes\SignaledTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\IState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Modes\UnparameterizedSceneLoadingState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Modes\TransitionsHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ZenjectExtensions.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Modes\ZenjectExtensions.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Modes\SignalToTransition.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

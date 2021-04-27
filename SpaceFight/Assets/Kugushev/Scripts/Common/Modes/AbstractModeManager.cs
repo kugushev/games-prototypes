@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using UnityEngine;
@@ -9,6 +10,10 @@ namespace Kugushev.Scripts.Common.Modes
     public abstract class AbstractModeManager : MonoBehaviour //, ITickable
     {
         private ParameterizedStateMachine _stateMachine = default!;
+
+        protected EntryState Entry => EntryState.Instance;
+
+        protected ImmediateTransition Immediate => ImmediateTransition.Instance;
 
         protected abstract Transitions ComposeStateMachine();
 
