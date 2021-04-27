@@ -23,7 +23,7 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
         [SerializeField] private int seed = 42;
 
         [Inject] private SignalBus _signalBus = default!;
-        [Inject] private SignalToTransition<GameModeParameters>.Pool _newGamePool = default!;
+        [Inject] private SignalToTransition<GameContextParameters>.Pool _newGamePool = default!;
 
         private void Start()
         {
@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.AppPresentation.ViewModels
 
         private void OnNewGameClicked()
         {
-            _signalBus.Fire(_newGamePool.Spawn(new GameModeParameters(seed)));
+            _signalBus.Fire(_newGamePool.Spawn(new GameContextParameters(seed)));
         }
 
         private void OnCustomCampaignClicked()

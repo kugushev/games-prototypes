@@ -13,7 +13,7 @@ namespace Kugushev.Scripts.Campaign.Models
     {
         public struct State
         {
-            public CampaignInfo CampaignInfo;
+            public CampaignContextParameters CampaignContextParameters;
             public readonly PlayerPerks PlayerPerks;
             public readonly MissionSelection MissionSelection;
             public readonly Playground Playground;
@@ -23,10 +23,10 @@ namespace Kugushev.Scripts.Campaign.Models
             // don't need to dispose: the lifetime of the object passes to Game
             public CampaignResult CampaignResult;
 
-            public State(CampaignInfo campaignInfo, MissionSelection missionSelection, Playground playground,
+            public State(CampaignContextParameters campaignContextParameters, MissionSelection missionSelection, Playground playground,
                 PlayerPerks playerPerks, CampaignResult campaignResult)
             {
-                CampaignInfo = campaignInfo;
+                CampaignContextParameters = campaignContextParameters;
                 MissionSelection = missionSelection;
                 Playground = playground;
                 NextMission = null;
@@ -43,7 +43,7 @@ namespace Kugushev.Scripts.Campaign.Models
         {
         }
 
-        public CampaignInfo CampaignInfo => ObjectState.CampaignInfo;
+        public CampaignContextParameters CampaignContextParameters => ObjectState.CampaignContextParameters;
 
         public MissionInfo? NextMission
         {

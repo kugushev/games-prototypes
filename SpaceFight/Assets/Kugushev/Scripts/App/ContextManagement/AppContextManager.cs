@@ -10,7 +10,7 @@ namespace Kugushev.Scripts.App.ContextManagement
         [Inject] private MainMenuState _mainMenu = default!;
 
         [Inject] private GameModeState _gameMode = default!;
-        [Inject] private SignaledTransition<GameModeParameters> _toGameMode = default!;
+        [Inject] private SignaledTransition<GameContextParameters> _toGameMode = default!;
 
         protected override Transitions ComposeStateMachine()
         {

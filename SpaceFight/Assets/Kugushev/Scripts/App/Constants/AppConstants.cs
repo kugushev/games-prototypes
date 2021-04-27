@@ -2,10 +2,17 @@
 
 namespace Kugushev.Scripts.App.Constants
 {
-    internal static class AppConstants
+    public static class AppConstants
     {
         public const string MenuPrefix = CommonConstants.MenuPrefix + "App/";
 
         public const int DefaultCampaignSeed = 42;
+
+        public static class Scenes
+        {
+            public const string GameManagementScene = "GameManagementScene";
+            public const string CampaignManagementScene = "CampaignManagementScene";
+            public const string MainMenuScene = "MainMenuScene";
+        }
     }
 }

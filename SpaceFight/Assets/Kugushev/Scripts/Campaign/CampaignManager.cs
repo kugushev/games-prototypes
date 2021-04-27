@@ -46,7 +46,7 @@ namespace Kugushev.Scripts.Campaign
         {
             Asserting.NotNull(objectsPool, modelProvider);
 
-            var campaignInfo = new CampaignInfo();
+            var campaignInfo = new CampaignContextParameters();
             var budget = campaignInfo.Budget ?? CampaignConstants.MaxBudget;
 
             var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
@@ -66,7 +66,7 @@ namespace Kugushev.Scripts.Campaign
             ComposeStateMachine(
                 CampaignModel rootModel)
         {
-            if (rootModel.CampaignInfo.IsPlayground)
+            if (rootModel.CampaignContextParameters.IsPlayground)
             {
                 return GetPlaygroundStates();
             }
@@ -126,7 +126,7 @@ namespace Kugushev.Scripts.Campaign
                     missionSceneResultPipeline);
 
                 _finalizationState.Setup(rootModel.CampaignResult,
-                    rootModel.CampaignInfo.IsStandalone ? null : campaignSceneResultPipeline);
+                    rootModel.CampaignContextParameters.IsStandalone ? null : campaignSceneResultPipeline);
 
                 return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
                 {
@@ -161,7 +161,7 @@ namespace Kugushev.Scripts.Campaign
 
         protected override void OnStart()
         {
-            Random.InitState(RootModel.CampaignInfo.Seed);
+            Random.InitState(RootModel.CampaignContextParameters.Seed);
         }
 
         protected override void Dispose()

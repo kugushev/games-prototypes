@@ -41,7 +41,7 @@ namespace Kugushev.Scripts.Game
         // [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
 
-        [Inject] private ParametersPipeline<GameModeParameters> _parametersPipeline = default!;
+        [Inject] private ParametersPipeline<GameContextParameters> _parametersPipeline = default!;
 
 
         protected override GameModel InitRootModel()

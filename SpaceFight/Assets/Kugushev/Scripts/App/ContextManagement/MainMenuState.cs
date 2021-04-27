@@ -5,7 +5,7 @@ namespace Kugushev.Scripts.App.ContextManagement
 {
     public class MainMenuState : UnparameterizedSceneLoadingState
     {
-        public MainMenuState() : base(UnityConstants.MainMenuScene, true)
+        public MainMenuState() : base(AppConstants.Scenes.MainMenuScene, true)
         {
         }
     }

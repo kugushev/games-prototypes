@@ -42,11 +42,10 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\App\Constants\AppConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Constants\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\CampaignInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\CampaignContextParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\GameModeState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\AppInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\GameModeParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\GameContextParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\AppContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\MainMenuState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />

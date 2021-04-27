@@ -4,10 +4,10 @@ using Kugushev.Scripts.Common.ContextManagement;
 
 namespace Kugushev.Scripts.App.ContextManagement
 {
-    public class GameModeState : ParameterizedSceneLoadingState<GameModeParameters>
+    public class GameModeState : ParameterizedSceneLoadingState<GameContextParameters>
     {
-        public GameModeState(ParametersPipeline<GameModeParameters> parametersPipeline)
-            : base(UnityConstants.GameManagementScene, true, parametersPipeline)
+        public GameModeState(ParametersPipeline<GameContextParameters> parametersPipeline)
+            : base(AppConstants.Scenes.GameManagementScene, true, parametersPipeline)
         {
         }
     }

@@ -3,9 +3,9 @@ using Kugushev.Scripts.App.Enums;
 
 namespace Kugushev.Scripts.App.ValueObjects
 {
-    public readonly struct CampaignInfo
+    public readonly struct CampaignContextParameters
     {
-        public CampaignInfo(int seed, int? budget, ISet<PerkId> availablePerks, bool isPlayground,
+        public CampaignContextParameters(int seed, int? budget, ISet<PerkId> availablePerks, bool isPlayground,
             bool isStandalone)
         {
             IsPlayground = isPlayground;
