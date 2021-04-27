@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.App.Utils;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Manager;
-using Kugushev.Scripts.Common.Modes;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
@@ -21,8 +19,9 @@ namespace Kugushev.Scripts.Game
     public class GameManager : BaseManager<GameModel>
     {
         [SerializeField] private ObjectsPool? objectsPool;
+
         [SerializeField] private GameModelProvider? gameModelProvider;
-        [SerializeField] private GameSceneParametersPipeline? gameSceneParametersPipeline;
+        //[SerializeField] private GameSceneParametersPipeline? gameSceneParametersPipeline;
 
         [SerializeField] private ParliamentGenerator? parliamentGenerator;
 
@@ -39,7 +38,7 @@ namespace Kugushev.Scripts.Game
         [SerializeField] private TriggerTransition? toMainMenuTransition;
 
 
-        [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
+        // [Header("Campaign")] [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
 
         [Inject] private ParametersPipeline<GameModeParameters> _parametersPipeline = default!;
@@ -47,7 +46,7 @@ namespace Kugushev.Scripts.Game
 
         protected override GameModel InitRootModel()
         {
-            Asserting.NotNull(gameSceneParametersPipeline, parliamentGenerator, objectsPool, gameModelProvider);
+            Asserting.NotNull(parliamentGenerator, objectsPool, gameModelProvider);
 
             var info = _parametersPipeline.Pop();
 
@@ -65,12 +64,11 @@ namespace Kugushev.Scripts.Game
             ComposeStateMachine(
                 GameModel rootModel)
         {
-            Asserting.NotNull(campaignSceneParametersPipeline, campaignSceneResultPipeline, toCampaignTransition,
+            Asserting.NotNull(campaignSceneResultPipeline, toCampaignTransition,
                 toRevolutionTransition, onCampaignExitTransition, toMainMenuTransition, gameExitState);
 
             var politicsState = new PoliticsState(rootModel);
-            var campaignState = new CampaignState(rootModel, campaignSceneParametersPipeline,
-                campaignSceneResultPipeline);
+            var campaignState = new CampaignState(rootModel, campaignSceneResultPipeline);
             var revolutionState = new RevolutionState(rootModel);
 
             return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>

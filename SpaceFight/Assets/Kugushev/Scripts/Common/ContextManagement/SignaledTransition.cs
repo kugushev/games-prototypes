@@ -2,7 +2,7 @@
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using Kugushev.Scripts.Common.Utils.Pooling;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
 #nullable disable
     public class SignaledTransition<T> : IParameterizedTransition<T>

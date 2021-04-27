@@ -7,6 +7,7 @@ using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Game.Enums;
 using Kugushev.Scripts.Game.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;

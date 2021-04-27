@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.Utils;
+using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ProceduralGeneration;
@@ -22,7 +22,7 @@ namespace Kugushev.Scripts.Campaign
     {
         [SerializeField] private ObjectsPool? objectsPool;
         [SerializeField] private CampaignModelProvider? modelProvider;
-        [SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
+        //[SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
         [SerializeField] private MissionsGenerator? missionsGenerationService;
         [SerializeField] private PoliticalActionsRepository? politicalActionsRepository;
@@ -44,9 +44,9 @@ namespace Kugushev.Scripts.Campaign
 
         protected override CampaignModel InitRootModel()
         {
-            Asserting.NotNull(campaignSceneParametersPipeline, objectsPool, modelProvider);
+            Asserting.NotNull(objectsPool, modelProvider);
 
-            var campaignInfo = campaignSceneParametersPipeline.Get();
+            var campaignInfo = new CampaignInfo();
             var budget = campaignInfo.Budget ?? CampaignConstants.MaxBudget;
 
             var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
@@ -62,8 +62,9 @@ namespace Kugushev.Scripts.Campaign
             return model;
         }
 
-        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
-            CampaignModel rootModel)
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
+            ComposeStateMachine(
+                CampaignModel rootModel)
         {
             if (rootModel.CampaignInfo.IsPlayground)
             {
@@ -74,7 +75,8 @@ namespace Kugushev.Scripts.Campaign
 
             IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> GetPlaygroundStates()
             {
-                Asserting.NotNull(politicalActionsRepository, missionSceneParametersPipeline, missionSceneResultPipeline,
+                Asserting.NotNull(politicalActionsRepository, missionSceneParametersPipeline,
+                    missionSceneResultPipeline,
                     toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
 
                 var playgroundState = new PlaygroundState(rootModel, politicalActionsRepository);
@@ -117,7 +119,7 @@ namespace Kugushev.Scripts.Campaign
             {
                 Asserting.NotNull(missionsGenerationService, missionSceneParametersPipeline, missionSceneResultPipeline,
                     toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
-                
+
                 var missionSelectionState = new MissionSelectionState(RootModel, missionsGenerationService);
 
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
@@ -164,7 +166,7 @@ namespace Kugushev.Scripts.Campaign
 
         protected override void Dispose()
         {
-            if (modelProvider is { }) 
+            if (modelProvider is { })
                 modelProvider.Cleanup();
         }
     }

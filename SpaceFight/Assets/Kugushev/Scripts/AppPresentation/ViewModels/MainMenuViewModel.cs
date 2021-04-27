@@ -1,8 +1,6 @@
 ﻿using System;
-using Kugushev.Scripts.App.Utils;
 using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.AppPresentation.Signals;
-using Kugushev.Scripts.Common.Modes;
+using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils;
 using TMPro;
 using UnityEngine;

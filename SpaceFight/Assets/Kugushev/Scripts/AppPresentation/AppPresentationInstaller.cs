@@ -1,6 +1,6 @@
 using Kugushev.Scripts.App.ValueObjects;
 using Kugushev.Scripts.AppPresentation.ViewModels;
-using Kugushev.Scripts.Common.Modes;
+using Kugushev.Scripts.Common.ContextManagement;
 using Zenject;
 
 namespace Kugushev.Scripts.AppPresentation
@@ -11,14 +11,14 @@ namespace Kugushev.Scripts.AppPresentation
         {
             Container.Bind<MainMenuViewModel>().FromComponentInHierarchy().AsSingle();
 
-            InstallSignalBus();
+            InstallSignals();
         }
 
-        private void InstallSignalBus()
+        private void InstallSignals()
         {
             SignalBusInstaller.Install(Container);
 
-            Container.SetupTransitiveSignal<GameModeParameters>();
+            Container.InstallTransitiveSignal<GameModeParameters>();
         }
     }
 }

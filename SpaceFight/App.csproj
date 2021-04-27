@@ -41,26 +41,15 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Utils\GameSceneParametersPipeline.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\AppSceneLoader.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\ToNewGameTransition.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Models\MainMenu.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\GameState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Constants\AppConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\MainMenuState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Constants\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Utils\CampaignSceneParametersPipeline.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\AppManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\CampaignInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\GameModeState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\AppInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\GameModeParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Utils\AppModelProvider.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\StatesAndTransitions\CustomCampaignState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Modes\AppModeManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Modes\MainMenuState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Models\AppModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Modes\GameModeState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\AppContextManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\MainMenuState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />
      <None Include="Assets\Kugushev\Scripts\App\App.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

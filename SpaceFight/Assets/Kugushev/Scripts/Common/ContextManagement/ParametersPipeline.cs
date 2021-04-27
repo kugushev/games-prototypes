@@ -1,7 +1,7 @@
 ﻿using Kugushev.Scripts.Common.Utils;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
 #nullable disable
     public class ParametersPipeline<T>

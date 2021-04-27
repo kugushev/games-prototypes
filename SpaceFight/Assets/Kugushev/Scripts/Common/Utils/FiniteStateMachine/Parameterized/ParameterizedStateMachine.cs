@@ -1,9 +1,8 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 
-namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
+namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized
 {
     public class ParameterizedStateMachine
     {

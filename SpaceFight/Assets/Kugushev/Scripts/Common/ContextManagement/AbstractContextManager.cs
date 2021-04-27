@@ -1,13 +1,11 @@
 ﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using UnityEngine;
-using Zenject;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
-    public abstract class AbstractModeManager : MonoBehaviour //, ITickable
+    public abstract class AbstractContextManager : MonoBehaviour //, ITickable
     {
         private ParameterizedStateMachine _stateMachine = default!;
 

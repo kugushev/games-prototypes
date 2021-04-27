@@ -8,7 +8,6 @@ using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
 using Kugushev.Scripts.Mission.Models;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Kugushev.Scripts.Mission.Player
 {
@@ -31,7 +30,7 @@ namespace Kugushev.Scripts.Mission.Player
         public void HandlePlanetTouch(Planet planet)
         {
             Asserting.NotNull(_state.Fleet);
-            
+
             if (_state.CurrentOrder == null)
             {
                 if (planet.Faction == Faction.Green)
@@ -57,7 +56,7 @@ namespace Kugushev.Scripts.Mission.Player
         public void HandleSelect(Percentage allocatedPower)
         {
             Asserting.NotNull(pool);
-            
+
             if (_state.HighlightedPlanet != null)
             {
                 DropCurrentOrder();

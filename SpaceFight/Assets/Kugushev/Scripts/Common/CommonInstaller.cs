@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.Common.Modes;
-using Kugushev.Scripts.Common.Utils;
+﻿using Kugushev.Scripts.Common.ContextManagement;
 using UnityEngine;
 using Zenject;
 
@@ -10,8 +9,6 @@ namespace Kugushev.Scripts.Common
     {
         public override void InstallBindings()
         {
-            //Container.Bind<ParametersPipeline<Void>>().FromInstance(new ParametersPipelineVoid()).AsSingle();
-
             Container.Bind(typeof(SignaledTransition<>)).AsSingle();
             Container.Bind(typeof(ParametersPipeline<>)).AsSingle();
         }

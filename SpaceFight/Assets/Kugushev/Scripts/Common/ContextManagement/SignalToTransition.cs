@@ -1,7 +1,7 @@
 ﻿using Kugushev.Scripts.Common.Utils.Pooling;
 using Zenject;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
 #nullable disable
     public class SignalToTransition<TParameters> : SelfDespawning<SignalToTransition<TParameters>.Pool>
@@ -10,7 +10,7 @@ namespace Kugushev.Scripts.Common.Modes
         {
             protected override void Reinitialize(TParameters p1, SignalToTransition<TParameters> item)
             {
-                item._pool = this;
+                item.PoolReference = this;
 
                 item.Parameters = p1;
             }

@@ -1,11 +1,11 @@
 ﻿using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.Common.Modes;
+using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using Zenject;
 
-namespace Kugushev.Scripts.App.Modes
+namespace Kugushev.Scripts.App.ContextManagement
 {
-    public class AppModeManager : AbstractModeManager
+    public class AppContextManager : AbstractContextManager
     {
         [Inject] private MainMenuState _mainMenu = default!;
 

@@ -1,6 +1,4 @@
-﻿using Kugushev.Scripts.App.Utils;
-using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.Common.StatesAndTransitions;
+﻿using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Game.Constants;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Utils;
@@ -10,14 +8,11 @@ namespace Kugushev.Scripts.Game.StatesAndTransitions
 {
     public class CampaignState : BaseSceneLoadingState<GameModel>
     {
-        private readonly CampaignSceneParametersPipeline _campaignSceneParametersPipeline;
         private readonly CampaignSceneResultPipeline _campaignSceneResultPipeline;
 
-        public CampaignState(GameModel model, CampaignSceneParametersPipeline campaignSceneParametersPipeline,
-            CampaignSceneResultPipeline campaignSceneResultPipeline)
+        public CampaignState(GameModel model, CampaignSceneResultPipeline campaignSceneResultPipeline)
             : base(model, UnityConstants.CampaignManagementScene, false)
         {
-            _campaignSceneParametersPipeline = campaignSceneParametersPipeline;
             _campaignSceneResultPipeline = campaignSceneResultPipeline;
         }
 
@@ -31,13 +26,13 @@ namespace Kugushev.Scripts.Game.StatesAndTransitions
 
             var campaignSeed = Random.Range(0, 100); // just for test purposes
 
-            _campaignSceneParametersPipeline.Set(new CampaignInfo(
-                campaignSeed,
-                budget,
-                perks,
-                false,
-                false
-            ));
+            // _campaignSceneParametersPipeline.Set(new CampaignInfo(
+            //     campaignSeed,
+            //     budget,
+            //     perks,
+            //     false,
+            //     false
+            // ));
         }
 
         protected override void OnExitBeforeUnloadScene()

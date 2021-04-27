@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using UnityEngine.Assertions;
 using AssertionMethod = JetBrains.Annotations.AssertionMethodAttribute;
 using NotNull = System.Diagnostics.CodeAnalysis.NotNullAttribute;

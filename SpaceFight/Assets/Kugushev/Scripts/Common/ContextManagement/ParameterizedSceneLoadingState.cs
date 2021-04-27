@@ -4,7 +4,7 @@ using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
     public abstract class ParameterizedSceneLoadingState<T> : IParameterizedState<T>
     {

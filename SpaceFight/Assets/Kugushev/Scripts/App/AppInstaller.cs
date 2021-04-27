@@ -1,6 +1,5 @@
-using Kugushev.Scripts.App.Modes;
-using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.Common.Modes;
+using Kugushev.Scripts.App.ContextManagement;
+using Kugushev.Scripts.Common.ContextManagement;
 using Zenject;
 
 namespace Kugushev.Scripts.App
@@ -9,20 +8,10 @@ namespace Kugushev.Scripts.App
     {
         public override void InstallBindings()
         {
-            Container.Bind<AppManager>().FromComponentInHierarchy().AsSingle();
-
-            Container.Bind<AppSceneLoader>().AsSingle();
-
-            // todo: make it POCO
-            InstallAppMode();
-        }
-
-        private void InstallAppMode()
-        {
-            Container.Bind<AbstractModeManager>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<AbstractContextManager>().FromComponentInHierarchy().AsSingle();
 
             Container.Bind<MainMenuState>().AsSingle();
-            
+
             Container.Bind<GameModeState>().AsSingle();
         }
     }

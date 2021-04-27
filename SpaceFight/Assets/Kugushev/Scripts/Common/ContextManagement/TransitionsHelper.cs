@@ -1,7 +1,7 @@
 ﻿using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
     public static class TransitionsHelper
     {

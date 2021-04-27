@@ -1,10 +1,9 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
     public class UnparameterizedSceneLoadingState : IUnparameterizedState
     {

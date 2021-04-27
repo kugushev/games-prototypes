@@ -2,7 +2,7 @@
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Zenject;
 
-namespace Kugushev.Scripts.Common.Modes
+namespace Kugushev.Scripts.Common.ContextManagement
 {
     public static class ZenjectExtensions
     {
@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Common.Modes
                 .FromResolve();
         }
 
-        public static void SetupTransitiveSignal<TParameters>(this DiContainer container)
+        public static void InstallTransitiveSignal<TParameters>(this DiContainer container)
         {
             container.DeclareSignal<SignalToTransition<TParameters>>();
             container.BindMemoryPool<SignalToTransition<TParameters>, SignalToTransition<TParameters>.Pool>();

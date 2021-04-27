@@ -1,7 +1,7 @@
 ﻿using Kugushev.Scripts.App.Constants;
-using Kugushev.Scripts.Common.Modes;
+using Kugushev.Scripts.Common.ContextManagement;
 
-namespace Kugushev.Scripts.App.Modes
+namespace Kugushev.Scripts.App.ContextManagement
 {
     public class MainMenuState : UnparameterizedSceneLoadingState
     {
