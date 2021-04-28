@@ -25,21 +25,21 @@ namespace Kugushev.Scripts.Game.Widgets
         }
 
 
-        public void Setup(GameModel rootModel, IPoliticianSelector politicianSelector)
-        {
-            Asserting.NotNull(politicalActionCardPrefab, politicalActionsPanel, toggleGroup);
-
-            _rootModel = rootModel;
-            _politicianSelector = politicianSelector;
-
-            // todo: use pool
-            foreach (var model in _rootModel.PoliticalActions)
-            {
-                var go = Instantiate(politicalActionCardPrefab, politicalActionsPanel);
-                var widget = go.GetComponent<IntrigueCardWidget>();
-                widget.SetUp(model, toggleGroup, OnCardSelected);
-            }
-        }
+        // public void Setup(GameModel rootModel, IPoliticianSelector politicianSelector)
+        // {
+        //     Asserting.NotNull(politicalActionCardPrefab, politicalActionsPanel, toggleGroup);
+        //
+        //     _rootModel = rootModel;
+        //     _politicianSelector = politicianSelector;
+        //
+        //     // todo: use pool
+        //     foreach (var model in _rootModel.PoliticalActions)
+        //     {
+        //         var go = Instantiate(politicalActionCardPrefab, politicalActionsPanel);
+        //         var widget = go.GetComponent<IntrigueCardWidget>();
+        //         widget.SetUp(model, toggleGroup, OnCardSelected);
+        //     }
+        // }
 
         public void UpdateView()
         {

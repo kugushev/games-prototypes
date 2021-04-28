@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Constants\AppConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\CampaignParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\GameState.cs" />
@@ -48,7 +49,6 @@
      <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\GameParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\AppContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\MainMenuState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />
      <None Include="Assets\Kugushev\Scripts\App\App.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

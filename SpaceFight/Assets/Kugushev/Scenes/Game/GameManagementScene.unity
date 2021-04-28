@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43568e081924cd99343494bfcece7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  politicianCharactersRepository: {fileID: 11400000, guid: 65a62fb603d3ed3489037ccb2340d90c, type: 2}
 --- !u!114 &411698722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,8 +250,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _parentNewObjectsUnderSceneContext: 0
-  _contractNames: []
-  _parentContractNames: []
+  _contractNames:
+  - Game
+  _parentContractNames:
+  - App
 --- !u!4 &463150708
 Transform:
   m_ObjectHideFlags: 0
