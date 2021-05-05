@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private GameModelProvider? gameModelProvider;
 
         [SerializeField] private ParliamentWidget? parliament;
-        [SerializeField] private IntriguesWidget? politicalActions;
+        [SerializeField] private IntriguesPresentationModel? politicalActions;
         [SerializeField] private CampaignPreparationWidget? campaignPreparation;
         [SerializeField] private RevolutionWidget? revolutionWidget;
 

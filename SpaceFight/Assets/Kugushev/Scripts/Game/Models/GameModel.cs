@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.ValueObjects;
+using UniRx;
 
 namespace Kugushev.Scripts.Game.Models
 {
@@ -20,7 +21,6 @@ namespace Kugushev.Scripts.Game.Models
         }
 
         private readonly List<IntrigueRecord> _politicalActions = new List<IntrigueRecord>(64);
-
 
         public GameModel(ObjectsPool objectsPool) : base(objectsPool)
         {

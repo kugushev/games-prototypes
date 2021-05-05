@@ -1,8 +1,11 @@
 ﻿using Kugushev.Scripts.Game.ContextManagement;
 using Kugushev.Scripts.Game.Repositories;
 using Kugushev.Scripts.Game.Services;
+using Kugushev.Scripts.Game.ValueObjects;
 using Kugushev.Scripts.Game.Widgets;
+using Kugushev.Scripts.Game.Widgets.Factories;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Kugushev.Scripts.Game
@@ -28,6 +31,14 @@ namespace Kugushev.Scripts.Game
         private void InstallPresentation()
         {
             Container.Bind<ParliamentWidget>().FromComponentInHierarchy().AsSingle();
+
+            // Container.Bind<IntrigueCardFactory>().FromComponentInHierarchy().AsSingle();
+
+            Container
+                .BindFactory<IntrigueRecord, ToggleGroup, IntrigueCardPresentationModel,
+                    IntrigueCardPresentationModel.Factory>()
+                .FromMonoPoolableMemoryPool(x =>
+                    x.FromIFactory(f => f.To<IntrigueCardFactory>().FromComponentInHierarchy().AsSingle()));
         }
 
         private void InstallContextManagement()

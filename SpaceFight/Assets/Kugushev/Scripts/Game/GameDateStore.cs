@@ -5,6 +5,7 @@ using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Services;
 using Kugushev.Scripts.Game.ValueObjects;
+using UniRx;
 using Zenject;
 
 namespace Kugushev.Scripts.Game
@@ -14,7 +15,7 @@ namespace Kugushev.Scripts.Game
         private readonly ParametersPipeline<GameParameters> _parametersPipeline;
         private readonly ParliamentGenerationService _parliamentGenerationService;
 
-        private readonly List<IntrigueRecord> _politicianCards = new List<IntrigueRecord>(64);
+        private readonly ReactiveCollection<IntrigueRecord> _intrigues = new ReactiveCollection<IntrigueRecord>();
         private Parliament? _parliament;
 
         public GameDateStore(ParametersPipeline<GameParameters> parametersPipeline,
@@ -28,7 +29,8 @@ namespace Kugushev.Scripts.Game
 
         public Parliament Parliament => _parliament ?? throw new SpaceFightException("Store is not initialized");
 
-        public IReadOnlyList<IntrigueRecord> PoliticianCards => _politicianCards;
+
+        public IReadOnlyReactiveCollection<IntrigueRecord> Intrigues => _intrigues;
 
         public void Initialize()
         {

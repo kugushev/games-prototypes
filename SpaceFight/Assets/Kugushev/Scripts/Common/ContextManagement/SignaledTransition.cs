@@ -1,6 +1,6 @@
-﻿using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
+﻿using System;
+using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
-using Kugushev.Scripts.Common.Utils.Pooling;
 
 namespace Kugushev.Scripts.Common.ContextManagement
 {
@@ -23,8 +23,8 @@ namespace Kugushev.Scripts.Common.ContextManagement
         void IReusableTransition.Reset()
         {
             _signaled = false;
-            if (_parameters is ISelfDespawning selfDespawning)
-                selfDespawning.DespawnSelf();
+            if (_parameters is IDisposable disposable)
+                disposable.Dispose();
             _parameters = default;
         }
     }

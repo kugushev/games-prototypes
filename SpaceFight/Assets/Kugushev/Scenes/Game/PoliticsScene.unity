@@ -3472,6 +3472,7 @@ GameObject:
   - component: {fileID: 572113477}
   - component: {fileID: 572113479}
   - component: {fileID: 572113480}
+  - component: {fileID: 572113481}
   m_Layer: 5
   m_Name: Political Actions Panel
   m_TagString: Untagged
@@ -3601,6 +3602,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &572113481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572113475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01792f344c2410394670a934802212d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4379366421152740909, guid: f08f10af92ee0a747bd07095d0cf8990, type: 3}
 --- !u!1 &603679958
 GameObject:
   m_ObjectHideFlags: 0

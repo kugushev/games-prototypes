@@ -1,5 +1,5 @@
 using Kugushev.Scripts.App.ValueObjects;
-using Kugushev.Scripts.AppPresentation.ViewModels;
+using Kugushev.Scripts.AppPresentation.PresentationModels;
 using Kugushev.Scripts.Common.ContextManagement;
 using Zenject;
 
@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.AppPresentation
     {
         public override void InstallBindings()
         {
-            Container.Bind<MainMenuViewModel>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<MainMenuPresentationModel>().FromComponentInHierarchy().AsSingle();
 
             InstallSignals();
         }

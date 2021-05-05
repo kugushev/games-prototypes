@@ -1,27 +1,32 @@
-﻿using Kugushev.Scripts.Common.Utils.Pooling;
+﻿using System;
 using Zenject;
+
 
 namespace Kugushev.Scripts.Common.ContextManagement
 {
 #nullable disable
-    public class SignalToTransition<TParameters> : SelfDespawning
+    public class SignalToTransition<TParameters> : IPoolable<TParameters, IMemoryPool>, IDisposable
     {
-        public class Pool : MemoryPool<TParameters, SignalToTransition<TParameters>>
-        {
-            protected override void Reinitialize(TParameters p1, SignalToTransition<TParameters> item)
-            {
-                item.PoolReference = this;
-
-                item.Parameters = p1;
-            }
-
-            protected override void OnDespawned(SignalToTransition<TParameters> item)
-            {
-                item.Parameters = default;
-            }
-        }
+        private IMemoryPool _pool;
 
         public TParameters Parameters { get; private set; }
+
+        void IPoolable<TParameters, IMemoryPool>.OnDespawned() => _pool = null;
+
+        void IPoolable<TParameters, IMemoryPool>.OnSpawned(TParameters p1, IMemoryPool p2)
+        {
+            Parameters = p1;
+            _pool = p2;
+        }
+
+        void IDisposable.Dispose()
+        { 
+            _pool.Despawn(this);
+        }
+
+        public class Factory : PlaceholderFactory<TParameters, SignalToTransition<TParameters>>
+        {
+        }
     }
 #nullable enable
 }
