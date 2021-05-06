@@ -1,6 +1,6 @@
 ﻿using System;
-using Kugushev.Scripts.App.Constants;
-using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.App.Core.Constants;
+using Kugushev.Scripts.App.Core.ValueObjects;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils;
 using TMPro;
@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Kugushev.Scripts.AppPresentation.PresentationModels
+namespace Kugushev.Scripts.App.MainMenu.PresentationModels
 {
     internal class MainMenuPresentationModel : MonoBehaviour
     {

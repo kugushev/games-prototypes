@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.Repositories;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Repositories;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Game.Services
+namespace Kugushev.Scripts.Game.Core.Services
 {
     public class ParliamentGenerationService
     {

@@ -1,80 +1,84 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Politics.Interfaces;
 using TMPro;
+using UniRx;
 using UnityEngine;
+using Zenject;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Game.Politics.Widgets
 {
     public class PoliticianDetailsWidget : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI? nameLabel;
+        [SerializeField] private TextMeshProUGUI nameLabel = default!;
 
-        [Header("Relation")] [SerializeField] private TextMeshProUGUI? relationValueLabel;
-        [SerializeField] private TextMeshProUGUI? relationTip;
-        [SerializeField] private GameObject? relationEnemy;
-        [SerializeField] private GameObject? relationHater;
-        [SerializeField] private GameObject? relationIndifferent;
-        [SerializeField] private GameObject? relationPartner;
-        [SerializeField] private GameObject? relationLoyalist;
+        [Header("Relation")] [SerializeField] private TextMeshProUGUI relationValueLabel = default!;
+        [SerializeField] private TextMeshProUGUI relationTip = default!;
+        [SerializeField] private GameObject relationEnemy = default!;
+        [SerializeField] private GameObject relationHater = default!;
+        [SerializeField] private GameObject relationIndifferent = default!;
+        [SerializeField] private GameObject relationPartner = default!;
+        [SerializeField] private GameObject relationLoyalist = default!;
 
-        [Header("Budget")] [SerializeField] private TextMeshProUGUI? budgetValueLabel;
-        [SerializeField] private GameObject? budgetIsReadyToInvest;
-        [SerializeField] private GameObject? budgetIsNotReadyToInvest;
+        [Header("Budget")] [SerializeField] private TextMeshProUGUI budgetValueLabel = default!;
+        [SerializeField] private GameObject budgetIsReadyToInvest = default!;
+        [SerializeField] private GameObject budgetIsNotReadyToInvest = default!;
 
-        [Header("Traits")] [SerializeField] private TextMeshProUGUI? traitBusinessValue;
-        [SerializeField] private TextMeshProUGUI? traitGreedValue;
-        [SerializeField] private TextMeshProUGUI? traitLustValue;
-        [SerializeField] private TextMeshProUGUI? traitBruteValue;
-        [SerializeField] private TextMeshProUGUI? traitVanityValue;
+        [Header("Traits")] [SerializeField] private TextMeshProUGUI traitBusinessValue = default!;
+        [SerializeField] private TextMeshProUGUI traitGreedValue = default!;
+        [SerializeField] private TextMeshProUGUI traitLustValue = default!;
+        [SerializeField] private TextMeshProUGUI traitBruteValue = default!;
+        [SerializeField] private TextMeshProUGUI traitVanityValue = default!;
 
-        [Header("Perks")] [SerializeField] private TextMeshProUGUI? perkNameLabel;
-        [SerializeField] private TextMeshProUGUI? perkLvl1Requirement;
-        [SerializeField] private TextMeshProUGUI? perkLvl1Effect;
-        [SerializeField] private TextMeshProUGUI? perkLvl2Requirement;
-        [SerializeField] private TextMeshProUGUI? perkLvl2Effect;
-        [SerializeField] private TextMeshProUGUI? perkLvl3Requirement;
-        [SerializeField] private TextMeshProUGUI? perkLvl3Effect;
+        [Header("Perks")] [SerializeField] private TextMeshProUGUI perkNameLabel = default!;
+        [SerializeField] private TextMeshProUGUI perkLvl1Requirement = default!;
+        [SerializeField] private TextMeshProUGUI perkLvl1Effect = default!;
+        [SerializeField] private TextMeshProUGUI perkLvl2Requirement = default!;
+        [SerializeField] private TextMeshProUGUI perkLvl2Effect = default!;
+        [SerializeField] private TextMeshProUGUI perkLvl3Requirement = default!;
+        [SerializeField] private TextMeshProUGUI perkLvl3Effect = default!;
 
         const string UnknownTrait = "?";
 
-        private IPolitician? _model;
+        private readonly CompositeDisposable _bindings = new CompositeDisposable();
 
-        public void Select(IPolitician model)
+        [Inject]
+        private void Init(IPoliticianSelector politicianSelector)
         {
-            gameObject.SetActive(true);
-            _model = model;
-            UpdateView();
+            politicianSelector.SelectedPolitician.Where(p => p != null).Subscribe(OnSelected!);
+            politicianSelector.SelectedPolitician.Where(p => p == null).Subscribe(_ => OnDeselected());
         }
 
-        public void Deselect()
+        private void OnSelected(IPolitician model)
         {
-            _model = null;
+            gameObject.SetActive(true);
+            BindView(model);
+        }
+
+        private void OnDeselected()
+        {
+            _bindings.Clear();
             gameObject.SetActive(false);
         }
 
-        public void UpdateView()
+        private void BindView(IPolitician model)
         {
-            Asserting.NotNull(nameLabel);
-
-            if (!IsModelValid(out var model))
-                return;
-
             nameLabel.text = model.Character.FullName;
-            UpdateRelationView(model);
-            UpdateBudgetView(model);
-            UpdateTraitsView(model);
-            UpdatePerksView(model);
+            BindRelationView(model);
+            BindBudgetView(model);
+            BindTraitsView(model);
+            BindPerksView(model);
         }
 
-        private void UpdateRelationView(IPolitician model)
+        private void BindRelationView(IPolitician model)
         {
-            Asserting.NotNull(relationValueLabel, relationEnemy, relationHater, relationIndifferent, relationPartner,
-                relationLoyalist, relationTip);
-
-            relationValueLabel.text = StringBag.FromInt(model.RelationLevel);
+            model.RelationLevel
+                .Select(StringBag.FromInt)
+                .SubscribeToTextMeshPro(relationValueLabel)
+                .AddTo(_bindings);
 
             relationEnemy.SetActive(false);
             relationHater.SetActive(false);
@@ -110,19 +114,15 @@ namespace Kugushev.Scripts.Game.Widgets
             }
         }
 
-        private void UpdateBudgetView(IPolitician model)
+        private void BindBudgetView(IPolitician model)
         {
-            Asserting.NotNull(budgetValueLabel, budgetIsReadyToInvest, budgetIsNotReadyToInvest);
-
             budgetValueLabel.text = StringBag.FromInt(model.Budget);
             budgetIsReadyToInvest.SetActive(model.IsReadyToInvest);
             budgetIsNotReadyToInvest.SetActive(!model.IsReadyToInvest);
         }
 
-        private void UpdateTraitsView(IPolitician model)
+        private void BindTraitsView(IPolitician model)
         {
-            Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
-
             UpdateTraitView(traitBusinessValue, model.TraitsStatus.Business, model.Traits.Business);
             UpdateTraitView(traitGreedValue, model.TraitsStatus.Greed, model.Traits.Greed);
             UpdateTraitView(traitLustValue, model.TraitsStatus.Lust, model.Traits.Lust);
@@ -133,11 +133,8 @@ namespace Kugushev.Scripts.Game.Widgets
                 label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;
         }
 
-        private void UpdatePerksView(IPolitician model)
+        private void BindPerksView(IPolitician model)
         {
-            Asserting.NotNull(perkNameLabel, perkLvl1Requirement, perkLvl1Effect, perkLvl2Requirement, perkLvl2Effect,
-                perkLvl3Requirement, perkLvl3Effect);
-
             perkNameLabel.text = model.Character.PerkLvl1.Caption;
 
             perkLvl1Requirement.text = model.Character.PerkLvl1.Requirement;
@@ -146,12 +143,6 @@ namespace Kugushev.Scripts.Game.Widgets
             perkLvl2Effect.text = model.Character.PerkLvl2.Effect;
             perkLvl3Requirement.text = model.Character.PerkLvl3.Requirement;
             perkLvl3Effect.text = model.Character.PerkLvl3.Effect;
-        }
-
-        private bool IsModelValid([NotNullWhen(true)] out IPolitician? model)
-        {
-            model = _model;
-            return _model != null;
         }
     }
 }

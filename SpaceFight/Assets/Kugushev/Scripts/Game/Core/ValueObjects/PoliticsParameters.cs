@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Game.ValueObjects
+﻿namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     public readonly struct PoliticsParameters
     {

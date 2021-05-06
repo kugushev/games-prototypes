@@ -1,8 +1,8 @@
-﻿using Kugushev.Scripts.App.Constants;
-using Kugushev.Scripts.App.ValueObjects;
+﻿using Kugushev.Scripts.App.Core.Constants;
+using Kugushev.Scripts.App.Core.ValueObjects;
 using Kugushev.Scripts.Common.ContextManagement;
 
-namespace Kugushev.Scripts.App.ContextManagement
+namespace Kugushev.Scripts.App.Core.ContextManagement
 {
     internal class GameState : ParameterizedSceneLoadingState<GameParameters>
     {

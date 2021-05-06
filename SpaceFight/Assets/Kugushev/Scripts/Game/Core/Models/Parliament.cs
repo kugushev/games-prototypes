@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.Game.Core.Models
 {
     public class Parliament
     {

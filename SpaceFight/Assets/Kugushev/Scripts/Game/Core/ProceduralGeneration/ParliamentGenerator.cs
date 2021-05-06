@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.Common.Utils;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Game.ProceduralGeneration
+namespace Kugushev.Scripts.Game.Core.ProceduralGeneration
 {
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(ParliamentGenerator))]
     public class ParliamentGenerator : ScriptableObject

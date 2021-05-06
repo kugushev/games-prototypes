@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.Game.Core.Models
 {
     internal class GameModel : Poolable<GameModel.State>
     {
@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Game.Models
             }
         }
 
-        private readonly List<IntrigueRecord> _politicalActions = new List<IntrigueRecord>(64);
+        private readonly List<IntrigueCard> _politicalActions = new List<IntrigueCard>(64);
 
         public GameModel(ObjectsPool objectsPool) : base(objectsPool)
         {
@@ -32,15 +32,15 @@ namespace Kugushev.Scripts.Game.Models
         }
 
         public Parliament Parliament => ObjectState.Parliament;
-        public IReadOnlyList<IntrigueRecord> PoliticalActions => _politicalActions;
+        public IReadOnlyList<IntrigueCard> PoliticalActions => _politicalActions;
 
         public void AddPoliticalActions(IReadOnlyList<Intrigue> politicalActions)
         {
             foreach (var politicalAction in politicalActions)
-                _politicalActions.Add(new IntrigueRecord(politicalAction));
+                _politicalActions.Add(new IntrigueCard(politicalAction));
         }
 
-        public void RemovePoliticalAction(IntrigueRecord @record) => _politicalActions.Remove(record);
+        public void RemovePoliticalAction(IntrigueCard card) => _politicalActions.Remove(card);
 
         protected override void OnClear(State state)
         {

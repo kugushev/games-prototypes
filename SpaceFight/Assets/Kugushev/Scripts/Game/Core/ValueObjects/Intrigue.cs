@@ -1,10 +1,10 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Enums;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(Intrigue))]
     public class Intrigue : ScriptableObject

@@ -1,8 +1,8 @@
 ﻿using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Models;
 
-namespace Kugushev.Scripts.Game.StatesAndTransitions
+namespace Kugushev.Scripts.Game.Core.StatesAndTransitions
 {
     internal class PoliticsState : BaseSceneLoadingState<GameModel>
     {

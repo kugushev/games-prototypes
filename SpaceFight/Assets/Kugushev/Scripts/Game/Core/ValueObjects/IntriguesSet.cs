@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     public class IntriguesSet
     {
-        private readonly List<IntrigueRecord> _intrigues = new List<IntrigueRecord>(16);
+        private readonly List<IntrigueCard> _intrigues = new List<IntrigueCard>(16);
 
 
-        public List<IntrigueRecord> Intrigues => _intrigues;
+        public List<IntrigueCard> Intrigues => _intrigues;
     }
 }

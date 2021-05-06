@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.App.Core.Enums;
 
-namespace Kugushev.Scripts.App.ValueObjects
+namespace Kugushev.Scripts.App.Core.ValueObjects
 {
     public readonly struct CampaignParameters
     {

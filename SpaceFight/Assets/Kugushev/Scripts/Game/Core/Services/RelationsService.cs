@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Enums;
+﻿using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Enums;
 
-namespace Kugushev.Scripts.Game.Services
+namespace Kugushev.Scripts.Game.Core.Services
 {
     public class RelationsService
     {

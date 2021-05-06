@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.App.Enums;
-using Kugushev.Scripts.Game.Enums;
+﻿using Kugushev.Scripts.App.Core.Enums;
+using Kugushev.Scripts.Game.Core.Enums;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     public readonly struct PerkInfo
     {

@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
-using Kugushev.Scripts.Game.Utils;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Utils;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {

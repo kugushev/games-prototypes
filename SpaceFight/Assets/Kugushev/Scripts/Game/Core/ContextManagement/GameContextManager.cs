@@ -2,7 +2,7 @@
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.ContextManagement
+namespace Kugushev.Scripts.Game.Core.ContextManagement
 {
     internal class GameContextManager : AbstractContextManager
     {

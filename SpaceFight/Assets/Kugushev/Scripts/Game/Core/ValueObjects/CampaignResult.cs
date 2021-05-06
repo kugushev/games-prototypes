@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     public class CampaignResult : Poolable<CampaignResult.State>
     {

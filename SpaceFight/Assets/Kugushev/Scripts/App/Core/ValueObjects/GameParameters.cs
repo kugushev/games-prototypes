@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.App.ValueObjects
+﻿namespace Kugushev.Scripts.App.Core.ValueObjects
 {
     public readonly struct GameParameters
     {

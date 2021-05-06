@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Repositories
+namespace Kugushev.Scripts.Game.Core.Repositories
 {
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(PoliticianCharactersRepository))]
     public class PoliticianCharactersRepository : ScriptableObject

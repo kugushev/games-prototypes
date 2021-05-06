@@ -1,6 +1,6 @@
 ﻿using Kugushev.Scripts.Common;
 
-namespace Kugushev.Scripts.Game.Constants
+namespace Kugushev.Scripts.Game.Core.Constants
 {
     public static class GameConstants
     {

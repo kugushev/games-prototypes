@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Events;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Politics.Events;
 using TMPro;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Game.Politics.Widgets
 {
     public class PoliticianCardWidget : MonoBehaviour
     {

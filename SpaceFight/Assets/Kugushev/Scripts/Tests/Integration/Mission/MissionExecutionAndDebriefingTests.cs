@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;

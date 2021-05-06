@@ -1,6 +1,6 @@
 ﻿using Kugushev.Scripts.Common;
 
-namespace Kugushev.Scripts.App.Constants
+namespace Kugushev.Scripts.App.Core.Constants
 {
     public static class AppConstants
     {

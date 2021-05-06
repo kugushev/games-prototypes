@@ -1,9 +1,9 @@
-﻿using Kugushev.Scripts.App.ValueObjects;
+﻿using Kugushev.Scripts.App.Core.ValueObjects;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using Zenject;
 
-namespace Kugushev.Scripts.App.ContextManagement
+namespace Kugushev.Scripts.App.Core.ContextManagement
 {
     internal class AppContextManager : AbstractContextManager
     {

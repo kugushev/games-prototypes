@@ -1,21 +1,20 @@
-﻿using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Interfaces;
-using Kugushev.Scripts.Game.Models;
+﻿using Kugushev.Scripts.Game.Core;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Politics.Interfaces;
+using Kugushev.Scripts.Game.Politics.Widgets;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
-    public class ParliamentWidget : MonoBehaviour, IPoliticianSelector
+    public class ParliamentPresentationModel : MonoBehaviour, IPoliticianSelector
     {
         [SerializeField] private PoliticianCardWidget[] politicianCards = default!;
-        [SerializeField] private PoliticianDetailsWidget politicianDetailsWidget = default!;
-        [SerializeField] private UnityEvent onPoliticianSelected = default!;
 
         private Parliament _model = default!;
-        private ReactiveProperty<IPolitician?> _selectedPolitician;
+        private readonly ReactiveProperty<IPolitician?> _selectedPolitician = new ReactiveProperty<IPolitician?>();
 
         [Inject]
         public void Init(GameDateStore gameDateStore)
@@ -32,28 +31,11 @@ namespace Kugushev.Scripts.Game.Widgets
                 politicianCards[i].SetUp(_model.Politicians[i]);
         }
 
-
         public IReadOnlyReactiveProperty<IPolitician?> SelectedPolitician => _selectedPolitician;
 
         public void PoliticianSelected(IPolitician? politician)
         {
             _selectedPolitician.Value = politician;
-
-            if (politician == null)
-                politicianDetailsWidget.Deselect();
-            else
-                politicianDetailsWidget.Select(politician);
-
-            onPoliticianSelected?.Invoke();
-        }
-
-        public void UpdateView()
-        {
-            Asserting.NotNull(politicianCards, politicianDetailsWidget);
-
-            foreach (var politicianCard in politicianCards)
-                politicianCard.UpdateView();
-            politicianDetailsWidget.UpdateView();
         }
     }
 }

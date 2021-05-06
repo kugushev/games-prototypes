@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
 
 namespace Kugushev.Scripts.Mission.Models

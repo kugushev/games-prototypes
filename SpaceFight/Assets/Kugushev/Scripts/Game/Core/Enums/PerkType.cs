@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Game.Enums
+﻿namespace Kugushev.Scripts.Game.Core.Enums
 {
     public enum PerkType
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.App.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.Models
 {

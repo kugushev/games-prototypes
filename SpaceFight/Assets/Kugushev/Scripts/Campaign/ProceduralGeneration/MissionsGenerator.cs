@@ -3,8 +3,8 @@ using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Interfaces;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Services;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

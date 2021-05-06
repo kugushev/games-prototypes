@@ -1,11 +1,11 @@
 ﻿using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Game.Politics.Widgets
 {
     public class RevolutionWidget : MonoBehaviour
     {

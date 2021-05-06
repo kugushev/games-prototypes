@@ -1,6 +1,6 @@
-﻿using Kugushev.Scripts.App.Enums;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.App.Core.Enums;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;

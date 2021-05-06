@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Interfaces;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Politics.Interfaces;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.Game.Politics.Widgets
 {
     internal class CampaignPreparation : Poolable<CampaignPreparation.State>
     {

@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
-using Kugushev.Scripts.App.Enums;
+using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Utils;
 using NUnit.Framework;

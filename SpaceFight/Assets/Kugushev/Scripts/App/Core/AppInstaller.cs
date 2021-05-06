@@ -1,8 +1,8 @@
-using Kugushev.Scripts.App.ContextManagement;
+using Kugushev.Scripts.App.Core.ContextManagement;
 using Kugushev.Scripts.Common.ContextManagement;
 using Zenject;
 
-namespace Kugushev.Scripts.App
+namespace Kugushev.Scripts.App.Core
 {
     public class AppInstaller : MonoInstaller
     {

@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.App.Core.ValueObjects;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.ProceduralGeneration;
-using Kugushev.Scripts.Game.Services;
-using Kugushev.Scripts.Game.StatesAndTransitions;
-using Kugushev.Scripts.Game.Utils;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.ProceduralGeneration;
+using Kugushev.Scripts.Game.Core.Services;
+using Kugushev.Scripts.Game.Core.StatesAndTransitions;
+using Kugushev.Scripts.Game.Core.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace Kugushev.Scripts.Game
+namespace Kugushev.Scripts.Game.Core
 {
     internal class GameManager : BaseManager<GameModel>
     {

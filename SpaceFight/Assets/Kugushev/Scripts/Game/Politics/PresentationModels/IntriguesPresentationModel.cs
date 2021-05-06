@@ -1,53 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Interfaces;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.ValueObjects;
+﻿using System.Collections.Generic;
+using Kugushev.Scripts.Game.Core;
+using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Game.Politics.Interfaces;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
-    public class IntriguesPresentationModel : MonoBehaviour, IIntriguesSelector
+    public class IntriguesPresentationModel : MonoBehaviour, IIntriguesSelector, IIntriguesPresentationModel
     {
-        [SerializeField] private Button applyButton = default!;
-        [SerializeField] private Transform? politicalActionsPanel;
         [SerializeField] private ToggleGroup toggleGroup = default!;
-        [SerializeField] private GameObject? politicalActionCardPrefab;
-        [SerializeField] private UnityEvent? onActionApplied;
 
         [Inject] private IntrigueCardPresentationModel.Factory _cardsFactory = default!;
 
-        private readonly Dictionary<IntrigueRecord, IntrigueCardPresentationModel> _intrigueCards =
-            new Dictionary<IntrigueRecord, IntrigueCardPresentationModel>(16);
+        private readonly Dictionary<IntrigueCard, IntrigueCardPresentationModel> _intrigueCards =
+            new Dictionary<IntrigueCard, IntrigueCardPresentationModel>(16);
 
-        private ReactiveProperty<IntrigueRecord?> _selectedIntrigue;
+        private readonly ReactiveProperty<IntrigueCard?> _selectedIntrigueCard = new ReactiveProperty<IntrigueCard?>();
 
         [Inject]
         public void Init(GameDateStore gameDateStore)
         {
             var model = gameDateStore.Intrigues;
-            model.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value));
-            model.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
+            model.IntrigueCards.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value));
+            model.IntrigueCards.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
         }
 
-        public IReadOnlyReactiveProperty<IntrigueRecord?> SelectedIntrigue => _selectedIntrigue;
+        IReadOnlyReactiveProperty<IntrigueCard?> IIntriguesSelector.SelectedIntrigue => _selectedIntrigueCard;
 
+        ToggleGroup IIntriguesPresentationModel.ToggleGroup => toggleGroup;
+        void IIntriguesPresentationModel.SelectCard(IntrigueCard card) => _selectedIntrigueCard.Value = card;
 
-        #region UnityEngine
-
-        private void Awake()
-        {
-            applyButton.onClick.AddListener(OnApplyButtonClick);
-        }
-
-        #endregion
-
-        private void AddIntrigueCard(IntrigueRecord intrigue)
+        private void AddIntrigueCard(IntrigueCard intrigue)
         {
             if (_intrigueCards.ContainsKey(intrigue))
             {
@@ -55,11 +41,11 @@ namespace Kugushev.Scripts.Game.Widgets
                 return;
             }
 
-            var card = _cardsFactory.Create(intrigue, toggleGroup);
+            var card = _cardsFactory.Create(intrigue, this);
             _intrigueCards.Add(intrigue, card);
         }
 
-        private void RemoveIntrigueCard(IntrigueRecord intrigue)
+        private void RemoveIntrigueCard(IntrigueCard intrigue)
         {
             if (_intrigueCards.TryGetValue(intrigue, out var card))
             {
@@ -69,60 +55,5 @@ namespace Kugushev.Scripts.Game.Widgets
             else
                 Debug.LogError($"Intrigue {intrigue} is not set");
         }
-
-        private void OnApplyButtonClick()
-        {
-        }
-
-
-        // public void Setup(GameModel rootModel, IPoliticianSelector politicianSelector)
-        // {
-        //     Asserting.NotNull(politicalActionCardPrefab, politicalActionsPanel, toggleGroup);
-        //
-        //     _rootModel = rootModel;
-        //     _politicianSelector = politicianSelector;
-        //
-        //     // todo: use pool
-        //     foreach (var model in _rootModel.PoliticalActions)
-        //     {
-        //         var go = Instantiate(politicalActionCardPrefab, politicalActionsPanel);
-        //         var widget = go.GetComponent<IntrigueCardWidget>();
-        //         widget.SetUp(model, toggleGroup, OnCardSelected);
-        //     }
-        // }
-
-        // public void UpdateView()
-        // {
-        //     Asserting.NotNull(applyButton, _politicianSelector);
-        //
-        //     applyButton.interactable = _selectedIntrigue is { } &&
-        //                                _politicianSelector.SelectedPolitician is { };
-        // }
-        //
-        // // todo: this method should be executed from 2 signals (from Intrigue Card and from Politician Card
-        // private void OnCardSelected(IntrigueCardPresentationModel? politicalAction)
-        // {
-        //     _selectedIntrigue = politicalAction;
-        //     UpdateView();
-        // }
-        //
-        // public void OnApplyButton()
-        // {
-        //     Asserting.NotNull(_politicianSelector, _rootModel, applyButton);
-        //
-        //     if (_selectedIntrigue is { } && _politicianSelector.SelectedPolitician is { })
-        //     {
-        //         var selectedModel = _selectedIntrigue.Model;
-        //         _politicianSelector.SelectedPolitician.ApplyPoliticalAction(selectedModel.Intrigue);
-        //
-        //         _rootModel.RemovePoliticalAction(selectedModel);
-        //
-        //         Destroy(_selectedIntrigue.gameObject);
-        //         onActionApplied?.Invoke();
-        //
-        //         _selectedIntrigue = null;
-        //         applyButton.interactable = false;
-        //     }
-        // }
     }
 }

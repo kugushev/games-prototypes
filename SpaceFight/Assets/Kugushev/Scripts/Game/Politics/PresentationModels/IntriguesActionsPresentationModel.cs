@@ -1,13 +1,12 @@
-﻿using System;
-using Kugushev.Scripts.Game.Interfaces;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Game.Politics.Interfaces;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
     public class IntriguesActionsPresentationModel : MonoBehaviour
     {
@@ -29,12 +28,12 @@ namespace Kugushev.Scripts.Game.Widgets
                 .Subscribe(pair => ApplyIntrigueToPolitician(pair.politician!, pair.intrigue!));
         }
 
-        private static bool BothSelected(IPolitician? politician, IntrigueRecord? intrigue) =>
+        private static bool BothSelected(IPolitician? politician, IntrigueCard? intrigue) =>
             politician is { } && intrigue is { };
 
-        private void ApplyIntrigueToPolitician(IPolitician politician, IntrigueRecord intrigue)
+        private void ApplyIntrigueToPolitician(IPolitician politician, IntrigueCard intrigue)
         {
-            // todo: signal
+            // todo: signal to model
         }
     }
 }

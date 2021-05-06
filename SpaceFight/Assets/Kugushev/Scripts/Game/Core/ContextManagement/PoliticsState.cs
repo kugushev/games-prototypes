@@ -1,7 +1,7 @@
 ﻿using Kugushev.Scripts.Common.ContextManagement;
-using Kugushev.Scripts.Game.Constants;
+using Kugushev.Scripts.Game.Core.Constants;
 
-namespace Kugushev.Scripts.Game.ContextManagement
+namespace Kugushev.Scripts.Game.Core.ContextManagement
 {
     public class PoliticsState : UnparameterizedSceneLoadingState
     {

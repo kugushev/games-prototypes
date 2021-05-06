@@ -1,17 +1,18 @@
 ﻿using Kugushev.Scripts.Common.ValueObjects;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Services;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Services;
+using Kugushev.Scripts.Game.Core.ValueObjects;
+using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.Game.Core.Models
 {
     public interface IPolitician
     {
         PoliticianCharacter Character { get; }
-        int RelationLevel { get; }
+        IReadOnlyReactiveProperty<int> RelationLevel { get; }
         Relation Relation { get; }
         int Budget { get; }
         bool IsReadyToInvest { get; }
@@ -25,7 +26,7 @@ namespace Kugushev.Scripts.Game.Models
         private readonly Traits _traits;
         private TraitsStatus _traitsStatus;
         private int _budget;
-        private int _relationLevel;
+        private ReactiveProperty<int> _relationLevel;
 
         public Politician(PoliticianCharacter character, Percentage incomeProbability, int startBudget, Traits traits)
         {
@@ -34,13 +35,13 @@ namespace Kugushev.Scripts.Game.Models
             _traits = traits;
             _traitsStatus = new TraitsStatus();
             _budget = startBudget;
-            _relationLevel = GameConstants.StartRelationLevel;
+            _relationLevel = new ReactiveProperty<int>(GameConstants.StartRelationLevel);
         }
 
         public PoliticianCharacter Character { get; }
 
-        public int RelationLevel => _relationLevel;
-        public Relation Relation => RelationsService.FromLevel(_relationLevel);
+        public IReadOnlyReactiveProperty<int> RelationLevel => _relationLevel;
+        public Relation Relation => RelationsService.FromLevel(_relationLevel.Value);
 
         public int Budget => _budget;
 
@@ -68,12 +69,19 @@ namespace Kugushev.Scripts.Game.Models
             relationChange += _traits.Brute * traits.Brute;
             relationChange += _traits.Vanity * traits.Vanity;
 
-            _relationLevel += relationChange;
+            UpdateRelationLevel(relationChange);
+        }
 
-            if (_relationLevel < GameConstants.MinRelationLevel)
-                _relationLevel = GameConstants.MinRelationLevel;
-            if (_relationLevel > GameConstants.MaxRelationLevel)
-                _relationLevel = GameConstants.MaxRelationLevel;
+        private void UpdateRelationLevel(int relationChange)
+        {
+            var relationLevel = _relationLevel.Value;
+            relationLevel += relationChange;
+
+            if (relationLevel < GameConstants.MinRelationLevel)
+                relationLevel = GameConstants.MinRelationLevel;
+            if (relationLevel > GameConstants.MaxRelationLevel)
+                relationLevel = GameConstants.MaxRelationLevel;
+            _relationLevel.Value = relationLevel;
         }
 
         internal void ApplyIncome()

@@ -1,10 +1,9 @@
 ﻿using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
-using Kugushev.Scripts.Game.Utils;
-using Random = UnityEngine.Random;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Utils;
 
-namespace Kugushev.Scripts.Game.StatesAndTransitions
+namespace Kugushev.Scripts.Game.Core.StatesAndTransitions
 {
     internal class CampaignState : BaseSceneLoadingState<GameModel>
     {

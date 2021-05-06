@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.Game.Models;
+﻿using Kugushev.Scripts.Game.Core.Models;
 using UniRx;
 
-namespace Kugushev.Scripts.Game.Interfaces
+namespace Kugushev.Scripts.Game.Politics.Interfaces
 {
     internal interface IPoliticianSelector
     {

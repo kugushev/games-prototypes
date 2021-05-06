@@ -1,12 +1,12 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Game.Services
+namespace Kugushev.Scripts.Game.Core.Services
 {
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(PoliticalActionsRepository))]
     public class PoliticalActionsRepository : ScriptableObject

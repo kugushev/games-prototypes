@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.ValueObjects;
+using Kugushev.Scripts.App.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ProceduralGeneration;
@@ -10,9 +10,9 @@ using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Services;
-using Kugushev.Scripts.Game.Utils;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Services;
+using Kugushev.Scripts.Game.Core.Utils;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

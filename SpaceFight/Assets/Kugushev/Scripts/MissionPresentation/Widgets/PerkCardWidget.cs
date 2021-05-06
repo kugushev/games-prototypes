@@ -1,5 +1,5 @@
 ﻿using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Models;
 using TMPro;
 using UnityEngine;

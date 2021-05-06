@@ -1,6 +1,6 @@
 ﻿using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 
-namespace Kugushev.Scripts.Game.ContextManagement
+namespace Kugushev.Scripts.Game.Core.ContextManagement
 {
     public class GameStoreInitializedTransition : ITransition
     {

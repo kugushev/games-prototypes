@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kugushev.Scripts.App.Enums
+namespace Kugushev.Scripts.App.Core.Enums
 {
     public enum PerkId
     {

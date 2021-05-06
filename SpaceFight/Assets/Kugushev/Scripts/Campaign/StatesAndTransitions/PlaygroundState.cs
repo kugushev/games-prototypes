@@ -2,8 +2,8 @@
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.Services;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Services;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions

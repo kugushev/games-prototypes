@@ -1,9 +1,9 @@
 ﻿using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.Models;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.ValueObjects
+namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(PoliticianCharacter))]
     public class PoliticianCharacter : ScriptableObject

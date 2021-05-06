@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace Kugushev.Scripts.Game.ValueObjects
+﻿namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     // todo: make it poolable class
-    public class IntrigueRecord
+    public class IntrigueCard
     {
         public Intrigue Intrigue { get; }
 
-        public IntrigueRecord(Intrigue intrigue)
+        public IntrigueCard(Intrigue intrigue)
         {
             Intrigue = intrigue;
         }

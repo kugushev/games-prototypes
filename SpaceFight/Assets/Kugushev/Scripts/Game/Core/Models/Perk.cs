@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Models
+namespace Kugushev.Scripts.Game.Core.Models
 {
     public abstract class Perk : ScriptableObject
     {

@@ -1,10 +1,10 @@
-﻿using Kugushev.Scripts.Game.ContextManagement;
-using Kugushev.Scripts.Game.Repositories;
-using Kugushev.Scripts.Game.Services;
+﻿using Kugushev.Scripts.Game.Core.ContextManagement;
+using Kugushev.Scripts.Game.Core.Repositories;
+using Kugushev.Scripts.Game.Core.Services;
 using UnityEngine;
 using Zenject;
 
-namespace Kugushev.Scripts.Game
+namespace Kugushev.Scripts.Game.Core
 {
     public class GameInstaller : MonoInstaller
     {

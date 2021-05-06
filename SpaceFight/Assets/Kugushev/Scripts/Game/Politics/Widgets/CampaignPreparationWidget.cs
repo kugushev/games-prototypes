@@ -1,12 +1,11 @@
 ﻿using System.Text;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Constants;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Core.Constants;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Kugushev.Scripts.Presentation.Politics.Widgets
+namespace Kugushev.Scripts.Game.Politics.Widgets
 {
     public class CampaignPreparationWidget : MonoBehaviour
     {

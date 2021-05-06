@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Enums;
+using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Perks.Abstractions;

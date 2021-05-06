@@ -1,16 +1,18 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Game.Enums;
-using Kugushev.Scripts.Game.ValueObjects;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Game.Politics.Interfaces;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
-    public class IntrigueCardPresentationModel : MonoBehaviour, IPoolable<IntrigueRecord, ToggleGroup, IMemoryPool>,
+    public class IntrigueCardPresentationModel : MonoBehaviour,
+        IPoolable<IntrigueCard, IIntriguesPresentationModel, IMemoryPool>,
         IDisposable
     {
         [SerializeField] private Toggle toggle = default!;
@@ -24,70 +26,72 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private TextMeshProUGUI traitVanityValue = default!;
 
         [Header("Background")] [SerializeField]
-        private Image? background;
+        private Image background = default!;
 
         [SerializeField] private Color normal;
         [SerializeField] private Color hard;
         [SerializeField] private Color insane;
 
-        private IntrigueRecord? _model;
+        private IntrigueCard? _model;
+        private IIntriguesPresentationModel? _parent;
         private IMemoryPool? _pool;
 
-        void IPoolable<IntrigueRecord, ToggleGroup, IMemoryPool>.OnSpawned(IntrigueRecord p1, ToggleGroup p2,
+        #region IPoolable, IDisposable
+
+        void IPoolable<IntrigueCard, IIntriguesPresentationModel, IMemoryPool>.OnSpawned(IntrigueCard p1,
+            IIntriguesPresentationModel p2,
             IMemoryPool p3)
         {
             _model = p1;
-            toggle.group = p2;
+            _parent = p2;
             _pool = p3;
+
+            toggle.group = _parent.ToggleGroup;
+
+            UpdateView(_model);
         }
 
-        void IPoolable<IntrigueRecord, ToggleGroup, IMemoryPool>.OnDespawned()
+        void IPoolable<IntrigueCard, IIntriguesPresentationModel, IMemoryPool>.OnDespawned()
         {
             _model = default;
+            _parent = default;
+            _pool = default;
+
             toggle.group = default!;
-            _pool = null;
         }
 
         public void Dispose() => _pool?.Despawn(this);
 
-        public IntrigueRecord Model => _model ?? throw new SpaceFightException($"Model is null");
+        #endregion
 
         #region UnityEngine
 
         private void Awake()
         {
-            // toggle.OnValueChangedAsObservable().Where(s => _model != null).Subscribe(selected => fire)
+            toggle.OnValueChangedAsObservable()
+                .Where(selected => selected)
+                .Subscribe(_ => OnCardSelected());
         }
 
         #endregion
 
-        public void ToggleChanged(bool isOn)
+        private void OnCardSelected()
         {
-            if (!IsModelValid())
-                return;
-
-            // todo: Fire signal
-            //_onCardSelected?.Invoke(isOn ? this : null);
+            if (_model is { } && _parent is { })
+                _parent!.SelectCard(_model!);
         }
 
-        private void UpdateView()
+        private void UpdateView(IntrigueCard model)
         {
-            Asserting.NotNull(caption, intelValue);
-
-            if (!IsModelValid())
-                return;
-
-            caption.text = Model.Intrigue.Caption;
-            intelValue.text = StringBag.FromInt(Model.Intrigue.Intel);
-            UpdateDifficultyView();
-            UpdateTraitsView();
+            caption.text = model.Intrigue.Caption;
+            intelValue.text = StringBag.FromInt(model.Intrigue.Intel);
+            UpdateDifficultyView(model);
+            UpdateTraitsView(model);
         }
 
-        private void UpdateDifficultyView()
+        private void UpdateDifficultyView(IntrigueCard model)
         {
-            Asserting.NotNull(background);
-
-            switch (Model.Intrigue.Difficulty)
+            switch (model.Intrigue.Difficulty)
             {
                 case Difficulty.Normal:
                     background.color = normal;
@@ -99,36 +103,24 @@ namespace Kugushev.Scripts.Game.Widgets
                     background.color = insane;
                     break;
                 default:
-                    Debug.LogError($"Unexpected difficulty {Model.Intrigue.Difficulty}");
+                    Debug.LogError($"Unexpected difficulty {model.Intrigue.Difficulty}");
                     break;
             }
         }
 
-        private void UpdateTraitsView()
+        private void UpdateTraitsView(IntrigueCard model)
         {
-            Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
-
-            UpdateTraitView(traitBusinessValue, Model.Intrigue.Traits.Business);
-            UpdateTraitView(traitGreedValue, Model.Intrigue.Traits.Greed);
-            UpdateTraitView(traitLustValue, Model.Intrigue.Traits.Lust);
-            UpdateTraitView(traitBruteValue, Model.Intrigue.Traits.Brute);
-            UpdateTraitView(traitVanityValue, Model.Intrigue.Traits.Vanity);
+            UpdateTraitView(traitBusinessValue, model.Intrigue.Traits.Business);
+            UpdateTraitView(traitGreedValue, model.Intrigue.Traits.Greed);
+            UpdateTraitView(traitLustValue, model.Intrigue.Traits.Lust);
+            UpdateTraitView(traitBruteValue, model.Intrigue.Traits.Brute);
+            UpdateTraitView(traitVanityValue, model.Intrigue.Traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, int value) => label.text = StringBag.FromInt(value);
         }
 
-        private bool IsModelValid()
-        {
-            if (_model == null)
-            {
-                Debug.LogError($"Model is not active: {_model}");
-                return false;
-            }
-
-            return true;
-        }
-
-        public class Factory : PlaceholderFactory<IntrigueRecord, ToggleGroup, IntrigueCardPresentationModel>
+        public class Factory : PlaceholderFactory<IntrigueCard, IIntriguesPresentationModel,
+            IntrigueCardPresentationModel>
         {
         }
     }

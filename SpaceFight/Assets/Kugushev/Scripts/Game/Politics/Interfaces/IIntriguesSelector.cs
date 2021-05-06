@@ -1,10 +1,10 @@
-﻿using Kugushev.Scripts.Game.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 
-namespace Kugushev.Scripts.Game.Interfaces
+namespace Kugushev.Scripts.Game.Politics.Interfaces
 {
     public interface IIntriguesSelector
     {
-        IReadOnlyReactiveProperty<IntrigueRecord?> SelectedIntrigue { get; }
+        IReadOnlyReactiveProperty<IntrigueCard?> SelectedIntrigue { get; }
     }
 }
