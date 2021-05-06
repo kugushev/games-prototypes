@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Interfaces;
 
 namespace Kugushev.Scripts.Game.Models
 {

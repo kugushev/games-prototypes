@@ -22,9 +22,9 @@ namespace Kugushev.Scripts.Game.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            var (budget, perks) = Model.CampaignPreparation.PrepareCampaign();
+            // var (budget, perks) = Model.CampaignPreparation.PrepareCampaign();
 
-            var campaignSeed = Random.Range(0, 100); // just for test purposes
+            // var campaignSeed = Random.Range(0, 100); // just for test purposes
 
             // _campaignSceneParametersPipeline.Set(new CampaignInfo(
             //     campaignSeed,

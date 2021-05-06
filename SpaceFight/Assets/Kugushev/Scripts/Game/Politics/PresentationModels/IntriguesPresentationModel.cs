@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models;
@@ -11,9 +12,9 @@ using Zenject;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
-    public class IntriguesPresentationModel : MonoBehaviour
+    public class IntriguesPresentationModel : MonoBehaviour, IIntriguesSelector
     {
-        [SerializeField] private Button? applyButton;
+        [SerializeField] private Button applyButton = default!;
         [SerializeField] private Transform? politicalActionsPanel;
         [SerializeField] private ToggleGroup toggleGroup = default!;
         [SerializeField] private GameObject? politicalActionCardPrefab;
@@ -21,17 +22,56 @@ namespace Kugushev.Scripts.Game.Widgets
 
         [Inject] private IntrigueCardPresentationModel.Factory _cardsFactory = default!;
 
+        private readonly Dictionary<IntrigueRecord, IntrigueCardPresentationModel> _intrigueCards =
+            new Dictionary<IntrigueRecord, IntrigueCardPresentationModel>(16);
+
+        private ReactiveProperty<IntrigueRecord?> _selectedIntrigue;
+
         [Inject]
         public void Init(GameDateStore gameDateStore)
         {
             var model = gameDateStore.Intrigues;
             model.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value));
+            model.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
         }
+
+        public IReadOnlyReactiveProperty<IntrigueRecord?> SelectedIntrigue => _selectedIntrigue;
+
+
+        #region UnityEngine
+
+        private void Awake()
+        {
+            applyButton.onClick.AddListener(OnApplyButtonClick);
+        }
+
+        #endregion
 
         private void AddIntrigueCard(IntrigueRecord intrigue)
         {
-           var card = _cardsFactory.Create(intrigue, toggleGroup);
-           // todo: test it!!!
+            if (_intrigueCards.ContainsKey(intrigue))
+            {
+                Debug.LogError($"Intrigue {intrigue} is already set");
+                return;
+            }
+
+            var card = _cardsFactory.Create(intrigue, toggleGroup);
+            _intrigueCards.Add(intrigue, card);
+        }
+
+        private void RemoveIntrigueCard(IntrigueRecord intrigue)
+        {
+            if (_intrigueCards.TryGetValue(intrigue, out var card))
+            {
+                card.Dispose();
+                _intrigueCards.Remove(intrigue);
+            }
+            else
+                Debug.LogError($"Intrigue {intrigue} is not set");
+        }
+
+        private void OnApplyButtonClick()
+        {
         }
 
 

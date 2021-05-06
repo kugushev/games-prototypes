@@ -1,9 +1,10 @@
 ﻿using Kugushev.Scripts.Game.Models;
+using UniRx;
 
 namespace Kugushev.Scripts.Game.Interfaces
 {
     internal interface IPoliticianSelector
     {
-        Politician? SelectedPolitician { get; }
+        IReadOnlyReactiveProperty<IPolitician?> SelectedPolitician { get; }
     }
 }

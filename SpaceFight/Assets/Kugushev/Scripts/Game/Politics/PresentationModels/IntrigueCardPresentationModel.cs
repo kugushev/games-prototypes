@@ -10,7 +10,8 @@ using Zenject;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
-    public class IntrigueCardPresentationModel : MonoBehaviour, IPoolable<IntrigueRecord, ToggleGroup, IMemoryPool>
+    public class IntrigueCardPresentationModel : MonoBehaviour, IPoolable<IntrigueRecord, ToggleGroup, IMemoryPool>,
+        IDisposable
     {
         [SerializeField] private Toggle toggle = default!;
         [SerializeField] private TextMeshProUGUI caption = default!;
@@ -30,19 +31,24 @@ namespace Kugushev.Scripts.Game.Widgets
         [SerializeField] private Color insane;
 
         private IntrigueRecord? _model;
+        private IMemoryPool? _pool;
 
         void IPoolable<IntrigueRecord, ToggleGroup, IMemoryPool>.OnSpawned(IntrigueRecord p1, ToggleGroup p2,
             IMemoryPool p3)
         {
             _model = p1;
             toggle.group = p2;
+            _pool = p3;
         }
 
         void IPoolable<IntrigueRecord, ToggleGroup, IMemoryPool>.OnDespawned()
         {
             _model = default;
             toggle.group = default!;
+            _pool = null;
         }
+
+        public void Dispose() => _pool?.Despawn(this);
 
         public IntrigueRecord Model => _model ?? throw new SpaceFightException($"Model is null");
 

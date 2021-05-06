@@ -41,15 +41,15 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\App\Enums\PerkId.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Constants\AppConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\CampaignParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\GameState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\AppInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ValueObjects\GameParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\AppContextManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\ContextManagement\MainMenuState.cs" />
-     <None Include="Assets\Kugushev\Scripts\App\App.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\Enums\PerkId.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\Constants\AppConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\ValueObjects\CampaignParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\GameState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\AppInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\ValueObjects\GameParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\AppContextManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\MainMenuState.cs" />
+     <None Include="Assets\Kugushev\Scripts\App\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>

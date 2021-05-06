@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Kugushev.Scripts.Game.Widgets
+namespace Kugushev.Scripts.Presentation.Politics.Widgets
 {
     public class CampaignPreparationWidget : MonoBehaviour
     {

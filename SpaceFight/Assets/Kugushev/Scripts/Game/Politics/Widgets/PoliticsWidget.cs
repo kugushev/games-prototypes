@@ -1,12 +1,13 @@
 ﻿using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Utils;
+using Kugushev.Scripts.Presentation.Politics.Widgets;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
     public class PoliticsWidget : MonoBehaviour
     {
-        [SerializeField] private GameModelProvider? gameModelProvider;
+        // [SerializeField] private GameModelProvider? gameModelProvider;
 
         [SerializeField] private ParliamentWidget? parliament;
         [SerializeField] private IntriguesPresentationModel? politicalActions;

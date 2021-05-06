@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.ValueObjects;
-using UniRx;
 
 namespace Kugushev.Scripts.Game.Models
 {
@@ -11,12 +10,9 @@ namespace Kugushev.Scripts.Game.Models
         {
             public readonly Parliament Parliament;
 
-            public readonly CampaignPreparation CampaignPreparation;
-
-            public State(Parliament parliament, CampaignPreparation campaignPreparation)
+            public State(Parliament parliament)
             {
                 Parliament = parliament;
-                CampaignPreparation = campaignPreparation;
             }
         }
 
@@ -28,7 +24,7 @@ namespace Kugushev.Scripts.Game.Models
 
         public void PrepareNextRound()
         {
-            ObjectState.CampaignPreparation.RemoveAllSponsors();
+            // ObjectState.CampaignPreparation.RemoveAllSponsors();
             foreach (var politician in Parliament.Politicians)
             {
                 // politician.ApplyIncome();
@@ -36,7 +32,6 @@ namespace Kugushev.Scripts.Game.Models
         }
 
         public Parliament Parliament => ObjectState.Parliament;
-        internal CampaignPreparation CampaignPreparation => ObjectState.CampaignPreparation;
         public IReadOnlyList<IntrigueRecord> PoliticalActions => _politicalActions;
 
         public void AddPoliticalActions(IReadOnlyList<Intrigue> politicalActions)
@@ -50,7 +45,6 @@ namespace Kugushev.Scripts.Game.Models
         protected override void OnClear(State state)
         {
             // state.Parliament.Dispose();
-            state.CampaignPreparation.Dispose();
             _politicalActions.Clear();
         }
 

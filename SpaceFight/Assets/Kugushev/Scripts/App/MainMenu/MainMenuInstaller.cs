@@ -3,9 +3,9 @@ using Kugushev.Scripts.AppPresentation.PresentationModels;
 using Kugushev.Scripts.Common.ContextManagement;
 using Zenject;
 
-namespace Kugushev.Scripts.AppPresentation
+namespace Kugushev.Scripts.Presentation.MainMenu
 {
-    public class AppPresentationInstaller : MonoInstaller
+    public class MainMenuInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

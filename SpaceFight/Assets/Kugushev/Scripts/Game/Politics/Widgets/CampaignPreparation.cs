@@ -24,10 +24,10 @@ namespace Kugushev.Scripts.Game.Models
         {
         }
 
-        private readonly HashSet<Politician> _sponsors = new HashSet<Politician>();
+        private readonly HashSet<IPolitician> _sponsors = new HashSet<IPolitician>();
         private readonly HashSet<PerkId> _perksBuffer = new HashSet<PerkId>();
 
-        internal IReadOnlyCollection<Politician> Sponsors => _sponsors;
+        internal IReadOnlyCollection<IPolitician> Sponsors => _sponsors;
 
         public int CampaignBudget
         {
@@ -46,7 +46,7 @@ namespace Kugushev.Scripts.Game.Models
             get
             {
                 var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-                return selectedPolitician is { } && selectedPolitician.IsReadyToInvest;
+                return selectedPolitician is { } && selectedPolitician.Value.IsReadyToInvest;
             }
         }
 
@@ -55,22 +55,22 @@ namespace Kugushev.Scripts.Game.Models
             get
             {
                 var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-                return selectedPolitician is { } && _sponsors.Contains(selectedPolitician);
+                return selectedPolitician is { } && _sponsors.Contains(selectedPolitician.Value);
             }
         }
 
         public void AddSelectedPoliticianAsSponsor()
         {
             var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-            if (selectedPolitician is { } && selectedPolitician.IsReadyToInvest)
-                _sponsors.Add(selectedPolitician);
+            if (selectedPolitician is { } && selectedPolitician.Value.IsReadyToInvest)
+                _sponsors.Add(selectedPolitician.Value);
         }
 
         public void RemoveSelectedPoliticianFromSponsors()
         {
             if (SelectedPoliticianIsAlreadySponsor)
                 // because we check it in SelectedPoliticianIsAlreadySponsor
-                _sponsors.Remove(ObjectState.PoliticianSelector.SelectedPolitician!);
+                _sponsors.Remove(ObjectState.PoliticianSelector.SelectedPolitician.Value);
         }
 
         public void RemoveAllSponsors()
@@ -87,7 +87,9 @@ namespace Kugushev.Scripts.Game.Models
             foreach (var sponsor in _sponsors)
             {
                 _perksBuffer.Add(sponsor.Character.PerkLvl1.Id);
-                sponsor.CollectMoney();
+                
+                // todo: send signal
+                // sponsor.CollectMoney();
             }
 
             return (budget, _perksBuffer);

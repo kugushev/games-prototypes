@@ -1,18 +1,21 @@
 ﻿using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
 namespace Kugushev.Scripts.Game.Widgets
 {
-    public class ParliamentWidget : MonoBehaviour
+    public class ParliamentWidget : MonoBehaviour, IPoliticianSelector
     {
         [SerializeField] private PoliticianCardWidget[] politicianCards = default!;
         [SerializeField] private PoliticianDetailsWidget politicianDetailsWidget = default!;
         [SerializeField] private UnityEvent onPoliticianSelected = default!;
 
         private Parliament _model = default!;
+        private ReactiveProperty<IPolitician?> _selectedPolitician;
 
         [Inject]
         public void Init(GameDateStore gameDateStore)
@@ -29,12 +32,12 @@ namespace Kugushev.Scripts.Game.Widgets
                 politicianCards[i].SetUp(_model.Politicians[i]);
         }
 
-        public IPolitician? SelectedPolitician { get; private set; }
 
+        public IReadOnlyReactiveProperty<IPolitician?> SelectedPolitician => _selectedPolitician;
 
         public void PoliticianSelected(IPolitician? politician)
         {
-            SelectedPolitician = politician;
+            _selectedPolitician.Value = politician;
 
             if (politician == null)
                 politicianDetailsWidget.Deselect();

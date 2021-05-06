@@ -38,7 +38,7 @@ namespace Kugushev.Scripts.Game
 
             var parameters = _parametersPipeline.Pop();
             _parliament = _parliamentGenerationService.Generate(parameters.Seed);
-
+            
             Initialized = true;
         }
     }

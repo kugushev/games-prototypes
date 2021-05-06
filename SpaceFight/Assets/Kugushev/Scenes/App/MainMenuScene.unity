@@ -615,7 +615,6 @@ MonoBehaviour:
   newGameButton: {fileID: 1023946289}
   customCampaignButton: {fileID: 1178648384}
   playgroundButton: {fileID: 1711916967}
-  seed: 42
 --- !u!1 &809729925
 GameObject:
   m_ObjectHideFlags: 0
