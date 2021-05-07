@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Game.Politics.Constants;
 using Kugushev.Scripts.Game.Politics.Interfaces;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.Politics.Widgets
+namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
-    public class PoliticianDetailsWidget : MonoBehaviour
+    public class PoliticianDetailsPresentationModel : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI nameLabel = default!;
 
@@ -41,8 +41,6 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
         [SerializeField] private TextMeshProUGUI perkLvl2Effect = default!;
         [SerializeField] private TextMeshProUGUI perkLvl3Requirement = default!;
         [SerializeField] private TextMeshProUGUI perkLvl3Effect = default!;
-
-        const string UnknownTrait = "?";
 
         private readonly CompositeDisposable _bindings = new CompositeDisposable();
 
@@ -140,7 +138,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
             UpdateTraitView(traitVanityValue, traitsStatus.Vanity, traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, bool revealed, int value) =>
-                label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;
+                label.text = revealed ? StringBag.FromInt(value) : PoliticsConstants.UnrevealedTrait;
         }
 
         private void UpdatePerksView(IPolitician model)

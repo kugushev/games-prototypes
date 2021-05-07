@@ -1,5 +1,4 @@
 ﻿using System;
-using Kugushev.Scripts.Common.Utils.Pooling;
 using Zenject;
 
 namespace Kugushev.Scripts.Common.Utils

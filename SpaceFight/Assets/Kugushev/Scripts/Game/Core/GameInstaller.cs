@@ -14,7 +14,7 @@ namespace Kugushev.Scripts.Game.Core
         public override void InstallBindings()
         {
             Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameDateStore>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameDataStore>().AsSingle();
 
             InstallContextManagement();
 

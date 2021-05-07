@@ -2,7 +2,6 @@
 using Kugushev.Scripts.Game.Politics.Factories;
 using Kugushev.Scripts.Game.Politics.Interfaces;
 using Kugushev.Scripts.Game.Politics.PresentationModels;
-using Kugushev.Scripts.Game.Politics.Widgets;
 using Zenject;
 
 namespace Kugushev.Scripts.Game.Politics

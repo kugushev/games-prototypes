@@ -42,21 +42,21 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Factories\IntrigueCardFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\CampaignPreparationWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\PoliticsWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\CampaignPreparationPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IIntriguesSelector.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\CampaignPreparation.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\PoliticianCardWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\PoliticianCardPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\ParliamentPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntriguesPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\PoliticianDetailsWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\PoliticianDetailsPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntriguesActionsPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PoliticsInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IPoliticianSelector.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Events\PoliticianSelectedEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\RevolutionWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\RevolutionPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IIntriguesPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntrigueCardPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IParliamentPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Constants\PoliticsConstants.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Politics\Politics.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -1,7 +1,6 @@
 ﻿using System;
 using TMPro;
 using UniRx;
-using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Common.Utils
 {

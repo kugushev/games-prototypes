@@ -1,18 +1,17 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Kugushev.Scripts.Common.Utils;
+﻿using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Models;
-using Kugushev.Scripts.Game.Politics.Events;
+using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Game.Politics.Constants;
+using Kugushev.Scripts.Game.Politics.Interfaces;
 using TMPro;
 using UniRx;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Politics.Widgets
+namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
-    public class PoliticianCardWidget : MonoBehaviour
+    public class PoliticianCardPresentationModel : MonoBehaviour
     {
-        [SerializeField] private PoliticianSelectedEvent onSelected = default!;
-
         [SerializeField] private TextMeshProUGUI budgetValueLabel = default!;
 
         [Header("Character")] [SerializeField] private TextMeshProUGUI nameLabel = default!;
@@ -30,37 +29,32 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
         [SerializeField] private TextMeshProUGUI traitBruteValue = default!;
         [SerializeField] private TextMeshProUGUI traitVanityValue = default!;
 
-        const string UnknownTrait = "?";
-
         private IPolitician? _model;
+        private IParliamentPresentationModel? _root;
 
-        public void SetUp(IPolitician model)
+        public void SetUp(IPolitician model, IParliamentPresentationModel root)
         {
             _model = model;
-            UpdateView();
+            _root = root;
+            SetupView(_model);
         }
 
         public void ToggleChanged(bool isOn)
         {
-            if (!IsModelValid(out var model))
+            if (_model is null || _root is null)
                 return;
 
-            onSelected?.Invoke(isOn ? model : null);
+            _root.SelectPolitician(isOn ? _model : null);
         }
 
-        public void UpdateView()
+        private void SetupView(IPolitician model)
         {
-            Asserting.NotNull(nameLabel, budgetValueLabel, perkNameLabel);
-
-            if (!IsModelValid(out var model))
-                return;
-
             nameLabel.text = model.Character.FullName;
-            budgetValueLabel.text = StringBag.FromInt(model.Budget.Value);
+            model.Budget.Select(StringBag.FromInt).SubscribeToTextMeshPro(budgetValueLabel);
             perkNameLabel.text = model.Character.PerkLvl1.Caption;
 
             model.Relation.Subscribe(UpdateRelationView);
-            UpdateTraitsView(model);
+            model.TraitsStatus.Subscribe(status => UpdateTraitsView(status, model.Traits));
         }
 
         private void UpdateRelationView(Relation relation)
@@ -94,24 +88,16 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
             }
         }
 
-        private void UpdateTraitsView(IPolitician model)
+        private void UpdateTraitsView(TraitsStatus traitsStatus, Traits traits)
         {
-            Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
-
-            UpdateTraitView(traitBusinessValue, model.TraitsStatus.Value.Business, model.Traits.Business);
-            UpdateTraitView(traitGreedValue, model.TraitsStatus.Value.Greed, model.Traits.Greed);
-            UpdateTraitView(traitLustValue, model.TraitsStatus.Value.Lust, model.Traits.Lust);
-            UpdateTraitView(traitBruteValue, model.TraitsStatus.Value.Brute, model.Traits.Brute);
-            UpdateTraitView(traitVanityValue, model.TraitsStatus.Value.Vanity, model.Traits.Vanity);
+            UpdateTraitView(traitBusinessValue, traitsStatus.Business, traits.Business);
+            UpdateTraitView(traitGreedValue, traitsStatus.Greed, traits.Greed);
+            UpdateTraitView(traitLustValue, traitsStatus.Lust, traits.Lust);
+            UpdateTraitView(traitBruteValue, traitsStatus.Brute, traits.Brute);
+            UpdateTraitView(traitVanityValue, traitsStatus.Vanity, traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, bool revealed, int value) =>
-                label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;
-        }
-
-        private bool IsModelValid([NotNullWhen(true)] out IPolitician? model)
-        {
-            model = _model;
-            return _model != null;
+                label.text = revealed ? StringBag.FromInt(value) : PoliticsConstants.UnrevealedTrait;
         }
     }
 }

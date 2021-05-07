@@ -1,16 +1,13 @@
-﻿using JetBrains.Annotations;
-using Kugushev.Scripts.App.Core.ValueObjects;
+﻿using Kugushev.Scripts.App.Core.ValueObjects;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Core.Services;
-using Kugushev.Scripts.Game.Core.ValueObjects;
-using UniRx;
 using Zenject;
 
 namespace Kugushev.Scripts.Game.Core
 {
-    public class GameDateStore : IInitializable
+    public class GameDataStore : IInitializable
     {
         private readonly ParametersPipeline<GameParameters> _parametersPipeline;
         private readonly ParliamentGenerationService _parliamentGenerationService;
@@ -18,7 +15,7 @@ namespace Kugushev.Scripts.Game.Core
         private Parliament? _parliament;
         private readonly Intrigues _intrigues = new Intrigues();
 
-        public GameDateStore(ParametersPipeline<GameParameters> parametersPipeline,
+        public GameDataStore(ParametersPipeline<GameParameters> parametersPipeline,
             ParliamentGenerationService parliamentGenerationService)
         {
             _parametersPipeline = parametersPipeline;

@@ -3556,52 +3556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f941dffa93154e67bb44002604385cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyButton: {fileID: 1823383400}
-  politicalActionsPanel: {fileID: 572113476}
   toggleGroup: {fileID: 572113479}
-  politicalActionCardPrefab: {fileID: 4379366421152740909, guid: f08f10af92ee0a747bd07095d0cf8990, type: 3}
-  onActionApplied:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 812084406}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.ParliamentWidget,
-          Game
-        m_MethodName: UpdateView
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 809745027}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.CampaignPreparationWidget,
-          Game
-        m_MethodName: UpdateView
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 410001292}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.RevolutionWidget,
-          Game
-        m_MethodName: UpdateView
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &572113481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4893,36 +4848,6 @@ MonoBehaviour:
   - {fileID: 1716486915}
   - {fileID: 486440594}
   - {fileID: 1782336936}
-  politicianDetailsWidget: {fileID: 1753152674}
-  onPoliticianSelected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 809745027}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.CampaignPreparationWidget,
-          Game
-        m_MethodName: UpdateView
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 572113480}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Game.Widgets.PoliticalActionsWidget,
-          Game
-        m_MethodName: UpdateView
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &822946631
 GameObject:
   m_ObjectHideFlags: 0
@@ -10631,7 +10556,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1953618096}
-  - component: {fileID: 1953618097}
   m_Layer: 0
   m_Name: PoliticsMenu
   m_TagString: Untagged
@@ -10657,22 +10581,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1953618097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953618095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a58c05f3374cb686a05b469741d804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parliament: {fileID: 812084406}
-  politicalActions: {fileID: 572113480}
-  campaignPreparation: {fileID: 809745027}
-  revolutionWidget: {fileID: 410001292}
 --- !u!1 &1971547025
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,10 +4,10 @@ namespace Kugushev.Scripts.Game.Core.ContextManagement
 {
     public class GameStoreInitializedTransition : ITransition
     {
-        private readonly GameDateStore _gameDateStore;
+        private readonly GameDataStore _gameDataStore;
 
-        public GameStoreInitializedTransition(GameDateStore gameDateStore) => _gameDateStore = gameDateStore;
+        public GameStoreInitializedTransition(GameDataStore gameDataStore) => _gameDataStore = gameDataStore;
 
-        public bool ToTransition => _gameDateStore.Initialized;
+        public bool ToTransition => _gameDataStore.Initialized;
     }
 }

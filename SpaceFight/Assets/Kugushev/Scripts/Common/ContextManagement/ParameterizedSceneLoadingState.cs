@@ -1,5 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using UnityEngine;
 using UnityEngine.SceneManagement;

@@ -1,24 +1,23 @@
 ﻿using Kugushev.Scripts.Game.Core;
 using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Politics.Interfaces;
-using Kugushev.Scripts.Game.Politics.Widgets;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
 namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
-    public class ParliamentPresentationModel : MonoBehaviour, IPoliticianSelector
+    public class ParliamentPresentationModel : MonoBehaviour, IParliamentPresentationModel, IPoliticianSelector
     {
-        [SerializeField] private PoliticianCardWidget[] politicianCards = default!;
+        [SerializeField] private PoliticianCardPresentationModel[] politicianCards = default!;
 
         private Parliament _model = default!;
         private readonly ReactiveProperty<IPolitician?> _selectedPolitician = new ReactiveProperty<IPolitician?>();
 
         [Inject]
-        public void Init(GameDateStore gameDateStore)
+        public void Init(GameDataStore gameDataStore)
         {
-            _model = gameDateStore.Parliament;
+            _model = gameDataStore.Parliament;
 
             if (politicianCards.Length != _model.Politicians.Count)
             {
@@ -27,12 +26,12 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
             }
 
             for (int i = 0; i < politicianCards.Length; i++)
-                politicianCards[i].SetUp(_model.Politicians[i]);
+                politicianCards[i].SetUp(_model.Politicians[i], this);
         }
 
         public IReadOnlyReactiveProperty<IPolitician?> SelectedPolitician => _selectedPolitician;
 
-        public void PoliticianSelected(IPolitician? politician)
+        public void SelectPolitician(IPolitician? politician)
         {
             _selectedPolitician.Value = politician;
         }

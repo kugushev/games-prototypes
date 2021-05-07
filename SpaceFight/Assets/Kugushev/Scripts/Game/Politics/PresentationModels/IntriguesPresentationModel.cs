@@ -21,9 +21,9 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private readonly ReactiveProperty<IntrigueCard?> _selectedIntrigueCard = new ReactiveProperty<IntrigueCard?>();
 
         [Inject]
-        public void Init(GameDateStore gameDateStore)
+        public void Init(GameDataStore gameDataStore)
         {
-            var model = gameDateStore.Intrigues;
+            var model = gameDataStore.Intrigues;
             model.IntrigueCards.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value));
             model.IntrigueCards.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
         }
