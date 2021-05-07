@@ -47,7 +47,7 @@
      <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\GameState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\AppInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\ValueObjects\GameParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\AppContextManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\AppContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\MainMenuState.cs" />
      <None Include="Assets\Kugushev\Scripts\App\Core\Core.asmdef" />
      <Reference Include="UnityEngine">

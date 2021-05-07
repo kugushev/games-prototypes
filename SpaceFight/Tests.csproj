@@ -660,10 +660,6 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Game.csproj">
-      <Project>{9d388a96-92e9-a0c1-8387-d8a5d36b855f}</Project>
-      <Name>Game</Name>
-    </ProjectReference>
     <ProjectReference Include="Common.csproj">
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
@@ -680,9 +676,13 @@
       <Project>{7aa78939-98e6-d360-4819-405b1aa1d00b}</Project>
       <Name>Campaign</Name>
     </ProjectReference>
-    <ProjectReference Include="App.csproj">
-      <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>
-      <Name>App</Name>
+    <ProjectReference Include="App.Core.csproj">
+      <Project>{971e66c2-46e5-1b51-31f5-29d08f82ca22}</Project>
+      <Name>App.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.Core.csproj">
+      <Project>{98725a06-e454-4af8-fcc4-f33cefa747f9}</Project>
+      <Name>Game.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

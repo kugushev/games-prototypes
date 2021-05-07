@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9877c703-5f45-1dda-2aec-08049b25fbfb}</ProjectGuid>
+    <ProjectGuid>{f64fb1c3-b42f-189d-1760-60bf47d284a9}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>GamePresentation</AssemblyName>
+    <AssemblyName>Game.Politics</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -57,7 +57,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntrigueCardPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IParliamentPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Constants\PoliticsConstants.cs" />
-     <None Include="Assets\Kugushev\Scripts\Game\Politics\Politics.asmdef" />
+     <None Include="Assets\Kugushev\Scripts\Game\Politics\Game.Politics.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -682,9 +682,9 @@
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="App.csproj">
-      <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>
-      <Name>App</Name>
+    <ProjectReference Include="App.Core.csproj">
+      <Project>{971e66c2-46e5-1b51-31f5-29d08f82ca22}</Project>
+      <Name>App.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Game.Core.csproj">
       <Project>{98725a06-e454-4af8-fcc4-f33cefa747f9}</Project>

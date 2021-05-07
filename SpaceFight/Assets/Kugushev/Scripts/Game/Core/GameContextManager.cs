@@ -1,8 +1,9 @@
 ﻿using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
+using Kugushev.Scripts.Game.Core.ContextManagement;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.Core.ContextManagement
+namespace Kugushev.Scripts.Game.Core
 {
     internal class GameContextManager : AbstractContextManager
     {

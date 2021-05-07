@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9877c703-5f45-1dda-2aec-08049b25fbfb}</ProjectGuid>
+    <ProjectGuid>{13af372a-05d3-a92a-4efe-8c3e020d620a}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>GamePresentation</AssemblyName>
+    <AssemblyName>App.MainMenu</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,23 +41,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Factories\IntrigueCardFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\CampaignPreparationPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IIntriguesSelector.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\PoliticianCardPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\ParliamentPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntriguesPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\PoliticianDetailsPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntriguesActionsPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PoliticsInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IPoliticianSelector.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Events\PoliticianSelectedEvent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\RevolutionPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IIntriguesPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntrigueCardPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IParliamentPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Constants\PoliticsConstants.cs" />
-     <None Include="Assets\Kugushev\Scripts\Game\Politics\Politics.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\App\MainMenu\PresentationModels\MainMenuPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\MainMenu\MainMenuInstaller.cs" />
+     <None Include="Assets\Kugushev\Scripts\App\MainMenu\App.MainMenu.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -678,17 +664,13 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="App.Core.csproj">
+      <Project>{971e66c2-46e5-1b51-31f5-29d08f82ca22}</Project>
+      <Name>App.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="Common.csproj">
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="App.csproj">
-      <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>
-      <Name>App</Name>
-    </ProjectReference>
-    <ProjectReference Include="Game.Core.csproj">
-      <Project>{98725a06-e454-4af8-fcc4-f33cefa747f9}</Project>
-      <Name>Game.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

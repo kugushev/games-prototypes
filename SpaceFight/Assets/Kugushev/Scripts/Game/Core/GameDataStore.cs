@@ -28,7 +28,7 @@ namespace Kugushev.Scripts.Game.Core
 
         public IIntrigues Intrigues => _intrigues;
 
-        public void Initialize()
+        void IInitializable.Initialize()
         {
             // todo: run it in a separate thread
 

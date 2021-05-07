@@ -664,9 +664,9 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="App.csproj">
-      <Project>{6b5e09b0-6dd4-7847-a7c0-1a765c8c876e}</Project>
-      <Name>App</Name>
+    <ProjectReference Include="App.Core.csproj">
+      <Project>{971e66c2-46e5-1b51-31f5-29d08f82ca22}</Project>
+      <Name>App.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Common.csproj">
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>

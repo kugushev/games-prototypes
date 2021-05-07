@@ -1,13 +1,14 @@
 {
-    "name": "AppPresentation",
+    "name": "Game.Politics",
     "rootNamespace": "",
     "references": [
-        "GUID:3b831a49ccf179548a3e75f5003e69cf",
+        "GUID:5c579371518534e4d8001af00472fa0c",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:5c579371518534e4d8001af00472fa0c",
+        "GUID:3b831a49ccf179548a3e75f5003e69cf",
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:c87475c4b9e537449a07db347c180713"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
