@@ -51,12 +51,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntriguesPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\PoliticianDetailsWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntriguesActionsPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PoliticsInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IPoliticianSelector.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Events\PoliticianSelectedEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Widgets\RevolutionWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntrigueCardPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PoliticsInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Politics\Interfaces\IIntriguesPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Politics\PresentationModels\IntrigueCardPresentationModel.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Politics\Politics.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

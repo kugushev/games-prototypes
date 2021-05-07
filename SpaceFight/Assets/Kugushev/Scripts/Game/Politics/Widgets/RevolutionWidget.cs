@@ -24,7 +24,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
 
             int loyalPolitics = 0;
             foreach (var politician in _model.Politicians)
-                if (politician.Relation == Relation.Loyalist)
+                if (politician.Relation.Value == Relation.Loyalist)
                     loyalPolitics++;
 
             declareRevolutionButton.interactable = loyalPolitics >= GameConstants.LoyalPoliticsToWin;

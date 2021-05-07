@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Game.Politics.Interfaces;
 using TMPro;
 using UniRx;
@@ -55,7 +56,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
         private void OnSelected(IPolitician model)
         {
             gameObject.SetActive(true);
-            BindView(model);
+            SetupView(model);
         }
 
         private void OnDeselected()
@@ -64,13 +65,13 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
             gameObject.SetActive(false);
         }
 
-        private void BindView(IPolitician model)
+        private void SetupView(IPolitician model)
         {
             nameLabel.text = model.Character.FullName;
             BindRelationView(model);
             BindBudgetView(model);
-            BindTraitsView(model);
-            BindPerksView(model);
+            model.TraitsStatus.Subscribe(status => UpdateTraitsView(status, model.Traits)).AddTo(_bindings);
+            UpdatePerksView(model);
         }
 
         private void BindRelationView(IPolitician model)
@@ -80,60 +81,69 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
                 .SubscribeToTextMeshPro(relationValueLabel)
                 .AddTo(_bindings);
 
-            relationEnemy.SetActive(false);
-            relationHater.SetActive(false);
-            relationIndifferent.SetActive(false);
-            relationPartner.SetActive(false);
-            relationLoyalist.SetActive(false);
+            model.Relation.Subscribe(UpdateRelationView).AddTo(_bindings);
 
-            switch (model.Relation)
+            void UpdateRelationView(Relation relation)
             {
-                case Relation.Enemy:
-                    relationEnemy.SetActive(true);
-                    relationTip.text = String.Empty;
-                    break;
-                case Relation.Hater:
-                    relationHater.SetActive(true);
-                    relationTip.text = String.Empty;
-                    break;
-                case Relation.Indifferent:
-                    relationIndifferent.SetActive(true);
-                    relationTip.text = String.Empty;
-                    break;
-                case Relation.Partner:
-                    relationPartner.SetActive(true);
-                    relationTip.text = "Will invest in your campaigns";
-                    break;
-                case Relation.Loyalist:
-                    relationLoyalist.SetActive(true);
-                    relationTip.text = "Will vote for you";
-                    break;
-                default:
-                    Debug.LogError($"Unexpected relation {model.Relation}");
-                    break;
+                relationEnemy.SetActive(false);
+                relationHater.SetActive(false);
+                relationIndifferent.SetActive(false);
+                relationPartner.SetActive(false);
+                relationLoyalist.SetActive(false);
+
+                switch (relation)
+                {
+                    case Relation.Enemy:
+                        relationEnemy.SetActive(true);
+                        relationTip.text = String.Empty;
+                        break;
+                    case Relation.Hater:
+                        relationHater.SetActive(true);
+                        relationTip.text = String.Empty;
+                        break;
+                    case Relation.Indifferent:
+                        relationIndifferent.SetActive(true);
+                        relationTip.text = String.Empty;
+                        break;
+                    case Relation.Partner:
+                        relationPartner.SetActive(true);
+                        relationTip.text = "Will invest in your campaigns";
+                        break;
+                    case Relation.Loyalist:
+                        relationLoyalist.SetActive(true);
+                        relationTip.text = "Will vote for you";
+                        break;
+                    default:
+                        Debug.LogError($"Unexpected relation {model.Relation}");
+                        break;
+                }
             }
         }
 
         private void BindBudgetView(IPolitician model)
         {
-            budgetValueLabel.text = StringBag.FromInt(model.Budget);
-            budgetIsReadyToInvest.SetActive(model.IsReadyToInvest);
-            budgetIsNotReadyToInvest.SetActive(!model.IsReadyToInvest);
+            model.Budget.Select(StringBag.FromInt).SubscribeToTextMeshPro(budgetValueLabel).AddTo(_bindings);
+
+            model.IsReadyToInvest.Subscribe(isReady =>
+            {
+                budgetIsReadyToInvest.SetActive(isReady);
+                budgetIsNotReadyToInvest.SetActive(!isReady);
+            }).AddTo(_bindings);
         }
 
-        private void BindTraitsView(IPolitician model)
+        private void UpdateTraitsView(TraitsStatus traitsStatus, Traits traits)
         {
-            UpdateTraitView(traitBusinessValue, model.TraitsStatus.Business, model.Traits.Business);
-            UpdateTraitView(traitGreedValue, model.TraitsStatus.Greed, model.Traits.Greed);
-            UpdateTraitView(traitLustValue, model.TraitsStatus.Lust, model.Traits.Lust);
-            UpdateTraitView(traitBruteValue, model.TraitsStatus.Brute, model.Traits.Brute);
-            UpdateTraitView(traitVanityValue, model.TraitsStatus.Vanity, model.Traits.Vanity);
+            UpdateTraitView(traitBusinessValue, traitsStatus.Business, traits.Business);
+            UpdateTraitView(traitGreedValue, traitsStatus.Greed, traits.Greed);
+            UpdateTraitView(traitLustValue, traitsStatus.Lust, traits.Lust);
+            UpdateTraitView(traitBruteValue, traitsStatus.Brute, traits.Brute);
+            UpdateTraitView(traitVanityValue, traitsStatus.Vanity, traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, bool revealed, int value) =>
                 label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;
         }
 
-        private void BindPerksView(IPolitician model)
+        private void UpdatePerksView(IPolitician model)
         {
             perkNameLabel.text = model.Character.PerkLvl1.Caption;
 

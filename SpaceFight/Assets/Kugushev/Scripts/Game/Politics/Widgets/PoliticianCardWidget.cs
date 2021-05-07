@@ -4,30 +4,31 @@ using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Politics.Events;
 using TMPro;
+using UniRx;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Politics.Widgets
 {
     public class PoliticianCardWidget : MonoBehaviour
     {
-        [SerializeField] private PoliticianSelectedEvent? onSelected;
+        [SerializeField] private PoliticianSelectedEvent onSelected = default!;
 
-        [SerializeField] private TextMeshProUGUI? budgetValueLabel;
+        [SerializeField] private TextMeshProUGUI budgetValueLabel = default!;
 
-        [Header("Character")] [SerializeField] private TextMeshProUGUI? nameLabel;
-        [SerializeField] private TextMeshProUGUI? perkNameLabel;
+        [Header("Character")] [SerializeField] private TextMeshProUGUI nameLabel = default!;
+        [SerializeField] private TextMeshProUGUI perkNameLabel = default!;
 
-        [Header("Relation")] [SerializeField] private GameObject? relationEnemy;
-        [SerializeField] private GameObject? relationHater;
-        [SerializeField] private GameObject? relationIndifferent;
-        [SerializeField] private GameObject? relationPartner;
-        [SerializeField] private GameObject? relationLoyalist;
+        [Header("Relation")] [SerializeField] private GameObject relationEnemy = default!;
+        [SerializeField] private GameObject relationHater = default!;
+        [SerializeField] private GameObject relationIndifferent = default!;
+        [SerializeField] private GameObject relationPartner = default!;
+        [SerializeField] private GameObject relationLoyalist = default!;
 
-        [Header("Traits")] [SerializeField] private TextMeshProUGUI? traitBusinessValue;
-        [SerializeField] private TextMeshProUGUI? traitGreedValue;
-        [SerializeField] private TextMeshProUGUI? traitLustValue;
-        [SerializeField] private TextMeshProUGUI? traitBruteValue;
-        [SerializeField] private TextMeshProUGUI? traitVanityValue;
+        [Header("Traits")] [SerializeField] private TextMeshProUGUI traitBusinessValue = default!;
+        [SerializeField] private TextMeshProUGUI traitGreedValue = default!;
+        [SerializeField] private TextMeshProUGUI traitLustValue = default!;
+        [SerializeField] private TextMeshProUGUI traitBruteValue = default!;
+        [SerializeField] private TextMeshProUGUI traitVanityValue = default!;
 
         const string UnknownTrait = "?";
 
@@ -55,24 +56,22 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
                 return;
 
             nameLabel.text = model.Character.FullName;
-            budgetValueLabel.text = StringBag.FromInt(model.Budget);
+            budgetValueLabel.text = StringBag.FromInt(model.Budget.Value);
             perkNameLabel.text = model.Character.PerkLvl1.Caption;
 
-            UpdateRelationView(model);
+            model.Relation.Subscribe(UpdateRelationView);
             UpdateTraitsView(model);
         }
 
-        private void UpdateRelationView(IPolitician model)
+        private void UpdateRelationView(Relation relation)
         {
-            Asserting.NotNull(relationEnemy, relationHater, relationIndifferent, relationPartner, relationLoyalist);
-
             relationEnemy.SetActive(false);
             relationHater.SetActive(false);
             relationIndifferent.SetActive(false);
             relationPartner.SetActive(false);
             relationLoyalist.SetActive(false);
 
-            switch (model.Relation)
+            switch (relation)
             {
                 case Relation.Enemy:
                     relationEnemy.SetActive(true);
@@ -90,7 +89,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
                     relationLoyalist.SetActive(true);
                     break;
                 default:
-                    Debug.LogError($"Unexpected relation {model.Relation}");
+                    Debug.LogError($"Unexpected relation {relation}");
                     break;
             }
         }
@@ -99,11 +98,11 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
         {
             Asserting.NotNull(traitBusinessValue, traitGreedValue, traitLustValue, traitBruteValue, traitVanityValue);
 
-            UpdateTraitView(traitBusinessValue, model.TraitsStatus.Business, model.Traits.Business);
-            UpdateTraitView(traitGreedValue, model.TraitsStatus.Greed, model.Traits.Greed);
-            UpdateTraitView(traitLustValue, model.TraitsStatus.Lust, model.Traits.Lust);
-            UpdateTraitView(traitBruteValue, model.TraitsStatus.Brute, model.Traits.Brute);
-            UpdateTraitView(traitVanityValue, model.TraitsStatus.Vanity, model.Traits.Vanity);
+            UpdateTraitView(traitBusinessValue, model.TraitsStatus.Value.Business, model.Traits.Business);
+            UpdateTraitView(traitGreedValue, model.TraitsStatus.Value.Greed, model.Traits.Greed);
+            UpdateTraitView(traitLustValue, model.TraitsStatus.Value.Lust, model.Traits.Lust);
+            UpdateTraitView(traitBruteValue, model.TraitsStatus.Value.Brute, model.Traits.Brute);
+            UpdateTraitView(traitVanityValue, model.TraitsStatus.Value.Vanity, model.Traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, bool revealed, int value) =>
                 label.text = revealed ? StringBag.FromInt(value) : UnknownTrait;

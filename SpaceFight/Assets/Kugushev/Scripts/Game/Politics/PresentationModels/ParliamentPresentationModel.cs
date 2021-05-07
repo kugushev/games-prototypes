@@ -4,7 +4,6 @@ using Kugushev.Scripts.Game.Politics.Interfaces;
 using Kugushev.Scripts.Game.Politics.Widgets;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Events;
 using Zenject;
 
 namespace Kugushev.Scripts.Game.Politics.PresentationModels

@@ -55,6 +55,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Enums\PerkType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Utils\CampaignSceneResultPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Constants\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Intrigues.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\PoliticsState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Politician.cs" />
@@ -75,7 +76,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Repositories\PoliticianCharactersRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\GameContextManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Intrigues.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

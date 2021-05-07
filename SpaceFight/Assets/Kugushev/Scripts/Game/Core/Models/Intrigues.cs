@@ -3,7 +3,12 @@ using UniRx;
 
 namespace Kugushev.Scripts.Game.Core.Models
 {
-    public class Intrigues
+    public interface IIntrigues
+    {
+        IReadOnlyReactiveCollection<IntrigueCard> IntrigueCards { get; }
+    }
+
+    internal class Intrigues : IIntrigues
     {
         private readonly ReactiveCollection<IntrigueCard> _intrigues = new ReactiveCollection<IntrigueCard>();
 

@@ -35,7 +35,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
             {
                 int budget = GameConstants.PlayerCampaignBudget;
                 foreach (var sponsor in _sponsors)
-                    budget += sponsor.Budget;
+                    budget += sponsor.Budget.Value;
 
                 return Mathf.Min(budget, GameConstants.MaxCampaignBudget);
             }
@@ -46,7 +46,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
             get
             {
                 var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-                return selectedPolitician is { } && selectedPolitician.Value.IsReadyToInvest;
+                return selectedPolitician is { } && selectedPolitician.Value.IsReadyToInvest.Value;
             }
         }
 
@@ -62,7 +62,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
         public void AddSelectedPoliticianAsSponsor()
         {
             var selectedPolitician = ObjectState.PoliticianSelector.SelectedPolitician;
-            if (selectedPolitician is { } && selectedPolitician.Value.IsReadyToInvest)
+            if (selectedPolitician is { } && selectedPolitician.Value.IsReadyToInvest.Value)
                 _sponsors.Add(selectedPolitician.Value);
         }
 
@@ -87,7 +87,7 @@ namespace Kugushev.Scripts.Game.Politics.Widgets
             foreach (var sponsor in _sponsors)
             {
                 _perksBuffer.Add(sponsor.Character.PerkLvl1.Id);
-                
+
                 // todo: send signal
                 // sponsor.CollectMoney();
             }

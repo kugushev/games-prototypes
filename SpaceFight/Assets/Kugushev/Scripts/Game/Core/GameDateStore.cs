@@ -29,7 +29,7 @@ namespace Kugushev.Scripts.Game.Core
 
         public Parliament Parliament => _parliament ?? throw new SpaceFightException("Store is not initialized");
 
-        public Intrigues Intrigues => _intrigues;
+        public IIntrigues Intrigues => _intrigues;
 
         public void Initialize()
         {

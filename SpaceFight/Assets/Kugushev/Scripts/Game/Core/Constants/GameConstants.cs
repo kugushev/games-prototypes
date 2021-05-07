@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.Common;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Game.Core.Constants
 {
@@ -27,5 +28,7 @@ namespace Kugushev.Scripts.Game.Core.Constants
         public const int MaxTraitValue = 3;
 
         public const int LoyalPoliticsToWin = 5;
+
+        public static readonly TraitsStatus StartTraitsStatus = new TraitsStatus();
     }
 }

@@ -13,49 +13,51 @@ namespace Kugushev.Scripts.Game.Core.Models
     {
         PoliticianCharacter Character { get; }
         IReadOnlyReactiveProperty<int> RelationLevel { get; }
-        Relation Relation { get; }
-        int Budget { get; }
-        bool IsReadyToInvest { get; }
+        IReadOnlyReactiveProperty<Relation> Relation { get; }
+        IReadOnlyReactiveProperty<int> Budget { get; }
+        IReadOnlyReactiveProperty<bool> IsReadyToInvest { get; }
+        IReadOnlyReactiveProperty<TraitsStatus> TraitsStatus { get; }
         Traits Traits { get; }
-        TraitsStatus TraitsStatus { get; }
     }
 
     internal class Politician : IPolitician
     {
         private readonly Percentage _incomeProbability;
         private readonly Traits _traits;
-        private TraitsStatus _traitsStatus;
-        private int _budget;
-        private ReactiveProperty<int> _relationLevel;
+        private readonly ReactiveProperty<TraitsStatus> _traitsStatus;
+        private readonly ReactiveProperty<int> _budget;
+        private readonly ReactiveProperty<int> _relationLevel;
 
         public Politician(PoliticianCharacter character, Percentage incomeProbability, int startBudget, Traits traits)
         {
             Character = character;
             _incomeProbability = incomeProbability;
             _traits = traits;
-            _traitsStatus = new TraitsStatus();
-            _budget = startBudget;
+            _traitsStatus = new ReactiveProperty<TraitsStatus>(GameConstants.StartTraitsStatus);
+            _budget = new ReactiveProperty<int>(startBudget);
             _relationLevel = new ReactiveProperty<int>(GameConstants.StartRelationLevel);
+            Relation = _relationLevel.Select(RelationsService.FromLevel).ToReactiveProperty();
+            IsReadyToInvest = _budget.CombineLatest(Relation, IsReadyToInvestImpl).ToReactiveProperty();
         }
 
         public PoliticianCharacter Character { get; }
 
         public IReadOnlyReactiveProperty<int> RelationLevel => _relationLevel;
-        public Relation Relation => RelationsService.FromLevel(_relationLevel.Value);
+        public IReadOnlyReactiveProperty<Relation> Relation { get; }
 
-        public int Budget => _budget;
+        public IReadOnlyReactiveProperty<int> Budget => _budget;
 
-        public bool IsReadyToInvest => _budget > 0 && (Relation == Relation.Partner || Relation == Relation.Loyalist);
+        public IReadOnlyReactiveProperty<bool> IsReadyToInvest { get; }
 
+        public IReadOnlyReactiveProperty<TraitsStatus> TraitsStatus => _traitsStatus;
         public Traits Traits => _traits;
-        public TraitsStatus TraitsStatus => _traitsStatus;
 
         internal void ApplyPoliticalAction(Intrigue intrigue)
         {
             var intrigueTraits = intrigue.Traits;
 
             if (intrigue.Intel > 0)
-                _traitsStatus = _traitsStatus.RevealOne(_traits, intrigue.Intel);
+                _traitsStatus.Value = _traitsStatus.Value.RevealOne(_traits, intrigue.Intel);
 
             ApplyTraitsEffect(intrigueTraits);
         }
@@ -89,12 +91,15 @@ namespace Kugushev.Scripts.Game.Core.Models
             var range = Random.Range(0f, 1f);
             if (range > _incomeProbability.Amount)
             {
-                _budget = Mathf.Min(
-                    _budget + GameConstants.PoliticianIncome,
+                _budget.Value = Mathf.Min(
+                    _budget.Value + GameConstants.PoliticianIncome,
                     GameConstants.MaxBudget);
             }
         }
 
-        public void CollectMoney() => _budget = 0;
+        public void CollectMoney() => _budget.Value = 0;
+
+        private static bool IsReadyToInvestImpl(int budget, Relation relation) =>
+            budget > 0 && (relation == Enums.Relation.Partner || relation == Enums.Relation.Loyalist);
     }
 }
