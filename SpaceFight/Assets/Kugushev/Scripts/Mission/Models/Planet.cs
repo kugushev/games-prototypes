@@ -15,7 +15,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Mission.Models
 {
     [Serializable]
-    public class Planet : Poolable<Planet.State>, IModel, IFighter
+    public class Planet : PoolableOld<Planet.State>, IModel, IFighter
     {
         [Serializable]
         public struct State

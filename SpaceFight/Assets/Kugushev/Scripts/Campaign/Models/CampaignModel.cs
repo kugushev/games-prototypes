@@ -9,7 +9,7 @@ using Kugushev.Scripts.Game.Core.ValueObjects;
 namespace Kugushev.Scripts.Campaign.Models
 {
     [Serializable]
-    internal class CampaignModel : Poolable<CampaignModel.State>
+    internal class CampaignModel : PoolableOld<CampaignModel.State>
     {
         public struct State
         {

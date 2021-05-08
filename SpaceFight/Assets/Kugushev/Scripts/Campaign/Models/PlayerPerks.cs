@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Campaign.Models
 {
     [Serializable]
-    public class PlayerPerks : Poolable<PlayerPerks.State>
+    public class PlayerPerks : PoolableOld<PlayerPerks.State>
     {
         public readonly struct State
         {

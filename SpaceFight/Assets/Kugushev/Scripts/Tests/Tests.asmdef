@@ -11,16 +11,23 @@
         "MissionPresentation",
         "Campaign",
         "App.Core",
-        "Game.Core"
+        "Game.Core",
+        "UniRx",
+        "Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll"
+        "nunit.framework.dll",
+        "Zenject-usage.dll",
+        "Zenject.ReflectionBaking.Mono.Cecil.dll",
+        "Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll",
+        "Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll",
+        "Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll"
     ],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],

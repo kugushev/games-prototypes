@@ -8,7 +8,7 @@ using Kugushev.Scripts.Mission.ValueObjects;
 namespace Kugushev.Scripts.Mission.Models.Effects
 {
     [Serializable]
-    public class FleetPerks : Poolable<FleetPerks.State>
+    public class FleetPerks : PoolableOld<FleetPerks.State>
     {
         [Serializable]
         public struct State

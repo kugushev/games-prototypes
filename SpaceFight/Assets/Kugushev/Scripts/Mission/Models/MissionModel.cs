@@ -7,7 +7,7 @@ using Kugushev.Scripts.Mission.ValueObjects;
 namespace Kugushev.Scripts.Mission.Models
 {
     [Serializable]
-    public class MissionModel : Poolable<MissionModel.State>
+    public class MissionModel : PoolableOld<MissionModel.State>
     {
         public struct State
         {

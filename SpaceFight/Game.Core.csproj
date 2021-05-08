@@ -70,12 +70,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\PoliticalActionsRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\ParliamentGenerationService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Parliament.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\ProceduralGeneration\ParliamentGenerator.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\GameStoreInitializedTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\CampaignResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Repositories\PoliticianCharactersRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameContextManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Signals\IntrigueCardObtained.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

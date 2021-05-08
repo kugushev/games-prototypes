@@ -3,7 +3,7 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 
 namespace Kugushev.Scripts.Mission.Models
 {
-    public class PlanetarySystem : Poolable<PlanetarySystem.State>
+    public class PlanetarySystem : PoolableOld<PlanetarySystem.State>
     {
         public readonly struct State
         {

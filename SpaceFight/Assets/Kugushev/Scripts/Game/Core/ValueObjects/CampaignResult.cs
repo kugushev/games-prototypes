@@ -3,7 +3,7 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 
 namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
-    public class CampaignResult : Poolable<CampaignResult.State>
+    public class CampaignResult : PoolableOld<CampaignResult.State>
     {
         public struct State
         {

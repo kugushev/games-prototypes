@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kugushev/Scenes/Testing/Mission/MissionBriefingTestingManagementScene.unity
     guid: f92ae668bffb56a44868e88d347d18f2
+  - enabled: 1
+    path: Assets/Kugushev/Scenes/Testing/Game/PoliticsTestingManagementScene.unity
+    guid: db61859a380fe08488383044c9a1e90d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa10df11bcc983e4985af45914d72194, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f020f889886cc8d44bfd8136d122800d, type: 2}

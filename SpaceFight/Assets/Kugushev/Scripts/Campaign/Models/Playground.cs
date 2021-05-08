@@ -2,7 +2,7 @@
 
 namespace Kugushev.Scripts.Campaign.Models
 {
-    public class Playground : Poolable<Playground.State>
+    public class Playground : PoolableOld<Playground.State>
     {
         public struct State
         {

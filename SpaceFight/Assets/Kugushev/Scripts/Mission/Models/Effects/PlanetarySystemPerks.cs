@@ -6,7 +6,7 @@ using Kugushev.Scripts.Mission.Enums;
 namespace Kugushev.Scripts.Mission.Models.Effects
 {
     [Serializable]
-    public class PlanetarySystemPerks : Poolable<PlanetarySystemPerks.State>
+    public class PlanetarySystemPerks : PoolableOld<PlanetarySystemPerks.State>
     {
         [Serializable]
         public struct State

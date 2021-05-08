@@ -20,10 +20,6 @@ namespace Kugushev.Scripts.Game.Core.Models
             _intrigues.Remove(card);
         }
 
-        // todo: by signal, it should be defined and bind here but fired in Mission
-        internal void HandleCardObtained(IntrigueCard card)
-        {
-            _intrigues.Add(card);
-        }
+        internal void HandleCardObtained(IntrigueCard card) => _intrigues.Add(card);
     }
 }

@@ -9,10 +9,5 @@ namespace Kugushev.Scripts.Game.Core.ContextManagement
             : base(UnityConstants.PoliticsMenuScene, true)
         {
         }
-
-        protected override void OnEnterBeforeLoadScene()
-        {
-            // todo: signal PoliticsStateLoaded, subscribe all Politician to the signal
-        }
     }
 }

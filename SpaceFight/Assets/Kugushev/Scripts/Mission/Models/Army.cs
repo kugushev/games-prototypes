@@ -15,7 +15,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Mission.Models
 {
     [Serializable]
-    public class Army : Poolable<Army.State>, IGameLoopParticipant, IFighter
+    public class Army : PoolableOld<Army.State>, IGameLoopParticipant, IFighter
     {
         [Serializable]
         public struct State

@@ -1,44 +1,33 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using UnityEngine;
+﻿#nullable disable
+using System;
+using Zenject;
 
 namespace Kugushev.Scripts.Common.Utils.Pooling
 {
-    [SuppressMessage("ReSharper", "Unity.RedundantSerializeFieldAttribute", Justification = "Used by inheritors")]
-    public abstract class Poolable<TState> : IPoolable<TState>
-        where TState : struct
+    public abstract class Poolable<TParam> : IPoolable<TParam, IMemoryPool>, IDisposable
     {
-        private readonly ObjectsPool _myPool;
-        [SerializeField] protected TState ObjectState;
-        protected Poolable(ObjectsPool objectsPool) => _myPool = objectsPool;
-        
-        public bool Active { get; private set; }
+        protected TParam Parameter;
+        private IMemoryPool _pool;
 
-        public void SetState(TState state)
+        void IPoolable<TParam, IMemoryPool>.OnSpawned(TParam p1, IMemoryPool p2)
         {
-            ObjectState = state;
-            OnRestore(ObjectState);
-            Active = true;
+            Parameter = p1;
+            _pool = p2;
         }
 
-        protected virtual void OnRestore(TState state)
+        void IPoolable<TParam, IMemoryPool>.OnDespawned()
         {
+            if (Parameter is IDisposable disposable)
+                disposable.Dispose();
+
+            Parameter = default;
+            _pool = null;
         }
 
-        public void ClearState()
+        void IDisposable.Dispose()
         {
-            OnClear(ObjectState);
-            ObjectState = default;
-            Active = false;
-        }
-
-        protected virtual void OnClear(TState state)
-        {
-        }
-
-        public void Dispose()
-        {
-            if (Active)
-                _myPool.GiveBackObject(this);
+            _pool.Despawn(this);
         }
     }
 }
+#nullable enable

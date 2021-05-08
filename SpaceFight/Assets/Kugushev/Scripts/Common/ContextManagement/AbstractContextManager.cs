@@ -49,15 +49,5 @@ namespace Kugushev.Scripts.Common.ContextManagement
 
             // ReSharper disable once FunctionNeverReturns
         }
-
-        // private UniTask? _updateTask;
-        //
-        // public void Tick()
-        // {
-        //     if (_updateTask != null && _updateTask.Value.Status == UniTaskStatus.Pending)
-        //         return;
-        //
-        //     _updateTask = _stateMachine.UpdateAsync(() => Time.deltaTime);
-        // }
     }
 }

@@ -4,7 +4,7 @@ using Kugushev.Scripts.Game.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Game.Core.Models
 {
-    internal class GameModel : Poolable<GameModel.State>
+    internal class GameModel : PoolableOld<GameModel.State>
     {
         internal readonly struct State
         {
@@ -36,8 +36,8 @@ namespace Kugushev.Scripts.Game.Core.Models
 
         public void AddPoliticalActions(IReadOnlyList<Intrigue> politicalActions)
         {
-            foreach (var politicalAction in politicalActions)
-                _politicalActions.Add(new IntrigueCard(politicalAction));
+            // foreach (var politicalAction in politicalActions)
+            //     _politicalActions.Add(new IntrigueCard(politicalAction));
         }
 
         public void RemovePoliticalAction(IntrigueCard card) => _politicalActions.Remove(card);

@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Mission.Models
 {
     [Serializable]
-    public class Order : Poolable<Order.State>
+    public class Order : PoolableOld<Order.State>
     {
         [Serializable]
         public struct State

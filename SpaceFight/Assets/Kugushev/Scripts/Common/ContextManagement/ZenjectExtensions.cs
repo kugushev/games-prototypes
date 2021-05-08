@@ -26,5 +26,30 @@ namespace Kugushev.Scripts.Common.ContextManagement
             container.BindSignal<SignalToTransition<TParameters>>()
                 .ToSignaledTransitionFromResolve(s => s.Parameters);
         }
+
+        public static void InstallSignalAndBind<TParam, TSignal, TFactory, TReceiver>(this DiContainer container,
+            Action<TReceiver, TSignal> bindHandler)
+            where TFactory : PlaceholderFactory<TParam, TSignal>
+            where TSignal : IPoolable<TParam, IMemoryPool>
+        {
+            container.DeclareSignal<TSignal>();
+            container.InstallPoolable<TParam, TSignal, TFactory>();
+            container.BindSignal<TSignal>()
+                .ToMethod<TReceiver>((receiver, signal) =>
+                {
+                    bindHandler(receiver, signal);
+                    if (signal is IDisposable disposable)
+                        disposable.Dispose();
+                })
+                .FromResolve();
+        }
+
+        public static void InstallPoolable<TParam, TContract, TFactory>(this DiContainer container)
+            where TFactory : PlaceholderFactory<TParam, TContract>
+            where TContract : IPoolable<TParam, IMemoryPool>
+        {
+            container.BindFactory<TParam, TContract, TFactory>()
+                .FromPoolableMemoryPool(x => x.WithInitialSize(2));
+        }
     }
 }

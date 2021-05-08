@@ -5,7 +5,7 @@ using Kugushev.Scripts.Mission.Perks.Abstractions;
 
 namespace Kugushev.Scripts.Mission.Models
 {
-    public class DebriefingSummary : Poolable<DebriefingSummary.State>
+    public class DebriefingSummary : PoolableOld<DebriefingSummary.State>
     {
         public struct State
         {

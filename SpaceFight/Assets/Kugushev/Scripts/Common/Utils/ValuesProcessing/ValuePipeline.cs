@@ -4,7 +4,7 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 
 namespace Kugushev.Scripts.Common.Utils.ValuesProcessing
 {
-    public class ValuePipeline<T> : Poolable<int>, IValuePipeline<T>
+    public class ValuePipeline<T> : PoolableOld<int>, IValuePipeline<T>
     {
         private readonly List<IPercentPerk<T>> _percentPerks = new List<IPercentPerk<T>>(16);
         private readonly List<IMultiplierPerk<T>> _multiplierPerks = new List<IMultiplierPerk<T>>(16);

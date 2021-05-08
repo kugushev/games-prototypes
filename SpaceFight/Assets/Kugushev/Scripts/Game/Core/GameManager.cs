@@ -7,7 +7,6 @@ using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Core.Models;
-using Kugushev.Scripts.Game.Core.ProceduralGeneration;
 using Kugushev.Scripts.Game.Core.Services;
 using Kugushev.Scripts.Game.Core.StatesAndTransitions;
 using Kugushev.Scripts.Game.Core.Utils;
@@ -22,8 +21,6 @@ namespace Kugushev.Scripts.Game.Core
 
         [SerializeField] private GameModelProvider? gameModelProvider;
         //[SerializeField] private GameSceneParametersPipeline? gameSceneParametersPipeline;
-
-        [SerializeField] private ParliamentGenerator? parliamentGenerator;
 
 
         // ReSharper disable once NotAccessedField.Local

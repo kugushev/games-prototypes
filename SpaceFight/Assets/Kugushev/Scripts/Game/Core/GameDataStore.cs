@@ -13,13 +13,14 @@ namespace Kugushev.Scripts.Game.Core
         private readonly ParliamentGenerationService _parliamentGenerationService;
 
         private Parliament? _parliament;
-        private readonly Intrigues _intrigues = new Intrigues();
+        private readonly Intrigues _intrigues;
 
-        public GameDataStore(ParametersPipeline<GameParameters> parametersPipeline,
-            ParliamentGenerationService parliamentGenerationService)
+        internal GameDataStore(ParametersPipeline<GameParameters> parametersPipeline,
+            ParliamentGenerationService parliamentGenerationService, Intrigues intrigues)
         {
             _parametersPipeline = parametersPipeline;
             _parliamentGenerationService = parliamentGenerationService;
+            _intrigues = intrigues;
         }
 
         public bool Initialized { get; private set; }
@@ -30,8 +31,6 @@ namespace Kugushev.Scripts.Game.Core
 
         void IInitializable.Initialize()
         {
-            // todo: run it in a separate thread
-
             var parameters = _parametersPipeline.Pop();
             _parliament = _parliamentGenerationService.Generate(parameters.Seed);
 

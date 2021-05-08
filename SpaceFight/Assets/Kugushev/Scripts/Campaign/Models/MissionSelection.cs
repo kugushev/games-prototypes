@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Models
 {
-    public class MissionSelection : Poolable<MissionSelection.State>, IMissionsSet
+    public class MissionSelection : PoolableOld<MissionSelection.State>, IMissionsSet
     {
         public struct State
         {
