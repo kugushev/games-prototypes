@@ -11,7 +11,6 @@ using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Core.Services;
-using Kugushev.Scripts.Game.Core.Utils;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -21,9 +20,11 @@ namespace Kugushev.Scripts.Campaign
     internal class CampaignManager : BaseManager<CampaignModel>
     {
         [SerializeField] private ObjectsPool? objectsPool;
+
         [SerializeField] private CampaignModelProvider? modelProvider;
+
         //[SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
-        [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
+        // [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
         [SerializeField] private MissionsGenerator? missionsGenerationService;
         [SerializeField] private PoliticalActionsRepository? politicalActionsRepository;
 
@@ -83,7 +84,7 @@ namespace Kugushev.Scripts.Campaign
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
 
-                _finalizationState.Setup(rootModel.CampaignResult, null);
+                _finalizationState.Setup(rootModel.CampaignResult);
 
                 return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
                 {
@@ -125,8 +126,8 @@ namespace Kugushev.Scripts.Campaign
                 var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
 
-                _finalizationState.Setup(rootModel.CampaignResult,
-                    rootModel.CampaignParameters.IsStandalone ? null : campaignSceneResultPipeline);
+                _finalizationState.Setup(rootModel.CampaignResult);
+                //rootModel.CampaignParameters.IsStandalone ? null : campaignSceneResultPipeline);
 
                 return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
                 {

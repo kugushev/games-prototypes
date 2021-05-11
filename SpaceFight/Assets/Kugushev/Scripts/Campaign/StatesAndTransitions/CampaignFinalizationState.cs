@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
-using Kugushev.Scripts.Game.Core.Utils;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
@@ -9,22 +8,19 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
     public class CampaignFinalizationState : IUnparameterizedState
     {
         private CampaignResult? _campaignResult;
-        private CampaignSceneResultPipeline? _campaignSceneResultPipeline;
 
-        public void Setup(CampaignResult campaignResult,
-            CampaignSceneResultPipeline? campaignSceneResultPipeline)
+        public void Setup(CampaignResult campaignResult)
         {
             _campaignResult = campaignResult;
-            _campaignSceneResultPipeline = campaignSceneResultPipeline;
         }
 
         public UniTask OnEnterAsync()
         {
             Asserting.NotNull(_campaignResult);
             
-            if (_campaignSceneResultPipeline != null)
-                _campaignSceneResultPipeline.Set(new CampaignResultInfo(_campaignResult));
-            else
+            // if (_campaignSceneResultPipeline != null)
+            //     _campaignSceneResultPipeline.Set(new CampaignResultInfo(_campaignResult));
+            // else
                 _campaignResult.Dispose();
 
             return UniTask.CompletedTask;
@@ -37,7 +33,6 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
         public UniTask OnExitAsync()
         {
             _campaignResult = null;
-            _campaignSceneResultPipeline = null;
             return UniTask.CompletedTask;
         }
     }

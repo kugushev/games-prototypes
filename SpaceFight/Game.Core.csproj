@@ -43,17 +43,13 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\RelationsService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\Intrigue.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\StatesAndTransitions\PoliticsState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\PerkInfo.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\StatesAndTransitions\CampaignState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Perk.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\Traits.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\GameModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\TraitsStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\PoliticianCharacter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\PoliticsParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Enums\PerkType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Utils\CampaignSceneResultPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Constants\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Intrigues.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\PoliticsState.cs" />
@@ -64,15 +60,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\IntrigueCard.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Enums\Difficulty.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\StatesAndTransitions\RevolutionState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Utils\GameModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameDataInitializer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\PoliticalActionsRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\ParliamentGenerationService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Parliament.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\GameDataInitializedTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\CampaignResult.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Signals\ObtainIntrigueCard.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Repositories\PoliticianCharactersRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameContextManager.cs" />
