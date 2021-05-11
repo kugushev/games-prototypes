@@ -64,6 +64,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\MissionBriefingTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Game\PoliticsTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\AssetBundleHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Game\Tools\IntriguesDataSeeder.cs" />
      <None Include="Assets\Kugushev\Scripts\Tests\Tests.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

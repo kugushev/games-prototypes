@@ -69,16 +69,21 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private void Awake()
         {
             toggle.OnValueChangedAsObservable()
-                .Where(selected => selected)
-                .Subscribe(_ => OnCardSelected());
+                .Subscribe(OnCardSelected);
         }
 
         #endregion
 
-        private void OnCardSelected()
+        private void OnCardSelected(bool selected)
         {
-            if (_model is { } && _parent is { })
-                _parent!.SelectCard(_model!);
+            if (_parent is null)
+                return;
+
+            if (selected && _model is { })
+                _parent.SelectCard(_model);
+
+            if (!selected) 
+                _parent.SelectCard(null);
         }
 
         private void UpdateView(IntrigueCard model)

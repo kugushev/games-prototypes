@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Game.Core;
+using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Game.Politics.Interfaces;
 using UniRx;
@@ -20,18 +22,21 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
 
         private readonly ReactiveProperty<IntrigueCard?> _selectedIntrigueCard = new ReactiveProperty<IntrigueCard?>();
 
-        [Inject]
-        public void Init(GameDataStore gameDataStore)
+        [Inject] private IIntrigues _model = default!;
+
+        private void Start()
         {
-            var model = gameDataStore.Intrigues;
-            model.IntrigueCards.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value));
-            model.IntrigueCards.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
+            foreach (var card in _model.IntrigueCards)
+                AddIntrigueCard(card);
+
+            _model.IntrigueCards.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value));
+            _model.IntrigueCards.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
         }
 
         IReadOnlyReactiveProperty<IntrigueCard?> IIntriguesSelector.SelectedIntrigue => _selectedIntrigueCard;
 
         ToggleGroup IIntriguesPresentationModel.ToggleGroup => toggleGroup;
-        void IIntriguesPresentationModel.SelectCard(IntrigueCard card) => _selectedIntrigueCard.Value = card;
+        void IIntriguesPresentationModel.SelectCard(IntrigueCard? card) => _selectedIntrigueCard.Value = card;
 
         private void AddIntrigueCard(IntrigueCard intrigue)
         {
@@ -47,6 +52,9 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
 
         private void RemoveIntrigueCard(IntrigueCard intrigue)
         {
+            if (_selectedIntrigueCard.Value == intrigue)
+                _selectedIntrigueCard.Value = null;
+
             if (_intrigueCards.TryGetValue(intrigue, out var card))
             {
                 card.Dispose();

@@ -4733,6 +4733,7 @@ MonoBehaviour:
   addSponsorButton: {fileID: 362131191}
   removeSponsorButton: {fileID: 1047182362}
   sponsorsList: {fileID: 1049769845}
+  startCampaignButton: {fileID: 1985984534}
 --- !u!1 &812084401
 GameObject:
   m_ObjectHideFlags: 0
@@ -9023,20 +9024,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1677053232}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: e69770bee9cf4c54d8a76ce30648e03e, type: 2}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Common.StatesAndTransitions.TriggerTransition,
-          Common
-        m_MethodName: Set
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1677053232
 MonoBehaviour:
   m_ObjectHideFlags: 0

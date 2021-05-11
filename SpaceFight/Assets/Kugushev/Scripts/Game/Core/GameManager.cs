@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.Core.ValueObjects;
+using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;

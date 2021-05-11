@@ -9,6 +9,8 @@ namespace Kugushev.Scripts.Common
     {
         public override void InstallBindings()
         {
+            SignalBusInstaller.Install(Container);
+            
             Container.Bind(typeof(SignaledTransition<>)).AsSingle();
             Container.Bind(typeof(ParametersPipeline<>)).AsSingle();
         }

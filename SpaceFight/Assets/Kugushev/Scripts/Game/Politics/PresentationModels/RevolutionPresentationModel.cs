@@ -1,6 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
+using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Game.Core;
 using Kugushev.Scripts.Game.Core.Constants;
+using Kugushev.Scripts.Game.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Models;
 using UniRx;
@@ -14,22 +18,26 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
     {
         [SerializeField] private Button declareRevolutionButton = default!;
 
-        private Parliament? _model;
+        [Inject] private SignalBus _signalBus = default!;
+        [Inject] private SignalToTransition<RevolutionParameters>.Factory _declareRevolutionFactory = default!;
+
+        private Parliament _model = default!;
 
         [Inject]
-        private void Init(GameDataStore dataStore)
-        {
-            _model = dataStore.Parliament;
+        private void Init(GameDataStore dataStore) => _model = dataStore.Parliament;
 
+        private void Awake()
+        {
             foreach (var politician in _model.Politicians)
                 politician.Relation.Subscribe(_ => UpdateView());
+
+            declareRevolutionButton.onClick.AddListener(OnDeclareRevolutionClick);
         }
+
+        private void OnDeclareRevolutionClick() => _signalBus.Fire(_declareRevolutionFactory.Create(default));
 
         private void UpdateView()
         {
-            if (_model is null)
-                return;
-
             var loyalPolitics = _model.Politicians.Count(p => p.Relation.Value == Relation.Loyalist);
 
             declareRevolutionButton.interactable = loyalPolitics >= GameConstants.LoyalPoliticsToWin;

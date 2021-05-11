@@ -1,4 +1,4 @@
-using Kugushev.Scripts.App.Core.ValueObjects;
+using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.App.MainMenu.PresentationModels;
 using Kugushev.Scripts.Common.ContextManagement;
 using Zenject;
@@ -16,8 +16,6 @@ namespace Kugushev.Scripts.App.MainMenu
 
         private void InstallSignals()
         {
-            SignalBusInstaller.Install(Container);
-
             Container.InstallTransitiveSignal<GameParameters>();
         }
     }

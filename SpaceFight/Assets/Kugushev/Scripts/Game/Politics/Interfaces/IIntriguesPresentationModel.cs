@@ -6,6 +6,6 @@ namespace Kugushev.Scripts.Game.Politics.Interfaces
     public interface IIntriguesPresentationModel
     {
         ToggleGroup ToggleGroup { get; }
-        void SelectCard(IntrigueCard card);
+        void SelectCard(IntrigueCard? card);
     }
 }

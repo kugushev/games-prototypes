@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.App.Core.ValueObjects;
+﻿using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Models;
@@ -13,21 +13,17 @@ namespace Kugushev.Scripts.Game.Core
         private readonly ParliamentGenerationService _parliamentGenerationService;
 
         private Parliament? _parliament;
-        private readonly Intrigues _intrigues;
 
         internal GameDataStore(ParametersPipeline<GameParameters> parametersPipeline,
-            ParliamentGenerationService parliamentGenerationService, Intrigues intrigues)
+            ParliamentGenerationService parliamentGenerationService)
         {
             _parametersPipeline = parametersPipeline;
             _parliamentGenerationService = parliamentGenerationService;
-            _intrigues = intrigues;
         }
 
         public bool Initialized { get; private set; }
 
         public Parliament Parliament => _parliament ?? throw new SpaceFightException("Store is not initialized");
-
-        public IIntrigues Intrigues => _intrigues;
 
         void IInitializable.Initialize()
         {

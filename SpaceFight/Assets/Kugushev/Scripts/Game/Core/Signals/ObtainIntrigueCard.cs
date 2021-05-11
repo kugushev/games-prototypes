@@ -4,18 +4,18 @@ using Zenject;
 
 namespace Kugushev.Scripts.Game.Core.Signals
 {
-    public class IntrigueCardObtained : Poolable<Intrigue>
+    public class ObtainIntrigueCard : Poolable<Intrigue>
     {
         private readonly IntrigueCard.Factory _intrigueCardFactory;
 
-        public IntrigueCardObtained(IntrigueCard.Factory intrigueCardFactory)
+        public ObtainIntrigueCard(IntrigueCard.Factory intrigueCardFactory)
         {
             _intrigueCardFactory = intrigueCardFactory;
         }
 
         public IntrigueCard CreateCard() => _intrigueCardFactory.Create(Parameter);
 
-        public class Factory : PlaceholderFactory<Intrigue, IntrigueCardObtained>
+        public class Factory : PlaceholderFactory<Intrigue, ObtainIntrigueCard>
         {
         }
     }

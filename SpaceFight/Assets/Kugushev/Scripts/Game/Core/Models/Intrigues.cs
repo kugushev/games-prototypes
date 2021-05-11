@@ -14,12 +14,8 @@ namespace Kugushev.Scripts.Game.Core.Models
 
         public IReadOnlyReactiveCollection<IntrigueCard> IntrigueCards => _intrigues;
 
-        // todo: execute it via Signal
-        internal void HandleCardUsed(IntrigueCard card)
-        {
-            _intrigues.Remove(card);
-        }
+        internal void HandleCardApplied(IntrigueCard card) => _intrigues.Remove(card);
 
-        internal void HandleCardObtained(IntrigueCard card) => _intrigues.Add(card);
+        internal void ObtainCard(IntrigueCard card) => _intrigues.Add(card);
     }
 }

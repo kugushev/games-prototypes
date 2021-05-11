@@ -1,5 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
+using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
+using Kugushev.Scripts.App.Core.Enums;
+using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Constants;
 using Kugushev.Scripts.Game.Core.Models;
@@ -18,8 +23,12 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         [SerializeField] private Button addSponsorButton = default!;
         [SerializeField] private Button removeSponsorButton = default!;
         [SerializeField] private TextMeshProUGUI sponsorsList = default!;
+        [SerializeField] private Button startCampaignButton = default!;
 
         [Inject] private IPoliticianSelector _politicianSelector = default!;
+
+        [Inject] private SignalBus _signalBus = default!;
+        [Inject] private SignalToTransition<CampaignParameters>.Factory _startCampaignFactory = default!;
 
         private readonly ReactiveCollection<IPolitician> _sponsors = new ReactiveCollection<IPolitician>();
 
@@ -39,11 +48,31 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
             _politicianSelector.SelectedPolitician
                 .CombineLatest(_sponsors.ObserveCountChanged(), (selected, _) => selected)
                 .Subscribe(UpdateSponsorsButtons);
+
+            startCampaignButton.onClick.AddListener(OnStartCampaignClick);
+        }
+
+        private void OnStartCampaignClick()
+        {
+            var budget = GameConstants.PlayerCampaignBudget + CalculateSponsorsBudget();
+
+            // todo: pooling
+            var perks = new HashSet<PerkId>(_sponsors.Select(s => s.Character.PerkLvl1.Id));
+
+            var parameters = new CampaignParameters(
+                Random.Range(0, 100), // for test purposes
+                budget,
+                perks,
+                false,
+                false
+            );
+
+            _signalBus.Fire(_startCampaignFactory.Create(parameters));
         }
 
         private int CalculateSponsorsBudget()
         {
-            int budget = GameConstants.PlayerCampaignBudget;
+            int budget = 0;
             foreach (var sponsor in _sponsors)
                 budget += sponsor.Budget.Value;
 

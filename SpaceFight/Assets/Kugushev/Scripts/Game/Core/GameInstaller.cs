@@ -1,6 +1,8 @@
 ﻿using System;
+using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Game.Core.ContextManagement;
+using Kugushev.Scripts.Game.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Core.Repositories;
 using Kugushev.Scripts.Game.Core.Services;
@@ -20,6 +22,7 @@ namespace Kugushev.Scripts.Game.Core
         {
             Container.BindInterfacesAndSelfTo<GameDataStore>().AsSingle();
             Container.Bind<Intrigues>().AsSingle();
+            Container.Bind<IIntrigues>().To<Intrigues>().FromResolve();
 
             InstallContextManagement();
 
@@ -36,22 +39,25 @@ namespace Kugushev.Scripts.Game.Core
         {
             Container.Bind<GameStoreInitializedTransition>().AsSingle();
             Container.Bind<PoliticsState>().AsSingle();
+            Container.Bind<CampaignState>().AsSingle();
+            Container.Bind<RevolutionState>().AsSingle();
         }
 
         private void InstallSignals()
         {
-            Container.BindSignal<IntrigueCardObtained>()
-                .ToMethod<Intrigues>((intrigues, signal) =>
-                {
-                    intrigues.HandleCardObtained(signal.CreateCard());
-                    if (signal is IDisposable disposable)
-                        disposable.Dispose();
-                })
-                .FromResolve();
-            
-            // todo: uncommend and fix test
-            // Container.InstallSignalAndBind<Intrigue, IntrigueCardObtained, IntrigueCardObtained.Factory, Intrigues>(
-            //     (intrigues, signal) => intrigues.HandleCardObtained(signal.CreateCard()));
+            Container.InstallSignalAndBind<Intrigue, ObtainIntrigueCard, ObtainIntrigueCard.Factory, Intrigues>(
+                (intrigues, signal) => intrigues.ObtainCard(signal.CreateCard()));
+
+            Container.InstallSignalAndBind
+                <(IntrigueCard, IPolitician), ApplyIntrigueCard, ApplyIntrigueCard.Factory, Intrigues>(
+                    (intrigues, signal) =>
+                    {
+                        signal.ExecuteApply();
+                        intrigues.HandleCardApplied(signal.Card);
+                    });
+
+            Container.InstallTransitiveSignal<CampaignParameters>();
+            Container.InstallTransitiveSignal<RevolutionParameters>();
         }
     }
 }

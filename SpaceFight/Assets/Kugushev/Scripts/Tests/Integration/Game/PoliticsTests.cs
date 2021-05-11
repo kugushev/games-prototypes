@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using Kugushev.Scripts.App.Core.ValueObjects;
+using Cysharp.Threading.Tasks;
+using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Tests.Integration.Game.Setup;
-using Kugushev.Scripts.Tests.Integration.Utils;
 using NUnit.Framework;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
@@ -16,21 +15,22 @@ namespace Kugushev.Scripts.Tests.Integration.Game
         [Timeout(10 * 60 * 1000)]
         public IEnumerator RunCheck()
         {
-            // todo: СУКАБЛЯ!!!! НЕ ТУПИ!!
-            // Интриги будут добавляться через сигналы из миссий. А не как как возвращаемые значения. 
-            // Так что в тесте надо просто начать сигналить и проверить что все корректно отображает
-            // Анализировать UI будет вообще по тупому: по имени контрола GameObject.Find()
-
-
-            // todo: ОЧЕНЬ ВАЖНО!!! Как сделать подконтект для Game, так чтобы можно было там использовать сигналы?
-            // решение: сделать GameObject context и описать в найтройках Parent как Game.
-            // Под ним можно запускать тесты, котоыре будут вызывать сигналы
-
             SingletonTransition<GameParameters>.Instance.SetValue(new GameParameters(42));
 
-            SceneManager.LoadScene("PoliticsTestingManagementScene");
+            yield return Exec().ToCoroutine();
+        }
+
+        private async UniTask Exec()
+        {
+            await SceneManager.LoadSceneAsync("AppStubScene");
+
+            await UniTask.WaitForEndOfFrame();
             
-            yield return new WaitUntil(() => false);
+            //await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+            await SceneManager.LoadSceneAsync("PoliticsTestingManagementScene", LoadSceneMode.Additive);
+
+            await UniTask.WaitWhile(() => true);
         }
     }
 }

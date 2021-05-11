@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.App.Core.ValueObjects;
+using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ProceduralGeneration;

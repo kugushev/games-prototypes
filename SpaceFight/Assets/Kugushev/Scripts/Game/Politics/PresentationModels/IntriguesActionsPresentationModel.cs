@@ -1,4 +1,6 @@
-﻿using Kugushev.Scripts.Game.Core.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Signals;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Game.Politics.Interfaces;
 using UniRx;
@@ -10,10 +12,14 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
 {
     public class IntriguesActionsPresentationModel : MonoBehaviour
     {
+        [SerializeField] private Button applyIntrigueButton = default!;
+
         [Inject] private IPoliticianSelector _politicianSelector = default!;
         [Inject] private IIntriguesSelector _intriguesSelector = default!;
 
-        [SerializeField] private Button applyIntrigueButton = default!;
+        [Inject] private SignalBus _signalBus = default!;
+        [Inject] private ApplyIntrigueCard.Factory _applyIntrigueCardFactory = default!;
+
 
         private void Awake()
         {
@@ -21,19 +27,24 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
                 .CombineLatest(_intriguesSelector.SelectedIntrigue, BothSelected)
                 .SubscribeToInteractable(applyIntrigueButton);
 
-            applyIntrigueButton.OnClickAsObservable()
-                .CombineLatest(_politicianSelector.SelectedPolitician, (_, politician) => politician)
-                .CombineLatest(_intriguesSelector.SelectedIntrigue, (politician, intrigue) => (politician, intrigue))
-                .Where(pair => BothSelected(pair.politician, pair.intrigue))
-                .Subscribe(pair => ApplyIntrigueToPolitician(pair.politician!, pair.intrigue!));
+            applyIntrigueButton.onClick.AddListener(OnApplyButtonClick);
         }
 
-        private static bool BothSelected(IPolitician? politician, IntrigueCard? intrigue) =>
-            politician is { } && intrigue is { };
-
-        private void ApplyIntrigueToPolitician(IPolitician politician, IntrigueCard intrigue)
+        private void OnApplyButtonClick()
         {
-            // todo: signal to model
+            var politician = _politicianSelector.SelectedPolitician.Value;
+            var intrigue = _intriguesSelector.SelectedIntrigue.Value;
+
+            if (BothSelected(politician, intrigue))
+            {
+                var signal = _applyIntrigueCardFactory.Create((intrigue, politician));
+                _signalBus.Fire(signal);
+            }
         }
+
+        private static bool BothSelected(
+            [NotNullWhen(true)] IPolitician? politician,
+            [NotNullWhen(true)] IntrigueCard? intrigue) =>
+            politician is { } && intrigue is { };
     }
 }

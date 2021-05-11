@@ -52,7 +52,7 @@ namespace Kugushev.Scripts.Game.Core.Models
         public IReadOnlyReactiveProperty<TraitsStatus> TraitsStatus => _traitsStatus;
         public Traits Traits => _traits;
 
-        internal void ApplyPoliticalAction(Intrigue intrigue)
+        internal void ApplyIntrigue(Intrigue intrigue)
         {
             var intrigueTraits = intrigue.Traits;
 

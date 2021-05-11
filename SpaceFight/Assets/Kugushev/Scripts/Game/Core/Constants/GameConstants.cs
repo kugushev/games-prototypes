@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Game.Core.Constants
         public const int MinTraitValue = -3;
         public const int MaxTraitValue = 3;
 
-        public const int LoyalPoliticsToWin = 5;
+        public const int LoyalPoliticsToWin = 1;
 
         public static readonly TraitsStatus StartTraitsStatus = new TraitsStatus();
     }
