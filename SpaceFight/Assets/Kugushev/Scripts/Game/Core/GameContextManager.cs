@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Game.Core
 {
     internal class GameContextManager : AbstractContextManager
     {
-        [Inject] private GameStoreInitializedTransition _onGameStoreInitialized = default!;
+        [Inject] private GameDataInitializedTransition _onGameDataInitialized = default!;
         [Inject] private PoliticsState _politicsState = default!;
         [Inject] private SignaledTransition<CampaignParameters> _onStartCampaign = default!;
         [Inject] private CampaignState _campaignState = default!;
@@ -23,7 +23,7 @@ namespace Kugushev.Scripts.Game.Core
             {
                 Entry, new[]
                 {
-                    _onGameStoreInitialized.TransitTo(_politicsState)
+                    _onGameDataInitialized.TransitTo(_politicsState)
                 }
             },
             {

@@ -15,9 +15,9 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private readonly ReactiveProperty<IPolitician?> _selectedPolitician = new ReactiveProperty<IPolitician?>();
 
         [Inject]
-        public void Init(GameDataStore gameDataStore)
+        public void Init(Parliament parliament)
         {
-            _model = gameDataStore.Parliament;
+            _model = parliament;
 
             if (politicianCards.Length != _model.Politicians.Count)
             {

@@ -21,7 +21,7 @@ namespace Kugushev.Scripts.Game.Core.Services
 
         private readonly List<int> _indexesBuffer = new List<int>(GameConstants.ParliamentSize);
 
-        public Parliament Generate(int seed)
+        public IReadOnlyList<IPolitician> GeneratePolitician(int seed)
         {
             Random.InitState(seed);
 
@@ -41,7 +41,7 @@ namespace Kugushev.Scripts.Game.Core.Services
 
             _indexesBuffer.Clear();
 
-            return new Parliament(politicians);
+            return politicians;
         }
 
         private Politician CreatePolitician(IReadOnlyList<PoliticianCharacter> characters)

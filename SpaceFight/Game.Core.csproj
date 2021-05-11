@@ -66,11 +66,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Enums\Difficulty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\StatesAndTransitions\RevolutionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Utils\GameModelProvider.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameDataStore.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameDataInitializer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\PoliticalActionsRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\ParliamentGenerationService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Parliament.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\GameStoreInitializedTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\GameDataInitializedTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\CampaignResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Signals\ObtainIntrigueCard.cs" />

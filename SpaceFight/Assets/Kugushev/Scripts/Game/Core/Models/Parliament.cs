@@ -1,16 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Kugushev.Scripts.Common.Utils;
 
 namespace Kugushev.Scripts.Game.Core.Models
 {
     public class Parliament
     {
-        private readonly List<Politician> _politicians;
+        private IReadOnlyList<IPolitician>? _politicians;
 
-        internal Parliament(List<Politician> politicians)
+
+        internal void Init(IReadOnlyList<IPolitician> politicians)
         {
+            if (_politicians != null)
+                throw new SpaceFightException("Double initialization of parliament");
+
             _politicians = politicians;
         }
 
-        public IReadOnlyList<IPolitician> Politicians => _politicians;
+        public IReadOnlyList<IPolitician> Politicians =>
+            _politicians ?? throw new SpaceFightException("Parliament is not initialized");
     }
 }

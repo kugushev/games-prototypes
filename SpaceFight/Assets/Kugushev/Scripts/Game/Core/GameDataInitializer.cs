@@ -7,18 +7,19 @@ using Zenject;
 
 namespace Kugushev.Scripts.Game.Core
 {
-    public class GameDataStore : IInitializable
+    public class GameDataInitializer : IInitializable
     {
         private readonly ParametersPipeline<GameParameters> _parametersPipeline;
         private readonly ParliamentGenerationService _parliamentGenerationService;
 
-        private Parliament? _parliament;
+        private readonly Parliament _parliament;
 
-        internal GameDataStore(ParametersPipeline<GameParameters> parametersPipeline,
-            ParliamentGenerationService parliamentGenerationService)
+        internal GameDataInitializer(ParametersPipeline<GameParameters> parametersPipeline,
+            ParliamentGenerationService parliamentGenerationService, Parliament parliament)
         {
             _parametersPipeline = parametersPipeline;
             _parliamentGenerationService = parliamentGenerationService;
+            _parliament = parliament;
         }
 
         public bool Initialized { get; private set; }
@@ -28,7 +29,9 @@ namespace Kugushev.Scripts.Game.Core
         void IInitializable.Initialize()
         {
             var parameters = _parametersPipeline.Pop();
-            _parliament = _parliamentGenerationService.Generate(parameters.Seed);
+
+            var politicians = _parliamentGenerationService.GeneratePolitician(parameters.Seed);
+            _parliament.Init(politicians);
 
             Initialized = true;
         }

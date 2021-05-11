@@ -20,7 +20,10 @@ namespace Kugushev.Scripts.Game.Core
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<GameDataStore>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameDataInitializer>().AsSingle();
+
+            Container.Bind<Parliament>().AsSingle();
+
             Container.Bind<Intrigues>().AsSingle();
             Container.Bind<IIntrigues>().To<Intrigues>().FromResolve();
 
@@ -37,7 +40,7 @@ namespace Kugushev.Scripts.Game.Core
 
         private void InstallContextManagement()
         {
-            Container.Bind<GameStoreInitializedTransition>().AsSingle();
+            Container.Bind<GameDataInitializedTransition>().AsSingle();
             Container.Bind<PoliticsState>().AsSingle();
             Container.Bind<CampaignState>().AsSingle();
             Container.Bind<RevolutionState>().AsSingle();

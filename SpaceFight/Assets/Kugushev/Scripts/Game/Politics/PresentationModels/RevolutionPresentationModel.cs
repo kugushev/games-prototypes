@@ -24,7 +24,7 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private Parliament _model = default!;
 
         [Inject]
-        private void Init(GameDataStore dataStore) => _model = dataStore.Parliament;
+        private void Init(Parliament parliament) => _model = parliament;
 
         private void Awake()
         {
