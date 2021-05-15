@@ -13,7 +13,8 @@
         "App.Core",
         "Game.Core",
         "UniRx",
-        "Zenject"
+        "Zenject",
+        "Zenject-TestFramework"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -25,7 +26,8 @@
         "Zenject.ReflectionBaking.Mono.Cecil.dll",
         "Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll",
         "Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll",
-        "Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll"
+        "Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll",
+        "ICSharpCode.NRefactory.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [
