@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411698719}
-  - component: {fileID: 411698720}
   - component: {fileID: 411698722}
   - component: {fileID: 411698721}
   m_Layer: 0
@@ -156,27 +155,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &411698720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411698718}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aa1417c397e490ba27d4689ef913846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
-  gameModelProvider: {fileID: 11400000, guid: 72035b249cb703242845fac535a24b95, type: 2}
-  tempPoliticalActionsRepository: {fileID: 11400000, guid: f8ac77f1181847f48a9b5ca661601613, type: 2}
-  gameExitState: {fileID: 11400000, guid: b229c7abe47da64418f123ed14584b68, type: 2}
-  onCampaignExitTransition: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
-  toCampaignTransition: {fileID: 11400000, guid: 45501c8e37f7a7540b160d5faaa97fbf, type: 2}
-  toRevolutionTransition: {fileID: 11400000, guid: e69770bee9cf4c54d8a76ce30648e03e, type: 2}
-  toMainMenuTransition: {fileID: 11400000, guid: 611d990ea8cdf454fa92b13590d2857e, type: 2}
-  campaignSceneResultPipeline: {fileID: 11400000, guid: 31575198679508649a82c0d4550a976b, type: 2}
 --- !u!114 &411698721
 MonoBehaviour:
   m_ObjectHideFlags: 0

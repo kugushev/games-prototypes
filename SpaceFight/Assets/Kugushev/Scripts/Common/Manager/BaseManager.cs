@@ -65,7 +65,7 @@ namespace Kugushev.Scripts.Common.Manager
             Asserting.NotNull(_stateMachine);
             while (true)
             {
-                await _stateMachine.UpdateAsync(() => Time.deltaTime);
+                await _stateMachine.UpdateAsync();
                 await UniTask.NextFrame();
             }
 

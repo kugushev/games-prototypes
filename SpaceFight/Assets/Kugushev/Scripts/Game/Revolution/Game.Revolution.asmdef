@@ -1,0 +1,19 @@
+{
+    "name": "Game.Revolution",
+    "rootNamespace": "",
+    "references": [
+        "Common",
+        "App.Core",
+        "Game.Core",
+        "Zenject"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -21,10 +21,6 @@ namespace Kugushev.Scripts.Tests.Integration.Utils
             return UniTask.CompletedTask;
         }
 
-        void IState.OnUpdate(float deltaTime)
-        {
-        }
-
         UniTask IState.OnExitAsync()
         {
             Entered = false;

@@ -43,7 +43,7 @@ namespace Kugushev.Scripts.Common.ContextManagement
         {
             while (true)
             {
-                await _stateMachine.UpdateAsync(() => Time.deltaTime);
+                await _stateMachine.UpdateAsync();
                 await UniTask.NextFrame();
             }
 

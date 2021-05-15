@@ -37,10 +37,6 @@ namespace Kugushev.Scripts.Common.ContextManagement
             OnEnterAfterLoadScene();
         }
 
-        public void OnUpdate(float deltaTime)
-        {
-        }
-
         public async UniTask OnExitAsync()
         {
             OnExitBeforeUnloadScene();

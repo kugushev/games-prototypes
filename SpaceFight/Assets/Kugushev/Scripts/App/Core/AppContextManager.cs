@@ -11,7 +11,8 @@ namespace Kugushev.Scripts.App.Core
         [Inject] private MainMenuState _mainMenu = default!;
 
         [Inject] private GameState _game = default!;
-        [Inject] private SignaledTransition<GameParameters> _onNewGameSignal = default!;
+        [Inject] private IParameterizedTransition<GameParameters> _onNewGame = default!;
+        [Inject] private IParameterizedTransition<GameExitParameters> _onGameExit = default!;
 
         protected override Transitions ComposeStateMachine() => new Transitions
         {
@@ -24,7 +25,13 @@ namespace Kugushev.Scripts.App.Core
             {
                 _mainMenu, new[]
                 {
-                    _onNewGameSignal.TransitTo(_game)
+                    _onNewGame.TransitTo(_game)
+                }
+            },
+            {
+                _game, new[]
+                {
+                    _onGameExit.TransitTo(_mainMenu)
                 }
             }
         };

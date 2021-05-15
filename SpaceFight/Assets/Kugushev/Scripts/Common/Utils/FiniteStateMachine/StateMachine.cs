@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 
@@ -18,7 +17,7 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             _currentState = EntryState.Instance;
         }
 
-        public async UniTask UpdateAsync(Func<float> deltaTimeProvider)
+        public async UniTask UpdateAsync()
         {
             if (_transitions.TryGetValue(_currentState, out var transitions))
                 foreach (var (transition, targetState) in transitions)
@@ -28,10 +27,6 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
                             reusableTransition.Reset();
                         await SetState(targetState);
                     }
-
-            // by reason of async SetState this OnUpdate execution might be in the another frame than tha start of this method
-            var deltaTime = deltaTimeProvider();
-            _currentState.OnUpdate(deltaTime);
         }
 
         public async UniTask DisposeAsync()
@@ -76,13 +71,14 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
             
             next.OnEnterAsync();
              */
-            
+
             await _currentState.OnExitAsync();
             _currentState = state;
             await _currentState.OnEnterAsync();
         }
 
-        private static void ResetTransitions(IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> transitions)
+        private static void ResetTransitions(
+            IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> transitions)
         {
             foreach (var pair in transitions)
             foreach (var (transition, _) in pair.Value)

@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using Zenject;
 
 namespace Kugushev.Scripts.Common.ContextManagement
@@ -50,6 +51,18 @@ namespace Kugushev.Scripts.Common.ContextManagement
         {
             container.BindFactory<TParam, TContract, TFactory>()
                 .FromPoolableMemoryPool(x => x.WithInitialSize(2));
+        }
+
+        public static void InstallSignaledTransition<TParam>(this DiContainer container)
+        {
+            container.Bind<SignaledTransition<TParam>>().AsSingle();
+            container.Bind<IParameterizedTransition<TParam>>().To<SignaledTransition<TParam>>().FromResolve();
+        }
+
+        public static void InstallExitState<TParam>(this DiContainer container)
+        {
+            container.Bind<ExitState<TParam>>().AsSingle();
+            container.Bind<IParameterizedTransition<TParam>>().To<ExitState<TParam>>().FromResolve();
         }
     }
 }
