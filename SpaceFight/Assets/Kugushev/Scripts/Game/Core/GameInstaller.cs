@@ -1,7 +1,5 @@
-﻿using System;
-using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
+﻿using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Common.ContextManagement;
-using Kugushev.Scripts.Common.Utils.FiniteStateMachine.Parameterized;
 using Kugushev.Scripts.Game.Core.ContextManagement;
 using Kugushev.Scripts.Game.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Game.Core.Models;

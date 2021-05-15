@@ -1,6 +1,5 @@
 ﻿using System;
 using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
-using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.ValueObjects;

@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters
 {

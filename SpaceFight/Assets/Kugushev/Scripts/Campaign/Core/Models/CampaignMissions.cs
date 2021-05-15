@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
-using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Models;
-using Kugushev.Scripts.Game.Core.Signals;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Kugushev.Scripts.Campaign.Core.Models
 {

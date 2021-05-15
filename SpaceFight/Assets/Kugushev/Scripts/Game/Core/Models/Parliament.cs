@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
 
 namespace Kugushev.Scripts.Game.Core.Models

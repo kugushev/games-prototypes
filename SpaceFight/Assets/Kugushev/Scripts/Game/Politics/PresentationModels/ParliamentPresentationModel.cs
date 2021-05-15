@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.Game.Core;
-using Kugushev.Scripts.Game.Core.Models;
+﻿using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Politics.Interfaces;
 using UniRx;
 using UnityEngine;

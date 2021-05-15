@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Campaign.Utils;
+using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Common.Manager;
 using Kugushev.Scripts.Common.StatesAndTransitions;
-using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.AI.Tactical;
@@ -24,10 +23,10 @@ namespace Kugushev.Scripts.Mission
         [SerializeField] private ObjectsPool? objectsPool;
         [SerializeField] private MissionModelProvider? modelProvider;
 
-        [Header("Parameters")] [SerializeField]
-        private MissionSceneParametersPipeline? missionSceneParametersPipeline;
-
-        [SerializeField] private MissionSceneResultPipeline? missionSceneResultPipeline;
+        // [Header("Parameters")] [SerializeField]
+        // private MissionSceneParametersPipeline? missionSceneParametersPipeline;
+        //
+        // [SerializeField] private MissionSceneResultPipeline? missionSceneResultPipeline;
 
         [Header("States and Transitions")] [SerializeField]
         private ExitState? missionExitState;
@@ -53,10 +52,10 @@ namespace Kugushev.Scripts.Mission
 
         protected override MissionModel InitRootModel()
         {
-            Asserting.NotNull(missionSceneParametersPipeline, playerPropertiesService, greenFleet, redFleet,
-                planetarySystemGenerator, playerCommander, enemyAi, objectsPool, modelProvider);
+            // Asserting.NotNull(missionSceneParametersPipeline, playerPropertiesService, greenFleet, redFleet,
+            //     planetarySystemGenerator, playerCommander, enemyAi, objectsPool, modelProvider);
 
-            var missionInfo = missionSceneParametersPipeline.Get();
+            var missionInfo = new MissionParameters(); // missionSceneParametersPipeline.Get();
 
             var (planetarySystemProperties, fleetProperties) =
                 playerPropertiesService.GetPlayerProperties(playerFaction, missionInfo);
@@ -84,15 +83,13 @@ namespace Kugushev.Scripts.Mission
             return model;
         }
 
-        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> ComposeStateMachine(
-            MissionModel rootModel)
+        protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
+            ComposeStateMachine(
+                MissionModel rootModel)
         {
-            Asserting.NotNull(eventsCollector, missionSceneResultPipeline, achievementsManager, objectsPool,
-                toExecutionTransition, toFinishMissionTransition, missionExitState);
-
             var briefingState = new BriefingState(rootModel);
             var executionState = new ExecutionState(rootModel, eventsCollector);
-            var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline, achievementsManager,
+            var debriefingState = new DebriefingState(rootModel, null, achievementsManager,
                 objectsPool);
 
             return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>

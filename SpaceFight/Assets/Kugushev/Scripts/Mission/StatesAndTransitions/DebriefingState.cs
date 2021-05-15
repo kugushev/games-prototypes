@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.Campaign.Utils;
-using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.Constants;
@@ -15,21 +13,21 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
 {
     public class DebriefingState : BaseSceneLoadingState<MissionModel>
     {
-        private readonly MissionSceneResultPipeline _missionSceneResultPipeline;
+        // private readonly MissionSceneResultPipeline _missionSceneResultPipeline;
         private readonly PerksManager _perksManager;
         private readonly ObjectsPool _objectsPool;
         private readonly List<BasePerk> _achievementsBuffer = new List<BasePerk>(64);
 
-        public DebriefingState(MissionModel model, MissionSceneResultPipeline missionSceneResultPipeline,
+        public DebriefingState(MissionModel model, object missionSceneResultPipeline,
             PerksManager achievementsManager, ObjectsPool objectsPool)
             : base(model, UnityConstants.Scenes.MissionDebriefingScene, true)
         {
-            _missionSceneResultPipeline = missionSceneResultPipeline;
+            // _missionSceneResultPipeline = missionSceneResultPipeline;
             _perksManager = achievementsManager;
             _objectsPool = objectsPool;
         }
 
-        protected override void AssertModel() 
+        protected override void AssertModel()
         {
             if (ModelOld.ExecutionResult == null)
                 Alert();
@@ -69,7 +67,8 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
                 {
                     var reward = ModelOld.DebriefingSummary.SelectedAchievement;
 
-                    _missionSceneResultPipeline.Set(new MissionResult(playerWin, ModelOld.Parameters.MissionInfo, reward));
+                    // _missionSceneResultPipeline.Set(new MissionResult(playerWin, ModelOld.Parameters.MissionInfo,
+                    //     reward));
                 }
                 else
                     Debug.LogError("Reward is null");

@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
+﻿using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Game.Core.Constants;
 

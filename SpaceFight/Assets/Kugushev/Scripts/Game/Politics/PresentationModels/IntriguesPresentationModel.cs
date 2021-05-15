@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.Game.Core;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Game.Politics.Interfaces;

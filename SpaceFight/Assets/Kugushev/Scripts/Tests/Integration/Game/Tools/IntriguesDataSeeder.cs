@@ -1,5 +1,4 @@
-﻿using Kugushev.Scripts.Game.Core.Signals;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 using Zenject;
 

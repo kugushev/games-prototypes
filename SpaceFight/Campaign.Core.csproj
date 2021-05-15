@@ -41,22 +41,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Utils\CampaignModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Constants\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ValueObjects\MissionResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Constants\CampaignConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Utils\MissionSceneParametersPipeline.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\StatesAndTransitions\CampaignFinalizationState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\StatesAndTransitions\PlaygroundState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Utils\MissionSceneResultPipeline.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\CampaignModelOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Properties\AssemblyInfo.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\StatesAndTransitions\MissionSelectionState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\MissionSelection.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Interfaces\IMissionsSet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\StatesAndTransitions\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ContextManagement\Parameters\MissionParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\PlayerPerksOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\CampaignContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\CampaignInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ContextManagement\MissionSelectionState.cs" />

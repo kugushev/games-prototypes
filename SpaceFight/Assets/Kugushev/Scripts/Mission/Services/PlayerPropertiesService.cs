@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
-using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.Utils.ValuesProcessing;
