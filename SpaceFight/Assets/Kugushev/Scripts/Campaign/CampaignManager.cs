@@ -10,7 +10,7 @@ using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
-using Kugushev.Scripts.Game.Core.Services;
+using Kugushev.Scripts.Game.Core.Repositories;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Campaign
         //[SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         // [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
         [SerializeField] private MissionsGenerator? missionsGenerationService;
-        [SerializeField] private PoliticalActionsRepository? politicalActionsRepository;
+        [SerializeField] private IntriguesRepository? politicalActionsRepository;
 
         [Header("Mission Parameters")] [SerializeField]
         private MissionSceneParametersPipeline? missionSceneParametersPipeline;

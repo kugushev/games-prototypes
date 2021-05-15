@@ -6,10 +6,10 @@ using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Game.Core.Services
+namespace Kugushev.Scripts.Game.Core.Repositories
 {
-    [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(PoliticalActionsRepository))]
-    public class PoliticalActionsRepository : ScriptableObject
+    [CreateAssetMenu(menuName = GameConstants.MenuPrefix + nameof(IntriguesRepository))]
+    public class IntriguesRepository : ScriptableObject
     {
         [SerializeField] private Intrigue[]? normal;
         [SerializeField] private Intrigue[]? hard;

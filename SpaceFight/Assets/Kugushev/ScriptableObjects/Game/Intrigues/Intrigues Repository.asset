@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 437cc4181d8a4f3d91aba12495cd6b5a, type: 3}
-  m_Name: Political Actions Repository
+  m_Name: Intrigues Repository
   m_EditorClassIdentifier: 
   normal:
   - {fileID: 11400000, guid: 3bedbdcddc8ff8142b2ca1110dc52da5, type: 2}

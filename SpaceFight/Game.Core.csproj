@@ -65,7 +65,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\Parameters\RevolutionParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Enums\Difficulty.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameDataInitializer.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\PoliticalActionsRepository.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Repositories\IntriguesRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\ParliamentGenerationService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Parliament.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\GameDataInitializedTransition.cs" />

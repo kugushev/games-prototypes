@@ -4,6 +4,7 @@ using Kugushev.Scripts.Campaign.Interfaces;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Repositories;
 using Kugushev.Scripts.Game.Core.Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,7 +14,7 @@ namespace Kugushev.Scripts.Campaign.ProceduralGeneration
     [CreateAssetMenu(menuName = CampaignConstants.MenuPrefix + nameof(MissionsGenerator))]
     public class MissionsGenerator : ScriptableObject
     {
-        [SerializeField] private PoliticalActionsRepository? politicalActionsRepository;
+        [SerializeField] private IntriguesRepository? politicalActionsRepository;
 
         public void GenerateMissions(IMissionsSet setToFill)
         {
@@ -46,14 +47,14 @@ namespace Kugushev.Scripts.Campaign.ProceduralGeneration
             }
         }
 
-        private MissionInfo CreateNormalMission(PoliticalActionsRepository repository)
+        private MissionInfo CreateNormalMission(IntriguesRepository repository)
         {
             var difficulty = Difficulty.Normal;
             var politicalAction = repository.GetRandom(difficulty);
             return new MissionInfo(NextSeed, difficulty, politicalAction, playerHomeProductionMultiplier: 2);
         }
 
-        private MissionInfo CreateHardMission(PoliticalActionsRepository repository)
+        private MissionInfo CreateHardMission(IntriguesRepository repository)
         {
             var difficulty = Difficulty.Hard;
             var politicalAction = repository.GetRandom(difficulty);
@@ -72,7 +73,7 @@ namespace Kugushev.Scripts.Campaign.ProceduralGeneration
             }
         }
 
-        private MissionInfo CreateInsaneMission(PoliticalActionsRepository repository)
+        private MissionInfo CreateInsaneMission(IntriguesRepository repository)
         {
             var difficulty = Difficulty.Insane;
             var politicalAction = repository.GetRandom(difficulty);
