@@ -41,11 +41,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Widgets\AchievementsPanelWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\PerksPanelPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\MissionCardPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Widgets\MissionSelectionWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Widgets\AchievementCardWidget.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Widgets\PlaygroundWidget.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\PerksCardPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\PlaygroundPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\MissionSelectionPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\MissionSelectionInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Interfaces\IMissionSelectionPresentationModel.cs" />

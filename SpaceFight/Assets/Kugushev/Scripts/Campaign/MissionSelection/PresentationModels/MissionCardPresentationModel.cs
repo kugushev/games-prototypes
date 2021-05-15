@@ -1,5 +1,4 @@
 using System;
-using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.MissionSelection.Interfaces;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;

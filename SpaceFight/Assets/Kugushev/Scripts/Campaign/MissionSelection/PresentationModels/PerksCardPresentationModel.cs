@@ -3,15 +3,15 @@ using Kugushev.Scripts.Game.Core.ValueObjects;
 using TMPro;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Campaign.Widgets
+namespace Kugushev.Scripts.Campaign.MissionSelection.PresentationModels
 {
-    public class AchievementCardWidget : MonoBehaviour
+    public class PerksCardPresentationModel : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI? captionText;
+        [SerializeField] private TextMeshProUGUI captionText = default!;
 
         private PerkInfo _model;
 
-        public void SetUp(PerkInfo model) => _model = model;
+        public void Init(PerkInfo model) => _model = model;
 
         private void Start()
         {

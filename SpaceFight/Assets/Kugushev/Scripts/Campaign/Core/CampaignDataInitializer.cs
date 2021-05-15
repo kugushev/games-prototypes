@@ -13,14 +13,16 @@ namespace Kugushev.Scripts.Campaign.Core
         private readonly ParametersPipeline<CampaignParameters> _parametersPipeline;
         private readonly CampaignMissions _campaignMissions;
         private readonly MissionsGenerationService _missionsGenerationService;
+        private readonly PlayerPerks _playerPerks;
 
         internal CampaignDataInitializer(ParametersPipeline<CampaignParameters> parametersPipeline,
             CampaignMissions campaignMissions,
-            MissionsGenerationService missionsGenerationService)
+            MissionsGenerationService missionsGenerationService, PlayerPerks playerPerks)
         {
             _parametersPipeline = parametersPipeline;
             _campaignMissions = campaignMissions;
             _missionsGenerationService = missionsGenerationService;
+            _playerPerks = playerPerks;
         }
 
         public bool ToTransition { get; private set; }
@@ -28,11 +30,13 @@ namespace Kugushev.Scripts.Campaign.Core
         public void Initialize()
         {
             var parameters = _parametersPipeline.Pop();
-            
+
             Random.InitState(parameters.Seed);
-            
+
             var missions = _missionsGenerationService.GenerateMissions();
             _campaignMissions.Init(missions, parameters.Budget);
+
+            _playerPerks.Init(parameters.AvailablePerks);
 
             ToTransition = true;
         }

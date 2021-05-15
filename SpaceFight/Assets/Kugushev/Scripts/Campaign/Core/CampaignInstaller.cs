@@ -2,9 +2,11 @@
 using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Campaign.Core.Models;
 using Kugushev.Scripts.Campaign.Core.Services;
+using Kugushev.Scripts.Campaign.Core.Signals;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Game.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Game.Core.Repositories;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 using Zenject;
 
@@ -28,6 +30,9 @@ namespace Kugushev.Scripts.Campaign.Core
         {
             Container.Bind<CampaignMissions>().AsSingle();
             Container.Bind<ICampaignMissions>().To<CampaignMissions>().FromResolve();
+
+            Container.Bind<PlayerPerks>().AsSingle();
+            Container.Bind<IPlayerPerks>().To<PlayerPerks>().FromResolve();
         }
 
         private void InstallContextManagement()
@@ -47,6 +52,14 @@ namespace Kugushev.Scripts.Campaign.Core
 
         private void InstallSignals()
         {
+            Container.InstallTransitiveSignal<MissionParameters, CampaignMissions>(
+                (cm, signal) => cm.OnMissionSelected());
+
+            Container.InstallTransitiveSignal<MissionExitParameters, CampaignMissions>(
+                (cm, signal) => cm.OnMissionFinished(signal.Parameters.MissionInfo, signal.Parameters.PlayerWins));
+
+            Container.InstallSignalAndBind<PerkInfo, ObtainPerk, ObtainPerk.Factory, PlayerPerks>(
+                (playerPerks, signal) => playerPerks.ObtainPerk(signal.Perk));
         }
     }
 }

@@ -45,6 +45,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\Intrigue.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\CampaignState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\PerkInfo.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\MissionInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Signals\ApplyIntrigueCard.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Perk.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\Traits.cs" />

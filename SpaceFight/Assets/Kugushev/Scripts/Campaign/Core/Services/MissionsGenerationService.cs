@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
-using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Interfaces;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Repositories;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Services

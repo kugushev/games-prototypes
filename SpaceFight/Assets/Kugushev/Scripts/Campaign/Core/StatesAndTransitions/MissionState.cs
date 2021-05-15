@@ -1,6 +1,5 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
-using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Campaign.ValueObjects;

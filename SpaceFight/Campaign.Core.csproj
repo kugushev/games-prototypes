@@ -43,12 +43,10 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Utils\CampaignModelProvider.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Constants\UnityConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ValueObjects\MissionInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ValueObjects\MissionResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Constants\CampaignConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Utils\MissionSceneParametersPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\StatesAndTransitions\CampaignFinalizationState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Playground.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\StatesAndTransitions\PlaygroundState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Utils\MissionSceneResultPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\CampaignModelOld.cs" />
@@ -68,6 +66,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\PlayerPerks.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Services\MissionsGenerationService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ContextManagement\MissionState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Signals\ObtainPerk.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ContextManagement\Parameters\MissionExitParameters.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Core\Campaign.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

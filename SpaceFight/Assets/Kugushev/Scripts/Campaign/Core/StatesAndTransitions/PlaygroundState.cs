@@ -1,5 +1,4 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
-using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
@@ -27,28 +26,27 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
         protected override void OnEnterBeforeLoadScene()
         {
             ModelOld.NextMission = null;
-            ModelOld.Playground.Seed = Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
-            if (ModelOld.LastMissionResult != null)
-                if (ModelOld.LastMissionResult.Value.PlayerWins)
-                    ModelOld.Playground.PlayerScore++;
-                else
-                    ModelOld.Playground.AIScore++;
+            // if (ModelOld.LastMissionResult != null)
+            //     if (ModelOld.LastMissionResult.Value.PlayerWins)
+            //         ModelOld.Playground.PlayerScore++;
+            //     else
+            //         ModelOld.Playground.AIScore++;
         }
 
         protected override void OnExitBeforeUnloadScene()
         {
-            var playground = ModelOld.Playground;
-            ModelOld.NextMission = new MissionInfo(
-                seed: playground.Seed,
-                difficulty: Difficulty.Normal,
-                reward: _intriguesRepository.Stub,
-                playerHomeProductionMultiplier: playground.PlayerHomeProductionMultiplier,
-                enemyHomeProductionMultiplier: playground.EnemyHomeProductionMultiplier,
-                playerExtraPlanets: playground.PlayerExtraPlanets,
-                enemyExtraPlanets: playground.EnemyExtraPlanets,
-                playerStartPowerMultiplier: playground.PlayerStartPowerMultiplier,
-                enemyStartPowerMultiplier: playground.EnemyStartPowerMultiplier
-            );
+            // // var playground = ModelOld.Playground;
+            // ModelOld.NextMission = new MissionInfo(
+            //     seed: playground.Seed,
+            //     difficulty: Difficulty.Normal,
+            //     reward: _intriguesRepository.Stub,
+            //     playerHomeProductionMultiplier: playground.PlayerHomeProductionMultiplier,
+            //     enemyHomeProductionMultiplier: playground.EnemyHomeProductionMultiplier,
+            //     playerExtraPlanets: playground.PlayerExtraPlanets,
+            //     enemyExtraPlanets: playground.EnemyExtraPlanets,
+            //     playerStartPowerMultiplier: playground.PlayerStartPowerMultiplier,
+            //     enemyStartPowerMultiplier: playground.EnemyStartPowerMultiplier
+            // );
         }
     }
 }

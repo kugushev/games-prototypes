@@ -1,5 +1,4 @@
 ﻿using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
-using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.MissionSelection.Factories;
 using Kugushev.Scripts.Campaign.MissionSelection.Interfaces;
 using Kugushev.Scripts.Campaign.MissionSelection.PresentationModels;
@@ -7,6 +6,7 @@ using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.ContextManagement;
 using Kugushev.Scripts.Common.Factories;
 using Kugushev.Scripts.Game.Core.ContextManagement.Parameters;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Zenject;
 
 namespace Kugushev.Scripts.Campaign.MissionSelection
@@ -26,7 +26,6 @@ namespace Kugushev.Scripts.Campaign.MissionSelection
 
         private void InstallSignals()
         {
-            Container.InstallTransitiveSignal<MissionParameters>();
             Container.InstallTransitiveSignal<CampaignExitParameters>();
         }
     }

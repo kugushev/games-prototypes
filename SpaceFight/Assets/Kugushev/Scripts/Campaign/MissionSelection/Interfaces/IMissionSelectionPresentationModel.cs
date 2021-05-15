@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Campaign.Core.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.ValueObjects;
 using UnityEngine.UI;
 
 namespace Kugushev.Scripts.Campaign.MissionSelection.Interfaces

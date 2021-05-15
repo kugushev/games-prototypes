@@ -1,8 +1,7 @@
 ﻿using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
-using Kugushev.Scripts.Game.Core.ValueObjects;
 
-namespace Kugushev.Scripts.Campaign.Core.ValueObjects
+namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     public class MissionInfo
     {

@@ -7,7 +7,14 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Models
 {
-    internal class PlayerPerks
+    public interface IPlayerPerks
+    {
+        ISet<PerkId> AvailablePerks { get; }
+        IReadOnlyList<PerkInfo> CommonPerks { get; }
+        IReadOnlyDictionary<PerkId, PerkInfo> EpicPerks { get; }
+    }
+
+    internal class PlayerPerks : IPlayerPerks
     {
         private ISet<PerkId>? _availablePerks;
         private readonly List<PerkInfo> _commonPerks = new List<PerkInfo>();

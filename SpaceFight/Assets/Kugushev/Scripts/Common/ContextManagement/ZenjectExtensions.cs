@@ -28,6 +28,13 @@ namespace Kugushev.Scripts.Common.ContextManagement
                 .ToSignaledTransitionFromResolve(s => s.Parameters);
         }
 
+        public static void InstallTransitiveSignal<TParameters, TObject>(this DiContainer container,
+            Action<TObject, SignalToTransition<TParameters>> extraHandler)
+        {
+            container.InstallTransitiveSignal<TParameters>();
+            container.BindSignal<SignalToTransition<TParameters>>().ToMethod(extraHandler).FromResolve();
+        }
+
         public static void InstallSignalAndBind<TParam, TSignal, TFactory, TReceiver>(this DiContainer container,
             Action<TReceiver, TSignal> bindHandler)
             where TFactory : PlaceholderFactory<TParam, TSignal>

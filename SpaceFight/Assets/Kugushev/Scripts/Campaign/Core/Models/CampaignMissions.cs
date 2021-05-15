@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
-using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Core.Signals;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.Campaign.Core.Models
 {
@@ -16,8 +18,16 @@ namespace Kugushev.Scripts.Campaign.Core.Models
 
     internal class CampaignMissions : ICampaignMissions
     {
-        private ReactiveCollection<MissionInfo>? _missions;
+        private readonly SignalBus _signalBus;
+        private readonly ObtainIntrigueCard.Factory _obtainIntrigueSignalFactory;
         private readonly ReactiveProperty<int> _budget = new ReactiveProperty<int>();
+        private ReactiveCollection<MissionInfo>? _missions;
+
+        public CampaignMissions(SignalBus signalBus, ObtainIntrigueCard.Factory obtainIntrigueSignalFactory)
+        {
+            _signalBus = signalBus;
+            _obtainIntrigueSignalFactory = obtainIntrigueSignalFactory;
+        }
 
         internal void Init(IEnumerable<MissionInfo> missions, int startBudget)
         {
@@ -33,7 +43,6 @@ namespace Kugushev.Scripts.Campaign.Core.Models
 
         public IReadOnlyReactiveProperty<int> Budget => _budget;
 
-        // todo: call via Message
         internal void OnMissionSelected()
         {
             _budget.Value -= CampaignConstants.MissionCost;
@@ -41,6 +50,15 @@ namespace Kugushev.Scripts.Campaign.Core.Models
                 Debug.LogError("Budget is less than 0");
         }
 
-        internal void OnMissionSuccessfullyFinished(MissionInfo missionInfo) => _missions?.Remove(missionInfo);
+        internal void OnMissionFinished(MissionInfo missionInfo, bool playerWins)
+        {
+            if (playerWins)
+            {
+                _missions?.Remove(missionInfo);
+
+                var signal = _obtainIntrigueSignalFactory.Create(missionInfo.Reward);
+                _signalBus.Fire(signal);
+            }
+        }
     }
 }

@@ -14,7 +14,6 @@ namespace Kugushev.Scripts.Campaign.Core
         [Inject] private MissionSelectionState _missionSelection = default!;
         [Inject] private IParameterizedTransition<MissionParameters> _onStartMission = default!;
         [Inject] private MissionState _mission = default!;
-
         [Inject] private IParameterizedTransition<CampaignExitParameters> _onExit = default!;
         [Inject] private ExitState<CampaignExitParameters> _exit = default!;
 
@@ -33,8 +32,6 @@ namespace Kugushev.Scripts.Campaign.Core
                     _onExit.TransitTo(_exit)
                 }
             }
-
-
             // {
             // missionState, new[]
             // {
