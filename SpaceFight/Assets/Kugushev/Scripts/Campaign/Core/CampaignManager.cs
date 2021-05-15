@@ -2,7 +2,6 @@
 using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Campaign.ProceduralGeneration;
 using Kugushev.Scripts.Campaign.StatesAndTransitions;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Manager;
@@ -17,7 +16,7 @@ using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Campaign
 {
-    internal class CampaignManager : BaseManager<CampaignModel>
+    internal class CampaignManager : BaseManager<CampaignModelOld>
     {
         [SerializeField] private ObjectsPool? objectsPool;
 
@@ -25,7 +24,7 @@ namespace Kugushev.Scripts.Campaign
 
         //[SerializeField] private CampaignSceneParametersPipeline? campaignSceneParametersPipeline;
         // [SerializeField] private CampaignSceneResultPipeline? campaignSceneResultPipeline;
-        [SerializeField] private MissionsGenerator? missionsGenerationService;
+        // [SerializeField] private MissionsGenerator? missionsGenerationService;
         [SerializeField] private IntriguesRepository? politicalActionsRepository;
 
         [Header("Mission Parameters")] [SerializeField]
@@ -43,18 +42,19 @@ namespace Kugushev.Scripts.Campaign
 
         private readonly CampaignFinalizationState _finalizationState = new CampaignFinalizationState();
 
-        protected override CampaignModel InitRootModel()
+        protected override CampaignModelOld InitRootModel()
         {
             Asserting.NotNull(objectsPool, modelProvider);
 
             var campaignInfo = new CampaignParameters();
-            var budget = campaignInfo.Budget ?? CampaignConstants.MaxBudget;
+            var budget = campaignInfo.Budget;
 
-            var model = objectsPool.GetObject<CampaignModel, CampaignModel.State>(new CampaignModel.State(campaignInfo,
+            var model = objectsPool.GetObject<CampaignModelOld, CampaignModelOld.State>(new CampaignModelOld.State(
+                campaignInfo,
                 objectsPool.GetObject<MissionSelection, MissionSelection.State>(new MissionSelection.State(budget)),
                 objectsPool.GetObject<Playground, Playground.State>(default),
-                objectsPool.GetObject<PlayerPerks, PlayerPerks.State>(
-                    new PlayerPerks.State(campaignInfo.AvailablePerks)),
+                objectsPool.GetObject<PlayerPerksOld, PlayerPerksOld.State>(
+                    new PlayerPerksOld.State(campaignInfo.AvailablePerks)),
                 objectsPool.GetObject<CampaignResult, CampaignResult.State>(default)
             ));
 
@@ -65,9 +65,9 @@ namespace Kugushev.Scripts.Campaign
 
         protected override IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             ComposeStateMachine(
-                CampaignModel rootModel)
+                CampaignModelOld rootModelOld)
         {
-            if (rootModel.CampaignParameters.IsPlayground)
+            if (rootModelOld.CampaignParameters.IsPlayground)
             {
                 return GetPlaygroundStates();
             }
@@ -80,11 +80,11 @@ namespace Kugushev.Scripts.Campaign
                     missionSceneResultPipeline,
                     toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
 
-                var playgroundState = new PlaygroundState(rootModel, politicalActionsRepository);
-                var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
+                var playgroundState = new PlaygroundState(rootModelOld, politicalActionsRepository);
+                var missionState = new MissionState(rootModelOld, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
 
-                _finalizationState.Setup(rootModel.CampaignResult);
+                _finalizationState.Setup(rootModelOld.CampaignResult);
 
                 return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
                 {
@@ -118,15 +118,15 @@ namespace Kugushev.Scripts.Campaign
 
             IReadOnlyDictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>> GetCampaignStates()
             {
-                Asserting.NotNull(missionsGenerationService, missionSceneParametersPipeline, missionSceneResultPipeline,
-                    toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
+                // Asserting.NotNull(missionsGenerationService, missionSceneParametersPipeline, missionSceneResultPipeline,
+                //     toMissionTransition, toFinishTransition, onMissionExitTransition, campaignExitState);
 
-                var missionSelectionState = new MissionSelectionState(RootModel, missionsGenerationService);
+                var missionSelectionState = new MissionSelectionState(RootModel, null);
 
-                var missionState = new MissionState(rootModel, missionSceneParametersPipeline,
+                var missionState = new MissionState(rootModelOld, missionSceneParametersPipeline,
                     missionSceneResultPipeline);
 
-                _finalizationState.Setup(rootModel.CampaignResult);
+                _finalizationState.Setup(rootModelOld.CampaignResult);
                 //rootModel.CampaignParameters.IsStandalone ? null : campaignSceneResultPipeline);
 
                 return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>

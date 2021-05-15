@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Kugushev.Scripts.Campaign.MissionSelection.PresentationModels;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.Utils;
@@ -29,19 +30,19 @@ namespace Kugushev.Scripts.Campaign.Widgets
             }
         }
 
-        private void SetupMissions(MissionSelection model)
+        private void SetupMissions(Models.MissionSelection model)
         {
             Asserting.NotNull(missionCardPrefab, missionsPanel, missionsToggleGroup);
 
             foreach (var mission in model.Missions)
             {
                 var go = Instantiate(missionCardPrefab, missionsPanel);
-                var widget = go.GetComponent<MissionCardWidget>();
-                widget.SetUp(mission, model, missionsToggleGroup);
+                var widget = go.GetComponent<MissionCardPresentationModel>();
+                // widget.SetUp(mission, model, missionsToggleGroup);
             }
         }
 
-        private bool TryGetModel([NotNullWhen(true)] out MissionSelection? model)
+        private bool TryGetModel([NotNullWhen(true)] out Models.MissionSelection? model)
         {
             Asserting.NotNull(modelProvider);
 

@@ -15,6 +15,7 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
     {
         [SerializeField] private ToggleGroup toggleGroup = default!;
 
+        [Inject] private IIntrigues _model = default!;
         [Inject] private IntrigueCardPresentationModel.Factory _cardsFactory = default!;
 
         private readonly Dictionary<IntrigueCard, IntrigueCardPresentationModel> _intrigueCards =
@@ -22,7 +23,6 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
 
         private readonly ReactiveProperty<IntrigueCard?> _selectedIntrigueCard = new ReactiveProperty<IntrigueCard?>();
 
-        [Inject] private IIntrigues _model = default!;
 
         private void Start()
         {

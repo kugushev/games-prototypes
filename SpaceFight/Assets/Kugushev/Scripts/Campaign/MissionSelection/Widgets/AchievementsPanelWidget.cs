@@ -17,10 +17,10 @@ namespace Kugushev.Scripts.Campaign.Widgets
 
             if (modelProvider.TryGetModel(out var model))
             {
-                foreach (var achievement in model.PlayerPerks.CommonPerks)
+                foreach (var achievement in model.PlayerPerksOld.CommonPerks)
                     CreateAchievementCard(achievement);
 
-                foreach (var achievement in model.PlayerPerks.EpicPerks.Values)
+                foreach (var achievement in model.PlayerPerksOld.EpicPerks.Values)
                     CreateAchievementCard(achievement);
             }
         }

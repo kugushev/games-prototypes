@@ -5,7 +5,7 @@ namespace Kugushev.Scripts.App.Core.ContextManagement.Parameters
 {
     public readonly struct CampaignParameters
     {
-        public CampaignParameters(int seed, int? budget, ISet<PerkId> availablePerks, bool isPlayground,
+        public CampaignParameters(int seed, int budget, ISet<PerkId> availablePerks, bool isPlayground,
             bool isStandalone)
         {
             IsPlayground = isPlayground;
@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.App.Core.ContextManagement.Parameters
         public int Seed { get; }
         public bool IsPlayground { get; }
         public ISet<PerkId> AvailablePerks { get; }
-        public int? Budget { get; }
+        public int Budget { get; }
         public bool IsStandalone { get; }
     }
 }

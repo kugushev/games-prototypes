@@ -4,11 +4,11 @@ namespace Kugushev.Scripts.Common.Utils.FiniteStateMachine
 {
     public abstract class BaseState<TModel> : IUnparameterizedState
     {
-        protected readonly TModel Model;
+        protected readonly TModel ModelOld;
 
-        protected BaseState(TModel model)
+        protected BaseState(TModel modelOld)
         {
-            Model = model;
+            ModelOld = modelOld;
         }
 
         public virtual UniTask OnEnterAsync()

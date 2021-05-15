@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Campaign.ValueObjects;
+﻿using Kugushev.Scripts.Campaign.Core.ValueObjects;
+using Kugushev.Scripts.Campaign.ValueObjects;
 
 namespace Kugushev.Scripts.Campaign.Interfaces
 {

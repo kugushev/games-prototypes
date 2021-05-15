@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Utils;

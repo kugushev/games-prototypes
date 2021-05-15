@@ -1,18 +1,9 @@
-﻿using Kugushev.Scripts.Game.Politics.PresentationModels;
-using UnityEngine;
-using Zenject;
+﻿using Kugushev.Scripts.Common.Factories;
+using Kugushev.Scripts.Game.Politics.PresentationModels;
 
 namespace Kugushev.Scripts.Game.Politics.Factories
 {
-    public class IntrigueCardFactory : MonoBehaviour,
-        IFactory<IntrigueCardPresentationModel>
+    public class IntrigueCardFactory : InPlacePrefabFactory<IntrigueCardPresentationModel>
     {
-        [SerializeField] private GameObject prefab = default!;
-
-        [Inject] private DiContainer _container = default!;
-
-        IntrigueCardPresentationModel IFactory<IntrigueCardPresentationModel>.Create() =>
-            _container.InstantiatePrefabForComponent<IntrigueCardPresentationModel>(
-                prefab, transform);
     }
 }

@@ -713,9 +713,9 @@
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="Campaign.csproj">
-      <Project>{7aa78939-98e6-d360-4819-405b1aa1d00b}</Project>
-      <Name>Campaign</Name>
+    <ProjectReference Include="Campaign.Core.csproj">
+      <Project>{479bacfd-678a-d374-0cfd-3f42fecfd1de}</Project>
+      <Name>Campaign.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Game.Core.csproj">
       <Project>{98725a06-e454-4af8-fcc4-f33cefa747f9}</Project>

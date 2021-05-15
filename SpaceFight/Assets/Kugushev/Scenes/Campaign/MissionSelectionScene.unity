@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03077392, g: 0.0072748587, b: 0.0030195925, a: 1}
+  m_IndirectSpecularColor: {r: 0.032279246, g: 0.0071993745, b: 0.0028206892, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 379302235}
   - component: {fileID: 379302234}
   - component: {fileID: 379302236}
+  - component: {fileID: 379302237}
   m_Layer: 5
   m_Name: MissionsPanel
   m_TagString: Untagged
@@ -329,7 +330,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
+  m_AllowSwitchOff: 1
+--- !u!114 &379302237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379302232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b617591165a84f07a3583008b09733b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7627581102312593157, guid: e13d412b441cd3e489b386e36524af9f, type: 3}
 --- !u!1001 &457685895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1593284385321142668, guid: b7d55d11c153ba9408eb22eac4b92f1c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1593284385321142668, guid: b7d55d11c153ba9408eb22eac4b92f1c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -394,6 +408,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2060204069}
     m_Modifications:
+    - target: {fileID: 324358613, guid: 6db2a84e5b87f4644ac3ca1d14a5b84e, type: 3}
+      propertyPath: m_Name
+      value: PerksCaption
+      objectReference: {fileID: 0}
+    - target: {fileID: 324358615, guid: 6db2a84e5b87f4644ac3ca1d14a5b84e, type: 3}
+      propertyPath: m_text
+      value: 'Perks:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 352394850, guid: 6db2a84e5b87f4644ac3ca1d14a5b84e, type: 3}
+      propertyPath: m_Name
+      value: PerksPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 7514184719427375140, guid: 6db2a84e5b87f4644ac3ca1d14a5b84e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -488,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7514184719427375192, guid: 6db2a84e5b87f4644ac3ca1d14a5b84e, type: 3}
       propertyPath: m_Name
-      value: Achievements Canvas
+      value: Perks Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db2a84e5b87f4644ac3ca1d14a5b84e, type: 3}
@@ -856,7 +882,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452820863
 GameObject:
@@ -1154,7 +1180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661398613
 GameObject:
@@ -1290,6 +1316,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661398613}
   m_CullTransparentMesh: 1
+--- !u!1 &1666764460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666764461}
+  m_Layer: 0
+  m_Name: --- XR ---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666764461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666764460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1722327519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1489,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3814144271866130366, guid: 0c2d854342743d44aa7be294f0728eec, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3814144271866130366, guid: 0c2d854342743d44aa7be294f0728eec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1486,6 +1542,83 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3814144272359308333, guid: 0c2d854342743d44aa7be294f0728eec, type: 3}
   m_PrefabInstance: {fileID: 1772229550}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1842924738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1842924740}
+  - component: {fileID: 1842924739}
+  - component: {fileID: 1842924741}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1842924739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842924738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1842924741}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames:
+  - Campaign
+--- !u!4 &1842924740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842924738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1842924741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842924738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3307474589448893afacea30dc5c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1929203494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060204069}
-  - component: {fileID: 2060204070}
+  - component: {fileID: 2060204071}
   m_Layer: 0
   m_Name: MissionSelectionMenu
   m_TagString: Untagged
@@ -1651,9 +1784,9 @@ Transform:
   - {fileID: 37572293}
   - {fileID: 507199161}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2060204070
+--- !u!114 &2060204071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1662,14 +1795,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2060204068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50539287570f43cd98f14cd7b3bc9644, type: 3}
+  m_Script: {fileID: 11500000, guid: d01dafd93922409d999d92a5e795d80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
-  missionsPanel: {fileID: 379302233}
-  missionCardPrefab: {fileID: 7627581102312593157, guid: e13d412b441cd3e489b386e36524af9f, type: 3}
-  missionsToggleGroup: {fileID: 37572295}
+  finishCampaignButton: {fileID: 1661398615}
   startMissionButton: {fileID: 1929203496}
+  missionsToggleGroup: {fileID: 379302236}
   budgetText: {fileID: 634590338}
 --- !u!1 &2075256557
 GameObject:
@@ -1699,5 +1830,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

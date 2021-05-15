@@ -100,6 +100,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ImmediateTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IValuePipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ContextManagement\ExitState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Factories\InPlacePrefabFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Factories\ZenjectHelper.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -1,24 +1,27 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
+using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Interfaces;
-using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Repositories;
-using Kugushev.Scripts.Game.Core.Services;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Campaign.ProceduralGeneration
+namespace Kugushev.Scripts.Campaign.Core.Services
 {
-    [CreateAssetMenu(menuName = CampaignConstants.MenuPrefix + nameof(MissionsGenerator))]
-    public class MissionsGenerator : ScriptableObject
+    internal class MissionsGenerationService
     {
-        [SerializeField] private IntriguesRepository? politicalActionsRepository;
+        private readonly IntriguesRepository _intriguesRepository;
 
-        public void GenerateMissions(IMissionsSet setToFill)
+        public MissionsGenerationService(IntriguesRepository intriguesRepository) =>
+            _intriguesRepository = intriguesRepository;
+
+        public IEnumerable<MissionInfo> GenerateMissions()
         {
-            Asserting.NotNull(politicalActionsRepository);
+            var result = new List<MissionInfo>();
+
+            Asserting.NotNull(_intriguesRepository);
 
             int normalMissionsCount = CampaignConstants.NormalMissionsCount;
             int hardMissionsCount = CampaignConstants.HardMissionsCount;
@@ -32,19 +35,21 @@ namespace Kugushev.Scripts.Campaign.ProceduralGeneration
                 if (random < normalMissionsCount) // normal difficulty
                 {
                     normalMissionsCount--;
-                    setToFill.AddMission(CreateNormalMission(politicalActionsRepository));
+                    result.Add(CreateNormalMission(_intriguesRepository));
                 }
                 else if (random < normalMissionsCount + hardMissionsCount) // hard difficulty
                 {
                     hardMissionsCount--;
-                    setToFill.AddMission(CreateHardMission(politicalActionsRepository));
+                    result.Add(CreateHardMission(_intriguesRepository));
                 }
                 else // insane difficulty
                 {
                     insaneMissionsCount--;
-                    setToFill.AddMission(CreateInsaneMission(politicalActionsRepository));
+                    result.Add(CreateInsaneMission(_intriguesRepository));
                 }
             }
+
+            return result;
         }
 
         private MissionInfo CreateNormalMission(IntriguesRepository repository)
@@ -69,7 +74,7 @@ namespace Kugushev.Scripts.Campaign.ProceduralGeneration
                 case 2:
                     return new MissionInfo(seed, difficulty, politicalAction, enemyHomeProductionMultiplier: 2);
                 default:
-                    throw new Exception($"Invalid random range {range}");
+                    throw new SpaceFightException($"Invalid random range {range}");
             }
         }
 

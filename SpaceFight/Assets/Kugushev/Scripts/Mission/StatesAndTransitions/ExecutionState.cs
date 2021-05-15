@@ -23,15 +23,15 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            Model.Green.Commander.AssignFleet(Model.Green.Fleet, Model.Green.Faction);
-            Model.Red.Commander.AssignFleet(Model.Red.Fleet, Model.Red.Faction);
+            ModelOld.Green.Commander.AssignFleet(ModelOld.Green.Fleet, ModelOld.Green.Faction);
+            ModelOld.Red.Commander.AssignFleet(ModelOld.Red.Fleet, ModelOld.Red.Faction);
         }
 
         protected override void OnEnterAfterLoadScene() => _eventsCollector.Start();
 
         protected override void OnExitBeforeUnloadScene()
         {
-            var model = Model;
+            var model = ModelOld;
             if (!ToDebriefingTransition.IsMissionFinished(model.PlanetarySystem, model.Green, model.Red, out var winner)
             )
             {

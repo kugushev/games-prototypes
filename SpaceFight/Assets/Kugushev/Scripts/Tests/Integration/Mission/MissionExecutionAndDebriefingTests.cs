@@ -3,11 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Kugushev.Scripts.App.Core.Enums;
-using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Campaign.ValueObjects;
-using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Core.Enums;
-using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
@@ -123,18 +119,18 @@ namespace Kugushev.Scripts.Tests.Integration.Mission
 
             SingletonState.Instance.Reset();
 
-            var playerPerks = ScriptableObject.CreateInstance<ObjectsPool>()
-                .GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State(PerkIdHelper.AllPerks));
-
-            foreach (var (achievementId, level, achievementType) in achievements)
-            {
-                playerPerks.AddPerk(
-                    new PerkInfo(achievementId, level, achievementType, "", "", ""));
-            }
-
-            BaseMissionTestingManager.MissionInfo = new MissionParameters(
-                new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<Intrigue>()),
-                playerPerks);
+            // var playerPerks = ScriptableObject.CreateInstance<ObjectsPool>()
+            //     .GetObject<PlayerPerks, PlayerPerks.State>(new PlayerPerks.State(PerkIdHelper.AllPerks));
+            //
+            // foreach (var (achievementId, level, achievementType) in achievements)
+            // {
+            //     playerPerks.AddPerk(
+            //         new PerkInfo(achievementId, level, achievementType, "", "", ""));
+            // }
+            //
+            // BaseMissionTestingManager.MissionInfo = new MissionParameters(
+            //     new MissionInfo(seed, Difficulty.Normal, ScriptableObject.CreateInstance<Intrigue>()),
+            //     playerPerks);
 
             SceneManager.LoadScene("MissionExecutionAndDebriefingTestingManagementScene");
 

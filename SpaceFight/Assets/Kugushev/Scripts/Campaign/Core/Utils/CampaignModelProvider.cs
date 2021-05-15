@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Campaign.Utils
 {
     [CreateAssetMenu(menuName = CampaignConstants.MenuPrefix + nameof(CampaignModelProvider))]
-    internal class CampaignModelProvider: ModelProvider<CampaignModel>
+    public class CampaignModelProvider: ModelProvider<CampaignModelOld>
     {
         
     }

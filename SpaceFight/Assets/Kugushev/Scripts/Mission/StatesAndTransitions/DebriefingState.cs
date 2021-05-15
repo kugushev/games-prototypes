@@ -29,9 +29,9 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
             _objectsPool = objectsPool;
         }
 
-        protected override void AssertModel()
+        protected override void AssertModel() 
         {
-            if (Model.ExecutionResult == null)
+            if (ModelOld.ExecutionResult == null)
                 Alert();
         }
 
@@ -39,37 +39,37 @@ namespace Kugushev.Scripts.Mission.StatesAndTransitions
         {
             var debriefingInfo = _objectsPool.GetObject<DebriefingSummary, DebriefingSummary.State>(default);
 
-            if (Model.ExecutionResult?.Winner == Model.PlayerFaction)
+            if (ModelOld.ExecutionResult?.Winner == ModelOld.PlayerFaction)
             {
                 _achievementsBuffer.Clear();
-                _perksManager.FindAchieved(_achievementsBuffer, Model.PlayerFaction,
-                    Model.Parameters.PlayerPerks);
+                // _perksManager.FindAchieved(_achievementsBuffer, ModelOld.PlayerFaction,
+                //     ModelOld.Parameters.PlayerPerksOld);
 
                 debriefingInfo.Fill(_achievementsBuffer);
 
                 _achievementsBuffer.Clear();
             }
 
-            Model.DebriefingSummary = debriefingInfo;
+            ModelOld.DebriefingSummary = debriefingInfo;
         }
 
         protected override void OnExitBeforeUnloadScene()
         {
-            if (Model.ExecutionResult != null)
+            if (ModelOld.ExecutionResult != null)
             {
-                var playerWin = Model.ExecutionResult.Value.Winner switch
+                var playerWin = ModelOld.ExecutionResult.Value.Winner switch
                 {
                     Faction.Green => true,
                     Faction.Red => false,
-                    _ => throw new ArgumentOutOfRangeException(nameof(Model.ExecutionResult.Value.Winner),
-                        $"Unexpected winner {Model.ExecutionResult.Value.Winner}")
+                    _ => throw new ArgumentOutOfRangeException(nameof(ModelOld.ExecutionResult.Value.Winner),
+                        $"Unexpected winner {ModelOld.ExecutionResult.Value.Winner}")
                 };
 
-                if (Model.DebriefingSummary != null)
+                if (ModelOld.DebriefingSummary != null)
                 {
-                    var reward = Model.DebriefingSummary.SelectedAchievement;
+                    var reward = ModelOld.DebriefingSummary.SelectedAchievement;
 
-                    _missionSceneResultPipeline.Set(new MissionResult(playerWin, Model.Parameters.MissionInfo, reward));
+                    _missionSceneResultPipeline.Set(new MissionResult(playerWin, ModelOld.Parameters.MissionInfo, reward));
                 }
                 else
                     Debug.LogError("Reward is null");

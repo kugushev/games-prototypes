@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Mission.AI.Tactical;
@@ -18,7 +17,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
         [Header(nameof(MissionExecutionAndDebriefingTestingManager))] [SerializeField]
         private PerksManager? achievementsManager;
 
-        [SerializeField] private MissionSceneResultPipeline? missionSceneResultPipeline;
+        // [SerializeField] private MissionSceneResultPipeline? missionSceneResultPipeline;
         [SerializeField] private SuicideAI? suicideAI;
         [SerializeField] private SimpleAI? aggressiveAI;
         [SerializeField] private SimpleAI? normalAIGreen;
@@ -31,8 +30,8 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
             MissionModel rootModel)
         {
             var executionState = new ExecutionState(rootModel, eventsCollector!);
-            var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline!, achievementsManager!,
-                objectsPool!);
+            // var debriefingState = new DebriefingState(rootModel, missionSceneResultPipeline!, achievementsManager!,
+            //     objectsPool!);
 
             return new Dictionary<IUnparameterizedState, IReadOnlyList<TransitionRecordOld>>
             {
@@ -48,12 +47,12 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
                         new TransitionRecordOld(new ToDebriefingTransition(rootModel), SingletonState.Instance)
                     }
                 },
-                {
-                    SingletonState.Instance, new[]
-                    {
-                        new TransitionRecordOld(ImmediateTransition.Instance, debriefingState)
-                    }
-                }
+                // {
+                //     SingletonState.Instance, new[]
+                //     {
+                //         new TransitionRecordOld(ImmediateTransition.Instance, debriefingState)
+                //     }
+                // }
             };
         }
 

@@ -16,28 +16,7 @@ namespace Kugushev.Scripts.Game.Core
 {
     public class GameInstaller : MonoInstaller
     {
-        // use for interaction to the old architecture
         [SerializeField] private PoliticianCharactersRepository politicianCharactersRepository = default!;
-
-        public override void InstallBindings()
-        {
-            Container.BindInterfacesAndSelfTo<GameDataInitializer>().AsSingle();
-
-            Container.Bind<Parliament>().AsSingle();
-
-            Container.Bind<Intrigues>().AsSingle();
-            Container.Bind<IIntrigues>().To<Intrigues>().FromResolve();
-
-            InstallContextManagement();
-
-            Container.InstallPoolable<Intrigue, IntrigueCard, IntrigueCard.Factory>();
-
-            Container.Bind<ParliamentGenerationService>().AsSingle();
-            Container.Bind<PoliticianCharactersRepository>().FromScriptableObject(politicianCharactersRepository)
-                .AsSingle();
-
-            InstallSignals();
-        }
 
         private void InstallContextManagement()
         {
@@ -47,8 +26,35 @@ namespace Kugushev.Scripts.Game.Core
             Container.Bind<RevolutionState>().AsSingle();
 
             Container.InstallSignaledTransition<CampaignParameters>();
+            Container.InstallExitState<CampaignExitParameters>();
             Container.InstallSignaledTransition<RevolutionParameters>();
             Container.InstallSignaledTransition<GameExitParameters>();
+        }
+
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<GameDataInitializer>().AsSingle();
+
+            InstallModels();
+            InstallContextManagement();
+            InstallServices();
+            InstallSignals();
+        }
+
+        private void InstallModels()
+        {
+            Container.Bind<Parliament>().AsSingle();
+            Container.Bind<Intrigues>().AsSingle();
+            Container.Bind<IIntrigues>().To<Intrigues>().FromResolve();
+
+            Container.InstallPoolable<Intrigue, IntrigueCard, IntrigueCard.Factory>();
+        }
+
+        private void InstallServices()
+        {
+            Container.Bind<ParliamentGenerationService>().AsSingle();
+            Container.Bind<PoliticianCharactersRepository>().FromScriptableObject(politicianCharactersRepository)
+                .AsSingle();
         }
 
         private void InstallSignals()
@@ -63,9 +69,6 @@ namespace Kugushev.Scripts.Game.Core
                         signal.ExecuteApply();
                         intrigues.HandleCardApplied(signal.Card);
                     });
-
-            Container.InstallTransitiveSignal<CampaignParameters>();
-            Container.InstallTransitiveSignal<RevolutionParameters>();
         }
     }
 }

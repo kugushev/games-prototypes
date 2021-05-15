@@ -1,4 +1,6 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
+using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
+using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.Utils;
 using Kugushev.Scripts.Campaign.ValueObjects;
@@ -7,14 +9,14 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
-    internal class MissionState : BaseSceneLoadingState<CampaignModel>
+    internal class MissionState : BaseSceneLoadingState<CampaignModelOld>
     {
         private readonly MissionSceneParametersPipeline _missionSceneParametersPipeline;
         private readonly MissionSceneResultPipeline _missionSceneResultPipeline;
 
-        public MissionState(CampaignModel model, MissionSceneParametersPipeline missionSceneParametersPipeline,
+        public MissionState(CampaignModelOld modelOld, MissionSceneParametersPipeline missionSceneParametersPipeline,
             MissionSceneResultPipeline missionSceneResultPipeline)
-            : base(model, UnityConstants.MissionManagementScene, false)
+            : base(modelOld, UnityConstants.MissionManagementScene, false)
         {
             _missionSceneParametersPipeline = missionSceneParametersPipeline;
             _missionSceneResultPipeline = missionSceneResultPipeline;
@@ -22,16 +24,16 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         protected override void AssertModel()
         {
-            if (Model.NextMission == null)
+            if (ModelOld.NextMission == null)
                 Debug.LogError("Next Mission has not specified");
         }
 
         protected override void OnEnterBeforeLoadScene()
         {
-            Model.LastMissionResult = null;
+            ModelOld.LastMissionResult = null;
 
-            var missionInfo = Model.NextMission ?? new MissionInfo();
-            var campaignInfo = new MissionParameters(missionInfo, Model.PlayerPerks);
+            var missionInfo = ModelOld.NextMission;
+            var campaignInfo = new MissionParameters();
             _missionSceneParametersPipeline.Set(campaignInfo);
         }
 
@@ -39,15 +41,15 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
         {
             var result = _missionSceneResultPipeline.Get();
 
-            Model.LastMissionResult = result;
+            ModelOld.LastMissionResult = result;
 
             if (result.ChosenPerk is { } reward)
-                Model.PlayerPerks.AddPerk(reward);
+                ModelOld.PlayerPerksOld.AddPerk(reward);
 
             if (result.PlayerWins)
-                Model.CampaignResult.AddReward(result.MissionInfo.Reward);
+                ModelOld.CampaignResult.AddReward(result.MissionInfo.Reward);
 
-            Model.NextMission = null;
+            ModelOld.NextMission = null;
         }
     }
 }

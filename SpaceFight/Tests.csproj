@@ -48,13 +48,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\Setup\MissionExecutionAndDebriefingTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Game\Setup\TestContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Mission\MissionExecutionTests.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\Abstractions\BaseCampaignTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\PerksHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Utils\TestData.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Seeds.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Game\Setup\PoliticsTestingInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\Setup\MissionSelectionTestingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Campaign\MissionSelectionTests.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Integration\Utils\SingletonTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Tests\Unit\Stubs\FighterStub.cs" />
@@ -688,10 +686,6 @@
     <ProjectReference Include="MissionPresentation.csproj">
       <Project>{dd0927c7-5ae9-f95c-5de2-76addd5bf83b}</Project>
       <Name>MissionPresentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="Campaign.csproj">
-      <Project>{7aa78939-98e6-d360-4819-405b1aa1d00b}</Project>
-      <Name>Campaign</Name>
     </ProjectReference>
     <ProjectReference Include="App.Core.csproj">
       <Project>{971e66c2-46e5-1b51-31f5-29d08f82ca22}</Project>

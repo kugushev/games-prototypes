@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.Utils.Pooling;
@@ -35,10 +36,10 @@ namespace Kugushev.Scripts.Mission.Services
             MissionParameters parameters)
         {
             Asserting.NotNull(achievementsManager, objectsPool);
-            
+
             _achievementBuffer.Clear();
 
-            achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerPerks);
+            // achievementsManager.FindMatched(_achievementBuffer, parameters.PlayerPerksOld);
 
             var fleetPerksBuilder = CreateDefaultFleetPerksState(objectsPool);
             var planetarySystemPerksBuilder = new PlanetarySystemPerks.State(playerFaction,

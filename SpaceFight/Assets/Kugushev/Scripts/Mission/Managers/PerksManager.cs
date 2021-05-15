@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.Mission.Managers
         [SerializeField] private MissionModelProvider? modelProvider;
 
         public void FindAchieved(List<BasePerk> listToFill, Faction playerFaction,
-            PlayerPerks playerPerks)
+            PlayerPerksOld playerPerksOld)
         {
             Asserting.NotNull(modelProvider, perks, eventsCollector);
 
@@ -30,7 +30,7 @@ namespace Kugushev.Scripts.Mission.Managers
 
             foreach (var achievement in perks)
             {
-                if (!IsAllowedToCheck(playerPerks, achievement))
+                if (!IsAllowedToCheck(playerPerksOld, achievement))
                     continue;
 
 
@@ -39,19 +39,19 @@ namespace Kugushev.Scripts.Mission.Managers
             }
         }
 
-        private static bool IsAllowedToCheck(PlayerPerks playerPerks, BasePerk perk)
+        private static bool IsAllowedToCheck(PlayerPerksOld playerPerksOld, BasePerk perk)
         {
             switch (perk.Info.Type)
             {
                 case PerkType.Common:
                     return true;
                 case PerkType.Epic:
-                    if (!playerPerks.AvailablePerks.Contains(perk.Info.Id))
+                    if (!playerPerksOld.AvailablePerks.Contains(perk.Info.Id))
                         return false;
 
                     if (perk.Info.Level != null)
                     {
-                        var expectedLevel = GetExpectedLevel(playerPerks, perk);
+                        var expectedLevel = GetExpectedLevel(playerPerksOld, perk);
                         return perk.Info.Level == expectedLevel;
                     }
                     else
@@ -67,9 +67,9 @@ namespace Kugushev.Scripts.Mission.Managers
             }
         }
 
-        private static int GetExpectedLevel(PlayerPerks playerPerks, BasePerk perk)
+        private static int GetExpectedLevel(PlayerPerksOld playerPerksOld, BasePerk perk)
         {
-            if (playerPerks.EpicPerks.TryGetValue(perk.Info.Id, out var achieved))
+            if (playerPerksOld.EpicPerks.TryGetValue(perk.Info.Id, out var achieved))
             {
                 if (achieved.Level == null)
                 {
@@ -83,20 +83,20 @@ namespace Kugushev.Scripts.Mission.Managers
             return 1;
         }
 
-        public void FindMatched(List<BasePerk> listToFill, PlayerPerks playerPerks)
+        public void FindMatched(List<BasePerk> listToFill, PlayerPerksOld playerPerksOld)
         {
             Asserting.NotNull(perks);
 
             foreach (var achievement in perks)
             {
-                if (playerPerks.EpicPerks.TryGetValue(achievement.Info.Id, out var epicAchievement)
+                if (playerPerksOld.EpicPerks.TryGetValue(achievement.Info.Id, out var epicAchievement)
                     && epicAchievement == achievement.Info)
                 {
                     listToFill.Add(achievement);
                     continue;
                 }
 
-                foreach (var commonAchievement in playerPerks.CommonPerks)
+                foreach (var commonAchievement in playerPerksOld.CommonPerks)
                     if (commonAchievement == achievement.Info)
                         listToFill.Add(achievement);
             }

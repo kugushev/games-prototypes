@@ -123,59 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &5628787
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5628788}
-  - component: {fileID: 5628789}
-  m_Layer: 0
-  m_Name: CampaignManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5628788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5628787}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5628789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5628787}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 553071ebf798ea845a509800203798e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsPool: {fileID: 11400000, guid: 5ee3926c578c83d45a196549273f1bec, type: 2}
-  modelProvider: {fileID: 11400000, guid: c81316d1ccfcf7f42b19f5b5edae3b9a, type: 2}
-  missionsGenerationService: {fileID: 11400000, guid: 6765412051dbf524baabd4666761576a, type: 2}
-  politicalActionsRepository: {fileID: 11400000, guid: f8ac77f1181847f48a9b5ca661601613, type: 2}
-  missionSceneParametersPipeline: {fileID: 11400000, guid: d799b5924813f52469dfcf67ead51848, type: 2}
-  missionSceneResultPipeline: {fileID: 11400000, guid: 54996aacfcd26644ab31e4ee7f10a718, type: 2}
-  campaignExitState: {fileID: 11400000, guid: bdd88f5473a63b447bb26df933ea7239, type: 2}
-  toFinishTransition: {fileID: 11400000, guid: 6464fd1c81d2b5b49b8cab8a3e568853, type: 2}
-  onMissionExitTransition: {fileID: 11400000, guid: 00af9102f2df3804daf3508b4486ebb1, type: 2}
-  toMissionTransition: {fileID: 11400000, guid: 4b9f5fc21be9d4443bd3f5e3f861d94b, type: 2}
 --- !u!1 &1172414600
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2006502108
 GameObject:
@@ -249,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40676a1b83944a868d4a79758a7cc4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intriguesRepository: {fileID: 11400000, guid: f8ac77f1181847f48a9b5ca661601613, type: 2}
 --- !u!114 &2006502110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,5 +243,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

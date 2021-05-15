@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Kugushev.Scripts.App.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Campaign.Constants;
+using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Game.Core.ValueObjects;
@@ -9,12 +10,12 @@ using Kugushev.Scripts.Game.Core.ValueObjects;
 namespace Kugushev.Scripts.Campaign.Models
 {
     [Serializable]
-    internal class CampaignModel : PoolableOld<CampaignModel.State>
+    public class CampaignModelOld : PoolableOld<CampaignModelOld.State>
     {
         public struct State
         {
             public CampaignParameters CampaignParameters;
-            public readonly PlayerPerks PlayerPerks;
+            public readonly PlayerPerksOld PlayerPerksOld;
             public readonly MissionSelection MissionSelection;
             public readonly Playground Playground;
             public MissionInfo? NextMission;
@@ -24,14 +25,14 @@ namespace Kugushev.Scripts.Campaign.Models
             public CampaignResult CampaignResult;
 
             public State(CampaignParameters campaignParameters, MissionSelection missionSelection, Playground playground,
-                PlayerPerks playerPerks, CampaignResult campaignResult)
+                PlayerPerksOld playerPerksOld, CampaignResult campaignResult)
             {
                 CampaignParameters = campaignParameters;
                 MissionSelection = missionSelection;
                 Playground = playground;
                 NextMission = null;
                 LastMissionResult = null;
-                PlayerPerks = playerPerks;
+                PlayerPerksOld = playerPerksOld;
                 CampaignResult = campaignResult;
             }
         }
@@ -39,7 +40,7 @@ namespace Kugushev.Scripts.Campaign.Models
         private readonly List<Intrigue> rewardedPoliticalActions =
             new List<Intrigue>(CampaignConstants.MissionsCount);
 
-        public CampaignModel(ObjectsPool objectsPool) : base(objectsPool)
+        public CampaignModelOld(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
@@ -57,7 +58,7 @@ namespace Kugushev.Scripts.Campaign.Models
             internal set => ObjectState.LastMissionResult = value;
         }
 
-        public PlayerPerks PlayerPerks => ObjectState.PlayerPerks;
+        public PlayerPerksOld PlayerPerksOld => ObjectState.PlayerPerksOld;
         public MissionSelection MissionSelection => ObjectState.MissionSelection;
         public Playground Playground => ObjectState.Playground;
         public CampaignResult CampaignResult => ObjectState.CampaignResult;
@@ -66,7 +67,7 @@ namespace Kugushev.Scripts.Campaign.Models
         {
             state.MissionSelection.Dispose();
             state.Playground.Dispose();
-            state.PlayerPerks.Dispose();
+            state.PlayerPerksOld.Dispose();
             rewardedPoliticalActions.Clear();
         }
 

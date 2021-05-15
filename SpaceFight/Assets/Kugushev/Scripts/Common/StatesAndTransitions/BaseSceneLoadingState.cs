@@ -10,7 +10,7 @@ namespace Kugushev.Scripts.Common.StatesAndTransitions
         private readonly string _sceneName;
         private readonly bool _setActive;
 
-        protected BaseSceneLoadingState(TModel model, string sceneName, bool setActive) : base(model)
+        protected BaseSceneLoadingState(TModel modelOld, string sceneName, bool setActive) : base(modelOld)
         {
             _sceneName = sceneName;
             _setActive = setActive;

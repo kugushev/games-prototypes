@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
+using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
 using UnityEngine;

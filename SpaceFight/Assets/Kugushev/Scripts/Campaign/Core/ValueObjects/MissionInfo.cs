@@ -1,9 +1,10 @@
-﻿using Kugushev.Scripts.Game.Core.Enums;
+﻿using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 
-namespace Kugushev.Scripts.Campaign.ValueObjects
+namespace Kugushev.Scripts.Campaign.Core.ValueObjects
 {
-    public readonly struct MissionInfo
+    public class MissionInfo
     {
         public MissionInfo(int seed,
             Difficulty difficulty,
@@ -36,40 +37,6 @@ namespace Kugushev.Scripts.Campaign.ValueObjects
         public int? PlayerStartPowerMultiplier { get; }
         public int? EnemyStartPowerMultiplier { get; }
 
-        #region Equality
-
-        public bool Equals(MissionInfo other)
-        {
-            return Seed == other.Seed && Difficulty == other.Difficulty &&
-                   PlayerHomeProductionMultiplier == other.PlayerHomeProductionMultiplier &&
-                   EnemyHomeProductionMultiplier == other.EnemyHomeProductionMultiplier &&
-                   PlayerExtraPlanets == other.PlayerExtraPlanets && EnemyExtraPlanets == other.EnemyExtraPlanets &&
-                   PlayerStartPowerMultiplier == other.PlayerStartPowerMultiplier &&
-                   EnemyStartPowerMultiplier == other.EnemyStartPowerMultiplier;
-        }
-
-        public override bool Equals(object obj) => obj is MissionInfo other && Equals(other);
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hashCode = Seed;
-                hashCode = (hashCode * 397) ^ (int) Difficulty;
-                hashCode = (hashCode * 397) ^ PlayerHomeProductionMultiplier.GetHashCode();
-                hashCode = (hashCode * 397) ^ EnemyHomeProductionMultiplier.GetHashCode();
-                hashCode = (hashCode * 397) ^ PlayerExtraPlanets.GetHashCode();
-                hashCode = (hashCode * 397) ^ EnemyExtraPlanets.GetHashCode();
-                hashCode = (hashCode * 397) ^ PlayerStartPowerMultiplier.GetHashCode();
-                hashCode = (hashCode * 397) ^ EnemyStartPowerMultiplier.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        public static bool operator ==(MissionInfo left, MissionInfo right) => left.Equals(right);
-
-        public static bool operator !=(MissionInfo left, MissionInfo right) => !left.Equals(right);
-
-        #endregion
+        public override string ToString() => StringBag.FromInt(Seed);
     }
 }

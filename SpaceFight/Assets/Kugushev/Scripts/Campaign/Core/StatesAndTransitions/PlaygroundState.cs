@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
+using Kugushev.Scripts.Campaign.Core.ValueObjects;
 using Kugushev.Scripts.Campaign.Models;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.StatesAndTransitions;
@@ -9,12 +10,12 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
-    internal class PlaygroundState : BaseSceneLoadingState<CampaignModel>
+    internal class PlaygroundState : BaseSceneLoadingState<CampaignModelOld>
     {
         private readonly IntriguesRepository _intriguesRepository;
 
-        public PlaygroundState(CampaignModel model, IntriguesRepository intriguesRepository)
-            : base(model, UnityConstants.PlaygroundScene, true)
+        public PlaygroundState(CampaignModelOld modelOld, IntriguesRepository intriguesRepository)
+            : base(modelOld, UnityConstants.PlaygroundScene, true)
         {
             _intriguesRepository = intriguesRepository;
         }
@@ -25,19 +26,19 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            Model.NextMission = null;
-            Model.Playground.Seed = Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
-            if (Model.LastMissionResult != null)
-                if (Model.LastMissionResult.Value.PlayerWins)
-                    Model.Playground.PlayerScore++;
+            ModelOld.NextMission = null;
+            ModelOld.Playground.Seed = Random.Range(CampaignConstants.MissionSeedMin, CampaignConstants.MissionSeedMax);
+            if (ModelOld.LastMissionResult != null)
+                if (ModelOld.LastMissionResult.Value.PlayerWins)
+                    ModelOld.Playground.PlayerScore++;
                 else
-                    Model.Playground.AIScore++;
+                    ModelOld.Playground.AIScore++;
         }
 
         protected override void OnExitBeforeUnloadScene()
         {
-            var playground = Model.Playground;
-            Model.NextMission = new MissionInfo(
+            var playground = ModelOld.Playground;
+            ModelOld.NextMission = new MissionInfo(
                 seed: playground.Seed,
                 difficulty: Difficulty.Normal,
                 reward: _intriguesRepository.Stub,

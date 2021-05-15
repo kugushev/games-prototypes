@@ -1,18 +1,17 @@
 ﻿using Kugushev.Scripts.Campaign.Constants;
 using Kugushev.Scripts.Campaign.Models;
-using Kugushev.Scripts.Campaign.ProceduralGeneration;
 using Kugushev.Scripts.Common.StatesAndTransitions;
 
 namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 {
-    internal class MissionSelectionState : BaseSceneLoadingState<CampaignModel>
+    internal class MissionSelectionState : BaseSceneLoadingState<CampaignModelOld>
     {
-        private readonly MissionsGenerator _missionsGenerator;
+        // private readonly MissionsGenerator _missionsGenerator;
 
-        public MissionSelectionState(CampaignModel model, MissionsGenerator missionsGenerationService)
-            : base(model, UnityConstants.MissionSelectionScene, true)
+        public MissionSelectionState(CampaignModelOld modelOld, object missionsGenerationService)
+            : base(modelOld, UnityConstants.MissionSelectionScene, true)
         {
-            _missionsGenerator = missionsGenerationService;
+            // _missionsGenerator = missionsGenerationService;
         }
 
         protected override void AssertModel()
@@ -21,21 +20,21 @@ namespace Kugushev.Scripts.Campaign.StatesAndTransitions
 
         protected override void OnEnterBeforeLoadScene()
         {
-            var modelMissionSelection = Model.MissionSelection;
+            var modelMissionSelection = ModelOld.MissionSelection;
 
-            Model.NextMission = null;
-            if (modelMissionSelection.Missions.Count == 0)
-                _missionsGenerator.GenerateMissions(modelMissionSelection);
+            ModelOld.NextMission = null;
+            // if (modelMissionSelection.Missions.Count == 0)
+            //     _missionsGenerator.GenerateMissions(modelMissionSelection);
 
-            if (Model.LastMissionResult is {PlayerWins: true} lastMissionResult)
+            if (ModelOld.LastMissionResult is {PlayerWins: true} lastMissionResult)
                 modelMissionSelection.OnMissionFinished(lastMissionResult.MissionInfo);
         }
 
         protected override void OnExitBeforeUnloadScene()
         {
-            Model.NextMission = Model.MissionSelection.SelectedMission;
-            if (Model.NextMission != null)
-                Model.MissionSelection.OnMissionSelected();
+            ModelOld.NextMission = ModelOld.MissionSelection.SelectedMission;
+            if (ModelOld.NextMission != null)
+                ModelOld.MissionSelection.OnMissionSelected();
         }
     }
 }
