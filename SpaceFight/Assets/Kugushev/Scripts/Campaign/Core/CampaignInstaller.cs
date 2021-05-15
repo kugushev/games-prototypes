@@ -40,6 +40,7 @@ namespace Kugushev.Scripts.Campaign.Core
 
             Container.InstallSignaledTransition<MissionParameters>();
             Container.InstallSignaledTransition<CampaignExitParameters>();
+            Container.InstallSignaledTransition<MissionExitParameters>();
         }
 
         private void InstallServices()
