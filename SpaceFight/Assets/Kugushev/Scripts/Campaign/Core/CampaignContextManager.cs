@@ -13,6 +13,7 @@ namespace Kugushev.Scripts.Campaign.Core
         [Inject] private CampaignDataInitializer _onDataInitialized = default!;
         [Inject] private MissionSelectionState _missionSelection = default!;
         [Inject] private IParameterizedTransition<MissionParameters> _onStartMission = default!;
+        [Inject] private IParameterizedTransition<MissionExitParameters> _onExitMission = default!;
         [Inject] private MissionState _mission = default!;
         [Inject] private IParameterizedTransition<CampaignExitParameters> _onExit = default!;
         [Inject] private ExitState<CampaignExitParameters> _exit = default!;
@@ -31,13 +32,13 @@ namespace Kugushev.Scripts.Campaign.Core
                     _onStartMission.TransitTo(_mission),
                     _onExit.TransitTo(_exit)
                 }
+            },
+            {
+                _mission, new[]
+                {
+                    _onExitMission.TransitTo(_missionSelection)
+                }
             }
-            // {
-            // missionState, new[]
-            // {
-            //     new TransitionRecordOld(onMissionExitTransition, missionSelectionState)
-            // }
-            // },
         };
     }
 }

@@ -59,9 +59,6 @@ namespace Kugushev.Scripts.Game.Core
 
         private void InstallSignals()
         {
-            Container.InstallSignalAndBind<Intrigue, ObtainIntrigueCard, ObtainIntrigueCard.Factory, Intrigues>(
-                (intrigues, signal) => intrigues.ObtainCard(signal.CreateCard()));
-
             Container.InstallSignalAndBind
                 <(IntrigueCard, IPolitician), ApplyIntrigueCard, ApplyIntrigueCard.Factory, Intrigues>(
                     (intrigues, signal) =>

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Constants;
+using Kugushev.Scripts.Campaign.Core.ContextManagement.Parameters;
 using Kugushev.Scripts.Campaign.ValueObjects;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Core.Signals;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
@@ -18,15 +20,16 @@ namespace Kugushev.Scripts.Campaign.Core.Models
 
     internal class CampaignMissions : ICampaignMissions
     {
-        private readonly SignalBus _signalBus;
-        private readonly ObtainIntrigueCard.Factory _obtainIntrigueSignalFactory;
+        private readonly IIntrigues _intrigues;
+        private readonly IPlayerPerks _playerPerks;
         private readonly ReactiveProperty<int> _budget = new ReactiveProperty<int>();
         private ReactiveCollection<MissionInfo>? _missions;
 
-        public CampaignMissions(SignalBus signalBus, ObtainIntrigueCard.Factory obtainIntrigueSignalFactory)
+        public CampaignMissions(IIntrigues intrigues,
+            IPlayerPerks playerPerks)
         {
-            _signalBus = signalBus;
-            _obtainIntrigueSignalFactory = obtainIntrigueSignalFactory;
+            _intrigues = intrigues;
+            _playerPerks = playerPerks;
         }
 
         internal void Init(IEnumerable<MissionInfo> missions, int startBudget)
@@ -50,14 +53,16 @@ namespace Kugushev.Scripts.Campaign.Core.Models
                 Debug.LogError("Budget is less than 0");
         }
 
-        internal void OnMissionFinished(MissionInfo missionInfo, bool playerWins)
+        internal void OnMissionFinished(MissionExitParameters parameters)
         {
-            if (playerWins)
+            if (parameters.PlayerWins)
             {
-                _missions?.Remove(missionInfo);
+                _missions?.Remove(parameters.MissionInfo);
 
-                var signal = _obtainIntrigueSignalFactory.Create(missionInfo.Reward);
-                _signalBus.Fire(signal);
+                if (parameters.ChosenPerk != null)
+                    _playerPerks.ObtainPerk(parameters.ChosenPerk.Value);
+
+                _intrigues.ObtainCard(parameters.MissionInfo.Reward);
             }
         }
     }

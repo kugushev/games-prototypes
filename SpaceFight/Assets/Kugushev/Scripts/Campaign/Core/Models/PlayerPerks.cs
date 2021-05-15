@@ -12,6 +12,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models
         ISet<PerkId> AvailablePerks { get; }
         IReadOnlyList<PerkInfo> CommonPerks { get; }
         IReadOnlyDictionary<PerkId, PerkInfo> EpicPerks { get; }
+        internal void ObtainPerk(PerkInfo perkInfo);
     }
 
     internal class PlayerPerks : IPlayerPerks
@@ -34,7 +35,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models
         public IReadOnlyList<PerkInfo> CommonPerks => _commonPerks;
         public IReadOnlyDictionary<PerkId, PerkInfo> EpicPerks => _epicPerks;
 
-        internal void ObtainPerk(PerkInfo perkInfo)
+        void IPlayerPerks.ObtainPerk(PerkInfo perkInfo)
         {
             switch (perkInfo.Type)
             {

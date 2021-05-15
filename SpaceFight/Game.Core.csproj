@@ -71,7 +71,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Parliament.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\GameDataInitializedTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\CampaignResult.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Signals\ObtainIntrigueCard.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Repositories\PoliticianCharactersRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\Parameters\CampaignExitParameters.cs" />

@@ -10,7 +10,7 @@ namespace Kugushev.Scripts.Tests.Integration.Game.Tools
         [SerializeField] private Intrigue[] intrigues = default!;
 
         [Inject] private SignalBus _signalBus = default!;
-        [Inject] private ObtainIntrigueCard.Factory _obtainIntrigueCardFactory = default!;
+        // [Inject] private ObtainIntrigueCard.Factory _obtainIntrigueCardFactory = default!;
 
         private void Start()
         {
@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.Tests.Integration.Game.Tools
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    _signalBus.Fire(_obtainIntrigueCardFactory.Create(intrigue));
+                    // _signalBus.Fire(_obtainIntrigueCardFactory.Create(intrigue));
                 }
             }
         }
