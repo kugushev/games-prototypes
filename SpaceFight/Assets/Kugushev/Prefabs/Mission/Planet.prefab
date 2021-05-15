@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 5842988920487544333}
   - component: {fileID: 5842988920487544332}
   - component: {fileID: 5842988920487544331}
-  - component: {fileID: 5842988920487544330}
-  - component: {fileID: 5842988920487544334}
+  - component: {fileID: 2359819806973194989}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -98,7 +97,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5842988920487544330
+--- !u!114 &2359819806973194989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,19 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5842988920487544328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9d79bfcf0204e51bf99ce376ba442b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5842988920487544334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5842988920487544328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 065ffa8ca916465b93e64e251853cabd, type: 3}
+  m_Script: {fileID: 11500000, guid: e914ce684e1a4a8093d266eb6016fec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   armyCaption: {fileID: 7050744411038542}

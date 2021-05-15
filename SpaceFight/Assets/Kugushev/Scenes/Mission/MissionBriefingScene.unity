@@ -763,20 +763,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1007257092}
-        m_TargetAssemblyTypeName: Kugushev.Scripts.Mission.Widgets.MissionBriefingWidget,
-          Mission
-        m_MethodName: AdjustTime
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &439198564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,7 +1174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5492965f3f7f46318ded413fd76e59c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionManager: {fileID: 11400000, guid: 3f4accfc63087fd49a5fc87f32e290b1, type: 2}
+  slider: {fileID: 411200947}
+  startMissionButton: {fileID: 266429515}
 --- !u!1 &1376552087
 GameObject:
   m_ObjectHideFlags: 0

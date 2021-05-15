@@ -161,7 +161,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
         {
             if (other.CompareTag("Planet"))
             {
-                var ppm = other.GetComponent<PlanetPresentationModel>();
+                var ppm = other.GetComponent<PlanetPresentationModelOld>();
                 if (!ReferenceEquals(ppm, null))
                 {
                     var planet = ppm.Planet;

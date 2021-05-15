@@ -96,7 +96,7 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
         {
             if (other.CompareTag("Planet"))
             {
-                var ppm = other.GetComponent<PlanetPresentationModel>();
+                var ppm = other.GetComponent<PlanetPresentationModelOld>();
                 if (!ReferenceEquals(ppm, null))
                 {
                     var planet = ppm.Planet;
@@ -109,7 +109,7 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
         {
             if (other.CompareTag("Planet"))
             {
-                var ppm = other.GetComponent<PlanetPresentationModel>();
+                var ppm = other.GetComponent<PlanetPresentationModelOld>();
                 if (!ReferenceEquals(ppm, null))
                 {
                     onHoverPlanetCancel?.Invoke(this, ppm.Planet);

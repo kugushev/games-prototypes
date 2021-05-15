@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.MissionPresentation.PresentationModels
 {
-    public class PlanetPresentationModel : BasePresentationModel
+    public class PlanetPresentationModelOld : BasePresentationModel
     {
         private Planet? _planet;
         protected override IModel? Model => _planet;

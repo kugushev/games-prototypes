@@ -1,44 +1,39 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Mission.Models;
 
-namespace Kugushev.Scripts.Mission.Models
+namespace Kugushev.Scripts.Mission.Core.Models
 {
-    public class PlanetarySystem : PoolableOld<PlanetarySystem.State>
+    public interface IPlanetarySystem
     {
-        public readonly struct State
-        {
-            public State(Sun sun)
-            {
-                Sun = sun;
-            }
+        Sun Sun { get; }
+        IReadOnlyList<Planet> Planets { get; }
+        void SetDayOfYear(int dayOfYear);
+    }
 
-            public readonly Sun Sun;
+    public class PlanetarySystem : IPlanetarySystem
+    {
+        private Sun? _sun;
+        private List<Planet>? _planets;
+
+        internal void Init(Sun sun, List<Planet> planets)
+        {
+            if (_sun != null || _planets != null)
+                throw new SpaceFightException("Planetary System is already initialized");
+
+            _sun = sun;
+            _planets = planets;
         }
 
-        private readonly List<Planet> _planets = new List<Planet>();
+        public Sun Sun => _sun ?? throw new SpaceFightException("Planetary System is not initialized");
 
-        public PlanetarySystem(ObjectsPool objectsPool) : base(objectsPool)
-        {
-        }
-
-        public IReadOnlyList<Planet> Planets => _planets;
-        public void AddPlanet(Planet planet) => _planets.Add(planet);
-        public ref readonly Sun GetSun() => ref ObjectState.Sun;
-
-        protected override void OnClear(State state)
-        {
-            foreach (var planet in _planets)
-                planet.Dispose();
-
-            _planets.Clear();
-        }
-
-        protected override void OnRestore(State state) => _planets.Clear();
+        public IReadOnlyList<Planet> Planets =>
+            _planets ?? throw new SpaceFightException("Planetary System is not initialized");
 
         public void SetDayOfYear(int dayOfYear)
         {
-            foreach (var planet in _planets)
-                planet.DayOfYear = dayOfYear;
+            foreach (var planet in Planets)
+                planet.SetDayOfYear(dayOfYear);
         }
     }
 }

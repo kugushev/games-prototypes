@@ -53,15 +53,13 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Components\FleetPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Widgets\MissionDebriefingWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Components\Abstractions\BaseComponent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\PresentationModels\PlanetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\PresentationModels\PlanetPresentationModelOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Events\MovingEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Widgets\HandWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Widgets\PerkCardWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Events\HandEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\PresentationModels\Abstractions\BasePresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Controllers\PlanetarySystemController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Controllers\HandController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Widgets\MissionBriefingWidget.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\PresentationModels\FleetPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Components\PlanetPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\MissionPresentation\Components\GamePresenter.cs" />

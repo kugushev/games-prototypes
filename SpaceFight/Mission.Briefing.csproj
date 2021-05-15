@@ -41,7 +41,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Briefing\PresentationModel\PlanetarySystemPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Briefing\PresentationModel\MissionBriefingPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Briefing\BriefingInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Briefing\PresentationModel\PlanetPresentationModel.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Briefing\Mission.Briefing.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
