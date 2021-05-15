@@ -7,14 +7,14 @@
         "Common",
         "UniTask",
         "Unity.TextMeshPro",
-        "Mission",
         "MissionPresentation",
-        "Campaign",
         "App.Core",
         "Game.Core",
         "UniRx",
         "Zenject",
-        "Zenject-TestFramework"
+        "Zenject-TestFramework",
+        "Campaign.Core",
+        "Mission.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

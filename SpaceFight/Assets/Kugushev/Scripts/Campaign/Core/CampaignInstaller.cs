@@ -36,7 +36,7 @@ namespace Kugushev.Scripts.Campaign.Core
         private void InstallContextManagement()
         {
             Container.Bind<MissionSelectionState>().AsSingle();
-            Container.Bind<MissionState>().AsSingle();
+            Container.Bind<MissionState>().AsSingle(); 
 
             Container.InstallSignaledTransition<MissionParameters>();
             Container.InstallSignaledTransition<CampaignExitParameters>();

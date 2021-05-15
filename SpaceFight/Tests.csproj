@@ -679,10 +679,6 @@
       <Project>{30ef87af-35ca-f82c-1a78-897696fdbfab}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="Mission.csproj">
-      <Project>{4bb77603-8265-6539-8dee-dc93ef428a60}</Project>
-      <Name>Mission</Name>
-    </ProjectReference>
     <ProjectReference Include="MissionPresentation.csproj">
       <Project>{dd0927c7-5ae9-f95c-5de2-76addd5bf83b}</Project>
       <Name>MissionPresentation</Name>
@@ -694,6 +690,14 @@
     <ProjectReference Include="Game.Core.csproj">
       <Project>{98725a06-e454-4af8-fcc4-f33cefa747f9}</Project>
       <Name>Game.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Campaign.Core.csproj">
+      <Project>{479bacfd-678a-d374-0cfd-3f42fecfd1de}</Project>
+      <Name>Campaign.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mission.Core.csproj">
+      <Project>{94cb57e2-f87e-608e-7757-22fedf88af5a}</Project>
+      <Name>Mission.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
