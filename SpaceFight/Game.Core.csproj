@@ -65,6 +65,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\Parameters\RevolutionParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Enums\Difficulty.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\Parameters\CampaignExitParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameDataInitializer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Repositories\IntriguesRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Services\ParliamentGenerationService.cs" />
@@ -73,7 +74,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\ValueObjects\CampaignResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\Repositories\PoliticianCharactersRepository.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameContextManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\ContextManagement\Parameters\CampaignExitParameters.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -318,11 +318,11 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
      <Reference Include="ICSharpCode.NRefactory">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.5.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

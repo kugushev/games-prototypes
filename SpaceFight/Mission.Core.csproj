@@ -48,8 +48,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Constants\UnityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Utils\MissionEventsCollector.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Elephant.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Briber.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Abstractions\BasePerk.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Tools\PlanetsDistanceComparer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Player\OrdersManager.cs" />
@@ -59,6 +59,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Negotiator.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Abstractions\EpicPerk.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\MissionEvents\ArmyDestroyedInFight.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionDataInitializer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Common\Invader.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\MissionEvents\ArmyDestroyedOnSiege.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ProceduralGeneration\PlanetRule.cs" />
@@ -69,10 +70,14 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Managers\PerksManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\FightRoundResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Moska.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ContextManagement\BriefingState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Interfaces\IFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\Planet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ProceduralGeneration\PlanetarySystemGenerator.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Impregnable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\Power.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\PlanetarySystem.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Player\PlayerCommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\Effects\PlanetarySystemPerks.cs" />
@@ -85,6 +90,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\StatesAndTransitions\ExecutionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\StatesAndTransitions\BriefingState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\Effects\FleetPerks.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\PlanetarySystem.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\StatesAndTransitions\DebriefingState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\AI\Tactical\SimpleAI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\DebriefingSummary.cs" />
@@ -93,24 +99,22 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\AI\Tactical\SuicideAI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\ArmyStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\LuckyIndustrialist.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\Sun.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Sun.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\MissionEventType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\MissionState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Planet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\MissionEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\PlanetSize.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Startup.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Constants\GameplayConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\Production.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Transporter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionContextManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\MissionDataInitializer.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\PlanetarySystem.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Planet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\Production.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\Power.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ContextManagement\BriefingState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\PlanetarySystemGenerationService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\PlanetSpec.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Specifications\PlanetSpecsRegistry.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Specifications\PlanetarySystemSpecs.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Core\Mission.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -355,11 +359,11 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
      <Reference Include="ICSharpCode.NRefactory">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.5.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

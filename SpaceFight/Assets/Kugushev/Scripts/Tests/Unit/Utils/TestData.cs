@@ -2,11 +2,13 @@
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
+using Planet = Kugushev.Scripts.Mission.Models.Planet;
 
 namespace Kugushev.Scripts.Tests.Unit.Utils
 {

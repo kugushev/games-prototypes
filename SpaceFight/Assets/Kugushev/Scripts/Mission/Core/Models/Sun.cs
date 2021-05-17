@@ -1,7 +1,7 @@
 ﻿using System;
 using Kugushev.Scripts.Common.ValueObjects;
 
-namespace Kugushev.Scripts.Mission.Models
+namespace Kugushev.Scripts.Mission.Core.Models
 {
     [Serializable]
     public readonly struct Sun

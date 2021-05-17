@@ -1,6 +1,8 @@
 ﻿using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Core.ContextManagement;
 using Kugushev.Scripts.Mission.Core.Models;
+using Kugushev.Scripts.Mission.Core.Services;
+using Kugushev.Scripts.Mission.Core.Specifications;
 using Kugushev.Scripts.Mission.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
 using Zenject;
@@ -16,6 +18,7 @@ namespace Kugushev.Scripts.Mission.Core
             InstallModels();
             InstallContextManagement();
             InstallServices();
+            InstallSpecs();
         }
 
         private void InstallModels()
@@ -33,6 +36,13 @@ namespace Kugushev.Scripts.Mission.Core
 
         private void InstallServices()
         {
+            Container.Bind<PlanetarySystemGenerationService>().AsSingle();
+        }
+
+        private void InstallSpecs()
+        {
+            Container.Bind<PlanetarySystemSpecs>().AsSingle();
+            Container.Bind<PlanetSpecsRegistry>().AsSingle();
         }
     }
 }

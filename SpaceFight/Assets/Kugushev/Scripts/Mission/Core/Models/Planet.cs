@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common.ValueObjects;
+﻿using System;
+using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Interfaces;
@@ -14,6 +15,7 @@ namespace Kugushev.Scripts.Mission.Core.Models
         private readonly Orbit _orbit;
         private readonly ReactiveProperty<float> _power = new ReactiveProperty<float>();
         private readonly ReactiveProperty<int> _dayOfYear = new ReactiveProperty<int>(0);
+        private readonly Lazy<IReadOnlyReactiveProperty<Position>> _position;
 
         private readonly IPlanetarySystem _planetarySystem;
 
@@ -27,11 +29,12 @@ namespace Kugushev.Scripts.Mission.Core.Models
             _orbit = orbit;
             _power.Value = startPower.Amount;
             _planetarySystem = planetarySystem;
-            Position = _dayOfYear.Select(CalculatePosition).ToReactiveProperty();
+            _position = new Lazy<IReadOnlyReactiveProperty<Position>>(() =>
+                _dayOfYear.Select(CalculatePosition).ToReactiveProperty());
         }
 
         public PlanetSize Size { get; }
-        public IReadOnlyReactiveProperty<Position> Position { get; }
+        public IReadOnlyReactiveProperty<Position> Position => _position.Value;
         public IReadOnlyReactiveProperty<Faction> Faction => _faction;
         public IReadOnlyReactiveProperty<float> Power => _power;
 

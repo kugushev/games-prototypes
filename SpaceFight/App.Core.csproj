@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\App\Core\Enums\PerkId.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\Constants\AppConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\Parameters\GameExitParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\Parameters\CampaignParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\GameState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\AppInstaller.cs" />
@@ -50,7 +51,6 @@
      <Compile Include="Assets\Kugushev\Scripts\App\Core\Properties\AssemblyInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\AppContextManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\MainMenuState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\App\Core\ContextManagement\Parameters\GameExitParameters.cs" />
      <None Include="Assets\Kugushev\Scripts\App\Core\App.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -295,11 +295,11 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
      <Reference Include="ICSharpCode.NRefactory">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.5.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

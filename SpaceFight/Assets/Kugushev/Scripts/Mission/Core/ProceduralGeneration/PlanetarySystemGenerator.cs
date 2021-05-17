@@ -5,11 +5,13 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
+using Planet = Kugushev.Scripts.Mission.Models.Planet;
+using PlanetarySystem = Kugushev.Scripts.Mission.Models.PlanetarySystem;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Mission.ProceduralGeneration

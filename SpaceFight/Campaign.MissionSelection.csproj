@@ -44,11 +44,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\PerksPanelPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\MissionCardPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\PerksCardPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\PlaygroundPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\MissionSelectionPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\PresentationModels\PlaygroundPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Factories\MissionCardFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\MissionSelectionInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Interfaces\IMissionSelectionPresentationModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Factories\MissionCardFactory.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\MissionSelection\Campaign.MissionSelection.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -293,11 +293,11 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
      <Reference Include="ICSharpCode.NRefactory">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.5.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

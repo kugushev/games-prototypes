@@ -19,21 +19,30 @@ namespace Kugushev.Scripts.Mission.Briefing.PresentationModel
         private MeshRenderer? _meshRenderer;
 
         private Planet? _model;
-        
+
         public void Init(Planet model)
         {
             _model = model;
-
-            UpdateView(model);
         }
- 
+
 
         protected void Awake()
         {
             _meshRenderer = GetComponent<MeshRenderer>();
         }
 
-        private void UpdateView(Planet planet)
+        private void Start()
+        {
+            if (_model == null)
+            {
+                Debug.LogError("Model is null");
+                return;
+            }
+
+            BindView(_model);
+        }
+
+        private void BindView(Planet planet)
         {
             UpdateScale(planet.Size);
             planet.Position.Subscribe(position => transform.position = position.Point);

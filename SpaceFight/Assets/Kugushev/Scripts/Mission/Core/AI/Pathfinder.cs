@@ -3,6 +3,7 @@ using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;

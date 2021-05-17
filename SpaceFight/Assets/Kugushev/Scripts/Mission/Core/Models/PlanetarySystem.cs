@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Mission.Models;
 
 namespace Kugushev.Scripts.Mission.Core.Models
 {
@@ -14,9 +13,9 @@ namespace Kugushev.Scripts.Mission.Core.Models
     public class PlanetarySystem : IPlanetarySystem
     {
         private Sun? _sun;
-        private List<Planet>? _planets;
+        private IReadOnlyList<Planet>? _planets;
 
-        internal void Init(Sun sun, List<Planet> planets)
+        internal void Init(Sun sun, IReadOnlyList<Planet> planets)
         {
             if (_sun != null || _planets != null)
                 throw new SpaceFightException("Planetary System is already initialized");

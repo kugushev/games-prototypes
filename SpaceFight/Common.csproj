@@ -57,6 +57,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\IState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\PoolableOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\Parameterized\ParameterizedStateMachine.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Factories\ZenjectHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\ObjectsPool.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\IReusableTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Unit.cs" />
@@ -65,6 +66,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\StringBag.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\FiniteStateMachine\BaseState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\EntryState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Factories\InPlacePrefabFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\IPoolable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\CommonConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ExitState.cs" />
@@ -75,6 +77,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IGameLoopParticipant.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\Pooling\Poolable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ContextManagement\SignalToTransition.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\ContextManagement\ExitState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ContextManagement\ParametersPipeline.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ComponentInjection\ComponentInjectionHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IPercentPerk.cs" />
@@ -99,9 +102,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IAIAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\StatesAndTransitions\ImmediateTransition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Interfaces\IValuePipeline.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\ContextManagement\ExitState.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Factories\InPlacePrefabFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Factories\ZenjectHelper.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -346,11 +346,11 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
      <Reference Include="ICSharpCode.NRefactory">
      <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.unity.render-pipelines.core@10.5.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:/Projects/games-prototypes-vr/SpaceFight/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils.Pooling;
+using Kugushev.Scripts.Mission.Core.Models;
 
 namespace Kugushev.Scripts.Mission.Models
 {
