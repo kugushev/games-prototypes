@@ -4,10 +4,14 @@ using Kugushev.Scripts.Common.Utils.Pooling;
 
 namespace Kugushev.Scripts.Common.Utils.ValuesProcessing
 {
-    public class ValuePipeline<T> : IValuePipeline<T>
+    public class ValuePipelineOld<T> : PoolableOld<int>, IValuePipeline<T>
     {
         private readonly List<IPercentPerk<T>> _percentPerks = new List<IPercentPerk<T>>(16);
         private readonly List<IMultiplierPerk<T>> _multiplierPerks = new List<IMultiplierPerk<T>>(16);
+
+        public ValuePipelineOld(ObjectsPool objectsPool) : base(objectsPool)
+        {
+        }
 
         public void AddPerk(IMultiplierPerk<T> perk) => _multiplierPerks.Add(perk);
         public void AddPerk(IPercentPerk<T> perk) => _percentPerks.Add(perk);
@@ -46,5 +50,9 @@ namespace Kugushev.Scripts.Common.Utils.ValuesProcessing
 
             return multiplier;
         }
+
+        protected override void OnRestore(int state) => _percentPerks.Clear();
+
+        protected override void OnClear(int state) => _percentPerks.Clear();
     }
 }

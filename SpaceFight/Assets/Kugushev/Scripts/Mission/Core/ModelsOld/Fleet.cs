@@ -64,7 +64,7 @@ namespace Kugushev.Scripts.Mission.Models
                 return _fleetPerks;
 
             _emptyFleetPerks ??=
-                objectsPool.GetObject<FleetPerks, FleetPerks.State>(PlayerPropertiesService
+                objectsPool.GetObject<FleetPerks, FleetPerks.State>(PlayerPropertiesServiceOld
                     .CreateDefaultFleetPerksState(objectsPool));
 
             return _emptyFleetPerks;

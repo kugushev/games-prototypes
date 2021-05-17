@@ -3,6 +3,8 @@ using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
@@ -23,8 +25,7 @@ namespace Kugushev.Scripts.Mission.Perks.Common
             PerkId.Invader, null, PerkType.Common, nameof(Invader),
             "Invade to a planet", $"Increased siege damage on {percent}%");
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction,
-            MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             foreach (var missionEvent in missionEvents.PlanetCaptured)
                 if (missionEvent.NewOwner == faction)
@@ -32,8 +33,8 @@ namespace Kugushev.Scripts.Mission.Perks.Common
             return false;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
-            => fleetPerks.SiegeDamage.AddPerk(this);
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
+            => fleetEffects.SiegeDamage.AddPerk(this);
 
         public Percentage GetPercentage(Army criteria) => new Percentage(percent);
     }

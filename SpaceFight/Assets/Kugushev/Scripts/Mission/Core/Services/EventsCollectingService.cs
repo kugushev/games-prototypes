@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Kugushev.Scripts.Mission.ValueObjects.MissionEvents;
+
+namespace Kugushev.Scripts.Mission.Core.Services
+{
+    public class EventsCollectingService
+    {
+        private const int Capacity = 128;
+        private Stopwatch? _stopwatch;
+
+        public List<PlanetCaptured> PlanetCaptured { get; } = new List<PlanetCaptured>(Capacity);
+        public List<ArmyDestroyedInFight> ArmyDestroyedInFight { get; } = new List<ArmyDestroyedInFight>(Capacity);
+        public List<ArmyDestroyedOnSiege> ArmyDestroyedOnSiege { get; } = new List<ArmyDestroyedOnSiege>(Capacity);
+        public List<ArmySent> ArmySent { get; } = new List<ArmySent>(Capacity);
+        public List<ArmyArrived> ArmyArrived { get; } = new List<ArmyArrived>(Capacity);
+
+        public TimeSpan Elapsed => _stopwatch?.Elapsed ?? TimeSpan.Zero;
+
+        public void Start()
+        {
+            _stopwatch ??= new Stopwatch();
+            _stopwatch.Reset();
+            _stopwatch.Start();
+        }
+
+        public void Stop()
+        {
+            _stopwatch?.Stop();
+            _stopwatch?.Reset();
+        }
+
+        public void Cleanup()
+        {
+            PlanetCaptured.Clear();
+            ArmyDestroyedInFight.Clear();
+            ArmyDestroyedOnSiege.Clear();
+            ArmySent.Clear();
+            ArmyArrived.Clear();
+        }
+    }
+}

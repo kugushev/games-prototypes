@@ -12,14 +12,17 @@ namespace Kugushev.Scripts.Mission.Core
         private readonly ParametersPipeline<MissionParameters> _parametersPipeline;
         private readonly PlanetarySystem _planetarySystem;
         private readonly PlanetarySystemGenerationService _planetarySystemGenerationService;
+        private readonly EffectsService _effectsService;
 
         public MissionDataInitializer(ParametersPipeline<MissionParameters> parametersPipeline,
             PlanetarySystem planetarySystem,
-            PlanetarySystemGenerationService planetarySystemGenerationService)
+            PlanetarySystemGenerationService planetarySystemGenerationService,
+            EffectsService effectsService)
         {
             _parametersPipeline = parametersPipeline;
             _planetarySystem = planetarySystem;
             _planetarySystemGenerationService = planetarySystemGenerationService;
+            _effectsService = effectsService;
         }
 
         public bool ToTransition { get; private set; }
@@ -28,8 +31,12 @@ namespace Kugushev.Scripts.Mission.Core
         {
             var parameters = _parametersPipeline.Pop();
 
+            var (planetarySystemEffects, fleetEffects) =
+                _effectsService.ComposeEffects(_planetarySystemGenerationService.PlayerFaction);
+
+
             var (sun, planets) = _planetarySystemGenerationService.CreatePlanetarySystemData(parameters.MissionInfo,
-                null);
+                planetarySystemEffects);
             _planetarySystem.Init(sun, planets);
 
             ToTransition = true;

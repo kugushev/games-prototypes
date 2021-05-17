@@ -1,7 +1,8 @@
 ﻿using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Mission.Utils;
@@ -26,7 +27,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
         protected override string Perk =>
             $"If you attack a neutral planet with {predominance} predominance, the planet surrender you. {surrendered} of the planet army joins you";
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction, MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             foreach (var planetCaptured in missionEvents.PlanetCaptured)
                 if (planetCaptured.NewOwner == faction &&
@@ -37,12 +38,12 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             return false;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
         {
-            if (fleetPerks.ToNeutralPlanetUltimatum.Initialized)
-                Debug.LogError($"{fleetPerks.ToNeutralPlanetUltimatum} is already specified");
+            if (fleetEffects.ToNeutralPlanetUltimatum.Initialized)
+                Debug.LogError($"{fleetEffects.ToNeutralPlanetUltimatum} is already specified");
 
-            fleetPerks.ToNeutralPlanetUltimatum = new SiegeUltimatum(new Percentage(surrendered), predominance);
+            fleetEffects.ToNeutralPlanetUltimatum = new SiegeUltimatum(new Percentage(surrendered), predominance);
         }
     }
 }

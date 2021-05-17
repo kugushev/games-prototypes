@@ -12,12 +12,12 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         public struct State
         {
             public Faction applicantFaction;
-            public ValuePipeline<Planet> Production;
-            public ValuePipeline<Planet> Damage;
+            public ValuePipelineOld<Planet> Production;
+            public ValuePipelineOld<Planet> Damage;
             public Func<float, bool>? IsFreeRecruitment;
             public Func<bool>? GetExtraPlanetOnStart;
 
-            public State(Faction applicantFaction, ValuePipeline<Planet> production, ValuePipeline<Planet> damage)
+            public State(Faction applicantFaction, ValuePipelineOld<Planet> production, ValuePipelineOld<Planet> damage)
             {
                 this.applicantFaction = applicantFaction;
                 Production = production;

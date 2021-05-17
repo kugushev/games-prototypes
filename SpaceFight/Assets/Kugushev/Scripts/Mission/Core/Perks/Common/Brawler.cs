@@ -3,6 +3,8 @@ using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
@@ -23,8 +25,7 @@ namespace Kugushev.Scripts.Mission.Perks.Common
             PerkId.Brawler, null, PerkType.Common, nameof(Brawler),
             "Destroy enemy army by your army", $"Increased army to army damage on {percent}%");
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction,
-            MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             foreach (var missionEvent in missionEvents.ArmyDestroyedInFight)
                 if (missionEvent.Destroyer == faction)
@@ -32,8 +33,8 @@ namespace Kugushev.Scripts.Mission.Perks.Common
             return false;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
-            => fleetPerks.FightDamage.AddPerk(this);
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
+            => fleetEffects.FightDamage.AddPerk(this);
 
         public Percentage GetPercentage(Army criteria) => new Percentage(percent);
     }

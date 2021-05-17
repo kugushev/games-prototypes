@@ -8,15 +8,17 @@ using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Mission.Managers
+namespace Kugushev.Scripts.Mission.Core.Specifications
 {
-    [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(PerksManager))]
-    public class PerksManager : ScriptableObject
+    [CreateAssetMenu(menuName = MissionConstants.MenuPrefix + nameof(PerksRegistry))]
+    public class PerksRegistry : ScriptableObject
     {
         [SerializeField] private MissionEventsCollector? eventsCollector;
-        [SerializeField] private BasePerk[]? perks;
+        [SerializeField] private BasePerk[] perks = default!;
         [SerializeField] private MissionModelProvider? modelProvider;
 
+        public IReadOnlyList<BasePerk> Perks => perks;
+        
         public void FindAchieved(List<BasePerk> listToFill, Faction playerFaction,
             IPlayerPerks playerPerks)
         {
@@ -34,8 +36,8 @@ namespace Kugushev.Scripts.Mission.Managers
                     continue;
 
 
-                if (achievement.Check(eventsCollector, playerFaction, model))
-                    listToFill.Add(achievement);
+                // if (achievement.Check(eventsCollector, playerFaction))
+                //     listToFill.Add(achievement);
             }
         }
 

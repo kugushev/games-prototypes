@@ -2,11 +2,11 @@
 using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Mission.Core.Models;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
-using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
-using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Perks.Epic
@@ -24,8 +24,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             $"Recruit only on planets that have less than {maxPower} power",
             $"Increase production to {multiplier} if power is less than {maxPower}, decreased if more");
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction,
-            MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             foreach (var missionEvent in missionEvents.ArmySent)
                 if (missionEvent.Owner == faction && missionEvent.RemainingPower + missionEvent.Power > maxPower)
@@ -34,12 +33,12 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             return true;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
-            => planetarySystemPerks.Production.AddPerk(this);
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
+            => planetarySystemEffects.Production.AddPerk(this);
 
         public float? GetMultiplier(Planet criteria)
         {
-            if (criteria.Power <= maxPower)
+            if (criteria.Power.Value <= maxPower)
                 return multiplier;
             return 1 / multiplier;
         }

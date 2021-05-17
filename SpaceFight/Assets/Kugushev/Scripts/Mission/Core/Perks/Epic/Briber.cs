@@ -1,7 +1,8 @@
 ﻿using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Mission.Utils;
@@ -26,7 +27,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
         protected override string Perk =>
             $"With a probability {probability} one of the neutral planets become your at the beginning of any mission";
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction, MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             foreach (var planetCaptured in missionEvents.PlanetCaptured)
             {
@@ -39,11 +40,11 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             return false;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
         {
-            if (planetarySystemPerks.GetExtraPlanetOnStart != null)
-                Debug.LogError($"{planetarySystemPerks.GetExtraPlanetOnStart} is already specified");
-            planetarySystemPerks.GetExtraPlanetOnStart = GetExtraPlanetOnStart;
+            if (planetarySystemEffects.GetExtraPlanetOnStart != null)
+                Debug.LogError($"{planetarySystemEffects.GetExtraPlanetOnStart} is already specified");
+            planetarySystemEffects.GetExtraPlanetOnStart = GetExtraPlanetOnStart;
         }
 
         private bool GetExtraPlanetOnStart()

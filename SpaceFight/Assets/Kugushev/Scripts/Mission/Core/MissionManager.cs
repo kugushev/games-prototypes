@@ -5,8 +5,8 @@ using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Common.Utils.Pooling;
 using Kugushev.Scripts.Mission.AI.Tactical;
+using Kugushev.Scripts.Mission.Core.Specifications;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Player;
 using Kugushev.Scripts.Mission.ProceduralGeneration;
@@ -40,9 +40,9 @@ namespace Kugushev.Scripts.Mission
         [Header("Mission Related Assets")] [SerializeField]
         private Faction playerFaction = Faction.Green;
 
-        [SerializeField] private PlayerPropertiesService? playerPropertiesService;
+        [SerializeField] private PlayerPropertiesServiceOld? playerPropertiesService;
         [SerializeField] private MissionEventsCollector? eventsCollector;
-        [SerializeField] private PerksManager? achievementsManager;
+        [SerializeField] private PerksRegistry? achievementsManager;
 
         [SerializeField] private PlayerCommander? playerCommander;
         [SerializeField] private SimpleAI? enemyAi;

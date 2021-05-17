@@ -1,10 +1,10 @@
 ﻿using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Common.Interfaces;
+using Kugushev.Scripts.Mission.Core.Models;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
-using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
-using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Mission.Perks.Epic
@@ -23,7 +23,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
         protected override string Perk =>
             $"Increase armies speed in {acceleration} times of traveling between your planets";
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction, MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             float total = 0;
             foreach (var armyArrived in missionEvents.ArmyArrived)
@@ -35,14 +35,14 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             return total >= totalPower;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
         {
-            fleetPerks.ArmySpeed.AddPerk(this);
+            fleetEffects.ArmySpeed.AddPerk(this);
         }
 
         public float? GetMultiplier((Planet target, Faction playerFaction) criteria)
         {
-            if (criteria.target.Faction == criteria.playerFaction)
+            if (criteria.target.Faction.Value == criteria.playerFaction)
                 return acceleration;
             return null;
         }

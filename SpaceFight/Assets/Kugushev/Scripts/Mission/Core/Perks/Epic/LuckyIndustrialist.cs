@@ -1,7 +1,8 @@
 ﻿using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
 using Kugushev.Scripts.Mission.Utils;
@@ -31,7 +32,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
         protected override string Perk =>
             $"Armies with more than {power} power may be produced for free with probability {probability}";
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction, MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             int cnt = 0;
             foreach (var armySent in missionEvents.ArmySent)
@@ -41,12 +42,12 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             return cnt >= count;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
         {
-            if (planetarySystemPerks.IsFreeRecruitment != null)
-                Debug.LogError($"Field {planetarySystemPerks.IsFreeRecruitment} has already specified");
+            if (planetarySystemEffects.IsFreeRecruitment != null)
+                Debug.LogError($"Field {planetarySystemEffects.IsFreeRecruitment} has already specified");
 
-            planetarySystemPerks.IsFreeRecruitment = IsFreeRecruitment;
+            planetarySystemEffects.IsFreeRecruitment = IsFreeRecruitment;
         }
 
         private bool IsFreeRecruitment(float powerToRecruit)

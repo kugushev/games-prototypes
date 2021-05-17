@@ -2,6 +2,8 @@
 using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.Models.Effects;
@@ -26,7 +28,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             $"Have {count} armies with more {powerCap} power",
             $"Armies with more than {powerCap} power deal to {multiplication} more damage on fight and on siege");
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction, MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             int cnt = 0;
             foreach (var armySent in missionEvents.ArmySent)
@@ -36,10 +38,10 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             return cnt > count;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
         {
-            fleetPerks.FightDamage.AddPerk(this);
-            fleetPerks.SiegeDamage.AddPerk(this);
+            fleetEffects.FightDamage.AddPerk(this);
+            fleetEffects.SiegeDamage.AddPerk(this);
         }
 
         public float? GetMultiplier(Army criteria)

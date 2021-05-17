@@ -63,11 +63,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Common\Invader.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\MissionEvents\ArmyDestroyedOnSiege.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ProceduralGeneration\PlanetRule.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\PlanetarySystemGenerationService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\ExecutionResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\OrderStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\Fleet.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\PlayerPropertiesService.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Managers\PerksManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\PlayerPropertiesServiceOld.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Specifications\PerksRegistry.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\FightRoundResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Moska.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ContextManagement\BriefingState.cs" />
@@ -93,10 +94,13 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\PlanetarySystem.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\StatesAndTransitions\DebriefingState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\AI\Tactical\SimpleAI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Specifications\PlanetarySystemSpecs.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\DebriefingSummary.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Specifications\PlanetSpecsRegistry.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\SiegeUltimatum.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\Army.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\AI\Tactical\SuicideAI.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\PlanetSpec.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\ArmyStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\LuckyIndustrialist.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Sun.cs" />
@@ -111,10 +115,13 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Transporter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\PlanetarySystemGenerationService.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\PlanetSpec.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Specifications\PlanetSpecsRegistry.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Specifications\PlanetarySystemSpecs.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\EffectsService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\PerksSearchService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\EventsCollectingService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Effects\FleetEffects.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Effects\PlanetarySystemEffects.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Interfaces\Effects\IFleetEffects.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Interfaces\Effects\IPlanetarySystemEffects.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Core\Mission.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

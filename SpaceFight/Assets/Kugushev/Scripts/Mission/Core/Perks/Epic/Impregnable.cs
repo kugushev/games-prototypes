@@ -1,13 +1,13 @@
 ﻿using Kugushev.Scripts.App.Core.Enums;
 using Kugushev.Scripts.Common.Interfaces;
+using Kugushev.Scripts.Mission.Core.Models;
+using Kugushev.Scripts.Mission.Core.Models.Effects;
+using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
-using Kugushev.Scripts.Mission.Models.Effects;
 using Kugushev.Scripts.Mission.Perks.Abstractions;
-using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Mission.Perks.Epic
+namespace Kugushev.Scripts.Mission.Core.Perks.Epic
 {
     [CreateAssetMenu(menuName = MenuName + nameof(Impregnable))]
     public class Impregnable : EpicPerk, IMultiplierPerk<Planet>
@@ -23,7 +23,7 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
 
         protected override string Perk => $"Planets with more than {powerCap} power do x{multiplier} damage";
 
-        public override bool Check(MissionEventsCollector missionEvents, Faction faction, MissionModel model)
+        public override bool Check(EventsCollectingService missionEvents, Faction faction)
         {
             float total = 0;
             foreach (var armyDestroyedOnSiege in missionEvents.ArmyDestroyedOnSiege)
@@ -35,14 +35,14 @@ namespace Kugushev.Scripts.Mission.Perks.Epic
             return total >= totalPower;
         }
 
-        public override void Apply(ref FleetPerks.State fleetPerks, ref PlanetarySystemPerks.State planetarySystemPerks)
+        public override void Apply(FleetEffects fleetEffects, PlanetarySystemEffects planetarySystemEffects)
         {
-            planetarySystemPerks.Damage.AddPerk(this);
+            planetarySystemEffects.Damage.AddPerk(this);
         }
 
         public float? GetMultiplier(Planet criteria)
         {
-            if (criteria.Power >= powerCap)
+            if (criteria.Power.Value >= powerCap)
                 return multiplier;
 
             return null;

@@ -13,15 +13,15 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         [Serializable]
         public struct State
         {
-            public ValuePipeline<Army> SiegeDamage;
-            public ValuePipeline<Army> FightDamage;
-            public ValuePipeline<Army> FightProtection;
-            public ValuePipeline<(Planet target, Faction playerFaction)> ArmySpeed;
+            public ValuePipelineOld<Army> SiegeDamage;
+            public ValuePipelineOld<Army> FightDamage;
+            public ValuePipelineOld<Army> FightProtection;
+            public ValuePipelineOld<(Planet target, Faction playerFaction)> ArmySpeed;
             public float deathStrike;
             public SiegeUltimatum ToNeutralPlanetUltimatum;
 
-            public State(ValuePipeline<Army> siegeDamage, ValuePipeline<Army> fightDamage,
-                ValuePipeline<Army> fightProtection, ValuePipeline<(Planet target, Faction playerFaction)> armySpeed)
+            public State(ValuePipelineOld<Army> siegeDamage, ValuePipelineOld<Army> fightDamage,
+                ValuePipelineOld<Army> fightProtection, ValuePipelineOld<(Planet target, Faction playerFaction)> armySpeed)
             {
                 SiegeDamage = siegeDamage;
                 FightDamage = fightDamage;

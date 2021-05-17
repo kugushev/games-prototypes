@@ -2,8 +2,8 @@
 using Kugushev.Scripts.Common.StatesAndTransitions;
 using Kugushev.Scripts.Common.Utils.FiniteStateMachine;
 using Kugushev.Scripts.Mission.AI.Tactical;
+using Kugushev.Scripts.Mission.Core.Specifications;
 using Kugushev.Scripts.Mission.Interfaces;
-using Kugushev.Scripts.Mission.Managers;
 using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.StatesAndTransitions;
 using Kugushev.Scripts.Tests.Integration.Mission.Setup.Abstractions;
@@ -15,7 +15,7 @@ namespace Kugushev.Scripts.Tests.Integration.Mission.Setup
     public class MissionExecutionAndDebriefingTestingManager : BaseMissionTestingManager
     {
         [Header(nameof(MissionExecutionAndDebriefingTestingManager))] [SerializeField]
-        private PerksManager? achievementsManager;
+        private PerksRegistry? achievementsManager;
 
         // [SerializeField] private MissionSceneResultPipeline? missionSceneResultPipeline;
         [SerializeField] private SuicideAI? suicideAI;

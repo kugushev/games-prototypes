@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Core.Interfaces.Effects;
 using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Core.Specifications;
 using Kugushev.Scripts.Mission.Core.ValueObjects;
@@ -27,14 +28,15 @@ namespace Kugushev.Scripts.Mission.Core.Services
             _planetFactory = planetFactory;
         }
 
+        public Faction PlayerFaction => _specs.PlayerFaction;
 
         public (Sun, IReadOnlyList<Planet>) CreatePlanetarySystemData(MissionInfo info,
-            PlanetarySystemPerks planetarySystemPerks)
+            IPlanetarySystemEffects planetarySystemEffects)
         {
             Random.InitState(info.Seed);
 
             var sun = CreateSun();
-            var planets = CreatePlanets(planetarySystemPerks, info);
+            var planets = CreatePlanets(planetarySystemEffects, info);
             return (sun, planets);
         }
 
@@ -44,7 +46,7 @@ namespace Kugushev.Scripts.Mission.Core.Services
             return new Sun(new Position(_specs.Center), radius);
         }
 
-        private IReadOnlyList<Planet> CreatePlanets(PlanetarySystemPerks planetarySystemPerks, MissionInfo missionInfo)
+        private IReadOnlyList<Planet> CreatePlanets(IPlanetarySystemEffects planetarySystemEffects, MissionInfo missionInfo)
         {
             var result = new List<Planet>();
 
@@ -55,8 +57,9 @@ namespace Kugushev.Scripts.Mission.Core.Services
             int homeStartDay = Random.Range(0, Orbit.DaysInYear);
 
             // todo: uncomment
-            var oneExtraPlanetForPlayer = false; //planetarySystemPerks.TryGetPerks(_specs.PlayerFaction, out var perks) &&
-                                          //perks.GetExtraPlanetOnStart?.Invoke() == true;
+            var oneExtraPlanetForPlayer =
+                false; //planetarySystemPerks.TryGetPerks(_specs.PlayerFaction, out var perks) &&
+            //perks.GetExtraPlanetOnStart?.Invoke() == true;
 
             float t = 0f;
             int playerExtraPlanets = oneExtraPlanetForPlayer ? -1 : 0;
