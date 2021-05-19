@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
     {
         public const float ArmyPower = 50f;
 
-        public static Army CreateArmy(FleetPerks? fleetPerks, Faction faction, float power = ArmyPower,
+        public static ArmyOld CreateArmy(FleetPerks? fleetPerks, Faction faction, float power = ArmyPower,
             Planet? targetPlanet = null)
         {
             const float magicNum = 42f;
@@ -32,8 +32,8 @@ namespace Kugushev.Scripts.Tests.Unit.Utils
             order.RegisterMovement(Vector3.zero);
             order.Commit(targetPlanet ?? objectsPool.GetObject<Planet, Planet.State>(default));
 
-            var army = new Army(objectsPool);
-            army.SetState(new Army.State(order, magicNum, magicNum, faction, power,
+            var army = new ArmyOld(objectsPool);
+            army.SetState(new ArmyOld.State(order, magicNum, magicNum, faction, power,
                 new Sun(new Position(Vector3.zero), 0.5f),
                 fleetPerks, eventsCollector));
             return army;

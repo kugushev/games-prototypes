@@ -5,5 +5,7 @@ namespace Kugushev.Scripts.Mission.Constants
     public static class MissionConstants
     {
         public const string MenuPrefix = CommonConstants.MenuPrefix + "Mission/";
+        
+        
     }
 }

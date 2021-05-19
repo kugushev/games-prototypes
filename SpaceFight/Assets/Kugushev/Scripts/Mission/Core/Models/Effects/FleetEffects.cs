@@ -1,9 +1,7 @@
-﻿using System;
-using Kugushev.Scripts.Common.Interfaces;
+﻿using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.Utils.ValuesProcessing;
 using Kugushev.Scripts.Mission.Core.Interfaces.Effects;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.ValueObjects;
 
 namespace Kugushev.Scripts.Mission.Core.Models.Effects

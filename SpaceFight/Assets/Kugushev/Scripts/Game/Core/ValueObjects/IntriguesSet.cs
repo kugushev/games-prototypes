@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Kugushev.Scripts.Game.Core.Models;
 
 namespace Kugushev.Scripts.Game.Core.ValueObjects
 {

@@ -3,6 +3,7 @@ using Kugushev.Scripts.Common.Interfaces;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Core.Models.Effects;
 using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Enums;

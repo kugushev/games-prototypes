@@ -24,9 +24,9 @@ namespace Kugushev.Scripts.Mission.Services
         public static FleetPerks.State CreateDefaultFleetPerksState(ObjectsPool objectsPool)
         {
             return new FleetPerks.State(
-                objectsPool.GetObject<ValuePipelineOld<Army>, int>(0),
-                objectsPool.GetObject<ValuePipelineOld<Army>, int>(0),
-                objectsPool.GetObject<ValuePipelineOld<Army>, int>(0),
+                objectsPool.GetObject<ValuePipelineOld<ArmyOld>, int>(0),
+                objectsPool.GetObject<ValuePipelineOld<ArmyOld>, int>(0),
+                objectsPool.GetObject<ValuePipelineOld<ArmyOld>, int>(0),
                 objectsPool.GetObject<ValuePipelineOld<(Planet target, Faction playerFaction)>, int>(0)
             );
         }

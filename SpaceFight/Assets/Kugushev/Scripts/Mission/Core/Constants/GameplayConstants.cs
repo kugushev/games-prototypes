@@ -2,6 +2,8 @@
 {
     public static class GameplayConstants
     {
+        public const string LeftHandCommander = "LeftHandCommander";
+        public const string RightHandCommander = "RightHandCommander";
         public const int OrderPathCapacity = 128;
         public const int ArmiesPerFleetCapacity = 32;
 
@@ -12,6 +14,7 @@
         public const float FightRoundDelay = 0.6f;
         public const int ArmyCannonsCount = 3;
         public const float ArmySpeed = 0.1f;
+        public const float ArmyAngularSpeed = 1f;
         public const float SunPowerSpeedMultiplier = 2f;
 
         public const float GapBetweenWaypoints = 0.05f;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Models;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Game.Politics.Interfaces;
 using TMPro;

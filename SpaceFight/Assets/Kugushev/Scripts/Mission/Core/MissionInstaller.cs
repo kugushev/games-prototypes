@@ -1,5 +1,7 @@
 ﻿using Kugushev.Scripts.Common.ValueObjects;
+using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Core.ContextManagement;
+using Kugushev.Scripts.Mission.Core.ContextManagement.Transitions;
 using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Core.Services;
 using Kugushev.Scripts.Mission.Core.Specifications;
@@ -30,11 +32,17 @@ namespace Kugushev.Scripts.Mission.Core
             Container.Bind<IPlanetarySystem>().To<PlanetarySystem>().FromResolve();
 
             Container.BindFactory<Faction, PlanetSize, Production, Orbit, Power, Planet, Planet.Factory>();
+
+            Container.Bind<OrderBuilder>().WithId(GameplayConstants.LeftHandCommander).AsSingle();
+            Container.Bind<OrderBuilder>().WithId(GameplayConstants.RightHandCommander).AsSingle();
         }
 
         private void InstallContextManagement()
         {
             Container.Bind<BriefingState>().AsSingle();
+            Container.Bind<ExecutionState>().AsSingle();
+
+            Container.Bind<ToExecutionTransition>().AsSingle();
         }
 
         private void InstallServices()

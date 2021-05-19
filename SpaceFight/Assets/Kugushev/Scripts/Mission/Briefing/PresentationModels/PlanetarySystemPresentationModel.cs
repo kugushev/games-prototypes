@@ -1,7 +1,7 @@
-﻿using Kugushev.Scripts.Common.Utils;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Kugushev.Scripts.Mission.Briefing.PresentationModel;
 using Kugushev.Scripts.Mission.Core.Models;
-using Kugushev.Scripts.Mission.Utils;
 using UnityEngine;
 using Zenject;
 
@@ -30,13 +30,22 @@ namespace Kugushev.Scripts.MissionPresentation.Controllers
         private void SetupPlanets()
         {
             var worldTransform = transform;
+
+
             foreach (var planet in _model.Planets)
             {
-                // todo: use zenject factory
                 var instance = Instantiate(planetPrefab, planet.Position.Value.Point, Quaternion.identity,
                     worldTransform);
-                var presentationModel = instance.GetComponent<PlanetPresentationModel>();
+
+                var listPool = ListPool<PlanetPresentationModel>.Instance;
+                var components = listPool.Spawn();
+
+                instance.GetComponents(components);
+
+                var presentationModel = components.Single();
                 presentationModel.Init(planet);
+
+                listPool.Despawn(components);
             }
         }
 

@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Mission.Models
         private FleetPerks? _fleetPerks;
         private FleetPerks? _emptyFleetPerks;
 
-        public Queue<Army> ArmiesToSent { get; } = new Queue<Army>();
+        public Queue<ArmyOld> ArmiesToSent { get; } = new Queue<ArmyOld>();
 
         public void SetFleetProperties(FleetPerks fleetPerks) => _fleetPerks = fleetPerks;
         public void ClearFleetProperties() => _fleetPerks = default;
@@ -44,7 +44,7 @@ namespace Kugushev.Scripts.Mission.Models
             order.Commit(target);
             if (order.SourcePlanet.Power > 0 && order.SourcePlanet.TryRecruit(order.Power, out var power))
             {
-                var army = pool.GetObject<Army, Army.State>(new Army.State(
+                var army = pool.GetObject<ArmyOld, ArmyOld.State>(new ArmyOld.State(
                     order, armySpeed, armyAngularSpeed, faction, power,
                     in model.PlanetarySystem.GetSun(), GetFleetPerks(pool), eventsCollector));
 

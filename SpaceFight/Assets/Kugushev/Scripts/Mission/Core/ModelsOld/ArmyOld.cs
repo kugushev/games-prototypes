@@ -16,7 +16,7 @@ using UnityEngine;
 namespace Kugushev.Scripts.Mission.Models
 {
     [Serializable]
-    public class Army : PoolableOld<Army.State>, IGameLoopParticipant, IFighter
+    public class ArmyOld : PoolableOld<ArmyOld.State>, IGameLoopParticipant, IFighter
     {
         [Serializable]
         public struct State
@@ -63,7 +63,7 @@ namespace Kugushev.Scripts.Mission.Models
         private readonly List<IFighter> _targets = new List<IFighter>();
         private readonly List<IFighter> _targetsToRemoveBuffer = new List<IFighter>(8);
 
-        public Army(ObjectsPool objectsPool) : base(objectsPool)
+        public ArmyOld(ObjectsPool objectsPool) : base(objectsPool)
         {
         }
 
@@ -263,7 +263,7 @@ namespace Kugushev.Scripts.Mission.Models
 
                 foreach (var target in GetTargetsUnderFire(targets))
                 {
-                    if (target is Army targetArmy)
+                    if (target is ArmyOld targetArmy)
                     {
                         if (!targetArmy.Active)
                         {
@@ -293,7 +293,7 @@ namespace Kugushev.Scripts.Mission.Models
             if (_targets.Count == 0)
                 ObjectState.status = ArmyStatus.OnMatch;
 
-            bool ExecuteFight(Army targetArmy)
+            bool ExecuteFight(ArmyOld targetArmy)
             {
                 if (targetArmy.Faction == Faction)
                 {

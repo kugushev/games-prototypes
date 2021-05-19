@@ -13,15 +13,15 @@ namespace Kugushev.Scripts.Mission.Models.Effects
         [Serializable]
         public struct State
         {
-            public ValuePipelineOld<Army> SiegeDamage;
-            public ValuePipelineOld<Army> FightDamage;
-            public ValuePipelineOld<Army> FightProtection;
+            public ValuePipelineOld<ArmyOld> SiegeDamage;
+            public ValuePipelineOld<ArmyOld> FightDamage;
+            public ValuePipelineOld<ArmyOld> FightProtection;
             public ValuePipelineOld<(Planet target, Faction playerFaction)> ArmySpeed;
             public float deathStrike;
             public SiegeUltimatum ToNeutralPlanetUltimatum;
 
-            public State(ValuePipelineOld<Army> siegeDamage, ValuePipelineOld<Army> fightDamage,
-                ValuePipelineOld<Army> fightProtection, ValuePipelineOld<(Planet target, Faction playerFaction)> armySpeed)
+            public State(ValuePipelineOld<ArmyOld> siegeDamage, ValuePipelineOld<ArmyOld> fightDamage,
+                ValuePipelineOld<ArmyOld> fightProtection, ValuePipelineOld<(Planet target, Faction playerFaction)> armySpeed)
             {
                 SiegeDamage = siegeDamage;
                 FightDamage = fightDamage;
@@ -32,9 +32,9 @@ namespace Kugushev.Scripts.Mission.Models.Effects
             }
         }
 
-        public IValuePipeline<Army> SiegeDamage => ObjectState.SiegeDamage;
-        public IValuePipeline<Army> FightDamage => ObjectState.FightDamage;
-        public IValuePipeline<Army> FightProtection => ObjectState.FightProtection;
+        public IValuePipeline<ArmyOld> SiegeDamage => ObjectState.SiegeDamage;
+        public IValuePipeline<ArmyOld> FightDamage => ObjectState.FightDamage;
+        public IValuePipeline<ArmyOld> FightProtection => ObjectState.FightProtection;
         public IValuePipeline<(Planet target, Faction playerFaction)> ArmySpeed => ObjectState.ArmySpeed;
         public float DeathStrike => ObjectState.deathStrike;
 

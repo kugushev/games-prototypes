@@ -1,15 +1,16 @@
 ﻿using System.Linq;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Mission.Briefing.PresentationModel;
 using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
 using Kugushev.Scripts.Mission.Models;
-using Kugushev.Scripts.MissionPresentation.PresentationModels;
 using TMPro;
 using UnityEngine;
 
 namespace Kugushev.Scripts.MissionPresentation.Components
 {
-    public class ArmyPresenter : MonoBehaviour
+    public class ArmyPresentationModel : MonoBehaviour
     {
         [SerializeField] private float minScale = 0.005f;
         [SerializeField] private float maxScale = 0.05f;
@@ -18,11 +19,10 @@ namespace Kugushev.Scripts.MissionPresentation.Components
         [SerializeField] private ParticleSystem? siegeCannon;
         [SerializeField] private ParticleSystem[]? fightCannons;
 
-        [SerializeReference] private Army? army;
+        private Army? army;
+        private FleetPresentationModel? _fleet;
 
-        private FleetPresenter? _fleet;
-
-        public void SetOwner(FleetPresenter owner)
+        public void SetOwner(FleetPresentationModel owner)
         {
             if (_fleet is { })
                 Debug.LogError("Fleet is already specified");
@@ -161,7 +161,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
         {
             if (other.CompareTag("Planet"))
             {
-                var ppm = other.GetComponent<PlanetPresentationModelOld>();
+                var ppm = other.GetComponent<PlanetPresentationModel>();
                 if (!ReferenceEquals(ppm, null))
                 {
                     var planet = ppm.Planet;
@@ -176,7 +176,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
             if (other.CompareTag("Army"))
             {
-                var presenter = other.GetComponent<ArmyPresenter>();
+                var presenter = other.GetComponent<ArmyPresentationModel>();
                 if (presenter is {Army: { }})
                 {
                     Army?.HandleArmyInteraction(presenter.Army);

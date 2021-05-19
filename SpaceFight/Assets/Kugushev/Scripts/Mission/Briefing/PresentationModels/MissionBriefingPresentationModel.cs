@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.Mission.Constants;
+using Kugushev.Scripts.Mission.Core.ContextManagement.Transitions;
 using Kugushev.Scripts.Mission.Core.Models;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ namespace Kugushev.Scripts.Mission.Briefing.PresentationModel
         [SerializeField] private Button startMissionButton = default!;
 
         [Inject] private IPlanetarySystem _planetarySystem = default!;
+        [Inject] private ToExecutionTransition _toExecutionTransition = default!;
 
         private void Start()
         {
@@ -27,7 +29,7 @@ namespace Kugushev.Scripts.Mission.Briefing.PresentationModel
 
         private void StartMission()
         {
-            // todo: fire signal or trigger transition directly
+            _toExecutionTransition.ToTransition = true;
         }
     }
 }

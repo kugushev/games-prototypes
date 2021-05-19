@@ -1,8 +1,7 @@
 ﻿using Kugushev.Scripts.Common.Interfaces;
+using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
-using Kugushev.Scripts.Mission.Models;
 using Kugushev.Scripts.Mission.ValueObjects;
-using Planet = Kugushev.Scripts.Mission.Core.Models.Planet;
 
 namespace Kugushev.Scripts.Mission.Core.Interfaces.Effects
 {

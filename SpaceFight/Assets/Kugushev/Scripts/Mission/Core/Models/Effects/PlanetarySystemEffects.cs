@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Mission.Core.Models.Effects
         IValuePipeline<Planet> IPlanetarySystemEffects.Damage => Damage;
 
         public Func<float, bool>? IsFreeRecruitment { get; set; }
-
+ 
         public Func<bool>? GetExtraPlanetOnStart { get; set; }
     }
 }

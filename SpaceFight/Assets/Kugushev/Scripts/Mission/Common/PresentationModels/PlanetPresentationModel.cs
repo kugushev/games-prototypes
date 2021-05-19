@@ -25,6 +25,7 @@ namespace Kugushev.Scripts.Mission.Briefing.PresentationModel
             _model = model;
         }
 
+        public Planet Planet => _model ?? throw new SpaceFightException("Planet is not initialized");
 
         protected void Awake()
         {

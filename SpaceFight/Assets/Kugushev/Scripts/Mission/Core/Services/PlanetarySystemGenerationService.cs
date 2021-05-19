@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Kugushev.Scripts.Common.ValueObjects;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Kugushev.Scripts.Mission.Constants;
-using Kugushev.Scripts.Mission.Core.Interfaces.Effects;
 using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Core.Specifications;
 using Kugushev.Scripts.Mission.Core.ValueObjects;
@@ -28,15 +27,12 @@ namespace Kugushev.Scripts.Mission.Core.Services
             _planetFactory = planetFactory;
         }
 
-        public Faction PlayerFaction => _specs.PlayerFaction;
-
-        public (Sun, IReadOnlyList<Planet>) CreatePlanetarySystemData(MissionInfo info,
-            IPlanetarySystemEffects planetarySystemEffects)
+        public (Sun, IReadOnlyList<Planet>) CreatePlanetarySystemData(MissionInfo info)
         {
             Random.InitState(info.Seed);
 
             var sun = CreateSun();
-            var planets = CreatePlanets(planetarySystemEffects, info);
+            var planets = CreatePlanets(info);
             return (sun, planets);
         }
 
@@ -46,7 +42,7 @@ namespace Kugushev.Scripts.Mission.Core.Services
             return new Sun(new Position(_specs.Center), radius);
         }
 
-        private IReadOnlyList<Planet> CreatePlanets(IPlanetarySystemEffects planetarySystemEffects, MissionInfo missionInfo)
+        private IReadOnlyList<Planet> CreatePlanets(MissionInfo missionInfo)
         {
             var result = new List<Planet>();
 

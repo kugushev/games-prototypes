@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 
 namespace Kugushev.Scripts.Game.Politics.Interfaces

@@ -128,12 +128,12 @@ namespace Kugushev.Scripts.Mission.Models
             return true;
         }
 
-        public void Reinforce(Army army)
+        public void Reinforce(ArmyOld army)
         {
             ObjectState.power += army.Power;
         }
 
-        public FightRoundResult SufferFightRound(Faction enemyFaction, float damage, Army enemy)
+        public FightRoundResult SufferFightRound(Faction enemyFaction, float damage, ArmyOld enemy)
         {
             ObjectState.power -= damage;
 
@@ -154,7 +154,7 @@ namespace Kugushev.Scripts.Mission.Models
             return FightRoundResult.StillAlive;
         }
 
-        public bool Consider(in SiegeUltimatum ultimatum, Army sender)
+        public bool Consider(in SiegeUltimatum ultimatum, ArmyOld sender)
         {
             if (!ultimatum.Initialized)
                 return false;
