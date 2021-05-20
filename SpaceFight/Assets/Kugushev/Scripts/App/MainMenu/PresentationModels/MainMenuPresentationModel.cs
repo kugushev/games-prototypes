@@ -32,9 +32,11 @@ namespace Kugushev.Scripts.App.MainMenu.PresentationModels
 
             seedSlider.OnValueChangedAsObservable()
                 .Select(Convert.ToInt32)
-                .Subscribe(v => _seed.Value = v);
+                .Subscribe(v => _seed.Value = v)
+                .AddTo(this);
             _seed.Select(StringBag.FromInt)
-                .SubscribeToTextMeshPro(seedValueText);
+                .SubscribeToTextMeshPro(seedValueText)
+                .AddTo(this);
             seedSlider.value = AppConstants.DefaultSeed;
         }
 

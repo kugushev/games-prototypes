@@ -7,6 +7,7 @@ using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
 using UnityEngine;
 using Zenject;
+using UniRx;
 
 namespace Kugushev.Scripts.MissionPresentation.Components
 {
@@ -28,22 +29,20 @@ namespace Kugushev.Scripts.MissionPresentation.Components
                 Faction.Red => redFleet,
                 _ => throw new ArgumentOutOfRangeException(nameof(faction), faction, "Invalid fleet faction")
             };
+
+            _model.OrderCommitted += SendArmyIfRequired;
         }
+
+        private void OnDestroy() => _model.OrderCommitted -= SendArmyIfRequired;
 
         private readonly Queue<ArmyPresentationModel> _armiesPool =
             new Queue<ArmyPresentationModel>(GameplayConstants.ArmiesPerFleetCapacity);
 
-        private void Update()
-        {
-            SendArmyIfRequired();
-        }
 
         private void SendArmyIfRequired()
         {
-            if (_model.ArmiesToSent.Count > 0)
+            while (_model.TryExtractArmy(out var army))
             {
-                var army = _model.ArmiesToSent.Dequeue();
-
                 var presenter = GetArmy();
                 presenter.Army = army;
                 presenter.SendFollowingOrder();

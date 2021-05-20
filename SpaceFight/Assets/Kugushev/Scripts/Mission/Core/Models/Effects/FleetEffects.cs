@@ -8,6 +8,8 @@ namespace Kugushev.Scripts.Mission.Core.Models.Effects
 {
     public class FleetEffects : IFleetEffects
     {
+        public static IFleetEffects Empty { get; } = new FleetEffects();
+
         public ValuePipeline<Army> SiegeDamage { get; } = new ValuePipeline<Army>();
         IValuePipeline<Army> IFleetEffects.SiegeDamage => SiegeDamage;
 

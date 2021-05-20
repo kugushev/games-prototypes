@@ -29,6 +29,9 @@ namespace Kugushev.Scripts.Mission.Core.Models
             public readonly List<Vector3> Path;
         }
 
+        public Planet SourcePlanet => _state?.SourcePlanet ?? throw new SpaceFightException("Invalid order builder");
+        public Percentage Power => _state?.Power ?? throw new SpaceFightException("Invalid order builder");
+
         public void StartCreating(Planet sourcePlanet, Percentage power)
         {
             Rollback();
@@ -65,7 +68,7 @@ namespace Kugushev.Scripts.Mission.Core.Models
             return new Order(state.SourcePlanet, target, state.Power, state.Path);
         }
 
-        private void Rollback()
+        public void Rollback()
         {
             if (_state == null)
                 return;

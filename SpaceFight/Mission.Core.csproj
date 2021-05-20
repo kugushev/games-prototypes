@@ -75,6 +75,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\FightRoundResult.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Moska.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ContextManagement\BriefingState.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\OrderBuilder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Interfaces\IFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ModelsOld\Planet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Effects\PlanetarySystemEffects.cs" />
@@ -117,6 +118,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\MissionState.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Services\PerksSearchService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Interfaces\Effects\IPlanetarySystemEffects.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\Order.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\Planet.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\MissionEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\PlanetSize.cs" />
@@ -126,8 +128,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Epic\Transporter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Enums\Faction.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Perks\Common\Brawler.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\ValueObjects\Order.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Mission\Core\Models\OrderBuilder.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Core\Mission.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

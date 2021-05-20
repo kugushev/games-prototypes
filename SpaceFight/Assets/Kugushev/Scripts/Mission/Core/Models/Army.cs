@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Mission.Core.Models
         private struct State
         {
             public readonly Order Order;
-            public Faction Faction;
+            public readonly Faction Faction;
             public float Power;
             public ArmyStatus Status;
             public Vector3 CurrentPosition;
@@ -44,9 +44,9 @@ namespace Kugushev.Scripts.Mission.Core.Models
 
             public State(Order order, Faction faction, float power, IFleetEffects fleetEffects)
             {
-                this.Order = order;
-                this.Faction = faction;
-                this.Power = power;
+                Order = order;
+                Faction = faction;
+                Power = power;
                 FleetEffects = fleetEffects;
                 Status = ArmyStatus.Recruiting;
                 CurrentPosition = order.Path[0];
@@ -85,7 +85,7 @@ namespace Kugushev.Scripts.Mission.Core.Models
 
         public void Dispose() => _pool?.Despawn(this);
 
-        public class Factory : PlaceholderFactory<Order, Faction, Power, Army>
+        public class Factory : PlaceholderFactory<Order, Faction, Power, IFleetEffects, Army>
         {
         }
 

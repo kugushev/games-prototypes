@@ -70,7 +70,8 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private void Awake()
         {
             toggle.OnValueChangedAsObservable()
-                .Subscribe(OnCardSelected);
+                .Subscribe(OnCardSelected)
+                .AddTo(this);
         }
 
         #endregion
