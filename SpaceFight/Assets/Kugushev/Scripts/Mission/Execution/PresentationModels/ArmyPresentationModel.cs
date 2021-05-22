@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Mission.Briefing.PresentationModel;
+using Kugushev.Scripts.Mission.Common.PresentationModels;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;

@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private void Awake()
         {
             foreach (var politician in _model.Politicians)
-                politician.Relation.Subscribe(_ => UpdateView());
+                politician.Relation.Subscribe(_ => UpdateView()).AddTo(this);
 
             declareRevolutionButton.onClick.AddListener(OnDeclareRevolutionClick);
         }

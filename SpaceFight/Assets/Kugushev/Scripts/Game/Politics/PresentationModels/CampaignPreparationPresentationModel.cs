@@ -39,15 +39,18 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
             _sponsors.ObserveCountChanged()
                 .Select(_ => CalculateSponsorsBudget())
                 .Select(StringBag.FromInt)
-                .SubscribeToTextMeshPro(budgetSponsors);
+                .SubscribeToTextMeshPro(budgetSponsors)
+                .AddTo(this);
 
             _sponsors.ObserveCountChanged()
                 .Select(_ => GetSponsorsList())
-                .SubscribeToTextMeshPro(sponsorsList);
+                .SubscribeToTextMeshPro(sponsorsList)
+                .AddTo(this);
 
             _politicianSelector.SelectedPolitician
                 .CombineLatest(_sponsors.ObserveCountChanged(), (selected, _) => selected)
-                .Subscribe(UpdateSponsorsButtons);
+                .Subscribe(UpdateSponsorsButtons)
+                .AddTo(this);
 
             startCampaignButton.onClick.AddListener(OnStartCampaignClick);
         }

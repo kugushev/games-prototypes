@@ -1,12 +1,11 @@
-﻿using System;
-using Kugushev.Scripts.Common.Utils;
+﻿using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
 using TMPro;
 using UniRx;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Mission.Briefing.PresentationModel
+namespace Kugushev.Scripts.Mission.Common.PresentationModels
 {
     [RequireComponent(typeof(MeshRenderer))]
     public class PlanetPresentationModel : MonoBehaviour
@@ -46,9 +45,13 @@ namespace Kugushev.Scripts.Mission.Briefing.PresentationModel
         private void BindView(Planet planet)
         {
             UpdateScale(planet.Size);
-            planet.Position.Subscribe(position => transform.position = position.Point);
-            planet.Faction.Subscribe(UpdateMesh);
-            planet.Power.Select(Mathf.CeilToInt).Select(StringBag.FromInt).SubscribeToTextMeshPro(armyCaption);
+            planet.Position.Subscribe(position => transform.position = position.Point).AddTo(this);
+            planet.Faction.Subscribe(UpdateMesh).AddTo(this);
+            planet.Power
+                .Select(Mathf.CeilToInt)
+                .Select(StringBag.FromInt)
+                .SubscribeToTextMeshPro(armyCaption)
+                .AddTo(this);
         }
 
         private void UpdateScale(PlanetSize size)

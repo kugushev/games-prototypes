@@ -25,7 +25,8 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         {
             _politicianSelector.SelectedPolitician
                 .CombineLatest(_intriguesSelector.SelectedIntrigue, BothSelected)
-                .SubscribeToInteractable(applyIntrigueButton);
+                .SubscribeToInteractable(applyIntrigueButton)
+                .AddTo(this);
 
             applyIntrigueButton.onClick.AddListener(OnApplyButtonClick);
         }

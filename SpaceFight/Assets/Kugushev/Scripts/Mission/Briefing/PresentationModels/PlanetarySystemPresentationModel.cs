@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Kugushev.Scripts.Mission.Briefing.PresentationModel;
+using Kugushev.Scripts.Mission.Common.PresentationModels;
 using Kugushev.Scripts.Mission.Core.Models;
 using UnityEngine;
 using Zenject;

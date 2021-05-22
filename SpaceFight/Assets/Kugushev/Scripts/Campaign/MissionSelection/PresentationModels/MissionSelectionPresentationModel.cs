@@ -37,12 +37,12 @@ namespace Kugushev.Scripts.Campaign.MissionSelection.PresentationModels
             foreach (var mission in _model.Missions)
                 AddMissionCard(mission);
 
-            _model.Missions.ObserveAdd().Subscribe(e => AddMissionCard(e.Value));
-            _model.Missions.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
+            _model.Missions.ObserveAdd().Subscribe(e => AddMissionCard(e.Value)).AddTo(this);
+            _model.Missions.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value)).AddTo(this);
 
-            _model.Budget.Select(StringBag.FromInt).SubscribeToTextMeshPro(budgetText);
+            _model.Budget.Select(StringBag.FromInt).SubscribeToTextMeshPro(budgetText).AddTo(this);
 
-            _selectedMission.Select(v => v is { }).SubscribeToInteractable(startMissionButton);
+            _selectedMission.Select(v => v is { }).SubscribeToInteractable(startMissionButton).AddTo(this);
             startMissionButton.onClick.AddListener(StartMission);
             finishCampaignButton.onClick.AddListener(FinishCampaign);
         }

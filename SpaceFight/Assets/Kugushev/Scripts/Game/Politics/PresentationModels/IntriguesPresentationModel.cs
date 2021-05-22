@@ -27,8 +27,8 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
             foreach (var card in _model.IntrigueCards)
                 AddIntrigueCard(card);
 
-            _model.IntrigueCards.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value));
-            _model.IntrigueCards.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value));
+            _model.IntrigueCards.ObserveAdd().Subscribe(e => AddIntrigueCard(e.Value)).AddTo(this);
+            _model.IntrigueCards.ObserveRemove().Subscribe(e => RemoveIntrigueCard(e.Value)).AddTo(this);
         }
 
         IReadOnlyReactiveProperty<IntrigueCard?> IIntriguesSelector.SelectedIntrigue => _selectedIntrigueCard;

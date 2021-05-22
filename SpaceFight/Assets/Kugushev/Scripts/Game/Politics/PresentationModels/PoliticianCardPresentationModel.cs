@@ -50,11 +50,11 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private void SetupView(IPolitician model)
         {
             nameLabel.text = model.Character.FullName;
-            model.Budget.Select(StringBag.FromInt).SubscribeToTextMeshPro(budgetValueLabel);
+            model.Budget.Select(StringBag.FromInt).SubscribeToTextMeshPro(budgetValueLabel).AddTo(this);
             perkNameLabel.text = model.Character.PerkLvl1.Caption;
 
-            model.Relation.Subscribe(UpdateRelationView);
-            model.TraitsStatus.Subscribe(status => UpdateTraitsView(status, model.Traits));
+            model.Relation.Subscribe(UpdateRelationView).AddTo(this);
+            model.TraitsStatus.Subscribe(status => UpdateTraitsView(status, model.Traits)).AddTo(this);
         }
 
         private void UpdateRelationView(Relation relation)

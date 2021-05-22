@@ -47,8 +47,8 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         [Inject]
         private void Init(IPoliticianSelector politicianSelector)
         {
-            politicianSelector.SelectedPolitician.Where(p => p != null).Subscribe(OnSelected!);
-            politicianSelector.SelectedPolitician.Where(p => p == null).Subscribe(_ => OnDeselected());
+            politicianSelector.SelectedPolitician.Where(p => p != null).Subscribe(OnSelected!).AddTo(_bindings);
+            politicianSelector.SelectedPolitician.Where(p => p == null).Subscribe(_ => OnDeselected()).AddTo(_bindings);
         }
 
         private void OnSelected(IPolitician model)
