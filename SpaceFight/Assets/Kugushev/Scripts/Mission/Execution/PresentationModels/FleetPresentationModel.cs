@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Kugushev.Scripts.Common.Utils;
-using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Execution.Interfaces;
+using Kugushev.Scripts.MissionPresentation.Components;
 using UnityEngine;
 using Zenject;
-using UniRx;
 
-namespace Kugushev.Scripts.MissionPresentation.Components
+namespace Kugushev.Scripts.Mission.Execution.PresentationModels
 {
-    public class FleetPresentationModel : MonoBehaviour
+    public class FleetPresentationModel : MonoBehaviour, IFleetPresentationModel
     {
         [SerializeField] private Faction faction;
         [SerializeField] private Transform limbo = default!;
-        [SerializeField] private GameObject armyPrefab = default!;
 
         private Fleet _model = default!;
-        private readonly List<ArmyPresentationModel> _armiesBuffer = new List<ArmyPresentationModel>(1);
+
+        [Inject] private ArmyPresentationModel.Factory _armiesFactory = default!;
 
         [Inject]
         public void Init(GreenFleet greenFleet, RedFleet redFleet)
@@ -35,53 +32,16 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private void OnDestroy() => _model.OrderCommitted -= SendArmyIfRequired;
 
-        private readonly Queue<ArmyPresentationModel> _armiesPool =
-            new Queue<ArmyPresentationModel>(GameplayConstants.ArmiesPerFleetCapacity);
-
+        public Vector3 AssemblyPosition => limbo.position;
 
         private void SendArmyIfRequired()
         {
             while (_model.TryExtractArmy(out var army))
             {
-                var presenter = GetArmy();
+                var presenter = _armiesFactory.Create(army, this);
                 presenter.Army = army;
                 presenter.SendFollowingOrder();
             }
-        }
-
-        private ArmyPresentationModel GetArmy()
-        {
-            if (_armiesPool.Count > 0)
-            {
-                var fromPool = _armiesPool.Dequeue();
-                fromPool.gameObject.SetActive(true);
-                return fromPool;
-            }
-
-            var go = Instantiate(armyPrefab, transform);
-            go.GetComponents(_armiesBuffer);
-
-            var armyPresenter = _armiesBuffer.Single();
-            armyPresenter.SetOwner(this);
-
-            _armiesBuffer.Clear();
-
-            return armyPresenter;
-        }
-
-        public void ReturnArmyToPool(ArmyPresentationModel armyPresentationModel)
-        {
-            Asserting.NotNull(limbo);
-
-            if (armyPresentationModel.Army == null)
-                return;
-
-            armyPresentationModel.Army.Dispose();
-            armyPresentationModel.Army = null;
-
-            armyPresentationModel.gameObject.SetActive(false);
-            armyPresentationModel.transform.position = limbo.position;
-            _armiesPool.Enqueue(armyPresentationModel);
         }
     }
 }

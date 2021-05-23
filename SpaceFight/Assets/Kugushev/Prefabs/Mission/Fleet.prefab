@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9107640921242298753}
-  - component: {fileID: 9107640921242298759}
   - component: {fileID: 9107640921242298758}
+  - component: {fileID: 6375961507753399429}
   m_Layer: 0
   m_Name: Fleet
   m_TagString: Untagged
@@ -32,19 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9107640921242298759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9107640921242298752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3d45cd225942619794b1b30aa1e8bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fleetManager: {fileID: 11400000, guid: 29f03f72656d55c4aaf3dd1871014176, type: 2}
 --- !u!114 &9107640921242298758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,5 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0254fdd221fa4b4d94d984aad5d5a82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 0
   limbo: {fileID: 9107640921242298753}
   armyPrefab: {fileID: 5208074341317328207, guid: d539801e18fb22a43bf26928058f2afc, type: 3}
+--- !u!114 &6375961507753399429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107640921242298752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10f84fa426f4c06a8bd2a7d56b974fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5208074341317328207, guid: d539801e18fb22a43bf26928058f2afc, type: 3}

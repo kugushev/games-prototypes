@@ -37,7 +37,7 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         private IIntriguesPresentationModel? _parent;
         private IMemoryPool? _pool;
 
-        #region IPoolable, IDisposable
+        #region IPoolable, IDisposable, Factory
 
         void IPoolable<IntrigueCard, IIntriguesPresentationModel, IMemoryPool>.OnSpawned(IntrigueCard p1,
             IIntriguesPresentationModel p2,
@@ -62,6 +62,11 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
         }
 
         public void Dispose() => _pool?.Despawn(this);
+        
+        public class Factory : PlaceholderFactory<IntrigueCard, IIntriguesPresentationModel,
+            IntrigueCardPresentationModel>
+        {
+        }
 
         #endregion
 
@@ -124,11 +129,6 @@ namespace Kugushev.Scripts.Game.Politics.PresentationModels
             UpdateTraitView(traitVanityValue, model.Intrigue.Traits.Vanity);
 
             void UpdateTraitView(TextMeshProUGUI label, int value) => label.text = StringBag.FromInt(value);
-        }
-
-        public class Factory : PlaceholderFactory<IntrigueCard, IIntriguesPresentationModel,
-            IntrigueCardPresentationModel>
-        {
         }
     }
 }

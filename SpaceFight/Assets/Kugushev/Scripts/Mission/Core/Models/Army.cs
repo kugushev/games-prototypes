@@ -20,8 +20,8 @@ namespace Kugushev.Scripts.Mission.Core.Models
         private readonly IPlanetarySystem _planetarySystem;
         private readonly EventsCollectingService _eventsCollectingService;
 
-        private readonly List<IFighter> _targets = new List<IFighter>();
-        private readonly List<IFighter> _targetsToRemoveBuffer = new List<IFighter>(8);
+        private readonly List<IFighter> _targets = new List<IFighter>(16);
+        private readonly List<IFighter> _targetsToRemoveBuffer = new List<IFighter>(16);
         private State _state;
 
         private struct State

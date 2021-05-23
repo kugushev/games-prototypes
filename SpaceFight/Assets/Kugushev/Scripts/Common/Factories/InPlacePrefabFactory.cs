@@ -4,6 +4,7 @@ using Zenject;
 namespace Kugushev.Scripts.Common.Factories
 {
     public abstract class InPlacePrefabFactory<T> : MonoBehaviour, IFactory<T>
+        where T : Component
     {
         [SerializeField] private GameObject prefab = default!;
 

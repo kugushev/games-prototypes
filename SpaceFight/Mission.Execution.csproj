@@ -43,6 +43,9 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Mission\Execution\PresentationModels\ArmyPresentationModel.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Mission\Execution\PresentationModels\FleetPresentationModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Execution\Factories\ArmyFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Execution\ExecutionInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Mission\Execution\Interfaces\IFleetPresentationModel.cs" />
      <None Include="Assets\Kugushev\Scripts\Mission\Execution\Mission.Execution.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

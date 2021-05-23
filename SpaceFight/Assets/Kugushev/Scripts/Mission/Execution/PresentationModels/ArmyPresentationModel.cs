@@ -1,16 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Mission.Common.PresentationModels;
 using Kugushev.Scripts.Mission.Constants;
 using Kugushev.Scripts.Mission.Core.Models;
 using Kugushev.Scripts.Mission.Enums;
+using Kugushev.Scripts.Mission.Execution.Interfaces;
+using Kugushev.Scripts.Mission.Execution.PresentationModels;
 using Kugushev.Scripts.Mission.Models;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.MissionPresentation.Components
 {
-    public class ArmyPresentationModel : MonoBehaviour
+    public class ArmyPresentationModel : MonoBehaviour, IPoolable<Army, IFleetPresentationModel, IMemoryPool>,
+        IDisposable
     {
         [SerializeField] private float minScale = 0.005f;
         [SerializeField] private float maxScale = 0.05f;
@@ -19,8 +24,44 @@ namespace Kugushev.Scripts.MissionPresentation.Components
         [SerializeField] private ParticleSystem? siegeCannon;
         [SerializeField] private ParticleSystem[]? fightCannons;
 
-        private Army? army;
-        private FleetPresentationModel? _fleet;
+        private Army? _army;
+        private IFleetPresentationModel? _fleet;
+        private IMemoryPool? _pool;
+
+        #region IPoolable, IDisposable, Factory
+
+        void IPoolable<Army, IFleetPresentationModel, IMemoryPool>.OnSpawned(Army p1, IFleetPresentationModel p2,
+            IMemoryPool p3)
+        {
+            _army = p1;
+            _fleet = p2;
+            _pool = p3;
+
+            transform.position = _fleet.AssemblyPosition;
+        }
+
+        void IPoolable<Army, IFleetPresentationModel, IMemoryPool>.OnDespawned()
+        {
+            if (_fleet is { })
+                transform.position = _fleet.AssemblyPosition;
+
+            _army?.Dispose();
+
+            _army = null;
+            _fleet = null;
+            _pool = null;
+        }
+
+        public void Dispose()
+        {
+            _pool?.Despawn(this);
+        }
+
+        public class Factory : PlaceholderFactory<Army, IFleetPresentationModel, ArmyPresentationModel>
+        {
+        }
+
+        #endregion
 
         public void SetOwner(FleetPresentationModel owner)
         {
@@ -32,8 +73,8 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         public Army? Army
         {
-            get => army;
-            internal set => army = value;
+            get => _army;
+            internal set => _army = value;
         }
 
         public void SendFollowingOrder()
@@ -44,8 +85,8 @@ namespace Kugushev.Scripts.MissionPresentation.Components
 
         private void OnDestroy()
         {
-            army?.Dispose();
-            army = null;
+            _army?.Dispose();
+            _army = null;
         }
 
         private void Update()
@@ -72,7 +113,7 @@ namespace Kugushev.Scripts.MissionPresentation.Components
             ApplySiege(model);
 
             if (model.Disbanded)
-                _fleet.ReturnArmyToPool(this);
+                Dispose();
         }
 
 
