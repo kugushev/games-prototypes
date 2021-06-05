@@ -10,6 +10,8 @@ namespace Kugushev.Scripts.Core.Battle.Models
 {
     public class SquadUnit
     {
+        // todo: create class Status and expose it as reactive property. It should have inheritors: Idle, Moving, Attacking
+
         private readonly ReactiveProperty<Position> _position = new ReactiveProperty<Position>();
 
         private readonly ReactiveProperty<UnitDirection> _direction =
@@ -18,41 +20,85 @@ namespace Kugushev.Scripts.Core.Battle.Models
         private readonly ReactiveProperty<UnitActivity> _activity =
             new ReactiveProperty<UnitActivity>(UnitActivity.Stay);
 
+        private DateTime _lastAttackTime = DateTime.MinValue;
+
         public IReadOnlyReactiveProperty<Position> Position => _position;
         public IReadOnlyReactiveProperty<UnitDirection> Direction => _direction;
         public IReadOnlyReactiveProperty<UnitActivity> Activity => _activity;
+        public event Action? Attacking;
+
         public IOrder? CurrentOrder { get; set; }
 
         internal void ProcessCurrentOrder(DeltaTime delta)
         {
-            if (CurrentOrder is { })
+            OrderProcessingStatus processingStatus;
+
+            switch (CurrentOrder)
             {
-                OrderProcessingStatus processingStatus = OrderProcessingStatus.None;
-
-                if (CurrentOrder is OrderMove orderMove)
+                case OrderMove orderMove:
                     processingStatus = Process(orderMove, delta);
-
-                if (processingStatus == OrderProcessingStatus.Completed)
-                    CurrentOrder = null;
+                    break;
+                case OrderAttack orderAttack:
+                    processingStatus = Process(orderAttack, delta);
+                    break;
+                case null:
+                    processingStatus = OrderProcessingStatus.None;
+                    break;
+                default:
+                    Debug.LogError($"Unexpected order {CurrentOrder}");
+                    processingStatus = OrderProcessingStatus.None;
+                    break;
             }
+
+            if (processingStatus == OrderProcessingStatus.Completed)
+                CurrentOrder = null;
         }
 
         private OrderProcessingStatus Process(OrderMove order, DeltaTime delta)
         {
-            _position.Value = GetNewPosition(order, delta);
+            var destinationReached = MoveToPosition(order.Target, delta);
 
-            var direction = order.Target.Vector - _position.Value.Vector;
-            _direction.Value = GetNewDirection(direction);
-
-            var inProgress = direction.sqrMagnitude > BattleConstants.UnitToTargetEpsilon;
-            _activity.Value = GetNewActivity(inProgress);
-
-            return inProgress ? OrderProcessingStatus.InProgress : OrderProcessingStatus.Completed;
+            return destinationReached ? OrderProcessingStatus.Completed : OrderProcessingStatus.InProgress;
         }
 
-        private Position GetNewPosition(OrderMove order, DeltaTime delta)
+        private OrderProcessingStatus Process(OrderAttack order, DeltaTime delta)
         {
-            var targetVector = order.Target.Vector;
+            var enemyPosition = order.Target.Position.Value;
+            if (Vector2.Distance(enemyPosition.Vector, _position.Value.Vector) >= BattleConstants.SwordAttackRange)
+            {
+                MoveToPosition(enemyPosition, delta);
+            }
+            else
+            {
+                _activity.Value = UnitActivity.Stay;
+                if (DateTime.Now - _lastAttackTime > BattleConstants.SwordAttackCooldown)
+                {
+                    order.Target.Suffer();
+
+                    Attacking?.Invoke();
+                    _lastAttackTime = DateTime.Now;
+                }
+            }
+
+            return OrderProcessingStatus.InProgress;
+        }
+
+        private bool MoveToPosition(Position target, DeltaTime delta)
+        {
+            _position.Value = GetNewPosition(target, delta);
+
+            var direction = target.Vector - _position.Value.Vector;
+            _direction.Value = GetNewDirection(direction);
+
+            var destinationReached = direction.sqrMagnitude < BattleConstants.UnitToTargetEpsilon;
+            _activity.Value = GetNewActivity(destinationReached);
+
+            return destinationReached;
+        }
+
+        private Position GetNewPosition(Position target, DeltaTime delta)
+        {
+            var targetVector = target.Vector;
             var newVector = Vector2.MoveTowards(_position.Value.Vector, targetVector,
                 BattleConstants.UnitSpeed * delta.Seconds);
 
@@ -75,6 +121,7 @@ namespace Kugushev.Scripts.Core.Battle.Models
             return UnitDirection.Right;
         }
 
-        private UnitActivity GetNewActivity(bool inProgress) => inProgress ? UnitActivity.Move : UnitActivity.Stay;
+        private UnitActivity GetNewActivity(bool destinationReached) =>
+            destinationReached ? UnitActivity.Stay : UnitActivity.Move;
     }
 }

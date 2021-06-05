@@ -13,6 +13,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters
     public class SquadUnitPresenter : MonoBehaviour
     {
         private static readonly int SpeedAnimationParameter = Animator.StringToHash("Speed");
+        private static readonly int SwingAnimationParameter = Animator.StringToHash("Swing");
 
         [SerializeField] private SpriteRenderer selectionMarker = default!;
 
@@ -40,11 +41,13 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters
             Model.Position.Subscribe(OnPositionChanged).AddTo(this);
             Model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
             Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
+            Model.Attacking += OnAttacking;
         }
 
         private void OnDestroy()
         {
             _squadController.Unregister(this);
+            Model.Attacking -= OnAttacking;
         }
 
         public void Select()
@@ -121,6 +124,12 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters
             var speed = activity == UnitActivity.Move ? BattleConstants.UnitSpeed : 0;
             if (_activeAnimator is { })
                 _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
+        }
+
+        private void OnAttacking()
+        {
+            if (_activeAnimator is { })
+                _activeAnimator.Play(SwingAnimationParameter, 0);
         }
     }
 }

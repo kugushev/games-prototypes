@@ -53,6 +53,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\DeltaTime.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\UnitActivity.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\OrderProcessingStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\EnemyUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\Orders\OrderAttack.cs" />
      <None Include="Assets\Kugushev\Scripts\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
