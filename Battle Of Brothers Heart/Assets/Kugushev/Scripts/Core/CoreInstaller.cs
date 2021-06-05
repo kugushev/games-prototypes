@@ -1,9 +1,11 @@
-using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
-public class CoreInstaller : MonoInstaller
+namespace Kugushev.Scripts.Core
 {
-    public override void InstallBindings()
+    public class CoreInstaller : MonoInstaller
     {
+        public override void InstallBindings()
+        {
+        }
     }
 }

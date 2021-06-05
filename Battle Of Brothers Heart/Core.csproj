@@ -41,7 +41,18 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\BattleCoreInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\SquadUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\CoreInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\Orders\OrderMove.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Interfaces\IOrder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\Position.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Squad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\UnitDirection.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\BattleConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\DeltaTime.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\UnitActivity.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\OrderProcessingStatus.cs" />
      <None Include="Assets\Kugushev\Scripts\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
