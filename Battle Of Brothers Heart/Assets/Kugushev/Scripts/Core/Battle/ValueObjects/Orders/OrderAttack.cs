@@ -5,20 +5,20 @@ using Zenject;
 
 namespace Kugushev.Scripts.Core.Battle.ValueObjects.Orders
 {
-    public class OrderAttack : IOrder, IPoolable<EnemyUnit, IMemoryPool>, IDisposable
+    public class OrderAttack : IOrder, IPoolable<BaseUnit, IMemoryPool>, IDisposable
     {
         private IMemoryPool? _memoryPool;
-        private EnemyUnit? _target;
+        private BaseUnit? _target;
 
-        public EnemyUnit Target => _target ?? throw new Exception("Target has not specified");
+        public BaseUnit Target => _target ?? throw new Exception("Target has not specified");
 
-        void IPoolable<EnemyUnit, IMemoryPool>.OnSpawned(EnemyUnit p1, IMemoryPool p2)
+        void IPoolable<BaseUnit, IMemoryPool>.OnSpawned(BaseUnit p1, IMemoryPool p2)
         {
             _target = p1;
             _memoryPool = p2;
         }
 
-        void IPoolable<EnemyUnit, IMemoryPool>.OnDespawned()
+        void IPoolable<BaseUnit, IMemoryPool>.OnDespawned()
         {
             _target = default;
             _memoryPool = default;
@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Core.Battle.ValueObjects.Orders
 
         public void Dispose() => _memoryPool?.Despawn(this);
 
-        public class Factory : PlaceholderFactory<EnemyUnit, OrderAttack>
+        public class Factory : PlaceholderFactory<BaseUnit, OrderAttack>
         {
         }
     }

@@ -43,9 +43,11 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\BattlePresentationInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Utils\CinemachineAnchor.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\Presenters\SquadUnitPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\Presenters\EnemyBaseUnitPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\Presenters\SquadBaseUnitPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\Controllers\SquadController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\Presenters\EnemyUnitPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\Presenters\BaseUnitPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Battle\Controllers\UnitsManager.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

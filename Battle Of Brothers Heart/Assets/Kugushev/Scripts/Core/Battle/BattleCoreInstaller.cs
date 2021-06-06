@@ -10,9 +10,11 @@ namespace Kugushev.Scripts.Core.Battle
         public override void InstallBindings()
         {
             Container.Bind<Squad>().AsSingle();
-            
+
+            Container.BindInterfacesAndSelfTo<EnemySquad>().AsSingle();
+
             Container.BindFactory<Position, OrderMove, OrderMove.Factory>().FromPoolableMemoryPool();
-            Container.BindFactory<EnemyUnit, OrderAttack, OrderAttack.Factory>().FromPoolableMemoryPool();
+            Container.BindFactory<BaseUnit, OrderAttack, OrderAttack.Factory>().FromPoolableMemoryPool();
         }
     }
 }

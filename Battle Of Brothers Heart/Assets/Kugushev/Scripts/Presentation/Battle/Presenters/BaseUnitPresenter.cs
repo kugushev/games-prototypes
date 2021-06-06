@@ -1,5 +1,4 @@
-using System;
-using Kugushev.Scripts.Core.Battle;
+﻿using Kugushev.Scripts.Core.Battle;
 using Kugushev.Scripts.Core.Battle.Enums;
 using Kugushev.Scripts.Core.Battle.Models;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
@@ -10,12 +9,11 @@ using UniRx;
 
 namespace Kugushev.Scripts.Presentation.Battle.Presenters
 {
-    public class SquadUnitPresenter : MonoBehaviour
+    public abstract class BaseUnitPresenter : MonoBehaviour
     {
         private static readonly int SpeedAnimationParameter = Animator.StringToHash("Speed");
         private static readonly int SwingAnimationParameter = Animator.StringToHash("Swing");
-
-        [SerializeField] private SpriteRenderer selectionMarker = default!;
+        private static readonly int HurtAnimationParameter = Animator.StringToHash("Hurt");
 
         [Header("Character")] [SerializeField] private GameObject upObject = default!;
         [SerializeField] private Animator upAnimator = default!;
@@ -26,48 +24,38 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters
         [SerializeField] private GameObject downObject = default!;
         [SerializeField] private Animator downAnimator = default!;
 
-        [Inject] private SquadController _squadController = default!;
-
-        private bool _selected;
         private Animator? _activeAnimator;
 
-        public SquadUnit Model { get; } = new SquadUnit();
+        protected abstract BaseUnit Model { get; }
 
         private void Awake()
         {
             _activeAnimator = downAnimator;
 
-            _squadController.Register(this);
             Model.Position.Subscribe(OnPositionChanged).AddTo(this);
             Model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
             Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
             Model.Attacking += OnAttacking;
+            Model.Hurt += OnHurt;
+
+            OnAwake();
+        }
+
+        protected virtual void OnAwake()
+        {
         }
 
         private void OnDestroy()
         {
-            _squadController.Unregister(this);
+            OnDestruction();
             Model.Attacking -= OnAttacking;
+            Model.Hurt += OnHurt;
         }
 
-        public void Select()
+        protected virtual void OnDestruction()
         {
-            if (!_selected)
-            {
-                _selected = true;
-                selectionMarker.enabled = true;
-                _squadController.UnitSelected(this);
-            }
         }
 
-        public void Deselect()
-        {
-            if (_selected)
-            {
-                _selected = false;
-                selectionMarker.enabled = false;
-            }
-        }
 
         private void OnPositionChanged(Position newPosition) => transform.position = newPosition.Vector;
 
@@ -130,6 +118,12 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(SwingAnimationParameter, 0);
+        }
+
+        private void OnHurt()
+        {
+            if (_activeAnimator is { })
+                _activeAnimator.Play(HurtAnimationParameter, 0);
         }
     }
 }

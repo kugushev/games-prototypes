@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
         [Inject] private OrderMove.Factory _orderMoveFactory = default!;
         [Inject] private OrderAttack.Factory _orderAttackFactory = default!;
 
-        private readonly List<SquadUnitPresenter> _units = new List<SquadUnitPresenter>(4);
+        private readonly List<SquadBaseUnitPresenter> _units = new List<SquadBaseUnitPresenter>(4);
 
         private bool _uglyHackLockInput = false;
 
@@ -31,7 +31,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
             }
 
             // todo: replace with collider on surface to prevent race conditions in orders
-            if (_currentUnit is { } && Input.GetMouseButtonDown(0))
+            if (_currentUnit is { } && Input.GetMouseButtonDown(1))
             {
                 OrderMove(_currentUnit);
             }
@@ -39,14 +39,14 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
 
         private void FixedUpdate() => _squad.ProcessOrders(new DeltaTime(Time.fixedDeltaTime));
 
-        private void OrderMove(SquadUnitPresenter unit)
+        private void OrderMove(SquadBaseUnitPresenter baseUnit)
         {
             Vector2 target = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            if ((target - unit.Model.Position.Value.Vector).sqrMagnitude < BattleConstants.UnitToTargetEpsilon)
+            if ((target - baseUnit.Unit.Position.Value.Vector).sqrMagnitude < BattleConstants.UnitToTargetEpsilon)
                 return;
 
-            unit.Model.CurrentOrder = _orderMoveFactory.Create(new Position(target));
+            baseUnit.Unit.CurrentOrder = _orderMoveFactory.Create(new Position(target));
         }
 
         public void EnemyUnitClicked(EnemyUnit enemy)
@@ -54,7 +54,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
             if (_currentUnit is { })
             {
                 // order attack
-                _currentUnit.Model.CurrentOrder = _orderAttackFactory.Create(enemy);
+                _currentUnit.Unit.CurrentOrder = _orderAttackFactory.Create(enemy);
 
                 _uglyHackLockInput = true;
             }
@@ -62,9 +62,9 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
 
         #region Squad Unit Selection
 
-        private SquadUnitPresenter? _currentUnit;
+        private SquadBaseUnitPresenter? _currentUnit;
 
-        public void UnitSelected(SquadUnitPresenter? unit)
+        public void UnitSelected(SquadBaseUnitPresenter? unit)
         {
             _currentUnit = unit;
             if (unit == null)
@@ -75,14 +75,14 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
                     u.Deselect();
         }
 
-        public void Register(SquadUnitPresenter unit)
+        public void Register(SquadBaseUnitPresenter baseUnit)
         {
             // todo: invert it!
-            _squad.Add(unit.Model!);
-            _units.Add(unit);
+            _squad.Add(baseUnit.Unit!);
+            _units.Add(baseUnit);
         }
 
-        public void Unregister(SquadUnitPresenter unit) => _units.Remove(unit);
+        public void Unregister(SquadBaseUnitPresenter baseUnit) => _units.Remove(baseUnit);
 
         #endregion
     }
