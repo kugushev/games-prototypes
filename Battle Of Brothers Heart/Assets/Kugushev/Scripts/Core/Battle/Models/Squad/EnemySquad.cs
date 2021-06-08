@@ -1,21 +1,21 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Core.Battle.ValueObjects;
+using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using UnityEngine;
 using Zenject;
 
-namespace Kugushev.Scripts.Core.Battle.Models
+namespace Kugushev.Scripts.Core.Battle.Models.Squad
 {
-    public class EnemySquad : ITickable
+    public class EnemySquad : BaseSquad<EnemyUnit>, ITickable
     {
-        private readonly Squad _squad;
+        private readonly PlayerSquad _playerSquad;
         private readonly OrderAttack.Factory _orderAttackFactory;
         private readonly List<EnemyUnit> _units = new List<EnemyUnit>();
 
 
-        public EnemySquad(Squad squad, OrderAttack.Factory orderAttackFactory)
+        public EnemySquad(PlayerSquad playerSquad, OrderAttack.Factory orderAttackFactory)
         {
-            _squad = squad;
+            _playerSquad = playerSquad;
             _orderAttackFactory = orderAttackFactory;
         }
 
@@ -27,17 +27,9 @@ namespace Kugushev.Scripts.Core.Battle.Models
             {
                 if (enemyUnit.CurrentOrder is null)
                 {
-                    var target = _squad.Units[Random.Range(0, _units.Count)];
+                    var target = _playerSquad.BaseUnits[Random.Range(0, _units.Count)];
                     enemyUnit.CurrentOrder = _orderAttackFactory.Create(target);
                 }
-            }
-        }
-        
-        public void ProcessOrders(DeltaTime delta)
-        {
-            foreach (var unit in _units)
-            {
-                unit.ProcessCurrentOrder(delta);
             }
         }
     }

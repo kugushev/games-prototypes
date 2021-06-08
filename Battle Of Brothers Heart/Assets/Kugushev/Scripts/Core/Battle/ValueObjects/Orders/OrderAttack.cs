@@ -1,6 +1,7 @@
 ﻿using System;
 using Kugushev.Scripts.Core.Battle.Interfaces;
 using Kugushev.Scripts.Core.Battle.Models;
+using Kugushev.Scripts.Core.Battle.Models.Units;
 using Zenject;
 
 namespace Kugushev.Scripts.Core.Battle.ValueObjects.Orders

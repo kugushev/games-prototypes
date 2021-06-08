@@ -1,13 +1,11 @@
 ﻿using Kugushev.Scripts.Core.Battle;
 using Kugushev.Scripts.Core.Battle.Enums;
-using Kugushev.Scripts.Core.Battle.Models;
+using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
-using Kugushev.Scripts.Presentation.Battle.Controllers;
-using UnityEngine;
-using Zenject;
 using UniRx;
+using UnityEngine;
 
-namespace Kugushev.Scripts.Presentation.Battle.Presenters
+namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
 {
     public abstract class BaseUnitPresenter : MonoBehaviour
     {
@@ -26,9 +24,9 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters
 
         private Animator? _activeAnimator;
 
-        protected abstract BaseUnit Model { get; }
+        public abstract BaseUnit Model { get; }
 
-        private void Awake()
+        private void Start()
         {
             _activeAnimator = downAnimator;
 
@@ -38,10 +36,10 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters
             Model.Attacking += OnAttacking;
             Model.Hurt += OnHurt;
 
-            OnAwake();
+            OnStart();
         }
 
-        protected virtual void OnAwake()
+        protected virtual void OnStart()
         {
         }
 

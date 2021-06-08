@@ -1,21 +1,21 @@
-﻿using System;
-using Kugushev.Scripts.Core.Battle.Models;
+﻿using Kugushev.Scripts.Core.Battle.Models.Squad;
+using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Presentation.Battle.Controllers;
 using UnityEngine;
 using Zenject;
 
-namespace Kugushev.Scripts.Presentation.Battle.Presenters
+namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
 {
-    public class EnemyBaseUnitPresenter : BaseUnitPresenter
+    public class EnemyUnitPresenter : BaseUnitPresenter
     {
         [Inject] private SquadController _squadController = default!;
         [Inject] private EnemySquad _enemySquad = default!;
 
         private readonly EnemyUnit _model = new EnemyUnit();
 
-        protected override BaseUnit Model => _model;
+        public override BaseUnit Model => _model;
 
-        protected override void OnAwake()
+        protected override void OnStart()
         {
             _enemySquad.Add(_model);
         }

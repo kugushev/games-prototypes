@@ -1,4 +1,6 @@
 using Kugushev.Scripts.Core.Battle.Models;
+using Kugushev.Scripts.Core.Battle.Models.Squad;
+using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using Zenject;
@@ -9,8 +11,7 @@ namespace Kugushev.Scripts.Core.Battle
     {
         public override void InstallBindings()
         {
-            Container.Bind<Squad>().AsSingle();
-
+            Container.BindInterfacesAndSelfTo<PlayerSquad>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemySquad>().AsSingle();
 
             Container.BindFactory<Position, OrderMove, OrderMove.Factory>().FromPoolableMemoryPool();

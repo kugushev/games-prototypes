@@ -6,7 +6,7 @@ using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using UniRx;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Core.Battle.Models
+namespace Kugushev.Scripts.Core.Battle.Models.Units
 {
     public class BaseUnit
     {

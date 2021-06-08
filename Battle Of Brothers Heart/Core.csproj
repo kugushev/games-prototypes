@@ -42,21 +42,26 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\Position.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Squad\EnemySquad.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\UnitActivity.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\OrderProcessingStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\Orders\OrderMove.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Interfaces\IOrder.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Squad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Squad\PlayerSquad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Units\BaseUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\BattleCoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Enums\UnitDirection.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\CoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\Orders\OrderAttack.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\EnemyUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Units\EnemyUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\DeltaTime.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\BattleConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\SquadUnit.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\BaseUnit.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\EnemySquad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Units\PlayerUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Squad\BaseSquad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Interfaces\IInputController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Game\Models\PlayerTeam.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Game\Models\PlayerTeamMember.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Game\GameInstaller.cs" />
      <None Include="Assets\Kugushev\Scripts\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

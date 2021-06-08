@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using Kugushev.Scripts.Core.Battle;
 using Kugushev.Scripts.Core.Battle.Models;
+using Kugushev.Scripts.Core.Battle.Models.Squad;
+using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using Kugushev.Scripts.Presentation.Battle.Presenters;
+using Kugushev.Scripts.Presentation.Battle.Presenters.Units;
 using UnityEngine;
 using Zenject;
 
@@ -14,11 +17,11 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
     {
         [SerializeField] private Camera mainCamera = default!;
 
-        [Inject] private Squad _squad = default!;
+        [Inject] private PlayerSquad _playerSquad = default!;
         [Inject] private OrderMove.Factory _orderMoveFactory = default!;
         [Inject] private OrderAttack.Factory _orderAttackFactory = default!;
 
-        private readonly List<SquadBaseUnitPresenter> _units = new List<SquadBaseUnitPresenter>(4);
+        private readonly List<PlayerUnitPresenter> _units = new List<PlayerUnitPresenter>(4);
 
         private bool _uglyHackLockInput = false;
 
@@ -37,16 +40,16 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
             }
         }
 
-        private void FixedUpdate() => _squad.ProcessOrders(new DeltaTime(Time.fixedDeltaTime));
+        private void FixedUpdate() => _playerSquad.ProcessOrders(new DeltaTime(Time.fixedDeltaTime));
 
-        private void OrderMove(SquadBaseUnitPresenter baseUnit)
+        private void OrderMove(PlayerUnitPresenter unit)
         {
             Vector2 target = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            if ((target - baseUnit.Unit.Position.Value.Vector).sqrMagnitude < BattleConstants.UnitToTargetEpsilon)
+            if ((target - unit.Unit.Position.Value.Vector).sqrMagnitude < BattleConstants.UnitToTargetEpsilon)
                 return;
 
-            baseUnit.Unit.CurrentOrder = _orderMoveFactory.Create(new Position(target));
+            unit.Unit.CurrentOrder = _orderMoveFactory.Create(new Position(target));
         }
 
         public void EnemyUnitClicked(EnemyUnit enemy)
@@ -62,27 +65,25 @@ namespace Kugushev.Scripts.Presentation.Battle.Controllers
 
         #region Squad Unit Selection
 
-        private SquadBaseUnitPresenter? _currentUnit;
+        private PlayerUnitPresenter? _currentUnit;
 
-        public void UnitSelected(SquadBaseUnitPresenter? unit)
+        public void UnitSelected(PlayerUnitPresenter? unit)
         {
             _currentUnit = unit;
             if (unit == null)
                 return;
 
-            foreach (var u in _units)
-                if (u != unit)
-                    u.Deselect();
+
         }
 
-        public void Register(SquadBaseUnitPresenter baseUnit)
+        public void Register(PlayerUnitPresenter unit)
         {
             // todo: invert it!
-            _squad.Add(baseUnit.Unit!);
-            _units.Add(baseUnit);
+            //_playerSquad.Add(unit.Unit!);
+            _units.Add(unit);
         }
 
-        public void Unregister(SquadBaseUnitPresenter baseUnit) => _units.Remove(baseUnit);
+        public void Unregister(PlayerUnitPresenter unit) => _units.Remove(unit);
 
         #endregion
     }

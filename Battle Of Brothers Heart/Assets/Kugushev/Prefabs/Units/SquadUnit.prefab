@@ -95,7 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d662fd962200ada439791d488fab7c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionMarker: {fileID: 1588408058}
   upObject: {fileID: 6687030665834370720}
   upAnimator: {fileID: 6745255379479037048}
   leftObject: {fileID: 6686823142166251636}
@@ -104,6 +103,19 @@ MonoBehaviour:
   rightAnimator: {fileID: 6744999588159795518}
   downObject: {fileID: 6687715157804974824}
   downAnimator: {fileID: 6745210305319925224}
+  selectionMarker: {fileID: 1588408058}
+--- !u!114 &8594666042617199261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373196303504128346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da74c375d6fb4519abd8cb1bb901143c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6809378956807614626
 PrefabInstance:
   m_ObjectHideFlags: 0

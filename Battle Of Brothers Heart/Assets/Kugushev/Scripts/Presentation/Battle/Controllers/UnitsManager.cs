@@ -1,5 +1,6 @@
 ﻿using System;
 using Kugushev.Scripts.Core.Battle.Models;
+using Kugushev.Scripts.Core.Battle.Models.Squad;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using UnityEngine;
 using Zenject;
