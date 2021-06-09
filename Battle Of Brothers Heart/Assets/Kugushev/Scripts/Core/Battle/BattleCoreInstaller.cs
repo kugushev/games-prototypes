@@ -18,8 +18,8 @@ namespace Kugushev.Scripts.Core.Battle
         public override void InstallBindings()
         {
             Container.Bind<BattleParameters>().FromInstance(_battleParameters ?? new BattleParameters(
-                new[] {new Teammate()},
-                new[] {new Enemy()}));
+                new[] {new Teammate(), new Teammate(), new Teammate(), new Teammate()},
+                new[] {new Enemy(), new Enemy(), new Enemy(), new Enemy()}));
 
             Container.BindInterfacesAndSelfTo<PlayerSquad>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemySquad>().AsSingle();

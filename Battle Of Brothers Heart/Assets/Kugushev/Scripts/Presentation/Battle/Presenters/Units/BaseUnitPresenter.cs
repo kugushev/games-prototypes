@@ -55,7 +55,14 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         }
 
 
-        private void OnPositionChanged(Position newPosition) => transform.position = newPosition.Vector;
+        private void OnPositionChanged(Position newPosition)
+        {
+            var t = transform;
+            
+            Vector3 vector = newPosition.Vector;
+            vector.z = t.position.z; // keep z position
+            t.position = vector;
+        }
 
         private void OnDirectionChanged(UnitDirection newDirection)
         {
