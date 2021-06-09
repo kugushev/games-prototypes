@@ -7,7 +7,7 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
 {
     public abstract class BaseSquad
     {
-        public abstract IReadOnlyList<BaseUnit> BaseUnits { get; }
+        protected abstract IReadOnlyList<BaseUnit> BaseUnits { get; }
 
         public void ProcessOrders(DeltaTime delta)
         {
@@ -16,13 +16,5 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
                 unit.ProcessCurrentOrder(delta);
             }
         }
-    }
-
-    public abstract class BaseSquad<TUnit> : BaseSquad
-        where TUnit : BaseUnit
-    {
-        protected readonly ReactiveCollection<TUnit> Units = new ReactiveCollection<TUnit>();
-
-        public override IReadOnlyList<BaseUnit> BaseUnits => Units;
     }
 }

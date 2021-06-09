@@ -1,5 +1,6 @@
 using System;
 using Kugushev.Scripts.Core.Battle.Models.Units;
+using Kugushev.Scripts.Core.Common.Exceptions;
 using UniRx;
 using UnityEngine;
 
@@ -9,15 +10,14 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
     {
         [SerializeField] private SpriteRenderer selectionMarker = default!;
 
-        public PlayerUnit Unit { get; private set; }
+        private PlayerUnit? _model;
+        public override BaseUnit Model => _model ?? throw new PropertyIsNotInitializedException(nameof(Model));
 
-        public override BaseUnit Model => Unit;
-
-        public void Init(PlayerUnit playerUnit) => Unit = playerUnit;
+        public void Init(PlayerUnit model) => _model = model;
 
         protected override void OnStart()
         {
-            Unit.Selected.Subscribe(OnSelectionChanged).AddTo(this);
+            _model?.Selected.Subscribe(OnSelectionChanged).AddTo(this);
         }
 
         private void OnSelectionChanged(bool selected) => selectionMarker.enabled = selected;

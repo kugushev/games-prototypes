@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Kugushev.Scripts.Presentation.Battle.Presenters.Squad
 {
-    public class PlayerBaseSquadPresenter : BaseSquadPresenter
+    public class PlayerSquadPresenter : BaseSquadPresenter
     {
         [SerializeField] private GameObject playerUnitPrefab = default!;
 
@@ -22,13 +22,13 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Squad
 
         private void Start()
         {
-            foreach (var unit in _playerSquad.PlayerUnits)
+            foreach (var unit in _playerSquad.Units)
             {
                 CreateUnit(unit);
             }
         }
 
-        protected void CreateUnit(PlayerUnit playerUnit)
+        private void CreateUnit(PlayerUnit playerUnit)
         {
             var go = _container.InstantiatePrefab(playerUnitPrefab, transform);
 

@@ -10,7 +10,6 @@ namespace Kugushev.Scripts.Presentation.Battle
         {
             Container.Bind<InputController>().FromComponentInHierarchy().AsSingle();
             Container.Bind<IInputController>().To<InputController>().FromResolve();
-            Container.Bind<SquadController>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

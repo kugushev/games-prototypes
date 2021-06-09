@@ -7,7 +7,6 @@ namespace Kugushev.Scripts.Core.Game
     {
         public override void InstallBindings()
         {
-            Container.Bind<PlayerTeam>().AsSingle();
         }
     }
 }

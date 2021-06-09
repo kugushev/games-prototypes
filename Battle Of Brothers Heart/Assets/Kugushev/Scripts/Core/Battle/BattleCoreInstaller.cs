@@ -3,14 +3,24 @@ using Kugushev.Scripts.Core.Battle.Models.Squad;
 using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
+using Kugushev.Scripts.Core.Game.Models;
+using Kugushev.Scripts.Core.Game.Parameters;
 using Zenject;
 
 namespace Kugushev.Scripts.Core.Battle
 {
     public class BattleCoreInstaller : MonoInstaller
     {
+        // todo: make it subcontainer with parameters: https://github.com/modesttree/Zenject/blob/master/Documentation/SubContainers.md
+
+        [InjectOptional] private BattleParameters? _battleParameters;
+
         public override void InstallBindings()
         {
+            Container.Bind<BattleParameters>().FromInstance(_battleParameters ?? new BattleParameters(
+                new[] {new Teammate()},
+                new[] {new Enemy()}));
+
             Container.BindInterfacesAndSelfTo<PlayerSquad>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemySquad>().AsSingle();
 

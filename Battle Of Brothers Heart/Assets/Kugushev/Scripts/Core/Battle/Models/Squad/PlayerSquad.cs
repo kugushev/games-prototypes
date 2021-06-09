@@ -5,19 +5,21 @@ using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using Kugushev.Scripts.Core.Game.Models;
+using Kugushev.Scripts.Core.Game.Parameters;
 using UniRx;
 
 namespace Kugushev.Scripts.Core.Battle.Models.Squad
 {
-    public class PlayerSquad : BaseSquad<PlayerUnit>, IDisposable
+    public class PlayerSquad : BaseSquad, IDisposable
     {
         private readonly IInputController _inputController;
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderAttack.Factory _orderAttackFactory;
 
+        private readonly ReactiveCollection<PlayerUnit> _units = new ReactiveCollection<PlayerUnit>();
         private PlayerUnit? _selectedUnit;
 
-        public PlayerSquad(PlayerTeam playerTeam,
+        public PlayerSquad(BattleParameters battleParameters,
             IInputController inputController,
             OrderMove.Factory orderMoveFactory,
             OrderAttack.Factory orderAttackFactory)
@@ -30,13 +32,15 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
             _inputController.EnemyUnitCommand += OnEnemyUnitCommand;
             _inputController.GroundCommand += OnGroundCommand;
 
-            foreach (var teamMember in playerTeam.TeamMembers)
+            foreach (var _ in battleParameters.Team)
             {
-                Units.Add(new PlayerUnit());
+                _units.Add(new PlayerUnit());
             }
         }
 
-        public IReadOnlyReactiveCollection<PlayerUnit> PlayerUnits => Units;
+        public IReadOnlyReactiveCollection<PlayerUnit> Units => _units;
+
+        protected override IReadOnlyList<BaseUnit> BaseUnits => _units;
 
         private void OnPlayerUnitSelected(PlayerUnit? unit)
         {
