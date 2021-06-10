@@ -10,8 +10,10 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
 {
     public class BaseUnit
     {
-        // todo: create class Status and expose it as reactive property. It should have inheritors: Idle, Moving, Attacking
+        private DateTime? _interruptionTime;
+        private AttackProcessing? _currentAttack;
 
+        // todo: create class Status and expose it as reactive property. It should have inheritors: Idle, Moving, Attacking
         protected readonly ReactiveProperty<Position> _position = new ReactiveProperty<Position>();
 
         private readonly ReactiveProperty<UnitDirection> _direction =
@@ -20,24 +22,35 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
         private readonly ReactiveProperty<UnitActivity> _activity =
             new ReactiveProperty<UnitActivity>(UnitActivity.Stay);
 
-        private DateTime _lastAttackTime = DateTime.MinValue;
-
         public IReadOnlyReactiveProperty<Position> Position => _position;
         public IReadOnlyReactiveProperty<UnitDirection> Direction => _direction;
         public IReadOnlyReactiveProperty<UnitActivity> Activity => _activity;
 
         public IOrder? CurrentOrder { get; set; }
-        
+
         public event Action? Attacking;
+        public event Action? AttackCanceled;
         public event Action? Hurt;
-        
+
         public void Suffer()
         {
+            _currentAttack = null;
+            _activity.Value = UnitActivity.Stay;
+            _interruptionTime = DateTime.Now;
             Hurt?.Invoke();
         }
-        
+
         internal void ProcessCurrentOrder(DeltaTime delta)
         {
+            if (_interruptionTime != null)
+            {
+                if (DateTime.Now < _interruptionTime + BattleConstants.HurtInterruptionTime)
+                    return;
+
+                _interruptionTime = null;
+            }
+
+
             OrderProcessingStatus processingStatus;
 
             switch (CurrentOrder)
@@ -63,6 +76,8 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
 
         private OrderProcessingStatus Process(OrderMove order, DeltaTime delta)
         {
+            CancelAttack();
+
             var destinationReached = MoveToPosition(order.Target, delta);
 
             return destinationReached ? OrderProcessingStatus.Completed : OrderProcessingStatus.InProgress;
@@ -73,22 +88,45 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
             var enemyPosition = order.Target.Position.Value;
             if (Vector2.Distance(enemyPosition.Vector, _position.Value.Vector) >= BattleConstants.SwordAttackRange)
             {
-                MoveToPosition(enemyPosition, delta);
-            }
-            else
-            {
-                _activity.Value = UnitActivity.Stay;
-                
-                var direction = enemyPosition.Vector - _position.Value.Vector;
-                _direction.Value = GetNewDirection(direction);
-                
-                if (DateTime.Now - _lastAttackTime > BattleConstants.SwordAttackCooldown)
-                {
-                    order.Target.Suffer();
+                CancelAttack();
 
+                MoveToPosition(enemyPosition, delta);
+                return OrderProcessingStatus.InProgress;
+            }
+
+            // we should always track direction to enemy, to rotate on moving target
+            var direction = enemyPosition.Vector - _position.Value.Vector;
+            _direction.Value = GetNewDirection(direction);
+
+            switch (_currentAttack?.Status)
+            {
+                case null:
+                    _activity.Value = UnitActivity.Stay;
+                    _currentAttack = new AttackProcessing(AttackStatus.Preparing);
+                    break;
+                case AttackStatus.Preparing:
                     Attacking?.Invoke();
-                    _lastAttackTime = DateTime.Now;
-                }
+                    _currentAttack = new AttackProcessing(AttackStatus.Prepared);
+                    break;
+                case AttackStatus.Prepared:
+                    if (_currentAttack.Value.IsReadyForNextStep())
+                        _currentAttack = new AttackProcessing(AttackStatus.Executing);
+                    break;
+                case AttackStatus.Executing:
+                    order.Target.Suffer();
+                    _currentAttack = new AttackProcessing(AttackStatus.Executed);
+                    break;
+                case AttackStatus.Executed:
+                    if (_currentAttack.Value.IsReadyForNextStep())
+                        _currentAttack = new AttackProcessing(AttackStatus.OnCooldown);
+                    break;
+                case AttackStatus.OnCooldown:
+                    if (_currentAttack.Value.IsReadyForNextStep())
+                        _currentAttack = new AttackProcessing(AttackStatus.Preparing);
+                    break;
+                default:
+                    Debug.LogError($"Unexpected status {_currentAttack?.Status}");
+                    break;
             }
 
             return OrderProcessingStatus.InProgress;
@@ -134,5 +172,14 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
 
         private UnitActivity GetNewActivity(bool destinationReached) =>
             destinationReached ? UnitActivity.Stay : UnitActivity.Move;
+
+        private void CancelAttack()
+        {
+            if (_currentAttack != null)
+            {
+                _currentAttack = null;
+                AttackCanceled?.Invoke();
+            }
+        }
     }
 }

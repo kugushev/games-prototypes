@@ -12,6 +12,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         private static readonly int SpeedAnimationParameter = Animator.StringToHash("Speed");
         private static readonly int SwingAnimationParameter = Animator.StringToHash("Swing");
         private static readonly int HurtAnimationParameter = Animator.StringToHash("Hurt");
+        private static readonly int IdleAnimationParameter = Animator.StringToHash("Idle");
 
         [Header("Character")] [SerializeField] private GameObject upObject = default!;
         [SerializeField] private Animator upAnimator = default!;
@@ -34,6 +35,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
             Model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
             Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
             Model.Attacking += OnAttacking;
+            Model.AttackCanceled += OnAttackCanceled;
             Model.Hurt += OnHurt;
 
             OnStart();
@@ -47,6 +49,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         {
             OnDestruction();
             Model.Attacking -= OnAttacking;
+            Model.AttackCanceled -= OnAttackCanceled;
             Model.Hurt += OnHurt;
         }
 
@@ -123,6 +126,12 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(SwingAnimationParameter, 0);
+        }
+        
+        private void OnAttackCanceled()
+        {
+            if (_activeAnimator is { })
+                _activeAnimator.Play(IdleAnimationParameter, 0);
         }
 
         private void OnHurt()
