@@ -9,6 +9,8 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
 {
     public abstract class BaseUnitPresenter : MonoBehaviour
     {
+        private const int TopLayerIndex = 0;
+
         private static readonly int SpeedAnimationParameter = Animator.StringToHash("Speed");
         private static readonly int SwingAnimationParameter = Animator.StringToHash("Swing");
         private static readonly int HurtAnimationParameter = Animator.StringToHash("Hurt");
@@ -61,7 +63,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         private void OnPositionChanged(Position newPosition)
         {
             var t = transform;
-            
+
             Vector3 vector = newPosition.Vector;
             vector.z = t.position.z; // keep z position
             t.position = vector;
@@ -117,7 +119,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
 
         private void ToggleActivity(UnitActivity activity)
         {
-            var speed = activity == UnitActivity.Move ? BattleConstants.UnitSpeed : 0;
+            var speed = activity == UnitActivity.Moving ? BattleConstants.UnitSpeed : 0;
             if (_activeAnimator is { })
                 _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
         }
@@ -125,19 +127,21 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         private void OnAttacking()
         {
             if (_activeAnimator is { })
-                _activeAnimator.Play(SwingAnimationParameter, 0);
+                _activeAnimator.Play(SwingAnimationParameter, TopLayerIndex);
         }
-        
+
         private void OnAttackCanceled()
         {
-            if (_activeAnimator is { })
-                _activeAnimator.Play(IdleAnimationParameter, 0);
+            if (_activeAnimator is { } && _activeAnimator.HasState(TopLayerIndex, SwingAnimationParameter))
+            {
+                _activeAnimator.Play(IdleAnimationParameter, TopLayerIndex);
+            }
         }
 
         private void OnHurt()
         {
             if (_activeAnimator is { })
-                _activeAnimator.Play(HurtAnimationParameter, 0);
+                _activeAnimator.Play(HurtAnimationParameter, TopLayerIndex);
         }
     }
 }

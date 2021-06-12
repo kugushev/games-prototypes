@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Core.Battle.Models.Units;
+using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using Kugushev.Scripts.Core.Game.Parameters;
 using UniRx;
@@ -21,9 +22,11 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
             _playerSquad = playerSquad;
             _orderAttackFactory = orderAttackFactory;
 
-            foreach (var _ in battleParameters.Enemies)
+            for (var index = 0; index < battleParameters.Enemies.Count; index++)
             {
-                _units.Add(new EnemyUnit());
+                var row = BattleConstants.UnitsPositionsInRow[index];
+                var point = new Vector2(BattleConstants.EnemySquadLine, row);
+                _units.Add(new EnemyUnit(new Position(point)));
             }
         }
 

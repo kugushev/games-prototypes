@@ -8,19 +8,23 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Core.Battle.Models.Units
 {
-    public class BaseUnit
+    public abstract class BaseUnit
     {
         private DateTime? _interruptionTime;
         private AttackProcessing? _currentAttack;
 
-        // todo: create class Status and expose it as reactive property. It should have inheritors: Idle, Moving, Attacking
+        protected BaseUnit(Position position)
+        {
+            _position.Value = position;
+        }
+
         protected readonly ReactiveProperty<Position> _position = new ReactiveProperty<Position>();
 
         private readonly ReactiveProperty<UnitDirection> _direction =
             new ReactiveProperty<UnitDirection>(UnitDirection.Down);
 
         private readonly ReactiveProperty<UnitActivity> _activity =
-            new ReactiveProperty<UnitActivity>(UnitActivity.Stay);
+            new ReactiveProperty<UnitActivity>(UnitActivity.Staying);
 
         public IReadOnlyReactiveProperty<Position> Position => _position;
         public IReadOnlyReactiveProperty<UnitDirection> Direction => _direction;
@@ -35,7 +39,7 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
         public void Suffer()
         {
             _currentAttack = null;
-            _activity.Value = UnitActivity.Stay;
+            _activity.Value = UnitActivity.Staying;
             _interruptionTime = DateTime.Now;
             Hurt?.Invoke();
         }
@@ -59,7 +63,9 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
                     processingStatus = Process(orderMove, delta);
                     break;
                 case OrderAttack orderAttack:
-                    processingStatus = Process(orderAttack, delta);
+                    Process(orderAttack, delta);
+                    // attacks are always in progress
+                    processingStatus = OrderProcessingStatus.InProgress;
                     break;
                 case null:
                     processingStatus = OrderProcessingStatus.None;
@@ -83,25 +89,18 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
             return destinationReached ? OrderProcessingStatus.Completed : OrderProcessingStatus.InProgress;
         }
 
-        private OrderProcessingStatus Process(OrderAttack order, DeltaTime delta)
+        private void Process(OrderAttack order, DeltaTime delta)
         {
-            var enemyPosition = order.Target.Position.Value;
-            if (Vector2.Distance(enemyPosition.Vector, _position.Value.Vector) >= BattleConstants.SwordAttackRange)
-            {
-                CancelAttack();
+            if (!DistanceCheck(order, delta, out var enemyPosition))
+                return;
 
-                MoveToPosition(enemyPosition, delta);
-                return OrderProcessingStatus.InProgress;
-            }
-
-            // we should always track direction to enemy, to rotate on moving target
-            var direction = enemyPosition.Vector - _position.Value.Vector;
-            _direction.Value = GetNewDirection(direction);
+            if (!DirectionCheck(enemyPosition))
+                return;
 
             switch (_currentAttack?.Status)
             {
                 case null:
-                    _activity.Value = UnitActivity.Stay;
+                    _activity.Value = UnitActivity.Staying;
                     _currentAttack = new AttackProcessing(AttackStatus.Preparing);
                     break;
                 case AttackStatus.Preparing:
@@ -128,8 +127,34 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
                     Debug.LogError($"Unexpected status {_currentAttack?.Status}");
                     break;
             }
+        }
 
-            return OrderProcessingStatus.InProgress;
+        private bool DistanceCheck(OrderAttack order, DeltaTime delta, out Position enemyPosition)
+        {
+            enemyPosition = order.Target.Position.Value;
+            if (Vector2.Distance(enemyPosition.Vector, _position.Value.Vector) >= BattleConstants.SwordAttackRange)
+            {
+                CancelAttack();
+                MoveToPosition(enemyPosition, delta);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool DirectionCheck(Position enemyPosition)
+        {
+            // we should always track direction to enemy, to rotate on moving target
+            var direction = enemyPosition.Vector - _position.Value.Vector;
+            var oldDirection = _direction.Value;
+            _direction.Value = GetNewDirection(direction);
+            if (_direction.Value != oldDirection)
+            {
+                CancelAttack();
+                return false;
+            }
+
+            return true;
         }
 
         private bool MoveToPosition(Position target, DeltaTime delta)
@@ -171,7 +196,7 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
         }
 
         private UnitActivity GetNewActivity(bool destinationReached) =>
-            destinationReached ? UnitActivity.Stay : UnitActivity.Move;
+            destinationReached ? UnitActivity.Staying : UnitActivity.Moving;
 
         private void CancelAttack()
         {

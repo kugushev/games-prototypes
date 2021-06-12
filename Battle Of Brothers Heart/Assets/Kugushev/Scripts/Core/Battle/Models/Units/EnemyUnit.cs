@@ -5,9 +5,8 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
 {
     public class EnemyUnit : BaseUnit
     {
-        public EnemyUnit()
+        public EnemyUnit(Position position) : base(position)
         {
-            _position.Value = new Position(new Vector2(8, 0));
         }
     }
 }

@@ -7,6 +7,7 @@ using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using Kugushev.Scripts.Core.Game.Models;
 using Kugushev.Scripts.Core.Game.Parameters;
 using UniRx;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Core.Battle.Models.Squad
 {
@@ -32,9 +33,11 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
             _inputController.EnemyUnitCommand += OnEnemyUnitCommand;
             _inputController.GroundCommand += OnGroundCommand;
 
-            foreach (var _ in battleParameters.Team)
+            for (var index = 0; index < battleParameters.Team.Count; index++)
             {
-                _units.Add(new PlayerUnit());
+                var row = BattleConstants.UnitsPositionsInRow[index];
+                var point = new Vector2(BattleConstants.PlayerSquadLine, row);
+                _units.Add(new PlayerUnit(new Position(point)));
             }
         }
 
