@@ -1,6 +1,7 @@
 using Kugushev.Scripts.Core.Battle.Models;
 using Kugushev.Scripts.Core.Battle.Models.Squad;
 using Kugushev.Scripts.Core.Battle.Models.Units;
+using Kugushev.Scripts.Core.Battle.Services;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using Kugushev.Scripts.Core.Game.Models;
@@ -21,13 +22,15 @@ namespace Kugushev.Scripts.Core.Battle
                 // new[] {new Teammate()},
                 // new[] {new Enemy()}));
                 new[] {new Teammate(), new Teammate(), new Teammate(), new Teammate()},
-            new[] {new Enemy(), new Enemy(), new Enemy(), new Enemy()}));
+                new[] {new Enemy(), new Enemy(), new Enemy(), new Enemy()}));
 
             Container.BindInterfacesAndSelfTo<PlayerSquad>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemySquad>().AsSingle();
 
             Container.BindFactory<Position, OrderMove, OrderMove.Factory>().FromPoolableMemoryPool();
             Container.BindFactory<BaseUnit, OrderAttack, OrderAttack.Factory>().FromPoolableMemoryPool();
+
+            Container.Bind<SimpleAIService>().AsSingle();
         }
     }
 }

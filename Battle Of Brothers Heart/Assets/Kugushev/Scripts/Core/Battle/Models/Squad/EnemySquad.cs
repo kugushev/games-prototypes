@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Core.Battle.Models.Units;
+using Kugushev.Scripts.Core.Battle.Services;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
 using Kugushev.Scripts.Core.Game.Parameters;
@@ -12,16 +13,15 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
     public class EnemySquad : BaseSquad, ITickable
     {
         private readonly PlayerSquad _playerSquad;
-        private readonly OrderAttack.Factory _orderAttackFactory;
+        private readonly SimpleAIService _simpleAIService;
 
         private readonly ReactiveCollection<EnemyUnit> _units = new ReactiveCollection<EnemyUnit>();
 
         public EnemySquad(BattleParameters battleParameters, PlayerSquad playerSquad,
-            OrderAttack.Factory orderAttackFactory)
+            SimpleAIService simpleAIService)
         {
             _playerSquad = playerSquad;
-            _orderAttackFactory = orderAttackFactory;
-
+            _simpleAIService = simpleAIService;
             for (var index = 0; index < battleParameters.Enemies.Count; index++)
             {
                 var row = BattleConstants.UnitsPositionsInRow[index];
@@ -38,11 +38,16 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
         {
             foreach (var enemyUnit in _units)
             {
-                if (enemyUnit.CurrentOrder is null)
+                if (enemyUnit.CurrentOrder is OrderAttack currentOrder)
                 {
-                    var target = _playerSquad.Units[Random.Range(0, _units.Count)];
-                    enemyUnit.CurrentOrder = _orderAttackFactory.Create(target);
+                    var toCurrentTarget = enemyUnit.Position.Value.Vector - currentOrder.Target.Position.Value.Vector;
+                    if (toCurrentTarget.magnitude < enemyUnit.WeaponRange * BattleConstants.AIAggroResetMultiplier)
+                        continue;
                 }
+
+                var order = _simpleAIService.AttackTheNearest(enemyUnit, _playerSquad.Units);
+                if (order != null)
+                    enemyUnit.CurrentOrder = order;
             }
         }
     }

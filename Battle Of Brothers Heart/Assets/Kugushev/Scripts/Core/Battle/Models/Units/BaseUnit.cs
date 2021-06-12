@@ -34,14 +34,16 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
 
         public event Action? Attacking;
         public event Action? AttackCanceled;
-        public event Action? Hurt;
+        public event Action<BaseUnit>? Hurt;
 
-        public void Suffer()
+        public float WeaponRange = BattleConstants.SwordAttackRange;
+
+        public void Suffer(BaseUnit attacker)
         {
             _currentAttack = null;
             _activity.Value = UnitActivity.Staying;
             _interruptionTime = DateTime.Now;
-            Hurt?.Invoke();
+            Hurt?.Invoke(attacker);
         }
 
         internal void ProcessCurrentOrder(DeltaTime delta)
@@ -112,7 +114,7 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
                         _currentAttack = new AttackProcessing(AttackStatus.Executing);
                     break;
                 case AttackStatus.Executing:
-                    order.Target.Suffer();
+                    order.Target.Suffer(this);
                     _currentAttack = new AttackProcessing(AttackStatus.Executed);
                     break;
                 case AttackStatus.Executed:

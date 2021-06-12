@@ -4,7 +4,6 @@ using Kugushev.Scripts.Core.Battle.Interfaces;
 using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
-using Kugushev.Scripts.Core.Game.Models;
 using Kugushev.Scripts.Core.Game.Parameters;
 using UniRx;
 using UnityEngine;
@@ -37,7 +36,10 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
             {
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.PlayerSquadLine, row);
-                _units.Add(new PlayerUnit(new Position(point)));
+
+                var playerUnit = new PlayerUnit(new Position(point));
+                playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
+                _units.Add(playerUnit);
             }
         }
 
@@ -77,6 +79,12 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
             _inputController.PlayerUnitSelected -= OnPlayerUnitSelected;
             _inputController.EnemyUnitCommand -= OnEnemyUnitCommand;
             _inputController.GroundCommand -= OnGroundCommand;
+        }
+
+        private void UnitOnHurt(PlayerUnit victim, BaseUnit attacker)
+        {
+            if (victim.CurrentOrder == null)
+                victim.CurrentOrder = _orderAttackFactory.Create(attacker);
         }
     }
 }

@@ -67,6 +67,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\ValueObjects\DeltaTime.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\BattleConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Models\Units\PlayerUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Battle\Services\SimpleAIService.cs" />
      <None Include="Assets\Kugushev\Scripts\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
