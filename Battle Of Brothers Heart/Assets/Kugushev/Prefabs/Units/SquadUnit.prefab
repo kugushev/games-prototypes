@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d662fd962200ada439791d488fab7c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  simpleHealthBar: {fileID: 2467740287753207213}
   upObject: {fileID: 6687030665834370720}
   upAnimator: {fileID: 6745255379479037048}
   leftObject: {fileID: 6686823142166251636}
@@ -1371,6 +1372,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5588235
       objectReference: {fileID: 0}
+    - target: {fileID: 73195766378236125, guid: f38b9fab4e430b046b012e9182e28038, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 225297634333316328, guid: f38b9fab4e430b046b012e9182e28038, type: 3}
       propertyPath: belt
       value: 
@@ -1696,3 +1701,14 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 280572788427850140, guid: f38b9fab4e430b046b012e9182e28038, type: 3}
   m_PrefabInstance: {fileID: 6809378956807614626}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2467740287753207213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8953414044828208399, guid: f38b9fab4e430b046b012e9182e28038, type: 3}
+  m_PrefabInstance: {fileID: 6809378956807614626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1310e65397a274d44a776b51d6937f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

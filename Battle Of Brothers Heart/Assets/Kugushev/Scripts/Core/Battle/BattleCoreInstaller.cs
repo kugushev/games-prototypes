@@ -31,6 +31,7 @@ namespace Kugushev.Scripts.Core.Battle
             Container.BindFactory<BaseUnit, OrderAttack, OrderAttack.Factory>().FromPoolableMemoryPool();
 
             Container.Bind<SimpleAIService>().AsSingle();
+            Container.Bind<Battlefield>().AsSingle();
         }
     }
 }

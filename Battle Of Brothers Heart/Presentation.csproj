@@ -695,6 +695,10 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SimpleHealthBar.csproj">
+      <Project>{0b8194cc-77c5-89e7-b47f-2f1a5d822f74}</Project>
+      <Name>SimpleHealthBar</Name>
+    </ProjectReference>
     <ProjectReference Include="Core.csproj">
       <Project>{21524442-1066-dc30-a4c7-1d8ec452543d}</Project>
       <Name>Core</Name>

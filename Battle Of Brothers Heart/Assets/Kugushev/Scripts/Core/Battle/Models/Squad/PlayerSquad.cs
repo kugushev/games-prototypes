@@ -22,7 +22,8 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
         public PlayerSquad(BattleParameters battleParameters,
             IInputController inputController,
             OrderMove.Factory orderMoveFactory,
-            OrderAttack.Factory orderAttackFactory)
+            OrderAttack.Factory orderAttackFactory,
+            Battlefield battlefield)
         {
             _inputController = inputController;
             _orderMoveFactory = orderMoveFactory;
@@ -37,9 +38,11 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.PlayerSquadLine, row);
 
-                var playerUnit = new PlayerUnit(new Position(point));
+                var playerUnit = new PlayerUnit(new Position(point), battlefield);
                 playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
                 _units.Add(playerUnit);
+
+                battlefield.RegisterUnt(playerUnit);
             }
         }
 

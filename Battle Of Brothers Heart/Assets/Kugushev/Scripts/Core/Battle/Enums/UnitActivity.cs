@@ -3,7 +3,8 @@
     public enum UnitActivity
     {
         None,
-        Staying,
-        Moving
+        Stay,
+        Move,
+        Death
     }
 }

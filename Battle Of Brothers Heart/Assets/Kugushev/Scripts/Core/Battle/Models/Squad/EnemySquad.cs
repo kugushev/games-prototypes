@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.Services;
 using Kugushev.Scripts.Core.Battle.ValueObjects;
@@ -18,7 +19,7 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
         private readonly ReactiveCollection<EnemyUnit> _units = new ReactiveCollection<EnemyUnit>();
 
         public EnemySquad(BattleParameters battleParameters, PlayerSquad playerSquad,
-            SimpleAIService simpleAIService)
+            SimpleAIService simpleAIService, Battlefield battlefield)
         {
             _playerSquad = playerSquad;
             _simpleAIService = simpleAIService;
@@ -26,7 +27,11 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
             {
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.EnemySquadLine, row);
-                _units.Add(new EnemyUnit(new Position(point)));
+
+                var enemyUnit = new EnemyUnit(new Position(point), battlefield);
+                _units.Add(enemyUnit);
+
+                battlefield.RegisterUnt(enemyUnit);
             }
         }
 
@@ -36,16 +41,18 @@ namespace Kugushev.Scripts.Core.Battle.Models.Squad
 
         void ITickable.Tick()
         {
-            foreach (var enemyUnit in _units)
+            foreach (var enemyUnit in _units.Where(u => !u.IsDead))
             {
                 if (enemyUnit.CurrentOrder is OrderAttack currentOrder)
                 {
-                    var toCurrentTarget = enemyUnit.Position.Value.Vector - currentOrder.Target.Position.Value.Vector;
-                    if (toCurrentTarget.magnitude < enemyUnit.WeaponRange * BattleConstants.AIAggroResetMultiplier)
+                    var toCurrentTarget = Vector2.Distance(
+                        enemyUnit.Position.Value.Vector,
+                        currentOrder.Target.Position.Value.Vector);
+                    if (toCurrentTarget < enemyUnit.WeaponRange * BattleConstants.AIAggroResetMultiplier)
                         continue;
                 }
 
-                var order = _simpleAIService.AttackTheNearest(enemyUnit, _playerSquad.Units);
+                var order = _simpleAIService.AttackTheNearest(enemyUnit, _playerSquad.Units.Where(u => !u.IsDead));
                 if (order != null)
                     enemyUnit.CurrentOrder = order;
             }

@@ -15,6 +15,9 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         private static readonly int SwingAnimationParameter = Animator.StringToHash("Swing");
         private static readonly int HurtAnimationParameter = Animator.StringToHash("Hurt");
         private static readonly int IdleAnimationParameter = Animator.StringToHash("Idle");
+        private static readonly int DeathAnimationParameter = Animator.StringToHash("Death");
+
+        [SerializeField] private SimpleHealthBar simpleHealthBar = default!;
 
         [Header("Character")] [SerializeField] private GameObject upObject = default!;
         [SerializeField] private Animator upAnimator = default!;
@@ -33,12 +36,15 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         {
             _activeAnimator = downAnimator;
 
+            Model.HitPoints.Subscribe(OnHitPointsChanged).AddTo(this);
             Model.Position.Subscribe(OnPositionChanged).AddTo(this);
             Model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
             Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
+
             Model.Attacking += OnAttacking;
             Model.AttackCanceled += OnAttackCanceled;
             Model.Hurt += OnHurt;
+            Model.Die += OnDie;
 
             OnStart();
         }
@@ -52,13 +58,18 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
             OnDestruction();
             Model.Attacking -= OnAttacking;
             Model.AttackCanceled -= OnAttackCanceled;
-            Model.Hurt += OnHurt;
+            Model.Hurt -= OnHurt;
+            Model.Die -= OnDie;
         }
 
         protected virtual void OnDestruction()
         {
         }
 
+        private void OnHitPointsChanged(int hitPoints)
+        {
+            simpleHealthBar.UpdateBar(hitPoints, BattleConstants.UnitMaxHitPoints);
+        }
 
         private void OnPositionChanged(Position newPosition)
         {
@@ -119,7 +130,7 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
 
         private void ToggleActivity(UnitActivity activity)
         {
-            var speed = activity == UnitActivity.Moving ? BattleConstants.UnitSpeed : 0;
+            var speed = activity == UnitActivity.Move ? BattleConstants.UnitSpeed : 0;
             if (_activeAnimator is { })
                 _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
         }
@@ -142,6 +153,12 @@ namespace Kugushev.Scripts.Presentation.Battle.Presenters.Units
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(HurtAnimationParameter, TopLayerIndex);
+        }
+
+        private void OnDie()
+        {
+            if (_activeAnimator is { })
+                _activeAnimator.Play(DeathAnimationParameter, TopLayerIndex);
         }
     }
 }

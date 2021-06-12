@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Core.Battle.ValueObjects;
+﻿using JetBrains.Annotations;
+using Kugushev.Scripts.Core.Battle.ValueObjects;
 using UniRx;
 
 namespace Kugushev.Scripts.Core.Battle.Models.Units
@@ -7,7 +8,7 @@ namespace Kugushev.Scripts.Core.Battle.Models.Units
     {
         private readonly ReactiveProperty<bool> _selected = new ReactiveProperty<bool>();
 
-        public PlayerUnit(Position position) : base(position)
+        public PlayerUnit(Position position, [NotNull] Battlefield battlefield) : base(position, battlefield)
         {
         }
 

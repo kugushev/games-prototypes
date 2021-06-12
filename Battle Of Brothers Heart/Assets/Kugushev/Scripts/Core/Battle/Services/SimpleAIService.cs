@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kugushev.Scripts.Core.Battle.Models.Units;
 using Kugushev.Scripts.Core.Battle.ValueObjects.Orders;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Core.Battle.Services
 {
@@ -19,10 +20,10 @@ namespace Kugushev.Scripts.Core.Battle.Services
             BaseUnit? target = null;
             foreach (var opponent in opponents)
             {
-                var distanceVector = actor.Position.Value.Vector - opponent.Position.Value.Vector;
-                if (minDistance > distanceVector.magnitude)
+                var distance = Vector2.Distance(actor.Position.Value.Vector, opponent.Position.Value.Vector);
+                if (minDistance > distance)
                 {
-                    minDistance = distanceVector.magnitude;
+                    minDistance = distance;
                     target = opponent;
                 }
             }
