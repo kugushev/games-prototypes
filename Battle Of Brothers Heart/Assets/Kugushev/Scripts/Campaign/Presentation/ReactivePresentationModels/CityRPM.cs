@@ -1,5 +1,4 @@
-﻿using System;
-using Kugushev.Scripts.Campaign.Core.Models;
+﻿using Kugushev.Scripts.Campaign.Core.Models;
 using Kugushev.Scripts.Campaign.Presentation.Helpers;
 using UnityEngine;
 using Zenject;

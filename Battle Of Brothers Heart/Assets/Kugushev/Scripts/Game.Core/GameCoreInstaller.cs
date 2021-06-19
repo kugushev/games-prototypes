@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using Kugushev.Scripts.Game.Core.Models.AI;
+using Zenject;
 
 namespace Kugushev.Scripts.Game.Core
 {
@@ -6,6 +7,7 @@ namespace Kugushev.Scripts.Game.Core
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<AgentsManager>().AsSingle();
         }
     }
 }

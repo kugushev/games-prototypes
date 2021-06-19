@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.Campaign.Core;
+﻿using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Core.Enums;
 using Kugushev.Scripts.Campaign.Core.Models;
 using Kugushev.Scripts.Campaign.Core.ValueObjects.Tiles;

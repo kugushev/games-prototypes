@@ -1,9 +1,7 @@
 ﻿using Kugushev.Scripts.Battle.Core;
-using Kugushev.Scripts.Battle.Core.Enums;
 using Kugushev.Scripts.Battle.Core.Models.Units;
-using Kugushev.Scripts.Battle.Core.ValueObjects;
-using Kugushev.Scripts.Common.Core.Enums;
-using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Simple_Health_Bar.Scripts;
 using UniRx;
 using UnityEngine;

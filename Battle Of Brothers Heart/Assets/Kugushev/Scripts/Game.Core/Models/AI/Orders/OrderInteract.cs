@@ -1,9 +1,9 @@
 ﻿using System;
-using Kugushev.Scripts.Battle.Core.Interfaces;
 using Kugushev.Scripts.Game.Core.Interfaces;
+using Kugushev.Scripts.Game.Core.Interfaces.AI;
 using Zenject;
 
-namespace Kugushev.Scripts.Battle.Core.ValueObjects.Orders
+namespace Kugushev.Scripts.Game.Core.Models.AI.Orders
 {
     public class OrderInteract<TSubject> : OrderInteract, IOrder, IPoolable<TSubject, IMemoryPool>, IDisposable
         where TSubject : class, IInteractable
@@ -11,8 +11,8 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Orders
         private IMemoryPool? _memoryPool;
         private TSubject? _target;
 
-        public override IInteractable Interactable => Target;
-        public TSubject Target => _target ?? throw new Exception("Target has not specified");
+        public override IInteractable Target => Victim;
+        public TSubject Victim => _target ?? throw new Exception("Target has not specified");
 
         void IPoolable<TSubject, IMemoryPool>.OnSpawned(TSubject p1, IMemoryPool p2)
         {
@@ -31,6 +31,6 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Orders
 
     public abstract class OrderInteract
     {
-        public abstract IInteractable Interactable { get; }
+        public abstract IInteractable Target { get; }
     }
 }

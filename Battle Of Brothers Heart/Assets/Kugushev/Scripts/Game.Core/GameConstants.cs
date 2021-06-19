@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kugushev.Scripts.Game.Core
+﻿namespace Kugushev.Scripts.Game.Core
 {
     public static class GameConstants
     {

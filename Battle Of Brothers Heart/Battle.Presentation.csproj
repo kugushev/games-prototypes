@@ -43,8 +43,6 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\PlayerSquadPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\BattlePresentationInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Controllers\UnitsManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\BaseSquadPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Controllers\InputController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Components\GroundInputComponent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\EnemyUnitPresenter.cs" />

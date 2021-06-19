@@ -1,9 +1,9 @@
 ﻿using System;
-using Kugushev.Scripts.Battle.Core.Interfaces;
-using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Interfaces.AI;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Zenject;
 
-namespace Kugushev.Scripts.Battle.Core.ValueObjects.Orders
+namespace Kugushev.Scripts.Game.Core.Models.AI.Orders
 {
     public class OrderMove : IOrder, IPoolable<Position, IMemoryPool>, IDisposable
     {

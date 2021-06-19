@@ -1,4 +1,4 @@
-﻿using Kugushev.Scripts.Common.Core.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Game.Core.Interfaces
 {

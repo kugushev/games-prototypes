@@ -1,7 +1,6 @@
-﻿using Kugushev.Scripts.Battle.Core.Interfaces;
-using Kugushev.Scripts.Battle.Core.ValueObjects;
+﻿using Kugushev.Scripts.Game.Core.ValueObjects;
 
-namespace Kugushev.Scripts.Game.Core.AI
+namespace Kugushev.Scripts.Game.Core.Interfaces.AI
 {
     public interface IAgent
     {

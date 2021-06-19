@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using Kugushev.Scripts.Battle.Core.Interfaces;
 using Kugushev.Scripts.Battle.Core.Models.Units;
-using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
-using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Interfaces.AI;
+using Kugushev.Scripts.Game.Core.Models.AI;
+using Kugushev.Scripts.Game.Core.Models.AI.Orders;
 using Kugushev.Scripts.Game.Core.Parameters;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
-    public class PlayerSquad : BaseSquad, IDisposable
+    public class PlayerSquad : IDisposable, IAgentsOwner
     {
         private readonly IInputController _inputController;
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderAttack.Factory _orderAttackFactory;
+        private readonly AgentsManager _agentsManager;
 
         private readonly ReactiveCollection<PlayerUnit> _units = new ReactiveCollection<PlayerUnit>();
         private PlayerUnit? _selectedUnit;
@@ -24,12 +27,15 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             IInputController inputController,
             OrderMove.Factory orderMoveFactory,
             OrderAttack.Factory orderAttackFactory,
-            Battlefield battlefield)
+            Battlefield battlefield,
+            AgentsManager agentsManager)
         {
             _inputController = inputController;
             _orderMoveFactory = orderMoveFactory;
             _orderAttackFactory = orderAttackFactory;
+            _agentsManager = agentsManager;
 
+            _agentsManager.Register(this);
             _inputController.PlayerUnitSelected += OnPlayerUnitSelected;
             _inputController.EnemyUnitCommand += OnEnemyUnitCommand;
             _inputController.GroundCommand += OnGroundCommand;
@@ -49,7 +55,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         public IReadOnlyReactiveCollection<PlayerUnit> Units => _units;
 
-        protected override IReadOnlyList<BaseUnit> BaseUnits => _units;
+        IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
         private void OnPlayerUnitSelected(PlayerUnit? unit)
         {
@@ -80,6 +86,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         void IDisposable.Dispose()
         {
+            _agentsManager.Unregister(this);
             _inputController.PlayerUnitSelected -= OnPlayerUnitSelected;
             _inputController.EnemyUnitCommand -= OnEnemyUnitCommand;
             _inputController.GroundCommand -= OnGroundCommand;

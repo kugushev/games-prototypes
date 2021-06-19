@@ -1,39 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using Kugushev.Scripts.Battle.Core.Enums;
-using Kugushev.Scripts.Battle.Core.Interfaces;
-using Kugushev.Scripts.Battle.Core.ValueObjects;
-using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
-using Kugushev.Scripts.Common.Core.ValueObjects;
-using Kugushev.Scripts.Game.Core.Interfaces;
+﻿using System.Collections.Generic;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Interfaces.AI;
+using Kugushev.Scripts.Game.Core.Models.AI.Orders;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
-using Kugushev.Scripts.Common.Core.Enums;
 
-namespace Kugushev.Scripts.Game.Core.AI.Presets
+namespace Kugushev.Scripts.Game.Core.Models.AI
 {
     public abstract class ActiveAgent : IAgent
     {
         private readonly Queue<Vector2> _pathfindingBuffer = new Queue<Vector2>();
         private Vector2 _lastVisitedPoint;
-        private DateTime? _interruptionTime;
 
-        private readonly ReactiveProperty<Position> _position = new ReactiveProperty<Position>();
+        protected readonly ReactiveProperty<Position> PositionImpl = new ReactiveProperty<Position>();
 
-        private readonly ReactiveProperty<Direction2d> _direction =
+        protected readonly ReactiveProperty<Direction2d> DirectionImpl =
             new ReactiveProperty<Direction2d>(Direction2d.Down);
 
-        private readonly ReactiveProperty<ActivityType> _activity =
+        protected readonly ReactiveProperty<ActivityType> ActivityImpl =
             new ReactiveProperty<ActivityType>(ActivityType.Stay);
 
         protected ActiveAgent(Position position)
         {
-            _position.Value = position;
+            PositionImpl.Value = position;
         }
 
-        public IReadOnlyReactiveProperty<Position> Position => _position;
-        public IReadOnlyReactiveProperty<Direction2d> Direction => _direction;
-        public IReadOnlyReactiveProperty<ActivityType> Activity => _activity;
+        public IReadOnlyReactiveProperty<Position> Position => PositionImpl;
+        public IReadOnlyReactiveProperty<Direction2d> Direction => DirectionImpl;
+        public IReadOnlyReactiveProperty<ActivityType> Activity => ActivityImpl;
 
         public IOrder? CurrentOrder { get; set; }
 
@@ -46,7 +41,7 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
 
         void IAgent.ProcessCurrentOrder(DeltaTime delta)
         {
-            if (IsActive)
+            if (!IsActive)
                 return;
 
             if (!CanProcessOrder())
@@ -86,7 +81,7 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
 
         private OrderProcessingStatus Process(OrderInteract order, DeltaTime delta)
         {
-            if (order.Interactable.IsInteractable)
+            if (order.Target.IsInteractable)
                 return OrderProcessingStatus.Finished;
 
             if (!DistanceCheck(order, delta, out var enemyPosition))
@@ -104,8 +99,8 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
 
         private bool DistanceCheck(OrderInteract order, DeltaTime delta, out Position targetPosition)
         {
-            targetPosition = order.Interactable.Position;
-            if (Vector2.Distance(targetPosition.Vector, _position.Value.Vector) >= InteractionRadius)
+            targetPosition = order.Target.Position;
+            if (Vector2.Distance(targetPosition.Vector, PositionImpl.Value.Vector) >= InteractionRadius)
             {
                 CancelAttack();
                 MoveToPosition(targetPosition, delta);
@@ -118,10 +113,10 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
         private bool DirectionCheck(Position enemyPosition)
         {
             // we should always track direction to enemy, to rotate on moving target
-            var direction = enemyPosition.Vector - _position.Value.Vector;
-            var oldDirection = _direction.Value;
-            _direction.Value = GetNewDirection(direction);
-            if (_direction.Value != oldDirection)
+            var direction = enemyPosition.Vector - PositionImpl.Value.Vector;
+            var oldDirection = DirectionImpl.Value;
+            DirectionImpl.Value = GetNewDirection(direction);
+            if (DirectionImpl.Value != oldDirection)
             {
                 CancelAttack();
                 return false;
@@ -135,16 +130,16 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
             var movement = GetNewPosition(target, delta);
 
             // update last visited point
-            if (_position.Value.Vector != movement.Vector)
-                _lastVisitedPoint = _position.Value.Vector;
-            _position.Value = movement;
+            if (PositionImpl.Value.Vector != movement.Vector)
+                _lastVisitedPoint = PositionImpl.Value.Vector;
+            PositionImpl.Value = movement;
 
-            var direction = _position.Value.Vector - _lastVisitedPoint;
-            _direction.Value = GetNewDirection(direction);
+            var direction = PositionImpl.Value.Vector - _lastVisitedPoint;
+            DirectionImpl.Value = GetNewDirection(direction);
 
-            var distanceToTarget = Vector2.Distance(target.Vector, _position.Value.Vector);
+            var distanceToTarget = Vector2.Distance(target.Vector, PositionImpl.Value.Vector);
             var destinationReached = distanceToTarget < GameConstants.Movement.Epsilon;
-            _activity.Value = GetNewActivity(destinationReached);
+            ActivityImpl.Value = GetNewActivity(destinationReached);
 
             return destinationReached;
         }
@@ -153,7 +148,7 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
         {
             var targetVector = target.Vector;
             var movementDistance = Speed * delta.Seconds;
-            var movement = Vector2.MoveTowards(_position.Value.Vector, targetVector, movementDistance);
+            var movement = Vector2.MoveTowards(PositionImpl.Value.Vector, targetVector, movementDistance);
 
             _pathfindingBuffer.Clear();
 
@@ -179,7 +174,7 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
             }
 
             Debug.LogWarning("Collision not resolved!");
-            return _position.Value;
+            return PositionImpl.Value;
         }
 
         private Direction2d GetNewDirection(Vector2 direction)
@@ -200,5 +195,11 @@ namespace Kugushev.Scripts.Game.Core.AI.Presets
 
         private ActivityType GetNewActivity(bool destinationReached) =>
             destinationReached ? ActivityType.Stay : ActivityType.Move;
+
+        protected void EnqueueToBuffer(Vector2 newPoint)
+        {
+            if (newPoint != _lastVisitedPoint)
+                _pathfindingBuffer.Enqueue(newPoint);
+        }
     }
 }

@@ -2,11 +2,11 @@ using Kugushev.Scripts.Battle.Core.Models;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Core.Models.Units;
 using Kugushev.Scripts.Battle.Core.Services;
-using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
-using Kugushev.Scripts.Common.Core.ValueObjects;
 using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Models.AI.Orders;
 using Kugushev.Scripts.Game.Core.Parameters;
+using Kugushev.Scripts.Game.Core.ValueObjects;
 using Zenject;
 
 namespace Kugushev.Scripts.Battle.Core

@@ -58,6 +58,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\IInteractable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\Orders\OrderInteract.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\AgentsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IAgentsOwner.cs" />
      <None Include="Assets\Kugushev\Scripts\Game.Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

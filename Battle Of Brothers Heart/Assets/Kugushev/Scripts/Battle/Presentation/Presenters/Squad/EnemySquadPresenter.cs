@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
 {
-    public class EnemySquadPresenter : BaseSquadPresenter
+    public class EnemySquadPresenter : MonoBehaviour
     {
         [SerializeField] private GameObject enemyUnitPrefab = default!;
 
@@ -16,8 +16,6 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
         [Inject] private EnemySquad _enemySquad = default!;
 
         private readonly List<EnemyUnitPresenter> _presentersBuffer = new List<EnemyUnitPresenter>(1);
-
-        protected override BaseSquad Squad => _enemySquad;
 
         private void Start()
         {

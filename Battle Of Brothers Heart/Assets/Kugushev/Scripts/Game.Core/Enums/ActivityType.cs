@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Battle.Core.Enums
+﻿namespace Kugushev.Scripts.Game.Core.Enums
 {
     public enum ActivityType
     {

@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Common.Core.Enums
+﻿namespace Kugushev.Scripts.Game.Core.Enums
 {
     public enum Direction2d
     {

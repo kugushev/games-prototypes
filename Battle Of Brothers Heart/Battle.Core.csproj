@@ -45,7 +45,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Battlefield.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\EnemySquad.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\PlayerSquad.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\BaseSquad.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\BaseUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Helpers\MathHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IInputController.cs" />

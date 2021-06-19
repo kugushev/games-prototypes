@@ -1,4 +1,4 @@
-﻿namespace Kugushev.Scripts.Battle.Core.ValueObjects
+﻿namespace Kugushev.Scripts.Game.Core.ValueObjects
 {
     public readonly struct DeltaTime
     {
