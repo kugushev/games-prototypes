@@ -41,9 +41,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\ValueObjects\Position.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\ActivityType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\OrderProcessingStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\Orders\OrderMove.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IOrder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameCoreInstaller.cs" />
@@ -51,8 +48,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Person.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Teammate.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Enemy.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\Direction2d.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\ValueObjects\DeltaTime.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\ActiveAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\IInteractable.cs" />

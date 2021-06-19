@@ -46,6 +46,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\Factories\CityFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\CityRPM.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\Helpers\WorldHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\Wayfarers\WayfarersManagerRPM.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\Wayfarers\PlayerWayfarerRPM.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Presentation\Campaign.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -705,6 +707,10 @@
     <ProjectReference Include="Common.Core.csproj">
       <Project>{18f4ab07-3408-3b89-86c6-fe800c9942dc}</Project>
       <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.Core.csproj">
+      <Project>{9de41967-16d7-51e0-5aba-28ca8091ef20}</Project>
+      <Name>Game.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Campaign.Core.csproj">
       <Project>{caa15dea-fb7b-f484-fa87-9c2588a9adb7}</Project>

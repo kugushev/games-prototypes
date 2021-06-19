@@ -36,7 +36,7 @@ namespace Kugushev.Scripts.Game.Core.Models.AI
         protected abstract float InteractionRadius { get; }
         protected abstract float Speed { get; }
         protected abstract bool CanProcessOrder();
-        protected abstract void CancelAttack();
+        protected abstract void CancelInteraction();
         protected abstract bool CheckCollisions(Vector2 movement, float movementDistance, Vector2 target);
 
         void IAgent.ProcessCurrentOrder(DeltaTime delta)
@@ -72,7 +72,7 @@ namespace Kugushev.Scripts.Game.Core.Models.AI
 
         private OrderProcessingStatus Process(OrderMove order, DeltaTime delta)
         {
-            CancelAttack();
+            CancelInteraction();
 
             var destinationReached = MoveToPosition(order.Target, delta);
 
@@ -102,7 +102,7 @@ namespace Kugushev.Scripts.Game.Core.Models.AI
             targetPosition = order.Target.Position;
             if (Vector2.Distance(targetPosition.Vector, PositionImpl.Value.Vector) >= InteractionRadius)
             {
-                CancelAttack();
+                CancelInteraction();
                 MoveToPosition(targetPosition, delta);
                 return false;
             }
@@ -118,7 +118,7 @@ namespace Kugushev.Scripts.Game.Core.Models.AI
             DirectionImpl.Value = GetNewDirection(direction);
             if (DirectionImpl.Value != oldDirection)
             {
-                CancelAttack();
+                CancelInteraction();
                 return false;
             }
 

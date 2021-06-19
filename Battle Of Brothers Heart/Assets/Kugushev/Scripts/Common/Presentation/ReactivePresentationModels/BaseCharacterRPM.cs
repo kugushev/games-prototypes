@@ -1,15 +1,11 @@
-﻿using Kugushev.Scripts.Battle.Core;
-using Kugushev.Scripts.Battle.Core.Models.Units;
-using Kugushev.Scripts.Game.Core.Enums;
+﻿using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.ValueObjects;
 using Simple_Health_Bar.Scripts;
-using UniRx;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
+namespace Kugushev.Scripts.Common.Presentation.ReactivePresentationModels
 {
-    // todo: inherit from BaseCharacterRPM
-    public abstract class BaseUnitPresenter : MonoBehaviour
+    public abstract class BaseCharacterRPM : MonoBehaviour
     {
         private const int TopLayerIndex = 0;
 
@@ -18,8 +14,6 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private static readonly int HurtAnimationParameter = Animator.StringToHash("Hurt");
         private static readonly int IdleAnimationParameter = Animator.StringToHash("Idle");
         private static readonly int DeathAnimationParameter = Animator.StringToHash("Death");
-
-        [SerializeField] private SimpleHealthBar simpleHealthBar = default!;
 
         [Header("Character")] [SerializeField] private GameObject upObject = default!;
         [SerializeField] private Animator upAnimator = default!;
@@ -32,21 +26,10 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         private Animator? _activeAnimator;
 
-        public abstract BaseUnit Model { get; }
 
         private void Start()
         {
             _activeAnimator = downAnimator;
-
-            Model.HitPoints.Subscribe(OnHitPointsChanged).AddTo(this);
-            Model.Position.Subscribe(OnPositionChanged).AddTo(this);
-            Model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
-            Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
-
-            Model.Attacking += OnAttacking;
-            Model.AttackCanceled += OnAttackCanceled;
-            Model.Hurt += OnHurt;
-            Model.Die += OnDie;
 
             OnStart();
         }
@@ -58,22 +41,13 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private void OnDestroy()
         {
             OnDestruction();
-            Model.Attacking -= OnAttacking;
-            Model.AttackCanceled -= OnAttackCanceled;
-            Model.Hurt -= OnHurt;
-            Model.Die -= OnDie;
         }
 
         protected virtual void OnDestruction()
         {
         }
 
-        private void OnHitPointsChanged(int hitPoints)
-        {
-            simpleHealthBar.UpdateBar(hitPoints, BattleConstants.UnitMaxHitPoints);
-        }
-
-        private void OnPositionChanged(Position newPosition)
+        protected void OnPositionChanged(Position newPosition)
         {
             var t = transform;
 
@@ -82,7 +56,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             t.position = vector;
         }
 
-        private void OnDirectionChanged(Direction2d newDirection2d)
+        protected void OnDirectionChanged(Direction2d newDirection2d)
         {
             switch (newDirection2d)
             {
@@ -93,7 +67,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     downObject.SetActive(false);
 
                     _activeAnimator = upAnimator;
-                    ToggleActivity(Model.Activity.Value);
+                    ToggleActivity();
                     break;
                 case Direction2d.Down:
                     upObject.SetActive(false);
@@ -102,7 +76,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     downObject.SetActive(true);
 
                     _activeAnimator = downAnimator;
-                    ToggleActivity(Model.Activity.Value);
+                    ToggleActivity();
                     break;
                 case Direction2d.Right:
                     upObject.SetActive(false);
@@ -111,7 +85,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     downObject.SetActive(false);
 
                     _activeAnimator = rightAnimator;
-                    ToggleActivity(Model.Activity.Value);
+                    ToggleActivity();
                     break;
                 case Direction2d.Left:
                     upObject.SetActive(false);
@@ -120,7 +94,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     downObject.SetActive(false);
 
                     _activeAnimator = leftAnimator;
-                    ToggleActivity(Model.Activity.Value);
+                    ToggleActivity();
                     break;
                 default:
                     Debug.LogError($"Unexpected direction {newDirection2d}");
@@ -128,22 +102,25 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             }
         }
 
-        private void OnActivityChanged(ActivityType newActivityType) => ToggleActivity(newActivityType);
-
-        private void ToggleActivity(ActivityType activityType)
+        protected abstract ActivityType CurrentActivity { get; }
+        protected void OnActivityChanged(ActivityType newActivityType) => ToggleActivity(newActivityType);
+        private void ToggleActivity(ActivityType? activityType = null)
         {
-            var speed = activityType == ActivityType.Move ? BattleConstants.UnitSpeed : 0;
+            if (activityType == null)
+                activityType = CurrentActivity;
+
+            var speed = activityType == ActivityType.Move ? 10 : 0;
             if (_activeAnimator is { })
                 _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
         }
 
-        private void OnAttacking()
+        protected void OnAttacking()
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(SwingAnimationParameter, TopLayerIndex);
         }
 
-        private void OnAttackCanceled()
+        protected void OnAttackCanceled()
         {
             if (_activeAnimator is { } && _activeAnimator.HasState(TopLayerIndex, SwingAnimationParameter))
             {
@@ -151,13 +128,13 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             }
         }
 
-        private void OnHurt(BaseUnit attacker)
+        protected void OnHurt()
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(HurtAnimationParameter, TopLayerIndex);
         }
 
-        private void OnDie()
+        protected void OnDie()
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(DeathAnimationParameter, TopLayerIndex);

@@ -43,6 +43,9 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\CinemachineAnchor.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\OnScrollZoomer.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\ReactivePresentationModels\BaseCharacterRPM.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Components\GroundClickComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\CommonPresentationInstaller.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Presentation\Common.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

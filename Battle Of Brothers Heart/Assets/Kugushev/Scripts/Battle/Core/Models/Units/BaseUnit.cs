@@ -166,7 +166,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
             return true;
         }
 
-        protected override void CancelAttack()
+        protected override void CancelInteraction()
         {
             if (_currentAttack != null)
             {
