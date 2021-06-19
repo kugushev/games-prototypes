@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{21524442-1066-dc30-a4c7-1d8ec452543d}</ProjectGuid>
+    <ProjectGuid>{4225d0d9-1e95-246d-13fe-45c011a5690e}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Core</AssemblyName>
+    <AssemblyName>Battle.Core</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,13 +41,29 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\GameInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Parameters\BattleParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Models\Person.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Models\Teammate.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Models\Enemy.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\CoreInstaller.cs" />
-     <None Include="Assets\Kugushev\Scripts\Game\Core\Core.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\AttackStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Battlefield.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Position.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\EnemySquad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\UnitActivity.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\OrderProcessingStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Orders\OrderMove.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IOrder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\PlayerSquad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\BaseSquad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\BaseUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Helpers\MathHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IInputController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleCoreInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\UnitDirection.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Orders\OrderAttack.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\EnemyUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\AttackProcessing.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\DeltaTime.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Services\SimpleAIService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\PlayerUnit.cs" />
+     <None Include="Assets\Kugushev\Scripts\Battle\Core\Battle.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -689,6 +705,18 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Common.Core.csproj">
+      <Project>{18f4ab07-3408-3b89-86c6-fe800c9942dc}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.Core.csproj">
+      <Project>{9de41967-16d7-51e0-5aba-28ca8091ef20}</Project>
+      <Name>Game.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Campaign.Core.csproj">
+      <Project>{caa15dea-fb7b-f484-fa87-9c2588a9adb7}</Project>
+      <Name>Campaign.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

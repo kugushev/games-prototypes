@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{21524442-1066-dc30-a4c7-1d8ec452543d}</ProjectGuid>
+    <ProjectGuid>{9de41967-16d7-51e0-5aba-28ca8091ef20}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Core</AssemblyName>
+    <AssemblyName>Game.Core</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,13 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\GameInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Parameters\BattleParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Models\Person.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Models\Teammate.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Game\Models\Enemy.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\GameInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Parameters\BattleParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Person.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Teammate.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Core\Models\Enemy.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Core\CoreInstaller.cs" />
-     <None Include="Assets\Kugushev\Scripts\Game\Core\Core.asmdef" />
+     <None Include="Assets\Kugushev\Scripts\Game\Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -689,6 +689,10 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Common.Core.csproj">
+      <Project>{18f4ab07-3408-3b89-86c6-fe800c9942dc}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
