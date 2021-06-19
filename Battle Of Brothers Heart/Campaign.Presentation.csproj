@@ -43,6 +43,9 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\WorldRPM.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\CampaignPresentationInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\Factories\CityFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\CityRPM.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\Helpers\WorldHelper.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Presentation\Campaign.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -43,6 +43,8 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\Exceptions\PropertyIsNotInitializedException.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\Exceptions\GameException.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ZenjectUtils\InPlacePrefabFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ZenjectUtils\ZenjectHelper.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Core\Common.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

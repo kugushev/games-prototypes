@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 using static Kugushev.Scripts.Campaign.Core.CampaignConstants.World;
+using static Kugushev.Scripts.Campaign.Presentation.Helpers.WorldHelper;
 
 namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
 {
@@ -22,6 +23,7 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
         [SerializeField] private GameObject cityPrefab = default!;
 
         [Inject] private World _world = default!;
+        [Inject] private CityRPM.Factory _cityFactory = default!;
 
         private void Awake()
         {
@@ -63,16 +65,12 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
         {
             foreach (var city in cities)
             {
-                var position = new Vector3(
-                    NormalizeX(city.Position.x),
-                    NormalizeY(city.Position.y));
-
+                _cityFactory.Create(city);
                 // todo: create Zenject factory
-                Instantiate(cityPrefab, position, Quaternion.identity, citiesParent);
+                //Instantiate(cityPrefab, position, Quaternion.identity, citiesParent);
             }
         }
 
-        private static int NormalizeX(int x) => x - Width / 2;
-        private static int NormalizeY(int y) => y - Height / 2;
+
     }
 }

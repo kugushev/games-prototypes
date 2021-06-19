@@ -22,6 +22,10 @@ namespace Kugushev.Scripts.Campaign.Core.Models
 
         void IInitializable.Initialize()
         {
+            var seed = DateTime.Now.Millisecond;
+            Debug.Log($"Seed {seed}");
+            Random.InitState(seed);
+
             _ground = CreateWorld();
             _cities = CreateCities();
 
