@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         private EnemyUnit? _model;
 
-        public override BaseUnit Model => _model ?? throw new PropertyIsNotInitializedException(nameof(Model));
+        public override BaseUnit Model => _model ?? throw new PropertyIsNotInitializedException();
 
 
         public void Init(EnemyUnit model) => _model = model;

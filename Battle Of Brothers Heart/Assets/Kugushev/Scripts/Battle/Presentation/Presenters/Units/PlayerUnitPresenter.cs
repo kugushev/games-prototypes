@@ -10,7 +10,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         [SerializeField] private SpriteRenderer selectionMarker = default!;
 
         private PlayerUnit? _model;
-        public override BaseUnit Model => _model ?? throw new PropertyIsNotInitializedException(nameof(Model));
+        public override BaseUnit Model => _model ?? throw new PropertyIsNotInitializedException();
 
         public void Init(PlayerUnit model) => _model = model;
 

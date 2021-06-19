@@ -46,6 +46,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\CampaignConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ValueObjects\Tiles\GroundTile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Enums\TileType.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\City.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Core\Campaign.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

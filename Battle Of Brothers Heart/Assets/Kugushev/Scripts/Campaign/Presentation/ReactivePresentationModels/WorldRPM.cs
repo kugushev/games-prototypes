@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Core;
 using Kugushev.Scripts.Campaign.Core.Enums;
 using Kugushev.Scripts.Campaign.Core.Models;
@@ -17,14 +18,23 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
 
         [Header("Tiles")] [SerializeField] private TileBase grassTile = default!;
 
+        [Header("Cities")] [SerializeField] private Transform citiesParent = default!;
+        [SerializeField] private GameObject cityPrefab = default!;
+
         [Inject] private World _world = default!;
 
         private void Awake()
         {
-            if (_world.Ground != null)
-                FillTiles(_world.Ground);
+            if (_world.Initialized)
+                OnWorldInitialized();
             else
-                _world.WorldInitialized += FillTiles;
+                _world.WorldInitialized += OnWorldInitialized;
+        }
+
+        private void OnWorldInitialized()
+        {
+            FillTiles(_world.Ground);
+            FillCities(_world.Cities);
         }
 
         private void FillTiles(GroundTile[,] worldGround)
@@ -41,12 +51,28 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
                 };
 
                 var position = new Vector3Int(
-                    x - Width / 2,
-                    y - Height / 2,
+                    NormalizeX(x),
+                    NormalizeY(y),
                     0);
 
                 ground.SetTile(position, tileBase);
             }
         }
+
+        private void FillCities(IReadOnlyList<City> cities)
+        {
+            foreach (var city in cities)
+            {
+                var position = new Vector3(
+                    NormalizeX(city.Position.x),
+                    NormalizeY(city.Position.y));
+
+                // todo: create Zenject factory
+                Instantiate(cityPrefab, position, Quaternion.identity, citiesParent);
+            }
+        }
+
+        private static int NormalizeX(int x) => x - Width / 2;
+        private static int NormalizeY(int y) => y - Height / 2;
     }
 }

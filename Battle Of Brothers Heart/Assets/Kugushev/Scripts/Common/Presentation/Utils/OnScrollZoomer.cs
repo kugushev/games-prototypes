@@ -15,8 +15,7 @@ namespace Kugushev.Scripts.Common.Presentation.Utils
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             Zoom(scroll, mouseZoomSpeed);
         }
-
-
+        
         void Zoom(float deltaMagnitudeDiff, float speed)
         {
             cam.m_Lens.OrthographicSize -= deltaMagnitudeDiff * speed;

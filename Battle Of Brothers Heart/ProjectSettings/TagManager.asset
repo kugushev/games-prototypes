@@ -50,7 +50,10 @@ TagManager:
   - name: Surface
     uniqueID: 3514244573
     locked: 0
-  - name: Unit
+  - name: On Surface
+    uniqueID: 2263919503
+    locked: 0
+  - name: Full Size
     uniqueID: 4238964553
     locked: 0
   - name: Effects
