@@ -47,6 +47,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ValueObjects\Tiles\GroundTile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Enums\TileType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\City.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Wayfarers\BaseWayfarer.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Wayfarers\PlayerWayfarer.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Core\Campaign.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -326,6 +328,12 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
+     </Reference>
+     <Reference Include="DOTweenEditor">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/Editor/DOTweenEditor.dll</HintPath>
+     </Reference>
+     <Reference Include="DOTween">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/DOTween.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

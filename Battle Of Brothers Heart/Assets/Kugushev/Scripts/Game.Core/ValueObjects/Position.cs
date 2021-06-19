@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Battle.Core.ValueObjects
+namespace Kugushev.Scripts.Common.Core.ValueObjects
 {
     public readonly struct Position : IEquatable<Position>
     {

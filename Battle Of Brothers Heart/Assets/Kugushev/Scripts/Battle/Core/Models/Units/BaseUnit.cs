@@ -5,6 +5,8 @@ using Kugushev.Scripts.Battle.Core.Helpers;
 using Kugushev.Scripts.Battle.Core.Interfaces;
 using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
+using Kugushev.Scripts.Common.Core.Enums;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
 

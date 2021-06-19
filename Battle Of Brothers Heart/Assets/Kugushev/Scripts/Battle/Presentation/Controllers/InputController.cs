@@ -2,6 +2,7 @@
 using Kugushev.Scripts.Battle.Core.Interfaces;
 using Kugushev.Scripts.Battle.Core.Models.Units;
 using Kugushev.Scripts.Battle.Core.ValueObjects;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
