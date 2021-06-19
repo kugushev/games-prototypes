@@ -44,10 +44,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\AttackStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Battlefield.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\EnemySquad.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\UnitActivity.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\OrderProcessingStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Orders\OrderMove.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IOrder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\PlayerSquad.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\BaseSquad.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\BaseUnit.cs" />
@@ -57,7 +53,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Orders\OrderAttack.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\EnemyUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\AttackProcessing.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\DeltaTime.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Services\SimpleAIService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\PlayerUnit.cs" />

@@ -2,7 +2,7 @@
 
 namespace Kugushev.Scripts.Game.Core
 {
-    public class GameInstaller : MonoInstaller
+    public class GameCoreInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

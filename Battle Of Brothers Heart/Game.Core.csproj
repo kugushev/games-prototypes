@@ -42,14 +42,22 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\ValueObjects\Position.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\ActivityType.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\OrderProcessingStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\Orders\OrderMove.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IOrder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameCoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Parameters\BattleParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Person.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Teammate.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Enemy.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\UnitDirection.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\CoreInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\AI\BaseAgent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\Direction2d.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\ValueObjects\DeltaTime.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IAgent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\ActiveAgent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\IInteractable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\Orders\OrderInteract.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
      <None Include="Assets\Kugushev\Scripts\Game.Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

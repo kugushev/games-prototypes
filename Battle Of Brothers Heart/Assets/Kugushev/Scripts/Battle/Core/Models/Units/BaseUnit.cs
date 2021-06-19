@@ -7,12 +7,13 @@ using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Interfaces;
 using UniRx;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Battle.Core.Models.Units
 {
-    public abstract class BaseUnit
+    public abstract class BaseUnit : IInteractable
     {
         private readonly Battlefield _battlefield;
         private readonly Queue<Vector2> _pathfindingBuffer = new Queue<Vector2>();
@@ -23,11 +24,11 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
         private readonly ReactiveProperty<int> _hitPoints = new ReactiveProperty<int>();
         private readonly ReactiveProperty<Position> _position = new ReactiveProperty<Position>();
 
-        private readonly ReactiveProperty<UnitDirection> _direction =
-            new ReactiveProperty<UnitDirection>(UnitDirection.Down);
+        private readonly ReactiveProperty<Direction2d> _direction =
+            new ReactiveProperty<Direction2d>(Common.Core.Enums.Direction2d.Down);
 
-        private readonly ReactiveProperty<UnitActivity> _activity =
-            new ReactiveProperty<UnitActivity>(UnitActivity.Stay);
+        private readonly ReactiveProperty<ActivityType> _activity =
+            new ReactiveProperty<ActivityType>(Enums.ActivityType.Stay);
 
         protected BaseUnit(Position position, Battlefield battlefield)
         {
@@ -38,20 +39,27 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
 
         public IReadOnlyReactiveProperty<int> HitPoints => _hitPoints;
         public IReadOnlyReactiveProperty<Position> Position => _position;
-        public IReadOnlyReactiveProperty<UnitDirection> Direction => _direction;
-        public IReadOnlyReactiveProperty<UnitActivity> Activity => _activity;
+        public IReadOnlyReactiveProperty<Direction2d> Direction => _direction;
+        public IReadOnlyReactiveProperty<ActivityType> Activity => _activity;
 
         // todo: use aggregated class Person 
         public float WeaponRange => BattleConstants.SwordAttackRange;
         public int Damage => BattleConstants.SwordAttackDamage;
 
         public IOrder? CurrentOrder { get; set; }
-        public bool IsDead => _activity.Value == UnitActivity.Death;
+        public bool IsDead => _activity.Value == Enums.ActivityType.Death;
 
         public event Action? Attacking;
         public event Action? AttackCanceled;
         public event Action<BaseUnit>? Hurt;
         public event Action? Die;
+
+        #region IInteractable
+
+        Position IInteractable.Position => _position.Value;
+        bool IInteractable.IsInteractable => IsDead;
+
+        #endregion
 
         public void Suffer(int damage, BaseUnit attacker)
         {
@@ -59,7 +67,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
 
             if (_hitPoints.Value <= 0)
             {
-                _activity.Value = UnitActivity.Death;
+                _activity.Value = Enums.ActivityType.Death;
                 _currentAttack = null;
                 CurrentOrder = null;
                 Die?.Invoke();
@@ -67,7 +75,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
             }
 
             _currentAttack = null;
-            _activity.Value = UnitActivity.Stay;
+            _activity.Value = Enums.ActivityType.Stay;
             _interruptionTime = DateTime.Now;
             Hurt?.Invoke(attacker);
         }
@@ -105,7 +113,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
                     break;
             }
 
-            if (processingStatus == OrderProcessingStatus.Completed)
+            if (processingStatus == OrderProcessingStatus.Finished)
                 CurrentOrder = null;
         }
 
@@ -115,13 +123,13 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
 
             var destinationReached = MoveToPosition(order.Target, delta);
 
-            return destinationReached ? OrderProcessingStatus.Completed : OrderProcessingStatus.InProgress;
+            return destinationReached ? OrderProcessingStatus.Finished : OrderProcessingStatus.InProgress;
         }
 
         private OrderProcessingStatus Process(OrderAttack order, DeltaTime delta)
         {
             if (order.Target.IsDead)
-                return OrderProcessingStatus.Completed;
+                return OrderProcessingStatus.Finished;
 
             if (!DistanceCheck(order, delta, out var enemyPosition))
                 return OrderProcessingStatus.InProgress;
@@ -132,7 +140,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
             switch (_currentAttack?.Status)
             {
                 case null:
-                    _activity.Value = UnitActivity.Stay;
+                    _activity.Value = Enums.ActivityType.Stay;
                     _currentAttack = new AttackProcessing(AttackStatus.Preparing);
                     break;
                 case AttackStatus.Preparing:
@@ -300,7 +308,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
             }
         }
 
-        private UnitDirection GetNewDirection(Vector2 direction)
+        private Direction2d GetNewDirection(Vector2 direction)
         {
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
@@ -308,16 +316,16 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
                 angle = 360f + angle;
 
             if (angle > 45 && angle <= 135)
-                return UnitDirection.Up;
+                return Common.Core.Enums.Direction2d.Up;
             if (angle > 135 && angle <= 225)
-                return UnitDirection.Left;
+                return Common.Core.Enums.Direction2d.Left;
             if (angle > 225 && angle <= 315)
-                return UnitDirection.Down;
-            return UnitDirection.Right;
+                return Common.Core.Enums.Direction2d.Down;
+            return Common.Core.Enums.Direction2d.Right;
         }
 
-        private UnitActivity GetNewActivity(bool destinationReached) =>
-            destinationReached ? UnitActivity.Stay : UnitActivity.Move;
+        private ActivityType GetNewActivity(bool destinationReached) =>
+            destinationReached ? Enums.ActivityType.Stay : Enums.ActivityType.Move;
 
         private void CancelAttack()
         {

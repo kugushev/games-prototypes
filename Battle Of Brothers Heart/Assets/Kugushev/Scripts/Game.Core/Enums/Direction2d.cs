@@ -1,6 +1,6 @@
 ﻿namespace Kugushev.Scripts.Common.Core.Enums
 {
-    public enum UnitDirection
+    public enum Direction2d
     {
         None,
         Up,

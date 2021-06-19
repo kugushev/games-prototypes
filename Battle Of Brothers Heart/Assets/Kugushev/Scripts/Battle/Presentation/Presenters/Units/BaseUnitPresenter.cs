@@ -83,11 +83,11 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             t.position = vector;
         }
 
-        private void OnDirectionChanged(UnitDirection newDirection)
+        private void OnDirectionChanged(Direction2d newDirection2d)
         {
-            switch (newDirection)
+            switch (newDirection2d)
             {
-                case UnitDirection.Up:
+                case Direction2d.Up:
                     upObject.SetActive(true);
                     rightObject.SetActive(false);
                     leftObject.SetActive(false);
@@ -96,7 +96,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     _activeAnimator = upAnimator;
                     ToggleActivity(Model.Activity.Value);
                     break;
-                case UnitDirection.Down:
+                case Direction2d.Down:
                     upObject.SetActive(false);
                     rightObject.SetActive(false);
                     leftObject.SetActive(false);
@@ -105,7 +105,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     _activeAnimator = downAnimator;
                     ToggleActivity(Model.Activity.Value);
                     break;
-                case UnitDirection.Right:
+                case Direction2d.Right:
                     upObject.SetActive(false);
                     rightObject.SetActive(true);
                     leftObject.SetActive(false);
@@ -114,7 +114,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     _activeAnimator = rightAnimator;
                     ToggleActivity(Model.Activity.Value);
                     break;
-                case UnitDirection.Left:
+                case Direction2d.Left:
                     upObject.SetActive(false);
                     rightObject.SetActive(false);
                     leftObject.SetActive(true);
@@ -124,16 +124,16 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                     ToggleActivity(Model.Activity.Value);
                     break;
                 default:
-                    Debug.LogError($"Unexpected direction {newDirection}");
+                    Debug.LogError($"Unexpected direction {newDirection2d}");
                     break;
             }
         }
 
-        private void OnActivityChanged(UnitActivity newActivity) => ToggleActivity(newActivity);
+        private void OnActivityChanged(ActivityType newActivityType) => ToggleActivity(newActivityType);
 
-        private void ToggleActivity(UnitActivity activity)
+        private void ToggleActivity(ActivityType activityType)
         {
-            var speed = activity == UnitActivity.Move ? BattleConstants.UnitSpeed : 0;
+            var speed = activityType == ActivityType.Move ? BattleConstants.UnitSpeed : 0;
             if (_activeAnimator is { })
                 _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
         }

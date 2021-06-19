@@ -1,10 +1,9 @@
 ﻿namespace Kugushev.Scripts.Battle.Core.Enums
 {
-    public enum UnitActivity
+    public enum OrderProcessingStatus
     {
         None,
-        Stay,
-        Move,
-        Death
+        InProgress,
+        Finished
     }
 }
