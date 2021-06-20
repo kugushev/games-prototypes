@@ -374,7 +374,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EventMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967291
   m_MaxRayIntersections: 0
 --- !u!1 &559313194
 GameObject:
@@ -607,7 +607,6 @@ GameObject:
   m_Component:
   - component: {fileID: 909495208}
   - component: {fileID: 909495209}
-  - component: {fileID: 909495211}
   - component: {fileID: 909495210}
   - component: {fileID: 909495212}
   m_Layer: 0
@@ -656,36 +655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c80c43b9c4ed0b2d8e54228163a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &909495211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909495207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 909495210}
-          m_TargetAssemblyTypeName: Kugushev.Scripts.Common.Presentation.Components.GroundClickComponent,
-            Common.Presentation
-          m_MethodName: Lol
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!61 &909495212
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1180,7 +1149,7 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

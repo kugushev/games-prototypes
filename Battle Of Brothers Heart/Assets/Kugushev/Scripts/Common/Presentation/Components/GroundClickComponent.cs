@@ -16,11 +16,6 @@ namespace Kugushev.Scripts.Common.Presentation.Components
             _camera = Camera.main!;
         }
 
-        public void Lol()
-        {
-            print("Lol");
-        }
-
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
         {
             var position = _camera.ScreenToWorldPoint(eventData.position);
