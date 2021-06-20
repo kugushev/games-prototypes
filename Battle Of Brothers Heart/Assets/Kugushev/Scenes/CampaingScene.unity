@@ -609,6 +609,7 @@ GameObject:
   - component: {fileID: 909495209}
   - component: {fileID: 909495211}
   - component: {fileID: 909495210}
+  - component: {fileID: 909495212}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -655,7 +656,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c80c43b9c4ed0b2d8e54228163a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &909495211
+--- !u!114 &909495211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909495207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 909495210}
+          m_TargetAssemblyTypeName: Kugushev.Scripts.Common.Presentation.Components.GroundClickComponent,
+            Common.Presentation
+          m_MethodName: Lol
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!61 &909495212
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -854,7 +885,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8479263, y: 1}
+    m_SensorSize: {x: 1.8341014, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

@@ -41,11 +41,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\CinemachineAnchor.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\OnScrollZoomer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\ReactivePresentationModels\BaseCharacterRPM.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Components\GroundClickComponent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\CinemachineAnchor.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\CommonPresentationInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\OnScrollZoomer.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Presentation\Common.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -299,6 +299,9 @@
      <Reference Include="Unity.VisualScripting.YamlDotNet">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll</HintPath>
      </Reference>
+     <Reference Include="DOTweenEditor">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/Editor/DOTweenEditor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.IonicZip">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll</HintPath>
      </Reference>
@@ -317,6 +320,9 @@
      <Reference Include="clipper_library">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.cinemachine@2.7.3/Runtime/ThirdParty/clipper_library.dll</HintPath>
      </Reference>
+     <Reference Include="DOTween">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/DOTween.dll</HintPath>
+     </Reference>
      <Reference Include="Newtonsoft.Json">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
      </Reference>
@@ -325,12 +331,6 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTweenEditor">
-     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/Editor/DOTweenEditor.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTween">
-     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/DOTween.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

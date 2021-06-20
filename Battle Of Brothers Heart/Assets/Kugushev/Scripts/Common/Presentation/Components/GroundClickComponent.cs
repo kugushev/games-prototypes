@@ -5,7 +5,6 @@ using Zenject;
 
 namespace Kugushev.Scripts.Common.Presentation.Components
 {
-    [RequireComponent(typeof(Collider2D))]
     public class GroundClickComponent : MonoBehaviour, IPointerClickHandler
     {
         [Inject] private InputController _inputController = default!;
@@ -15,6 +14,11 @@ namespace Kugushev.Scripts.Common.Presentation.Components
         private void Awake()
         {
             _camera = Camera.main!;
+        }
+
+        public void Lol()
+        {
+            print("Lol");
         }
 
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)

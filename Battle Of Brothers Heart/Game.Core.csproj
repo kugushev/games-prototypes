@@ -41,6 +41,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\IInteractable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\Orders\OrderInteract.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\AgentsManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\Orders\OrderMove.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IOrder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameCoreInstaller.cs" />
@@ -48,12 +52,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Person.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Teammate.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Enemy.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\ActiveAgent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\IInteractable.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\Orders\OrderInteract.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\AI\AgentsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Interfaces\AI\IAgentsOwner.cs" />
      <None Include="Assets\Kugushev\Scripts\Game.Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
@@ -308,6 +308,9 @@
      <Reference Include="Unity.VisualScripting.YamlDotNet">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll</HintPath>
      </Reference>
+     <Reference Include="DOTweenEditor">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/Editor/DOTweenEditor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.IonicZip">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll</HintPath>
      </Reference>
@@ -326,6 +329,9 @@
      <Reference Include="clipper_library">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.cinemachine@2.7.3/Runtime/ThirdParty/clipper_library.dll</HintPath>
      </Reference>
+     <Reference Include="DOTween">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/DOTween.dll</HintPath>
+     </Reference>
      <Reference Include="Newtonsoft.Json">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
      </Reference>
@@ -334,12 +340,6 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTweenEditor">
-     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/Editor/DOTweenEditor.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTween">
-     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/PackageCache/com.demigiant.dotween@1.2.42/DOTween/Plugins/DOTween.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.10f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
