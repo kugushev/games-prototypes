@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using Kugushev.Scripts.Battle.Core.Interfaces;
 using Kugushev.Scripts.Battle.Core.Models.Units;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
-using Kugushev.Scripts.Game.Core.Interfaces.AI;
-using Kugushev.Scripts.Game.Core.Models.AI;
-using Kugushev.Scripts.Game.Core.Models.AI.Orders;
+using Kugushev.Scripts.Common.Core.AI;
+using Kugushev.Scripts.Common.Core.AI.Orders;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using Kugushev.Scripts.Game.Core.Parameters;
-using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
 

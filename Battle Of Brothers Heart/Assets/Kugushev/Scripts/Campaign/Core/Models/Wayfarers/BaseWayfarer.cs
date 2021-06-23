@@ -1,7 +1,6 @@
-﻿using Kugushev.Scripts.Game.Core.Interfaces;
-using Kugushev.Scripts.Game.Core.Models.AI;
-using Kugushev.Scripts.Game.Core.Models.AI.Orders;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Common.Core.AI;
+using Kugushev.Scripts.Common.Core.AI.Orders;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
@@ -36,11 +35,6 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
         protected override bool CheckCollisions(Vector2 movement, float movementDistance, Vector2 target)
         {
             return true;
-        }
-
-        protected override void ProcessInteraction(OrderInteract order)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

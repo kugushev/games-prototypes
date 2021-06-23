@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Game.Core.Interfaces.AI;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 using Zenject;
 
-namespace Kugushev.Scripts.Game.Core.Models.AI
+namespace Kugushev.Scripts.Common.Core.AI
 {
     public class AgentsManager : IFixedTickable
     {

@@ -1,6 +1,6 @@
 ﻿using Kugushev.Scripts.Campaign.Core.Models.Wayfarers;
+using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Presentation.ReactivePresentationModels;
-using Kugushev.Scripts.Game.Core.Enums;
 using UniRx;
 using Zenject;
 

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Game.Core.Enums;
-using Kugushev.Scripts.Game.Core.Interfaces.AI;
-using Kugushev.Scripts.Game.Core.Models.AI.Orders;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Common.Core.AI.Orders;
+using Kugushev.Scripts.Common.Core.Enums;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Core.Models.AI
+namespace Kugushev.Scripts.Common.Core.AI
 {
     public abstract class ActiveAgent : IAgent
     {
@@ -81,7 +80,7 @@ namespace Kugushev.Scripts.Game.Core.Models.AI
 
         private OrderProcessingStatus Process(OrderInteract order, DeltaTime delta)
         {
-            if (order.Target.IsInteractable)
+            if (!order.Interactable.IsInteractable)
                 return OrderProcessingStatus.Finished;
 
             if (!DistanceCheck(order, delta, out var enemyPosition))
@@ -90,16 +89,14 @@ namespace Kugushev.Scripts.Game.Core.Models.AI
             if (!DirectionCheck(enemyPosition))
                 return OrderProcessingStatus.InProgress;
 
-            ProcessInteraction(order);
-
-            return OrderProcessingStatus.InProgress;
+            return ProcessInteraction(order);
         }
 
-        protected abstract void ProcessInteraction(OrderInteract order);
+        protected abstract OrderProcessingStatus ProcessInteraction(OrderInteract order);
 
         private bool DistanceCheck(OrderInteract order, DeltaTime delta, out Position targetPosition)
         {
-            targetPosition = order.Target.Position;
+            targetPosition = order.Interactable.Position;
             if (Vector2.Distance(targetPosition.Vector, PositionImpl.Value.Vector) >= InteractionRadius)
             {
                 CancelInteraction();
@@ -138,7 +135,7 @@ namespace Kugushev.Scripts.Game.Core.Models.AI
             DirectionImpl.Value = GetNewDirection(direction);
 
             var distanceToTarget = Vector2.Distance(target.Vector, PositionImpl.Value.Vector);
-            var destinationReached = distanceToTarget < GameConstants.Movement.Epsilon;
+            var destinationReached = distanceToTarget < CommonConstants.Movement.Epsilon;
             ActivityImpl.Value = GetNewActivity(destinationReached);
 
             return destinationReached;

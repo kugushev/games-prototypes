@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Kugushev.Scripts.Game.Core.Interfaces.AI
+namespace Kugushev.Scripts.Common.Core.AI
 {
     public interface IAgentsOwner
     {

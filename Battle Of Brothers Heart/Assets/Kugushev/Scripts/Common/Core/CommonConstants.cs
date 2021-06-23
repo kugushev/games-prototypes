@@ -1,6 +1,6 @@
-﻿namespace Kugushev.Scripts.Game.Core
+﻿namespace Kugushev.Scripts.Common.Core
 {
-    public static class GameConstants
+    public static class CommonConstants
     {
         public static class Movement
         {

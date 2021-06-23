@@ -1,5 +1,5 @@
 ﻿using Kugushev.Scripts.Battle.Core.Models.Units;
-using Kugushev.Scripts.Game.Core.Models.AI.Orders;
+using Kugushev.Scripts.Common.Core.AI.Orders;
 using Zenject;
 
 namespace Kugushev.Scripts.Battle.Core.ValueObjects.Orders

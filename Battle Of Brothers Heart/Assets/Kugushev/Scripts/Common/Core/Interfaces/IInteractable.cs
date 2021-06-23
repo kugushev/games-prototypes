@@ -1,6 +1,7 @@
-﻿using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Common.Core.ValueObjects;
+using UnityEngine;
 
-namespace Kugushev.Scripts.Game.Core.Interfaces
+namespace Kugushev.Scripts.Common.Core.AI
 {
     public interface IInteractable
     {

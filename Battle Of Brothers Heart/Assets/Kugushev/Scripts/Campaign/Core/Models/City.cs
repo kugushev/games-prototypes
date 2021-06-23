@@ -1,19 +1,23 @@
-﻿using Kugushev.Scripts.Game.Core.Interfaces;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using System;
+using Kugushev.Scripts.Common.Core.AI;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Models
 {
     public class City : IInteractable
     {
-        public City(Vector2Int position)
+        public City(Position position)
         {
             Position = position;
+            Name = Guid.NewGuid().ToString();
         }
 
-        public Vector2Int Position { get; }
+
+        public Position Position { get; }
+
+        public string Name { get; }
 
         bool IInteractable.IsInteractable => true;
-        Position IInteractable.Position => new Position(Position);
     }
 }

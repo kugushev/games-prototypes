@@ -1,6 +1,6 @@
-﻿using Kugushev.Scripts.Game.Core.Models.AI;
-using Kugushev.Scripts.Game.Core.Models.AI.Orders;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Common.Core.AI;
+using Kugushev.Scripts.Common.Core.AI.Orders;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using Zenject;
 
 namespace Kugushev.Scripts.Game.Core

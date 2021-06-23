@@ -1,5 +1,5 @@
-﻿using Kugushev.Scripts.Game.Core.Enums;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Common.Core.Enums;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using Simple_Health_Bar.Scripts;
 using UnityEngine;
 

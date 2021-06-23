@@ -1,27 +1,31 @@
-﻿using Kugushev.Scripts.Common.Core.Controllers;
-using Kugushev.Scripts.Game.Core.Models.AI.Orders;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+﻿using Kugushev.Scripts.Campaign.Core.ValueObjects.Orders;
+using Kugushev.Scripts.Common.Core.AI.Orders;
+using Kugushev.Scripts.Common.Core.Controllers;
+using Kugushev.Scripts.Common.Core.Enums;
+using Kugushev.Scripts.Common.Core.ValueObjects;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 {
     public class PlayerWayfarer : BaseWayfarer
     {
-        private readonly InputController _inputController;
-        private readonly OrderMove.Factory _orderMoveFactory;
-
-        public PlayerWayfarer(Position position, InputController inputController, OrderMove.Factory orderMoveFactory) :
-            base(position)
+        public PlayerWayfarer(Position position) : base(position)
         {
-            _inputController = inputController;
-            _orderMoveFactory = orderMoveFactory;
-
-            // todo: unsubscribe
-            _inputController.GroundCommand += OnGroundCommand;
         }
 
-        private void OnGroundCommand(Position target)
+        protected override OrderProcessingStatus ProcessInteraction(OrderInteract order)
         {
-            CurrentOrder = _orderMoveFactory.Create(target);
+            switch (order)
+            {
+                case OrderVisitCity visitCity:
+                    Debug.Log($"City {visitCity.Target.Name} visited");
+                    return OrderProcessingStatus.Finished;
+                default:
+                    Debug.LogError($"Unexpected order {order}");
+                    break;
+            }
+
+            return OrderProcessingStatus.InProgress;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UniRx;
 
 namespace Kugushev.Scripts.Battle.Core.Models.Units

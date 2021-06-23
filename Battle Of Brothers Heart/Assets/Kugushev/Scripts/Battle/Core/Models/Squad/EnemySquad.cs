@@ -4,10 +4,9 @@ using System.Linq;
 using Kugushev.Scripts.Battle.Core.Models.Units;
 using Kugushev.Scripts.Battle.Core.Services;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
-using Kugushev.Scripts.Game.Core.Interfaces.AI;
-using Kugushev.Scripts.Game.Core.Models.AI;
+using Kugushev.Scripts.Common.Core.AI;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using Kugushev.Scripts.Game.Core.Parameters;
-using Kugushev.Scripts.Game.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -55,7 +54,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 {
                     var toCurrentTarget = Vector2.Distance(
                         enemyUnit.Position.Value.Vector,
-                        currentOrder.Victim.Position.Value.Vector);
+                        currentOrder.Target.Position.Value.Vector);
                     if (toCurrentTarget < enemyUnit.WeaponRange * BattleConstants.AIAggroResetMultiplier)
                         continue;
                 }

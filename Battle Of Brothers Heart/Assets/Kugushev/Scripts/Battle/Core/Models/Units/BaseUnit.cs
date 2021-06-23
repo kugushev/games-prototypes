@@ -3,11 +3,10 @@ using Kugushev.Scripts.Battle.Core.Enums;
 using Kugushev.Scripts.Battle.Core.Helpers;
 using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
-using Kugushev.Scripts.Game.Core.Enums;
-using Kugushev.Scripts.Game.Core.Interfaces;
-using Kugushev.Scripts.Game.Core.Models.AI;
-using Kugushev.Scripts.Game.Core.Models.AI.Orders;
-using Kugushev.Scripts.Game.Core.ValueObjects;
+using Kugushev.Scripts.Common.Core.AI;
+using Kugushev.Scripts.Common.Core.AI.Orders;
+using Kugushev.Scripts.Common.Core.Enums;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UniRx;
 using UnityEngine;
 
@@ -40,7 +39,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
         #region IInteractable
 
         Position IInteractable.Position => Position.Value;
-        bool IInteractable.IsInteractable => IsDead;
+        bool IInteractable.IsInteractable => !IsDead;
 
         #endregion
 
@@ -80,8 +79,12 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
             return true;
         }
 
-        protected override void ProcessInteraction(OrderInteract order)
+        protected override OrderProcessingStatus ProcessInteraction(OrderInteract order)
         {
+            var orderAttack = (OrderAttack) order;
+            if (orderAttack.Target.IsDead)
+                return OrderProcessingStatus.Finished;
+
             switch (_currentAttack?.Status)
             {
                 case null:
@@ -97,8 +100,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
                         _currentAttack = new AttackProcessing(AttackStatus.Executing);
                     break;
                 case AttackStatus.Executing:
-                    var orderAttack = (OrderAttack) order;
-                    orderAttack.Victim.Suffer(Damage, this);
+                    orderAttack.Target.Suffer(Damage, this);
                     _currentAttack = new AttackProcessing(AttackStatus.Executed);
                     break;
                 case AttackStatus.Executed:
@@ -113,6 +115,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
                     Debug.LogError($"Unexpected status {_currentAttack?.Status}");
                     break;
             }
+
+            return OrderProcessingStatus.InProgress;
         }
 
         protected override bool CheckCollisions(Vector2 movement, float movementDistance, Vector2 target)

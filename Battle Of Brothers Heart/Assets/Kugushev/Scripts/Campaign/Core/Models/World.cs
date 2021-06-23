@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Kugushev.Scripts.Campaign.Core.Enums;
 using Kugushev.Scripts.Campaign.Core.ValueObjects.Tiles;
+using Kugushev.Scripts.Campaign.Presentation.Helpers;
 using Kugushev.Scripts.Common.Core.Exceptions;
+using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 using Zenject;
 using static Kugushev.Scripts.Campaign.Core.CampaignConstants.World;
@@ -63,7 +65,12 @@ namespace Kugushev.Scripts.Campaign.Core.Models
                 int toY = (areaY + 1) * areaHeight - areaBorderY;
                 int y = Random.Range(fromY, toY);
 
-                cities.Add(new City(new Vector2Int(x, y)));
+                cities.Add(new City(new Position(new Vector2
+                    {
+                        x = WorldHelper.NormalizeX(x),
+                        y = WorldHelper.NormalizeY(y)
+                    }
+                )));
             }
 
             return cities;
