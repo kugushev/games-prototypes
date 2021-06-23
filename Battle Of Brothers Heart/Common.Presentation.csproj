@@ -46,7 +46,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Components\GroundClickComponent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Interfaces\IInteractableOwner.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\CinemachineAnchor.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\CommonPresentationInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Presentation\Utils\OnScrollZoomer.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Presentation\Common.Presentation.asmdef" />
      <Reference Include="UnityEngine">

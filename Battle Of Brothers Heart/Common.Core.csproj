@@ -60,6 +60,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\Exceptions\GameException.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\ValueObjects\DeltaTime.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\Controllers\InputController.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Core\CommonInstaller.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Core\Common.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -3,10 +3,11 @@ using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 namespace Kugushev.Scripts.Common.Core.Controllers
 {
-    public class InputController
+    public class InputController : ITickable
     {
         public event Action<Position>? GroundRightClick;
         public event Action<IInteractable>? InteractableRightClick;
@@ -36,6 +37,24 @@ namespace Kugushev.Scripts.Common.Core.Controllers
                 default:
                     Debug.Log("Miss interactable");
                     break;
+            }
+        }
+
+        public void Tick()
+        {
+            // todo: move to TimeController
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (Time.timeScale == 0)
+                {
+                    Debug.Log("Unpause");
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    Debug.Log("Pause");
+                    Time.timeScale = 0;
+                }
             }
         }
     }

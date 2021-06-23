@@ -11,8 +11,6 @@ namespace Kugushev.Scripts.Campaign.Presentation
     {
         public override void InstallBindings()
         {
-            Container.Install<CommonPresentationInstaller>();
-            
             Container.InstallPrefabFactory<City, CityRPM, CityRPM.Factory, CityFactory>();
         }
     }
