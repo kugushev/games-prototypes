@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{18f4ab07-3408-3b89-86c6-fe800c9942dc}</ProjectGuid>
+    <ProjectGuid>{f795d9bd-d0b3-0d60-7928-799263355271}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Common.Core</AssemblyName>
+    <AssemblyName>City.Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,27 +41,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Interfaces\IInteractable.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ValueObjects\Position.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\Orders\OrderInteract.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\CommonConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ZenjectUtils\ZenjectHelper.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Enums\ActivityType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Enums\OrderProcessingStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\AgentsManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\Orders\OrderMove.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ZenjectUtils\InPlacePrefabFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\IOrder.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Exceptions\PropertyIsNotInitializedException.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\ActiveAgent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\IAgent.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Enums\Direction2d.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\IAgentsOwner.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Exceptions\GameException.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\CommonInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ValueObjects\DeltaTime.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Controllers\InputController.cs" />
-     <None Include="Assets\Kugushev\Scripts\Common\Core\Common.Core.asmdef" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Presentation\ReactivePresentationModels\Villagers\PlayerVillagerRPM.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Presentation\ReactivePresentationModels\RoadSignRPM.cs" />
+     <None Include="Assets\Kugushev\Scripts\City\Presentation\City.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -709,6 +691,26 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SimpleHealthBar.csproj">
+      <Project>{0b8194cc-77c5-89e7-b47f-2f1a5d822f74}</Project>
+      <Name>SimpleHealthBar</Name>
+    </ProjectReference>
+    <ProjectReference Include="Common.Presentation.csproj">
+      <Project>{a6978558-677a-c473-f372-3240ae7e4366}</Project>
+      <Name>Common.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="Common.Core.csproj">
+      <Project>{18f4ab07-3408-3b89-86c6-fe800c9942dc}</Project>
+      <Name>Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.Core.csproj">
+      <Project>{9de41967-16d7-51e0-5aba-28ca8091ef20}</Project>
+      <Name>Game.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="City.Core.csproj">
+      <Project>{6a0956d8-6458-ceaa-9c69-41a21e6b35e8}</Project>
+      <Name>City.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
