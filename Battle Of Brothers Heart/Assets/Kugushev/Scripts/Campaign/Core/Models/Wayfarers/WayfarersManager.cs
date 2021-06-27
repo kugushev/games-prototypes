@@ -9,12 +9,13 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
     {
         private readonly AgentsManager _agentsManager;
 
-        public WayfarersManager(AgentsManager agentsManager, UnitsManager unitsManager)
+        public WayfarersManager(AgentsManager agentsManager, WorldUnitsManager worldUnitsManager,
+            GameModeManager gameModeManager)
         {
             _agentsManager = agentsManager;
             _agentsManager.Register(this);
 
-            Player = new PlayerWayfarer(unitsManager.Player);
+            Player = new PlayerWayfarer(worldUnitsManager.Player, gameModeManager);
             Agents = new[] {Player};
         }
 

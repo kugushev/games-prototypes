@@ -53,7 +53,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Utils\WorldHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnit.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\UnitsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\WorldUnitsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\GameModeManager.cs" />
      <None Include="Assets\Kugushev\Scripts\Game.Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

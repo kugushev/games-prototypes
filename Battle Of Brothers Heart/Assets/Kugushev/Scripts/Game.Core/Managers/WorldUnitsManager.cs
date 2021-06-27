@@ -2,7 +2,7 @@
 
 namespace Kugushev.Scripts.Game.Core.Managers
 {
-    public class UnitsManager
+    public class WorldUnitsManager
     {
         public WorldUnit Player { get; } = new WorldUnit(
             GameConstants.Units.PlayerUnitStartPosition,
