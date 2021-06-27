@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Kugushev.Scripts.Campaign.Core.Models;
 using Kugushev.Scripts.Common.Core.Exceptions;
 using Kugushev.Scripts.Game.Core.Enums;
@@ -38,24 +40,30 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
 
         private void FillTiles(GroundTile[,] worldGround)
         {
+            var positions = new Vector3Int[Width * Height];
+            var tiles = new TileBase[Width * Height];
+            int index = 0;
+
             for (int x = 0; x < Width; x++)
             for (int y = 0; y < Height; y++)
             {
                 var tile = worldGround[x, y];
 
-                var tileBase = tile.Type switch
+                positions[index] = new Vector3Int(
+                    NormalizeX(x),
+                    NormalizeY(y),
+                    0);
+
+                tiles[index] = tile.Type switch
                 {
                     TileType.Grass => grassTile,
                     _ => throw new GameException($"Unexpected tile type {tile.Type}")
                 };
 
-                var position = new Vector3Int(
-                    NormalizeX(x),
-                    NormalizeY(y),
-                    0);
-
-                ground.SetTile(position, tileBase);
+                index++;
             }
+
+            ground.SetTiles(positions, tiles);
         }
 
         private void FillCities(IReadOnlyList<City> cities)
