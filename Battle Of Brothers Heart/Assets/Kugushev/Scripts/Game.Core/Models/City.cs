@@ -1,9 +1,8 @@
 ﻿using System;
 using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.ValueObjects;
-using UnityEngine;
 
-namespace Kugushev.Scripts.Campaign.Core.Models
+namespace Kugushev.Scripts.Game.Core.Models
 {
     public class City : IInteractable
     {

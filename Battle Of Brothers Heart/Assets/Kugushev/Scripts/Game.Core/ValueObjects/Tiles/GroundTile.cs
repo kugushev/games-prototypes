@@ -1,6 +1,6 @@
-﻿using Kugushev.Scripts.Campaign.Core.Enums;
+﻿using Kugushev.Scripts.Game.Core.Enums;
 
-namespace Kugushev.Scripts.Campaign.Core.ValueObjects.Tiles
+namespace Kugushev.Scripts.Game.Core.ValueObjects.Tiles
 {
     public readonly struct GroundTile
     {

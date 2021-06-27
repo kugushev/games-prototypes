@@ -3,13 +3,14 @@ using Kugushev.Scripts.Common.Core.AI.Orders;
 using Kugushev.Scripts.Common.Core.Controllers;
 using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Models;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 {
     public class PlayerWayfarer : BaseWayfarer
     {
-        public PlayerWayfarer(Position position) : base(position)
+        public PlayerWayfarer(WorldUnit worldUnit) : base(worldUnit)
         {
         }
 

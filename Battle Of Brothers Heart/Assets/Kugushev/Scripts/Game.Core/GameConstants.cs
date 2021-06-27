@@ -1,0 +1,26 @@
+﻿using Kugushev.Scripts.Common.Core.Enums;
+using Kugushev.Scripts.Common.Core.ValueObjects;
+using UnityEngine;
+
+namespace Kugushev.Scripts.Game.Core
+{
+    public static class GameConstants
+    {
+        public static class Units
+        {
+            public static readonly Position PlayerUnitStartPosition = new Position(new Vector2(0, 0));
+            public static readonly Direction2d PlayerUnitStartDirection = Direction2d.Down;
+        }
+
+        public static class World
+        {
+            public const int Height = 480;
+            public const int Width = 640;
+
+            public const int CitiesCount = 12;
+            public const int CitiesInHorizontal = 4;
+            public const int CitiesInVertical = 3;
+            public const int CityAreaRatioDivider = 4;
+        }
+    }
+}

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Common.Core.AI;
-using Kugushev.Scripts.Common.Core.ValueObjects;
-using UnityEngine;
+using Kugushev.Scripts.Game.Core.Managers;
 
 namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 {
@@ -10,11 +9,12 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
     {
         private readonly AgentsManager _agentsManager;
 
-        public WayfarersManager(AgentsManager agentsManager)
+        public WayfarersManager(AgentsManager agentsManager, UnitsManager unitsManager)
         {
             _agentsManager = agentsManager;
             _agentsManager.Register(this);
-            Player = new PlayerWayfarer(new Position(new Vector2(0, 0)));
+
+            Player = new PlayerWayfarer(unitsManager.Player);
             Agents = new[] {Player};
         }
 

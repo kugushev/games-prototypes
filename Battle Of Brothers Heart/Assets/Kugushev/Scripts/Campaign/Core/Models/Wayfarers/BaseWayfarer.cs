@@ -1,14 +1,21 @@
-﻿using Kugushev.Scripts.Common.Core.AI;
+﻿using System;
+using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.AI.Orders;
 using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Models;
+using UniRx;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 {
     public abstract class BaseWayfarer : ActiveAgent, IInteractable
     {
-        protected BaseWayfarer(Position position) : base(position)
+
+        protected BaseWayfarer(WorldUnit worldUnit)
+            : base(worldUnit.Position)
         {
+            worldUnit.SubscribeTo(Position);
+            worldUnit.SubscribeTo(Direction);
         }
 
         #region IInteractable

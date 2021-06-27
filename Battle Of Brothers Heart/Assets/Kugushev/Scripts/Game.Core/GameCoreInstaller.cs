@@ -2,6 +2,8 @@
 using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.AI.Orders;
 using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Managers;
+using Kugushev.Scripts.Game.Core.Models;
 using Zenject;
 
 namespace Kugushev.Scripts.Game.Core
@@ -12,9 +14,9 @@ namespace Kugushev.Scripts.Game.Core
         {
             Container.Install<CommonInstaller>();
 
-            Container.BindInterfacesAndSelfTo<AgentsManager>().AsSingle();
 
-            Container.BindFactory<Position, OrderMove, OrderMove.Factory>().FromPoolableMemoryPool();
+            Container.BindInterfacesAndSelfTo<WorldManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UnitsManager>().AsSingle();
         }
     }
 }

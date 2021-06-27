@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Campaign.Core.Enums;
 using Kugushev.Scripts.Campaign.Core.Models;
-using Kugushev.Scripts.Campaign.Core.ValueObjects.Tiles;
 using Kugushev.Scripts.Common.Core.Exceptions;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Managers;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.ValueObjects.Tiles;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
-using static Kugushev.Scripts.Campaign.Core.CampaignConstants.World;
-using static Kugushev.Scripts.Campaign.Presentation.Helpers.WorldHelper;
+using static Kugushev.Scripts.Game.Core.GameConstants.World;
+using static Kugushev.Scripts.Game.Core.Utils.WorldHelper;
 
 namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
 {
@@ -17,24 +19,21 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
 
         [Header("Tiles")] [SerializeField] private TileBase grassTile = default!;
 
-        [Header("Cities")] [SerializeField] private Transform citiesParent = default!;
-        [SerializeField] private GameObject cityPrefab = default!;
-
-        [Inject] private World _world = default!;
+        [Inject] private WorldManager _worldManager = default!;
         [Inject] private CityRPM.Factory _cityFactory = default!;
 
         private void Awake()
         {
-            if (_world.Initialized)
-                OnWorldInitialized();
+            if (_worldManager.Initialized)
+                OnWorldManagerInitialized();
             else
-                _world.WorldInitialized += OnWorldInitialized;
+                _worldManager.WorldInitialized += OnWorldManagerInitialized;
         }
 
-        private void OnWorldInitialized()
+        private void OnWorldManagerInitialized()
         {
-            FillTiles(_world.Ground);
-            FillCities(_world.Cities);
+            FillTiles(_worldManager.Ground);
+            FillCities(_worldManager.Cities);
         }
 
         private void FillTiles(GroundTile[,] worldGround)
@@ -68,7 +67,5 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels
                 //Instantiate(cityPrefab, position, Quaternion.identity, citiesParent);
             }
         }
-
-
     }
 }

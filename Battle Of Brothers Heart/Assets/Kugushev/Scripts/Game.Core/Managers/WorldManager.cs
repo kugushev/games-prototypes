@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kugushev.Scripts.Campaign.Core.Enums;
-using Kugushev.Scripts.Campaign.Core.ValueObjects.Tiles;
-using Kugushev.Scripts.Campaign.Presentation.Helpers;
 using Kugushev.Scripts.Common.Core.Exceptions;
 using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Enums;
+using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Utils;
+using Kugushev.Scripts.Game.Core.ValueObjects.Tiles;
 using UnityEngine;
 using Zenject;
-using static Kugushev.Scripts.Campaign.Core.CampaignConstants.World;
+using static Kugushev.Scripts.Game.Core.GameConstants.World;
+
 using Random = UnityEngine.Random;
 
-namespace Kugushev.Scripts.Campaign.Core.Models
+namespace Kugushev.Scripts.Game.Core.Managers
 {
-    public class World : IInitializable
+    public class WorldManager : IInitializable
     {
         private GroundTile[,]? _ground;
         private IReadOnlyList<City>? _cities;

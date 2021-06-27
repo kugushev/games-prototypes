@@ -1,7 +1,7 @@
 ﻿using Kugushev.Scripts.Campaign.Core.Models;
-using Kugushev.Scripts.Campaign.Presentation.Helpers;
 using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Presentation.Interfaces;
+using Kugushev.Scripts.Game.Core.Models;
 using UnityEngine;
 using Zenject;
 
