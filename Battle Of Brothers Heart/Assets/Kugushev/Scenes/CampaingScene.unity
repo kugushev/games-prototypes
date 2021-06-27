@@ -374,7 +374,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -502,8 +502,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: {fileID: 1496689123}
   grassTile: {fileID: 11400000, guid: 70c95ed7181c423429bceabcd65b9914, type: 2}
-  citiesParent: {fileID: 284831575}
-  cityPrefab: {fileID: 1086658343462211075, guid: cd9960446ee92a349a7aec6a92145643, type: 3}
 --- !u!1 &673587712
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +511,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673587713}
+  - component: {fileID: 673587715}
+  - component: {fileID: 673587714}
   m_Layer: 0
   m_Name: Wayfarers
   m_TagString: Untagged
@@ -535,6 +535,31 @@ Transform:
   m_Father: {fileID: 592910568}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &673587714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673587712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0297c916038474aab75fb4ae5ff3ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4797554231344762826, guid: 3c0cd0ae7a5cdaf488af5e7f0d055ad9, type: 3}
+--- !u!114 &673587715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673587712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d252463a892b486b8a64f48206fc200b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &793179360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,7 +879,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8341014, y: 1}
+    m_SensorSize: {x: 2.3641791, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

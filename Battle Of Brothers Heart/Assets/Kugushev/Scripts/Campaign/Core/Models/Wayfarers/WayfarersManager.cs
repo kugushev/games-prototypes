@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Game.Core.Managers;
 
@@ -16,10 +17,14 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
             _agentsManager.Register(this);
 
             Player = new PlayerWayfarer(worldUnitsManager.Player, gameModeManager);
+            Bandits = worldUnitsManager.Bandits.Select(u => new BanditWayfarer(u)).ToArray();
+
             Agents = new[] {Player};
         }
 
         public PlayerWayfarer Player { get; }
+
+        public IReadOnlyList<BanditWayfarer> Bandits { get; }
         public IEnumerable<IAgent> Agents { get; }
 
         void IDisposable.Dispose()

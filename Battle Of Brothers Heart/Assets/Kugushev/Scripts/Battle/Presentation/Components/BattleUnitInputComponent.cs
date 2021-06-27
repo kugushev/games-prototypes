@@ -7,7 +7,7 @@ using Zenject;
 namespace Kugushev.Scripts.Battle.Presentation.Components
 {
     [RequireComponent(typeof(BaseUnitPresenter))]
-    public class UnitInputComponent : MonoBehaviour, IPointerClickHandler
+    public class BattleUnitInputComponent : MonoBehaviour, IPointerClickHandler
     {
         [Inject] private InputController _inputController = default!;
 

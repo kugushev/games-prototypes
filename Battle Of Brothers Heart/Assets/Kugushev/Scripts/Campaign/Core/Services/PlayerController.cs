@@ -18,14 +18,17 @@ namespace Kugushev.Scripts.Campaign.Core.Services
         private readonly WayfarersManager _wayfarersManager;
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderVisitCity.Factory _visitCityFactory;
+        private readonly OrderAttackBandit.Factory _attackBanditFactory;
 
         public PlayerController(InputController inputController, WayfarersManager wayfarersManager,
-            OrderMove.Factory orderMoveFactory, OrderVisitCity.Factory visitCityFactory)
+            OrderMove.Factory orderMoveFactory, OrderVisitCity.Factory visitCityFactory,
+            OrderAttackBandit.Factory attackBanditFactory)
         {
             _inputController = inputController;
             _wayfarersManager = wayfarersManager;
             _orderMoveFactory = orderMoveFactory;
             _visitCityFactory = visitCityFactory;
+            _attackBanditFactory = attackBanditFactory;
         }
 
         public void Initialize()
@@ -51,6 +54,9 @@ namespace Kugushev.Scripts.Campaign.Core.Services
             {
                 case City city:
                     _wayfarersManager.Player.CurrentOrder = _visitCityFactory.Create(city);
+                    break;
+                case BanditWayfarer bandit:
+                    _wayfarersManager.Player.CurrentOrder = _attackBanditFactory.Create(bandit);
                     break;
                 default:
                     Debug.LogError($"Invalid interactable {interactable}");

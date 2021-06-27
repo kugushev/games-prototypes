@@ -27,6 +27,14 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
                     _gameModeManager.SwitchToCityModeAsync();
 
                     return OrderProcessingStatus.Finished;
+                case OrderAttackBandit attackBandit:
+
+                    Debug.Log("Attack bandit");
+
+                    // todo: creat a special BattleManager: keeping battlestatus, preparattiworkflow, etc.
+                    _gameModeManager.SwitchToBattleModeAsync();
+
+                    break;
                 default:
                     Debug.LogError($"Unexpected order {order}");
                     break;
