@@ -10,10 +10,13 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
     public class PlayerWayfarer : BaseWayfarer
     {
         private readonly GameModeManager _gameModeManager;
+        private readonly BattleManager _battleManager;
 
-        public PlayerWayfarer(WorldUnit worldUnit, GameModeManager gameModeManager) : base(worldUnit)
+        public PlayerWayfarer(WorldUnit worldUnit, GameModeManager gameModeManager, BattleManager battleManager) :
+            base(worldUnit)
         {
             _gameModeManager = gameModeManager;
+            _battleManager = battleManager;
         }
 
         protected override OrderProcessingStatus ProcessInteraction(OrderInteract order)
@@ -31,8 +34,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 
                     Debug.Log("Attack bandit");
 
-                    // todo: creat a special BattleManager: keeping battlestatus, preparattiworkflow, etc.
-                    _gameModeManager.SwitchToBattleModeAsync();
+                    _battleManager.StartBattle(attackBandit.Target.WorldUnit);
 
                     break;
                 default:

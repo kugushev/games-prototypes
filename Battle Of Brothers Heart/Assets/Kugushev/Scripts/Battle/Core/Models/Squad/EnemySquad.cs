@@ -6,7 +6,7 @@ using Kugushev.Scripts.Battle.Core.Services;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.ValueObjects;
-using Kugushev.Scripts.Game.Core.Parameters;
+using Kugushev.Scripts.Game.Core.Managers;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -21,7 +21,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         private readonly ReactiveCollection<EnemyUnit> _units = new ReactiveCollection<EnemyUnit>();
 
-        public EnemySquad(BattleParameters battleParameters, PlayerSquad playerSquad,
+        public EnemySquad(BattleManager battleManager, PlayerSquad playerSquad,
             SimpleAIService simpleAIService, Battlefield battlefield, AgentsManager agentsManager)
         {
             _playerSquad = playerSquad;
@@ -30,7 +30,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             _agentsManager.Register(this);
 
-            for (var index = 0; index < battleParameters.Enemies.Count; index++)
+            for (var index = 0; index < battleManager.CurrentBattle.EnemyParty.Persons.Count; index++)
             {
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.EnemySquadLine, row);

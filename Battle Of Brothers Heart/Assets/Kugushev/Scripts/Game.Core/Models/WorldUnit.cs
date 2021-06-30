@@ -7,14 +7,16 @@ namespace Kugushev.Scripts.Game.Core.Models
 {
     public class WorldUnit
     {
-        public WorldUnit(Position position, Direction2d direction)
+        public WorldUnit(Position position, Direction2d direction, Party party)
         {
             Position = position;
             Direction = direction;
+            Party = party;
         }
 
         public Position Position { get; private set; }
         public Direction2d Direction { get; private set; }
+        public Party Party { get; }
 
         public void SubscribeTo(IObservable<Position> property)
             => property.Subscribe(v => Position = v);

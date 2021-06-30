@@ -10,10 +10,10 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 {
     public abstract class BaseWayfarer : ActiveAgent, IInteractable
     {
-
         protected BaseWayfarer(WorldUnit worldUnit)
             : base(worldUnit.Position)
         {
+            WorldUnit = worldUnit;
             worldUnit.SubscribeTo(Position);
             worldUnit.SubscribeTo(Direction);
         }
@@ -25,6 +25,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 
         #endregion
 
+        public WorldUnit WorldUnit { get; }
         protected override bool IsActive => true;
         protected override float InteractionRadius => CampaignConstants.Wayfarers.InteractionRange;
         protected override float Speed => CampaignConstants.Wayfarers.Speed;

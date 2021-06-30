@@ -17,6 +17,7 @@ namespace Kugushev.Scripts.Game.Core
             Container.Bind<GameModeManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<WorldManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<WorldUnitsManager>().AsSingle();
+            Container.Bind<BattleManager>().AsSingle();
         }
     }
 }

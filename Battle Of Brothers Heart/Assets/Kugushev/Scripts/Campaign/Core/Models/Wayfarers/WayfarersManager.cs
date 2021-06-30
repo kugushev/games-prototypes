@@ -11,12 +11,12 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
         private readonly AgentsManager _agentsManager;
 
         public WayfarersManager(AgentsManager agentsManager, WorldUnitsManager worldUnitsManager,
-            GameModeManager gameModeManager)
+            GameModeManager gameModeManager, BattleManager battleManager)
         {
             _agentsManager = agentsManager;
             _agentsManager.Register(this);
 
-            Player = new PlayerWayfarer(worldUnitsManager.Player, gameModeManager);
+            Player = new PlayerWayfarer(worldUnitsManager.Player, gameModeManager, battleManager);
             Bandits = worldUnitsManager.Bandits.Select(u => new BanditWayfarer(u)).ToArray();
 
             Agents = new[] {Player};

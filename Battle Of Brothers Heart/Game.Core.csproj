@@ -41,20 +41,22 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\City.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\WorldUnitsManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\BattleManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\GameModeManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\ValueObjects\Tiles\GroundTile.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Party.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameCoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\TileType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Parameters\BattleParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\WorldManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Person.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Teammate.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Enemy.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Utils\WorldHelper.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnit.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\WorldUnitsManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\GameModeManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\BattleDefinition.cs" />
      <None Include="Assets\Kugushev\Scripts\Game.Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
