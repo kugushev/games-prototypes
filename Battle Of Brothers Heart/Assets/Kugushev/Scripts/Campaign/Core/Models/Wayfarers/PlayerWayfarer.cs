@@ -3,6 +3,7 @@ using Kugushev.Scripts.Common.Core.AI.Orders;
 using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Game.Core.Managers;
 using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Models.WorldUnits;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
@@ -12,12 +13,15 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
         private readonly GameModeManager _gameModeManager;
         private readonly BattleManager _battleManager;
 
-        public PlayerWayfarer(WorldUnit worldUnit, GameModeManager gameModeManager, BattleManager battleManager) :
-            base(worldUnit)
+        public PlayerWayfarer(WorldUnit worldUnit, GameModeManager gameModeManager, BattleManager battleManager)
+            : base(worldUnit)
         {
             _gameModeManager = gameModeManager;
             _battleManager = battleManager;
         }
+
+
+        protected override float Speed => CampaignConstants.Wayfarers.PlayerSpeed;
 
         protected override OrderProcessingStatus ProcessInteraction(OrderInteract order)
         {
@@ -33,7 +37,6 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
                 case OrderAttackBandit attackBandit:
 
                     Debug.Log("Attack bandit");
-
                     _battleManager.StartBattleAsync(attackBandit.Target.WorldUnit);
 
                     break;

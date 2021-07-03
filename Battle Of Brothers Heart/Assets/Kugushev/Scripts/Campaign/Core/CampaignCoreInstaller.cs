@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Campaign.Core.Models.Wayfarers;
+﻿using Kugushev.Scripts.Campaign.Core.AI;
+using Kugushev.Scripts.Campaign.Core.Models.Wayfarers;
 using Kugushev.Scripts.Campaign.Core.Services;
 using Kugushev.Scripts.Campaign.Core.ValueObjects.Orders;
 using Kugushev.Scripts.Game.Core.Models;
@@ -13,10 +14,14 @@ namespace Kugushev.Scripts.Campaign.Core
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<Wayfarers>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BanditsCommander>().AsSingle();
 
             Container.BindFactory<City, OrderVisitCity, OrderVisitCity.Factory>().FromPoolableMemoryPool();
             Container.BindFactory<BanditWayfarer, OrderAttackBandit, OrderAttackBandit.Factory>()
                 .FromPoolableMemoryPool();
+            Container.BindFactory<PlayerWayfarer, OrderAttackPlayer, OrderAttackPlayer.Factory>()
+                .FromPoolableMemoryPool();
+
         }
     }
 }

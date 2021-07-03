@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Game.Core.Managers;
+using Kugushev.Scripts.Game.Core.Models.WorldUnits;
 using UniRx;
 using UnityEngine;
 using Zenject;

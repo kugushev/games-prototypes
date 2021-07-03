@@ -1,15 +1,20 @@
-﻿using Kugushev.Scripts.Campaign.Core.Models.Wayfarers;
+﻿using System;
+using Kugushev.Scripts.Campaign.Core.Models.Wayfarers;
 using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Presentation.Interfaces;
 using Kugushev.Scripts.Common.Presentation.ReactivePresentationModels;
+using TMPro;
 using UniRx;
+using UnityEngine;
 using Zenject;
 
 namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels.Wayfarers
 {
     public class BanditWayfarerRPM : BaseCharacterRPM, IInteractableOwner
     {
+        [SerializeField] private TextMeshProUGUI powerText = default!;
+
         private BanditWayfarer _model = default!;
 
         [Inject]
@@ -17,10 +22,17 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels.Wayf
         {
             _model = banditWayfarer;
         }
-        
+
+        public BanditWayfarer Model => _model;
+
         IInteractable IInteractableOwner.Interactable => _model;
 
         protected override ActivityType CurrentActivity => _model.Activity.Value;
+
+        private void Awake()
+        {
+            powerText.text = _model.WorldUnit.Party.Characters.Count.ToString();
+        }
 
         protected override void OnStart()
         {
@@ -30,7 +42,7 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels.Wayf
             _model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
             _model.Activity.Subscribe(OnActivityChanged).AddTo(this);
         }
-        
+
         public class Factory : PlaceholderFactory<BanditWayfarer, BanditWayfarerRPM>
         {
         }

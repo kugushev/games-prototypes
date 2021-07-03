@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Core.Exceptions;
 using Kugushev.Scripts.Game.Core.Enums;
 using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Models.WorldUnits;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Core.Managers

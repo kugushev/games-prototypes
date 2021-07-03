@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Common.Presentation.ReactivePresentationModels
         private Animator? _activeAnimator;
 
 
-        private void Start()
+        protected void Start()
         {
             _activeAnimator = downAnimator;
 
@@ -38,7 +38,7 @@ namespace Kugushev.Scripts.Common.Presentation.ReactivePresentationModels
         {
         }
 
-        private void OnDestroy()
+        protected void OnDestroy()
         {
             OnDestruction();
         }

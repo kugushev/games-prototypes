@@ -41,7 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\WorldUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\City.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\WorldUnitsManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\BattleManager.cs" />
@@ -59,6 +59,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Utils\WorldHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Hero.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\BattleWinner.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\BanditWorldUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\PlayerWorldUnit.cs" />
      <None Include="Assets\Kugushev\Scripts\Game.Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

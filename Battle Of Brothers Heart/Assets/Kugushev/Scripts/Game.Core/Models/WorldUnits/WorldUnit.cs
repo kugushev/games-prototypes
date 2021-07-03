@@ -3,9 +3,9 @@ using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Core.ValueObjects;
 using UniRx;
 
-namespace Kugushev.Scripts.Game.Core.Models
+namespace Kugushev.Scripts.Game.Core.Models.WorldUnits
 {
-    public class WorldUnit
+    public abstract class WorldUnit
     {
         private DateTime _unfreezeTime;
 

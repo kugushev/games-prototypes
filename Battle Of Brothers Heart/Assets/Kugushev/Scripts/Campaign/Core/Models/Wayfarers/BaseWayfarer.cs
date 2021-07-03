@@ -3,6 +3,7 @@ using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.AI.Orders;
 using Kugushev.Scripts.Common.Core.ValueObjects;
 using Kugushev.Scripts.Game.Core.Models;
+using Kugushev.Scripts.Game.Core.Models.WorldUnits;
 using UniRx;
 using UnityEngine;
 
@@ -28,7 +29,6 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
         public WorldUnit WorldUnit { get; }
         protected override bool IsActive => !WorldUnit.IsFrozen;
         protected override float InteractionRadius => CampaignConstants.Wayfarers.InteractionRange;
-        protected override float Speed => CampaignConstants.Wayfarers.Speed;
 
         protected override bool CanProcessOrder()
         {
