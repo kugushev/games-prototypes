@@ -7,7 +7,7 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels.Wayf
 {
     public class WayfarersManagerRPM : MonoBehaviour
     {
-        [Inject] private WayfarersManager _model = default!;
+        [Inject] private Core.Models.Wayfarers.Wayfarers _model = default!;
         [Inject] private BanditWayfarerRPM.Factory _banditsFactory = default!;
 
         private void Awake()

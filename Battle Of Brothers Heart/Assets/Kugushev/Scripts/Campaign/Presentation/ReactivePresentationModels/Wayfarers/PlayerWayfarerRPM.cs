@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels.Wayf
         private PlayerWayfarer _model = default!;
 
         [Inject]
-        public void Init(WayfarersManager manager)
+        public void Init(Core.Models.Wayfarers.Wayfarers manager)
         {
             _model = manager.Player;
         }

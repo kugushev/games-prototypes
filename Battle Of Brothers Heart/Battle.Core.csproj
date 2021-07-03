@@ -45,16 +45,17 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Battlefield.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\EnemySquad.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\PlayerSquad.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\BaseUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\BaseFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Helpers\MathHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\BattleSupervisor.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IInputController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleCoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Orders\OrderAttack.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\EnemyUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\EnemyFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\AttackProcessing.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Services\SimpleAIService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Units\PlayerUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\PlayerFighter.cs" />
      <None Include="Assets\Kugushev\Scripts\Battle\Core\Battle.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

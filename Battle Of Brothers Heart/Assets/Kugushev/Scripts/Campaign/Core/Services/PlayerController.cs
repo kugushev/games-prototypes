@@ -15,17 +15,17 @@ namespace Kugushev.Scripts.Campaign.Core.Services
     internal class PlayerController : IInitializable, IDisposable
     {
         private readonly InputController _inputController;
-        private readonly WayfarersManager _wayfarersManager;
+        private readonly Wayfarers _wayfarers;
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderVisitCity.Factory _visitCityFactory;
         private readonly OrderAttackBandit.Factory _attackBanditFactory;
 
-        public PlayerController(InputController inputController, WayfarersManager wayfarersManager,
+        public PlayerController(InputController inputController, Wayfarers wayfarers,
             OrderMove.Factory orderMoveFactory, OrderVisitCity.Factory visitCityFactory,
             OrderAttackBandit.Factory attackBanditFactory)
         {
             _inputController = inputController;
-            _wayfarersManager = wayfarersManager;
+            _wayfarers = wayfarers;
             _orderMoveFactory = orderMoveFactory;
             _visitCityFactory = visitCityFactory;
             _attackBanditFactory = attackBanditFactory;
@@ -45,7 +45,7 @@ namespace Kugushev.Scripts.Campaign.Core.Services
 
         private void OnGroundRightClick(Position target)
         {
-            _wayfarersManager.Player.CurrentOrder = _orderMoveFactory.Create(target);
+            _wayfarers.Player.CurrentOrder = _orderMoveFactory.Create(target);
         }
 
         private void OnInteractableRightClick(IInteractable interactable)
@@ -53,10 +53,10 @@ namespace Kugushev.Scripts.Campaign.Core.Services
             switch (interactable)
             {
                 case City city:
-                    _wayfarersManager.Player.CurrentOrder = _visitCityFactory.Create(city);
+                    _wayfarers.Player.CurrentOrder = _visitCityFactory.Create(city);
                     break;
                 case BanditWayfarer bandit:
-                    _wayfarersManager.Player.CurrentOrder = _attackBanditFactory.Create(bandit);
+                    _wayfarers.Player.CurrentOrder = _attackBanditFactory.Create(bandit);
                     break;
                 default:
                     Debug.LogError($"Invalid interactable {interactable}");

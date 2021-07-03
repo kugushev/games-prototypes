@@ -12,7 +12,7 @@ namespace Kugushev.Scripts.Campaign.Core
         {
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<WayfarersManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Wayfarers>().AsSingle();
 
             Container.BindFactory<City, OrderVisitCity, OrderVisitCity.Factory>().FromPoolableMemoryPool();
             Container.BindFactory<BanditWayfarer, OrderAttackBandit, OrderAttackBandit.Factory>()

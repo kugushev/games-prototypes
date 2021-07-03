@@ -8,7 +8,7 @@ namespace Kugushev.Scripts.City.Core.Models.Villagers
 {
     public abstract class BaseVillager : ActiveAgent
     {
-        protected BaseVillager(Position position) : base(position)
+        protected BaseVillager(Position battlefieldPosition) : base(battlefieldPosition)
         {
         }
 

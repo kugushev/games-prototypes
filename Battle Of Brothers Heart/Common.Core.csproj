@@ -45,12 +45,12 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\ValueObjects\Position.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\Orders\OrderInteract.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\CommonConstants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ZenjectUtils\ZenjectHelper.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Utils\ZenjectHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\Enums\ActivityType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\Enums\OrderProcessingStatus.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\AgentsManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\Orders\OrderMove.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Core\ZenjectUtils\InPlacePrefabFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Core\Utils\InPlacePrefabFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\IOrder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\Exceptions\PropertyIsNotInitializedException.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Core\AI\ActiveAgent.cs" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kugushev.Scripts.Battle.Core.Interfaces;
-using Kugushev.Scripts.Battle.Core.Models.Units;
+using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.AI.Orders;
@@ -19,8 +19,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private readonly OrderAttack.Factory _orderAttackFactory;
         private readonly AgentsManager _agentsManager;
 
-        private readonly ReactiveCollection<PlayerUnit> _units = new ReactiveCollection<PlayerUnit>();
-        private PlayerUnit? _selectedUnit;
+        private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
+        private PlayerFighter? _selectedUnit;
 
         public PlayerSquad(BattleManager battleManager,
             IInputController inputController,
@@ -39,12 +39,14 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _inputController.EnemyUnitCommand += OnEnemyUnitCommand;
             _inputController.GroundCommand += OnGroundCommand;
 
-            for (var index = 0; index < battleManager.CurrentBattle.PlayerParty.Persons.Count; index++)
+            for (var index = 0; index < battleManager.CurrentBattleSafe.Player.Party.Characters.Count; index++)
             {
+                var character = battleManager.CurrentBattleSafe.Player.Party.Characters[index];
+
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.PlayerSquadLine, row);
 
-                var playerUnit = new PlayerUnit(new Position(point), battlefield);
+                var playerUnit = new PlayerFighter(new Position(point), character, battlefield);
                 playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
                 _units.Add(playerUnit);
 
@@ -52,18 +54,18 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             }
         }
 
-        public IReadOnlyReactiveCollection<PlayerUnit> Units => _units;
+        public IReadOnlyReactiveCollection<PlayerFighter> Units => _units;
 
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
-        private void OnPlayerUnitSelected(PlayerUnit? unit)
+        private void OnPlayerUnitSelected(PlayerFighter? unit)
         {
             _selectedUnit?.Deselect();
             unit?.Select();
             _selectedUnit = unit;
         }
 
-        private void OnEnemyUnitCommand(EnemyUnit target)
+        private void OnEnemyUnitCommand(EnemyFighter target)
         {
             if (_selectedUnit == null)
                 return;
@@ -91,7 +93,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _inputController.GroundCommand -= OnGroundCommand;
         }
 
-        private void UnitOnHurt(PlayerUnit victim, BaseUnit attacker)
+        private void UnitOnHurt(PlayerFighter victim, BaseFighter attacker)
         {
             if (victim.CurrentOrder == null)
                 victim.CurrentOrder = _orderAttackFactory.Create(attacker);

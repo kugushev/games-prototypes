@@ -5,8 +5,6 @@ namespace Kugushev.Scripts.Battle.Core
 {
     public static class BattleConstants
     {
-        public const int UnitMaxHitPoints = 20;
-
         public const float UnitRadius = 1f;
         public const float UnitSpeed = 2f;
         public const float UnitToTargetEpsilon = 0.1f;
@@ -24,5 +22,7 @@ namespace Kugushev.Scripts.Battle.Core
         public static readonly IReadOnlyList<float> UnitsPositionsInRow = new[] {-3f, -1f, 1f, 3f};
 
         public const float AIAggroResetMultiplier = 1f;
+
+        public static readonly TimeSpan RetreatTime = TimeSpan.FromSeconds(15);
     }
 }

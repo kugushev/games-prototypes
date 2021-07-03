@@ -1649,6 +1649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SquadUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 6580350708410976760, guid: f38b9fab4e430b046b012e9182e28038, type: 3}
+      propertyPath: m_TagString
+      value: Hero
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f38b9fab4e430b046b012e9182e28038, type: 3}
 --- !u!1 &373196303504128346 stripped

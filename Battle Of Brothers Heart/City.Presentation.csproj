@@ -674,6 +674,9 @@
      <Reference Include="System.Xml.Serialization">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.TextMeshPro">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+     </Reference>
      <Reference Include="UniTask">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/ScriptAssemblies/UniTask.dll</HintPath>
      </Reference>

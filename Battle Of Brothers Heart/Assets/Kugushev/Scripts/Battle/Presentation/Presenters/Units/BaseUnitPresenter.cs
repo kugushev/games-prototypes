@@ -1,5 +1,5 @@
 ﻿using Kugushev.Scripts.Battle.Core;
-using Kugushev.Scripts.Battle.Core.Models.Units;
+using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Core.ValueObjects;
 using Simple_Health_Bar.Scripts;
@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 {
-    // todo: inherit from BaseCharacterRPM
     public abstract class BaseUnitPresenter : MonoBehaviour
     {
         private const int TopLayerIndex = 0;
@@ -32,13 +31,13 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         private Animator? _activeAnimator;
 
-        public abstract BaseUnit Model { get; }
+        public abstract BaseFighter Model { get; }
 
         private void Start()
         {
             _activeAnimator = downAnimator;
 
-            Model.HitPoints.Subscribe(OnHitPointsChanged).AddTo(this);
+            Model.Character.HP.Subscribe(OnHitPointsChanged).AddTo(this);
             Model.Position.Subscribe(OnPositionChanged).AddTo(this);
             Model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
             Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
@@ -70,7 +69,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         private void OnHitPointsChanged(int hitPoints)
         {
-            simpleHealthBar.UpdateBar(hitPoints, BattleConstants.UnitMaxHitPoints);
+            simpleHealthBar.UpdateBar(hitPoints, Model.Character.MaxHP.Value);
         }
 
         private void OnPositionChanged(Position newPosition)
@@ -151,7 +150,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             }
         }
 
-        private void OnHurt(BaseUnit attacker)
+        private void OnHurt(BaseFighter attacker)
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(HurtAnimationParameter, TopLayerIndex);

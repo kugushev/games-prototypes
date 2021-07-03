@@ -1,4 +1,4 @@
-using Kugushev.Scripts.Battle.Core.Models.Units;
+using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Common.Core.Exceptions;
 using UniRx;
 using UnityEngine;
@@ -9,10 +9,10 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
     {
         [SerializeField] private SpriteRenderer selectionMarker = default!;
 
-        private PlayerUnit? _model;
-        public override BaseUnit Model => _model ?? throw new PropertyIsNotInitializedException();
+        private PlayerFighter? _model;
+        public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
 
-        public void Init(PlayerUnit model) => _model = model;
+        public void Init(PlayerFighter model) => _model = model;
 
         protected override void OnStart()
         {

@@ -9,6 +9,8 @@ namespace Kugushev.Scripts.Game.Core.Managers
 {
     public class WorldUnitsManager
     {
+        private readonly ReactiveCollection<WorldUnit> _units;
+
         public WorldUnitsManager()
         {
             Player = new WorldUnit(
@@ -16,14 +18,14 @@ namespace Kugushev.Scripts.Game.Core.Managers
                 GameConstants.Units.PlayerUnitStartDirection,
                 new Party(new[]
                 {
-                    new Person(), new Person(), new Person(), new Person()
+                    new Character(), new Character(), new Character()
                 }));
 
-            Bandits = new ReactiveCollection<WorldUnit>
+            _units = new ReactiveCollection<WorldUnit>
             {
                 new WorldUnit(new Position(new Vector2(5, 5)), Direction2d.Down, new Party(new[]
                     {
-                        new Person(), new Person(), new Person()
+                        new Character(), new Character(), new Character(), new Character()
                     }
                 ))
             };
@@ -31,6 +33,11 @@ namespace Kugushev.Scripts.Game.Core.Managers
 
         public WorldUnit Player { get; }
 
-        public IReadOnlyReactiveCollection<WorldUnit> Bandits { get; }
+        public IReadOnlyReactiveCollection<WorldUnit> Units => _units;
+
+        public void RemoveUnit(WorldUnit unit)
+        {
+            _units.Remove(unit);
+        }
     }
 }

@@ -4,13 +4,13 @@ namespace Kugushev.Scripts.Game.Core.Models
 {
     public class BattleDefinition
     {
-        public BattleDefinition(Party playerParty, Party enemyParty)
+        public BattleDefinition(WorldUnit player, WorldUnit enemy)
         {
-            PlayerParty = playerParty;
-            EnemyParty = enemyParty;
+            Player = player;
+            Enemy = enemy;
         }
 
-        public Party PlayerParty { get; }
-        public Party EnemyParty { get; }
+        public WorldUnit Player { get; }
+        public WorldUnit Enemy { get; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common.Core.Enums;
+﻿using System;
+using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 
@@ -10,6 +11,13 @@ namespace Kugushev.Scripts.Game.Core
         {
             public static readonly Position PlayerUnitStartPosition = new Position(new Vector2(0, 0));
             public static readonly Direction2d PlayerUnitStartDirection = Direction2d.Down;
+            public static readonly TimeSpan WinFreezeDuration = TimeSpan.FromSeconds(10);
+        }
+        
+        public static class Characters
+        {
+            public const int DefaultMaxHitPoints = 20;
+            
         }
 
         public static class World

@@ -47,6 +47,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\Factories\CityFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\Factories\BanditWayfarerFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\CampaignPresentationInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\HeroInfoRPM.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\Wayfarers\WayfarersManagerRPM.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Presentation\ReactivePresentationModels\CityRPM.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Presentation\Campaign.Presentation.asmdef" />
@@ -679,6 +680,9 @@
      </Reference>
      <Reference Include="System.Xml.Serialization">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro">
+     <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="UniTask">
      <HintPath>C:/Projects/games-prototypes/Battle Of Brothers Heart/Library/ScriptAssemblies/UniTask.dll</HintPath>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Kugushev.Scripts.Battle.Core.Models.Units;
+using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Services;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using Kugushev.Scripts.Common.Core.AI;
@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private readonly SimpleAIService _simpleAIService;
         private readonly AgentsManager _agentsManager;
 
-        private readonly ReactiveCollection<EnemyUnit> _units = new ReactiveCollection<EnemyUnit>();
+        private readonly ReactiveCollection<EnemyFighter> _units = new ReactiveCollection<EnemyFighter>();
 
         public EnemySquad(BattleManager battleManager, PlayerSquad playerSquad,
             SimpleAIService simpleAIService, Battlefield battlefield, AgentsManager agentsManager)
@@ -30,19 +30,21 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             _agentsManager.Register(this);
 
-            for (var index = 0; index < battleManager.CurrentBattle.EnemyParty.Persons.Count; index++)
+            for (var index = 0; index < battleManager.CurrentBattleSafe.Enemy.Party.Characters.Count; index++)
             {
+                var character = battleManager.CurrentBattleSafe.Enemy.Party.Characters[index];
+
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.EnemySquadLine, row);
 
-                var enemyUnit = new EnemyUnit(new Position(point), battlefield);
+                var enemyUnit = new EnemyFighter(new Position(point), character, battlefield);
                 _units.Add(enemyUnit);
 
                 battlefield.RegisterUnt(enemyUnit);
             }
         }
 
-        public IReadOnlyReactiveCollection<EnemyUnit> Units => _units;
+        public IReadOnlyReactiveCollection<EnemyFighter> Units => _units;
 
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 

@@ -7,6 +7,8 @@ namespace Kugushev.Scripts.Game.Core.Models
 {
     public class WorldUnit
     {
+        private DateTime _unfreezeTime;
+
         public WorldUnit(Position position, Direction2d direction, Party party)
         {
             Position = position;
@@ -17,6 +19,10 @@ namespace Kugushev.Scripts.Game.Core.Models
         public Position Position { get; private set; }
         public Direction2d Direction { get; private set; }
         public Party Party { get; }
+
+        public bool IsFrozen => _unfreezeTime > DateTime.Now;
+
+        public void Freeze(TimeSpan seconds) => _unfreezeTime = DateTime.Now + seconds;
 
         public void SubscribeTo(IObservable<Position> property)
             => property.Subscribe(v => Position = v);

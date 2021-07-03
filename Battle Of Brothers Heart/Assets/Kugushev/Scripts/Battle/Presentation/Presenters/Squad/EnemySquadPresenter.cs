@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
-using Kugushev.Scripts.Battle.Core.Models.Units;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
 using UnityEngine;
 using Zenject;
@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             }
         }
 
-        private void CreateUnit(EnemyUnit playerUnit)
+        private void CreateUnit(EnemyFighter playerFighter)
         {
             var go = _container.InstantiatePrefab(enemyUnitPrefab, transform);
 
@@ -33,7 +33,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             go.GetComponents(_presentersBuffer);
             var presenter = _presentersBuffer.Single();
 
-            presenter.Init(playerUnit);
+            presenter.Init(playerFighter);
 
             _presentersBuffer.Clear();
         }

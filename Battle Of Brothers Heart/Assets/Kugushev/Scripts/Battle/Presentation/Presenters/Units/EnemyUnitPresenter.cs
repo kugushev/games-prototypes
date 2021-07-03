@@ -1,5 +1,5 @@
-﻿using Kugushev.Scripts.Battle.Core.Models.Squad;
-using Kugushev.Scripts.Battle.Core.Models.Units;
+﻿using Kugushev.Scripts.Battle.Core.Models.Fighters;
+using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Common.Core.Exceptions;
 using Zenject;
 
@@ -9,11 +9,11 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
     {
         [Inject] private EnemySquad _enemySquad = default!;
 
-        private EnemyUnit? _model;
+        private EnemyFighter? _model;
 
-        public override BaseUnit Model => _model ?? throw new PropertyIsNotInitializedException();
+        public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
 
 
-        public void Init(EnemyUnit model) => _model = model;
+        public void Init(EnemyFighter model) => _model = model;
     }
 }

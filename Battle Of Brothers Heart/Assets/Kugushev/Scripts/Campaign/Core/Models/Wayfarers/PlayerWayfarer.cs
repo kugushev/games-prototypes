@@ -34,7 +34,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 
                     Debug.Log("Attack bandit");
 
-                    _battleManager.StartBattle(attackBandit.Target.WorldUnit);
+                    _battleManager.StartBattleAsync(attackBandit.Target.WorldUnit);
 
                     break;
                 default:

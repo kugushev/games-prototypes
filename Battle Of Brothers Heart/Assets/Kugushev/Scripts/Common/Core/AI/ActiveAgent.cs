@@ -20,9 +20,9 @@ namespace Kugushev.Scripts.Common.Core.AI
         protected readonly ReactiveProperty<ActivityType> ActivityImpl =
             new ReactiveProperty<ActivityType>(ActivityType.Stay);
 
-        protected ActiveAgent(Position position)
+        protected ActiveAgent(Position battlefieldPosition)
         {
-            PositionImpl.Value = position;
+            PositionImpl.Value = battlefieldPosition;
         }
 
         public IReadOnlyReactiveProperty<Position> Position => PositionImpl;

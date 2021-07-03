@@ -14,6 +14,8 @@ namespace Kugushev.Scripts.Game.Core
         {
             Container.Install<CommonInstaller>();
 
+            Container.Bind<Hero>().AsSingle();
+
             Container.Bind<GameModeManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<WorldManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<WorldUnitsManager>().AsSingle();

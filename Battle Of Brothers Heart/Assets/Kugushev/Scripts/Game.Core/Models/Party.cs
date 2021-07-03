@@ -1,14 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using UniRx;
 
 namespace Kugushev.Scripts.Game.Core.Models
 {
     public class Party
     {
-        public Party(IReadOnlyList<Person> persons)
+        private readonly ReactiveCollection<Character> _characters;
+
+        public Party(IReadOnlyList<Character> characters)
         {
-            Persons = persons;
+            _characters = new ReactiveCollection<Character>(characters);
         }
 
-        public IReadOnlyList<Person> Persons { get; }
+        public IReadOnlyReactiveCollection<Character> Characters => _characters;
+
+        public void Remove(Character character) => _characters.Remove(character);
+        public void Add(Character character) => _characters.Add(character);
     }
 }

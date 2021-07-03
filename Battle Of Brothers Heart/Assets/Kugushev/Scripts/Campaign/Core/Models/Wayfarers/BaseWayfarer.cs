@@ -21,12 +21,12 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
         #region IInteractable
 
         Position IInteractable.Position => Position.Value;
-        bool IInteractable.IsInteractable => IsActive;
+        bool IInteractable.IsInteractable => true;
 
         #endregion
 
         public WorldUnit WorldUnit { get; }
-        protected override bool IsActive => true;
+        protected override bool IsActive => !WorldUnit.IsFrozen;
         protected override float InteractionRadius => CampaignConstants.Wayfarers.InteractionRange;
         protected override float Speed => CampaignConstants.Wayfarers.Speed;
 

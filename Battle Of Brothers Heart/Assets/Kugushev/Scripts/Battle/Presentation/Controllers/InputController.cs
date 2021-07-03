@@ -1,6 +1,6 @@
 ﻿using System;
 using Kugushev.Scripts.Battle.Core.Interfaces;
-using Kugushev.Scripts.Battle.Core.Models.Units;
+using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Common.Core.ValueObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,18 +9,18 @@ namespace Kugushev.Scripts.Battle.Presentation.Controllers
 {
     public class InputController : MonoBehaviour, IInputController
     {
-        public event Action<PlayerUnit>? PlayerUnitSelected;
+        public event Action<PlayerFighter>? PlayerUnitSelected;
         public event Action<Position>? GroundCommand;
-        public event Action<EnemyUnit>? EnemyUnitCommand;
+        public event Action<EnemyFighter>? EnemyUnitCommand;
 
-        internal void OnUnitClick(BaseUnit unit, PointerEventData.InputButton inputButton)
+        internal void OnUnitClick(BaseFighter fighter, PointerEventData.InputButton inputButton)
         {
-            switch (inputButton, unit)
+            switch (inputButton, unit: fighter)
             {
-                case (PointerEventData.InputButton.Left, PlayerUnit playerUnit):
+                case (PointerEventData.InputButton.Left, PlayerFighter playerUnit):
                     PlayerUnitSelected?.Invoke(playerUnit);
                     break;
-                case (PointerEventData.InputButton.Right, EnemyUnit enemyUnit):
+                case (PointerEventData.InputButton.Right, EnemyFighter enemyUnit):
                     EnemyUnitCommand?.Invoke(enemyUnit);
                     break;
                 default:

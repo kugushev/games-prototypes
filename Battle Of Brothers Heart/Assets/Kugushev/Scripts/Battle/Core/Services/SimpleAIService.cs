@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kugushev.Scripts.Battle.Core.Models.Units;
+using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using UnityEngine;
 
@@ -14,10 +14,10 @@ namespace Kugushev.Scripts.Battle.Core.Services
             _orderAttackFactory = orderAttackFactory;
         }
 
-        public OrderAttack? AttackTheNearest(BaseUnit actor, IEnumerable<BaseUnit> opponents)
+        public OrderAttack? AttackTheNearest(BaseFighter actor, IEnumerable<BaseFighter> opponents)
         {
             float minDistance = float.MaxValue;
-            BaseUnit? target = null;
+            BaseFighter? target = null;
             foreach (var opponent in opponents)
             {
                 var distance = Vector2.Distance(actor.Position.Value.Vector, opponent.Position.Value.Vector);

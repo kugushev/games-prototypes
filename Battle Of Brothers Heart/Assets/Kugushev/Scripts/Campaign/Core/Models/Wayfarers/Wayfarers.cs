@@ -6,26 +6,35 @@ using Kugushev.Scripts.Game.Core.Managers;
 
 namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 {
-    public class WayfarersManager : IAgentsOwner, IDisposable
+    public class Wayfarers : IAgentsOwner, IDisposable
     {
         private readonly AgentsManager _agentsManager;
 
-        public WayfarersManager(AgentsManager agentsManager, WorldUnitsManager worldUnitsManager,
+        public Wayfarers(AgentsManager agentsManager, WorldUnitsManager worldUnitsManager,
             GameModeManager gameModeManager, BattleManager battleManager)
         {
             _agentsManager = agentsManager;
             _agentsManager.Register(this);
 
             Player = new PlayerWayfarer(worldUnitsManager.Player, gameModeManager, battleManager);
-            Bandits = worldUnitsManager.Bandits.Select(u => new BanditWayfarer(u)).ToArray();
-
-            Agents = new[] {Player};
+            Bandits = worldUnitsManager.Units.Select(u => new BanditWayfarer(u)).ToArray();
         }
 
         public PlayerWayfarer Player { get; }
 
         public IReadOnlyList<BanditWayfarer> Bandits { get; }
-        public IEnumerable<IAgent> Agents { get; }
+
+        IEnumerable<IAgent> IAgentsOwner.Agents
+        {
+            get
+            {
+                yield return Player;
+                foreach (var bandit in Bandits)
+                {
+                    yield return bandit;
+                }
+            }
+        }
 
         void IDisposable.Dispose()
         {

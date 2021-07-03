@@ -7,33 +7,34 @@ using Kugushev.Scripts.Common.Core.AI;
 using Kugushev.Scripts.Common.Core.AI.Orders;
 using Kugushev.Scripts.Common.Core.Enums;
 using Kugushev.Scripts.Common.Core.ValueObjects;
+using Kugushev.Scripts.Game.Core.Models;
 using UniRx;
 using UnityEngine;
 
-namespace Kugushev.Scripts.Battle.Core.Models.Units
+namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 {
-    public abstract class BaseUnit : ActiveAgent, IInteractable
+    public abstract class BaseFighter : ActiveAgent, IInteractable
     {
         private readonly Battlefield _battlefield;
         private DateTime? _interruptionTime;
         private AttackProcessing? _currentAttack;
 
-        private readonly ReactiveProperty<int> _hitPoints = new ReactiveProperty<int>();
-
-        protected BaseUnit(Position position, Battlefield battlefield) : base(position)
+        protected BaseFighter(Position battlefieldPosition, Character character, Battlefield battlefield)
+            : base(battlefieldPosition)
         {
+            Character = character;
             _battlefield = battlefield;
-            _hitPoints.Value = BattleConstants.UnitMaxHitPoints;
         }
 
-        public IReadOnlyReactiveProperty<int> HitPoints => _hitPoints;
+        public Character Character { get; }
+
         public float WeaponRange => BattleConstants.SwordAttackRange;
         public int Damage => BattleConstants.SwordAttackDamage;
         public bool IsDead => Activity.Value == ActivityType.Death;
 
         public event Action? Attacking;
         public event Action? AttackCanceled;
-        public event Action<BaseUnit>? Hurt;
+        public event Action<BaseFighter>? Hurt;
         public event Action? Die;
 
         #region IInteractable
@@ -43,11 +44,11 @@ namespace Kugushev.Scripts.Battle.Core.Models.Units
 
         #endregion
 
-        public void Suffer(int damage, BaseUnit attacker)
+        public void Suffer(int damage, BaseFighter attacker)
         {
-            _hitPoints.Value -= damage;
+            Character.SufferDamage(damage);
 
-            if (_hitPoints.Value <= 0)
+            if (Character.HP.Value <= 0)
             {
                 ActivityImpl.Value = ActivityType.Death;
                 _currentAttack = null;
