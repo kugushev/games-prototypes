@@ -4,11 +4,14 @@ using Kugushev.Scripts.Common.Core.ValueObjects;
 
 namespace Kugushev.Scripts.Game.Core.Models.WorldUnits
 {
-    public class PlayerWorldUnit: WorldUnit
+    public class PlayerWorldUnit : WorldUnit
     {
-        public PlayerWorldUnit(Position position, Direction2d direction, Party party) 
-            : base(position, direction, party)
+        public PlayerWorldUnit(Position position, Direction2d direction, Party party)
+            : base(position, direction)
         {
+            Party = party;
         }
+
+        public Party Party { get; }
     }
 }

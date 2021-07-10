@@ -9,16 +9,14 @@ namespace Kugushev.Scripts.Game.Core.Models.WorldUnits
     {
         private DateTime _unfreezeTime;
 
-        public WorldUnit(Position position, Direction2d direction, Party party)
+        public WorldUnit(Position position, Direction2d direction)
         {
             Position = position;
             Direction = direction;
-            Party = party;
         }
 
         public Position Position { get; private set; }
         public Direction2d Direction { get; private set; }
-        public Party Party { get; }
 
         public bool IsFrozen => _unfreezeTime > DateTime.Now;
 

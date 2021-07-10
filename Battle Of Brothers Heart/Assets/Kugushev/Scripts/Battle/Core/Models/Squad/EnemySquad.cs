@@ -30,9 +30,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             _agentsManager.Register(this);
 
-            for (var index = 0; index < battleManager.CurrentBattleSafe.Enemy.Party.Characters.Count; index++)
+            for (var index = 0; index < battleManager.CurrentBattleSafe.Enemy.Characters.Count; index++)
             {
-                var character = battleManager.CurrentBattleSafe.Enemy.Party.Characters[index];
+                var character = battleManager.CurrentBattleSafe.Enemy.Characters[index];
 
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.EnemySquadLine, row);

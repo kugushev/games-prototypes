@@ -31,7 +31,7 @@ namespace Kugushev.Scripts.Campaign.Presentation.ReactivePresentationModels.Wayf
 
         private void Awake()
         {
-            powerText.text = _model.WorldUnit.Party.Characters.Count.ToString();
+            powerText.text = _model.BanditWorldUnit.Characters.Count.ToString();
         }
 
         protected override void OnStart()

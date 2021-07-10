@@ -52,15 +52,16 @@
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameCoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\TileType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Managers\WorldManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\PlayerWorldUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\BanditWorldUnit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Character.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Teammate.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Enemy.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Utils\WorldHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\Hero.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game.Core\Enums\BattleWinner.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\BanditWorldUnit.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\PlayerWorldUnit.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game.Core\Models\WorldUnits\EnemyWorldUnit.cs" />
      <None Include="Assets\Kugushev\Scripts\Game.Core\Game.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

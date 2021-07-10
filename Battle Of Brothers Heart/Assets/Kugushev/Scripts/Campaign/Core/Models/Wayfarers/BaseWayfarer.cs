@@ -14,7 +14,6 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
         protected BaseWayfarer(WorldUnit worldUnit)
             : base(worldUnit.Position)
         {
-            WorldUnit = worldUnit;
             worldUnit.SubscribeTo(Position);
             worldUnit.SubscribeTo(Direction);
         }
@@ -26,7 +25,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 
         #endregion
 
-        public WorldUnit WorldUnit { get; }
+        public abstract WorldUnit WorldUnit { get; }
         protected override bool IsActive => !WorldUnit.IsFrozen;
         protected override float InteractionRadius => CampaignConstants.Wayfarers.InteractionRange;
 

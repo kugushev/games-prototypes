@@ -57,8 +57,8 @@ namespace Kugushev.Scripts.Game.Core.Managers
                 for (int i = 0; i < banditsCount; i++)
                 {
                     int power = Random.Range(BanditsPowerMin, BanditsPowerMax + 1);
-                    var characters = Enumerable.Range(0, power).Select(_ => new Character()).ToArray();
-                    var bandit = new BanditWorldUnit(city, new Party(characters));
+                    var characters = Enumerable.Range(0, power).Select(_ => new Enemy()).ToArray();
+                    var bandit = new BanditWorldUnit(city, characters);
                     _bandits.Add(bandit);
                 }
             }

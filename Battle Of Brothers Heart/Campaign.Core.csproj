@@ -45,13 +45,13 @@
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ValueObjects\Orders\OrderAttackBandit.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\CampaignConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Wayfarers\BaseWayfarer.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\AI\BanditsCommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\CampaignCoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Wayfarers\BanditWayfarer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Wayfarers\PlayerWayfarer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Services\PlayerController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Wayfarers\Wayfarers.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\AI\BanditsCommander.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\ValueObjects\Orders\OrderAttackPlayer.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Campaign\Core\Models\Wayfarers\Wayfarers.cs" />
      <None Include="Assets\Kugushev\Scripts\Campaign\Core\Campaign.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

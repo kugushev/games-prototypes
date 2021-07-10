@@ -16,12 +16,15 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
         public PlayerWayfarer(WorldUnit worldUnit, GameModeManager gameModeManager, BattleManager battleManager)
             : base(worldUnit)
         {
+            WorldUnit = worldUnit;
             _gameModeManager = gameModeManager;
             _battleManager = battleManager;
         }
 
 
         protected override float Speed => CampaignConstants.Wayfarers.PlayerSpeed;
+
+        public override WorldUnit WorldUnit { get; }
 
         protected override OrderProcessingStatus ProcessInteraction(OrderInteract order)
         {
@@ -37,7 +40,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
                 case OrderAttackBandit attackBandit:
 
                     Debug.Log("Attack bandit");
-                    _battleManager.StartBattleAsync(attackBandit.Target.WorldUnit);
+                    _battleManager.StartBattleAsync(attackBandit.Target.BanditWorldUnit);
 
                     break;
                 default:

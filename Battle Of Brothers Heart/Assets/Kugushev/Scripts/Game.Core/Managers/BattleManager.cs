@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Game.Core.Managers
 
         public BattleDefinition CurrentBattleSafe => CurrentBattle ?? throw new PropertyIsNotInitializedException();
 
-        public async UniTask StartBattleAsync(WorldUnit enemy)
+        public async UniTask StartBattleAsync(EnemyWorldUnit enemy)
         {
             CurrentBattle = new BattleDefinition(_worldUnitsManager.Player, enemy);
             await _gameModeManager.SwitchToBattleModeAsync();
@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Game.Core.Managers
             switch (result)
             {
                 case BattleWinner.Player:
-                    _hero.ApplyVictoryReward(CurrentBattle.Enemy.Party);
+                    _hero.ApplyVictoryReward(CurrentBattle.Enemy);
                     _worldUnitsManager.RemoveUnit(CurrentBattle.Enemy);
                     break;
                 case BattleWinner.Enemy:

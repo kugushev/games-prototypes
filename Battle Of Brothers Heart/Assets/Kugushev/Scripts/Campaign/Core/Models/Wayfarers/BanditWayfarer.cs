@@ -14,11 +14,15 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
 
         public BanditWayfarer(BanditWorldUnit worldUnit, BattleManager battleManager) : base(worldUnit)
         {
+            BanditWorldUnit = worldUnit;
             _battleManager = battleManager;
             City = worldUnit.HomeCity;
         }
 
         public City City { get; }
+
+        public BanditWorldUnit BanditWorldUnit { get; }
+        public override WorldUnit WorldUnit => BanditWorldUnit;
 
         protected override float Speed => CampaignConstants.Wayfarers.Speed;
 
@@ -27,7 +31,7 @@ namespace Kugushev.Scripts.Campaign.Core.Models.Wayfarers
             switch (order)
             {
                 case OrderAttackPlayer _:
-                    _battleManager.StartBattleAsync(WorldUnit);
+                    _battleManager.StartBattleAsync(BanditWorldUnit);
                     break;
                 default:
                     Debug.LogError($"Unexpected order {order} for bandit {this}");

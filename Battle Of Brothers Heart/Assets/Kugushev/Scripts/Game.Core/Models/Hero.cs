@@ -11,7 +11,7 @@ namespace Kugushev.Scripts.Game.Core.Models
     public class Hero : IInitializable
     {
         private readonly ReactiveProperty<int> _gold = new ReactiveProperty<int>();
-        private readonly WorldUnit _unit;
+        private readonly PlayerWorldUnit _unit;
 
         public Hero(WorldUnitsManager worldUnitsManager)
         {
@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Game.Core.Models
 
         public IReadOnlyReactiveProperty<int> Gold => _gold;
 
-        public void ApplyVictoryReward(Party defeated)
+        public void ApplyVictoryReward(EnemyWorldUnit defeated)
         {
             var income = defeated.Characters.Count switch
             {
