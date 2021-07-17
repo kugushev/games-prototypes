@@ -14,8 +14,9 @@ using UnityEngine;
 
 namespace Kugushev.Scripts
 {
-    public class Startup : MonoBehaviour
+    public class CampaignRoot : MonoBehaviour
     {
+        [SerializeField] private WorldView worldView;
         [SerializeField] private BaseEntitiesFactory[] entitiesFactories;
 
         private EcsWorld _world;
@@ -31,8 +32,10 @@ namespace Kugushev.Scripts
             EcsSystemsObserver.Create(_systems);
 #endif
 
+            _systems.Inject(worldView);
             InitCampaignSystems();
             InitFactories();
+
             _systems.Init();
         }
 

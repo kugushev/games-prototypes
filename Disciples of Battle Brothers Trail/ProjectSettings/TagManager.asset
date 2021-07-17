@@ -41,3 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3869575517
+    locked: 0
+  - name: Ground
+    uniqueID: 2773027523
+    locked: 0
+  - name: Surface
+    uniqueID: 2329028637
+    locked: 0
+  - name: Small Objects
+    uniqueID: 1617770767
+    locked: 0
+  - name: Big Objects
+    uniqueID: 3807925509
+    locked: 0
+  - name: Effects
+    uniqueID: 3757805877
+    locked: 0
+  - name: UI
+    uniqueID: 820831957
+    locked: 0

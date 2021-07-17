@@ -1,12 +1,14 @@
 ﻿using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Components;
+using Kugushev.Scripts.Components.Commands;
 using Kugushev.Scripts.Components.ViewRefs;
+using Kugushev.Scripts.Enums;
 using Leopotam.Ecs;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Kugushev.Scripts.Systems
+namespace Kugushev.Scripts.Systems.Input
 {
     [CampaignSystem]
     public class PlayerInputDetection : IEcsRunSystem
@@ -22,18 +24,16 @@ namespace Kugushev.Scripts.Systems
                 return;
             }
 
-            var direction = int2.zero;
+            var direction = Direction2d.None;
 
             if (keyboard.rightArrowKey.isPressed)
-                direction.x = 1;
+                direction = Direction2d.Right;
             else if (keyboard.leftArrowKey.isPressed)
-                direction.x = -1;
-
-            if (keyboard.upArrowKey.isPressed)
-                direction.y = 1;
+                direction = Direction2d.Left;
+            else if (keyboard.upArrowKey.isPressed)
+                direction = Direction2d.Up;
             else if (keyboard.downArrowKey.isPressed)
-                direction.y = -1;
-
+                direction = Direction2d.Down;
 
             foreach (var i in _filter)
             {

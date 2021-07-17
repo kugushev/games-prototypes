@@ -1,7 +1,10 @@
-﻿using Kugushev.Scripts.Common;
+﻿using System;
+using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Components;
+using Kugushev.Scripts.Components.Commands;
+using Kugushev.Scripts.Enums;
 using Leopotam.Ecs;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Systems.AI
 {
@@ -15,8 +18,7 @@ namespace Kugushev.Scripts.Systems.AI
             foreach (var i in _filter)
             {
                 ref var move = ref _filter.Get1(i);
-                move.Direction.x = Random.Range(-1, 2);
-                move.Direction.y = Random.Range(-1, 2);
+                move.Direction = (Direction2d) Random.Range(1, 5);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Factories;
+using Kugushev.Scripts.Views;
 using Leopotam.Ecs;
 
 namespace Kugushev.Scripts.Systems
@@ -9,6 +10,7 @@ namespace Kugushev.Scripts.Systems
     {
         private EcsWorld _world;
 
+        private WorldView _worldView;
         private PlayerUnitFactory _playerUnitFactory;
         private BanditUnitFactory _banditUnitFactory;
 
@@ -20,16 +22,15 @@ namespace Kugushev.Scripts.Systems
 
         private void CreatePlayer()
         {
-            _playerUnitFactory.Create(_world);
+            _playerUnitFactory.Create(_world, _worldView);
         }
 
 
         private void CreateBandits()
         {
             for (int i = 0; i < 5; i++)
-            {
-                _banditUnitFactory.Create(_world);
-            }
+                _banditUnitFactory.Create(_world, _worldView);
         }
+        
     }
 }

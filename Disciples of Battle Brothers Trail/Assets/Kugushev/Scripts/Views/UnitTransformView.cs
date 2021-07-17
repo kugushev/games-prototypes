@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Kugushev.Scripts.Enums;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Kugushev.Scripts.Views
 {
@@ -23,105 +25,74 @@ namespace Kugushev.Scripts.Views
 
         private Animator _activeAnimator;
 
-
         private void Start()
         {
             _activeAnimator = downAnimator;
-
-            // Model.Character.HP.Subscribe(OnHitPointsChanged).AddTo(this);
-            // Model.Position.Subscribe(OnPositionChanged).AddTo(this);
-            // Model.Direction.Subscribe(OnDirectionChanged).AddTo(this);
-            // Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
-            //
-            // Model.Attacking += OnAttacking;
-            // Model.AttackCanceled += OnAttackCanceled;
-            // Model.Hurt += OnHurt;
-            // Model.Die += OnDie;
-
-            OnStart();
         }
 
-        protected virtual void OnStart()
+
+        public void UpdatePosition(Vector3 newPosition)
         {
+            var t = transform;
+
+            Vector3 vector = newPosition;
+            vector.z = t.position.z; // keep z position
+            t.position = vector;
         }
 
-        private void OnDestroy()
+        public void UpdateDirection(Direction2d newDirection2d)
         {
-            OnDestruction();
-            // Model.Attacking -= OnAttacking;
-            // Model.AttackCanceled -= OnAttackCanceled;
-            // Model.Hurt -= OnHurt;
-            // Model.Die -= OnDie;
+            switch (newDirection2d)
+            {
+                case Direction2d.None:
+                    break;
+
+                case Direction2d.Up:
+                    upObject.SetActive(true);
+                    rightObject.SetActive(false);
+                    leftObject.SetActive(false);
+                    downObject.SetActive(false);
+
+                    _activeAnimator = upAnimator;
+                    break;
+                case Direction2d.Down:
+                    upObject.SetActive(false);
+                    rightObject.SetActive(false);
+                    leftObject.SetActive(false);
+                    downObject.SetActive(true);
+
+                    _activeAnimator = downAnimator;
+                    break;
+                case Direction2d.Right:
+                    upObject.SetActive(false);
+                    rightObject.SetActive(true);
+                    leftObject.SetActive(false);
+                    downObject.SetActive(false);
+
+                    _activeAnimator = rightAnimator;
+                    break;
+                case Direction2d.Left:
+                    upObject.SetActive(false);
+                    rightObject.SetActive(false);
+                    leftObject.SetActive(true);
+                    downObject.SetActive(false);
+
+                    _activeAnimator = leftAnimator;
+                    break;
+                default:
+                    Debug.LogError($"Unexpected direction {newDirection2d}");
+                    break;
+            }
         }
 
-        protected virtual void OnDestruction()
+        public void UpdateIsMoving(bool isMoving)
         {
+            var speed = isMoving ? 20 : 0;
+            if (_activeAnimator is { })
+                _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
         }
 
-        // private void OnPositionChanged(Position newPosition)
-        // {
-        //     var t = transform;
-        //
-        //     Vector3 vector = newPosition.Vector;
-        //     vector.z = t.position.z; // keep z position
-        //     t.position = vector;
-        // }
-        //
-        // private void OnDirectionChanged(Direction2d newDirection2d)
-        // {
-        //     switch (newDirection2d)
-        //     {
-        //         case Direction2d.Up:
-        //             upObject.SetActive(true);
-        //             rightObject.SetActive(false);
-        //             leftObject.SetActive(false);
-        //             downObject.SetActive(false);
-        //
-        //             _activeAnimator = upAnimator;
-        //             ToggleActivity(Model.Activity.Value);
-        //             break;
-        //         case Direction2d.Down:
-        //             upObject.SetActive(false);
-        //             rightObject.SetActive(false);
-        //             leftObject.SetActive(false);
-        //             downObject.SetActive(true);
-        //
-        //             _activeAnimator = downAnimator;
-        //             ToggleActivity(Model.Activity.Value);
-        //             break;
-        //         case Direction2d.Right:
-        //             upObject.SetActive(false);
-        //             rightObject.SetActive(true);
-        //             leftObject.SetActive(false);
-        //             downObject.SetActive(false);
-        //
-        //             _activeAnimator = rightAnimator;
-        //             ToggleActivity(Model.Activity.Value);
-        //             break;
-        //         case Direction2d.Left:
-        //             upObject.SetActive(false);
-        //             rightObject.SetActive(false);
-        //             leftObject.SetActive(true);
-        //             downObject.SetActive(false);
-        //
-        //             _activeAnimator = leftAnimator;
-        //             ToggleActivity(Model.Activity.Value);
-        //             break;
-        //         default:
-        //             Debug.LogError($"Unexpected direction {newDirection2d}");
-        //             break;
-        //     }
-        // }
-        //
-        // private void OnActivityChanged(ActivityType newActivityType) => ToggleActivity(newActivityType);
-        //
-        // private void ToggleActivity(ActivityType activityType)
-        // {
-        //     var speed = activityType == ActivityType.Move ? BattleConstants.UnitSpeed : 0;
-        //     if (_activeAnimator is { })
-        //         _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
-        // }
-        //
+
         // private void OnAttacking()
         // {
         //     if (_activeAnimator is { })
@@ -135,17 +106,17 @@ namespace Kugushev.Scripts.Views
         //         _activeAnimator.Play(IdleAnimationParameter, TopLayerIndex);
         //     }
         // }
-        //
+
         // private void OnHurt(BaseFighter attacker)
         // {
         //     if (_activeAnimator is { })
         //         _activeAnimator.Play(HurtAnimationParameter, TopLayerIndex);
         // }
-        //
-        // private void OnDie()
-        // {
-        //     if (_activeAnimator is { })
-        //         _activeAnimator.Play(DeathAnimationParameter, TopLayerIndex);
-        // }
+
+        private void OnDie()
+        {
+            if (_activeAnimator is { })
+                _activeAnimator.Play(DeathAnimationParameter, TopLayerIndex);
+        }
     }
 }
