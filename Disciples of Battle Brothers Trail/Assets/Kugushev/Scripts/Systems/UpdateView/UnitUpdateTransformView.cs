@@ -21,7 +21,7 @@ namespace Kugushev.Scripts.Systems.UpdateView
 
                 viewRef.View.UpdatePosition(transform.Position);
                 viewRef.View.UpdateDirection(position.Direction);
-                viewRef.View.UpdateIsMoving(position.Moving);
+                viewRef.View.UpdateIsMoving(!position.Stopped);
             }
         }
     }

@@ -22,7 +22,10 @@ namespace Kugushev.Scripts.Systems
                 ref var transform = ref _filter.Get2(i);
 
                 if (!position.Moving)
+                {
+                    position.Stopped = true;
                     continue;
+                }
 
                 var actual = _worldView.CellToWorld(position.ActualPosition);
                 var previous = _worldView.CellToWorld(position.PreviousPosition);

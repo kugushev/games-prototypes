@@ -67,6 +67,7 @@ namespace Kugushev.Scripts.Systems.CommandsProcessing
             position.ActualPosition = actual;
             position.Direction = move.Direction;
             position.Moving = true;
+            position.Stopped = false;
 
             return true;
         }

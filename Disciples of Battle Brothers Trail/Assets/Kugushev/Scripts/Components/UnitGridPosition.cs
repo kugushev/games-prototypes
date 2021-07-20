@@ -9,5 +9,6 @@ namespace Kugushev.Scripts.Components
         public Vector2Int ActualPosition;
         public Direction2d Direction;
         public bool Moving;
+        public bool Stopped;
     }
 }

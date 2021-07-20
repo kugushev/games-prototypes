@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Kugushev.Scripts.Common.Presentation.Utils
 {
@@ -8,7 +9,8 @@ namespace Kugushev.Scripts.Common.Presentation.Utils
 
         void Update()
         {
-            var pos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
+            var mousePosition = Mouse.current.position.ReadValue();
+            var pos = mainCamera.ScreenToViewportPoint(mousePosition);
 
             CheckBorders(ref pos.x);
             CheckBorders(ref pos.y);
