@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using Kugushev.Scripts.Models;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Kugushev.Scripts.CampaignConstants.World;
 
@@ -9,45 +12,72 @@ namespace Kugushev.Scripts.Views
         [Header("Scene")] [SerializeField] private Transform unitsRoot;
         [SerializeField] private Grid grid;
 
-        [Header("Tilemaps")] [SerializeField] private Tilemap ground = default!;
+        [Header("Tilemaps")] [SerializeField] private Tilemap ground;
+        [SerializeField] private Tilemap surface;
 
-        [Header("Tiles")] [SerializeField] private TileBase grassTile = default!;
+        [Header("Tiles")] [SerializeField] private TileBase grassTile;
+        [SerializeField] private TileBase cityTile;
+
+
+        private World _world;
 
         public Transform UnitsRoot => unitsRoot;
 
-        public Vector3 CellToWorld(Vector2Int coords)
+        public void Init(World world)
         {
-            return grid.GetCellCenterWorld(new Vector3Int(coords.x, coords.y, 0));
+            _world = world;
+            FillTiles();
         }
 
-        private void Awake()
+        public Vector3 CellToWorld(Vector2Int coords)
         {
-            FillTiles();
+            var x = NormalizeX(coords.x * TilesPerCellWidth + TilesPerCellWidth / 2);
+            var y = NormalizeY(coords.y * TilesPerCellHeight + TilesPerCellHeight / 2);
+            return grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
         }
 
         private void FillTiles()
         {
-            var positions = new Vector3Int[Width * Height];
-            var tiles = new TileBase[Width * Height];
+            var capacity = Width * TilesPerCellWidth * Height * TilesPerCellHeight;
+            var groundPositions = new Vector3Int[capacity];
+            var groundTiles = new TileBase[capacity];
             int index = 0;
 
-            for (int x = 0; x < Width; x++)
-            for (int y = 0; y < Height; y++)
+            for (int x = 0; x < Width * TilesPerCellWidth; x++)
+            for (int y = 0; y < Height * TilesPerCellHeight; y++)
             {
-                positions[index] = new Vector3Int(
+                int cellX = x / TilesPerCellWidth;
+                int cellY = y / TilesPerCellHeight;
+                var cell = _world.GetCell(cellX, cellY);
+
+                var position = new Vector3Int(
                     NormalizeX(x),
                     NormalizeY(y),
                     0);
 
-                tiles[index] = grassTile;
+                switch (cell)
+                {
+                    case GrasslandWorldCell _:
+                        groundPositions[index] = position;
+                        groundTiles[index] = grassTile;
+                        break;
+                    case CityWorldCell _:
+                        groundPositions[index] = position;
+                        groundTiles[index] = grassTile;
+                        
+                        surface.SetTile(position, cityTile);
+                        break;
+                    default:
+                        throw new Exception($"Unexpected cell {cell}");
+                }
 
                 index++;
             }
 
-            ground.SetTiles(positions, tiles);
+            ground.SetTiles(groundPositions, groundTiles);
         }
-
-        public static int NormalizeX(int x) => x - Width / 2;
-        public static int NormalizeY(int y) => y - Height / 2;
+        
+        public static int NormalizeX(int x) => x - Width * TilesPerCellWidth / 2;
+        public static int NormalizeY(int y) => y - Height * TilesPerCellHeight / 2;
     }
 }

@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Factories
             var transformView = instance.GetComponent<UnitTransformView>();
             var playerView = instance.GetComponent<HeroUnitView>();
 
-            var start = new Vector2Int(0, 0);
+            var start = new Vector2Int(CampaignConstants.World.Width / 2, CampaignConstants.World.Height / 2);
             var startWorld = worldView.CellToWorld(start);
 
             return world.NewEntity()

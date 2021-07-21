@@ -4,6 +4,7 @@ using System.Reflection;
 using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Factories;
 using Kugushev.Scripts.Factories.Abstractions;
+using Kugushev.Scripts.Models;
 using Kugushev.Scripts.Systems;
 using Kugushev.Scripts.Systems.AI;
 using Kugushev.Scripts.Views;
@@ -32,11 +33,19 @@ namespace Kugushev.Scripts
             EcsSystemsObserver.Create(_systems);
 #endif
 
-            _systems.Inject(worldView);
+            InitMV();
             InitCampaignSystems();
             InitFactories();
 
             _systems.Init();
+        }
+
+        private void InitMV()
+        {
+            var world = new World();
+            worldView.Init(world);
+            _systems.Inject(world);
+            _systems.Inject(worldView);
         }
 
         private void InitFactories()

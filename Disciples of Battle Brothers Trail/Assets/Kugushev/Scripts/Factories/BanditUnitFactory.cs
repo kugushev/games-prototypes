@@ -18,7 +18,11 @@ namespace Kugushev.Scripts.Factories
             var instance = Instantiate(prefab, worldView.UnitsRoot);
             var transformView = instance.GetComponent<UnitTransformView>();
 
-            var start = new Vector2Int {x = Random.Range(-10, 10), y = Random.Range(-5, 5)};
+            var start = new Vector2Int
+            {
+                x = Random.Range(0, CampaignConstants.World.Width), 
+                y = Random.Range(0, CampaignConstants.World.Height)
+            };
             var startWorld = worldView.CellToWorld(start);
 
             return world.NewEntity()
