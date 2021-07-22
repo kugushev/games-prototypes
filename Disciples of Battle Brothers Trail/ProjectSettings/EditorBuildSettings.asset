@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Kugushev/Scenes/CampaignScene1.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Kugushev/Scenes/GameScene.unity
+    guid: 18d2a64ec713c20488b9acc28e78c8ff
+  - enabled: 1
+    path: Assets/Kugushev/Scenes/CityScene.unity
+    guid: d6846ff0027ed4f0eaf77ae2bb86be3b
   m_configObjects: {}
