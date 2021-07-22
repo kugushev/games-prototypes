@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Systems.Interactions
 {
-    public class HeroInteractions : IEcsRunSystem
+    internal class HeroInteractions : IEcsRunSystem
     {
         private EcsFilter<UnitGridPosition, HeroUnitViewRef> _filter;
         private World _world;

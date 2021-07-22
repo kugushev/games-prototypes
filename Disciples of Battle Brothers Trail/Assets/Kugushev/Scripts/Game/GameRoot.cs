@@ -28,7 +28,7 @@ namespace Kugushev.Scripts.Game
                 .Add(new PlayerInputDetection())
                 .Add(new HeroInteractions())
                 .Add(new UnitUpdateTransformView())
-                .Add(new UnitAnimateMoving())
+                .Add(new UnitAnimateMoving(GameConstants.Units.Speed))
                 .Add(new UnitsSpawner());
         }
 

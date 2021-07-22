@@ -6,7 +6,7 @@ namespace Kugushev.Scripts.Common.Ecs
 {
     public abstract class BaseRoot : MonoBehaviour
     {
-        private EcsWorld _world;
+        protected EcsWorld _world;
         private EcsSystems _systems;
 
         protected abstract void InitSystems(EcsSystems ecsSystems);

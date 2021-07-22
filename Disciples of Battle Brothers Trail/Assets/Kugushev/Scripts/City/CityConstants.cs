@@ -5,5 +5,6 @@ namespace Kugushev.Scripts.City
         public const int Height = 8;
         public const int Width = 8;
 
+        public const float UnitSpeed = 5f;
     }
 }

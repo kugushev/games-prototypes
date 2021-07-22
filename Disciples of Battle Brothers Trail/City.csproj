@@ -52,6 +52,7 @@
      <Compile Include="Assets\Kugushev\Scripts\City\Models\Interactables\ExitZone.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Models\Interactables\HiringDesk.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Interfaces\IFacility.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Systems\CitizensSpawner.cs" />
      <None Include="Assets\Kugushev\Scripts\City\City.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>/Applications/Unity/Hub/Editor/2021.1.15f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

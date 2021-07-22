@@ -1,4 +1,5 @@
 ﻿using System;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -6,7 +7,7 @@ using static Kugushev.Scripts.Game.GameConstants.World;
 
 namespace Kugushev.Scripts.Game.Views
 {
-    public class WorldView : MonoBehaviour
+    public class WorldView : MonoBehaviour, IGrid
     {
         [Header("Scene")] [SerializeField] private Transform unitsRoot;
         [SerializeField] private Grid grid;

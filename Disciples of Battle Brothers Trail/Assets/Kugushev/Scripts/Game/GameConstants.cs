@@ -1,6 +1,6 @@
 ﻿namespace Kugushev.Scripts.Game
 {
-    public static class GameConstants
+    internal static class GameConstants
     {
         public static class Units
         {

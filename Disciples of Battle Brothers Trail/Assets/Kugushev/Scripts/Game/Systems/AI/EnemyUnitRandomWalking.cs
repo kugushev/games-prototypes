@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Game.Systems.AI
 {
-    public class EnemyUnitRandomWalking : IEcsRunSystem
+    internal class EnemyUnitRandomWalking : IEcsRunSystem
     {
         private EcsFilter<UnitMove, AIIntention> _filter;
 

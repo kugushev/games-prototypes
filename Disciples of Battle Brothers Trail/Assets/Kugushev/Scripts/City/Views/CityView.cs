@@ -2,6 +2,7 @@ using System;
 using Kugushev.Scripts.City.Interfaces;
 using Kugushev.Scripts.City.Models.Cells;
 using Kugushev.Scripts.City.Models.Interactables;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -9,8 +10,10 @@ using static Kugushev.Scripts.City.CityConstants;
 
 namespace Kugushev.Scripts.City.Views
 {
-    public class CityView : MonoBehaviour
+    public class CityView : MonoBehaviour, IGrid
     {
+        [SerializeField] private Grid grid;
+
         [Header("Tilemaps")] [SerializeField] private Tilemap ground;
         [SerializeField] private Tilemap surface;
 
@@ -21,6 +24,13 @@ namespace Kugushev.Scripts.City.Views
         private Transform facilitiesRoot;
 
         [SerializeField] private GameObject hiringDeskPrefab;
+
+        public Vector3 CellToWorld(Vector2Int coords)
+        {
+            var x = NormalizeX(coords.x);
+            var y = NormalizeY(coords.y);
+            return grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
+        }
 
         public void Init(Models.City city)
         {
@@ -40,10 +50,11 @@ namespace Kugushev.Scripts.City.Views
                     NormalizeY(y),
                     0);
 
+                ground.SetTile(position, pavementTile);
+
                 switch (cell)
                 {
                     case EmptyPavementCell _:
-                        ground.SetTile(position, pavementTile);
                         break;
                     case InteractableCell interactable:
                         switch (interactable.Interactable)
@@ -53,7 +64,6 @@ namespace Kugushev.Scripts.City.Views
                                 break;
                             case IFacility _:
                                 // we'll put facilities later on pavement
-                                ground.SetTile(position, pavementTile);
                                 break;
                             default:
                                 Debug.LogError($"Unexpected interactable {interactable.Interactable}");

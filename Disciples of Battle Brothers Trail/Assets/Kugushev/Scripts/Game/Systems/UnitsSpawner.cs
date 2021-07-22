@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace Kugushev.Scripts.Game.Systems
 {
-    public class UnitsSpawner : IEcsInitSystem
+    internal class UnitsSpawner : IEcsInitSystem
     {
         private EcsWorld _world;
 
