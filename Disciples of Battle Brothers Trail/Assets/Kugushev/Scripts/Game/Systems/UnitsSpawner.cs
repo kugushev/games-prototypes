@@ -23,7 +23,6 @@ namespace Kugushev.Scripts.Game.Systems
             _playerUnitFactory.Create(_world, _worldView);
         }
 
-
         private void CreateBandits()
         {
             for (int i = 0; i < 5; i++)

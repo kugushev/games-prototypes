@@ -44,6 +44,14 @@
      <Compile Include="Assets\Kugushev\Scripts\City\CityRoot.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\CityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Views\CityView.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Models\City.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Models\Cells\EmptyPavementCell.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Interfaces\IInteractable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Models\Cells\CityCell.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Models\Cells\InteractableCell.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Models\Interactables\ExitZone.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Models\Interactables\HiringDesk.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Interfaces\IFacility.cs" />
      <None Include="Assets\Kugushev\Scripts\City\City.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>/Applications/Unity/Hub/Editor/2021.1.15f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
