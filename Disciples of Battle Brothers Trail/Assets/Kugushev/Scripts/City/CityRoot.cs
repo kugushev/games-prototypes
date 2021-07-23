@@ -1,6 +1,7 @@
 using Kugushev.Scripts.City.Systems;
 using Kugushev.Scripts.City.Views;
 using Kugushev.Scripts.Common.Ecs;
+using Kugushev.Scripts.Common.Managers;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Systems;
 using Kugushev.Scripts.Game.Systems.AI;
@@ -26,7 +27,8 @@ namespace Kugushev.Scripts.City
                 .Add(new PlayerInputDetection())
                 .Add(new UnitUpdateTransformView())
                 .Add(new UnitAnimateMoving(CityConstants.UnitSpeed))
-                .Add(new CitizensSpawner());
+                .Add(new CitizensSpawner())
+                .Add(new HeroInteractions());
         }
 
         protected override void Inject(EcsSystems ecsSystems)
@@ -38,8 +40,11 @@ namespace Kugushev.Scripts.City
             ecsSystems.Inject(city);
             ecsSystems.Inject(cityView);
             
-            
             ecsSystems.Inject(heroUnit);
+
+            // todo: start using Zenject
+            var gameModeManager = FindObjectOfType<GameModeManager>();
+            ecsSystems.Inject(gameModeManager);
         }
     }
 }
