@@ -42,8 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\City\CityRoot.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\City\Models\City.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Models\CityStructure.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Models\Cells\CityCell.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Systems\HeroInteractions.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Interfaces\IFacility.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\CityConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Models\Cells\InteractableCell.cs" />
@@ -53,7 +54,8 @@
      <Compile Include="Assets\Kugushev\Scripts\City\Models\Interactables\ExitZone.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Interfaces\IInteractable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Systems\CitizensSpawner.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\City\Systems\HeroInteractions.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Systems\ProcessHeroMove.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Components\HeroInteractCommand.cs" />
      <None Include="Assets\Kugushev\Scripts\City\City.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

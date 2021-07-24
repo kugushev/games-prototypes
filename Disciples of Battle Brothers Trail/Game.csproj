@@ -55,7 +55,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Components\ViewRefs\UnitTransformViewRef.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\World.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Components\UnitTransform.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Components\Commands\UnitMove.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Components\Commands\UnitMoveCommand.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Components\AIIntention.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\CommandsProcessing\ProcessUnitMove.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\Interactions\HeroInteractions.cs" />

@@ -8,7 +8,7 @@ namespace Kugushev.Scripts.Game.Systems.AI
 {
     internal class EnemyUnitRandomWalking : IEcsRunSystem
     {
-        private EcsFilter<UnitMove, AIIntention> _filter;
+        private EcsFilter<UnitMoveCommand, AIIntention> _filter;
 
         public void Run()
         {

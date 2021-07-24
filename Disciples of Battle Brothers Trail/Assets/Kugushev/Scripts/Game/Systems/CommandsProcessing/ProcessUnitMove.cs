@@ -9,8 +9,8 @@ namespace Kugushev.Scripts.Game.Systems.CommandsProcessing
 {
     public class ProcessUnitMove : IEcsRunSystem
     {
-        private EcsFilter<UnitMove, UnitGridPosition, HeroUnitViewRef> _filterHero;
-        private EcsFilter<UnitMove, UnitGridPosition>.Exclude<HeroUnitViewRef> _filterOther;
+        private EcsFilter<UnitMoveCommand, UnitGridPosition, HeroUnitViewRef> _filterHero;
+        private EcsFilter<UnitMoveCommand, UnitGridPosition>.Exclude<HeroUnitViewRef> _filterOther;
 
         public void Run()
         {
@@ -35,14 +35,14 @@ namespace Kugushev.Scripts.Game.Systems.CommandsProcessing
             }
         }
 
-        private static bool HandleMoving(ref UnitGridPosition position, ref UnitMove move)
+        private static bool HandleMoving(ref UnitGridPosition position, ref UnitMoveCommand moveCommand)
         {
-            if (position.Moving || move.Direction == Direction2d.None)
+            if (position.Moving || moveCommand.Direction == Direction2d.None)
                 return false;
 
             var actual = position.ActualPosition;
 
-            switch (move.Direction)
+            switch (moveCommand.Direction)
             {
                 case Direction2d.Up:
                     actual.y += 1;
@@ -57,13 +57,13 @@ namespace Kugushev.Scripts.Game.Systems.CommandsProcessing
                     actual.x -= 1;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(move.Direction), move.Direction,
+                    throw new ArgumentOutOfRangeException(nameof(moveCommand.Direction), moveCommand.Direction,
                         "Unexpected direction");
             }
 
             position.PreviousPosition = position.ActualPosition;
             position.ActualPosition = actual;
-            position.Direction = move.Direction;
+            position.Direction = moveCommand.Direction;
             position.Moving = true;
             position.Stopped = false;
 

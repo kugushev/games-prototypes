@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.Game.Systems.Input
 {
     public class PlayerInputDetection : IEcsRunSystem
     {
-        private EcsFilter<UnitMove, HeroUnitViewRef> _filter;
+        private EcsFilter<UnitMoveCommand, HeroUnitViewRef> _filter;
 
         public void Run()
         {

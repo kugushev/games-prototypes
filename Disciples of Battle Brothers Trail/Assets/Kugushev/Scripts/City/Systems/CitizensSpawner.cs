@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.City.Systems
             _world.NewEntity()
                 .Replace(new UnitTransformViewRef(transformView))
                 .Replace(new HeroUnitViewRef(playerView))
-                .Replace(new UnitMove())
+                .Replace(new UnitMoveCommand())
                 .Replace(new UnitGridPosition {ActualPosition = start}) // todo: take from save file
                 .Replace(new UnitTransform {Position = startWorld});
         }

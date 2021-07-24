@@ -1,7 +1,9 @@
+using Kugushev.Scripts.City.Components;
 using Kugushev.Scripts.City.Systems;
 using Kugushev.Scripts.City.Views;
 using Kugushev.Scripts.Common.Ecs;
 using Kugushev.Scripts.Common.Managers;
+using Kugushev.Scripts.Game.Components.Commands;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Systems;
 using Kugushev.Scripts.Game.Systems.AI;
@@ -19,27 +21,30 @@ namespace Kugushev.Scripts.City
     {
         [SerializeField] private CityView cityView;
         [SerializeField] private UnitTransformView heroUnit;
-        
+
         protected override void InitSystems(EcsSystems ecsSystems)
         {
             ecsSystems
-                .Add(new ProcessUnitMove())
+                .Add(new ProcessHeroMove())
                 .Add(new PlayerInputDetection())
                 .Add(new UnitUpdateTransformView())
                 .Add(new UnitAnimateMoving(CityConstants.UnitSpeed))
                 .Add(new CitizensSpawner())
                 .Add(new HeroInteractions());
+
+            ecsSystems
+                .OneFrame<HeroInteractCommand>();
         }
 
         protected override void Inject(EcsSystems ecsSystems)
         {
             ecsSystems.Inject(Hero.Instance);
 
-            var city = new Models.City();
+            var city = new Models.CityStructure();
             cityView.Init(city);
             ecsSystems.Inject(city);
             ecsSystems.Inject(cityView);
-            
+
             ecsSystems.Inject(heroUnit);
 
             // todo: start using Zenject

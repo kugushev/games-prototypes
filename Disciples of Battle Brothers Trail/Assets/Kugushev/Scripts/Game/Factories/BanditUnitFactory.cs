@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Game.Factories
 
             return world.NewEntity()
                 .Replace(new UnitTransformViewRef(transformView))
-                .Replace(new UnitMove())
+                .Replace(new UnitMoveCommand())
                 .Replace(new UnitGridPosition {ActualPosition = start})
                 .Replace(new UnitTransform {Position = startWorld})
                 .Replace(new AIIntention());

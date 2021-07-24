@@ -9,18 +9,20 @@ using static Kugushev.Scripts.City.CityConstants;
 
 namespace Kugushev.Scripts.City.Models
 {
-    public class City
+    public class CityStructure
     {
-        public City()
+        private readonly IReadOnlyList<IReadOnlyList<CityCell>> _grid;
+
+        public CityStructure()
         {
             var facilities = new List<IFacility>();
             Facilities = facilities;
-            Grid = CreateGrid(facilities);
+            _grid = CreateGrid(facilities);
         }
 
-        public IReadOnlyList<IReadOnlyList<CityCell>> Grid { get; }
-
         public IReadOnlyList<IFacility> Facilities { get; }
+
+        public CityCell GetCell(Vector2Int coords) => _grid[coords.y][coords.x];
 
         private static IReadOnlyList<IReadOnlyList<CityCell>> CreateGrid(List<IFacility> facilities)
         {

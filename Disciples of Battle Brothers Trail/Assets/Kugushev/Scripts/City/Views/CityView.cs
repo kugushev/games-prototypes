@@ -32,18 +32,18 @@ namespace Kugushev.Scripts.City.Views
             return grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
         }
 
-        public void Init(Models.City city)
+        public void Init(Models.CityStructure cityStructure)
         {
-            DrawTiles(city);
-            ArrangeFacilities(city);
+            DrawTiles(cityStructure);
+            ArrangeFacilities(cityStructure);
         }
 
-        private void DrawTiles(Models.City city)
+        private void DrawTiles(Models.CityStructure cityStructure)
         {
             for (int x = 0; x < Width; x++)
             for (int y = 0; y < Height; y++)
             {
-                var cell = city.Grid[y][x];
+                var cell = cityStructure.GetCell(new Vector2Int(x, y));
 
                 var position = new Vector3Int(
                     NormalizeX(x),
@@ -77,9 +77,9 @@ namespace Kugushev.Scripts.City.Views
             }
         }
 
-        private void ArrangeFacilities(Models.City city)
+        private void ArrangeFacilities(Models.CityStructure cityStructure)
         {
-            foreach (var facility in city.Facilities)
+            foreach (var facility in cityStructure.Facilities)
             {
                 var position = new Vector3Int(
                     NormalizeX(facility.PivotCell.x),
