@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common.Ecs;
+﻿using System;
+using Kugushev.Scripts.Common.Ecs;
 using UnityEngine;
 
 namespace Kugushev.Scripts.Common.UI
@@ -8,19 +9,21 @@ namespace Kugushev.Scripts.Common.UI
         [SerializeField] private BaseRoot baseRoot;
         [SerializeField] private ModalMenu[] menusPrefabs;
 
-        public void OpenModalMenu<T>()
+        public T OpenModalMenu<T>() where T : ModalMenu
         {
             foreach (var prefab in menusPrefabs)
             {
                 if (prefab.GetType() == typeof(T))
                 {
-                    Instantiate(prefab, transform);
+                    var instance = Instantiate(prefab, transform);
 
                     baseRoot.Paused = true;
 
-                    return;
+                    return (T) instance;
                 }
             }
+
+            throw new Exception($"Model menu {typeof(T)} not found");
         }
 
         public void CloseModalMenu(GameObject menu)

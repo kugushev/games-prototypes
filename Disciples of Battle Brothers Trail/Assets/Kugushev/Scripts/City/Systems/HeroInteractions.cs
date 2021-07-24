@@ -5,6 +5,7 @@ using Kugushev.Scripts.City.UI;
 using Kugushev.Scripts.Common.Ecs.Components;
 using Kugushev.Scripts.Common.Managers;
 using Kugushev.Scripts.Common.UI;
+using Kugushev.Scripts.Game.Models.HeroInfo;
 using Leopotam.Ecs;
 
 namespace Kugushev.Scripts.City.Systems
@@ -14,6 +15,8 @@ namespace Kugushev.Scripts.City.Systems
         private EcsFilter<InteractCommand> _filter;
         private GameModeManager _gameModeManager;
         private ModalMenuManager _modalMenuManager;
+        private Game.Models.CityInfo.City _currentCity;
+        private Hero _hero;
 
         public void Run()
         {
@@ -26,15 +29,16 @@ namespace Kugushev.Scripts.City.Systems
                     case ExitZone _:
                         _gameModeManager.ToGameAsync();
                         break;
-                    case HiringDesk _:
-                        _modalMenuManager.OpenModalMenu<HiringMenu>();
+                    case HiringDesk hiringDesk:
+                        var menu = _modalMenuManager.OpenModalMenu<HiringMenu>();
+                        menu.InitMercenaries(hiringDesk.HiringDeskInfo, _hero);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
                 var entity = _filter.GetEntity(i);
-                entity.Del<CommandProcessingLock>();
+                entity.Del<InteractionsLock>();
             }
         }
     }

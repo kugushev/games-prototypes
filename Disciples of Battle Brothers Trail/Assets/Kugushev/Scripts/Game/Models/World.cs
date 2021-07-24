@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Kugushev.Scripts.Game.Models.CityInfo;
 using UnityEngine;
 using static Kugushev.Scripts.Game.GameConstants.World;
 using Random = UnityEngine.Random;

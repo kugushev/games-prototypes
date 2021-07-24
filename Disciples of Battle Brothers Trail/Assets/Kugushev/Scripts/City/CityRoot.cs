@@ -7,6 +7,7 @@ using Kugushev.Scripts.Common.Managers;
 using Kugushev.Scripts.Common.UI;
 using Kugushev.Scripts.Game.Components.Commands;
 using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Models.HeroInfo;
 using Kugushev.Scripts.Game.Systems;
 using Kugushev.Scripts.Game.Systems.AI;
 using Kugushev.Scripts.Game.Systems.CommandsProcessing;
@@ -43,8 +44,9 @@ namespace Kugushev.Scripts.City
         protected override void Inject(EcsSystems ecsSystems)
         {
             ecsSystems.Inject(Hero.Instance);
-
-            var city = new Models.CityStructure();
+            ecsSystems.Inject(Game.Models.CityInfo.City.VisitedCity);
+            
+            var city = new Models.CityStructure(Game.Models.CityInfo.City.VisitedCity);
             cityView.Init(city);
             ecsSystems.Inject(city);
             ecsSystems.Inject(cityView);
@@ -54,6 +56,7 @@ namespace Kugushev.Scripts.City
             ecsSystems.Inject(heroUnit);
 
             ecsSystems.Inject(GameModeManager.Instance);
+
         }
     }
 }

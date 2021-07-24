@@ -11,10 +11,12 @@ namespace Kugushev.Scripts.City.Models
 {
     public class CityStructure
     {
+        private readonly Game.Models.CityInfo.City _cityInfo;
         private readonly IReadOnlyList<IReadOnlyList<CityCell>> _grid;
 
-        public CityStructure()
+        public CityStructure(Game.Models.CityInfo.City cityInfo)
         {
+            _cityInfo = cityInfo;
             var facilities = new List<IFacility>();
             Facilities = facilities;
             _grid = CreateGrid(facilities);
@@ -24,7 +26,7 @@ namespace Kugushev.Scripts.City.Models
 
         public CityCell GetCell(Vector2Int coords) => _grid[coords.y][coords.x];
 
-        private static IReadOnlyList<IReadOnlyList<CityCell>> CreateGrid(List<IFacility> facilities)
+        private IReadOnlyList<IReadOnlyList<CityCell>> CreateGrid(List<IFacility> facilities)
         {
             var grid = CreateEmptyGrid();
 
@@ -35,9 +37,9 @@ namespace Kugushev.Scripts.City.Models
             return grid;
         }
 
-        private static void PushHiringDek(CityCell[][] grid, List<IFacility> facilities)
+        private void PushHiringDek(CityCell[][] grid, List<IFacility> facilities)
         {
-            var deck = new HiringDesk(new Vector2Int(Width / 2, Height / 2));
+            var deck = new HiringDesk(new Vector2Int(Width / 2, Height / 2), _cityInfo.HiringDeskInfo);
             facilities.Add(deck);
 
             var cell = new InteractableCell(deck);

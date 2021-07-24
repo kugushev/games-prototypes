@@ -10,7 +10,7 @@ namespace Kugushev.Scripts.Game.Systems.Input
 {
     public class PlayerInputDetection : IEcsRunSystem
     {
-        private EcsFilter<UnitMoveCommand, HeroUnitViewRef>.Exclude<CommandProcessingLock> _filter;
+        private EcsFilter<UnitMoveCommand, HeroUnitViewRef>.Exclude<InteractionsLock> _filter;
 
         public void Run()
         {

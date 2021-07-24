@@ -89,7 +89,7 @@ namespace Kugushev.Scripts.City.Systems
             var entity = _filter.GetEntity(in i);
             entity
                 .Replace(new InteractCommand(interactableCell.Interactable))
-                .Replace(new CommandProcessingLock());
+                .Replace(new InteractionsLock());
         }
     }
 }

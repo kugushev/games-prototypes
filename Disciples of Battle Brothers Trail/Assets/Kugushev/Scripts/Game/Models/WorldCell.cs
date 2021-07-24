@@ -1,3 +1,5 @@
+using Kugushev.Scripts.Game.Models.CityInfo;
+
 namespace Kugushev.Scripts.Game.Models
 {
     public abstract class WorldCell

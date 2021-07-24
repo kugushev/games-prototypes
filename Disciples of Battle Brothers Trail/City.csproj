@@ -58,6 +58,8 @@
      <Compile Include="Assets\Kugushev\Scripts\City\Components\Commands\InteractCommand.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\UI\HiringMenu.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Components\Commands\MoveCommand.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\UI\MercenaryCard.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\UI\TeammateCard.cs" />
      <None Include="Assets\Kugushev\Scripts\City\City.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -703,6 +705,9 @@
      </Reference>
      <Reference Include="Unity.InputSystem">
      <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+     </Reference>
+     <Reference Include="UniRx">
+     <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/ScriptAssemblies/UniRx.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

@@ -688,6 +688,9 @@
      <Reference Include="Unity.InputSystem">
      <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
      </Reference>
+     <Reference Include="UniRx">
+     <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/ScriptAssemblies/UniRx.dll</HintPath>
+     </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
      </Reference>
