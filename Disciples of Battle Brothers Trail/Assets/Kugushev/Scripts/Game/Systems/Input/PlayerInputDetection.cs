@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Game.Components.Commands;
+﻿using Kugushev.Scripts.Common.Ecs.Components;
+using Kugushev.Scripts.Game.Components.Commands;
 using Kugushev.Scripts.Game.Components.ViewRefs;
 using Kugushev.Scripts.Game.Enums;
 using Leopotam.Ecs;
@@ -9,7 +10,7 @@ namespace Kugushev.Scripts.Game.Systems.Input
 {
     public class PlayerInputDetection : IEcsRunSystem
     {
-        private EcsFilter<UnitMoveCommand, HeroUnitViewRef> _filter;
+        private EcsFilter<UnitMoveCommand, HeroUnitViewRef>.Exclude<CommandProcessingLock> _filter;
 
         public void Run()
         {

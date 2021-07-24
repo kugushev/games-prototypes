@@ -1,8 +1,10 @@
 using Kugushev.Scripts.City.Components;
+using Kugushev.Scripts.City.Components.Commands;
 using Kugushev.Scripts.City.Systems;
 using Kugushev.Scripts.City.Views;
 using Kugushev.Scripts.Common.Ecs;
 using Kugushev.Scripts.Common.Managers;
+using Kugushev.Scripts.Common.UI;
 using Kugushev.Scripts.Game.Components.Commands;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Systems;
@@ -20,6 +22,7 @@ namespace Kugushev.Scripts.City
     public class CityRoot : BaseRoot
     {
         [SerializeField] private CityView cityView;
+        [SerializeField] private ModalMenuManager modalMenuManager;
         [SerializeField] private UnitTransformView heroUnit;
 
         protected override void InitSystems(EcsSystems ecsSystems)
@@ -33,7 +36,8 @@ namespace Kugushev.Scripts.City
                 .Add(new HeroInteractions());
 
             ecsSystems
-                .OneFrame<HeroInteractCommand>();
+                .OneFrame<MoveCommand>()
+                .OneFrame<InteractCommand>();
         }
 
         protected override void Inject(EcsSystems ecsSystems)
@@ -45,11 +49,11 @@ namespace Kugushev.Scripts.City
             ecsSystems.Inject(city);
             ecsSystems.Inject(cityView);
 
+            ecsSystems.Inject(modalMenuManager);
+
             ecsSystems.Inject(heroUnit);
 
-            // todo: start using Zenject
-            var gameModeManager = FindObjectOfType<GameModeManager>();
-            ecsSystems.Inject(gameModeManager);
+            ecsSystems.Inject(GameModeManager.Instance);
         }
     }
 }

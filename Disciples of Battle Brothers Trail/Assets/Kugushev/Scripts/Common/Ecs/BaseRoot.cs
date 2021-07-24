@@ -9,6 +9,8 @@ namespace Kugushev.Scripts.Common.Ecs
         protected EcsWorld _world;
         private EcsSystems _systems;
 
+        public bool Paused { get; set; }
+
         protected abstract void InitSystems(EcsSystems ecsSystems);
         protected abstract void Inject(EcsSystems ecsSystems);
 
@@ -43,6 +45,9 @@ namespace Kugushev.Scripts.Common.Ecs
 
         protected void Update()
         {
+            if (Paused)
+                return;
+
             _systems.Run();
         }
 

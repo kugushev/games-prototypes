@@ -45,6 +45,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\OnScrollZoomer.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\CinemachineAnchor.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Managers\GameModeManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Enums\GameMode.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\UI\ModalMenuManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\UI\ModalMenu.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Ecs\Components\CommandProcessingLock.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

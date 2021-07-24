@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 57884246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c26162b6416fc4cad9b6a7399d18d090, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e8ac1a8737a478f92bfefb0245a5ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameRoot: {fileID: 337602255}
@@ -319,7 +319,6 @@ MonoBehaviour:
   entitiesFactories:
   - {fileID: 11400000, guid: 2bcfc3b1537180449bfbe5984f89d6e9, type: 2}
   - {fileID: 11400000, guid: dc3519d9b3a7ef34bb2364122600aed3, type: 2}
-  gameModeManager: {fileID: 57884248}
 --- !u!4 &337602257
 Transform:
   m_ObjectHideFlags: 0
@@ -761,7 +760,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.82435596, y: 1}
+    m_SensorSize: {x: 1.1474104, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

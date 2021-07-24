@@ -1,7 +1,9 @@
 ﻿using System;
 using Kugushev.Scripts.City.Components;
+using Kugushev.Scripts.City.Components.Commands;
 using Kugushev.Scripts.City.Models;
 using Kugushev.Scripts.City.Models.Cells;
+using Kugushev.Scripts.Common.Ecs.Components;
 using Kugushev.Scripts.Game.Components;
 using Kugushev.Scripts.Game.Components.Commands;
 using Kugushev.Scripts.Game.Components.ViewRefs;
@@ -13,7 +15,8 @@ namespace Kugushev.Scripts.City.Systems
 {
     public class ProcessHeroMove : IEcsRunSystem
     {
-        private EcsFilter<UnitMoveCommand, UnitGridPosition, HeroUnitViewRef> _filter;
+        private EcsFilter<UnitMoveCommand, UnitGridPosition, HeroUnitViewRef>.Exclude<InteractCommand> _filter;
+
         private CityStructure _cityStructure;
 
         public void Run()
@@ -41,6 +44,8 @@ namespace Kugushev.Scripts.City.Systems
                     default:
                         throw new ArgumentOutOfRangeException(nameof(targetCell));
                 }
+
+                moveCommand.Direction = Direction2d.None;
             }
         }
 
@@ -82,7 +87,9 @@ namespace Kugushev.Scripts.City.Systems
         private void OrderInteractionCommand(int i, InteractableCell interactableCell)
         {
             var entity = _filter.GetEntity(in i);
-            entity.Replace(new HeroInteractCommand(interactableCell.Interactable));
+            entity
+                .Replace(new InteractCommand(interactableCell.Interactable))
+                .Replace(new CommandProcessingLock());
         }
     }
 }

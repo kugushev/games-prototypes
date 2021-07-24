@@ -1,14 +1,18 @@
 ﻿using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Kugushev.Scripts.Common.Enums;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Kugushev.Scripts.Common.Managers
 {
-    public class GameModeManager : MonoBehaviour
+    public class GameModeManager
     {
-        [SerializeField] private GameObject gameRoot;
+        // todo: use Zenject
+        public static GameModeManager Instance { get; } = new GameModeManager();
+
+        public GameMode Current { get; private set; } = GameMode.Game;
 
         private string _additiveScene;
 
@@ -21,19 +25,19 @@ namespace Kugushev.Scripts.Common.Managers
             }
 
             await SceneManager.UnloadSceneAsync(_additiveScene);
-            gameRoot.SetActive(true);
             _additiveScene = null;
+            Current = GameMode.Game;
         }
 
         public UniTask ToCityAsync()
         {
-            gameRoot.SetActive(false);
+            Current = GameMode.City;
             return LoadAdditive("CityScene");
         }
 
         public UniTask ToBattleAsync()
         {
-            gameRoot.SetActive(false);
+            Current = GameMode.Battle;
             return LoadAdditive("BattleScene");
         }
 

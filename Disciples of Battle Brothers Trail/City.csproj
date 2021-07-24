@@ -55,7 +55,9 @@
      <Compile Include="Assets\Kugushev\Scripts\City\Interfaces\IInteractable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Systems\CitizensSpawner.cs" />
      <Compile Include="Assets\Kugushev\Scripts\City\Systems\ProcessHeroMove.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\City\Components\HeroInteractCommand.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Components\Commands\InteractCommand.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\UI\HiringMenu.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\City\Components\Commands\MoveCommand.cs" />
      <None Include="Assets\Kugushev\Scripts\City\City.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

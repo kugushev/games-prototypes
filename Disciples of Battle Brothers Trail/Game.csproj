@@ -68,6 +68,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\GameRoot.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\UpdateView\UnitUpdateTransformView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Factories\PlayerUnitFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\GameModeObserver.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

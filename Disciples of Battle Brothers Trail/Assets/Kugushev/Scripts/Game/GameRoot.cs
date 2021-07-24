@@ -18,7 +18,6 @@ namespace Kugushev.Scripts.Game
     {
         [SerializeField] private WorldView worldView;
         [SerializeField] private BaseEntitiesFactory[] entitiesFactories;
-        [SerializeField] private GameModeManager gameModeManager;
 
         protected override void InitSystems(EcsSystems ecsSystems)
         {
@@ -36,8 +35,8 @@ namespace Kugushev.Scripts.Game
         {
             InjectModelViews(ecsSystems);
             InjectFactories(ecsSystems);
-            
-            ecsSystems.Inject(gameModeManager);
+
+            ecsSystems.Inject(GameModeManager.Instance);
         }
 
         private void InjectModelViews(EcsSystems ecsSystems)
@@ -50,7 +49,7 @@ namespace Kugushev.Scripts.Game
 
         private void InjectFactories(EcsSystems ecsSystems)
         {
-            foreach (var factory in entitiesFactories) 
+            foreach (var factory in entitiesFactories)
                 ecsSystems.Inject(factory);
         }
     }
