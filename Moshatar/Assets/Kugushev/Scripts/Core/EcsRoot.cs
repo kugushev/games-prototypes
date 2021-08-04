@@ -1,6 +1,9 @@
-using Leopotam.Ecs;
-using Leopotam.Ecs.UnityIntegration;
 using UnityEngine;
+using Leopotam.Ecs;
+#if UNITY_EDITOR
+using Leopotam.Ecs.UnityIntegration;
+
+#endif
 
 namespace Kugushev.Scripts.Core
 {

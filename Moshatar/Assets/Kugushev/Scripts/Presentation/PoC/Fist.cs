@@ -1,30 +1,25 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.Presentation.PoC
 {
     public class Fist : MonoBehaviour
     {
-        private readonly List<Rigidbody> _buffer = new List<Rigidbody>();
+        private Vector3 _position;
+        public float Velocity { get; private set; }
 
-        private void OnTriggerEnter(Collider other)
+        private void Awake()
         {
-            _buffer.Clear();
-            other.GetComponents(_buffer);
+            _position = transform.position;
+        }
 
-            if (_buffer.Count != 1)
-            {
-                Debug.LogError("Unexpected collision");
-                return;
-            }
-
-            var rig = _buffer[0];
-
-
-            rig.AddForce(transform.rotation.eulerAngles * 10);
-
-            _buffer.Clear();
+        private void FixedUpdate()
+        {
+            var nextPosition = transform.position;
+            Velocity = (nextPosition - _position).magnitude;
+            _position = nextPosition;
         }
     }
 }

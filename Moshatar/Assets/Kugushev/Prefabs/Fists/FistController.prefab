@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7403654349751309500}
-  - component: {fileID: 2331454835445592356}
   - component: {fileID: 2756872222371618269}
+  - component: {fileID: 309637266670574920}
+  - component: {fileID: 2331454835445592356}
   - component: {fileID: 8706718469267787977}
   m_Layer: 6
   m_Name: FistController
@@ -33,6 +34,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2756872222371618269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976896810754357567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7721bc377e4ad408365e04d2a2838c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &309637266670574920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976896810754357567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0871f748c48352f4593c03df6c2009ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &2331454835445592356
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -46,18 +71,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.05
   m_Center: {x: 0.03, y: -0.03, z: -0.03}
---- !u!114 &2756872222371618269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976896810754357567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7721bc377e4ad408365e04d2a2838c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &8706718469267787977
 Rigidbody:
   m_ObjectHideFlags: 0

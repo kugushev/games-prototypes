@@ -43,9 +43,12 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\UniRxHelpers.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\DamageTextFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\DamageText.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fist.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Zombie.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationInstaller.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieViewFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombiesSpawner.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
