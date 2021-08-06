@@ -28,18 +28,22 @@ namespace Kugushev.Scripts.Presentation.PoC
             var started = DateTime.Now;
             while (true)
             {
-                var elapsed = (DateTime.Now - started).TotalSeconds;
+                float elapsed = Convert.ToSingle((DateTime.Now - started).TotalSeconds);
 
                 float timeout;
                 if (elapsed < LoudTime)
                 {
                     float random = Random.Range(minRandomTimeoutSeconds, maxRandomTimeoutSeconds);
                     timeout = fixedTimeoutSeconds + random;
+
+                    timeout = FitToStage(elapsed, timeout, EnrageTime);
                 }
                 else if (elapsed < EnrageTime)
                 {
                     float random = Random.Range(minRandomTimeoutSeconds, maxRandomTimeoutSeconds);
                     timeout = fixedTimeoutSeconds * 2 + random;
+                    
+                    timeout = FitToStage(elapsed, timeout, FinalTime);
                 }
                 else if (elapsed < FinalTime)
                 {
@@ -57,6 +61,16 @@ namespace Kugushev.Scripts.Presentation.PoC
 
                 _zombieViewFactory.Create(transform.position);
             }
+        }
+
+        private static float FitToStage(float elapsed, float timeout, float stage)
+        {
+            if (elapsed + timeout > stage)
+            {
+                timeout = stage - elapsed;
+            }
+
+            return timeout;
         }
     }
 }
