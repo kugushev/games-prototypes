@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2c2dffbe-ea4b-4958-643a-601e32cbdee2}</ProjectGuid>
+    <ProjectGuid>{6d0f39f1-f9ec-f934-99b8-d45a4fde29fb}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Common</AssemblyName>
+    <AssemblyName>SimpleHealthBar</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,17 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\InPlacePrefabFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Source\ZenjectLocator.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Constants.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ZenjectHelper.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Source\ZenjectDynamicObjectInjection.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\StringBag.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\CameraFacingUI.cs" />
-     <None Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Version.txt" />
-     <None Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Dependencies.txt" />
-     <None Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\LICENSE.txt" />
-     <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
+     <Compile Include="Assets\Simple Health Bar\Scripts\SimpleHealthBar.cs" />
+     <None Include="Assets\Simple Health Bar\Scripts\SimpleHealthBar.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -660,30 +651,6 @@
      </Reference>
      <Reference Include="System.Xml.Serialization">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
-     </Reference>
-     <Reference Include="Zenject">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Zenject.dll</HintPath>
-     </Reference>
-     <Reference Include="UniTask">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniTask.dll</HintPath>
-     </Reference>
-     <Reference Include="UniTask.Linq">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
-     </Reference>
-     <Reference Include="UniTask.DOTween">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniTask.DOTween.dll</HintPath>
-     </Reference>
-     <Reference Include="UniRx">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniRx.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTween.Modules">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/DOTween.Modules.dll</HintPath>
-     </Reference>
-     <Reference Include="Leopotam.Ecs">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Leopotam.Ecs.dll</HintPath>
-     </Reference>
-     <Reference Include="Leopotam.Ecs.UnityIntegration">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Leopotam.Ecs.UnityIntegration.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

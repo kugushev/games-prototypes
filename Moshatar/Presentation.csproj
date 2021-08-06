@@ -46,10 +46,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\DamageTextFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\DamageText.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fist.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombiesSpawner.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieViewFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombiesSpawner.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -704,6 +704,10 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SimpleHealthBar.csproj">
+      <Project>{6d0f39f1-f9ec-f934-99b8-d45a4fde29fb}</Project>
+      <Name>SimpleHealthBar</Name>
+    </ProjectReference>
     <ProjectReference Include="Common.csproj">
       <Project>{2c2dffbe-ea4b-4958-643a-601e32cbdee2}</Project>
       <Name>Common</Name>

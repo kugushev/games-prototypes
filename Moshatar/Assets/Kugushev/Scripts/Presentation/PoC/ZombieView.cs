@@ -13,6 +13,7 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const float DeathTime = 2f;
         private const float HitMultiplier = 10f;
         private const float AttackDistance = 1.3f;
+        private const int MaxHitPoints = 100;
         private static readonly Vector3 HeroPosition = Vector3.zero;
 
         private static readonly int HitReactionParameter = Animator.StringToHash("HitReaction");
@@ -20,15 +21,15 @@ namespace Kugushev.Scripts.Presentation.PoC
         private static readonly int RunningState = Animator.StringToHash("Zombie Running");
         private static readonly int IdleState = Animator.StringToHash("Zombie Idle");
 
-        private readonly WaitForSeconds _wait = new WaitForSeconds(DeathTime);
-
         [SerializeField] private AudioSource hitEffect;
+        [SerializeField] private SimpleHealthBar healthBar;
 
         [Inject] private DamageText.Factory _damageTextFactory;
 
         private IMemoryPool _memoryPool;
         private Vector3 _start;
         private DateTime? _deathTime;
+        private readonly ReactiveProperty<int> _hitPoints = new ReactiveProperty<int>();
 
         private readonly List<Fist> _fistsBuffer = new List<Fist>(1);
         private Animator _animator;
@@ -42,7 +43,8 @@ namespace Kugushev.Scripts.Presentation.PoC
             _rigidbody = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
 
-            _pursuing.Subscribe(PursuingChanged);
+            _pursuing.Subscribe(PursuingChanged).AddTo(this);
+            _hitPoints.Subscribe(HitPointsChanges).AddTo(this);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -68,10 +70,15 @@ namespace Kugushev.Scripts.Presentation.PoC
         {
             _pursuing.Value = false;
 
+            if (damage > 20) 
+                damage *= 2;
+
             Suffered(damage, hitPoint);
 
-            if (damage > 20)
-                SufferedCritical(damage);
+            //if (damage > 20)
+            // todo: recognize hard kick
+            if (_hitPoints.Value <= 0)
+                Die(damage);
         }
 
         void IPoolable<Vector3, IMemoryPool>.OnSpawned(Vector3 p1, IMemoryPool p2)
@@ -88,6 +95,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             _deathTime = null;
 
             _start = p1;
+            _hitPoints.Value = MaxHitPoints;
         }
 
 
@@ -100,13 +108,15 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void Suffered(int damage, Vector3 hitPoint)
         {
+            _hitPoints.Value -= damage;
+
             _animator.SetTrigger(HitReactionParameter);
             hitEffect.Play();
 
             _damageTextFactory.Create(damage, hitPoint);
         }
 
-        private void SufferedCritical(int damage)
+        private void Die(int damage)
         {
             _deathTime = DateTime.Now;
 
@@ -132,22 +142,17 @@ namespace Kugushev.Scripts.Presentation.PoC
             }
 
             if (_deathTime != null && DateTime.Now - _deathTime > TimeSpan.FromSeconds(DeathTime))
-            {
                 _memoryPool.Despawn(this);
-                // Destroy(gameObject);
-            }
-        }
-
-        private IEnumerator CountDownToDepawn()
-        {
-            yield return _wait;
-            print("despawn");
-            _memoryPool.Despawn(this);
         }
 
         private void PursuingChanged(bool pursuing)
         {
             _animator.Play(pursuing ? RunningState : IdleState);
+        }
+
+        private void HitPointsChanges(int hitPoints)
+        {
+            healthBar.UpdateBar(hitPoints, MaxHitPoints);
         }
 
         public class Factory : PlaceholderFactory<Vector3, ZombieView>

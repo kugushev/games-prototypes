@@ -39,11 +39,11 @@ namespace Kugushev.Scripts.Presentation.PoC
                 else if (elapsed < EnrageTime)
                 {
                     float random = Random.Range(minRandomTimeoutSeconds, maxRandomTimeoutSeconds);
-                    timeout = 10 + random;
+                    timeout = fixedTimeoutSeconds * 2 + random;
                 }
                 else if (elapsed < FinalTime)
                 {
-                    timeout = 1;
+                    timeout = fixedTimeoutSeconds / 2;
                 }
                 else
                 {
