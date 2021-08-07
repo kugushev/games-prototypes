@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Kugushev.Scripts.Common.Utils;
 using UnityEngine;
 using Zenject;
 using UniRx;
@@ -13,7 +14,7 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const float DeathTime = 2f;
         private const float HitMultiplier = 10f;
         private const float AttackDistance = 1.3f;
-        private const int MaxHitPoints = 100;
+        private const int MaxHitPoints = 100000000;
         private static readonly Vector3 HeroPosition = Vector3.zero;
 
         private static readonly int HitReactionParameter = Animator.StringToHash("HitReaction");
@@ -23,8 +24,9 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         [SerializeField] private AudioSource hitEffect;
         [SerializeField] private SimpleHealthBar healthBar;
+        [SerializeField] private HitRecorder[] hitRecorders;
 
-        [Inject] private DamageText.Factory _damageTextFactory;
+        [Inject] private PopupText.Factory _popupTextFactory;
 
         private IMemoryPool _memoryPool;
         private Vector3 _start;
@@ -61,16 +63,36 @@ namespace Kugushev.Scripts.Presentation.PoC
             var fist = _fistsBuffer[0];
             int damage = Mathf.FloorToInt(fist.Velocity * 100);
 
+            RecordHit(other, damage, (h, p, d) => h.RegisterHitEnter(p, d));
+
             Suffer(damage, fist.transform.position);
 
             _fistsBuffer.Clear();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            RecordHit(other, 0, (h, p, d) => h.RegisterHitExit(p));
+        }
+
+        private void RecordHit(Collider other, int damage, Action<HitRecorder, Vector3, int> action)
+        {
+            for (var i = 0; i < hitRecorders.Length; i++)
+            {
+                var hitRecorder = hitRecorders[i];
+                if (other.CompareTag(hitRecorder.WeaponTag))
+                {
+                    action(hitRecorder, other.gameObject.transform.position, damage);
+                    break;
+                }
+            }
         }
 
         private void Suffer(int damage, Vector3 hitPoint)
         {
             _pursuing.Value = false;
 
-            if (damage > 20) 
+            if (damage > 20)
                 damage *= 2;
 
             Suffered(damage, hitPoint);
@@ -113,7 +135,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             _animator.SetTrigger(HitReactionParameter);
             hitEffect.Play();
 
-            _damageTextFactory.Create(damage, hitPoint);
+           // _popupTextFactory.Create(StringBag.FromInt(damage), hitPoint);
         }
 
         private void Die(int damage)

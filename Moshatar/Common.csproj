@@ -42,12 +42,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\InPlacePrefabFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\CameraFacingUI.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Source\ZenjectLocator.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Constants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\ZenjectHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Source\ZenjectDynamicObjectInjection.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\Utils\StringBag.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Utils\CameraFacingUI.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Version.txt" />
      <None Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\Dependencies.txt" />
      <None Include="Assets\Kugushev\Scripts\Common\ExternalTools\ZenjectDynamicObjectInjection\LICENSE.txt" />

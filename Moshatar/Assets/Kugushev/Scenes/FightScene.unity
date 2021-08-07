@@ -264,7 +264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &47751917
 Transform:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598be5b8282c47aea2d3a677f3619d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedTimeoutSeconds: 10
+  fixedTimeoutSeconds: 100000
   minRandomTimeoutSeconds: 0
   maxRandomTimeoutSeconds: 30
 --- !u!1 &59380766
@@ -596,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &726361660
 Transform:
   m_ObjectHideFlags: 0
@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598be5b8282c47aea2d3a677f3619d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedTimeoutSeconds: 10
+  fixedTimeoutSeconds: 100000
   minRandomTimeoutSeconds: 0
   maxRandomTimeoutSeconds: 30
 --- !u!1 &861908825
@@ -874,7 +874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1290220113
 Transform:
   m_ObjectHideFlags: 0
@@ -901,7 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598be5b8282c47aea2d3a677f3619d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedTimeoutSeconds: 10
+  fixedTimeoutSeconds: 100000
   minRandomTimeoutSeconds: 0
   maxRandomTimeoutSeconds: 1
 --- !u!1 &1357494665
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598be5b8282c47aea2d3a677f3619d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedTimeoutSeconds: 5
+  fixedTimeoutSeconds: 999999
   minRandomTimeoutSeconds: 0
   maxRandomTimeoutSeconds: 3
 --- !u!1 &1400848518
@@ -1411,7 +1411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1743222869
 Transform:
   m_ObjectHideFlags: 0
@@ -1647,6 +1647,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Ecosystem
       objectReference: {fileID: 0}
+    - target: {fileID: 3814144272359308330, guid: 3614a8bb306ba704faba519b252a7eb6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3814144272359308335, guid: 3614a8bb306ba704faba519b252a7eb6, type: 3}
       propertyPath: m_Cameras.Array.size
       value: 1
@@ -1678,7 +1682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1931657335
 Transform:
   m_ObjectHideFlags: 0
@@ -1705,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598be5b8282c47aea2d3a677f3619d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedTimeoutSeconds: 10
+  fixedTimeoutSeconds: 100000
   minRandomTimeoutSeconds: 0
   maxRandomTimeoutSeconds: 1
 --- !u!1 &1978591214

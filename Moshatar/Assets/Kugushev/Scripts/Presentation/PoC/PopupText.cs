@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Kugushev.Scripts.Presentation.PoC
 {
-    public class DamageText : MonoBehaviour, IPoolable<int, Vector3, IMemoryPool>
+    public class PopupText : MonoBehaviour, IPoolable<string, Vector3, IMemoryPool>
     {
         private const float Lifetime = 2f;
         private const float TopPosition = 3f;
@@ -19,9 +19,9 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private IMemoryPool _memoryPool;
 
-        void IPoolable<int, Vector3, IMemoryPool>.OnSpawned(int p1, Vector3 p2, IMemoryPool p3)
+        void IPoolable<string, Vector3, IMemoryPool>.OnSpawned(string p1, Vector3 p2, IMemoryPool p3)
         {
-            damageText.text = StringBag.FromInt(p1);
+            damageText.text = p1;
             transform.position = p2;
             _memoryPool = p3;
 
@@ -29,7 +29,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             StartCoroutine(CountDownToDepawn());
         }
 
-        void IPoolable<int, Vector3, IMemoryPool>.OnDespawned()
+        void IPoolable<string, Vector3, IMemoryPool>.OnDespawned()
         {
             damageText.text = "Leak";
             _memoryPool = null;
@@ -42,7 +42,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             _memoryPool.Despawn(this);
         }
 
-        public class Factory : PlaceholderFactory<int, Vector3, DamageText>
+        public class Factory : PlaceholderFactory<string, Vector3, PopupText>
         {
         }
     }

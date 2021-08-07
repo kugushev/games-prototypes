@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Presentation.PoC
 {
-    public class DamageTextFactory : InPlacePrefabFactory<DamageText>
+    public class PopupTextFactory : InPlacePrefabFactory<PopupText>
     {
 
     }

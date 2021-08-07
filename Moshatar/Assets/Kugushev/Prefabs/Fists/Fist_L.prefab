@@ -2593,6 +2593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FistController
       objectReference: {fileID: 0}
+    - target: {fileID: 976896810754357567, guid: 82ab2dc401c126c4c8153628ec964472, type: 3}
+      propertyPath: m_TagString
+      value: LeftFist
+      objectReference: {fileID: 0}
     - target: {fileID: 2331454835445592356, guid: 82ab2dc401c126c4c8153628ec964472, type: 3}
       propertyPath: m_Center.x
       value: -0.03

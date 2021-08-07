@@ -28,6 +28,8 @@ namespace Kugushev.Scripts.Presentation.PoC
             var started = DateTime.Now;
             while (true)
             {
+                _zombieViewFactory.Create(transform.position);
+                
                 float elapsed = Convert.ToSingle((DateTime.Now - started).TotalSeconds);
 
                 float timeout;
@@ -42,7 +44,7 @@ namespace Kugushev.Scripts.Presentation.PoC
                 {
                     float random = Random.Range(minRandomTimeoutSeconds, maxRandomTimeoutSeconds);
                     timeout = fixedTimeoutSeconds * 2 + random;
-                    
+
                     timeout = FitToStage(elapsed, timeout, FinalTime);
                 }
                 else if (elapsed < FinalTime)
@@ -55,11 +57,7 @@ namespace Kugushev.Scripts.Presentation.PoC
                     timeout = fixedTimeoutSeconds + random;
                 }
 
-
                 yield return new WaitForSeconds(timeout);
-
-
-                _zombieViewFactory.Create(transform.position);
             }
         }
 
