@@ -7,7 +7,7 @@ namespace Kugushev.Scripts.Presentation.PoC
 {
     public class HitsManager
     {
-        public void Register(string weaponTag, int damage, Vector3[] line)
+        public AttackDirection Register(string weaponTag, int damage, Vector3[] line)
         {
             var from = line[0];
             var to = line[1];
@@ -20,9 +20,7 @@ namespace Kugushev.Scripts.Presentation.PoC
                 angle *= -1;
 
             var angleDeg = Mathf.FloorToInt(angle * Mathf.Rad2Deg);
-            var attack = Recognize(angleDeg);
-
-            Debug.Log(attack);
+            return Recognize(angleDeg);
         }
 
         private AttackDirection Recognize(int angle)

@@ -14,7 +14,9 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const float DeathTime = 2f;
         private const float HitMultiplier = 10f;
         private const float AttackDistance = 1.3f;
-        private const int MaxHitPoints = 100000000;
+        private const int MaxHitPoints = 100;
+        private const int HardHitPower = 20;
+        private const int BleedDamage = 5;
         private static readonly Vector3 HeroPosition = Vector3.zero;
 
         private static readonly int HitReactionParameter = Animator.StringToHash("HitReaction");
@@ -34,8 +36,13 @@ namespace Kugushev.Scripts.Presentation.PoC
         private readonly ReactiveProperty<int> _hitPoints = new ReactiveProperty<int>();
 
         private readonly List<Fist> _fistsBuffer = new List<Fist>(1);
+        private readonly List<Weapon> _weaponsBuffer = new List<Weapon>(1);
         private Animator _animator;
         private Rigidbody _rigidbody;
+
+        // todo: ugly hack, make something reusable
+        private bool _isBleeding;
+        private float _bleedingTicks = 0f;
 
         private readonly ReactiveProperty<bool> _pursuing = new ReactiveProperty<bool>();
         private float _movingTime;
@@ -51,54 +58,126 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void OnTriggerEnter(Collider other)
         {
+            var hitPosition = other.transform.position;
+
+            int damage;
+            if (TryGetFist(other, out var fist))
+            {
+                int power = GetPower(fist.Velocity);
+                damage = fist.RegisterFistHit(IsHardHit(power));
+            }
+            else if (TryGetWeapon(other, out var weapon))
+            {
+                int power = GetPower(weapon.Velocity);
+                damage = weapon.RegisterWeaponHit(IsHardHit(power));
+
+                if (IsHardHit(power))
+                    FindHitRecorder(other).RegisterHitEnter(hitPosition, damage);
+            }
+            else
+            {
+                Debug.LogError("No weapon or fist");
+                return;
+            }
+
+            Suffer(damage, hitPosition);
+
+            int GetPower(float velocity) => Mathf.FloorToInt(velocity * 100);
+            bool IsHardHit(int power) => power > HardHitPower;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (TryGetWeapon(other, out var weapon))
+            {
+                var direction = FindHitRecorder(other).RegisterHitExit(other.transform.position);
+                if (direction != AttackDirection.None)
+                {
+                    var combo = weapon.RegisterWeaponHitFinished(direction);
+                    ProcessCombo(combo, other.transform.position);
+                }
+            }
+        }
+
+        private void ProcessCombo(Combo combo, Vector3 hitPoint)
+        {
+            Suffer(combo.Damage, hitPoint);
+
+            switch (combo.Effect)
+            {
+                case DamageEffect.Bleed:
+                    _isBleeding = true;
+                    _bleedingTicks = 0f;
+                    _popupTextFactory.Create("BLEED", hitPoint);
+                    break;
+                case DamageEffect.Purge:
+                    _isBleeding = false;
+                    _popupTextFactory.Create("PURGE", hitPoint);
+                    break;
+            }
+        }
+
+        private bool TryGetFist(Collider other, out Fist fist)
+        {
             _fistsBuffer.Clear();
             other.GetComponents(_fistsBuffer);
 
             if (_fistsBuffer.Count != 1)
             {
-                Debug.LogError($"Unexpected buffers count {_fistsBuffer.Count}");
-                return;
+                fist = null;
+                return false;
             }
 
-            var fist = _fistsBuffer[0];
-            int damage = Mathf.FloorToInt(fist.Velocity * 100);
-
-            RecordHit(other, damage, (h, p, d) => h.RegisterHitEnter(p, d));
-
-            Suffer(damage, fist.transform.position);
-
-            _fistsBuffer.Clear();
+            fist = _fistsBuffer[0];
+            return true;
         }
 
-        private void OnTriggerExit(Collider other)
+        private bool TryGetWeapon(Collider other, out Weapon weapon)
         {
-            RecordHit(other, 0, (h, p, d) => h.RegisterHitExit(p));
+            _weaponsBuffer.Clear();
+            other.GetComponents(_weaponsBuffer);
+
+            if (_weaponsBuffer.Count != 1)
+            {
+                weapon = null;
+                return false;
+            }
+
+            weapon = _weaponsBuffer[0];
+            return true;
         }
 
-        private void RecordHit(Collider other, int damage, Action<HitRecorder, Vector3, int> action)
+        private HitRecorder FindHitRecorder(Collider other)
         {
             for (var i = 0; i < hitRecorders.Length; i++)
             {
                 var hitRecorder = hitRecorders[i];
                 if (other.CompareTag(hitRecorder.WeaponTag))
                 {
-                    action(hitRecorder, other.gameObject.transform.position, damage);
-                    break;
+                    return hitRecorder;
                 }
             }
+
+            throw new Exception($"No hit recorders for {other.tag}");
         }
 
-        private void Suffer(int damage, Vector3 hitPoint)
+        private void Suffer(int damage, Vector3 hitPoint, bool ignoreReaction = false)
         {
+            if (damage <= 0)
+                return;
+
             _pursuing.Value = false;
 
-            if (damage > 20)
-                damage *= 2;
+            _hitPoints.Value -= damage;
 
-            Suffered(damage, hitPoint);
+            if (!ignoreReaction)
+            {
+                _animator.SetTrigger(HitReactionParameter);
+                hitEffect.Play();
+            }
 
-            //if (damage > 20)
-            // todo: recognize hard kick
+            _popupTextFactory.Create(StringBag.FromInt(damage), hitPoint);
+
             if (_hitPoints.Value <= 0)
                 Die(damage);
         }
@@ -115,6 +194,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             _movingTime = 0;
 
             _deathTime = null;
+            _isBleeding = false;
 
             _start = p1;
             _hitPoints.Value = MaxHitPoints;
@@ -125,17 +205,8 @@ namespace Kugushev.Scripts.Presentation.PoC
         {
             _memoryPool = null;
             _deathTime = null;
+            _isBleeding = false;
             _rigidbody.velocity = Vector3.zero;
-        }
-
-        private void Suffered(int damage, Vector3 hitPoint)
-        {
-            _hitPoints.Value -= damage;
-
-            _animator.SetTrigger(HitReactionParameter);
-            hitEffect.Play();
-
-           // _popupTextFactory.Create(StringBag.FromInt(damage), hitPoint);
         }
 
         private void Die(int damage)
@@ -161,6 +232,16 @@ namespace Kugushev.Scripts.Presentation.PoC
                     _pursuing.Value = false;
 
                 transform.position = p;
+            }
+
+            if (_isBleeding)
+            {
+                _bleedingTicks += Time.deltaTime;
+                if (_bleedingTicks > 1f)
+                {
+                    _bleedingTicks = 0f;
+                    Suffer(BleedDamage, transform.position, true);
+                }
             }
 
             if (_deathTime != null && DateTime.Now - _deathTime > TimeSpan.FromSeconds(DeathTime))
