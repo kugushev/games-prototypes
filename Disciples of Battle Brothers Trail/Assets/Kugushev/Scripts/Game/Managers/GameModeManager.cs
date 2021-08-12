@@ -1,20 +1,18 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Kugushev.Scripts.Common.Enums;
-using UnityEditor;
+using Kugushev.Scripts.Common.Exceptions;
+using Kugushev.Scripts.Game.Models.CityInfo;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Kugushev.Scripts.Common.Managers
+namespace Kugushev.Scripts.Game.Managers
 {
     public class GameModeManager
     {
-        // todo: use Zenject
-        public static GameModeManager Instance { get; } = new GameModeManager();
+        private string _additiveScene;
+        private object _parameter;
 
         public GameMode Current { get; private set; } = GameMode.Game;
-
-        private string _additiveScene;
 
         public async UniTask ToGameAsync()
         {
@@ -29,8 +27,9 @@ namespace Kugushev.Scripts.Common.Managers
             Current = GameMode.Game;
         }
 
-        public UniTask ToCityAsync()
+        public UniTask ToCityAsync(CityWorldItem currentCityWorldItem)
         {
+            PushParameter(currentCityWorldItem);
             Current = GameMode.City;
             return LoadAdditive("CityScene");
         }
@@ -39,6 +38,27 @@ namespace Kugushev.Scripts.Common.Managers
         {
             Current = GameMode.Battle;
             return LoadAdditive("BattleScene");
+        }
+
+        public T PopParameter<T>() where T : class
+        {
+            if (_parameter == null)
+                throw new TheGameException("Parameter is null");
+
+            if (_parameter is T p)
+            {
+                _parameter = null;
+                return p;
+            }
+
+            throw new TheGameException($"Wrong type {_parameter}, expected {typeof(T)}");
+        }
+
+        private void PushParameter(object parameter)
+        {
+            if (_parameter != null)
+                throw new TheGameException("Parameter is already specified");
+            _parameter = parameter;
         }
 
         private async UniTask LoadAdditive(string sceneName)

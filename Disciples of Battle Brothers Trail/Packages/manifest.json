@@ -7,6 +7,7 @@
     "com.leopotam.ecs-ui": "https://github.com/Leopotam/ecs-ui.git",
     "com.leopotam.ecs-unityintegration": "https://github.com/Leopotam/ecs-unityintegration.git",
     "com.neuecc.unirx": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
+	"com.svermeulen.extenject": "9.2.0-stcf3",
     "com.unity.2d.animation": "6.0.4",
     "com.unity.2d.pixel-perfect": "5.0.0",
     "com.unity.2d.psdimporter": "5.0.4",
@@ -63,7 +64,8 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.demigiant.dotween",
-        "com.openupm"
+        "com.openupm",
+        "com.svermeulen.extenject"
       ]
     }
   ]

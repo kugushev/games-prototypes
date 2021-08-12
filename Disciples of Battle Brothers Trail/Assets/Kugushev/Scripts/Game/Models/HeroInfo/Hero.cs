@@ -6,9 +6,11 @@ namespace Kugushev.Scripts.Game.Models.HeroInfo
 {
     public class Hero
     {
-        private readonly ReactiveProperty<int> _gold = new ReactiveProperty<int>(GameConstants.Hero.StartGold);
+        private const int MaxTeamSize = 4;
+        private const int StartGold = 300;
+
+        private readonly ReactiveProperty<int> _gold = new ReactiveProperty<int>(StartGold);
         private readonly ReactiveCollection<Teammate> _team = new ReactiveCollection<Teammate>();
-        public static Hero Instance { get; } = new Hero();
 
         private Hero()
         {
@@ -20,6 +22,9 @@ namespace Kugushev.Scripts.Game.Models.HeroInfo
 
         public bool TryHire(BattleUnit unit, int price, HiringDeskInfo owner)
         {
+            if (_team.Count >= MaxTeamSize)
+                return false;
+
             if (_gold.Value >= price)
             {
                 _gold.Value -= price;
@@ -31,5 +36,7 @@ namespace Kugushev.Scripts.Game.Models.HeroInfo
 
             return false;
         }
+
+        public void Fire(Teammate teammate) => _team.Remove(teammate);
     }
 }

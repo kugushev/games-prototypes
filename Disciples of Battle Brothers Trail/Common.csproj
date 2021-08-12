@@ -48,7 +48,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Common\Ecs\Components\InteractionsLock.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\CinemachineAnchor.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Common\UI\ModalMenu.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Common\Managers\GameModeManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Common\Exceptions\TheGameException.cs" />
      <None Include="Assets\Kugushev\Scripts\Common\Common.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -319,6 +319,21 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+     <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+     <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+     <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject-usage">
+     <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/Source/Usage/Zenject-usage.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:/Projects/games-prototypes/Disciples of Battle Brothers Trail/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

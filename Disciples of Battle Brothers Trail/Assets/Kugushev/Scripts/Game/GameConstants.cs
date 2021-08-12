@@ -2,11 +2,6 @@
 {
     internal static class GameConstants
     {
-        public static class Hero
-        {
-            public const int StartGold = 300;
-        }
-        
         public static class Units
         {
             public const float Speed = 20f;

@@ -64,7 +64,7 @@ namespace Kugushev.Scripts.Game.Models
                 int toY = (areaY + 1) * areaHeight - areaBorderY;
                 int y = Random.Range(fromY, toY);
 
-                var city = new City();
+                var city = new CityWorldItem();
                 grid[y][x] = new CityWorldCell(city);
             }
         }

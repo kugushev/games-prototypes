@@ -7,13 +7,8 @@ using UnityEngine;
 
 namespace Kugushev.Scripts.Game.Models.CityInfo
 {
-    public class City
+    public class CityWorldItem
     {
-        // todo: ugly code. Replace with parameters passing
-        public static City VisitedCity { get; set; }
-
         public HiringDeskInfo HiringDeskInfo { get; } = new HiringDeskInfo();
-
-
     }
 }

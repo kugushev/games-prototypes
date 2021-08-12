@@ -11,12 +11,12 @@ namespace Kugushev.Scripts.City.Models
 {
     public class CityStructure
     {
-        private readonly Game.Models.CityInfo.City _cityInfo;
+        private readonly Game.Models.CityInfo.CityWorldItem _cityWorldItemInfo;
         private readonly IReadOnlyList<IReadOnlyList<CityCell>> _grid;
 
-        public CityStructure(Game.Models.CityInfo.City cityInfo)
+        public CityStructure(Game.Models.CityInfo.CityWorldItem cityWorldItemInfo)
         {
-            _cityInfo = cityInfo;
+            _cityWorldItemInfo = cityWorldItemInfo;
             var facilities = new List<IFacility>();
             Facilities = facilities;
             _grid = CreateGrid(facilities);
@@ -39,7 +39,7 @@ namespace Kugushev.Scripts.City.Models
 
         private void PushHiringDek(CityCell[][] grid, List<IFacility> facilities)
         {
-            var deck = new HiringDesk(new Vector2Int(Width / 2, Height / 2), _cityInfo.HiringDeskInfo);
+            var deck = new HiringDesk(new Vector2Int(Width / 2, Height / 2), _cityWorldItemInfo.HiringDeskInfo);
             facilities.Add(deck);
 
             var cell = new InteractableCell(deck);

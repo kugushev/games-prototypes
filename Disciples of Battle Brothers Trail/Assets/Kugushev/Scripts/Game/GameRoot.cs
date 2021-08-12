@@ -1,6 +1,6 @@
 using Kugushev.Scripts.Common.Ecs;
-using Kugushev.Scripts.Common.Managers;
 using Kugushev.Scripts.Game.Factories.Abstractions;
+using Kugushev.Scripts.Game.Managers;
 using Kugushev.Scripts.Game.Models;
 using Kugushev.Scripts.Game.Systems;
 using Kugushev.Scripts.Game.Systems.AI;
@@ -11,6 +11,7 @@ using Kugushev.Scripts.Game.Systems.UpdateView;
 using Kugushev.Scripts.Game.Views;
 using Leopotam.Ecs;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.Game
 {
@@ -18,6 +19,8 @@ namespace Kugushev.Scripts.Game
     {
         [SerializeField] private WorldView worldView;
         [SerializeField] private BaseEntitiesFactory[] entitiesFactories;
+
+        [Inject] private DiContainer _container;
 
         protected override void InitSystems(EcsSystems ecsSystems)
         {
@@ -36,7 +39,7 @@ namespace Kugushev.Scripts.Game
             InjectModelViews(ecsSystems);
             InjectFactories(ecsSystems);
 
-            ecsSystems.Inject(GameModeManager.Instance);
+            ecsSystems.Inject(_container.Resolve<GameModeManager>());
         }
 
         private void InjectModelViews(EcsSystems ecsSystems)

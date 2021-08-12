@@ -1,30 +1,28 @@
-using Kugushev.Scripts.City.Components;
 using Kugushev.Scripts.City.Components.Commands;
 using Kugushev.Scripts.City.Systems;
 using Kugushev.Scripts.City.Views;
 using Kugushev.Scripts.Common.Ecs;
-using Kugushev.Scripts.Common.Managers;
 using Kugushev.Scripts.Common.UI;
-using Kugushev.Scripts.Game.Components.Commands;
-using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Managers;
+using Kugushev.Scripts.Game.Models.CityInfo;
 using Kugushev.Scripts.Game.Models.HeroInfo;
 using Kugushev.Scripts.Game.Systems;
-using Kugushev.Scripts.Game.Systems.AI;
-using Kugushev.Scripts.Game.Systems.CommandsProcessing;
 using Kugushev.Scripts.Game.Systems.Input;
-using Kugushev.Scripts.Game.Systems.Interactions;
 using Kugushev.Scripts.Game.Systems.UpdateView;
 using Kugushev.Scripts.Game.Views;
 using Leopotam.Ecs;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.City
 {
     public class CityRoot : BaseRoot
     {
         [SerializeField] private CityView cityView;
-        [SerializeField] private ModalMenuManager modalMenuManager;
         [SerializeField] private UnitTransformView heroUnit;
+
+        [Inject] private GameModeManager _gameModeManager;
+        [Inject] private DiContainer _container;
 
         protected override void InitSystems(EcsSystems ecsSystems)
         {
@@ -43,20 +41,20 @@ namespace Kugushev.Scripts.City
 
         protected override void Inject(EcsSystems ecsSystems)
         {
-            ecsSystems.Inject(Hero.Instance);
-            ecsSystems.Inject(Game.Models.CityInfo.City.VisitedCity);
-            
-            var city = new Models.CityStructure(Game.Models.CityInfo.City.VisitedCity);
+            ecsSystems.Inject(_container.Resolve<Hero>());
+
+            var cityWorldItem = _gameModeManager.PopParameter<CityWorldItem>();
+            ecsSystems.Inject(cityWorldItem);
+            var city = new Models.CityStructure(cityWorldItem);
             cityView.Init(city);
             ecsSystems.Inject(city);
             ecsSystems.Inject(cityView);
 
-            ecsSystems.Inject(modalMenuManager);
+            ecsSystems.Inject(_container.Resolve<ModalMenuManager>());
 
             ecsSystems.Inject(heroUnit);
 
-            ecsSystems.Inject(GameModeManager.Instance);
-
+            ecsSystems.Inject(_gameModeManager);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace Kugushev.Scripts.Game.Models
 
     public class CityWorldCell : WorldCell
     {
-        public CityWorldCell(City city) => City = city;
+        public CityWorldCell(CityWorldItem cityWorldItem) => CityWorldItem = cityWorldItem;
 
-        public City City { get; }
+        public CityWorldItem CityWorldItem { get; }
     }
 }
