@@ -48,6 +48,8 @@ namespace Kugushev.Scripts.Game
             worldView.Init(world);
             ecsSystems.Inject(world);
             ecsSystems.Inject(worldView);
+
+            ecsSystems.Inject(new CellsVisitingManager());
         }
 
         private void InjectFactories(EcsSystems ecsSystems)

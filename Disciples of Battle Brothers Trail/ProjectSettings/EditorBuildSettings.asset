@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kugushev/Scenes/CityScene.unity
     guid: d6846ff0027ed4f0eaf77ae2bb86be3b
+  - enabled: 1
+    path: Assets/Kugushev/Scenes/BattleScene.unity
+    guid: 35ec1cf1a41fed84fa75436aabebcb23
   m_configObjects: {}

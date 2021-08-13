@@ -1,6 +1,6 @@
 ﻿using Kugushev.Scripts.Game.Views;
 
-namespace Kugushev.Scripts.Game.Components.ViewRefs
+namespace Kugushev.Scripts.Game.Components.Refs
 {
     public readonly struct UnitTransformViewRef
     {

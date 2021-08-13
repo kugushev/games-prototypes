@@ -269,7 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 302041101}
   m_Layer: 0
-  m_Name: --- UI/IO ---
+  m_Name: '- UI/IO'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 337602257}
   - component: {fileID: 337602256}
   m_Layer: 0
-  m_Name: Root
+  m_Name: '- Root'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,7 +562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559313195}
   m_Layer: 0
-  m_Name: --- Camera ---
+  m_Name: '- Camera'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5896415, y: 1}
+    m_SensorSize: {x: 1.4601594, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 1663284786}
   - component: {fileID: 1663284787}
   m_Layer: 0
-  m_Name: --- World ---
+  m_Name: '- World'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

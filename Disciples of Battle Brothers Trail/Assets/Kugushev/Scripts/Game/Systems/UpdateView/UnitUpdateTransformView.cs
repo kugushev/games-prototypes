@@ -1,4 +1,5 @@
 ﻿using Kugushev.Scripts.Game.Components;
+using Kugushev.Scripts.Game.Components.Refs;
 using Kugushev.Scripts.Game.Components.ViewRefs;
 using Leopotam.Ecs;
 

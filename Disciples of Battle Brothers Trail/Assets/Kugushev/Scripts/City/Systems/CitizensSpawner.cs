@@ -1,6 +1,7 @@
 using Kugushev.Scripts.Game;
 using Kugushev.Scripts.Game.Components;
 using Kugushev.Scripts.Game.Components.Commands;
+using Kugushev.Scripts.Game.Components.Refs;
 using Kugushev.Scripts.Game.Components.ViewRefs;
 using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Views;
