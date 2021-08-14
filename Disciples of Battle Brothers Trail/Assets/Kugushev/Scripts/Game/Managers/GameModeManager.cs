@@ -2,6 +2,7 @@
 using Kugushev.Scripts.Common.Enums;
 using Kugushev.Scripts.Common.Exceptions;
 using Kugushev.Scripts.Game.Models.CityInfo;
+using Kugushev.Scripts.Game.Models.Units;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,8 +35,9 @@ namespace Kugushev.Scripts.Game.Managers
             return LoadAdditive("CityScene");
         }
 
-        public UniTask ToBattleAsync()
+        public UniTask ToBattleAsync(BanditModel banditModel)
         {
+            PushParameter(banditModel);
             Current = GameMode.Battle;
             return LoadAdditive("BattleScene");
         }

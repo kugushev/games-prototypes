@@ -1,7 +1,9 @@
 using Kugushev.Scripts.Common.Ecs;
+using Kugushev.Scripts.Game.Components;
 using Kugushev.Scripts.Game.Factories.Abstractions;
 using Kugushev.Scripts.Game.Managers;
 using Kugushev.Scripts.Game.Models;
+using Kugushev.Scripts.Game.Models.HeroInfo;
 using Kugushev.Scripts.Game.Systems;
 using Kugushev.Scripts.Game.Systems.AI;
 using Kugushev.Scripts.Game.Systems.CommandsProcessing;
@@ -25,10 +27,14 @@ namespace Kugushev.Scripts.Game
         protected override void InitSystems(EcsSystems ecsSystems)
         {
             ecsSystems
+                .OneFrame<UnitMoveOneStepEvent>();
+
+            ecsSystems
                 .Add(new EnemyUnitRandomWalking())
                 .Add(new ProcessUnitMove())
                 .Add(new PlayerInputDetection())
                 .Add(new HeroInteractions())
+                .Add(new UnitsInteractions())
                 .Add(new UnitUpdateTransformView())
                 .Add(new UnitAnimateMoving(GameConstants.Units.Speed))
                 .Add(new UnitsSpawner());
@@ -40,6 +46,7 @@ namespace Kugushev.Scripts.Game
             InjectFactories(ecsSystems);
 
             ecsSystems.Inject(_container.Resolve<GameModeManager>());
+            ecsSystems.Inject(_container.Resolve<Hero>());
         }
 
         private void InjectModelViews(EcsSystems ecsSystems)

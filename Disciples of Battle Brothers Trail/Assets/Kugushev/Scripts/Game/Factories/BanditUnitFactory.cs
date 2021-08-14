@@ -3,6 +3,7 @@ using Kugushev.Scripts.Game.Components.Commands;
 using Kugushev.Scripts.Game.Components.Refs;
 using Kugushev.Scripts.Game.Components.ViewRefs;
 using Kugushev.Scripts.Game.Factories.Abstractions;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models.Units;
 using Kugushev.Scripts.Game.Views;
 using Leopotam.Ecs;
@@ -31,6 +32,7 @@ namespace Kugushev.Scripts.Game.Factories
 
             return world.NewEntity()
                 .Replace(new UnitTransformViewRef(transformView))
+                .Replace(new ModelRef<IInteractable>(model))
                 .Replace(new ModelRef<BanditModel>(model))
                 .Replace(new UnitMoveCommand())
                 .Replace(new UnitGridPosition {ActualPosition = start})

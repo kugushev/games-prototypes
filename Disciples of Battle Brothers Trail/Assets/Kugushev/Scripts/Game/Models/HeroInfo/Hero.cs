@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using Kugushev.Scripts.Game.Interfaces;
 using Kugushev.Scripts.Game.Models.CityInfo;
 using UniRx;
 
 namespace Kugushev.Scripts.Game.Models.HeroInfo
 {
-    public class Hero
+    public class Hero: IInteractable
     {
         private const int MaxTeamSize = 4;
         private const int StartGold = 300;

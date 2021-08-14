@@ -2,11 +2,11 @@
 {
     public readonly struct ModelRef<T> where T : class
     {
-        public ModelRef(T model)
+        public ModelRef(T @ref)
         {
-            Model = model;
+            Ref = @ref;
         }
 
-        public T Model { get; }
+        public T Ref { get; }
     }
 }

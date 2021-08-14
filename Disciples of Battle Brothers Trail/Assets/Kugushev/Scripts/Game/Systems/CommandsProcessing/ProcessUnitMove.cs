@@ -19,8 +19,9 @@ namespace Kugushev.Scripts.Game.Systems.CommandsProcessing
             {
                 ref var move = ref _filterHero.Get1(i);
                 ref var position = ref _filterHero.Get2(i);
+                var entity = _filterHero.GetEntity(i);
 
-                allowMoving |= HandleMoving(ref position, ref move);
+                allowMoving |= HandleMoving(ref position, ref move, entity);
             }
 
             if (!allowMoving)
@@ -30,12 +31,14 @@ namespace Kugushev.Scripts.Game.Systems.CommandsProcessing
             {
                 ref var move = ref _filterOther.Get1(i);
                 ref var position = ref _filterOther.Get2(i);
+                var entity = _filterOther.GetEntity(i);
 
-                HandleMoving(ref position, ref move);
+                HandleMoving(ref position, ref move, entity);
             }
         }
 
-        private static bool HandleMoving(ref UnitGridPosition position, ref UnitMoveCommand moveCommand)
+        private static bool HandleMoving(ref UnitGridPosition position, ref UnitMoveCommand moveCommand,
+            EcsEntity ecsEntity)
         {
             if (position.Moving || moveCommand.Direction == Direction2d.None)
                 return false;
@@ -66,6 +69,8 @@ namespace Kugushev.Scripts.Game.Systems.CommandsProcessing
             position.Direction = moveCommand.Direction;
             position.Moving = true;
             position.Stopped = false;
+
+            ecsEntity.Replace(new UnitMoveOneStepEvent(actual, position.PreviousPosition));
 
             return true;
         }

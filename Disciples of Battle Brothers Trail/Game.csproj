@@ -42,7 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Game\UI\Gold.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Components\Refs\ModelRef.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\CityInfo\CityWorldItem.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\CellsVisitingManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Components\UnitGridPosition.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\Input\PlayerInputDetection.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\HeroInfo\Hero.cs" />
@@ -51,6 +53,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\UnitsSpawner.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Factories\Abstractions\BaseEntitiesFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\GameConstants.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Units\BanditModel.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Systems\Interactions\UnitsInteractions.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\WorldCell.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\UnitAnimateMoving.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Views\UnitTransformView.cs" />
@@ -78,10 +82,8 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\UpdateView\UnitUpdateTransformView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Managers\GameModeManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Factories\PlayerUnitFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Models\Units\BanditModel.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Components\Refs\ModelRef.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Managers\CellsVisitingManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Systems\Interactions\UnitsInteractions.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IInteractable.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Components\UnitMoveOneStepEvent.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
