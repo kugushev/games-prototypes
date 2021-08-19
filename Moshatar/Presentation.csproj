@@ -43,19 +43,22 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\UniRxHelpers.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\HitRecorder.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\DamageEffect.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\PopupTextFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\AttackDirection.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\HitsManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\PopupText.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fist.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Combo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombiesSpawner.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieView.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Weapon.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieViewFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\HitsManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\AttackDirection.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Weapon.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Combo.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\DamageEffect.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieProjectile.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieProjectileFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Hero.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

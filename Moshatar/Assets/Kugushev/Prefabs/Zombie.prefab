@@ -31,6 +31,36 @@ Transform:
   m_Father: {fileID: 100937133171768564}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.0000011554484, y: -0.00000056357027, z: 0.0000009606625}
+--- !u!1 &266345061527822356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8177070745896225680}
+  m_Layer: 7
+  m_Name: MisslesPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8177070745896225680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266345061527822356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.325, z: 0.264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5909830070752815796}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &280451843540771264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,6 +2215,7 @@ Transform:
   - {fileID: 6364014755841059409}
   - {fileID: 6464732410395401447}
   - {fileID: 8334880382659557338}
+  - {fileID: 8177070745896225680}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -2220,7 +2251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 3378999718617439553}
+  attackEffect: {fileID: 919132148097639276}
   healthBar: {fileID: 9184662410943959998}
+  projectingPosition: {fileID: 8177070745896225680}
   hitRecorders:
   - {fileID: 1568225606224721736}
   - {fileID: 3423612538018346282}
@@ -2331,7 +2364,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 372ad4f3c618ccd4a8ee015b53e75195, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

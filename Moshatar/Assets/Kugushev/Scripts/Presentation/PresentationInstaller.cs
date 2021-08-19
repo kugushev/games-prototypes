@@ -13,11 +13,16 @@ namespace Kugushev.Scripts.Presentation
                 .FromMonoPoolableMemoryPool(x =>
                     x.FromIFactory(f => f.To<PopupTextFactory>().FromComponentInHierarchy().AsSingle()));
 
-            Container.BindFactory<Vector3, ZombieView, ZombieView.Factory>()
+            Container.BindFactory<Vector3, ZombiesSpawner, ZombieView, ZombieView.Factory>()
                 .FromMonoPoolableMemoryPool(x =>
                     x.FromIFactory(f => f.To<ZombieViewFactory>().FromComponentInHierarchy().AsSingle()));
 
+            Container.BindFactory<Vector3, Vector3, ZombieProjectile, ZombieProjectile.Factory>()
+                .FromMonoPoolableMemoryPool(x =>
+                    x.FromIFactory(f => f.To<ZombieProjectileFactory>().FromComponentInHierarchy().AsSingle()));
+
             Container.Bind<HitsManager>().AsSingle();
+            Container.Bind<Hero>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

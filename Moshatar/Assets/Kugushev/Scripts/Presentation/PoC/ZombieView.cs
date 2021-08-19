@@ -5,10 +5,11 @@ using Kugushev.Scripts.Common.Utils;
 using UnityEngine;
 using Zenject;
 using UniRx;
+using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Presentation.PoC
 {
-    public class ZombieView : MonoBehaviour, IPoolable<Vector3, IMemoryPool>
+    public class ZombieView : MonoBehaviour, IPoolable<Vector3, ZombiesSpawner, IMemoryPool>
     {
         private const float PursueTime = 3;
         private const float DeathTime = 2f;
@@ -17,21 +18,30 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const int MaxHitPoints = 100;
         private const int HardHitPower = 20;
         private const int BleedDamage = 5;
+        private const int AttackMinCooldownSeconds = 3;
+        private const int AttackMaxCooldownSeconds = 10;
         private static readonly Vector3 HeroPosition = Vector3.zero;
 
         private static readonly int HitReactionParameter = Animator.StringToHash("HitReaction");
+        private static readonly int AttackParameter = Animator.StringToHash("Attack");
         private static readonly int KnockedDownState = Animator.StringToHash("Knocked Down");
         private static readonly int RunningState = Animator.StringToHash("Zombie Running");
         private static readonly int IdleState = Animator.StringToHash("Zombie Idle");
 
         [SerializeField] private AudioSource hitEffect;
+        [SerializeField] private AudioSource attackEffect;
         [SerializeField] private SimpleHealthBar healthBar;
+        [SerializeField] private Transform projectingPosition;
         [SerializeField] private HitRecorder[] hitRecorders;
 
+        [Inject] private Hero _hero;
         [Inject] private PopupText.Factory _popupTextFactory;
+        [Inject] private ZombieProjectile.Factory _projectilesFactory;
 
-        private IMemoryPool _memoryPool;
         private Vector3 _start;
+        private ZombiesSpawner _spawner;
+        private IMemoryPool _memoryPool;
+
         private DateTime? _deathTime;
         private readonly ReactiveProperty<int> _hitPoints = new ReactiveProperty<int>();
 
@@ -44,15 +54,17 @@ namespace Kugushev.Scripts.Presentation.PoC
         private bool _isBleeding;
         private float _bleedingTicks = 0f;
 
-        private readonly ReactiveProperty<bool> _pursuing = new ReactiveProperty<bool>();
+        private readonly ReactiveProperty<bool> _pursuing = new ReactiveProperty<bool>(false);
         private float _movingTime;
+
+        private DateTime _lastAttack = DateTime.Now;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
 
-            _pursuing.Subscribe(PursuingChanged).AddTo(this);
+            // _pursuing.Subscribe(PursuingChanged).AddTo(this);
             _hitPoints.Subscribe(HitPointsChanges).AddTo(this);
         }
 
@@ -182,15 +194,18 @@ namespace Kugushev.Scripts.Presentation.PoC
                 Die(damage);
         }
 
-        void IPoolable<Vector3, IMemoryPool>.OnSpawned(Vector3 p1, IMemoryPool p2)
+        void IPoolable<Vector3, ZombiesSpawner, IMemoryPool>.OnSpawned(Vector3 p1, ZombiesSpawner p2, IMemoryPool p3)
         {
             _rigidbody.velocity = Vector3.zero;
 
             transform.position = p1;
             transform.LookAt(HeroPosition);
 
-            _memoryPool = p2;
-            _pursuing.Value = true;
+            _spawner = p2;
+            _spawner.Set(this);
+
+            _memoryPool = p3;
+            // _pursuing.Value = true;
             _movingTime = 0;
 
             _deathTime = null;
@@ -198,10 +213,12 @@ namespace Kugushev.Scripts.Presentation.PoC
 
             _start = p1;
             _hitPoints.Value = MaxHitPoints;
+
+            _lastAttack = DateTime.Now;
         }
 
 
-        void IPoolable<Vector3, IMemoryPool>.OnDespawned()
+        void IPoolable<Vector3, ZombiesSpawner, IMemoryPool>.OnDespawned()
         {
             _memoryPool = null;
             _deathTime = null;
@@ -245,7 +262,26 @@ namespace Kugushev.Scripts.Presentation.PoC
             }
 
             if (_deathTime != null && DateTime.Now - _deathTime > TimeSpan.FromSeconds(DeathTime))
+            {
                 _memoryPool.Despawn(this);
+                return;
+            }
+
+            int attackCooldownSeconds = Random.Range(AttackMinCooldownSeconds, AttackMaxCooldownSeconds);
+            if ((DateTime.Now - _lastAttack).TotalSeconds > attackCooldownSeconds)
+            {
+                Attack();
+
+                _lastAttack = DateTime.Now;
+            }
+        }
+
+        private void Attack()
+        {
+            _animator.SetTrigger(AttackParameter);
+            attackEffect.Play();
+
+            _projectilesFactory.Create(projectingPosition.position, _hero.HeadPosition);
         }
 
         private void PursuingChanged(bool pursuing)
@@ -258,7 +294,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             healthBar.UpdateBar(hitPoints, MaxHitPoints);
         }
 
-        public class Factory : PlaceholderFactory<Vector3, ZombieView>
+        public class Factory : PlaceholderFactory<Vector3, ZombiesSpawner, ZombieView>
         {
         }
     }

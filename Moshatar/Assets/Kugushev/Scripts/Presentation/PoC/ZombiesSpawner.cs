@@ -18,6 +18,8 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         [Inject] private ZombieView.Factory _zombieViewFactory;
 
+        private ZombieView _currentZombie;
+
         private void Start()
         {
             StartCoroutine(SpawnZombies());
@@ -28,8 +30,9 @@ namespace Kugushev.Scripts.Presentation.PoC
             var started = DateTime.Now;
             while (true)
             {
-                _zombieViewFactory.Create(transform.position);
-                
+                if (_currentZombie is null)
+                    _zombieViewFactory.Create(transform.position, this);
+
                 float elapsed = Convert.ToSingle((DateTime.Now - started).TotalSeconds);
 
                 float timeout;
@@ -69,6 +72,21 @@ namespace Kugushev.Scripts.Presentation.PoC
             }
 
             return timeout;
+        }
+
+        public void Set(ZombieView zombieView)
+        {
+            if (_currentZombie is null)
+                _currentZombie = zombieView;
+            else
+                throw new Exception("Zombie is already set");
+        }
+
+        private void Release(ZombieView zombieView)
+        {
+            if (_currentZombie != zombieView)
+                throw new Exception("Unexpected zombie");
+            _currentZombie = null;
         }
     }
 }
