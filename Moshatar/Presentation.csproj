@@ -60,6 +60,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieViewFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieProjectileFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieProjectile.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\VelocityMeasured.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

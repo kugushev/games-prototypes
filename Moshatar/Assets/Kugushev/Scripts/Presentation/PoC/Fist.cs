@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Presentation.PoC
 {
+    [RequireComponent(typeof(VelocityMeasured))]
     public class Fist : MonoBehaviour
     {
         private const int FistDamage = 1;
@@ -22,9 +23,9 @@ namespace Kugushev.Scripts.Presentation.PoC
         private Material[] filledDurabilityMaterials;
         private Material[] fullDurabilityMaterials;
 
-        private Vector3 _position;
+        private VelocityMeasured _velocityMeasured;
 
-        public float Velocity { get; private set; }
+        public float Velocity => _velocityMeasured.Velocity;
 
         public int RegisterFistHit(bool isHardHit)
         {
@@ -46,6 +47,7 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         protected void Awake()
         {
+            _velocityMeasured = GetComponent<VelocityMeasured>();
             _collider = GetComponent<SphereCollider>();
 
             _xrController = GetComponentInParent<XRController>();
@@ -55,7 +57,6 @@ namespace Kugushev.Scripts.Presentation.PoC
                 return;
             }
 
-            _position = transform.position;
             emptyDurabilityMaterials = new[]
             {
                 emptyDurability
@@ -89,14 +90,7 @@ namespace Kugushev.Scripts.Presentation.PoC
                 _collider.enabled = true;
             }
         }
-
-        protected void FixedUpdate()
-        {
-            var nextPosition = transform.position;
-            Velocity = (nextPosition - _position).magnitude;
-            _position = nextPosition;
-        }
-
+        
         private void WeaponDurabilityChanged(float durability)
         {
             if (durability < 1f)
