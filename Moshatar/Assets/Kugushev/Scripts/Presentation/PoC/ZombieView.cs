@@ -20,7 +20,6 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const int BleedDamage = 5;
         private const int AttackMinCooldownSeconds = 3;
         private const int AttackMaxCooldownSeconds = 10;
-        private static readonly Vector3 HeroPosition = Vector3.zero;
 
         private static readonly int HitReactionParameter = Animator.StringToHash("HitReaction");
         private static readonly int AttackParameter = Animator.StringToHash("Attack");
@@ -28,6 +27,7 @@ namespace Kugushev.Scripts.Presentation.PoC
         private static readonly int RunningState = Animator.StringToHash("Zombie Running");
         private static readonly int IdleState = Animator.StringToHash("Zombie Idle");
 
+        [SerializeField] private AudioSource riseEffect;
         [SerializeField] private AudioSource hitEffect;
         [SerializeField] private AudioSource attackEffect;
         [SerializeField] private SimpleHealthBar healthBar;
@@ -58,6 +58,17 @@ namespace Kugushev.Scripts.Presentation.PoC
         private float _movingTime;
 
         private DateTime _lastAttack = DateTime.Now;
+
+
+        private Vector3 HeroPositionOnSurface
+        {
+            get
+            {
+                var position = _hero.HeadPosition;
+                position.y = 0;
+                return position;
+            }
+        }
 
         private void Awake()
         {
@@ -199,7 +210,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             _rigidbody.velocity = Vector3.zero;
 
             transform.position = p1;
-            transform.LookAt(HeroPosition);
+            transform.LookAt(HeroPositionOnSurface);
 
             _spawner = p2;
             _spawner.Set(this);
@@ -215,6 +226,8 @@ namespace Kugushev.Scripts.Presentation.PoC
             _hitPoints.Value = MaxHitPoints;
 
             _lastAttack = DateTime.Now;
+            
+            riseEffect.Play();
         }
 
 
@@ -243,9 +256,9 @@ namespace Kugushev.Scripts.Presentation.PoC
             if (_pursuing.Value)
             {
                 _movingTime += Time.deltaTime;
-                var p = Vector3.Lerp(_start, HeroPosition, _movingTime / PursueTime);
+                var p = Vector3.Lerp(_start, HeroPositionOnSurface, _movingTime / PursueTime);
 
-                if (Vector3.Distance(p, HeroPosition) < AttackDistance)
+                if (Vector3.Distance(p, HeroPositionOnSurface) < AttackDistance)
                     _pursuing.Value = false;
 
                 transform.position = p;
@@ -278,6 +291,8 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void Attack()
         {
+            transform.LookAt(HeroPositionOnSurface);
+
             _animator.SetTrigger(AttackParameter);
             attackEffect.Play();
 

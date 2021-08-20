@@ -13,7 +13,6 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const float FinalTime = 240f;
 
         [SerializeField] private float fixedTimeoutSeconds;
-        [SerializeField] private float minRandomTimeoutSeconds;
         [SerializeField] private float maxRandomTimeoutSeconds;
 
         [Inject] private ZombieView.Factory _zombieViewFactory;
@@ -28,40 +27,47 @@ namespace Kugushev.Scripts.Presentation.PoC
         private IEnumerator SpawnZombies()
         {
             var started = DateTime.Now;
+
+            yield return new WaitForSeconds(GetTimeout(started));
             while (true)
             {
                 if (_currentZombie is null)
                     _zombieViewFactory.Create(transform.position, this);
 
-                float elapsed = Convert.ToSingle((DateTime.Now - started).TotalSeconds);
-
-                float timeout;
-                if (elapsed < LoudTime)
-                {
-                    float random = Random.Range(minRandomTimeoutSeconds, maxRandomTimeoutSeconds);
-                    timeout = fixedTimeoutSeconds + random;
-
-                    timeout = FitToStage(elapsed, timeout, EnrageTime);
-                }
-                else if (elapsed < EnrageTime)
-                {
-                    float random = Random.Range(minRandomTimeoutSeconds, maxRandomTimeoutSeconds);
-                    timeout = fixedTimeoutSeconds * 2 + random;
-
-                    timeout = FitToStage(elapsed, timeout, FinalTime);
-                }
-                else if (elapsed < FinalTime)
-                {
-                    timeout = fixedTimeoutSeconds / 2;
-                }
-                else
-                {
-                    float random = Random.Range(minRandomTimeoutSeconds, maxRandomTimeoutSeconds);
-                    timeout = fixedTimeoutSeconds + random;
-                }
-
-                yield return new WaitForSeconds(timeout);
+                yield return new WaitForSeconds(GetTimeout(started));
             }
+        }
+
+        private float GetTimeout(DateTime started)
+        {
+            float elapsed = Convert.ToSingle((DateTime.Now - started).TotalSeconds);
+
+            float timeout;
+            if (elapsed < LoudTime)
+            {
+                float random = Random.Range(0, maxRandomTimeoutSeconds);
+                timeout = fixedTimeoutSeconds + random;
+
+                timeout = FitToStage(elapsed, timeout, EnrageTime);
+            }
+            else if (elapsed < EnrageTime)
+            {
+                float random = Random.Range(0, maxRandomTimeoutSeconds);
+                timeout = fixedTimeoutSeconds * 2 + random;
+
+                timeout = FitToStage(elapsed, timeout, FinalTime);
+            }
+            else if (elapsed < FinalTime)
+            {
+                timeout = fixedTimeoutSeconds / 2;
+            }
+            else
+            {
+                float random = Random.Range(0, maxRandomTimeoutSeconds);
+                timeout = fixedTimeoutSeconds + random;
+            }
+
+            return timeout;
         }
 
         private static float FitToStage(float elapsed, float timeout, float stage)
