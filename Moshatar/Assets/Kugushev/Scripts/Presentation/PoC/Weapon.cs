@@ -9,7 +9,7 @@ namespace Kugushev.Scripts.Presentation.PoC
 {
     public class Weapon : MonoBehaviour
     {
-        public const float MaxDurability = 5f;
+        public const float MaxDurability = 10f;
         public const int WeaponDamage = 10;
         public const int WeaponCrit = 50;
 

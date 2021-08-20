@@ -36,9 +36,9 @@ namespace Kugushev.Scripts.Presentation.PoC
             else
             {
                 if (!isHardHit)
-                    weapon.WeaponDurability.Value += Random.Range(0, 0.1f);
+                    weapon.WeaponDurability.Value += Random.Range(0, 1f);
                 else
-                    weapon.WeaponDurability.Value += 0.5f;
+                    weapon.WeaponDurability.Value += 5f;
             }
 
             return isHardHit ? FistHardDamage : FistDamage;

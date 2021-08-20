@@ -16,10 +16,11 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const float HitMultiplier = 10f;
         private const float AttackDistance = 1.3f;
         private const int MaxHitPoints = 100;
-        private const int HardHitPower = 20;
+        private const int HardHitPower = 10;
+        private const int MaxOneHitDamage = 20;
         private const int BleedDamage = 5;
-        private const int AttackMinCooldownSeconds = 3;
-        private const int AttackMaxCooldownSeconds = 10;
+        private const int AttackMinCooldownSeconds = 5;
+        private const int AttackMaxCooldownSeconds = 60;
 
         private static readonly int HitReactionParameter = Animator.StringToHash("HitReaction");
         private static readonly int AttackParameter = Animator.StringToHash("Attack");
@@ -124,7 +125,7 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void ProcessCombo(Combo combo, Vector3 hitPoint)
         {
-            Suffer(combo.Damage, hitPoint);
+            Suffer(combo.Damage, hitPoint, isCombo: true);
 
             switch (combo.Effect)
             {
@@ -184,10 +185,16 @@ namespace Kugushev.Scripts.Presentation.PoC
             throw new Exception($"No hit recorders for {other.tag}");
         }
 
-        private void Suffer(int damage, Vector3 hitPoint, bool ignoreReaction = false)
+        private void Suffer(int damage, Vector3 hitPoint, bool ignoreReaction = false, bool isCombo = false)
         {
             if (damage <= 0)
                 return;
+
+            if (!isCombo)
+            {
+                // limit damage
+                damage = Math.Min(damage, MaxOneHitDamage);
+            }
 
             _pursuing.Value = false;
 

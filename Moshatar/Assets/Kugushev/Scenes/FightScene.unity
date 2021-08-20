@@ -608,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &599759422
 Transform:
   m_ObjectHideFlags: 0
@@ -1065,6 +1065,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3317506703726833949, guid: 5d760bcc2f8bf5e4abf74506fe746b6d, type: 3}
   m_PrefabInstance: {fileID: 1063108171}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1068028620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1773789686562221619, guid: 3614a8bb306ba704faba519b252a7eb6, type: 3}
+  m_PrefabInstance: {fileID: 1853431644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae26e19cd956134bbdf3c6f65bf393a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1124006970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1267,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c050110218974d0b964fc8e33d34a122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightController: {fileID: 1632885317}
+  teleportationProvider: {fileID: 1319151754}
+--- !u!1 &1319151750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3814144272651678551, guid: 3614a8bb306ba704faba519b252a7eb6, type: 3}
+  m_PrefabInstance: {fileID: 1853431644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1319151752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3814144272651678550, guid: 3614a8bb306ba704faba519b252a7eb6, type: 3}
+  m_PrefabInstance: {fileID: 1853431644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319151750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7448815bd5148434682b3d931066cd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1319151753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319151750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aca1fc346609b54dbb0adba4664854b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 1319151755}
+  m_MoveSpeed: 1
+  m_EnableStrafe: 1
+  m_UseGravity: 0
+  m_GravityApplicationMode: 0
+  m_ForwardSource: {fileID: 944165240}
+  m_InputBinding: 0
+  m_Controllers:
+  - {fileID: 1068028620}
+  m_DeadzoneMin: 0.125
+  m_DeadzoneMax: 0.925
+--- !u!114 &1319151754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319151750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 1319151755}
+--- !u!114 &1319151755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319151750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Timeout: 10
+  m_XRRig: {fileID: 1319151752}
 --- !u!1 &1357494665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1900,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97bf8564b404612bb186b0d4655c1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1632885317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2550758323752789894, guid: 3614a8bb306ba704faba519b252a7eb6, type: 3}
+  m_PrefabInstance: {fileID: 1853431644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae26e19cd956134bbdf3c6f65bf393a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1720159869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,7 +1983,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743222868}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6d73f18afcfe3f04c8c7ffeccf4abef1, type: 3}
