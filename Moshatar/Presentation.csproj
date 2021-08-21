@@ -56,11 +56,13 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombiesSpawner.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Weapon.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\VelocityMeasured.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieViewFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieProjectileFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\ZombieProjectile.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\VelocityMeasured.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Benchmark\BenchmarkManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\FPSCounter.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -706,6 +708,9 @@
      </Reference>
      <Reference Include="Unity.TextMeshPro">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.XR.Oculus">
+     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.XR.Oculus.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
