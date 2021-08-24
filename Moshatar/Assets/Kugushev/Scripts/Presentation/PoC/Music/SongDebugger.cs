@@ -6,7 +6,8 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
 {
     public class SongDebugger : MonoBehaviour
     {
-        private const float BitDelta = 0.05f;
+        private const float BitDelta = 0.1f;
+        private const float BitDeltaExt = 0.3f;
         private const float ZoneRange = 0.3f;
 
         [SerializeField] private AudioSource audioSource;
@@ -18,8 +19,8 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
         [SerializeField] private Image all;
 
         private bool _lastIsRight;
-        
-        
+
+
         private void Awake()
         {
             audioSource.clip = songConfiguration.Clip;
@@ -72,20 +73,20 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
         {
             // show hit - black
             var mod = audioSource.time % section.Pace;
+            ApplyBit(all, section, mod, Color.black, BitDelta);
 
-
-           // ApplyBit(all, section, mod);
-
-           //todo: fix bug: in this case you may visit this code multiple times per bit
+            //todo: fix bug: in this case you may visit this code multiple times per bit
             if (_lastIsRight)
             {
-                ApplyBit(left, section, mod);
+                var leftMod = (audioSource.time + section.Pace) % (section.Pace * 2);
+                ApplyBit(left, section, leftMod, Color.blue, BitDeltaExt);
                 right.color = Color.white;
                 _lastIsRight = false;
             }
             else
             {
-                ApplyBit(right, section, mod);
+                var rightMod = audioSource.time % (section.Pace * 2);
+                ApplyBit(right, section, rightMod, Color.red, BitDeltaExt);
                 left.color = Color.white;
                 _lastIsRight = true;
             }
@@ -94,12 +95,12 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
             // show zone - red
         }
 
-        private void ApplyBit(Image img, SongSection section, float mod)
+        private void ApplyBit(Image img, SongSection section, float mod, Color color, float delta)
         {
             //var halfRedZone = section.Pace * ZoneRange / 2;
 
             if (mod < BitDelta)
-                img.color = Color.black;
+                img.color = color;
             // else 
             // if (mod < halfRedZone)
             //     img.color = Color.red;

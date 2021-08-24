@@ -1,5 +1,6 @@
 ﻿using Kugushev.Scripts.Common.Utils;
 using Kugushev.Scripts.Presentation.PoC;
+using Kugushev.Scripts.Presentation.PoC.Music;
 using UnityEngine;
 using Zenject;
 
@@ -23,6 +24,9 @@ namespace Kugushev.Scripts.Presentation
 
             Container.Bind<HitsManager>().AsSingle();
             Container.Bind<Hero>().FromComponentInHierarchy().AsSingle();
+
+            Container.Bind<GameDirector>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ChargeManager>().AsSingle();
         }
     }
 }

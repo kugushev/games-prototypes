@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Presentation.PoC.Music;
 using UnityEngine;
 using Zenject;
 using UniRx;
@@ -14,13 +15,13 @@ namespace Kugushev.Scripts.Presentation.PoC
         private const float PursueTime = 3;
         private const float DeathTime = 2f;
         private const float HitMultiplier = 10f;
-        private const float AttackDistance = 1.3f;
-        private const int MaxHitPoints = 100;
+        public const float AttackDistance = 1.3f;
+        private const int MaxHitPoints = 20;
         private const int HardHitPower = 10;
         private const int MaxOneHitDamage = 20;
         private const int BleedDamage = 5;
-        private const int AttackMinCooldownSeconds = 5;
-        private const int AttackMaxCooldownSeconds = 60;
+        private const int AttackMinCooldownSeconds = 10;
+        private const int AttackMaxCooldownSeconds = 120;
 
         private static readonly int HitReactionParameter = Animator.StringToHash("HitReaction");
         private static readonly int AttackParameter = Animator.StringToHash("Attack");
@@ -33,11 +34,14 @@ namespace Kugushev.Scripts.Presentation.PoC
         [SerializeField] private AudioSource attackEffect;
         [SerializeField] private SimpleHealthBar healthBar;
         [SerializeField] private Transform projectingPosition;
+        [SerializeField] private GameObject selectedForChargeMarker;
         [SerializeField] private HitRecorder[] hitRecorders;
 
         [Inject] private Hero _hero;
         [Inject] private PopupText.Factory _popupTextFactory;
         [Inject] private ZombieProjectile.Factory _projectilesFactory;
+        [Inject] private GameDirector _director;
+        [Inject] private ChargeManager _chargeManager;
 
         private Vector3 _start;
         private ZombiesSpawner _spawner;
@@ -93,7 +97,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             else if (TryGetWeapon(other, out var weapon))
             {
                 int power = GetPower(weapon.Velocity);
-                damage = weapon.RegisterWeaponHit(IsHardHit(power));
+                damage = weapon.RegisterWeaponHit(IsHardHit(power), power);
 
                 if (IsHardHit(power))
                     FindHitRecorder(other).RegisterHitEnter(hitPosition, damage);
@@ -121,6 +125,21 @@ namespace Kugushev.Scripts.Presentation.PoC
                     ProcessCombo(combo, other.transform.position);
                 }
             }
+        }
+
+        public void ChooseForCharge()
+        {
+            selectedForChargeMarker.SetActive(true);
+            _chargeManager.ActiveTarget = this;
+        }
+
+        public void DeselectForCharge()
+        {
+            selectedForChargeMarker.SetActive(false);
+        }
+
+        public void UnChooseForCharge()
+        {
         }
 
         private void ProcessCombo(Combo combo, Vector3 hitPoint)
@@ -233,14 +252,16 @@ namespace Kugushev.Scripts.Presentation.PoC
             _hitPoints.Value = MaxHitPoints;
 
             _lastAttack = DateTime.Now;
-            
+
             riseEffect.Play();
         }
 
 
         void IPoolable<Vector3, ZombiesSpawner, IMemoryPool>.OnDespawned()
         {
+            _spawner.Release(this);
             _memoryPool = null;
+            _spawner = null;
             _deathTime = null;
             _isBleeding = false;
             _rigidbody.velocity = Vector3.zero;
@@ -260,6 +281,8 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void Update()
         {
+            transform.LookAt(HeroPositionOnSurface);
+
             if (_pursuing.Value)
             {
                 _movingTime += Time.deltaTime;
@@ -288,7 +311,8 @@ namespace Kugushev.Scripts.Presentation.PoC
             }
 
             int attackCooldownSeconds = Random.Range(AttackMinCooldownSeconds, AttackMaxCooldownSeconds);
-            if ((DateTime.Now - _lastAttack).TotalSeconds > attackCooldownSeconds)
+            if (_director.CurrentSectionType == SongSectionType.Battle &&
+                (DateTime.Now - _lastAttack).TotalSeconds > attackCooldownSeconds)
             {
                 Attack();
 
@@ -298,8 +322,6 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void Attack()
         {
-            transform.LookAt(HeroPositionOnSurface);
-
             _animator.SetTrigger(AttackParameter);
             attackEffect.Play();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Kugushev.Scripts.Presentation.PoC.Music;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -16,6 +17,7 @@ namespace Kugushev.Scripts.Presentation.PoC
         [SerializeField] private float maxRandomTimeoutSeconds;
 
         [Inject] private ZombieView.Factory _zombieViewFactory;
+        [Inject] private GameDirector _director;
 
         private ZombieView _currentZombie;
 
@@ -28,12 +30,15 @@ namespace Kugushev.Scripts.Presentation.PoC
         {
             var started = DateTime.Now;
 
-            yield return new WaitForSeconds(GetTimeout(started));
             while (true)
             {
-                if (_currentZombie is null)
+                bool isSuitableSection = _director.CurrentSectionType == SongSectionType.Battle ||
+                                         _director.CurrentSectionType == SongSectionType.Menace;
+
+                if (isSuitableSection && _currentZombie is null)
                     _zombieViewFactory.Create(transform.position, this);
 
+                // yield return new WaitForSeconds(Random.Range(0, 10));
                 yield return new WaitForSeconds(GetTimeout(started));
             }
         }
@@ -88,7 +93,7 @@ namespace Kugushev.Scripts.Presentation.PoC
                 throw new Exception("Zombie is already set");
         }
 
-        private void Release(ZombieView zombieView)
+        public void Release(ZombieView zombieView)
         {
             if (_currentZombie != zombieView)
                 throw new Exception("Unexpected zombie");

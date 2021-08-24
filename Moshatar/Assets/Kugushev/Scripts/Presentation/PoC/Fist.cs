@@ -1,6 +1,8 @@
+using Kugushev.Scripts.Presentation.PoC.Music;
 using UniRx;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Presentation.PoC
@@ -16,6 +18,8 @@ namespace Kugushev.Scripts.Presentation.PoC
         [SerializeField] private Material filledDurability;
         [SerializeField] private Material fullDurability;
         [SerializeField] private Weapon weapon;
+
+        [Inject] private GameDirector _director;
 
         private SphereCollider _collider;
         private XRController _xrController;
@@ -35,10 +39,10 @@ namespace Kugushev.Scripts.Presentation.PoC
             }
             else
             {
-                if (!isHardHit)
-                    weapon.WeaponDurability.Value += Random.Range(0, 1f);
-                else
-                    weapon.WeaponDurability.Value += 5f;
+                // if (!isHardHit)
+                //     weapon.WeaponDurability.Value += Random.Range(0, 1f);
+                // else
+                //     weapon.WeaponDurability.Value += 5f;
             }
 
             return isHardHit ? FistHardDamage : FistDamage;
@@ -72,23 +76,28 @@ namespace Kugushev.Scripts.Presentation.PoC
                 fullDurability
             };
 
-            weapon.WeaponDurability.Subscribe(WeaponDurabilityChanged).AddTo(this);
+            // weapon.WeaponDurability.Subscribe(WeaponDurabilityChanged).AddTo(this);
         }
 
         protected void Update()
         {
-            var inputDevice = _xrController.inputDevice;
-            if (inputDevice.IsPressed(InputHelpers.Button.Grip, out var isPressed) && isPressed &&
-                weapon.WeaponDurability.Value >= 1f)
-            {
-                weapon.gameObject.SetActive(true);
-                _collider.enabled = false;
-            }
-            else
-            {
-                weapon.gameObject.SetActive(false);
-                _collider.enabled = true;
-            }
+            weapon.gameObject.SetActive(_director.IsBit);
+
+            if (_director.IsBit) 
+                _xrController.SendHapticImpulse(1f, Time.deltaTime);
+
+            // var inputDevice = _xrController.inputDevice;
+            // if (inputDevice.IsPressed(InputHelpers.Button.Grip, out var isPressed) && isPressed &&
+            //     weapon.WeaponDurability.Value >= 1f)
+            // {
+            //     weapon.gameObject.SetActive(true);
+            //     _collider.enabled = false;
+            // }
+            // else
+            // {
+            //     weapon.gameObject.SetActive(false);
+            //     _collider.enabled = true;
+            // }
         }
         
         private void WeaponDurabilityChanged(float durability)
