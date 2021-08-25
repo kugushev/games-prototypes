@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 1124006972}
-  prefab: {fileID: 3673959818603350111, guid: ae2dcbad8fad30940a1fc76c1e76c167, type: 3}
+  prefab: {fileID: 1349150361055734, guid: dca8e056b77d49c4aafe4dbcc2bab713, type: 3}
   units: {fileID: 1911281432}
 --- !u!20 &45306095 stripped
 Camera:

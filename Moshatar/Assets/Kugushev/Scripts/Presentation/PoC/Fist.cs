@@ -81,7 +81,7 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         protected void Update()
         {
-            weapon.gameObject.SetActive(_director.IsBit);
+            // weapon.gameObject.SetActive(_director.IsBit);
 
             if (_director.IsBit) 
                 _xrController.SendHapticImpulse(1f, Time.deltaTime);

@@ -2447,6 +2447,7 @@ MonoBehaviour:
   healthBar: {fileID: 9184662410943959998}
   projectingPosition: {fileID: 8177070745896225680}
   selectedForChargeMarker: {fileID: 2534029405550872280}
+  coinPrefab: {fileID: 1801589195069933211, guid: 9022e97b8c6dbb742b03f5ba7ee8b2b8, type: 3}
   hitRecorders:
   - {fileID: 1568225606224721736}
   - {fileID: 3423612538018346282}

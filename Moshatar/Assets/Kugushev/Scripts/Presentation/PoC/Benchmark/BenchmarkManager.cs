@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using Kugushev.Scripts.Common.Utils;
 using TMPro;
 using Unity.XR.Oculus;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Presentation.PoC.Benchmark
 {
@@ -25,22 +27,17 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
             if (rates.Length > 0)
             {
                 var result = Performance.TrySetDisplayRefreshRate(rates.Max());
-                if (!result) 
+                if (!result)
                     units.color = Color.red;
             }
             else
                 units.color = Color.magenta;
 
 
-            spawn.onClick.AddListener(SpawnNext);
+            spawn.onClick.AddListener(() => StartCoroutine(SpawnNext()));
         }
 
-        private void OnDestroy()
-        {
-            spawn.onClick.RemoveListener(SpawnNext);
-        }
-
-        private void SpawnNext()
+        private IEnumerator SpawnNext()
         {
             const int spawningUnits = 16;
             const float unitSize = 2f;
@@ -51,10 +48,17 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
                 _currentSpawn.z + unitSize
             );
 
+            int big = Random.Range(0, spawningUnits * 2);
             for (int i = 0; i < spawningUnits; i++)
             {
-                Instantiate(prefab, spawnPoint, Quaternion.Euler(0, 180, 0));
+                var go = Instantiate(prefab, spawnPoint, Quaternion.Euler(0, 180, 0));
+                if (i != big)
+                    go.transform.localScale = new Vector3(0.25f, 0.25f, 0.35f);
+                else
+                    go.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
                 spawnPoint.x += unitSize;
+                yield return null;
             }
 
             _currentSpawn = spawnPoint;

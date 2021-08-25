@@ -35,6 +35,7 @@ namespace Kugushev.Scripts.Presentation.PoC
         [SerializeField] private SimpleHealthBar healthBar;
         [SerializeField] private Transform projectingPosition;
         [SerializeField] private GameObject selectedForChargeMarker;
+        [SerializeField] private GameObject coinPrefab;
         [SerializeField] private HitRecorder[] hitRecorders;
 
         [Inject] private Hero _hero;
@@ -54,6 +55,7 @@ namespace Kugushev.Scripts.Presentation.PoC
         private readonly List<Weapon> _weaponsBuffer = new List<Weapon>(1);
         private Animator _animator;
         private Rigidbody _rigidbody;
+        private bool _dead;
 
         // todo: ugly hack, make something reusable
         private bool _isBleeding;
@@ -228,7 +230,16 @@ namespace Kugushev.Scripts.Presentation.PoC
             _popupTextFactory.Create(StringBag.FromInt(damage), hitPoint);
 
             if (_hitPoints.Value <= 0)
+            {
                 Die(damage);
+                if (_director.IsBit)
+                {
+                    // todo: spawn coin
+                    var pos = transform.position;
+                    pos.y = 1.3f;
+                    Instantiate(coinPrefab, pos, Quaternion.Euler(-90, 0, 0));
+                }
+            }
         }
 
         void IPoolable<Vector3, ZombiesSpawner, IMemoryPool>.OnSpawned(Vector3 p1, ZombiesSpawner p2, IMemoryPool p3)
@@ -254,6 +265,7 @@ namespace Kugushev.Scripts.Presentation.PoC
             _lastAttack = DateTime.Now;
 
             riseEffect.Play();
+            _dead = false;
         }
 
 
@@ -269,6 +281,8 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void Die(int damage)
         {
+            _dead = true;
+            
             _deathTime = DateTime.Now;
 
             var force = (transform.position - Vector3.zero).normalized;
@@ -281,6 +295,9 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void Update()
         {
+            if (_dead)
+                return;
+
             transform.LookAt(HeroPositionOnSurface);
 
             if (_pursuing.Value)

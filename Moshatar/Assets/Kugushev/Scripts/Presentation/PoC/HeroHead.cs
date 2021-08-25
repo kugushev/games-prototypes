@@ -9,9 +9,9 @@ namespace Kugushev.Scripts.Presentation.PoC
     public class HeroHead : MonoBehaviour
     {
         private const float ChargeVelocity = 0.05f;
-        private const float ChargingSwing = 0.05f;
+        private const float ChargingSwing = 0.1f;
         private const float ChargeDistance = 8f;
-        private const float ChargeCooldownSeconds = 2f;
+        private const float ChargeCooldownSeconds = 1f;
 
         [SerializeField] private XRController rightController;
         [SerializeField] private TeleportationProvider teleportationProvider;
