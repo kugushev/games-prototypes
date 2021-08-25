@@ -27,6 +27,7 @@ namespace Kugushev.Scripts.Presentation
 
             Container.Bind<GameDirector>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChargeManager>().AsSingle();
+            Container.Bind<HeroInventory>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

@@ -88,6 +88,9 @@ namespace Kugushev.Scripts.Presentation.PoC
 
         private void OnTriggerEnter(Collider other)
         {
+            if (_dead)
+                return;
+
             var hitPosition = other.transform.position;
 
             int damage;
@@ -282,7 +285,7 @@ namespace Kugushev.Scripts.Presentation.PoC
         private void Die(int damage)
         {
             _dead = true;
-            
+
             _deathTime = DateTime.Now;
 
             var force = (transform.position - Vector3.zero).normalized;

@@ -9,6 +9,7 @@ TagManager:
   - RightFist
   - Hero
   - EnemyProjectile
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - DeathDoor
   - Hero
   - EnemyProjectile
-  - 
+  - Collectables
   - 
   - 
   - 

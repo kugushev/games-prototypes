@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Zenject;
 
 
 namespace Kugushev.Scripts.Presentation.PoC
@@ -12,6 +14,8 @@ namespace Kugushev.Scripts.Presentation.PoC
         public const float MaxDurability = 10f;
         public const int WeaponDamage = 10;
         public const int WeaponCrit = 50;
+
+        [Inject] private HeroInventory _heroInventory;
         
         private XRController _xrController;
         private Vector3 _position;
@@ -73,6 +77,16 @@ namespace Kugushev.Scripts.Presentation.PoC
             var nextPosition = transform.position;
             Velocity = (nextPosition - _position).magnitude;
             _position = nextPosition;
+        }
+
+        protected void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Coin"))
+            {
+                _heroInventory.Gold.Value += 1;
+                // todo: add coin pooling
+                Destroy(other.gameObject);
+            }
         }
     }
 }
