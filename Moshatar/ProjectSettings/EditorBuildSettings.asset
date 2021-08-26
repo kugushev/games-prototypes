@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Kugushev/Scenes/MainMenu.unity
+    guid: c800f4ad4b937be4db918dc2da312bc5
+  - enabled: 1
     path: Assets/Kugushev/Scenes/FightScene.unity
     guid: e2cfe05e7e2a4ab4a9c18b5560a3ee3b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Kugushev/Scenes/BenchmarkScene.unity
     guid: f9db909bc52147448826ca8279f53c27
   m_configObjects:

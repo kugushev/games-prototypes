@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Kugushev.Scripts.Core.Models;
+using Kugushev.Scripts.Core.Services;
+using Kugushev.Scripts.Presentation.PoC.Fight;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using Zenject;
 
 namespace Kugushev.Scripts.Presentation.PoC.Music
 {
@@ -12,6 +16,10 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private SongConfiguration songConfiguration;
         [SerializeField] private Light mainLight;
+        [SerializeField] private HeroStats heroStats;
+
+        [Inject] private Score _score;
+        [Inject] private GameModeService _gameModeService;
 
         public SongSectionType CurrentSectionType { get; private set; }
         public bool IsBit { get; private set; }
@@ -26,6 +34,13 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
 
         private void Update()
         {
+            if (!audioSource.isPlaying || heroStats.HP.Value < 0)
+            {
+                _score.Register(heroStats.Gold.Value);
+                _gameModeService.BackToMenu();
+                return;
+            }
+
             SongSection section = null;
             foreach (var s in songConfiguration.Sections)
             {
@@ -59,7 +74,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
         {
             var mod = audioSource.time % section.Pace;
             IsBit = mod < BitDelta;
-            mainLight.enabled = IsBit;
+            mainLight.color = IsBit ? Color.white : Color.gray;
         }
     }
 }

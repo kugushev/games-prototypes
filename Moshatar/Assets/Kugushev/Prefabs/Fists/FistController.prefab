@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7403654349751309500}
   - component: {fileID: 1039443329700254941}
   - component: {fileID: 2756872222371618269}
-  - component: {fileID: 309637266670574920}
+  - component: {fileID: 1873622078743403490}
   - component: {fileID: 2331454835445592356}
   - component: {fileID: 8706718469267787977}
   m_Layer: 6
@@ -64,7 +64,7 @@ MonoBehaviour:
   filledDurability: {fileID: 0}
   fullDurability: {fileID: 0}
   weapon: {fileID: 0}
---- !u!114 &309637266670574920
+--- !u!114 &1873622078743403490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

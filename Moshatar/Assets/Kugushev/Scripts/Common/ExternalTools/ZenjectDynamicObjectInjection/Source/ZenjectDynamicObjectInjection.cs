@@ -175,6 +175,7 @@ namespace Zenject
             }
 
             // Now we can inject dependencies.
+            //ZenjectLocator.ProjectContext.Container.InjectGameObject(gameObject);
             _context.Container.InjectGameObject(gameObject);
         }
 

@@ -43,6 +43,8 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Core\CoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\EcsRoot.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Services\GameModeService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Models\Score.cs" />
      <None Include="Assets\Kugushev\Scripts\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

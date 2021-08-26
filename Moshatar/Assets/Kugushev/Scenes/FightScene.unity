@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1733874, g: 0.2167395, b: 0.29880914, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -777,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FpsCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 7883173967132423398, guid: 71b95f781f6653c419367a50aa028af3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7883173967132423449, guid: 71b95f781f6653c419367a50aa028af3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -820,6 +824,14 @@ PrefabInstance:
     - target: {fileID: 7883173967132423449, guid: 71b95f781f6653c419367a50aa028af3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 42.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883173967362158901, guid: 71b95f781f6653c419367a50aa028af3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883173967399003124, guid: 71b95f781f6653c419367a50aa028af3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71b95f781f6653c419367a50aa028af3, type: 3}
@@ -1468,6 +1480,7 @@ MonoBehaviour:
   audioSource: {fileID: 1743222870}
   songConfiguration: {fileID: 11400000, guid: 40a7011277b88884e8dc716fa3ad77be, type: 2}
   mainLight: {fileID: 1400848520}
+  heroStats: {fileID: 1113694878}
 --- !u!114 &1113694878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,7 +1687,7 @@ GameObject:
   - component: {fileID: 1400848519}
   - component: {fileID: 1400848520}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Effect Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1701,11 +1714,11 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400848518}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1970,7 +1983,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1572364708}
   - component: {fileID: 1572364709}
-  - component: {fileID: 1572364711}
   - component: {fileID: 1572364710}
   m_Layer: 0
   m_Name: '- SceneContext'
@@ -2007,7 +2019,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1572364711}
   - {fileID: 1572364710}
   _installerPrefabs: []
   _autoRun: 1
@@ -2035,19 +2046,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1572364707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccd44fc1c4b04744b5c3afd3ad929ec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1572364711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572364707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97bf8564b404612bb186b0d4655c1a5, type: 3}
+  m_Script: {fileID: 11500000, guid: c8d44b9f779f4d35ac606735f8dd1c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1632885317 stripped

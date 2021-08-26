@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Linq;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Core.Services;
 using TMPro;
 using Unity.XR.Oculus;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Presentation.PoC.Benchmark
@@ -15,6 +17,10 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
         [SerializeField] private Button spawn;
         [SerializeField] private GameObject prefab;
         [SerializeField] private TextMeshProUGUI units;
+        [SerializeField] private Button back;
+        [SerializeField] private float scale = 1f;
+        
+        [Inject] private GameModeService _gameModeService;
 
         private Vector3 _currentSpawn = Vector3.zero;
         private int _count = 0;
@@ -35,6 +41,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
 
 
             spawn.onClick.AddListener(() => StartCoroutine(SpawnNext()));
+            back.onClick.AddListener(() => _gameModeService.BackToMenu());
         }
 
         private IEnumerator SpawnNext()
@@ -53,9 +60,9 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
             {
                 var go = Instantiate(prefab, spawnPoint, Quaternion.Euler(0, 180, 0));
                 if (i != big)
-                    go.transform.localScale = new Vector3(0.25f, 0.25f, 0.35f);
+                    go.transform.localScale = new Vector3(scale, scale, scale);
                 else
-                    go.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    go.transform.localScale = new Vector3(scale * 2, scale * 2, scale * 2);
 
                 spawnPoint.x += unitSize;
                 yield return null;
