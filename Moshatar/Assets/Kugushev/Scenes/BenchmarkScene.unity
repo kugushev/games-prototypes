@@ -426,10 +426,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 1124006972}
-  prefab: {fileID: 1349150361055734, guid: dca8e056b77d49c4aafe4dbcc2bab713, type: 3}
+  prefab: {fileID: 6720837893899939400, guid: bb8dffb9a9ec57f44b4bbebe1af6eeb3, type: 3}
   units: {fileID: 1911281432}
   back: {fileID: 1401558001}
-  scale: 0.25
+  scale: 1
 --- !u!1 &704130848
 GameObject:
   m_ObjectHideFlags: 0
