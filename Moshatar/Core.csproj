@@ -45,6 +45,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Core\EcsRoot.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Models\Score.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Core\Services\GameModeService.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Core\Services\GameConfigurationService.cs" />
      <None Include="Assets\Kugushev\Scripts\Core\Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -678,6 +679,9 @@
      </Reference>
      <Reference Include="Leopotam.Ecs.UnityIntegration">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Leopotam.Ecs.UnityIntegration.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.XR.Oculus">
+     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.XR.Oculus.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

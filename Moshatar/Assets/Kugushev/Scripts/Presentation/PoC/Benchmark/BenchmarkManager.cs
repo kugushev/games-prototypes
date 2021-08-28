@@ -47,7 +47,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
         private IEnumerator SpawnNext()
         {
             const int spawningUnits = 16;
-            const float unitSize = 2f;
+            const float unitSize = 0.5f;
 
             var spawnPoint = new Vector3(
                 -1 * (spawningUnits / 2) * unitSize,

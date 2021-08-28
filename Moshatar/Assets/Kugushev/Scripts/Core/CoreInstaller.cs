@@ -11,6 +11,7 @@ namespace Kugushev.Scripts.Core
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<GameConfigurationService>().AsSingle();
             Container.Bind<GameModeService>().AsSingle();
             Container.Bind<Score>().AsSingle();
         }
