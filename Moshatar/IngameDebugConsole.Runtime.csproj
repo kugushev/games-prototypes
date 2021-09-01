@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1d24352e-9c81-43f0-a560-589cc286d2ab}</ProjectGuid>
+    <ProjectGuid>{d6a285a8-3ef7-544e-ec5e-89afebc56d7e}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Presentation</AssemblyName>
+    <AssemblyName>IngameDebugConsole.Runtime</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -41,47 +41,24 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\HandMoveConvolution.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HeroHead.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Views\MainMenuView.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongConfiguration.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\UniRxHelpers.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongSection.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\Hero.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HitRecorder.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\DamageEffect.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Benchmark\BenchmarkManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\PopupTextFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\AttackDirection.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\FireOrbController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HitsManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\PopupText.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\GameDirector.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ChargeManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\FightInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\Fist.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\Combo.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombiesSpawner.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieView.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\HandMoveInfo.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\FPSCounter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongSectionType.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HeroStats.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongDebugger.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\Weapon.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\DuelInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\DuelSceneView.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\VelocityMeasured.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PresentationInstaller.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieViewFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieProjectileFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieProjectile.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\GameManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\HeroHeadController.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Common\Projectile.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Common\ProjectilePrefabFactory.cs" />
-     <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\ConsoleMethodAttribute.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\CircularBuffer.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogResizeListener.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogConsole.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogRecycledListView.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Android\DebugLogLogcatListener.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogPopup.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogEntry.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogItemCopyWebGL.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugsOnScrollListener.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogIndexList.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\Commands\SceneCommands.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\Commands\TimeCommands.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogItem.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\Commands\PlayerPrefsCommands.cs" />
+     <Compile Include="Assets\Plugins\IngameDebugConsole\Scripts\DebugLogManager.cs" />
+     <None Include="Assets\Plugins\IngameDebugConsole\IngameDebugConsole.Runtime.asmdef" />
+     <None Include="Assets\Plugins\IngameDebugConsole\README.txt" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
@@ -691,44 +668,8 @@
      <Reference Include="System.Xml.Serialization">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Zenject.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.XR.Interaction.Toolkit">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.InputSystem">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
-     </Reference>
-     <Reference Include="UniRx">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniRx.dll</HintPath>
-     </Reference>
-     <Reference Include="UniTask">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniTask.dll</HintPath>
-     </Reference>
-     <Reference Include="UniTask.Linq">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniTask.Linq.dll</HintPath>
-     </Reference>
-     <Reference Include="UniTask.DOTween">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UniTask.DOTween.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTween.Modules">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/DOTween.Modules.dll</HintPath>
-     </Reference>
-     <Reference Include="Leopotam.Ecs">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Leopotam.Ecs.dll</HintPath>
-     </Reference>
-     <Reference Include="Leopotam.Ecs.Ui">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Leopotam.Ecs.Ui.dll</HintPath>
-     </Reference>
-     <Reference Include="Leopotam.Ecs.UnityIntegration">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Leopotam.Ecs.UnityIntegration.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.TextMeshPro">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.XR.Oculus">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.XR.Oculus.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -738,18 +679,6 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="SimpleHealthBar.csproj">
-      <Project>{6d0f39f1-f9ec-f934-99b8-d45a4fde29fb}</Project>
-      <Name>SimpleHealthBar</Name>
-    </ProjectReference>
-    <ProjectReference Include="Common.csproj">
-      <Project>{2c2dffbe-ea4b-4958-643a-601e32cbdee2}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="Core.csproj">
-      <Project>{b5f7d4f2-6e92-a85b-f5c2-2a6621ece731}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

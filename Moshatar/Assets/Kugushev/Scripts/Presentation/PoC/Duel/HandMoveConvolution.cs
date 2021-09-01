@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Kugushev.Scripts.Presentation.PoC.Duel
@@ -9,7 +10,6 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         public delegate void OnMoveFinished(HandMoveInfo startInfo, HandMoveInfo finishInfo);
 
         private XRController _xrController;
-        private Transform _headTransform;
         private Vector3 _position;
         private bool _triggerPressed;
         private HandMoveInfo _triggerPressedInfo;
@@ -27,12 +27,21 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
                 Debug.LogError("Can't find controller");
                 return;
             }
-
-            _headTransform = (Camera.main ?? Camera.current).transform;
         }
 
         private void Update()
         {
+#if UNITY_EDITOR
+            var keyboard = Keyboard.current;
+            if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
+            {
+                if (_triggerPressed)
+                    OnTriggerReleased();
+                else
+                    OnTriggerPressed();
+            }
+
+#else
             var inputDevice = _xrController.inputDevice;
             if (inputDevice.IsPressed(InputHelpers.Button.Trigger, out var isPressed) && isPressed)
             {
@@ -44,6 +53,8 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
                 if (_triggerPressed)
                     OnTriggerReleased();
             }
+
+#endif
         }
 
 
@@ -66,7 +77,9 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         protected void FixedUpdate()
         {
             var nextPosition = transform.position;
-            Velocity = (nextPosition - _position).magnitude;
+            var newVelocity = (nextPosition - _position).magnitude;
+            if (newVelocity > 0f) 
+                Velocity = newVelocity;
             _position = nextPosition;
         }
     }

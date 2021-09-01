@@ -46,6 +46,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Fight
         {
             var delta = to - from;
             delta *= multiplier;
+            delta *= multiplier;
             return from + delta;
         }
 
