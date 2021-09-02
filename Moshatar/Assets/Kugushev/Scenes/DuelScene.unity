@@ -568,6 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 693084597}
+  - component: {fileID: 693084598}
   m_Layer: 0
   m_Name: -- Root
   m_TagString: Untagged
@@ -597,6 +598,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &693084598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693084596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037d606a208746ab9f9719fca6fb3bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 1199870055}
+  prefab: {fileID: 5764209459038717341, guid: 7aac305ab2b0e4049bf12c2d74c9a57f, type: 3}
+  units: {fileID: 173625787}
+  back: {fileID: 1124006972}
+  scale: 0.25
+  unitSize: 2
 --- !u!1 &746427777
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +661,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1570,7 +1589,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1720159870}
   - component: {fileID: 1720159871}
-  - component: {fileID: 1720159872}
   m_Layer: 0
   m_Name: '- IO/UI'
   m_TagString: Untagged
@@ -1607,24 +1625,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 1124006972}
---- !u!114 &1720159872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720159869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037d606a208746ab9f9719fca6fb3bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn: {fileID: 1199870055}
-  prefab: {fileID: 1349150361055734, guid: dca8e056b77d49c4aafe4dbcc2bab713, type: 3}
-  units: {fileID: 173625787}
-  back: {fileID: 1124006972}
-  scale: 0.25
-  unitSize: 2
 --- !u!1001 &1819457678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1776,7 +1776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1955237497
 Transform:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 {
     public class FireOrbController : MonoBehaviour
     {
+        private const float MinVelocity = 0.06f;
         private const float ProjectileSpeed = 10f;
 
         [SerializeField] private HandMoveConvolution handMoveConvolution;
@@ -64,9 +65,11 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
                 // var deltaDistance = actualVector.magnitude;
                 //
                 // var avgHandSpeed = deltaDistance / deltaTime;
-                print(handMoveConvolution.Velocity);
 
+                // if (handMoveConvolution.Velocity > MinVelocity)
                 _playerProjectile.Create(finishinfo.Position, actualVector, ProjectileSpeed);
+                // else
+                //     print($"No enough velocity: {handMoveConvolution.Velocity}");
             }
         }
     }
