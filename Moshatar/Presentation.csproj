@@ -48,6 +48,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\UniRxHelpers.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongSection.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\Hero.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\SkeletonBodyPart.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HitRecorder.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\DamageEffect.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Benchmark\BenchmarkManager.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HeroStats.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongDebugger.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\Weapon.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\Skeleton.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\DuelInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\DuelSceneView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\VelocityMeasured.cs" />
@@ -81,8 +83,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieProjectileFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieProjectile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\GameManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\SkeletonBodyPart.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\Skeleton.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -74,6 +74,9 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
         {
             var mod = audioSource.time % section.Pace;
             IsBit = mod < BitDelta;
+            
+            if (mainLight is null)
+                return;
             mainLight.color = IsBit ? Color.white : Color.gray;
         }
     }

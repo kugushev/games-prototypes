@@ -848,7 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 1118512218}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 3
   m_EnableStrafe: 1
   m_UseGravity: 1
   m_GravityApplicationMode: 0
@@ -1694,6 +1694,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997735074}
     m_Modifications:
+    - target: {fileID: 1773789686562221628, guid: 9946497c1b16b394ca46f7308ed79745, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3814144271866130366, guid: 9946497c1b16b394ca46f7308ed79745, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1805,7 +1809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 746427779}
   songConfiguration: {fileID: 11400000, guid: 40a7011277b88884e8dc716fa3ad77be, type: 2}
-  mainLight: {fileID: 1400848520}
+  mainLight: {fileID: 0}
   heroStats: {fileID: 1955237499}
 --- !u!114 &1955237499
 MonoBehaviour:
