@@ -17,6 +17,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
         [SerializeField] private SongConfiguration songConfiguration;
         [SerializeField] private Light mainLight;
         [SerializeField] private HeroStats heroStats;
+        [SerializeField] private bool soundEffect = true;
 
         [Inject] private Score _score;
         [Inject] private GameModeService _gameModeService;
@@ -74,10 +75,8 @@ namespace Kugushev.Scripts.Presentation.PoC.Music
         {
             var mod = audioSource.time % section.Pace;
             IsBit = mod < BitDelta;
-            
-            if (mainLight is null)
-                return;
-            mainLight.color = IsBit ? Color.white : Color.gray;
+            if (soundEffect)
+                mainLight.color = IsBit ? Color.white : Color.gray;
         }
     }
 }

@@ -53,9 +53,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\DamageEffect.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Benchmark\BenchmarkManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Common\Projectile.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\BigProjectile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\AnimatorParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\PopupTextFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\AttackDirection.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\SmallProjectilePrefabFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\FireOrbController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HitsManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\PopupText.cs" />
@@ -68,7 +70,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\HandMoveInfo.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\FPSCounter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Common\ProjectilePrefabFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\BigProjectilePrefabFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongSectionType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HeroStats.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongDebugger.cs" />
@@ -81,8 +83,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\HeroHeadController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieViewFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieProjectileFactory.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\SmallProjectile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieProjectile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\GameManager.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\FireHeart.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

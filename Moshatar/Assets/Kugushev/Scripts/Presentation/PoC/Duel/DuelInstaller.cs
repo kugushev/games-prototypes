@@ -10,9 +10,17 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         {
             Container.Bind<HeroHeadController>().FromComponentInHierarchy().AsSingle();
 
-            Container.BindFactory<Vector3, Vector3, float, Projectile, Projectile.Factory>()
+            Container.BindFactory<Vector3, Vector3, float, BigProjectile, BigProjectile.Factory>()
                 .FromMonoPoolableMemoryPool(x =>
-                    x.FromIFactory(f => f.To<ProjectilePrefabFactory>().FromComponentInHierarchy().AsSingle()));
+                    x.FromIFactory(f =>
+                        f.To<BigProjectilePrefabFactory>().FromComponentInHierarchy().AsSingle()));
+
+            Container.BindFactory<Vector3, Vector3, float, SmallProjectile, SmallProjectile.Factory>()
+                .FromMonoPoolableMemoryPool(x =>
+                    x.FromIFactory(f =>
+                        f.To<SmallProjectilePrefabFactory>().FromComponentInHierarchy().AsSingle()));
+
+            Container.Bind<FireHeart>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

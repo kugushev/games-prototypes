@@ -10,6 +10,8 @@ TagManager:
   - Hero
   - EnemyProjectile
   - Coin
+  - BigProjectile
+  - SmallProjectile
   layers:
   - Default
   - TransparentFX

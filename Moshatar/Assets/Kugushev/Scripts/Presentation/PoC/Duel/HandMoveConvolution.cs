@@ -18,6 +18,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 
         public event Action<HandMoveInfo> MoveStart;
         public event OnMoveFinished MoveFinished;
+        public bool Moving => _triggerPressed;
 
         private void Awake()
         {
@@ -78,7 +79,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         {
             var nextPosition = transform.position;
             var newVelocity = (nextPosition - _position).magnitude;
-            if (newVelocity > 0f) 
+            if (newVelocity > 0f)
                 Velocity = newVelocity;
             _position = nextPosition;
         }

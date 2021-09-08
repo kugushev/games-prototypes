@@ -7,18 +7,23 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 {
     public class FireOrbController : MonoBehaviour
     {
-        private const float MinVelocity = 0.06f;
+        private const float MinVelocity = 0.03f;
+        private const float HardVelocity = 0.12f;
         private const float ProjectileSpeed = 10f;
 
         [SerializeField] private HandMoveConvolution handMoveConvolution;
         [SerializeField] private GameObject vfx;
-        [SerializeField] private AudioSource audioSource;
         [SerializeField] private ParticleSystem frontEffect;
+        [SerializeField] private ParticleSystem dragonBreathEffect;
+        [SerializeField] private AudioSource dragonBreathSound;
         [SerializeField] private AudioSource frontEffectSound;
-
-
+        
         [Inject] private HeroHeadController _heroHeadController;
-        [Inject] private Projectile.Factory _playerProjectile;
+        [Inject] private FireHeart _fireHeart;
+        [Inject] private BigProjectile.Factory _playerBigProjectile;
+        [Inject] private SmallProjectile.Factory _playerSmallProjectile;
+
+        private bool _touchingHead;
 
         private void Awake()
         {
@@ -32,77 +37,132 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             handMoveConvolution.MoveFinished -= HandMoveConvolutionOnMoveFinished;
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("MainCamera"))
+                _touchingHead = true;
+
+            if (handMoveConvolution.Moving && _touchingHead)
+                HandleDragonBreathOn();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("MainCamera"))
+            {
+                _touchingHead = false;
+                HandleDragonBreathOff();
+            }
+        }
+
+        private void Update()
+        {
+            if (dragonBreathEffect.isPlaying)
+            {
+                dragonBreathEffect.transform.rotation = _heroHeadController.Rotation;
+            }
+        }
+
         private void HandMoveConvolutionOnMoveStart(HandMoveInfo startInfo)
         {
+            if (_touchingHead)
+                HandleDragonBreathOn();
+
             vfx.SetActive(true);
-            audioSource.Play();
         }
 
-        private void HandMoveConvolutionOnMoveFinished(HandMoveInfo startinfo, HandMoveInfo finishinfo)
+        private void HandMoveConvolutionOnMoveFinished(HandMoveInfo startInfo, HandMoveInfo finishInfo)
         {
+            HandleDragonBreathOff();
+
             vfx.SetActive(false);
-            audioSource.Stop();
 
-            Recognize(startinfo, finishinfo);
+            Recognize(startInfo, finishInfo);
         }
 
-        private void Recognize(HandMoveInfo startinfo, HandMoveInfo finishinfo)
+        private void Recognize(HandMoveInfo startInfo, HandMoveInfo finishInfo)
         {
-            // var headPosition = _heroHeadController.Position;
+            var actualVector = finishInfo.Position - startInfo.Position;
 
-            // var expectedStartPoint = new Vector3(headPosition.x, startinfo.Position.y, headPosition.z);
-
-            // var expectedVector = finishinfo.Position - expectedStartPoint;
-            var actualVector = finishinfo.Position - startinfo.Position;
-
-            // Debug.DrawLine(expectedStartPoint, finishinfo.Position, Color.green, 15f);
-            // Debug.DrawLine(startinfo.Position, finishinfo.Position, Color.red, 15f);
-
-            if (handMoveConvolution.Velocity > MinVelocity)
-                _playerProjectile.Create(finishinfo.Position, actualVector, ProjectileSpeed);
+            const int burningRateIncrease = 1;
+            if (handMoveConvolution.Velocity > HardVelocity)
+            {
+                _playerBigProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
+                _fireHeart.BurningRate.Value += burningRateIncrease;
+            }
+            else if (handMoveConvolution.Velocity > MinVelocity)
+            {
+                _playerSmallProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
+                _fireHeart.BurningRate.Value += burningRateIncrease;
+            }
             else
-                print($"No enough velocity: {handMoveConvolution.Velocity}");
-            
-            // var cos = Vector3.Dot(expectedVector.normalized, actualVector.normalized);
+                print(handMoveConvolution.Velocity);
 
+            // var headPosition = _heroHeadController.Position;
+            //
+            // var expectedStartPoint = new Vector3(headPosition.x, startinfo.Position.y, headPosition.z);
+            //
+            // var expectedVector = finishinfo.Position - expectedStartPoint;
+            // var actualVector = finishinfo.Position - startinfo.Position;
+            //
+            // // Debug.DrawLine(expectedStartPoint, finishinfo.Position, Color.green, 15f);
+            // // Debug.DrawLine(startinfo.Position, finishinfo.Position, Color.red, 15f);
+            //
+            // // if (handMoveConvolution.Velocity > MinVelocity)
+            // //     _playerBigProjectile.Create(finishinfo.Position, actualVector, ProjectileSpeed);
+            // // else
+            // //     print($"No enough velocity: {handMoveConvolution.Velocity}");
+            //
+            // var cos = Vector3.Dot(expectedVector.normalized, actualVector.normalized);
+            //
             // const float cos45Deg = 0.7f;
-            // if (cos >= cos45Deg)
-            // {
-            //     // todo: add velocity check
-            //     // var deltaTime = Convert.ToSingle((finishinfo.Time - startinfo.Time).TotalMilliseconds);
-            //     // var deltaDistance = actualVector.magnitude;
-            //     //
-            //     // var avgHandSpeed = deltaDistance / deltaTime;
+            // // if (cos > 0)
+            // // {
+            // // var deltaTime = Convert.ToSingle((finishinfo.Time - startinfo.Time).TotalMilliseconds);
+            // // var deltaDistance = actualVector.magnitude;
+            // //
+            // // var avgHandSpeed = deltaDistance / deltaTime;
             //
-            //     if (handMoveConvolution.Velocity > MinVelocity)
-            //         _playerProjectile.Create(finishinfo.Position, actualVector, ProjectileSpeed);
-            //     else
-            //         print($"No enough velocity: {handMoveConvolution.Velocity}");
-            // }
-            // else
-            // {
-            //     //if (handMoveConvolution.Velocity > 0)
-            //     {
-            //         var spawnPoint = (finishinfo.Position + startinfo.Position) / 2;
             //
-            //         var expectedHeart = new Vector3(headPosition.x, headPosition.y * 0.8f, headPosition.z);
-            //         var direction = (spawnPoint - expectedHeart).normalized;
-            //         var euler = new Vector3(
-            //             Mathf.Acos(direction.x) * Mathf.Rad2Deg,
-            //             Mathf.Acos(direction.y) * Mathf.Rad2Deg - 90f,
-            //             Mathf.Acos(direction.z) * Mathf.Rad2Deg
-            //         );
-            //
-            //         frontEffect.Stop();
-            //         frontEffect.transform.position = spawnPoint;
-            //         frontEffect.transform.rotation = Quaternion.Euler(euler);
-            //         // frontEffect.transform.LookAt(finishinfo.Position + startinfo.Position);
-            //         frontEffect.Play();
-            //
-            //         frontEffectSound.Stop();
-            //         frontEffectSound.Play();
-            //     }
-            // }
+            // // }
+            // // else
+            // // {
+            // //     //if (handMoveConvolution.Velocity > MinVelocity)
+            // //     {
+            // //         var spawnPoint = (finishinfo.Position + startinfo.Position) / 2;
+            // //
+            // //         var expectedHeart = new Vector3(headPosition.x, headPosition.y * 0.8f, headPosition.z);
+            // //         var direction = (spawnPoint - expectedHeart).normalized;
+            // //         var euler = new Vector3(
+            // //             Mathf.Acos(direction.x) * Mathf.Rad2Deg,
+            // //             Mathf.Acos(direction.y) * Mathf.Rad2Deg - 90f,
+            // //             Mathf.Acos(direction.z) * Mathf.Rad2Deg
+            // //         );
+            // //
+            // //         frontEffect.Stop();
+            // //         frontEffect.transform.position = spawnPoint;
+            // //         frontEffect.transform.rotation = Quaternion.Euler(euler);
+            // //         // frontEffect.transform.LookAt(finishinfo.Position + startinfo.Position);
+            // //         frontEffect.Play();
+            // //
+            // //         frontEffectSound.Stop();
+            // //         frontEffectSound.Play();
+            // //     }
+            // //     // else
+            // //     //     print("No enough velocity");
+            // // }
+        }
+
+        private void HandleDragonBreathOn()
+        {
+            dragonBreathEffect.Play();
+            dragonBreathSound.Play();
+        }
+
+        private void HandleDragonBreathOff()
+        {
+            dragonBreathEffect.Stop();
+            dragonBreathSound.Stop();
         }
     }
 }
