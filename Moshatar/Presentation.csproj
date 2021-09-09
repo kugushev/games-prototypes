@@ -44,6 +44,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\HandMoveConvolution.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\HeroHead.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Views\MainMenuView.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\FireHeart.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongConfiguration.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\Common\UniRxHelpers.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Music\SongSection.cs" />
@@ -86,7 +87,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\SmallProjectile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\ZombieProjectile.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Fight\GameManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Presentation\PoC\Duel\FireHeart.cs" />
      <None Include="Assets\Kugushev\Scripts\Presentation\Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

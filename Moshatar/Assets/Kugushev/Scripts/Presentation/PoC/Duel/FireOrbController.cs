@@ -51,6 +51,8 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             if (other.CompareTag("MainCamera"))
             {
                 _touchingHead = false;
+                if (handMoveConvolution.Moving) 
+                    vfx.SetActive(true);
                 HandleDragonBreathOff();
             }
         }
@@ -155,6 +157,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 
         private void HandleDragonBreathOn()
         {
+            vfx.SetActive(false);
             dragonBreathEffect.Play();
             dragonBreathSound.Play();
         }
