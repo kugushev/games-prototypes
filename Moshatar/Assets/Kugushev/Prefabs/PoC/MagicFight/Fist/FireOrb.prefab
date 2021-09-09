@@ -67,6 +67,7 @@ MonoBehaviour:
   frontEffect: {fileID: 3971816333282115223}
   dragonBreathEffect: {fileID: 4442228104635085662}
   dragonBreathSound: {fileID: 6711197914165527476}
+  dragonBreathCollider: {fileID: 4948335731513549779}
   frontEffectSound: {fileID: 5126020121594759485}
 --- !u!114 &6450185791049708938
 MonoBehaviour:
@@ -109,6 +110,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4948335731513549779
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442228104654214696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 12}
+  m_Center: {x: 0, y: 0, z: 6}
 --- !u!82 &6711197914165527476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -570,6 +584,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 180925091811745514}
     m_Modifications:
     - target: {fileID: 135770, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 135770, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -578,12 +596,28 @@ PrefabInstance:
       value: YellowFlamethrower2
       objectReference: {fileID: 0}
     - target: {fileID: 138438, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 138438, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 138438, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
+      propertyPath: m_TagString
+      value: Dot
+      objectReference: {fileID: 0}
+    - target: {fileID: 152620, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 152620, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181332, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 181332, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: m_IsActive

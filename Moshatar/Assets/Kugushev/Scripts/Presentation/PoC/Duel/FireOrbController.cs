@@ -8,7 +8,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
     public class FireOrbController : MonoBehaviour
     {
         private const float MinVelocity = 0.03f;
-        private const float HardVelocity = 0.12f;
+        private const float HardVelocity = 0.1f;
         private const float ProjectileSpeed = 10f;
 
         [SerializeField] private HandMoveConvolution handMoveConvolution;
@@ -16,8 +16,9 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         [SerializeField] private ParticleSystem frontEffect;
         [SerializeField] private ParticleSystem dragonBreathEffect;
         [SerializeField] private AudioSource dragonBreathSound;
+        [SerializeField] private BoxCollider dragonBreathCollider;
         [SerializeField] private AudioSource frontEffectSound;
-        
+
         [Inject] private HeroHeadController _heroHeadController;
         [Inject] private FireHeart _fireHeart;
         [Inject] private BigProjectile.Factory _playerBigProjectile;
@@ -51,7 +52,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             if (other.CompareTag("MainCamera"))
             {
                 _touchingHead = false;
-                if (handMoveConvolution.Moving) 
+                if (handMoveConvolution.Moving)
                     vfx.SetActive(true);
                 HandleDragonBreathOff();
             }
@@ -160,12 +161,16 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             vfx.SetActive(false);
             dragonBreathEffect.Play();
             dragonBreathSound.Play();
+            dragonBreathCollider.enabled = true;
+            _fireHeart.Breathing = true;
         }
 
         private void HandleDragonBreathOff()
         {
             dragonBreathEffect.Stop();
             dragonBreathSound.Stop();
+            dragonBreathCollider.enabled = false;
+            _fireHeart.Breathing = false;
         }
     }
 }

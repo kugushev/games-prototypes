@@ -14,6 +14,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         [SerializeField] private AudioSource overheatingSound;
 
         public ReactiveProperty<int> BurningRate { get; } = new ReactiveProperty<int>(0);
+        public bool Breathing { get; set; }
 
         private void Awake()
         {
@@ -22,7 +23,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 
         private void Start()
         {
-            StartCoroutine(Cooling());
+            StartCoroutine(HeartControl());
         }
 
         private void BurningRateChanged(int value)
@@ -34,12 +35,12 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
                 overheatingSound.Stop();
         }
 
-        private IEnumerator Cooling()
+        private IEnumerator HeartControl()
         {
             while (true)
             {
                 if (BurningRate.Value > 0)
-                    BurningRate.Value -= 1;
+                    BurningRate.Value -= Breathing ? 3 : 1;
 
                 yield return _waitForColling;
             }
