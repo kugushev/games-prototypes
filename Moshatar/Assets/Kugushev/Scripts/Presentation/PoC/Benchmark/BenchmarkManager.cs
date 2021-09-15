@@ -20,7 +20,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
         [SerializeField] private Button back;
         [SerializeField] private float scale = 1f;
         [SerializeField] private float unitSize = 2f;
-        
+
         [Inject] private GameModeService _gameModeService;
 
         private Vector3 _currentSpawn = Vector3.zero;
@@ -47,7 +47,17 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
 
         private IEnumerator SpawnNext()
         {
-            const int spawningUnits = 16;
+            int spawningUnits = 1;
+            if (_count >= 2)
+                spawningUnits = 2;
+            if (_count >= 6)
+                spawningUnits = 4;
+            if (_count >= 18)
+                spawningUnits = 8;
+            if (_count >= 32)
+                spawningUnits = 8;
+            if (_count >= 48)
+                spawningUnits = 16;
 
             var spawnPoint = new Vector3(
                 -1 * (spawningUnits / 2) * unitSize,
@@ -59,7 +69,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
             for (int i = 0; i < spawningUnits; i++)
             {
                 var go = Instantiate(prefab, spawnPoint, Quaternion.Euler(0, 180, 0));
-                if (i != big)
+                if (i != big || _count < 10)
                     go.transform.localScale = new Vector3(scale, scale, scale);
                 else
                     go.transform.localScale = new Vector3(scale * 2, scale * 2, scale * 2);

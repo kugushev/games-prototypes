@@ -1,5 +1,6 @@
 ﻿using System;
 using Kugushev.Scripts.Presentation.PoC.Common;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -156,17 +157,34 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             // // }
         }
 
+        private IDisposable _dragonSubs;
+
         private void HandleDragonBreathOn()
         {
-            vfx.SetActive(false);
-            dragonBreathEffect.Play();
-            dragonBreathSound.Play();
-            dragonBreathCollider.enabled = true;
-            _fireHeart.Breathing = true;
+            if (_fireHeart.BurningRate.Value > 0)
+            {
+                _dragonSubs = _fireHeart.BurningRate.Subscribe(v =>
+                {
+                    if (v <= 0)
+                    {
+                        HandleDragonBreathOff();
+                        if (handMoveConvolution.Moving)
+                            vfx.SetActive(true);
+                    }
+                });
+                vfx.SetActive(false);
+                dragonBreathEffect.Play();
+                dragonBreathSound.Play();
+                dragonBreathCollider.enabled = true;
+                _fireHeart.Breathing = true;
+            }
         }
 
         private void HandleDragonBreathOff()
         {
+            _dragonSubs?.Dispose();
+            _dragonSubs = null;
+            
             dragonBreathEffect.Stop();
             dragonBreathSound.Stop();
             dragonBreathCollider.enabled = false;
