@@ -733,6 +733,12 @@
      <Reference Include="Unity.TextMeshPro">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Runtime">
+     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+     <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.XR.Oculus">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/ScriptAssemblies/Unity.XR.Oculus.dll</HintPath>
      </Reference>

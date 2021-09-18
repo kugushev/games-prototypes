@@ -66,9 +66,9 @@ MonoBehaviour:
   handMoveConvolution: {fileID: 180925091811745517}
   vfx: {fileID: 1338531280309006834}
   frontEffect: {fileID: 3971816333282115223}
-  dragonBreathEffect: {fileID: 6380123539629642915}
-  dragonBreathSound: {fileID: 3821118817201457702}
-  dragonBreathCollider: {fileID: 3950600456745963650}
+  dragonBreathEffect: {fileID: 4442228104635085662}
+  dragonBreathSound: {fileID: 6711197914165527476}
+  dragonBreathCollider: {fileID: 4948335731513549779}
   frontEffectSound: {fileID: 5126020121594759485}
 --- !u!114 &6450185791049708938
 MonoBehaviour:
@@ -711,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138438, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 138438, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: m_TagString
@@ -945,6 +945,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 459038, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
   m_PrefabInstance: {fileID: 4442228104654080750}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &4442228104635085662 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19806640, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
+  m_PrefabInstance: {fileID: 4442228104654080750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6500294569039735763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -963,6 +968,10 @@ PrefabInstance:
     - target: {fileID: 1000011671376998, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011671376998, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011671376998, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
       propertyPath: m_TagString
@@ -1062,10 +1071,5 @@ GameObject:
 --- !u!4 &6501960383518167467 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012166036088, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
-  m_PrefabInstance: {fileID: 6500294569039735763}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6380123539629642915 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198000011545952112, guid: 28fbc97a4e7e92144af43a4bd05be737, type: 3}
   m_PrefabInstance: {fileID: 6500294569039735763}
   m_PrefabAsset: {fileID: 0}

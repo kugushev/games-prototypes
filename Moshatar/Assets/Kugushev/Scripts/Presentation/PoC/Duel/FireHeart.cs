@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Rendering;
+using Zenject;
 
 namespace Kugushev.Scripts.Presentation.PoC.Duel
 {
@@ -13,7 +15,9 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         [SerializeField] private AudioSource burningSound;
         [SerializeField] private AudioSource overheatingSound;
 
-        public ReactiveProperty<int> BurningRate { get; } = new ReactiveProperty<int>(0);
+        [Inject] private HeroHeadController _heroHeadController;
+
+        public ReactiveProperty<int> BurningRate { get; } = new ReactiveProperty<int>(100);
         public bool Breathing { get; set; }
 
         private void Awake()
@@ -29,10 +33,6 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         private void BurningRateChanged(int value)
         {
             burningSound.volume = Mathf.Min(value / BurningRateSoftCap, 1f);
-            if (value > BurningRateHardCap)
-                overheatingSound.Play();
-            else
-                overheatingSound.Stop();
         }
 
         private IEnumerator HeartControl()
@@ -41,6 +41,12 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             {
                 if (BurningRate.Value > 0)
                     BurningRate.Value -= Breathing ? 3 : 1;
+
+                if (BurningRate.Value > BurningRateHardCap)
+                {
+                    overheatingSound.Play();
+                    _heroHeadController.HitPoints.Value -= 20;
+                }
 
                 yield return _waitForColling;
             }
