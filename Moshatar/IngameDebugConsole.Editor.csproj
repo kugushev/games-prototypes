@@ -316,6 +316,9 @@
      <Reference Include="unityplastic">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
      </Reference>
+     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+     <HintPath>C:/Projects/games-prototypes/Moshatar/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+     </Reference>
      <Reference Include="nunit.framework">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
      </Reference>
