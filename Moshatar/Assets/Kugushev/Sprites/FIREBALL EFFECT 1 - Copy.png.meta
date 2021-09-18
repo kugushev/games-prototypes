@@ -1,0 +1,1416 @@
+fileFormatVersion: 2
+guid: a88d1968c3e74f941b2d769060e9c520
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4625852237984277297
+    second: FIREBALL EFFECT 1 - Copy_0
+  - first:
+      213: -7793516368565926018
+    second: FIREBALL EFFECT 1 - Copy_1
+  - first:
+      213: 4453963188456408451
+    second: FIREBALL EFFECT 1 - Copy_2
+  - first:
+      213: -8776094641438965694
+    second: FIREBALL EFFECT 1 - Copy_3
+  - first:
+      213: 7683069647954035378
+    second: FIREBALL EFFECT 1 - Copy_4
+  - first:
+      213: 7488308917000776467
+    second: FIREBALL EFFECT 1 - Copy_5
+  - first:
+      213: -6518147312599907486
+    second: FIREBALL EFFECT 1 - Copy_6
+  - first:
+      213: 3343512574223833043
+    second: FIREBALL EFFECT 1 - Copy_7
+  - first:
+      213: -7882819131922179891
+    second: FIREBALL EFFECT 1 - Copy_8
+  - first:
+      213: 1795097512441089952
+    second: FIREBALL EFFECT 1 - Copy_9
+  - first:
+      213: -1998287177677727391
+    second: FIREBALL EFFECT 1 - Copy_10
+  - first:
+      213: -3238019113591012415
+    second: FIREBALL EFFECT 1 - Copy_11
+  - first:
+      213: 6715343983881675249
+    second: FIREBALL EFFECT 1 - Copy_12
+  - first:
+      213: -1339118995254776955
+    second: FIREBALL EFFECT 1 - Copy_13
+  - first:
+      213: 8575615382960784911
+    second: FIREBALL EFFECT 1 - Copy_14
+  - first:
+      213: -3495368772759947387
+    second: FIREBALL EFFECT 1 - Copy_15
+  - first:
+      213: -7333027609948956675
+    second: FIREBALL EFFECT 1 - Copy_16
+  - first:
+      213: 2713810773941221617
+    second: FIREBALL EFFECT 1 - Copy_17
+  - first:
+      213: -3630452794506936098
+    second: FIREBALL EFFECT 1 - Copy_18
+  - first:
+      213: -4346763672647264928
+    second: FIREBALL EFFECT 1 - Copy_19
+  - first:
+      213: 3527784004253431406
+    second: FIREBALL EFFECT 1 - Copy_20
+  - first:
+      213: 4471981646327974717
+    second: FIREBALL EFFECT 1 - Copy_21
+  - first:
+      213: 4706552756337125111
+    second: FIREBALL EFFECT 1 - Copy_22
+  - first:
+      213: -8374156713495742192
+    second: FIREBALL EFFECT 1 - Copy_23
+  - first:
+      213: -479985871518800489
+    second: FIREBALL EFFECT 1 - Copy_24
+  - first:
+      213: 1013230080426771796
+    second: FIREBALL EFFECT 1 - Copy_25
+  - first:
+      213: -4156290012636841652
+    second: FIREBALL EFFECT 1 - Copy_26
+  - first:
+      213: -8743026293753787325
+    second: FIREBALL EFFECT 1 - Copy_27
+  - first:
+      213: 5579643434283223960
+    second: FIREBALL EFFECT 1 - Copy_28
+  - first:
+      213: -7827102176516886517
+    second: FIREBALL EFFECT 1 - Copy_29
+  - first:
+      213: 7601785167566687222
+    second: FIREBALL EFFECT 1 - Copy_30
+  - first:
+      213: 6803980349766796527
+    second: FIREBALL EFFECT 1 - Copy_31
+  - first:
+      213: -5264928093931433087
+    second: FIREBALL EFFECT 1 - Copy_32
+  - first:
+      213: 1824889286505467396
+    second: FIREBALL EFFECT 1 - Copy_33
+  - first:
+      213: -3782998412806777762
+    second: FIREBALL EFFECT 1 - Copy_34
+  - first:
+      213: -3749837823040807545
+    second: FIREBALL EFFECT 1 - Copy_35
+  - first:
+      213: -3869768608937745788
+    second: FIREBALL EFFECT 1 - Copy_36
+  - first:
+      213: -5517963891364494948
+    second: FIREBALL EFFECT 1 - Copy_37
+  - first:
+      213: 4946226464529308483
+    second: FIREBALL EFFECT 1 - Copy_38
+  - first:
+      213: -9149188342843628221
+    second: FIREBALL EFFECT 1 - Copy_39
+  - first:
+      213: -2537476425861610230
+    second: FIREBALL EFFECT 1 - Copy_40
+  - first:
+      213: 8817992026716994503
+    second: FIREBALL EFFECT 1 - Copy_41
+  - first:
+      213: -8564921565270670547
+    second: FIREBALL EFFECT 1 - Copy_42
+  - first:
+      213: 8119234355810341321
+    second: FIREBALL EFFECT 1 - Copy_43
+  - first:
+      213: -3473294525214058342
+    second: FIREBALL EFFECT 1 - Copy_44
+  - first:
+      213: 8334876477627784126
+    second: FIREBALL EFFECT 1 - Copy_45
+  - first:
+      213: -2196937551228388047
+    second: FIREBALL EFFECT 1 - Copy_46
+  - first:
+      213: 6555604500977370798
+    second: FIREBALL EFFECT 1 - Copy_47
+  - first:
+      213: -1074783437950798674
+    second: FIREBALL EFFECT 1 - Copy_48
+  - first:
+      213: 7843214954457968828
+    second: FIREBALL EFFECT 1 - Copy_49
+  - first:
+      213: -4535344821542139501
+    second: FIREBALL EFFECT 1 - Copy_50
+  - first:
+      213: -4184107725981602011
+    second: FIREBALL EFFECT 1 - Copy_51
+  - first:
+      213: 6048146847730058205
+    second: FIREBALL EFFECT 1 - Copy_52
+  - first:
+      213: 5708667043916082236
+    second: FIREBALL EFFECT 1 - Copy_53
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 1513
+        width: 155
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 133af740a14523040800000000000000
+      internalID: 4625852237984277297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 1513
+        width: 154
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e778f64972ed7d390800000000000000
+      internalID: -7793516368565926018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_2
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1513
+        width: 148
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3854c9afbe7afcd30800000000000000
+      internalID: 4453963188456408451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_3
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1513
+        width: 151
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24042dddb6c053680800000000000000
+      internalID: -8776094641438965694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_4
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 1513
+        width: 155
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b2c2ee532fbf9a60800000000000000
+      internalID: 7683069647954035378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_5
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 1513
+        width: 167
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31ba8360941dbe760800000000000000
+      internalID: 7488308917000776467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_6
+      rect:
+        serializedVersion: 2
+        x: 1173
+        y: 1513
+        width: 156
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263c0d6cd83ea85a0800000000000000
+      internalID: -6518147312599907486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_7
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 1513
+        width: 164
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d7d9a8b8fa866e20800000000000000
+      internalID: 3343512574223833043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_8
+      rect:
+        serializedVersion: 2
+        x: 1543
+        y: 1513
+        width: 164
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc81025b3c99a9290800000000000000
+      internalID: -7882819131922179891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_9
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1323
+        width: 166
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af0d3e3da779e810800000000000000
+      internalID: 1795097512441089952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_10
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 1323
+        width: 170
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1691d473668a444e0800000000000000
+      internalID: -1998287177677727391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_11
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 1323
+        width: 174
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c38b7e95ce3013d0800000000000000
+      internalID: -3238019113591012415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_12
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 1323
+        width: 179
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1e2df16c1b13d50800000000000000
+      internalID: 6715343983881675249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_13
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 1323
+        width: 183
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b6cd76e5e7a6de0800000000000000
+      internalID: -1339118995254776955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_14
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 1323
+        width: 174
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06c0c751c4b20770800000000000000
+      internalID: 8575615382960784911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_15
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1323
+        width: 184
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58776a4de94fd7fc0800000000000000
+      internalID: -3495368772759947387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_16
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 1323
+        width: 162
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df75cd4ad3adb3a90800000000000000
+      internalID: -7333027609948956675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_17
+      rect:
+        serializedVersion: 2
+        x: 1544
+        y: 1323
+        width: 159
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f8f460458469a520800000000000000
+      internalID: 2713810773941221617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_18
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1133
+        width: 156
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed007991b6a0e9dc0800000000000000
+      internalID: -3630452794506936098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_19
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 1133
+        width: 163
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 065994948713da3c0800000000000000
+      internalID: -4346763672647264928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_20
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1133
+        width: 172
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e66b4d16cd435f030800000000000000
+      internalID: 3527784004253431406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_21
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 1133
+        width: 173
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3b027f1d9baf0e30800000000000000
+      internalID: 4471981646327974717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_22
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 1133
+        width: 159
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f62c16abc8015140800000000000000
+      internalID: 4706552756337125111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_23
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 1133
+        width: 166
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01932a656d409cb80800000000000000
+      internalID: -8374156713495742192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_24
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1133
+        width: 168
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7956ae6946fb659f0800000000000000
+      internalID: -479985871518800489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_25
+      rect:
+        serializedVersion: 2
+        x: 1356
+        y: 1133
+        width: 165
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 455049bc367bf0e00800000000000000
+      internalID: 1013230080426771796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_26
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 1133
+        width: 170
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c49f6452144e156c0800000000000000
+      internalID: -4156290012636841652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_27
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 943
+        width: 168
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cc7ea88e78aa680800000000000000
+      internalID: -8743026293753787325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_28
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 943
+        width: 155
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89bcac92420ee6d40800000000000000
+      internalID: 5579643434283223960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_29
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 943
+        width: 164
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b00360c4a0c806390800000000000000
+      internalID: -7827102176516886517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_30
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 943
+        width: 168
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb45ab7557fe7960800000000000000
+      internalID: 7601785167566687222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_31
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 943
+        width: 158
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4869e34189c6e50800000000000000
+      internalID: 6803980349766796527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_32
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 943
+        width: 161
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1831e391bc73fe6b0800000000000000
+      internalID: -5264928093931433087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_33
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 943
+        width: 165
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40e039c232f435910800000000000000
+      internalID: 1824889286505467396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_34
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 943
+        width: 171
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5419ca9cf6108bc0800000000000000
+      internalID: -3782998412806777762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_35
+      rect:
+        serializedVersion: 2
+        x: 1543
+        y: 943
+        width: 167
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78d14501e56e5fbc0800000000000000
+      internalID: -3749837823040807545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_36
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 753
+        width: 166
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482ee4df3f1db4ac0800000000000000
+      internalID: -3869768608937745788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_37
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 753
+        width: 174
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9189c383114c63b0800000000000000
+      internalID: -5517963891364494948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_38
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 753
+        width: 163
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34bd7e463c684a440800000000000000
+      internalID: 4946226464529308483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_39
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 753
+        width: 154
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34529a93dad870180800000000000000
+      internalID: -9149188342843628221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_40
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 753
+        width: 158
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a05479282a219ccd0800000000000000
+      internalID: -2537476425861610230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_41
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 753
+        width: 160
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb71b0570dcf5a70800000000000000
+      internalID: 8817992026716994503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_42
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 753
+        width: 168
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2385fc1739432980800000000000000
+      internalID: -8564921565270670547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_43
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 753
+        width: 171
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c1193a01a05da070800000000000000
+      internalID: 8119234355810341321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_44
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 753
+        width: 171
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a989e4818016ccfc0800000000000000
+      internalID: -3473294525214058342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_45
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 563
+        width: 179
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb53cf0ffd6ba370800000000000000
+      internalID: 8334876477627784126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_46
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 563
+        width: 183
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13db051efe8e281e0800000000000000
+      internalID: -2196937551228388047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_47
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 563
+        width: 167
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea645b08f8f2afa50800000000000000
+      internalID: 6555604500977370798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_48
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 563
+        width: 159
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea4387a582a9511f0800000000000000
+      internalID: -1074783437950798674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_49
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 563
+        width: 162
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb0bf792272b8dc60800000000000000
+      internalID: 7843214954457968828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_50
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 563
+        width: 167
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 399c2120ae73f01c0800000000000000
+      internalID: -4535344821542139501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_51
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 563
+        width: 167
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f26ea01301fe5c0800000000000000
+      internalID: -4184107725981602011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_52
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 563
+        width: 158
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd3495873855fe350800000000000000
+      internalID: 6048146847730058205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FIREBALL EFFECT 1 - Copy_53
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 563
+        width: 167
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ce89d3e62493f40800000000000000
+      internalID: 5708667043916082236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ef68fd451f9937c4fa914ced5486cc08
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

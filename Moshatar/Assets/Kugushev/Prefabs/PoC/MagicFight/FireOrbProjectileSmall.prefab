@@ -189,12 +189,28 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 19828368, guid: 7d78b4a8b36ccf74dbfb29334bd6c95a, type: 3}
+      propertyPath: cullingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828368, guid: 7d78b4a8b36ccf74dbfb29334bd6c95a, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828368, guid: 7d78b4a8b36ccf74dbfb29334bd6c95a, type: 3}
+      propertyPath: ClampVelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828368, guid: 7d78b4a8b36ccf74dbfb29334bd6c95a, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 19828368, guid: 7d78b4a8b36ccf74dbfb29334bd6c95a, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828368, guid: 7d78b4a8b36ccf74dbfb29334bd6c95a, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 19828368, guid: 7d78b4a8b36ccf74dbfb29334bd6c95a, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
