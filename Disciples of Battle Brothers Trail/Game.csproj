@@ -59,6 +59,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\UnitAnimateMoving.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Views\UnitTransformView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Components\Refs\UnitTransformViewRef.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IInteractable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\World.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\HeroInfo\Teammate.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\GameInstaller.cs" />
@@ -73,6 +74,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\Interactions\HeroInteractions.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IGrid.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Views\HeroUnitView.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Game\Components\UnitMoveOneStepEvent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Factories\BanditUnitFactory.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\AI\EnemyUnitRandomWalking.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Models\HeroInfo\BattleUnit.cs" />
@@ -82,8 +84,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Game\Systems\UpdateView\UnitUpdateTransformView.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Managers\GameModeManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Game\Factories\PlayerUnitFactory.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Interfaces\IInteractable.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Game\Components\UnitMoveOneStepEvent.cs" />
      <None Include="Assets\Kugushev\Scripts\Game\Game.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\AstarPathfindingProject\PackageTools\Editor\EditorBase.cs" />
      <Compile Include="Assets\AstarPathfindingProject\PackageTools\Editor\EditorGUIx.cs" />
+     <Compile Include="Assets\AstarPathfindingProject\PackageTools\Editor\EditorBase.cs" />
      <Compile Include="Assets\AstarPathfindingProject\PackageTools\Editor\EnumFlagDrawer.cs" />
      <None Include="Assets\AstarPathfindingProject\PackageTools\Editor\PackageToolsEditor.asmdef" />
      <Reference Include="UnityEngine">
@@ -300,6 +300,9 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
      </Reference>
+     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+     <HintPath>C:/Projects/games-prototypes/Moshatar/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+     </Reference>
      <Reference Include="log4netPlastic">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
      </Reference>
@@ -317,9 +320,6 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
-     </Reference>
-     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-     <HintPath>C:/Projects/games-prototypes/Moshatar/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
      <HintPath>C:/Projects/games-prototypes/Moshatar/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
