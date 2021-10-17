@@ -13,7 +13,6 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class PlayerSquad : IDisposable, IAgentsOwner
     {
-        private readonly IInputController _inputController;
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderAttack.Factory _orderAttackFactory;
         private readonly AgentsManager _agentsManager;
@@ -22,21 +21,16 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private PlayerFighter? _selectedUnit;
 
         public PlayerSquad(
-            IInputController inputController,
             OrderMove.Factory orderMoveFactory,
             OrderAttack.Factory orderAttackFactory,
             Battlefield battlefield,
             AgentsManager agentsManager)
         {
-            _inputController = inputController;
             _orderMoveFactory = orderMoveFactory;
             _orderAttackFactory = orderAttackFactory;
             _agentsManager = agentsManager;
 
             _agentsManager.Register(this);
-            _inputController.PlayerUnitSelected += OnPlayerUnitSelected;
-            _inputController.EnemyUnitCommand += OnEnemyUnitCommand;
-            _inputController.GroundCommand += OnGroundCommand;
 
             // todo: add units on battlefield
             // for (var index = 0; index < battleManager.CurrentBattleSafe.Player.Party.Characters.Count; index++)
@@ -88,9 +82,6 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         void IDisposable.Dispose()
         {
             _agentsManager.Unregister(this);
-            _inputController.PlayerUnitSelected -= OnPlayerUnitSelected;
-            _inputController.EnemyUnitCommand -= OnEnemyUnitCommand;
-            _inputController.GroundCommand -= OnGroundCommand;
         }
 
         private void UnitOnHurt(PlayerFighter victim, BaseFighter attacker)

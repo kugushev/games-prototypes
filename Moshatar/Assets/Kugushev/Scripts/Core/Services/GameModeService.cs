@@ -9,5 +9,6 @@ namespace Kugushev.Scripts.Core.Services
         public async UniTask StartBenchmark() => await SceneManager.LoadSceneAsync("BenchmarkScene");
         public async UniTask StartDuel() => await SceneManager.LoadSceneAsync("DuelScene");
         public async UniTask BackToMenu() => await SceneManager.LoadSceneAsync("MainMenu");
+        public async UniTask StartBattle() => await SceneManager.LoadSceneAsync("BattleScene");
     }
 }

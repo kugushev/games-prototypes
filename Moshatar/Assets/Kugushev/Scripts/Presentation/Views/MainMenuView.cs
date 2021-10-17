@@ -12,6 +12,7 @@ namespace Kugushev.Scripts.Presentation.Views
         [SerializeField] private Button fightButton;
         [SerializeField] private Button benchmarkButton;
         [SerializeField] private Button duelButton;
+        [SerializeField] private Button battleButton;
         [SerializeField] private TextMeshProUGUI scoreText;
 
         [Inject] private GameModeService _gameModeService;
@@ -22,6 +23,7 @@ namespace Kugushev.Scripts.Presentation.Views
             fightButton.onClick.AddListener(() => _gameModeService.StartFight());
             benchmarkButton.onClick.AddListener(() => _gameModeService.StartBenchmark());
             duelButton.onClick.AddListener(() => _gameModeService.StartDuel());
+            battleButton.onClick.AddListener(() => _gameModeService.StartBattle());
 
             scoreText.text = $"Last {_score.LastGold}. Top {_score.TopGold}";
         }

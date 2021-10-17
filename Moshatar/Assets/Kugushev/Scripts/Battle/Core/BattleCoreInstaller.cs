@@ -1,7 +1,10 @@
+using Kugushev.Scripts.Battle.Core.AI;
+using Kugushev.Scripts.Battle.Core.AI.Orders;
 using Kugushev.Scripts.Battle.Core.Models;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Core.Services;
+using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using Zenject;
 
@@ -19,6 +22,10 @@ namespace Kugushev.Scripts.Battle.Core
 
             Container.Bind<SimpleAIService>().AsSingle();
             Container.Bind<Battlefield>().AsSingle();
+            
+            
+            Container.BindFactory<Position, OrderMove, OrderMove.Factory>().FromPoolableMemoryPool();
+            Container.BindInterfacesAndSelfTo<AgentsManager>().AsSingle();
         }
     }
 }

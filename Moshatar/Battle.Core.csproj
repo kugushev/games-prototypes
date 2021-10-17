@@ -43,7 +43,6 @@
   <ItemGroup>
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Services\SimpleAIService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\AttackStatus.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IInputController.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\EnemySquad.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Battlefield.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\BaseFighter.cs" />
