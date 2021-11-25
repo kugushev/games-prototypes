@@ -10,7 +10,6 @@ namespace Kugushev.Scripts.Battle.Core
         public static class Units
         {
             public static readonly Position PlayerUnitStartPosition = new Position(new Vector2(0, 0));
-            public static readonly Direction2d PlayerUnitStartDirection = Direction2d.Down;
             public static readonly TimeSpan WinFreezeDuration = TimeSpan.FromSeconds(10);
         }
 

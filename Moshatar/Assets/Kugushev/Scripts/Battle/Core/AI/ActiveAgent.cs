@@ -14,9 +14,6 @@ namespace Kugushev.Scripts.Battle.Core.AI
 
         protected readonly ReactiveProperty<Position> PositionImpl = new ReactiveProperty<Position>();
 
-        protected readonly ReactiveProperty<Direction2d> DirectionImpl =
-            new ReactiveProperty<Direction2d>(Direction2d.Down);
-
         protected readonly ReactiveProperty<ActivityType> ActivityImpl =
             new ReactiveProperty<ActivityType>(ActivityType.Stay);
 
@@ -26,7 +23,6 @@ namespace Kugushev.Scripts.Battle.Core.AI
         }
 
         public IReadOnlyReactiveProperty<Position> Position => PositionImpl;
-        public IReadOnlyReactiveProperty<Direction2d> Direction => DirectionImpl;
         public IReadOnlyReactiveProperty<ActivityType> Activity => ActivityImpl;
 
         public IOrder? CurrentOrder { get; set; }
@@ -109,15 +105,15 @@ namespace Kugushev.Scripts.Battle.Core.AI
 
         private bool DirectionCheck(Position enemyPosition)
         {
-            // we should always track direction to enemy, to rotate on moving target
-            var direction = enemyPosition.Vector - PositionImpl.Value.Vector;
-            var oldDirection = DirectionImpl.Value;
-            DirectionImpl.Value = GetNewDirection(direction);
-            if (DirectionImpl.Value != oldDirection)
-            {
-                CancelInteraction();
-                return false;
-            }
+            // todo: we should always track direction to enemy, to rotate on moving target
+            // var direction = enemyPosition.Vector - PositionImpl.Value.Vector;
+            // var oldDirection = DirectionImpl.Value;
+            // DirectionImpl.Value = GetNewDirection(direction);
+            // if (DirectionImpl.Value != oldDirection)
+            // {
+            //     CancelInteraction();
+            //     return false;
+            // }
 
             return true;
         }
@@ -130,9 +126,6 @@ namespace Kugushev.Scripts.Battle.Core.AI
             if (PositionImpl.Value.Vector != movement.Vector)
                 _lastVisitedPoint = PositionImpl.Value.Vector;
             PositionImpl.Value = movement;
-
-            var direction = PositionImpl.Value.Vector - _lastVisitedPoint;
-            DirectionImpl.Value = GetNewDirection(direction);
 
             var distanceToTarget = Vector2.Distance(target.Vector, PositionImpl.Value.Vector);
             var destinationReached = distanceToTarget < CommonConstants.Movement.Epsilon;
@@ -172,22 +165,6 @@ namespace Kugushev.Scripts.Battle.Core.AI
 
             Debug.LogWarning("Collision not resolved!");
             return PositionImpl.Value;
-        }
-
-        private Direction2d GetNewDirection(Vector2 direction)
-        {
-            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            if (angle < 0)
-                angle = 360f + angle;
-
-            if (angle > 45 && angle <= 135)
-                return Direction2d.Up;
-            if (angle > 135 && angle <= 225)
-                return Direction2d.Left;
-            if (angle > 225 && angle <= 315)
-                return Direction2d.Down;
-            return Direction2d.Right;
         }
 
         private ActivityType GetNewActivity(bool destinationReached) =>

@@ -13,12 +13,14 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class PlayerSquad : IDisposable, IAgentsOwner
     {
+        private const int SquadSize = 3;
+        
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderAttack.Factory _orderAttackFactory;
         private readonly AgentsManager _agentsManager;
 
         private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
-        private PlayerFighter? _selectedUnit;
+        private PlayerFighter _selectedUnit;
 
         public PlayerSquad(
             OrderMove.Factory orderMoveFactory,
@@ -32,20 +34,19 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             _agentsManager.Register(this);
 
-            // todo: add units on battlefield
-            // for (var index = 0; index < battleManager.CurrentBattleSafe.Player.Party.Characters.Count; index++)
-            // {
-            //     var character = battleManager.CurrentBattleSafe.Player.Party.Characters[index];
-            //
-            //     var row = BattleConstants.UnitsPositionsInRow[index];
-            //     var point = new Vector2(BattleConstants.PlayerSquadLine, row);
-            //
-            //     var playerUnit = new PlayerFighter(new Position(point), character, battlefield);
-            //     playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
-            //     _units.Add(playerUnit);
-            //
-            //     battlefield.RegisterUnt(playerUnit);
-            // }
+            for (var index = 0; index < SquadSize; index++)
+            {
+                var character = new Character();
+
+                var row = BattleConstants.UnitsPositionsInRow[index];
+                var point = new Vector2(BattleConstants.PlayerSquadLine, row);
+
+                var playerUnit = new PlayerFighter(new Position(point), character, battlefield);
+                playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
+                _units.Add(playerUnit);
+
+                battlefield.RegisterUnt(playerUnit);
+            }
         }
 
         public IReadOnlyReactiveCollection<PlayerFighter> Units => _units;

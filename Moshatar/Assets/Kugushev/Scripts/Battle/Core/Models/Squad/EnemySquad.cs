@@ -4,6 +4,7 @@ using System.Linq;
 using Kugushev.Scripts.Battle.Core.AI;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Services;
+using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using UniRx;
 using UnityEngine;
@@ -13,12 +14,17 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class EnemySquad : ITickable, IDisposable, IAgentsOwner
     {
+        private const int SquadSize = 3;
+        
         private readonly PlayerSquad _playerSquad;
         private readonly SimpleAIService _simpleAIService;
         private readonly AgentsManager _agentsManager;
 
         private readonly ReactiveCollection<EnemyFighter> _units = new ReactiveCollection<EnemyFighter>();
 
+        
+        public static readonly IReadOnlyList<float> UnitsPositionsInRow = new[] {-20f, -10f, 10f, 20f};
+        
         public EnemySquad(PlayerSquad playerSquad,
             SimpleAIService simpleAIService, Battlefield battlefield, AgentsManager agentsManager)
         {
@@ -27,20 +33,19 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _agentsManager = agentsManager;
 
             _agentsManager.Register(this);
-
-            // todo: init enemies
-            // for (var index = 0; index < battleManager.CurrentBattleSafe.Enemy.Characters.Count; index++)
-            // {
-            //     var character = battleManager.CurrentBattleSafe.Enemy.Characters[index];
-            //
-            //     var row = BattleConstants.UnitsPositionsInRow[index];
-            //     var point = new Vector2(BattleConstants.EnemySquadLine, row);
-            //
-            //     var enemyUnit = new EnemyFighter(new Position(point), character, battlefield);
-            //     _units.Add(enemyUnit);
-            //
-            //     battlefield.RegisterUnt(enemyUnit);
-            // }
+            
+            for (var index = 0; index < SquadSize; index++)
+            {
+                var character = new Character();
+            
+                var row = UnitsPositionsInRow[index];
+                var point = new Vector2(BattleConstants.EnemySquadLine, row);
+            
+                var enemyUnit = new EnemyFighter(new Position(point), character, battlefield);
+                _units.Add(enemyUnit);
+            
+                battlefield.RegisterUnt(enemyUnit);
+            }
         }
 
         public IReadOnlyReactiveCollection<EnemyFighter> Units => _units;
