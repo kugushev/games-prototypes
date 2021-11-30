@@ -68,7 +68,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         private void OnHitPointsChanged(int hitPoints)
         {
-            simpleHealthBar.UpdateBar(hitPoints, Model.Character.MaxHP.Value);
+            simpleHealthBar.UpdateBar(hitPoints, Model.Character.MaxHP);
         }
 
         private void OnPositionChanged(Position newPosition)

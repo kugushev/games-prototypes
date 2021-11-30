@@ -27,7 +27,6 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
         public Character Character { get; }
 
         public float WeaponRange => BattleConstants.SwordAttackRange;
-        public int Damage => BattleConstants.SwordAttackDamage;
         public bool IsDead => Activity.Value == ActivityType.Death;
 
         public event Action? Attacking;
@@ -81,7 +80,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 
         protected override OrderProcessingStatus ProcessInteraction(OrderInteract order)
         {
-            var orderAttack = (OrderAttack) order;
+            var orderAttack = (OrderAttack)order;
             if (orderAttack.Target.IsDead)
                 return OrderProcessingStatus.Finished;
 
@@ -100,7 +99,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
                         _currentAttack = new AttackProcessing(AttackStatus.Executing);
                     break;
                 case AttackStatus.Executing:
-                    orderAttack.Target.Suffer(Damage, this);
+                    orderAttack.Target.Suffer(Character.Damage, this);
                     _currentAttack = new AttackProcessing(AttackStatus.Executed);
                     break;
                 case AttackStatus.Executed:

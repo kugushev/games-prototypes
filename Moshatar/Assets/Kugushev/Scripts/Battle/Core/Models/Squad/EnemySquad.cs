@@ -9,20 +9,25 @@ using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using UniRx;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class EnemySquad : ITickable, IDisposable, IAgentsOwner
     {
-        private const int SquadSize = 3;
+        private const int MaxSquadSize = 12;
+        private const int DefaultDamage = 1;
+        private const int DefaultMaxHp = 6;
+        private const float SpawnSize = 30f;
 
         private readonly PlayerSquad _playerSquad;
         private readonly SimpleAIService _simpleAIService;
+        private readonly Battlefield _battlefield;
         private readonly AgentsManager _agentsManager;
 
         private readonly ReactiveCollection<EnemyFighter> _units = new ReactiveCollection<EnemyFighter>();
-        
-        public static readonly IReadOnlyList<float> UnitsPositionsInRow = new[] { -20f, -10f, 10f, 20f };
+
+        //   public static readonly IReadOnlyList<float> UnitsPositionsInRow = new[] { -20f, -10f, 10f, 20f };
 
         public EnemySquad(PlayerSquad playerSquad,
             SimpleAIService simpleAIService, Battlefield battlefield, AgentsManager agentsManager)
@@ -31,21 +36,14 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _playerSquad.EnemySquad = this;
 
             _simpleAIService = simpleAIService;
+            _battlefield = battlefield;
             _agentsManager = agentsManager;
 
             _agentsManager.Register(this);
 
-            for (var index = 0; index < SquadSize; index++)
+            for (var index = 0; index < MaxSquadSize; index++)
             {
-                var character = new Character();
-
-                var row = UnitsPositionsInRow[index];
-                var point = new Vector2(BattleConstants.EnemySquadLine, row);
-
-                var enemyUnit = new EnemyFighter(new Position(point), character, battlefield);
-                _units.Add(enemyUnit);
-
-                battlefield.RegisterUnt(enemyUnit);
+                Spawn();
             }
         }
 
@@ -70,6 +68,21 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 if (order != null)
                     enemyUnit.CurrentOrder = order;
             }
+
+            if (_units.Count(u => !u.IsDead) < MaxSquadSize)
+                Spawn();
+        }
+
+        private void Spawn()
+        {
+            var point = new Vector2(Random.Range(-SpawnSize, SpawnSize), Random.Range(-SpawnSize, SpawnSize));
+
+            var character = new Character(DefaultMaxHp, DefaultDamage);
+
+            var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield);
+            _units.Add(enemyUnit);
+
+            _battlefield.RegisterUnt(enemyUnit);
         }
 
         void IDisposable.Dispose() => _agentsManager.Unregister(this);

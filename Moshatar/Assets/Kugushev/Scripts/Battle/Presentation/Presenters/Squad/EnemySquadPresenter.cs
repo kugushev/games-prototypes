@@ -3,6 +3,7 @@ using System.Linq;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -23,6 +24,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             {
                 CreateUnit(unit);
             }
+
+            _enemySquad.Units.ObserveAdd().Subscribe(e => CreateUnit(e.Value)).AddTo(this);
         }
 
         private void CreateUnit(EnemyFighter playerFighter)

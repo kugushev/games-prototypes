@@ -5,13 +5,19 @@ namespace Kugushev.Scripts.Battle.Core.Models
 {
     public class Character
     {
-        private readonly ReactiveProperty<int> _hp = new ReactiveProperty<int>(DefaultMaxHitPoints);
+        private readonly ReactiveProperty<int> _hp;
 
-        private readonly ReactiveProperty<int> _maxHP = new ReactiveProperty<int>(DefaultMaxHitPoints);
-        
+        public Character(int maxHp, int damage)
+        {
+            _hp = new ReactiveProperty<int>(maxHp);
+            MaxHP = maxHp;
+            Damage = damage;
+        }
+
         public IReadOnlyReactiveProperty<int> HP => _hp;
 
-        public IReadOnlyReactiveProperty<int> MaxHP => _maxHP;
+        public int MaxHP { get; }
+        public int Damage { get; }
 
         public void SufferDamage(int amount) => _hp.Value -= amount;
     }

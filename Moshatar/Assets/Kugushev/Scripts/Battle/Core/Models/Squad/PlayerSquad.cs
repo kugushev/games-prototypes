@@ -16,7 +16,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class PlayerSquad : IDisposable, IAgentsOwner, ITickable
     {
-        private const int SquadSize = 3;
+        private const int SquadSize = 4;
+        private const int DefaultDamage = 2;
+        private const int DefaultMaxHp = 100;
 
         public EnemySquad EnemySquad; // todo: fix this hack later
         private readonly OrderMove.Factory _orderMoveFactory;
@@ -43,7 +45,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             for (var index = 0; index < SquadSize; index++)
             {
-                var character = new Character();
+                var character = new Character(DefaultMaxHp, DefaultDamage);
 
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.PlayerSquadLine, row);

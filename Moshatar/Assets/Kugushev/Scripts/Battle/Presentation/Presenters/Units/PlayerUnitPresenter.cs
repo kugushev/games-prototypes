@@ -21,7 +21,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             Animator.SetFloat(AnimationSpeed, newActivityType switch
             {
                 ActivityType.Stay => 0f,
-                ActivityType.Move => 0.25f,
+                ActivityType.Move => 1f,
                 _ => 0f // todo: log error
             });
 
