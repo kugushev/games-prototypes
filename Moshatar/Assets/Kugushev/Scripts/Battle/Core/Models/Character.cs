@@ -8,8 +8,7 @@ namespace Kugushev.Scripts.Battle.Core.Models
         private readonly ReactiveProperty<int> _hp = new ReactiveProperty<int>(DefaultMaxHitPoints);
 
         private readonly ReactiveProperty<int> _maxHP = new ReactiveProperty<int>(DefaultMaxHitPoints);
-
-
+        
         public IReadOnlyReactiveProperty<int> HP => _hp;
 
         public IReadOnlyReactiveProperty<int> MaxHP => _maxHP;

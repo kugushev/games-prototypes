@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Kugushev.Scripts.Battle.Core.Enums;
 using Kugushev.Scripts.Battle.Core.Exceptions;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
@@ -13,6 +14,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private static readonly int AnimationAttack1H1 = Animator.StringToHash("Attack1h1");
         private static readonly int AnimationHit1 = Animator.StringToHash("Hit1");
         private static readonly int AnimationFall1 = Animator.StringToHash("Fall1");
+        private readonly WaitForSeconds _waitToDie = new WaitForSeconds(3);
+        
         public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
 
         public void Init(EnemyFighter model) => _model = model;
@@ -30,8 +33,19 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         protected override void OnAttacking() => Animator.SetTrigger(AnimationAttack1H1);
 
-        protected override void OnHurt(BaseFighter attacker)=> Animator.SetTrigger(AnimationHit1);
+        protected override void OnHurt(BaseFighter attacker) => Animator.SetTrigger(AnimationHit1);
 
-        protected override void OnDie()=> Animator.SetTrigger(AnimationFall1);
+        protected override void OnDie()
+        {
+            Animator.SetTrigger(AnimationFall1);
+            StartCoroutine(Destroying());
+        }
+
+        private IEnumerator Destroying()
+        {
+            // todo: move under ground
+            yield return _waitToDie;
+            Destroy(gameObject);
+        }
     }
 }

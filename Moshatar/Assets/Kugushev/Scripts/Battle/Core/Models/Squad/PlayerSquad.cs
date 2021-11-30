@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Kugushev.Scripts.Battle.Core.AI;
 using Kugushev.Scripts.Battle.Core.AI.Orders;
 using Kugushev.Scripts.Battle.Core.Interfaces;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
+using Kugushev.Scripts.Battle.Core.Services;
 using Kugushev.Scripts.Battle.Core.ValueObjects;
 using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
-    public class PlayerSquad : IDisposable, IAgentsOwner
+    public class PlayerSquad : IDisposable, IAgentsOwner, ITickable
     {
         private const int SquadSize = 3;
-        
+
+        public EnemySquad EnemySquad; // todo: fix this hack later
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderAttack.Factory _orderAttackFactory;
         private readonly AgentsManager _agentsManager;
+        private readonly SimpleAIService _simpleAIService;
 
         private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
         private PlayerFighter _selectedUnit;
@@ -26,11 +31,13 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             OrderMove.Factory orderMoveFactory,
             OrderAttack.Factory orderAttackFactory,
             Battlefield battlefield,
-            AgentsManager agentsManager)
+            AgentsManager agentsManager,
+            SimpleAIService simpleAIService)
         {
             _orderMoveFactory = orderMoveFactory;
             _orderAttackFactory = orderAttackFactory;
             _agentsManager = agentsManager;
+            _simpleAIService = simpleAIService;
 
             _agentsManager.Register(this);
 
@@ -42,7 +49,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 var point = new Vector2(BattleConstants.PlayerSquadLine, row);
 
                 var playerUnit = new PlayerFighter(new Position(point), character, battlefield);
-                playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
+                // playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
                 _units.Add(playerUnit);
 
                 battlefield.RegisterUnt(playerUnit);
@@ -53,31 +60,26 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
-        private void OnPlayerUnitSelected(PlayerFighter? unit)
+        void ITickable.Tick()
         {
-            _selectedUnit?.Deselect();
-            unit?.Select();
-            _selectedUnit = unit;
-        }
-
-        private void OnEnemyUnitCommand(EnemyFighter target)
-        {
-            if (_selectedUnit == null)
+            if (EnemySquad == null)
                 return;
 
-            _selectedUnit.CurrentOrder = _orderAttackFactory.Create(target);
-        }
+            foreach (var squadUnit in _units.Where(u => !u.IsDead))
+            {
+                if (squadUnit.CurrentOrder is OrderAttack currentOrder)
+                {
+                    var toCurrentTarget = Vector2.Distance(
+                        squadUnit.Position.Value.Vector,
+                        currentOrder.Target.Position.Value.Vector);
+                    if (toCurrentTarget < squadUnit.WeaponRange * BattleConstants.AIAggroResetMultiplier)
+                        continue;
+                }
 
-        private void OnGroundCommand(Position target)
-        {
-            if (_selectedUnit == null)
-                return;
-
-            var toTargetVector = target.Vector - _selectedUnit.Position.Value.Vector;
-            if (toTargetVector.sqrMagnitude < BattleConstants.UnitToTargetEpsilon)
-                return;
-
-            _selectedUnit.CurrentOrder = _orderMoveFactory.Create(target);
+                var order = _simpleAIService.AttackTheNearest(squadUnit, EnemySquad.Units.Where(u => !u.IsDead));
+                if (order != null)
+                    squadUnit.CurrentOrder = order;
+            }
         }
 
         void IDisposable.Dispose()
@@ -85,10 +87,10 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _agentsManager.Unregister(this);
         }
 
-        private void UnitOnHurt(PlayerFighter victim, BaseFighter attacker)
-        {
-            if (victim.CurrentOrder == null)
-                victim.CurrentOrder = _orderAttackFactory.Create(attacker);
-        }
+        // private void UnitOnHurt(PlayerFighter victim, BaseFighter attacker)
+        // {
+        //     if (victim.CurrentOrder == null)
+        //         victim.CurrentOrder = _orderAttackFactory.Create(attacker);
+        // }
     }
 }

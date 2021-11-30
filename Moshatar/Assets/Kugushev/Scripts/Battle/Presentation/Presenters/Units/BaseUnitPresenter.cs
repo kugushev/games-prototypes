@@ -15,12 +15,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         public abstract BaseFighter Model { get; }
 
-        private void Awake()
+        protected void Awake()
         {
             Animator = GetComponent<Animator>();
         }
 
-        private void Start()
+        protected void Start()
         {
             Model.Character.HP.Subscribe(OnHitPointsChanged).AddTo(this);
             Model.Position.Subscribe(OnPositionChanged).AddTo(this);
@@ -30,6 +30,14 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             // _model.AttackCanceled += OnAttackCanceled;
             Model.Hurt += OnHurt;
             Model.Die += OnDie;
+        }
+
+        protected void OnDestroy()
+        {
+            Model.Attacking -= OnAttacking;
+            // _model.AttackCanceled -= OnAttackCanceled;
+            Model.Hurt -= OnHurt;
+            Model.Die -= OnDie;
         }
 
         private void OnHitPointsChanged(int hitPoints)

@@ -52,6 +52,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
                 _currentAttack = null;
                 CurrentOrder = null;
                 Die?.Invoke();
+                // todo: launch dying state wait 5 seconds then return to pool
                 return;
             }
 

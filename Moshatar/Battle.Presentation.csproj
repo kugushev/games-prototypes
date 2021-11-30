@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\BaseUnitPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\PlayerSquadPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\BattlePresentationInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\EnemyUnitPresenter.cs" />
@@ -48,7 +49,6 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\BaseUnitPresenterOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\RetreatZonePresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\EnemySquadPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\BaseUnitPresenter.cs" />
      <None Include="Assets\Kugushev\Scripts\Battle\Presentation\Battle.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
