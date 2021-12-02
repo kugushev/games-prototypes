@@ -30,7 +30,11 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             // _model.AttackCanceled += OnAttackCanceled;
             Model.Hurt += OnHurt;
             Model.Die += OnDie;
+
+            OnStart();
         }
+        
+        protected virtual void OnStart(){}
 
         protected void OnDestroy()
         {
@@ -62,7 +66,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         protected abstract void OnAttacking();
 
-        protected abstract void OnHurt(BaseFighter attacker);
+        protected abstract void OnHurt();
 
         protected abstract void OnDie();
     }

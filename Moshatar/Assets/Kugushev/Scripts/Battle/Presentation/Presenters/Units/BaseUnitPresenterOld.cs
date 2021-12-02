@@ -149,7 +149,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             }
         }
 
-        private void OnHurt(BaseFighter attacker)
+        private void OnHurt()
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(HurtAnimationParameter, TopLayerIndex);

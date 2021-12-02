@@ -24,5 +24,10 @@ namespace Kugushev.Scripts.Battle.Core
         public const float AIAggroResetMultiplier = 1f;
 
         public static readonly TimeSpan RetreatTime = TimeSpan.FromSeconds(15);
+
+        public const int HeroDamageMin = 1;
+        public const int HeroDamageMax = 4;
+        public const int HeroDamageSuper = 6;
+        public const int FireBreathDamage = 1;
     }
 }

@@ -94,13 +94,11 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
                 _playerBigProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
                 _fireHeart.BurningRate.Value += burningRateIncrease;
             }
-            else if (handMoveConvolution.Velocity > MinVelocity)
+            else// if (handMoveConvolution.Velocity > MinVelocity)
             {
                 _playerSmallProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
                 _fireHeart.BurningRate.Value += burningRateIncrease;
             }
-            else
-                print(handMoveConvolution.Velocity);
 
             // var headPosition = _heroHeadController.Position;
             //

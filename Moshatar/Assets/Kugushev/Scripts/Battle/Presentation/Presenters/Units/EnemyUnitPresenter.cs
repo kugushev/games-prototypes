@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
+using Kugushev.Scripts.Battle.Core;
 using Kugushev.Scripts.Battle.Core.Enums;
 using Kugushev.Scripts.Battle.Core.Exceptions;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 {
@@ -15,10 +17,45 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private static readonly int AnimationHit1 = Animator.StringToHash("Hit1");
         private static readonly int AnimationFall1 = Animator.StringToHash("Fall1");
         private readonly WaitForSeconds _waitToDie = new WaitForSeconds(3);
+        private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
+        private bool _damaging;
         
         public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
 
         public void Init(EnemyFighter model) => _model = model;
+
+        protected override void OnStart()
+        {
+            StartCoroutine(HandleDot());
+        }
+
+        private IEnumerator HandleDot()
+        {
+            while (true)
+            {
+                yield return _waitForDamage;
+                if (_damaging) 
+                    _model.Suffer(BattleConstants.FireBreathDamage);
+            }
+        }
+        
+        protected void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("SmallProjectile"))
+            {
+                int damage = Random.Range(BattleConstants.HeroDamageMin, BattleConstants.HeroDamageMax);
+                _model.Suffer(damage);
+            } else if (other.CompareTag("BigProjectile")) 
+                _model.Suffer(BattleConstants.HeroDamageSuper);
+            if (other.CompareTag("Dot")) 
+                _damaging = true;
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Dot")) 
+                _damaging = false;
+        }
 
         protected override void OnActivityChanged(ActivityType newActivityType)
         {
@@ -33,7 +70,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         protected override void OnAttacking() => Animator.SetTrigger(AnimationAttack1H1);
 
-        protected override void OnHurt(BaseFighter attacker) => Animator.SetTrigger(AnimationHit1);
+        protected override void OnHurt() => Animator.SetTrigger(AnimationHit1);
 
         protected override void OnDie()
         {

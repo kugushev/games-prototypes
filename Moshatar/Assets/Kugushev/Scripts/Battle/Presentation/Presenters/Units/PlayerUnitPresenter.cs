@@ -27,7 +27,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         protected override void OnAttacking() => Animator.SetTrigger(AnimationAttack);
 
-        protected override void OnHurt(BaseFighter attacker) => Animator.SetTrigger(AnimationHit);
+        protected override void OnHurt() => Animator.SetTrigger(AnimationHit);
 
         protected override void OnDie() => Animator.SetTrigger(AnimationDie);
     }

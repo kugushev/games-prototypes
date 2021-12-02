@@ -31,7 +31,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 
         public event Action? Attacking;
         public event Action? AttackCanceled;
-        public event Action<BaseFighter>? Hurt;
+        public event Action? Hurt;
         public event Action? Die;
 
         #region IInteractable
@@ -41,7 +41,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 
         #endregion
 
-        public void Suffer(int damage, BaseFighter attacker)
+        public void Suffer(int damage)
         {
             Character.SufferDamage(damage);
 
@@ -58,7 +58,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
             _currentAttack = null;
             ActivityImpl.Value = ActivityType.Stay;
             _interruptionTime = DateTime.Now;
-            Hurt?.Invoke(attacker);
+            Hurt?.Invoke();
         }
 
         protected override bool IsActive => !IsDead;
@@ -99,7 +99,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
                         _currentAttack = new AttackProcessing(AttackStatus.Executing);
                     break;
                 case AttackStatus.Executing:
-                    orderAttack.Target.Suffer(Character.Damage, this);
+                    orderAttack.Target.Suffer(Character.Damage);
                     _currentAttack = new AttackProcessing(AttackStatus.Executed);
                     break;
                 case AttackStatus.Executed:
@@ -138,11 +138,11 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
                         switch (solutions)
                         {
                             case 0:
-                                Debug.LogError("Wow, no intersections");
+                                // Debug.LogError("Wow, no intersections");
                                 continue;
                             case 1:
                                 EnqueueToBuffer(newPoint1);
-                                Debug.LogWarning("Dot");
+                                //Debug.LogWarning("Dot");
                                 return false;
                             case 2:
 
