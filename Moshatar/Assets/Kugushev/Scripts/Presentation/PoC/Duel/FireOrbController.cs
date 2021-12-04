@@ -94,7 +94,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
                 _playerBigProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
                 _fireHeart.BurningRate.Value += burningRateIncrease;
             }
-            else// if (handMoveConvolution.Velocity > MinVelocity)
+            else if (handMoveConvolution.Velocity > MinVelocity)
             {
                 _playerSmallProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
                 _fireHeart.BurningRate.Value += burningRateIncrease;
@@ -182,7 +182,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         {
             _dragonSubs?.Dispose();
             _dragonSubs = null;
-            
+
             dragonBreathEffect.Stop();
             dragonBreathSound.Stop();
             dragonBreathCollider.enabled = false;
