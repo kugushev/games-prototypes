@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private readonly WaitForSeconds _waitToDie = new WaitForSeconds(3);
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
         private bool _damaging;
-        
+
         public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
 
         public void Init(EnemyFighter model) => _model = model;
@@ -34,26 +34,25 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             while (true)
             {
                 yield return _waitForDamage;
-                if (_damaging) 
+                if (_damaging)
                     _model.Suffer(BattleConstants.FireBreathDamage);
             }
         }
-        
+
         protected void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("SmallProjectile"))
-            {
-                int damage = Random.Range(BattleConstants.HeroDamageMin, BattleConstants.HeroDamageMax);
-                _model.Suffer(damage);
-            } else if (other.CompareTag("BigProjectile")) 
+                _model.Suffer(BattleConstants.HeroDamage);
+            else if (other.CompareTag("BigProjectile"))
                 _model.Suffer(BattleConstants.HeroDamageSuper);
-            if (other.CompareTag("Dot")) 
+
+            if (other.CompareTag("Dot"))
                 _damaging = true;
         }
-        
+
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Dot")) 
+            if (other.CompareTag("Dot"))
                 _damaging = false;
         }
 

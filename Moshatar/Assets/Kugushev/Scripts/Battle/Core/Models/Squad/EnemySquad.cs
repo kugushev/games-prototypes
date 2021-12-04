@@ -15,22 +15,21 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class EnemySquad : ITickable, IDisposable, IAgentsOwner
     {
-        private const int MaxSquadSize = 12;
+        private const int MaxSquadSize = 32; //12;
         private const int DefaultDamage = 1;
         private const int DefaultMaxHp = 6;
-        private const float SpawnSize = 30f;
+        private const float SpawnSize = 15f;
 
         private readonly PlayerSquad _playerSquad;
         private readonly SimpleAIService _simpleAIService;
         private readonly Battlefield _battlefield;
         private readonly AgentsManager _agentsManager;
+        private readonly Director _director;
 
         private readonly ReactiveCollection<EnemyFighter> _units = new ReactiveCollection<EnemyFighter>();
 
-        //   public static readonly IReadOnlyList<float> UnitsPositionsInRow = new[] { -20f, -10f, 10f, 20f };
-
-        public EnemySquad(PlayerSquad playerSquad,
-            SimpleAIService simpleAIService, Battlefield battlefield, AgentsManager agentsManager)
+        public EnemySquad(PlayerSquad playerSquad, SimpleAIService simpleAIService, Battlefield battlefield,
+            AgentsManager agentsManager, Director director)
         {
             _playerSquad = playerSquad;
             _playerSquad.EnemySquad = this;
@@ -38,13 +37,14 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _simpleAIService = simpleAIService;
             _battlefield = battlefield;
             _agentsManager = agentsManager;
+            _director = director;
 
             _agentsManager.Register(this);
 
-            for (var index = 0; index < MaxSquadSize; index++)
-            {
-                Spawn();
-            }
+            // for (var index = 0; index < MaxSquadSize; index++)
+            // {
+            //     Spawn();
+            // }
         }
 
         public IReadOnlyReactiveCollection<EnemyFighter> Units => _units;
@@ -69,7 +69,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                     enemyUnit.CurrentOrder = order;
             }
 
-            if (_units.Count(u => !u.IsDead) < MaxSquadSize)
+            int max = _director.GetMax();
+
+            if (_units.Count(u => !u.IsDead) < max)
                 Spawn();
         }
 

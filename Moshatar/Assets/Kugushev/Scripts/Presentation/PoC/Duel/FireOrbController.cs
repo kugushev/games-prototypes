@@ -8,7 +8,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 {
     public class FireOrbController : MonoBehaviour
     {
-        private const float MinVelocity = 0.03f;
+        private const float MinVelocity = 0.015f;
         private const float HardVelocity = 0.1f;
         private const float ProjectileSpeed = 10f;
 
@@ -92,12 +92,14 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             if (handMoveConvolution.Velocity > HardVelocity)
             {
                 _playerBigProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
-                _fireHeart.BurningRate.Value += burningRateIncrease;
+                if (_fireHeart.BurningRate.Value < FireHeart.BurningRateHardCap)
+                    _fireHeart.BurningRate.Value += burningRateIncrease;
             }
             else if (handMoveConvolution.Velocity > MinVelocity)
             {
                 _playerSmallProjectile.Create(finishInfo.Position, actualVector, ProjectileSpeed);
-                _fireHeart.BurningRate.Value += burningRateIncrease;
+                if (_fireHeart.BurningRate.Value < FireHeart.BurningRateHardCap)
+                    _fireHeart.BurningRate.Value += burningRateIncrease;
             }
 
             // var headPosition = _heroHeadController.Position;

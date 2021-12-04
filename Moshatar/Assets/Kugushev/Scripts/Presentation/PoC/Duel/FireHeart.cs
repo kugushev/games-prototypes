@@ -8,9 +8,9 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 {
     public class FireHeart : MonoBehaviour
     {
-        private const float BurningRateSoftCap = 10f;
-        private const int BurningRateHardCap = 20;
-        private readonly WaitForSeconds _waitForColling = new WaitForSeconds(3);
+        private const float BurningRateSoftCap = 20f;
+        public const int BurningRateHardCap = 40;
+        private readonly WaitForSeconds _waitForColling = new WaitForSeconds(1);
 
         [SerializeField] private AudioSource burningSound;
         [SerializeField] private AudioSource overheatingSound;
@@ -40,7 +40,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
             while (true)
             {
                 if (BurningRate.Value > 0)
-                    BurningRate.Value -= Breathing ? 3 : 1;
+                    BurningRate.Value -= Breathing ? 4 : 1;
 
                 if (BurningRate.Value > BurningRateHardCap)
                 {
