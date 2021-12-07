@@ -29,19 +29,21 @@ namespace Kugushev.Scripts.Presentation.PoC.Benchmark
         private void Awake()
         {
             Performance.TryGetAvailableDisplayRefreshRates(out var rates);
-            units.text = string.Join(", ", rates);
-
-            if (rates.Length > 0)
+            if (units is { })
             {
-                var result = Performance.TrySetDisplayRefreshRate(rates.Max());
-                if (!result)
-                    units.color = Color.red;
+                units.text = string.Join(", ", rates);
+                if (rates.Length > 0)
+                {
+                    var result = Performance.TrySetDisplayRefreshRate(rates.Max());
+                    if (!result)
+                        units.color = Color.red;
+                }
+                else
+                    units.color = Color.magenta;
             }
-            else
-                units.color = Color.magenta;
 
-
-            spawn.onClick.AddListener(() => StartCoroutine(SpawnNext()));
+            if (spawn is { })
+                spawn.onClick.AddListener(() => StartCoroutine(SpawnNext()));
             back.onClick.AddListener(() => _gameModeService.BackToMenu());
         }
 

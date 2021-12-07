@@ -15,11 +15,13 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class EnemySquad : ITickable, IDisposable, IAgentsOwner
     {
-        private const int MaxSquadSize = 32; //12;
+        private const int MaxSquadSize = 12;
         private const int DefaultDamage = 1;
         private const int DefaultMaxHp = 6;
-        public const float SpawnSize = 15f;
-
+        private const int BigDamage = 4;
+        private const int BigMaxHp = 24;
+        public const float SpawnSize = 8f;
+        
         private readonly PlayerSquad _playerSquad;
         private readonly SimpleAIService _simpleAIService;
         private readonly Battlefield _battlefield;
@@ -51,10 +53,20 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
+
+        private readonly List<EnemyFighter> _unitsToDelete = new List<EnemyFighter>(MaxSquadSize);
+
         void ITickable.Tick()
         {
-            foreach (var enemyUnit in _units.Where(u => !u.IsDead))
+            foreach (var enemyUnit in _units)
             {
+                if (enemyUnit.IsDead)
+                {
+                    _unitsToDelete.Add(enemyUnit);
+                    continue;
+                }
+
+                // apply orders
                 if (enemyUnit.CurrentOrder is OrderAttack currentOrder)
                 {
                     var toCurrentTarget = Vector2.Distance(
@@ -69,19 +81,29 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                     enemyUnit.CurrentOrder = order;
             }
 
-            int max = _director.GetMax();
+            foreach (var enemyUnit in _unitsToDelete)
+                _units.Remove(enemyUnit);
 
-            if (_units.Count(u => !u.IsDead) < max)
-                Spawn();
+
+            var (max, spawnBig, idx) = _director.GetMax();
+            if (_units.Count < max)
+            {
+                if (spawnBig) 
+                    _director.RegisterBigSpawning(idx);
+                
+                Spawn(spawnBig);
+            }
         }
 
-        private void Spawn()
+        private void Spawn(bool spawnBig)
         {
             var point = new Vector2(Random.Range(-SpawnSize, SpawnSize), Random.Range(-SpawnSize, SpawnSize));
 
-            var character = new Character(DefaultMaxHp, DefaultDamage);
+            var character = spawnBig
+                ? new Character(BigMaxHp, BigDamage)
+                : new Character(DefaultMaxHp, DefaultDamage);
 
-            var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield);
+            var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield, spawnBig);
             _units.Add(enemyUnit);
 
             _battlefield.RegisterUnt(enemyUnit);

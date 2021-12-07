@@ -5,9 +5,12 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 {
     public class EnemyFighter : BaseFighter
     {
-        public EnemyFighter(Position battlefieldPosition, Character character, Battlefield battlefield)
+        public bool IsBig { get; }
+        
+        public EnemyFighter(Position battlefieldPosition, Character character, Battlefield battlefield, bool isBig)
             : base(battlefieldPosition, character, battlefield)
         {
+            IsBig = isBig;
         }
     }
 }

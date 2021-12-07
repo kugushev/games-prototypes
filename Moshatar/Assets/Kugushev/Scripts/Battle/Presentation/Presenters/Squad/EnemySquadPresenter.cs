@@ -44,7 +44,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(EnemySquad.SpawnSize, 1, EnemySquad.SpawnSize));
+            Gizmos.DrawWireCube(Vector3.zero, new Vector3(EnemySquad.SpawnSize * 2f, 1, EnemySquad.SpawnSize * 2f));
         }
     }
 }

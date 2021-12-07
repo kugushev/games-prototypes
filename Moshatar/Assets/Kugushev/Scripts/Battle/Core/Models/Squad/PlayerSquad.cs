@@ -17,8 +17,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
     public class PlayerSquad : IDisposable, IAgentsOwner, ITickable
     {
         private const int SquadSize = 4;
-        private const int DefaultDamage = 2;
-        private const int DefaultMaxHp = 100;
+        private const int DefaultDamage = 4;
+        private const int DefaultMaxHp = 250;
 
         public EnemySquad EnemySquad; // todo: fix this hack later
         private readonly OrderMove.Factory _orderMoveFactory;

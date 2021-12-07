@@ -22,7 +22,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
 
-        public void Init(EnemyFighter model) => _model = model;
+        public void Init(EnemyFighter model)
+        {
+            _model = model;
+            if (_model.IsBig)
+                transform.localScale *= 2f;
+        }
 
         protected override void OnStart()
         {
