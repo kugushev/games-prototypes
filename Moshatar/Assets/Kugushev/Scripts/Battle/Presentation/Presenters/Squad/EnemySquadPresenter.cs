@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
@@ -39,6 +40,11 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             presenter.Init(playerFighter);
 
             _presentersBuffer.Clear();
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireCube(Vector3.zero, new Vector3(EnemySquad.SpawnSize, 1, EnemySquad.SpawnSize));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private const int MaxSquadSize = 32; //12;
         private const int DefaultDamage = 1;
         private const int DefaultMaxHp = 6;
-        private const float SpawnSize = 15f;
+        public const float SpawnSize = 15f;
 
         private readonly PlayerSquad _playerSquad;
         private readonly SimpleAIService _simpleAIService;
