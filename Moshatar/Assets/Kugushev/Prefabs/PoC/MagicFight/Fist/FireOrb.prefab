@@ -823,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19806640, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: ShapeModule.m_Position.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19806640, guid: 9a6f21076b5ff4146a9b870cf0379add, type: 3}
       propertyPath: ClampVelocityModule.enabled

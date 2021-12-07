@@ -6,8 +6,7 @@ namespace Kugushev.Scripts.Battle.Core.Services
     {
         [SerializeField] private AudioSource source;
 
-        private (float time, int max)[] _map = new[]
-        {
+        private readonly (float time, int max)[] _map = {
             (0f, 0),
             (8.654f, 2),
             (24.976f, 6),

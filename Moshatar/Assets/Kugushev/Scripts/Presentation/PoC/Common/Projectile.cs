@@ -50,8 +50,10 @@ namespace Kugushev.Scripts.Presentation.PoC.Common
             transform.position = Vector3.Lerp(_start, _finish, _lifetime / MaxLifetimeSeconds);
 
             if (_lifetime > MaxLifetimeSeconds)
-                _memoryPool.Despawn(this);
+                Despawn();
         }
+
+        protected void Despawn() => _memoryPool.Despawn(this);
 
         private Vector3 GetFinish(Vector3 start, Vector3 direction, float speed)
         {
