@@ -5,7 +5,7 @@ namespace Kugushev.Scripts.Battle.Core
 {
     public static class BattleConstants
     {
-        public const float UnitRadius = 1f;
+        public const float UnitRadius = 1.25f;
         public const float UnitSpeed = 2f;
         public const float UnitToTargetEpsilon = 0.1f;
 

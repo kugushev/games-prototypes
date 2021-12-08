@@ -11,6 +11,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 {
     public class EnemyUnitPresenter : BaseUnitPresenter
     {
+        [SerializeField] private Collider attackCollider;
+
         private EnemyFighter _model;
         private static readonly int AnimationSpeedv = Animator.StringToHash("speedv");
         private static readonly int AnimationAttack1H1 = Animator.StringToHash("Attack1h1");
@@ -79,6 +81,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         protected override void OnDie()
         {
             Animator.SetTrigger(AnimationFall1);
+            attackCollider.enabled = false;
             StartCoroutine(Destroying());
         }
 

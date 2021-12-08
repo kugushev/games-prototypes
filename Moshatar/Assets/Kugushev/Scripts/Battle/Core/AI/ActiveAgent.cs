@@ -163,7 +163,7 @@ namespace Kugushev.Scripts.Battle.Core.AI
                 return new Position(finalMovement.Value);
             }
 
-            Debug.LogWarning("Collision not resolved!");
+            // Debug.LogWarning("Collision not resolved!");
             return PositionImpl.Value;
         }
 
