@@ -49,6 +49,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\BaseUnitPresenterOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\RetreatZonePresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\EnemySquadPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\EnemyUnitPrefabFactory.cs" />
      <None Include="Assets\Kugushev\Scripts\Battle\Presentation\Battle.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -689,6 +690,10 @@
     <ProjectReference Include="SimpleHealthBar.csproj">
       <Project>{6d0f39f1-f9ec-f934-99b8-d45a4fde29fb}</Project>
       <Name>SimpleHealthBar</Name>
+    </ProjectReference>
+    <ProjectReference Include="Common.csproj">
+      <Project>{2c2dffbe-ea4b-4958-643a-601e32cbdee2}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

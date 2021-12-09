@@ -12,42 +12,36 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         [SerializeField] private SimpleHealthBar simpleHealthBar = default!;
 
         protected Animator Animator;
-
-        public abstract BaseFighter Model { get; }
+        protected Vector3 DefaultScale;
 
         protected void Awake()
         {
             Animator = GetComponent<Animator>();
+            DefaultScale = transform.localScale;
         }
 
-        protected void Start()
+        protected void OnModelSet(BaseFighter model)
         {
-            Model.Character.HP.Subscribe(OnHitPointsChanged).AddTo(this);
-            Model.Position.Subscribe(OnPositionChanged).AddTo(this);
-            Model.Activity.Subscribe(OnActivityChanged).AddTo(this);
+            model.Character.HP.Subscribe(i => OnHitPointsChanged(i, model.Character.MaxHP)).AddTo(this);
+            model.Position.Subscribe(OnPositionChanged).AddTo(this);
+            model.Activity.Subscribe(OnActivityChanged).AddTo(this);
             //
-            Model.Attacking += OnAttacking;
-            // _model.AttackCanceled += OnAttackCanceled;
-            Model.Hurt += OnHurt;
-            Model.Die += OnDie;
-
-            OnStart();
-        }
-        
-        protected virtual void OnStart(){}
-
-        protected void OnDestroy()
-        {
-            Model.Attacking -= OnAttacking;
-            // _model.AttackCanceled -= OnAttackCanceled;
-            Model.Hurt -= OnHurt;
-            Model.Die -= OnDie;
+            model.Attacking += OnAttacking;
+            model.Hurt += OnHurt;
+            model.Die += OnDie;
         }
 
-        private void OnHitPointsChanged(int hitPoints)
+        protected void OnModelRemoved(BaseFighter model)
         {
-            if (simpleHealthBar is {}) 
-                simpleHealthBar.UpdateBar(hitPoints, Model.Character.MaxHP);
+            model.Attacking -= OnAttacking;
+            model.Hurt -= OnHurt;
+            model.Die -= OnDie;
+        }
+
+        private void OnHitPointsChanged(int hitPoints, int maxHp)
+        {
+            if (simpleHealthBar is { })
+                simpleHealthBar.UpdateBar(hitPoints, maxHp);
         }
 
         private void OnPositionChanged(Position newPosition)

@@ -12,6 +12,12 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects
             Vector = vector;
         }
 
+        public Vector3 To3D() => new Vector3
+        {
+            x = Vector.x,
+            z = Vector.y // as intended - just translate 2D to 3D
+        };
+
         #region Equality
 
         public bool Equals(Position other)
@@ -19,7 +25,7 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects
             return Vector.Equals(other.Vector);
         }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             return obj is Position other && Equals(other);
         }

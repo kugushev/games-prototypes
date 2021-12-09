@@ -5,11 +5,12 @@ using Kugushev.Scripts.Battle.Core.Enums;
 using Kugushev.Scripts.Battle.Core.Exceptions;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 {
-    public class EnemyUnitPresenter : BaseUnitPresenter
+    public class EnemyUnitPresenter : BaseUnitPresenter, IPoolable<Vector3, EnemyFighter, IMemoryPool>
     {
         [SerializeField] private Collider attackCollider;
 
@@ -21,17 +22,36 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private readonly WaitForSeconds _waitToDie = new WaitForSeconds(3);
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
         private bool _damaging;
+        private IMemoryPool _memoryPool;
 
-        public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
-
-        public void Init(EnemyFighter model)
+        public void OnSpawned(Vector3 p1, EnemyFighter p2, IMemoryPool pool)
         {
-            _model = model;
+            _memoryPool = pool;
+
+            var t = transform;
+
+            t.position = p1;
+            _model = p2;
+
             if (_model.IsBig)
-                transform.localScale *= 2f;
+                t.localScale = DefaultScale * 2f;
+            
+            OnModelSet(_model);
+            
+            attackCollider.enabled = true;
         }
 
-        protected override void OnStart()
+        public void OnDespawned()
+        {
+            _memoryPool = null;
+
+            OnModelRemoved(_model);
+            _model = null;
+
+            transform.localScale = DefaultScale;
+        }
+
+        private void Start()
         {
             StartCoroutine(HandleDot());
         }
@@ -87,9 +107,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         private IEnumerator Destroying()
         {
-            // todo: move under ground
             yield return _waitToDie;
-            Destroy(gameObject);
+            _memoryPool.Despawn(this);
+        }
+
+        public class Factory : PlaceholderFactory<Vector3, EnemyFighter, EnemyUnitPresenter>
+        {
         }
     }
 }

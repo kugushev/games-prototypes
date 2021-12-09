@@ -13,9 +13,17 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private static readonly int AnimationAttack = Animator.StringToHash("attack");
         private static readonly int AnimationHit = Animator.StringToHash("hit");
         private static readonly int AnimationDie = Animator.StringToHash("die");
-        public override BaseFighter Model => _model ?? throw new PropertyIsNotInitializedException();
 
-        public void Init(PlayerFighter model) => _model = model;
+        public void Init(PlayerFighter model)
+        {
+            _model = model;
+            OnModelSet(_model);
+        }
+
+        private void OnDestroy()
+        {
+            OnModelRemoved(_model);
+        }
 
         protected override void OnActivityChanged(ActivityType newActivityType) =>
             Animator.SetFloat(AnimationSpeed, newActivityType switch
