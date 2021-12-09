@@ -7,28 +7,52 @@ namespace Kugushev.Scripts.Battle.Core.Services
     {
         [SerializeField] private AudioSource source;
 
+        public int MaxOverride { get; set; } = Max;
+
+        private const int Max = 22;
+        private const int Min = 12;
+
         private readonly (float time, int max, bool spawnBig, int maxBig)[] _map =
         {
             (0f, 0, false, 0),
-            (8.654f, 8, false, 0),
-            (24.976f, 8, true, 1),
+            (8.654f, Min, false, 0),
+            (24.976f, Max, true, 0),
             (60f, 0, false, 0),
-            (60f + 25.061f, 12, true, 3),
-            (60f + 41.853f, 8, false, 0),
+            (60f + 25.061f, Max, true, 3),
+            (60f + 41.853f, Min, false, 0),
             (60f + 57.088f, 0, false, 0),
-            (120f + 3.4f, 8, false, 0),
-            (120f + 28.733f, 12, true, 3),
+            (120f + 3.4f, Min, false, 0),
+            (120f + 28.733f, Max, true, 3),
             (120f + 45.638f, 0, false, 0),
-            (120f + 49.606f, 12, true, 5),
+            (120f + 49.606f, Max, true, 5),
             (180f + 4.728f, 0, false, 0),
-            (180f + 15.568f, 8, false, 0),
-            (180f + 23.034f, 12, true, 3),
-            (180f + 41.261f, 12, true, 5),
+            (180f + 15.568f, Min, false, 0),
+            (180f + 23.034f, Max, true, 3),
+            (180f + 41.261f, Max, true, 5),
             (180f + 54.489f, 0, false, 0)
         };
 
-        private int[] _bigSpawnedPerStage;
+        // private readonly (float time, int max, bool spawnBig, int maxBig)[] _map =
+        // {
+        //     (0f, 0, false, 0),
+        //     (8.654f, 8, false, 0),
+        //     (24.976f, 8, true, 1),
+        //     (60f, 0, false, 0),
+        //     (60f + 25.061f, 12, true, 3),
+        //     (60f + 41.853f, 8, false, 0),
+        //     (60f + 57.088f, 0, false, 0),
+        //     (120f + 3.4f, 8, false, 0),
+        //     (120f + 28.733f, 12, true, 3),
+        //     (120f + 45.638f, 0, false, 0),
+        //     (120f + 49.606f, 12, true, 5),
+        //     (180f + 4.728f, 0, false, 0),
+        //     (180f + 15.568f, 8, false, 0),
+        //     (180f + 23.034f, 12, true, 3),
+        //     (180f + 41.261f, 12, true, 5),
+        //     (180f + 54.489f, 0, false, 0)
+        // };
 
+        private int[] _bigSpawnedPerStage;
 
         // private readonly (float time, int max)[] _map = {
         //     (0f, 0),
@@ -76,12 +100,16 @@ namespace Kugushev.Scripts.Battle.Core.Services
         private (int max, bool spawnBig, int index) GetMaxByIndex(int idx)
         {
             var (_, max, spawnBig, maxBig) = _map[idx];
-            
+
             if (spawnBig)
             {
                 if (_bigSpawnedPerStage[idx] >= maxBig)
                     spawnBig = false;
             }
+
+            // todo: lol, very ugly hack for perf testing
+            if (max == Max) 
+                max = MaxOverride;
 
             return (max, spawnBig, idx);
         }

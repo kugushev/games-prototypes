@@ -19,7 +19,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private static readonly int AnimationAttack1H1 = Animator.StringToHash("Attack1h1");
         private static readonly int AnimationHit1 = Animator.StringToHash("Hit1");
         private static readonly int AnimationFall1 = Animator.StringToHash("Fall1");
-        private readonly WaitForSeconds _waitToDie = new WaitForSeconds(3);
+        private readonly WaitForSeconds _waitToDie = new WaitForSeconds(1f);
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
         private bool _damaging;
         private IMemoryPool _memoryPool;

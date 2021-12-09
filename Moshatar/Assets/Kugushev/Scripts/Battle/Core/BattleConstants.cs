@@ -25,8 +25,8 @@ namespace Kugushev.Scripts.Battle.Core
 
         public static readonly TimeSpan RetreatTime = TimeSpan.FromSeconds(15);
 
-        public const int HeroDamage = 3;
-        public const int HeroDamageSuper = 12;
-        public const int FireBreathDamage = 8;
+        public const int HeroDamage = 4;
+        public const int HeroDamageSuper = 20;
+        public const int FireBreathDamage = 10;
     }
 }
