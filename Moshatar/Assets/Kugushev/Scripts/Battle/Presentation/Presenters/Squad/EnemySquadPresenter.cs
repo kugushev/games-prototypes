@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Kugushev.Scripts.Battle.Core;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
@@ -15,12 +17,33 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
         [Inject] private EnemySquad _enemySquad = default!;
         [Inject] private EnemyUnitPresenter.Factory _enemyUnitFactory;
 
+        private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
+        
         private void Start()
         {
             foreach (var unit in _enemySquad.Units) 
                 CreateUnit(unit);
 
             _enemySquad.Units.ObserveAdd().Subscribe(e => CreateUnit(e.Value)).AddTo(this);
+
+            StartCoroutine(HandleDots());
+        }
+
+        private IEnumerator HandleDots()
+        {
+            // it should be moved to Core
+            while (true)
+            {
+                yield return _waitForDamage;
+                foreach (var unit in _enemySquad.Units)
+                {
+                    if (unit.IsDead)
+                        continue;
+
+                    if (unit.Burning) 
+                        unit.Suffer(BattleConstants.FireBreathDamage);
+                }
+            }
         }
 
         private void CreateUnit(EnemyFighter playerFighter)

@@ -21,7 +21,6 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private static readonly int AnimationFall1 = Animator.StringToHash("Fall1");
         private readonly WaitForSeconds _waitToDie = new WaitForSeconds(1f);
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
-        private bool _damaging;
         private IMemoryPool _memoryPool;
 
         public void OnSpawned(Vector3 p1, EnemyFighter p2, IMemoryPool pool)
@@ -35,9 +34,9 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
             if (_model.IsBig)
                 t.localScale = DefaultScale * 2f;
-            
+
             OnModelSet(_model);
-            
+
             attackCollider.enabled = true;
         }
 
@@ -51,36 +50,26 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             transform.localScale = DefaultScale;
         }
 
-        private void Start()
-        {
-            StartCoroutine(HandleDot());
-        }
-
-        private IEnumerator HandleDot()
-        {
-            while (true)
-            {
-                yield return _waitForDamage;
-                if (_damaging)
-                    _model.Suffer(BattleConstants.FireBreathDamage);
-            }
-        }
-
         protected void OnTriggerEnter(Collider other)
         {
+            if (_model == null)
+                return;
+
             if (other.CompareTag("SmallProjectile"))
                 _model.Suffer(BattleConstants.HeroDamage);
             else if (other.CompareTag("BigProjectile"))
                 _model.Suffer(BattleConstants.HeroDamageSuper);
-
-            if (other.CompareTag("Dot"))
-                _damaging = true;
+            else if (other.CompareTag("Dot"))
+                _model.Burning = true;
         }
 
         private void OnTriggerExit(Collider other)
         {
+            if (_model == null)
+                return;
+
             if (other.CompareTag("Dot"))
-                _damaging = false;
+                _model.Burning = true;
         }
 
         protected override void OnActivityChanged(ActivityType newActivityType)

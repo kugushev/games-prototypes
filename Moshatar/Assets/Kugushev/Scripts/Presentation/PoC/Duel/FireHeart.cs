@@ -42,11 +42,12 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
                 if (BurningRate.Value > 0)
                     BurningRate.Value -= Breathing ? 4 : 1;
 
-                if (BurningRate.Value > BurningRateHardCap)
-                {
-                    overheatingSound.Play();
-                    _heroHeadController.HitPoints.Value -= 20;
-                }
+                // todo: we don't need overheating
+                // if (BurningRate.Value > BurningRateHardCap)
+                // {
+                //     overheatingSound.Play();
+                //     _heroHeadController.HitPoints.Value -= 20;
+                // }
 
                 yield return _waitForColling;
             }

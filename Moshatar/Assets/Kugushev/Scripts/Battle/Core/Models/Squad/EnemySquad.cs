@@ -42,11 +42,6 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _director = director;
 
             _agentsManager.Register(this);
-
-            // for (var index = 0; index < MaxSquadSize; index++)
-            // {
-            //     Spawn();
-            // }
         }
 
         public IReadOnlyReactiveCollection<EnemyFighter> Units => _units;

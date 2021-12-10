@@ -7,6 +7,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
     {
         public bool IsBig { get; }
         
+        public bool Burning { get; set; }
+        
         public EnemyFighter(Position battlefieldPosition, Character character, Battlefield battlefield, bool isBig)
             : base(battlefieldPosition, character, battlefield)
         {
