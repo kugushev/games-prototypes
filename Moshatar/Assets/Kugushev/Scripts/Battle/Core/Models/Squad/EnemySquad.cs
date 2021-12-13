@@ -21,7 +21,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private const int BigDamage = 4;
         private const int BigMaxHp = 40;
         public const float SpawnSize = 8f;
-        
+
         private readonly PlayerSquad _playerSquad;
         private readonly SimpleAIService _simpleAIService;
         private readonly Battlefield _battlefield;
@@ -71,7 +71,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                         continue;
                 }
 
-                var order = _simpleAIService.AttackTheNearest(enemyUnit, _playerSquad.Units.Where(u => !u.IsDead));
+                var opponents = _playerSquad.Units.Where(u => !u.IsDead).Concat<BaseFighter>(_playerSquad.Heroes);
+                var order = _simpleAIService.AttackTheNearest(enemyUnit, opponents);
                 if (order != null)
                     enemyUnit.CurrentOrder = order;
             }
@@ -83,9 +84,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             var (max, spawnBig, idx) = _director.GetMax();
             if (_units.Count < max)
             {
-                if (spawnBig) 
+                if (spawnBig)
                     _director.RegisterBigSpawning(idx);
-                
+
                 Spawn(spawnBig);
             }
         }

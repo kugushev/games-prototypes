@@ -27,7 +27,6 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private readonly SimpleAIService _simpleAIService;
 
         private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
-        private PlayerFighter _selectedUnit;
 
         public PlayerSquad(
             OrderMove.Factory orderMoveFactory,
@@ -56,9 +55,16 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
                 battlefield.RegisterUnt(playerUnit);
             }
+
+            Hero = new HeroFighter(new Position(Vector2.zero), battlefield);
+            Heroes = new[] { Hero };
         }
 
         public IReadOnlyReactiveCollection<PlayerFighter> Units => _units;
+
+        public HeroFighter Hero { get; }
+
+        public IEnumerable<HeroFighter> Heroes { get; }
 
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 

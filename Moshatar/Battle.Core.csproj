@@ -57,6 +57,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\BaseFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Helpers\MathHelper.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\OrderProcessingStatus.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\HeroFighter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Exceptions\PropertyIsNotInitializedException.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\BattleSupervisor.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\AI\ActiveAgent.cs" />

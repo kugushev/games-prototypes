@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\HeroUnitPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\BattleControlPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\BaseUnitPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\PlayerSquadPresenter.cs" />

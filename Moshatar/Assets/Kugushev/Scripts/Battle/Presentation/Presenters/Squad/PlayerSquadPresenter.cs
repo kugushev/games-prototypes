@@ -10,17 +10,20 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
 {
     public class PlayerSquadPresenter : MonoBehaviour
     {
-        [SerializeField] private GameObject playerUnitPrefab = default!;
+        [SerializeField] private GameObject playerUnitPrefab;
 
-        [Inject] private DiContainer _container = default!;
-        [Inject] private PlayerSquad _playerSquad = default!;
+        [Inject] private readonly HeroUnitPresenter heroUnitPresenter;
+        [Inject] private readonly DiContainer _container;
+        [Inject] private readonly PlayerSquad _playerSquad;
 
         private readonly List<PlayerUnitPresenter> _presentersBuffer = new List<PlayerUnitPresenter>(1);
 
         private void Start()
         {
-            foreach (var unit in _playerSquad.Units) 
+            foreach (var unit in _playerSquad.Units)
                 CreateUnit(unit);
+
+            heroUnitPresenter.Init(_playerSquad.Hero);
         }
 
         private void CreateUnit(PlayerFighter playerFighter)

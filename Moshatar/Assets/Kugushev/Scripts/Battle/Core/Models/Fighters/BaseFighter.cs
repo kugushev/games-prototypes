@@ -29,10 +29,12 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
         public float WeaponRange => BattleConstants.SwordAttackRange;
         public bool IsDead => Activity.Value == ActivityType.Death;
 
-        public event Action? Attacking;
-        public event Action? AttackCanceled;
-        public event Action? Hurt;
-        public event Action? Die;
+        protected virtual bool SimplifiedSuffering => true;
+
+        public event Action Attacking;
+        public event Action AttackCanceled;
+        public event Action Hurt;
+        public event Action Die;
 
         #region IInteractable
 
@@ -99,7 +101,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
                         _currentAttack = new AttackProcessing(AttackStatus.Executing);
                     break;
                 case AttackStatus.Executing:
-                    orderAttack.Target.Suffer(Character.Damage);
+                    if (orderAttack.Target.SimplifiedSuffering)
+                        orderAttack.Target.Suffer(Character.Damage);
                     _currentAttack = new AttackProcessing(AttackStatus.Executed);
                     break;
                 case AttackStatus.Executed:
