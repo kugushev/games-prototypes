@@ -15,7 +15,7 @@ namespace Kugushev.Scripts.Battle.Presentation
                     x.FromIFactory(f =>
                         f.To<EnemyUnitPrefabFactory>().FromComponentInHierarchy().AsSingle()));
 
-            Container.Bind<HeroUnitPresenter>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<HeroUnit>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

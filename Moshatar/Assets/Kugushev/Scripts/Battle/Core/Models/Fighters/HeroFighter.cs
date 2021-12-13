@@ -1,21 +1,52 @@
-﻿using Kugushev.Scripts.Battle.Core.ValueObjects;
+﻿using System;
+using Kugushev.Scripts.Battle.Core.ValueObjects;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 {
     public class HeroFighter : BaseFighter
     {
-        private const int MaxHp = 300;
+        private const int MaxHp = 16;
+        private const int Regeneration = 4;
+        private const int LifestealAmount = 1;
+        private const double InvulnerableSeconds = 1;
 
-        protected override bool SimplifiedSuffering => true;
+        private DateTime _lastHitTime = DateTime.MinValue;
+
+        protected override bool SimplifiedSuffering => false;
 
         public HeroFighter(Position battlefieldPosition, Battlefield battlefield)
             : base(battlefieldPosition, new Character(MaxHp, 0), battlefield)
         {
         }
 
+        public override void Suffer(int damage)
+        {
+            var now = DateTime.Now;
+        
+            if ((now - _lastHitTime).TotalSeconds > InvulnerableSeconds)
+            {
+                _lastHitTime = now;
+                base.Suffer(damage);
+            }
+        }
+
         public void UpdatePosition(Position position)
         {
             PositionImpl.Value = position;
         }
+
+        public void Regenerate()
+        {
+            if (Character.HP.Value < Character.MaxHP)
+                Character.Regenerate(Regeneration);
+        }
+
+        public void Lifesteal()
+        {
+            if (Character.HP.Value < Character.MaxHP)
+                Character.Regenerate(LifestealAmount);
+        }
+        
     }
 }

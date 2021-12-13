@@ -12,7 +12,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
     {
         [SerializeField] private GameObject playerUnitPrefab;
 
-        [Inject] private readonly HeroUnitPresenter heroUnitPresenter;
+        [Inject] private readonly HeroUnit _heroUnit;
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly PlayerSquad _playerSquad;
 
@@ -23,7 +23,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             foreach (var unit in _playerSquad.Units)
                 CreateUnit(unit);
 
-            heroUnitPresenter.Init(_playerSquad.Hero);
+            _heroUnit.Init(_playerSquad.Hero);
         }
 
         private void CreateUnit(PlayerFighter playerFighter)

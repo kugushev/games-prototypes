@@ -14,7 +14,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
     {
         [SerializeField] private Collider attackCollider;
 
-        private EnemyFighter _model;
+        [Inject] private readonly HeroUnit _heroUnit;
+
         private static readonly int AnimationSpeedv = Animator.StringToHash("speedv");
         private static readonly int AnimationAttack1H1 = Animator.StringToHash("Attack1h1");
         private static readonly int AnimationHit1 = Animator.StringToHash("Hit1");
@@ -22,6 +23,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private readonly WaitForSeconds _waitToDie = new WaitForSeconds(1f);
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
         private IMemoryPool _memoryPool;
+        
+        public EnemyFighter Model { get; private set; }
 
         public void OnSpawned(Vector3 p1, EnemyFighter p2, IMemoryPool pool)
         {
@@ -30,12 +33,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             var t = transform;
 
             t.position = p1;
-            _model = p2;
+            Model = p2;
 
-            if (_model.IsBig)
+            if (Model.IsBig)
                 t.localScale = DefaultScale * 2f;
 
-            OnModelSet(_model);
+            OnModelSet(Model);
 
             attackCollider.enabled = true;
         }
@@ -44,32 +47,41 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         {
             _memoryPool = null;
 
-            OnModelRemoved(_model);
-            _model = null;
+            OnModelRemoved(Model);
+            Model = null;
 
             transform.localScale = DefaultScale;
         }
 
         protected void OnTriggerEnter(Collider other)
         {
-            if (_model == null)
+            if (Model == null)
                 return;
 
             if (other.CompareTag("SmallProjectile"))
-                _model.Suffer(BattleConstants.HeroDamage);
+            {
+                Model.Suffer(BattleConstants.HeroDamage);
+                _heroUnit.Model.Lifesteal();
+            }
             else if (other.CompareTag("BigProjectile"))
-                _model.Suffer(BattleConstants.HeroDamageSuper);
+            {
+                Model.Suffer(BattleConstants.HeroDamageSuper);
+                _heroUnit.Model.Lifesteal();
+            }
             else if (other.CompareTag("Dot"))
-                _model.Burning = true;
+            {
+                Model.Burning = true;
+                _heroUnit.Model.Lifesteal();
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (_model == null)
+            if (Model == null)
                 return;
 
             if (other.CompareTag("Dot"))
-                _model.Burning = true;
+                Model.Burning = true;
         }
 
         protected override void OnActivityChanged(ActivityType newActivityType)

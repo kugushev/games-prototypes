@@ -13,6 +13,7 @@ TagManager:
   - BigProjectile
   - SmallProjectile
   - Dot
+  - HeroMouth
   layers:
   - Default
   - TransparentFX

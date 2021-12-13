@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class PlayerSquad : IDisposable, IAgentsOwner, ITickable
     {
-        private const int SquadSize = 4;
+        private const int SquadSize = 0;//4;
         private const int DefaultDamage = 3;
         private const int DefaultMaxHp = 350;
 

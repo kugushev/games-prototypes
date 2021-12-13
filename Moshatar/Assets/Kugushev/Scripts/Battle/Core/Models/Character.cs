@@ -1,4 +1,5 @@
 ﻿using UniRx;
+using UnityEngine;
 using static Kugushev.Scripts.Battle.Core.GameConstants.Characters;
 
 namespace Kugushev.Scripts.Battle.Core.Models
@@ -20,5 +21,6 @@ namespace Kugushev.Scripts.Battle.Core.Models
         public int Damage { get; }
 
         public void SufferDamage(int amount) => _hp.Value -= amount;
+        public void Regenerate(int amount) => _hp.Value = Mathf.Min(_hp.Value + amount, MaxHP);
     }
 }

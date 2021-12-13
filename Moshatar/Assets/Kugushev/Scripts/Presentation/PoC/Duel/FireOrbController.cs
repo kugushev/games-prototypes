@@ -41,7 +41,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("MainCamera"))
+            if (other.CompareTag("HeroMouth"))
                 _touchingHead = true;
 
             if (handMoveConvolution.Moving && _touchingHead)
@@ -50,7 +50,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("MainCamera"))
+            if (other.CompareTag("HeroMouth"))
             {
                 _touchingHead = false;
                 if (handMoveConvolution.Moving)

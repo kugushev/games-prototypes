@@ -28,5 +28,6 @@ namespace Kugushev.Scripts.Battle.Core
         public const int HeroDamage = 4;
         public const int HeroDamageSuper = 20;
         public const int FireBreathDamage = 10;
+
     }
 }

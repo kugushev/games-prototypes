@@ -43,7 +43,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 
         #endregion
 
-        public void Suffer(int damage)
+        public virtual void Suffer(int damage)
         {
             Character.SufferDamage(damage);
 

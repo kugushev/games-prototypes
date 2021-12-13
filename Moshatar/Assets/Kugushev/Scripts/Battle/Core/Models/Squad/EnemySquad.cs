@@ -16,9 +16,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
     public class EnemySquad : ITickable, IDisposable, IAgentsOwner
     {
         private const int MaxSquadSize = 22;
-        private const int DefaultDamage = 1;
+        public const int DefaultDamage = 1;
         private const int DefaultMaxHp = 4;
-        private const int BigDamage = 4;
+        public const int BigDamage = 4;
         private const int BigMaxHp = 40;
         public const float SpawnSize = 8f;
 
