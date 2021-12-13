@@ -12,6 +12,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
         private const double InvulnerableSeconds = 1;
 
         private DateTime _lastHitTime = DateTime.MinValue;
+        
+        public Vector3 HeadPosition { get; set; } // todo: remove this hack
 
         protected override bool SimplifiedSuffering => false;
 

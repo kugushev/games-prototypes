@@ -52,11 +52,7 @@ namespace Kugushev.Scripts.Battle.Presentation
             model.Die += OnDie;
         }
 
-        private void OnHurt()
-        {
-            Debug.Log($"Hurt: {Model.Character.HP.Value}");
-            Hurt?.Invoke(Model.Character.HP.Value, Model.Character.MaxHP);
-        }
+        private void OnHurt() => Hurt?.Invoke(Model.Character.HP.Value, Model.Character.MaxHP);
 
         private void OnDie()
         {

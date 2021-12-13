@@ -32,6 +32,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
             _heroUnit.Hurt += HpChanged;
         }
 
+        private void Update()
+        {
+            if (_heroUnit.Model != null) 
+                _heroUnit.Model.HeadPosition = transform.position;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("EnemyProjectile"))

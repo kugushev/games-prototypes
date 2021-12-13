@@ -33,7 +33,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                 _ => 0f // todo: log error
             });
 
-        protected override void OnAttacking() => Animator.SetTrigger(AnimationAttack);
+        protected override void OnAttacking(BaseFighter target) => Animator.SetTrigger(AnimationAttack);
 
         protected override void OnHurt() => Animator.SetTrigger(AnimationHit);
 

@@ -13,7 +13,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
     public class EnemyUnitPresenter : BaseUnitPresenter, IPoolable<Vector3, EnemyFighter, IMemoryPool>
     {
         [SerializeField] private Collider attackCollider;
-
+        [SerializeField] private float attackAnimationShift = -15f;
+        
         [Inject] private readonly HeroUnit _heroUnit;
 
         private static readonly int AnimationSpeedv = Animator.StringToHash("speedv");
@@ -23,7 +24,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private readonly WaitForSeconds _waitToDie = new WaitForSeconds(1f);
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
         private IMemoryPool _memoryPool;
-        
+
         public EnemyFighter Model { get; private set; }
 
         public void OnSpawned(Vector3 p1, EnemyFighter p2, IMemoryPool pool)
@@ -95,7 +96,21 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             Animator.SetFloat(AnimationSpeedv, speed);
         }
 
-        protected override void OnAttacking() => Animator.SetTrigger(AnimationAttack1H1);
+        protected override void OnAttacking(BaseFighter target)
+        {
+            if (target is HeroFighter hero)
+            {
+                var t = transform;
+                var lookPos = hero.HeadPosition - t.position;
+                lookPos.y = 0f;
+                var rotation = Quaternion.LookRotation(lookPos);
+                var euler = rotation.eulerAngles;
+                euler.y += attackAnimationShift;
+                t.rotation = Quaternion.Euler(euler);
+            }
+
+            Animator.SetTrigger(AnimationAttack1H1);
+        }
 
         protected override void OnHurt() => Animator.SetTrigger(AnimationHit1);
 

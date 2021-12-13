@@ -59,7 +59,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         protected abstract void OnActivityChanged(ActivityType newActivityType);
 
-        protected abstract void OnAttacking();
+        protected abstract void OnAttacking(BaseFighter target);
 
         protected abstract void OnHurt();
 

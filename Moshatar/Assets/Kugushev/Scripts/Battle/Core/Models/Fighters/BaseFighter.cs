@@ -31,7 +31,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 
         protected virtual bool SimplifiedSuffering => true;
 
-        public event Action Attacking;
+        public event Action<BaseFighter> Attacking;
         public event Action AttackCanceled;
         public event Action Hurt;
         public event Action Die;
@@ -93,7 +93,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
                     _currentAttack = new AttackProcessing(AttackStatus.Preparing);
                     break;
                 case AttackStatus.Preparing:
-                    Attacking?.Invoke();
+                    Attacking?.Invoke(orderAttack.Target);
                     _currentAttack = new AttackProcessing(AttackStatus.Prepared);
                     break;
                 case AttackStatus.Prepared:

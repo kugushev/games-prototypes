@@ -135,7 +135,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                 _activeAnimator.SetFloat(SpeedAnimationParameter, speed);
         }
 
-        private void OnAttacking()
+        private void OnAttacking(BaseFighter target)
         {
             if (_activeAnimator is { })
                 _activeAnimator.Play(SwingAnimationParameter, TopLayerIndex);
