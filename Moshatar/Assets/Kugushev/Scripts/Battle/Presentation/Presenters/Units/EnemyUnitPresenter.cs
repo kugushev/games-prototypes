@@ -13,6 +13,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
     public class EnemyUnitPresenter : BaseUnitPresenter, IPoolable<Vector3, EnemyFighter, IMemoryPool>
     {
         [SerializeField] private Collider attackCollider;
+        [SerializeField] private AudioSource attackSound;
         [SerializeField] private float attackAnimationShift = -15f;
         
         [Inject] private readonly HeroUnit _heroUnit;
@@ -107,6 +108,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                 var euler = rotation.eulerAngles;
                 euler.y += attackAnimationShift;
                 t.rotation = Quaternion.Euler(euler);
+                
+                attackSound.Play();
             }
 
             Animator.SetTrigger(AnimationAttack1H1);

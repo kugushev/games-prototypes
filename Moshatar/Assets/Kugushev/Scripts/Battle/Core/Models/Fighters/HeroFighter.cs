@@ -6,8 +6,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 {
     public class HeroFighter : BaseFighter
     {
-        private const int MaxHp = 16;
-        private const int Regeneration = 4;
+        private const int MaxHp = 12;
+        private const int Regeneration = 2;
         private const int LifestealAmount = 1;
         private const double InvulnerableSeconds = 1;
 

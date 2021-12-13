@@ -2,12 +2,17 @@
 using System.Collections;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.ValueObjects;
+using Kugushev.Scripts.Core.Services;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.Battle.Presentation
 {
     public class HeroUnit : MonoBehaviour
     {
+        [SerializeField] private AudioSource hitSound;
+        [Inject] private GameModeService _gameModeService;
+
         private readonly WaitForSeconds _waitForHeal = new WaitForSeconds(5f);
 
         public HeroFighter Model { get; private set; }
@@ -19,12 +24,7 @@ namespace Kugushev.Scripts.Battle.Presentation
         }
 
         public event Action<int, int> Hurt;
-
-        // todo: handle hit (head collider)
-        // todo: add invulnarable time
-        // todo: handle death
-        // todo: hp add regen
-
+        
         private IEnumerator Start()
         {
             while (true)
@@ -52,10 +52,12 @@ namespace Kugushev.Scripts.Battle.Presentation
             model.Die += OnDie;
         }
 
-        private void OnHurt() => Hurt?.Invoke(Model.Character.HP.Value, Model.Character.MaxHP);
-
-        private void OnDie()
+        private void OnHurt()
         {
+            Hurt?.Invoke(Model.Character.HP.Value, Model.Character.MaxHP);
+            hitSound.Play();
         }
+
+        private void OnDie() => _gameModeService.BackToMenu();
     }
 }

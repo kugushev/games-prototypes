@@ -42,6 +42,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
         {
             if (other.CompareTag("EnemyProjectile"))
             {
+                // print("Hit");
                 _enemyWeponsBuffer.Clear();
                 other.GetComponents(_enemyWeponsBuffer);
 
