@@ -19,7 +19,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         public const int DefaultDamage = 1;
         private const int DefaultMaxHp = 4;
         public const int BigDamage = 4;
-        private const int BigMaxHp = 40;
+        private const int BigMaxHp = 80;
+        private const float BigAttackRange = 3f;
         public const float SpawnSize = 8f;
 
         private readonly PlayerSquad _playerSquad;
@@ -96,7 +97,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             var point = new Vector2(Random.Range(-SpawnSize, SpawnSize), Random.Range(-SpawnSize, SpawnSize));
 
             var character = spawnBig
-                ? new Character(BigMaxHp, BigDamage)
+                ? new Character(BigMaxHp, BigDamage, BigAttackRange)
                 : new Character(DefaultMaxHp, DefaultDamage);
 
             var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield, spawnBig);

@@ -12,7 +12,6 @@ namespace Kugushev.Scripts.Battle.Core
         public static readonly TimeSpan HurtInterruptionTime = TimeSpan.FromMilliseconds(400);
 
         public const float SwordAttackRange = 1.5f;
-        public const int SwordAttackDamage = 1;
         public static readonly TimeSpan SwordAttackCooldown = TimeSpan.FromSeconds(1);
         public static readonly TimeSpan SwordAttackBeforeHurtTime = TimeSpan.FromMilliseconds(300);
         public static readonly TimeSpan SwordAttackAfterHurtTime = TimeSpan.FromMilliseconds(300);

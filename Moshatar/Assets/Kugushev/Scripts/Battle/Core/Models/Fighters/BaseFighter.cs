@@ -26,7 +26,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
 
         public Character Character { get; }
 
-        public float WeaponRange => BattleConstants.SwordAttackRange;
+        public float WeaponRange => Character.AttackRange;
         public bool IsDead => Activity.Value == ActivityType.Death;
 
         protected virtual bool SimplifiedSuffering => true;
@@ -64,7 +64,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Fighters
         }
 
         protected override bool IsActive => !IsDead;
-        protected override float InteractionRadius => BattleConstants.SwordAttackRange;
+        protected override float InteractionRadius => Character.AttackRange;
         protected override float Speed => BattleConstants.UnitSpeed;
 
         protected override bool CanProcessOrder()

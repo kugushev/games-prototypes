@@ -16,7 +16,7 @@ namespace Kugushev.Scripts.Battle.Core.Services
         {
             (0f, 0, false, 0),
             (8.654f, Min, false, 0),
-            (24.976f, Max, true, 0),
+            (24.976f, Max, false, 0),
             (60f, 0, false, 0),
             (60f + 25.061f, Max, true, 3),
             (60f + 41.853f, Min, false, 0),
@@ -108,7 +108,7 @@ namespace Kugushev.Scripts.Battle.Core.Services
             }
 
             // todo: lol, very ugly hack for perf testing
-            if (max == Max) 
+            if (max == Max)
                 max = MaxOverride;
 
             return (max, spawnBig, idx);

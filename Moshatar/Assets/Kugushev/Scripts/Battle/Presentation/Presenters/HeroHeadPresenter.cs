@@ -17,18 +17,14 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
 {
     public class HeroHeadPresenter : MonoBehaviour
     {
-        [SerializeField] private VolumeProfile volumeProfile;
+        [SerializeField] private SimpleHealthBar healthBar;
 
         [Inject] private readonly HeroUnit _heroUnit;
 
-        private Vignette _vignette;
         private readonly List<EnemyWeapon> _enemyWeponsBuffer = new List<EnemyWeapon>(1);
 
         private void Start()
         {
-            if (!volumeProfile.TryGet(out _vignette))
-                Debug.LogError("No Vignette found");
-
             _heroUnit.Hurt += HpChanged;
         }
 
@@ -42,7 +38,6 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
         {
             if (other.CompareTag("EnemyProjectile"))
             {
-                // print("Hit");
                 _enemyWeponsBuffer.Clear();
                 other.GetComponents(_enemyWeponsBuffer);
 
@@ -57,16 +52,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
 
         private void HpChanged(int value, int max)
         {
-            if (_vignette != null && _vignette.intensity != null)
-                _vignette.intensity.value = 1f - (float)value / max;
+            healthBar.UpdateBar(value, max);
         }
 
         private void OnDestroy()
         {
             _heroUnit.Hurt -= HpChanged;
-
-            if (_vignette != null && _vignette.intensity != null)
-                _vignette.intensity.value = 0;
         }
     }
 }

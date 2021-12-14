@@ -14,6 +14,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 
         [SerializeField] private AudioSource burningSound;
         [SerializeField] private AudioSource overheatingSound;
+        [SerializeField] private SimpleHealthBar manaBar;
 
         [Inject] private HeroHeadController _heroHeadController;
 
@@ -23,6 +24,8 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
         private void Awake()
         {
             BurningRate.Subscribe(BurningRateChanged).AddTo(this);
+            if (manaBar is {}) 
+                BurningRate.Subscribe(v => manaBar.UpdateBar(v, BurningRateHardCap));
         }
 
         private void Start()
