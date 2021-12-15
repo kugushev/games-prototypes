@@ -14,6 +14,9 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
         public int PlayerMaxSquadSize => 4;
 
         public int EnemyMaxSquadSize => 22;
+        public int EnemyMinSquadSize => 12;
+        public int EnemyMaxBigUnits => 3;
+        public int EnemyMinBigUnits => 5;
         public int EnemyDefaultDamage => 1;
         public int EnemyDefaultMaxHp => 4;
         public int EnemyBigDamage => 4;

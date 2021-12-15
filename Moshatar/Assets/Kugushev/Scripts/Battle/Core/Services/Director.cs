@@ -1,36 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Kugushev.Scripts.Battle.Core.Services
 {
     public class Director : MonoBehaviour
     {
         [SerializeField] private AudioSource source;
+        [Inject] private BattleGameplayManager _gameplayManager;
 
-        public int MaxOverride { get; set; } = Max;
+        private (float time, int max, bool spawnBig, int maxBig)[] _map;
 
-        private const int Max = 22;
-        private const int Min = 12;
-
-        private readonly (float time, int max, bool spawnBig, int maxBig)[] _map =
-        {
-            (0f, 0, false, 0),
-            (8.654f, Min, false, 0),
-            (24.976f, Max, false, 0),
-            (60f, 0, false, 0),
-            (60f + 25.061f, Max, true, 3),
-            (60f + 41.853f, Min, false, 0),
-            (60f + 57.088f, 0, false, 0),
-            (120f + 3.4f, Min, false, 0),
-            (120f + 28.733f, Max, true, 3),
-            (120f + 45.638f, 0, false, 0),
-            (120f + 49.606f, Max, true, 5),
-            (180f + 4.728f, 0, false, 0),
-            (180f + 15.568f, Min, false, 0),
-            (180f + 23.034f, Max, true, 3),
-            (180f + 41.261f, Max, true, 5),
-            (180f + 54.489f, 0, false, 0)
-        };
+        public int? MaxOverride { get; set; }
 
         // private readonly (float time, int max, bool spawnBig, int maxBig)[] _map =
         // {
@@ -79,6 +61,10 @@ namespace Kugushev.Scripts.Battle.Core.Services
 
         public (int max, bool spawnBig, int index) GetMax()
         {
+            if (MaxOverride != null)
+                return (MaxOverride.Value, false, 0);
+
+            _map ??= InitMap();
             _bigSpawnedPerStage ??= new int[_map.Length];
 
             var currentTime = source.time;
@@ -107,11 +93,32 @@ namespace Kugushev.Scripts.Battle.Core.Services
                     spawnBig = false;
             }
 
-            // todo: lol, very ugly hack for perf testing
-            if (max == Max)
-                max = MaxOverride;
-
             return (max, spawnBig, idx);
         }
+        
+        private (float time, int max, bool spawnBig, int maxBig)[] InitMap() => new []
+        {
+            (0f, 0, false, 0),
+            (8.654f, Min, false, 0),
+            (24.976f, Max, false, 0),
+            (60f, 0, false, 0),
+            (60f + 25.061f, Max, true, BigMin),
+            (60f + 41.853f, Min, false, 0),
+            (60f + 57.088f, 0, false, 0),
+            (120f + 3.4f, Min, false, 0),
+            (120f + 28.733f, Max, true, BigMin),
+            (120f + 45.638f, 0, false, 0),
+            (120f + 49.606f, Max, true, BigMax),
+            (180f + 4.728f, 0, false, 0),
+            (180f + 15.568f, Min, false, 0),
+            (180f + 23.034f, Max, true, BigMin),
+            (180f + 41.261f, Max, true, BigMax),
+            (180f + 54.489f, 0, false, 0)
+        };
+        
+        private int Max => _gameplayManager.Parameters.EnemyMaxSquadSize;
+        private int Min => _gameplayManager.Parameters.EnemyMinSquadSize;
+        private int BigMax => _gameplayManager.Parameters.EnemyMaxBigUnits;
+        private int BigMin => _gameplayManager.Parameters.EnemyMinBigUnits;
     }
 }

@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Kugushev.Scripts.Battle.Presentation.Presenters
 {
-    public class BattleControlPresenter: MonoBehaviour
+    public class BattleControlPresenter : MonoBehaviour
     {
         [SerializeField] private Button increaseSpawn;
         [SerializeField] private Button decreaseSpawn;
@@ -16,10 +16,13 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
 
         [Inject] private Director _director;
 
+        private const int DefaultMax = 22;
+
         private void Start()
         {
             increaseSpawn.onClick.AddListener(HandleIncrease);
             decreaseSpawn.onClick.AddListener(HandleDecrease);
+            textReport.text = StringBag.FromInt(DefaultMax);
         }
 
         private void OnDestroy()
@@ -30,16 +33,18 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
 
         private void HandleIncrease()
         {
+            _director.MaxOverride ??= DefaultMax;
             _director.MaxOverride++;
             UpdateOutput();
         }
 
         private void HandleDecrease()
         {
-            _director.MaxOverride--;      
-            UpdateOutput();      
+            _director.MaxOverride ??= DefaultMax;
+            _director.MaxOverride--;
+            UpdateOutput();
         }
 
-        private void UpdateOutput() => textReport.text = StringBag.FromInt(_director.MaxOverride);
+        private void UpdateOutput() => textReport.text = StringBag.FromInt(_director.MaxOverride ?? DefaultMax);
     }
 }
