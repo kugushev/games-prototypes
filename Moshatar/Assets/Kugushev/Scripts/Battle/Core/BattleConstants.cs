@@ -6,7 +6,7 @@ namespace Kugushev.Scripts.Battle.Core
     public static class BattleConstants
     {
         public const float UnitRadius = 1.25f;
-        public const float UnitSpeed = 2f;
+        public const float UnitSpeed = 3f;
         public const float UnitToTargetEpsilon = 0.1f;
 
         public static readonly TimeSpan HurtInterruptionTime = TimeSpan.FromMilliseconds(400);

@@ -3,6 +3,8 @@ using System.Linq;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
+using Kugushev.Scripts.Common.Utils;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -11,12 +13,19 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
 {
     public class PlayerSquadPresenter : MonoBehaviour
     {
+        [SerializeField] private Transform[] spawnPoints;
+        [SerializeField] private TextMeshProUGUI unitsLeft;
+
         [Inject] private readonly HeroUnit _heroUnit;
         [Inject] private readonly PlayerSquad _playerSquad;
         [Inject] private readonly PlayerUnitPresenter.Factory _playerUnitFactory;
 
         private void Start()
         {
+            _playerSquad.SpawnPoints = spawnPoints.Select(t => t.position).ToArray();
+
+            _playerSquad.AvailableUnits.Select(StringBag.FromInt).Subscribe(s => unitsLeft.text = s).AddTo(this);
+
             foreach (var unit in _playerSquad.Units)
                 CreateUnit(unit);
 

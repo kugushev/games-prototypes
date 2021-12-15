@@ -15,7 +15,9 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
 {
     public class EnemySquadPresenter : MonoBehaviour
     {
-        [Inject] private EnemySquad _enemySquad = default!;
+        [SerializeField] private Transform[] spawnPoints;
+
+        [Inject] private EnemySquad _enemySquad;
         [Inject] private EnemyUnitPresenter.Factory _enemyUnitFactory;
         [Inject] private BattleGameplayManager _gameplayManager;
 
@@ -23,6 +25,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
 
         private void Start()
         {
+            _enemySquad.SpawnPoints = spawnPoints.Select(t => t.position).ToArray();
+
             foreach (var unit in _enemySquad.Units)
                 CreateUnit(unit);
 

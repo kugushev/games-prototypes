@@ -46,6 +46,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         private readonly List<EnemyFighter> _unitsToDelete = new List<EnemyFighter>(32);
 
+        public IReadOnlyList<Vector3> SpawnPoints { get; set; }
+        private int _lastSpawnIndex = -1;
+
         void ITickable.Tick()
         {
             foreach (var enemyUnit in _units)
@@ -74,7 +77,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             foreach (var enemyUnit in _unitsToDelete)
                 _units.Remove(enemyUnit);
-            
+
             var (max, spawnBig, idx) = _director.GetMax();
             if (_units.Count < max)
             {
@@ -88,10 +91,19 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private void Spawn(bool spawnBig)
         {
             var parameters = _battleGameplayManager.Parameters;
+            
+            Vector2 point;
+            if (_battleGameplayManager.SeletedMode == BattleGameplayManager.Mode.Tog)
+            {
+                if (SpawnPoints == null)
+                    return;
 
-            var point = new Vector2(
-                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize),
-                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize));
+                point = GetSpawnPoint();
+            }
+            else
+                point = new Vector2(
+                    Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize),
+                    Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize));
 
             var character = spawnBig
                 ? new Character(parameters.EnemyBigMaxHp, parameters.EnemyBigDamage, parameters.EnemyBigAttackRange)
@@ -102,6 +114,34 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             _battlefield.RegisterUnt(enemyUnit);
         }
+
+        private Vector2 GetSpawnPoint()
+        {
+            var spawnIndex = _lastSpawnIndex + 1;
+            if (spawnIndex >= SpawnPoints.Count) 
+                spawnIndex = 0;
+            
+            var vector = SpawnPoints[spawnIndex];
+            var point = new Vector2(vector.x, vector.z);
+
+            _lastSpawnIndex = spawnIndex;
+            return point;
+        }
+        
+        // private Vector2 GetSpawnPoint()
+        // {
+        //     int spawnIndex;
+        //     do
+        //     {
+        //         spawnIndex = Random.Range(0, SpawnPoints.Count);
+        //     } while (spawnIndex == _lastSpawnIndex);
+        //
+        //     _lastSpawnIndex = spawnIndex;
+        //
+        //     var vector = SpawnPoints[spawnIndex];
+        //     var point = new Vector2(vector.x, vector.z);
+        //     return point;
+        // }
 
         void IDisposable.Dispose() => _agentsManager.Unregister(this);
     }

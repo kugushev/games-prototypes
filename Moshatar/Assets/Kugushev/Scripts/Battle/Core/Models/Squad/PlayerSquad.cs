@@ -24,6 +24,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private readonly AgentsManager _agentsManager;
         private readonly SimpleAIService _simpleAIService;
         private readonly BattleGameplayManager _battleGameplayManager;
+        private readonly ReactiveProperty<int> _availableUnits = new ReactiveProperty<int>(300);
 
         private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
 
@@ -44,21 +45,6 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             _agentsManager.Register(this);
 
-            // for (var index = 0; index < _battleGameplayManager.Parameters.PlayerSquadSize; index++)
-            // {
-            //     var character = new Character(_battleGameplayManager.Parameters.TeammateDefaultMaxHp,
-            //         _battleGameplayManager.Parameters.TeammateDefaultDamage);
-            //
-            //     var row = BattleConstants.UnitsPositionsInRow[index];
-            //     var point = new Vector2(BattleConstants.PlayerSquadLine, row);
-            //
-            //     var playerUnit = new PlayerFighter(new Position(point), character, battlefield);
-            //     // playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
-            //     _units.Add(playerUnit);
-            //
-            //     battlefield.RegisterUnt(playerUnit);
-            // }
-
             Hero = new HeroFighter(new Position(Vector2.zero), battlefield, _battleGameplayManager);
             Heroes = new[] { Hero };
         }
@@ -68,6 +54,11 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         public HeroFighter Hero { get; }
 
         public IEnumerable<HeroFighter> Heroes { get; }
+
+        public IReadOnlyReactiveProperty<int> AvailableUnits => _availableUnits;
+
+        public IReadOnlyList<Vector3> SpawnPoints { get; set; }
+        private int _lastSpawnIndex = 0;
 
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
@@ -99,29 +90,54 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 if (order != null)
                     squadUnit.CurrentOrder = order;
             }
-            
+
             foreach (var enemyUnit in _unitsToDelete)
                 _units.Remove(enemyUnit);
 
-            if (_units.Count < _battleGameplayManager.Parameters.PlayerSquadSize) 
+            if (_units.Count < _battleGameplayManager.Parameters.PlayerSquadSize)
                 Spawn();
         }
 
         private void Spawn()
         {
             var parameters = _battleGameplayManager.Parameters;
+            
+            Vector2 point;
+            if (_battleGameplayManager.SeletedMode == BattleGameplayManager.Mode.Tog)
+            {
+                if (SpawnPoints == null)
+                    return;
 
-            var point = new Vector2(
-                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize),
-                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize));
+                point = GetSpawnPoint();
+            }
+            else
+                point = new Vector2(
+                    Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize),
+                    Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize));
 
-            var character = new Character(_battleGameplayManager.Parameters.TeammateDefaultMaxHp,
-                _battleGameplayManager.Parameters.TeammateDefaultDamage);
+
+            var character = new Character(parameters.TeammateDefaultMaxHp,
+                parameters.TeammateDefaultDamage);
 
             var playerUnit = new PlayerFighter(new Position(point), character, _battlefield);
             _units.Add(playerUnit);
 
             _battlefield.RegisterUnt(playerUnit);
+
+            _availableUnits.Value--;
+        }
+
+        private Vector2 GetSpawnPoint()
+        {
+            var spawnIndex = _lastSpawnIndex + 1;
+            if (spawnIndex >= SpawnPoints.Count)
+                spawnIndex = 0;
+
+            var vector = SpawnPoints[spawnIndex];
+            var point = new Vector2(vector.x, vector.z);
+
+            _lastSpawnIndex = spawnIndex;
+            return point;
         }
 
         void IDisposable.Dispose()

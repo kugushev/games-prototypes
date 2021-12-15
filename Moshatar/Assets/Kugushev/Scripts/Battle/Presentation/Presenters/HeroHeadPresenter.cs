@@ -7,6 +7,7 @@ using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Squad;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Rendering;
