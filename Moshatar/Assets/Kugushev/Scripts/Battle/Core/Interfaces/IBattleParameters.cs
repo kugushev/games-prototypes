@@ -5,6 +5,10 @@
         int HeroDamage { get; }
         int HeroDamageSuper { get; }
         int FireBreathDamage { get; }
+        int HeroMaxHp { get; }
+        int HeroRegeneration { get; }
+        int HeroLifestealAmount { get; }
+        double HeroInvulnerableSeconds { get; }
 
         int PlayerSquadSize { get; }
         int PlayerDefaultDamage { get; }

@@ -7,6 +7,10 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
         public int HeroDamage => 4;
         public int HeroDamageSuper => 20;
         public int FireBreathDamage => 10;
+        public int HeroMaxHp => 12;
+        public int HeroRegeneration => 2;
+        public int HeroLifestealAmount => 1;
+        public double HeroInvulnerableSeconds => 1;
 
         public int PlayerSquadSize => 4;
         public int PlayerDefaultDamage => 3;

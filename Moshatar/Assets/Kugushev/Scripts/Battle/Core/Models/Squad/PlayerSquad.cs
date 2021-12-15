@@ -56,7 +56,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 battlefield.RegisterUnt(playerUnit);
             }
 
-            Hero = new HeroFighter(new Position(Vector2.zero), battlefield);
+            Hero = new HeroFighter(new Position(Vector2.zero), battlefield, _battleGameplayManager);
             Heroes = new[] { Hero };
         }
 

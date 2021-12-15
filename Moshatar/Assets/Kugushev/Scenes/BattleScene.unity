@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musouEnv: {fileID: 6415025389979405053, guid: 0784c7552c0c0234aa71f2b9d41e05c5, type: 3}
-  togEnv: {fileID: 0}
+  togEnv: {fileID: 6415025389979405053, guid: 0784c7552c0c0234aa71f2b9d41e05c5, type: 3}
 --- !u!114 &167352392 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11471602, guid: 34017cf12560c804bb2f669f00c7af91, type: 3}
