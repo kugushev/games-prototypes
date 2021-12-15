@@ -14,6 +14,11 @@ namespace Kugushev.Scripts.Battle.Presentation
                 .FromMonoPoolableMemoryPool(x =>
                     x.FromIFactory(f =>
                         f.To<EnemyUnitPrefabFactory>().FromComponentInHierarchy().AsSingle()));
+            
+            Container.BindFactory<Vector3, PlayerFighter, PlayerUnitPresenter, PlayerUnitPresenter.Factory>()
+                .FromMonoPoolableMemoryPool(x =>
+                    x.FromIFactory(f =>
+                        f.To<PlayerUnitPrefabFactory>().FromComponentInHierarchy().AsSingle()));
 
             Container.Bind<HeroUnit>().FromComponentInHierarchy().AsSingle();
         }

@@ -11,6 +11,7 @@ using Kugushev.Scripts.Battle.Core.ValueObjects.Orders;
 using UniRx;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
@@ -19,6 +20,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         public EnemySquad EnemySquad; // todo: fix this hack later
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderAttack.Factory _orderAttackFactory;
+        private readonly Battlefield _battlefield;
         private readonly AgentsManager _agentsManager;
         private readonly SimpleAIService _simpleAIService;
         private readonly BattleGameplayManager _battleGameplayManager;
@@ -35,26 +37,27 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         {
             _orderMoveFactory = orderMoveFactory;
             _orderAttackFactory = orderAttackFactory;
+            _battlefield = battlefield;
             _agentsManager = agentsManager;
             _simpleAIService = simpleAIService;
             _battleGameplayManager = battleGameplayManager;
 
             _agentsManager.Register(this);
 
-            for (var index = 0; index < _battleGameplayManager.Parameters.PlayerSquadSize; index++)
-            {
-                var character = new Character(_battleGameplayManager.Parameters.TeammateDefaultMaxHp,
-                    _battleGameplayManager.Parameters.TeammateDefaultDamage);
-
-                var row = BattleConstants.UnitsPositionsInRow[index];
-                var point = new Vector2(BattleConstants.PlayerSquadLine, row);
-
-                var playerUnit = new PlayerFighter(new Position(point), character, battlefield);
-                // playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
-                _units.Add(playerUnit);
-
-                battlefield.RegisterUnt(playerUnit);
-            }
+            // for (var index = 0; index < _battleGameplayManager.Parameters.PlayerSquadSize; index++)
+            // {
+            //     var character = new Character(_battleGameplayManager.Parameters.TeammateDefaultMaxHp,
+            //         _battleGameplayManager.Parameters.TeammateDefaultDamage);
+            //
+            //     var row = BattleConstants.UnitsPositionsInRow[index];
+            //     var point = new Vector2(BattleConstants.PlayerSquadLine, row);
+            //
+            //     var playerUnit = new PlayerFighter(new Position(point), character, battlefield);
+            //     // playerUnit.Hurt += attacker => UnitOnHurt(playerUnit, attacker);
+            //     _units.Add(playerUnit);
+            //
+            //     battlefield.RegisterUnt(playerUnit);
+            // }
 
             Hero = new HeroFighter(new Position(Vector2.zero), battlefield, _battleGameplayManager);
             Heroes = new[] { Hero };
@@ -68,13 +71,21 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
+        private readonly List<PlayerFighter> _unitsToDelete = new List<PlayerFighter>(32);
+
         void ITickable.Tick()
         {
             if (EnemySquad == null)
                 return;
 
-            foreach (var squadUnit in _units.Where(u => !u.IsDead))
+            foreach (var squadUnit in _units)
             {
+                if (squadUnit.IsDead)
+                {
+                    _unitsToDelete.Add(squadUnit);
+                    continue;
+                }
+
                 if (squadUnit.CurrentOrder is OrderAttack currentOrder)
                 {
                     var toCurrentTarget = Vector2.Distance(
@@ -88,17 +99,34 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 if (order != null)
                     squadUnit.CurrentOrder = order;
             }
+            
+            foreach (var enemyUnit in _unitsToDelete)
+                _units.Remove(enemyUnit);
+
+            if (_units.Count < _battleGameplayManager.Parameters.PlayerSquadSize) 
+                Spawn();
+        }
+
+        private void Spawn()
+        {
+            var parameters = _battleGameplayManager.Parameters;
+
+            var point = new Vector2(
+                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize),
+                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize));
+
+            var character = new Character(_battleGameplayManager.Parameters.TeammateDefaultMaxHp,
+                _battleGameplayManager.Parameters.TeammateDefaultDamage);
+
+            var playerUnit = new PlayerFighter(new Position(point), character, _battlefield);
+            _units.Add(playerUnit);
+
+            _battlefield.RegisterUnt(playerUnit);
         }
 
         void IDisposable.Dispose()
         {
             _agentsManager.Unregister(this);
         }
-
-        // private void UnitOnHurt(PlayerFighter victim, BaseFighter attacker)
-        // {
-        //     if (victim.CurrentOrder == null)
-        //         victim.CurrentOrder = _orderAttackFactory.Create(attacker);
-        // }
     }
 }

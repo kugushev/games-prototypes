@@ -30,9 +30,9 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
         public EnemyFighter Model { get; private set; }
 
-        public void OnSpawned(Vector3 p1, EnemyFighter p2, IMemoryPool pool)
+        public void OnSpawned(Vector3 p1, EnemyFighter p2, IMemoryPool p3)
         {
-            _memoryPool = pool;
+            _memoryPool = p3;
 
             var t = transform;
 

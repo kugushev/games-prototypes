@@ -10,6 +10,18 @@ namespace Kugushev.Scripts.Battle.Core.Models
 
         public IEnumerable<BaseFighter> Units => _units.Where(u => !u.IsDead);
 
-        public void RegisterUnt(BaseFighter fighter) => _units.Add(fighter);
+        private readonly List<BaseFighter> _unitsToDelete = new List<BaseFighter>(32);
+        
+        public void RegisterUnt(BaseFighter fighter)
+        {
+            foreach (var unit in _units)
+                if (unit.IsDead)
+                    _unitsToDelete.Add(unit);
+            foreach (var unit in _unitsToDelete)
+                _units.Remove(unit);
+
+            
+            _units.Add(fighter);
+        }
     }
 }

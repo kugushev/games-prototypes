@@ -48,9 +48,9 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             }
         }
 
-        private void CreateUnit(EnemyFighter playerFighter)
+        private void CreateUnit(EnemyFighter enemyFighter)
         {
-            _enemyUnitFactory.Create(playerFighter.Position.Value.To3D(), playerFighter);
+            _enemyUnitFactory.Create(enemyFighter.Position.Value.To3D(), enemyFighter);
         }
 
         // private void OnDrawGizmos()
