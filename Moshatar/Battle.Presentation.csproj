@@ -54,6 +54,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\BaseUnitPresenterOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\RetreatZonePresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\EnemySquadPresenter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\BattleSetup.cs" />
      <None Include="Assets\Kugushev\Scripts\Battle\Presentation\Battle.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
