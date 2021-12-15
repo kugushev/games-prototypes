@@ -74,8 +74,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             foreach (var enemyUnit in _unitsToDelete)
                 _units.Remove(enemyUnit);
-
-
+            
             var (max, spawnBig, idx) = _director.GetMax();
             if (_units.Count < max)
             {
