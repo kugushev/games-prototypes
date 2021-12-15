@@ -43,8 +43,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             for (var index = 0; index < _battleGameplayManager.Parameters.PlayerSquadSize; index++)
             {
-                var character = new Character(_battleGameplayManager.Parameters.PlayerDefaultMaxHp,
-                    _battleGameplayManager.Parameters.PlayerDefaultDamage);
+                var character = new Character(_battleGameplayManager.Parameters.TeammateDefaultMaxHp,
+                    _battleGameplayManager.Parameters.TeammateDefaultDamage);
 
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.PlayerSquadLine, row);

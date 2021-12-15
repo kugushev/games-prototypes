@@ -11,9 +11,8 @@
         double HeroInvulnerableSeconds { get; }
 
         int PlayerSquadSize { get; }
-        int PlayerDefaultDamage { get; }
-        int PlayerDefaultMaxHp { get; }
-        int PlayerMaxSquadSize { get; }
+        int TeammateDefaultDamage { get; }
+        int TeammateDefaultMaxHp { get; }
 
         int EnemyDefaultDamage { get; }
         int EnemyDefaultMaxHp { get; }

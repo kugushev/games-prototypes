@@ -18,7 +18,9 @@ namespace Kugushev.Scripts.Battle.Core
 
         public const float PlayerSquadLine = 0f;
         public const float EnemySquadLine = 8f;
-        public static readonly IReadOnlyList<float> UnitsPositionsInRow = new[] { -3f, -1f, 1f, 3f };
+
+        public static readonly IReadOnlyList<float> UnitsPositionsInRow =
+            new[] { -3f, -2f, -1f, 0f, 1f, 3f, 4f, 5f, 6f, 7f };
 
         public const float AIAggroResetMultiplier = 1f;
 

@@ -7,9 +7,11 @@ namespace Kugushev.Scripts.Battle.Core.Services
     {
         public static BattleGameplayManager Instance { get; } = new BattleGameplayManager();
         
-        public IBattleParameters Parameters { get; private set; } = new MusouBattleParameters();
-
-        public Mode SeletedMode { get; private set; } = Mode.Musou;
+        // public IBattleParameters Parameters { get; private set; } = new MusouBattleParameters();
+        // public Mode SeletedMode { get; private set; } = Mode.Musou;
+        
+        public IBattleParameters Parameters { get; private set; } = new TogBattleParameters();
+        public Mode SeletedMode { get; private set; } = Mode.Tog;
 
         public void SetMusou()
         {

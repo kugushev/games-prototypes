@@ -5,27 +5,27 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
     public class TogBattleParameters : IBattleParameters
     {
         public int HeroDamage => 4;
-        public int HeroDamageSuper => 20;
-        public int FireBreathDamage => 10;
+        public int HeroDamageSuper => 12;
+        public int FireBreathDamage => 6;
         public int HeroMaxHp => 12;
         public int HeroRegeneration => 2;
         public int HeroLifestealAmount => 1;
         public double HeroInvulnerableSeconds => 1;
 
-        public int PlayerSquadSize => 4;
-        public int PlayerDefaultDamage => 3;
-        public int PlayerDefaultMaxHp => 350;
-        public int PlayerMaxSquadSize => 4;
-
-
-        public int EnemyMaxSquadSize => 22;
-        public int EnemyMinSquadSize => 12;
-        public int EnemyMaxBigUnits => 3;
-        public int EnemyMinBigUnits => 5;
-        public int EnemyDefaultDamage => 1;
-        public int EnemyDefaultMaxHp => 4;
-        public int EnemyBigDamage => 4;
-        public int EnemyBigMaxHp => 80;
+        
+        public int PlayerSquadSize => 10;
+        public int TeammateDefaultDamage => 3;
+        public int TeammateDefaultMaxHp => 40;
+        
+        
+        public int EnemyMaxSquadSize => 16;
+        public int EnemyMinSquadSize => 10;
+        public int EnemyMaxBigUnits => 2;
+        public int EnemyMinBigUnits => 1;
+        public int EnemyDefaultDamage => 4;
+        public int EnemyDefaultMaxHp => 12;
+        public int EnemyBigDamage => 20;
+        public int EnemyBigMaxHp => 40;
         public float EnemyBigAttackRange => 3f;
         public float EnemySpawnSize => 8f;
     }
