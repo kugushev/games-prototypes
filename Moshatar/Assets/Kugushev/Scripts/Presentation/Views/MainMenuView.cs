@@ -23,7 +23,7 @@ namespace Kugushev.Scripts.Presentation.Views
             fightButton.onClick.AddListener(() => _gameModeService.StartFight());
             benchmarkButton.onClick.AddListener(() => _gameModeService.StartBenchmark());
             duelButton.onClick.AddListener(() => _gameModeService.StartDuel());
-            battleButton.onClick.AddListener(() => _gameModeService.StartBattle());
+            battleButton.onClick.AddListener(() => _gameModeService.StartBattleMusou());
 
             scoreText.text = $"Last {_score.LastGold}. Top {_score.TopGold}";
         }

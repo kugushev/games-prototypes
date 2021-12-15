@@ -1,4 +1,5 @@
-﻿using Kugushev.Scripts.Common;
+﻿using Kugushev.Scripts.Battle.Core.Services;
+using Kugushev.Scripts.Common;
 using Kugushev.Scripts.Core.Models;
 using Kugushev.Scripts.Core.Services;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Kugushev.Scripts.Core
             Container.BindInterfacesAndSelfTo<GameConfigurationService>().AsSingle();
             Container.Bind<GameModeService>().AsSingle();
             Container.Bind<Score>().AsSingle();
+            Container.Bind<BattleGameplayManager>().FromInstance(BattleGameplayManager.Instance).AsSingle();
         }
     }
 }

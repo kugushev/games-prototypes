@@ -16,15 +16,12 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class PlayerSquad : IDisposable, IAgentsOwner, ITickable
     {
-        private const int SquadSize = 4;
-        private const int DefaultDamage = 3;
-        private const int DefaultMaxHp = 350;
-
         public EnemySquad EnemySquad; // todo: fix this hack later
         private readonly OrderMove.Factory _orderMoveFactory;
         private readonly OrderAttack.Factory _orderAttackFactory;
         private readonly AgentsManager _agentsManager;
         private readonly SimpleAIService _simpleAIService;
+        private readonly BattleGameplayManager _battleGameplayManager;
 
         private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
 
@@ -33,18 +30,21 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             OrderAttack.Factory orderAttackFactory,
             Battlefield battlefield,
             AgentsManager agentsManager,
-            SimpleAIService simpleAIService)
+            SimpleAIService simpleAIService,
+            BattleGameplayManager battleGameplayManager)
         {
             _orderMoveFactory = orderMoveFactory;
             _orderAttackFactory = orderAttackFactory;
             _agentsManager = agentsManager;
             _simpleAIService = simpleAIService;
+            _battleGameplayManager = battleGameplayManager;
 
             _agentsManager.Register(this);
 
-            for (var index = 0; index < SquadSize; index++)
+            for (var index = 0; index < _battleGameplayManager.Parameters.PlayerSquadSize; index++)
             {
-                var character = new Character(DefaultMaxHp, DefaultDamage);
+                var character = new Character(_battleGameplayManager.Parameters.PlayerDefaultMaxHp,
+                    _battleGameplayManager.Parameters.PlayerDefaultDamage);
 
                 var row = BattleConstants.UnitsPositionsInRow[index];
                 var point = new Vector2(BattleConstants.PlayerSquadLine, row);

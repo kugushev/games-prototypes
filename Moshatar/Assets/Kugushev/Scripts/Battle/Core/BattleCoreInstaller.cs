@@ -17,6 +17,8 @@ namespace Kugushev.Scripts.Battle.Core
 
         public override void InstallBindings()
         {
+            Container.Bind<BattleGameplayManager>().FromInstance(BattleGameplayManager.Instance).AsSingle();
+            
             Container.BindInterfacesAndSelfTo<BattleSupervisor>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerSquad>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemySquad>().AsSingle();

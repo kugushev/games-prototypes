@@ -5,6 +5,7 @@ using System.Linq;
 using Kugushev.Scripts.Battle.Core;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
+using Kugushev.Scripts.Battle.Core.Services;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
 using UniRx;
 using UnityEngine;
@@ -16,12 +17,13 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
     {
         [Inject] private EnemySquad _enemySquad = default!;
         [Inject] private EnemyUnitPresenter.Factory _enemyUnitFactory;
+        [Inject] private BattleGameplayManager _gameplayManager;
 
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
-        
+
         private void Start()
         {
-            foreach (var unit in _enemySquad.Units) 
+            foreach (var unit in _enemySquad.Units)
                 CreateUnit(unit);
 
             _enemySquad.Units.ObserveAdd().Subscribe(e => CreateUnit(e.Value)).AddTo(this);
@@ -40,8 +42,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
                     if (unit.IsDead)
                         continue;
 
-                    if (unit.Burning) 
-                        unit.Suffer(BattleConstants.FireBreathDamage);
+                    if (unit.Burning)
+                        unit.Suffer(_gameplayManager.Parameters.FireBreathDamage);
                 }
             }
         }
@@ -51,9 +53,9 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             _enemyUnitFactory.Create(playerFighter.Position.Value.To3D(), playerFighter);
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(EnemySquad.SpawnSize * 2f, 1, EnemySquad.SpawnSize * 2f));
-        }
+        // private void OnDrawGizmos()
+        // {
+        //     Gizmos.DrawWireCube(Vector3.zero, new Vector3(EnemySquad.SpawnSize * 2f, 1, EnemySquad.SpawnSize * 2f));
+        // }
     }
 }

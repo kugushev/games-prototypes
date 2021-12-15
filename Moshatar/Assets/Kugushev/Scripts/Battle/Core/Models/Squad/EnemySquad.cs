@@ -15,24 +15,17 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 {
     public class EnemySquad : ITickable, IDisposable, IAgentsOwner
     {
-        private const int MaxSquadSize = 22;
-        public const int DefaultDamage = 1;
-        private const int DefaultMaxHp = 4;
-        public const int BigDamage = 4;
-        private const int BigMaxHp = 80;
-        private const float BigAttackRange = 3f;
-        public const float SpawnSize = 8f;
-
         private readonly PlayerSquad _playerSquad;
         private readonly SimpleAIService _simpleAIService;
         private readonly Battlefield _battlefield;
         private readonly AgentsManager _agentsManager;
         private readonly Director _director;
+        private readonly BattleGameplayManager _battleGameplayManager;
 
         private readonly ReactiveCollection<EnemyFighter> _units = new ReactiveCollection<EnemyFighter>();
 
         public EnemySquad(PlayerSquad playerSquad, SimpleAIService simpleAIService, Battlefield battlefield,
-            AgentsManager agentsManager, Director director)
+            AgentsManager agentsManager, Director director, BattleGameplayManager battleGameplayManager)
         {
             _playerSquad = playerSquad;
             _playerSquad.EnemySquad = this;
@@ -41,6 +34,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _battlefield = battlefield;
             _agentsManager = agentsManager;
             _director = director;
+            _battleGameplayManager = battleGameplayManager;
 
             _agentsManager.Register(this);
         }
@@ -50,7 +44,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
 
-        private readonly List<EnemyFighter> _unitsToDelete = new List<EnemyFighter>(MaxSquadSize);
+        private readonly List<EnemyFighter> _unitsToDelete = new List<EnemyFighter>(32);
 
         void ITickable.Tick()
         {
@@ -94,11 +88,15 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         private void Spawn(bool spawnBig)
         {
-            var point = new Vector2(Random.Range(-SpawnSize, SpawnSize), Random.Range(-SpawnSize, SpawnSize));
+            var parameters = _battleGameplayManager.Parameters;
+
+            var point = new Vector2(
+                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize),
+                Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize));
 
             var character = spawnBig
-                ? new Character(BigMaxHp, BigDamage, BigAttackRange)
-                : new Character(DefaultMaxHp, DefaultDamage);
+                ? new Character(parameters.EnemyBigMaxHp, parameters.EnemyBigDamage, parameters.EnemyBigAttackRange)
+                : new Character(parameters.EnemyDefaultMaxHp, parameters.EnemyDefaultDamage);
 
             var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield, spawnBig);
             _units.Add(enemyUnit);

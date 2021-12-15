@@ -4,6 +4,7 @@ using Kugushev.Scripts.Battle.Core;
 using Kugushev.Scripts.Battle.Core.Enums;
 using Kugushev.Scripts.Battle.Core.Exceptions;
 using Kugushev.Scripts.Battle.Core.Models.Fighters;
+using Kugushev.Scripts.Battle.Core.Services;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -15,8 +16,9 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         [SerializeField] private Collider attackCollider;
         [SerializeField] private AudioSource attackSound;
         [SerializeField] private float attackAnimationShift = -15f;
-        
+
         [Inject] private readonly HeroUnit _heroUnit;
+        [Inject] private BattleGameplayManager _gameplayManager;
 
         private static readonly int AnimationSpeedv = Animator.StringToHash("speedv");
         private static readonly int AnimationAttack1H1 = Animator.StringToHash("Attack1h1");
@@ -62,12 +64,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
             if (other.CompareTag("SmallProjectile"))
             {
-                Model.Suffer(BattleConstants.HeroDamage);
+                Model.Suffer(_gameplayManager.Parameters.HeroDamage);
                 _heroUnit.Model.Lifesteal();
             }
             else if (other.CompareTag("BigProjectile"))
             {
-                Model.Suffer(BattleConstants.HeroDamageSuper);
+                Model.Suffer(_gameplayManager.Parameters.HeroDamageSuper);
                 _heroUnit.Model.Lifesteal();
             }
             else if (other.CompareTag("Dot"))
@@ -108,7 +110,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                 var euler = rotation.eulerAngles;
                 euler.y += attackAnimationShift;
                 t.rotation = Quaternion.Euler(euler);
-                
+
                 attackSound.Play();
             }
 
