@@ -6,7 +6,7 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
     {
         public int HeroDamage => 4;
         public int HeroDamageSuper => 12;
-        public int FireBreathDamage => 6;
+        public int FireBreathDamage => 3;
         public int HeroMaxHp => 12;
         public int HeroRegeneration => 2;
         public int HeroLifestealAmount => 1;
@@ -25,7 +25,7 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
         public int EnemyDefaultDamage => 4;
         public int EnemyDefaultMaxHp => 12;
         public int EnemyBigDamage => 20;
-        public int EnemyBigMaxHp => 40;
+        public int EnemyBigMaxHp => 60;
         public float EnemyBigAttackRange => 3f;
         public float EnemySpawnSize => 8f;
     }

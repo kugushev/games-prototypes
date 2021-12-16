@@ -204,7 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92340b5f0a9c433488e9b36e9968e90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simpleHealthBar: {fileID: 0}
+  simpleHealthBar: {fileID: 1820748829821771976}
+  simpleHealthBarRoot: {fileID: 7253691228078300330}
   attackCollider: {fileID: 2033454701349449061}
   attackSound: {fileID: 8707273394106078098}
   attackAnimationShift: -14
@@ -252,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3863515215783987796
 RectTransform:
   m_ObjectHideFlags: 0
@@ -472,6 +473,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 22403254, guid: 60da1df1f7edb3747bea8f735b2768d1, type: 3}
   m_PrefabInstance: {fileID: 1820748829810714628}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1820748829821771976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11487436, guid: 60da1df1f7edb3747bea8f735b2768d1, type: 3}
+  m_PrefabInstance: {fileID: 1820748829810714628}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1310e65397a274d44a776b51d6937f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6415340927189458431
 PrefabInstance:
   m_ObjectHideFlags: 0

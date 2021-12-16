@@ -24,7 +24,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private readonly AgentsManager _agentsManager;
         private readonly SimpleAIService _simpleAIService;
         private readonly BattleGameplayManager _battleGameplayManager;
-        private readonly ReactiveProperty<int> _availableUnits = new ReactiveProperty<int>(300);
+        private readonly ReactiveProperty<int> _availableUnits = new ReactiveProperty<int>(100);
 
         private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
 
@@ -100,6 +100,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         private void Spawn()
         {
+            if (_availableUnits.Value <= 0)
+                return;
+
             var parameters = _battleGameplayManager.Parameters;
             
             Vector2 point;

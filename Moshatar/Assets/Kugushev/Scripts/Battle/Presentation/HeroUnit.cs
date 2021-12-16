@@ -23,8 +23,6 @@ namespace Kugushev.Scripts.Battle.Presentation
             OnModelSet(Model);
         }
 
-        public event Action<int, int> Hurt;
-        
         private IEnumerator Start()
         {
             while (true)
@@ -52,11 +50,7 @@ namespace Kugushev.Scripts.Battle.Presentation
             model.Die += OnDie;
         }
 
-        private void OnHurt()
-        {
-            Hurt?.Invoke(Model.Character.HP.Value, Model.Character.MaxHP);
-            hitSound.Play();
-        }
+        private void OnHurt() => hitSound.Play();
 
         private void OnDie() => _gameModeService.BackToMenu();
     }

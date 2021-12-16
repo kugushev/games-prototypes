@@ -26,12 +26,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
 
         private void Start()
         {
-            _heroUnit.Hurt += HpChanged;
+            _heroUnit.Model.Character.HP.Subscribe(HpChanged).AddTo(this);
         }
 
         private void Update()
         {
-            if (_heroUnit.Model != null) 
+            if (_heroUnit.Model != null)
                 _heroUnit.Model.HeadPosition = transform.position;
         }
 
@@ -51,14 +51,10 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters
             }
         }
 
-        private void HpChanged(int value, int max)
+        private void HpChanged(int value)
         {
+            var max = _heroUnit.Model.Character.MaxHP;
             healthBar.UpdateBar(value, max);
-        }
-
-        private void OnDestroy()
-        {
-            _heroUnit.Hurt -= HpChanged;
         }
     }
 }

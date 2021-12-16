@@ -25,7 +25,6 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
         private static readonly int AnimationHit1 = Animator.StringToHash("Hit1");
         private static readonly int AnimationFall1 = Animator.StringToHash("Fall1");
         private readonly WaitForSeconds _waitToDie = new WaitForSeconds(1f);
-        private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
         private IMemoryPool _memoryPool;
 
         public EnemyFighter Model { get; private set; }
@@ -42,7 +41,10 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             if (Model.IsBig)
                 t.localScale = DefaultScale * 2f;
 
+            ToggleHealthBarVisibility(Model.IsBig);
+
             OnModelSet(Model);
+
 
             attackCollider.enabled = true;
         }
@@ -53,6 +55,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 
             OnModelRemoved(Model);
             Model = null;
+            ToggleHealthBarVisibility(true);
 
             transform.localScale = DefaultScale;
         }

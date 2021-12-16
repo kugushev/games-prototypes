@@ -9,7 +9,8 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
 {
     public abstract class BaseUnitPresenter : MonoBehaviour
     {
-        [SerializeField] private SimpleHealthBar simpleHealthBar = default!;
+        [SerializeField] private SimpleHealthBar simpleHealthBar;
+        [SerializeField] private GameObject simpleHealthBarRoot;
 
         protected Animator Animator;
         protected Vector3 DefaultScale;
@@ -38,9 +39,15 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
             model.Die -= OnDie;
         }
 
+        protected void ToggleHealthBarVisibility(bool show)
+        {
+            if (simpleHealthBarRoot is {}) 
+                simpleHealthBarRoot.SetActive(show);
+        }
+
         private void OnHitPointsChanged(int hitPoints, int maxHp)
         {
-            if (simpleHealthBar is { })
+            if (simpleHealthBar is { } && simpleHealthBarRoot.activeSelf)
                 simpleHealthBar.UpdateBar(hitPoints, maxHp);
         }
 

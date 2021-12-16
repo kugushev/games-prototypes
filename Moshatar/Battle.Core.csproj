@@ -46,8 +46,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\CommonConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Battlefield.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Position.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Parameters\MusouBattleParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\AI\Orders\OrderInteract.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Squad\EnemySquad.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IBattleParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\DeltaTime.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\AI\AgentsManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\AI\Orders\OrderMove.cs" />
@@ -61,6 +63,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Exceptions\PropertyIsNotInitializedException.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\BattleSupervisor.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\AI\ActiveAgent.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Services\BattleGameplayManager.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\AI\IAgent.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleCoreInstaller.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Character.cs" />
@@ -70,14 +73,11 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Enums\ActivityType.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\AttackProcessing.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Exceptions\GameException.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Parameters\TogBattleParameters.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Services\SimpleAIService.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IInteractable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\PlayerFighter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IBattleParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Services\BattleGameplayManager.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Parameters\MusouBattleParameters.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\ValueObjects\Parameters\TogBattleParameters.cs" />
      <None Include="Assets\Kugushev\Scripts\Battle\Core\Battle.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
