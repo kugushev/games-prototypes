@@ -21,11 +21,13 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private readonly AgentsManager _agentsManager;
         private readonly Director _director;
         private readonly BattleGameplayManager _battleGameplayManager;
+        private readonly OrderAttack.Factory _orderAttackFactory;
 
         private readonly ReactiveCollection<EnemyFighter> _units = new ReactiveCollection<EnemyFighter>();
 
         public EnemySquad(PlayerSquad playerSquad, SimpleAIService simpleAIService, Battlefield battlefield,
-            AgentsManager agentsManager, Director director, BattleGameplayManager battleGameplayManager)
+            AgentsManager agentsManager, Director director, BattleGameplayManager battleGameplayManager,
+            OrderAttack.Factory orderAttackFactory)
         {
             _playerSquad = playerSquad;
             _playerSquad.EnemySquad = this;
@@ -35,6 +37,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _agentsManager = agentsManager;
             _director = director;
             _battleGameplayManager = battleGameplayManager;
+            _orderAttackFactory = orderAttackFactory;
 
             _agentsManager.Register(this);
         }
@@ -59,20 +62,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                     continue;
                 }
 
-                // apply orders
-                if (enemyUnit.CurrentOrder is OrderAttack currentOrder)
-                {
-                    var toCurrentTarget = Vector2.Distance(
-                        enemyUnit.Position.Value.Vector,
-                        currentOrder.Target.Position.Value.Vector);
-                    if (toCurrentTarget < enemyUnit.WeaponRange * BattleConstants.AIAggroResetMultiplier)
-                        continue;
-                }
-
-                var opponents = _playerSquad.Units.Where(u => !u.IsDead).Concat<BaseFighter>(_playerSquad.Heroes);
-                var order = _simpleAIService.AttackTheNearest(enemyUnit, opponents);
-                if (order != null)
-                    enemyUnit.CurrentOrder = order;
+                ApplyOrders(enemyUnit);
             }
 
             foreach (var enemyUnit in _unitsToDelete)
@@ -88,10 +78,33 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             }
         }
 
+        private void ApplyOrders(EnemyFighter enemyUnit)
+        {
+            if (enemyUnit.CurrentOrder is OrderAttack currentOrder)
+            {
+                var toCurrentTarget = Vector2.Distance(
+                    enemyUnit.Position.Value.Vector,
+                    currentOrder.Target.Position.Value.Vector);
+                if (toCurrentTarget < enemyUnit.WeaponRange * BattleConstants.AIAggroResetMultiplier)
+                    return;
+            }
+
+            if (enemyUnit.IsHeroHunter)
+            {
+                enemyUnit.CurrentOrder = _orderAttackFactory.Create(_playerSquad.Hero);
+                return;
+            }
+
+            var opponents = _playerSquad.Units.Where(u => !u.IsDead).Concat<BaseFighter>(_playerSquad.Heroes);
+            var order = _simpleAIService.AttackTheNearest(enemyUnit, opponents);
+            if (order != null)
+                enemyUnit.CurrentOrder = order;
+        }
+
         private void Spawn(bool spawnBig)
         {
             var parameters = _battleGameplayManager.Parameters;
-            
+
             Vector2 point;
             if (_battleGameplayManager.SeletedMode == BattleGameplayManager.Mode.Tog)
             {
@@ -109,7 +122,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 ? new Character(parameters.EnemyBigMaxHp, parameters.EnemyBigDamage, parameters.EnemyBigAttackRange)
                 : new Character(parameters.EnemyDefaultMaxHp, parameters.EnemyDefaultDamage);
 
-            var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield, spawnBig);
+            var isHeroHunter = !spawnBig && Random.Range(0f, 1f) < parameters.EnemyHeroHunterSpawnProbability;
+
+            var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield, spawnBig, isHeroHunter);
             _units.Add(enemyUnit);
 
             _battlefield.RegisterUnt(enemyUnit);
@@ -118,16 +133,16 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private Vector2 GetSpawnPoint()
         {
             var spawnIndex = _lastSpawnIndex + 1;
-            if (spawnIndex >= SpawnPoints.Count) 
+            if (spawnIndex >= SpawnPoints.Count)
                 spawnIndex = 0;
-            
+
             var vector = SpawnPoints[spawnIndex];
             var point = new Vector2(vector.x, vector.z);
 
             _lastSpawnIndex = spawnIndex;
             return point;
         }
-        
+
         // private Vector2 GetSpawnPoint()
         // {
         //     int spawnIndex;

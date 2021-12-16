@@ -24,5 +24,6 @@
         int EnemyMinSquadSize { get; }
         int EnemyMaxBigUnits { get; }
         int EnemyMinBigUnits { get; }
+        float EnemyHeroHunterSpawnProbability { get; }
     }
 }

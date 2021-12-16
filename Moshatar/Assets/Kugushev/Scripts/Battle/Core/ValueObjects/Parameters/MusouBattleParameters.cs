@@ -26,5 +26,6 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
         public int EnemyBigMaxHp => 80;
         public float EnemyBigAttackRange => 3f;
         public float EnemySpawnSize => 8f;
+        public float EnemyHeroHunterSpawnProbability => 0.1f;
     }
 }
