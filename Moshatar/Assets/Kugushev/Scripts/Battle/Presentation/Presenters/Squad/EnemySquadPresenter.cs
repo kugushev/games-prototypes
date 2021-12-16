@@ -7,6 +7,7 @@ using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Core.Services;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
+using Kugushev.Scripts.Presentation.PoC.Duel;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -20,6 +21,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
         [Inject] private EnemySquad _enemySquad;
         [Inject] private EnemyUnitPresenter.Factory _enemyUnitFactory;
         [Inject] private BattleGameplayManager _gameplayManager;
+        [Inject] private FireHeart _fireHeart;
 
         private readonly WaitForSeconds _waitForDamage = new WaitForSeconds(0.5f);
 
@@ -47,7 +49,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
                         continue;
 
                     if (unit.Burning)
-                        unit.Suffer(_gameplayManager.Parameters.FireBreathDamage);
+                    {
+                        if (_fireHeart.Breathing) 
+                            unit.Suffer(_gameplayManager.Parameters.FireBreathDamage);
+                        else
+                            unit.Burning = false;
+                    }
                 }
             }
         }

@@ -1893,6 +1893,7 @@ MonoBehaviour:
   - {fileID: 1241168797}
   - {fileID: 101813566}
   unitsLeft: {fileID: 1987419803}
+  defendingPointPrefab: {fileID: 9029025380063480647, guid: cc9d474c37a5460489d047235e16faa1, type: 3}
 --- !u!1 &1083336849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,7 +3198,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1803439438
 MonoBehaviour:

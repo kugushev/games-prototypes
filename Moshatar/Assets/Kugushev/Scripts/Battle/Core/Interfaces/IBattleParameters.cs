@@ -1,4 +1,7 @@
-﻿namespace Kugushev.Scripts.Battle.Core.Interfaces
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+namespace Kugushev.Scripts.Battle.Core.Interfaces
 {
     public interface IBattleParameters
     {
@@ -13,6 +16,8 @@
         int PlayerSquadSize { get; }
         int TeammateDefaultDamage { get; }
         int TeammateDefaultMaxHp { get; }
+        int DefendingPointHealth { get; }
+        IReadOnlyList<Vector2> DefendingPoints { get; }
 
         int EnemyDefaultDamage { get; }
         int EnemyDefaultMaxHp { get; }
@@ -25,5 +30,6 @@
         int EnemyMaxBigUnits { get; }
         int EnemyMinBigUnits { get; }
         float EnemyHeroHunterSpawnProbability { get; }
+        float EnemyConquerorSpawnProbability { get; }
     }
 }

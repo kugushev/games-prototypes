@@ -4,6 +4,7 @@ using Kugushev.Scripts.Battle.Core.Models.Fighters;
 using Kugushev.Scripts.Battle.Core.Models.Squad;
 using Kugushev.Scripts.Battle.Presentation.Presenters.Units;
 using Kugushev.Scripts.Common.Utils;
+using Kugushev.Scripts.Core.Services;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -15,10 +16,12 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
     {
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private TextMeshProUGUI unitsLeft;
+        [SerializeField] private DefendingPointPresenter defendingPointPrefab;
 
         [Inject] private readonly HeroUnit _heroUnit;
         [Inject] private readonly PlayerSquad _playerSquad;
         [Inject] private readonly PlayerUnitPresenter.Factory _playerUnitFactory;
+        [Inject] private readonly GameModeService _gameModeService;
 
         private void Start()
         {
@@ -32,6 +35,18 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Squad
             _playerSquad.Units.ObserveAdd().Subscribe(e => CreateUnit(e.Value)).AddTo(this);
 
             _heroUnit.Init(_playerSquad.Hero);
+
+            foreach (var defendingPoint in _playerSquad.DefendingPoints)
+            {
+                var presenter = Instantiate(defendingPointPrefab,
+                    defendingPoint.Position.Value.To3D(),
+                    Quaternion.identity,
+                    transform);
+
+                presenter.Init(defendingPoint);
+            }
+
+            _playerSquad.GameOver += () => _gameModeService.BackToMenu();
         }
 
         private void CreateUnit(PlayerFighter playerFighter)

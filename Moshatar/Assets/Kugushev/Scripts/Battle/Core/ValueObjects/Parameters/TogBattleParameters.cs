@@ -1,4 +1,6 @@
-﻿using Kugushev.Scripts.Battle.Core.Interfaces;
+﻿using System.Collections.Generic;
+using Kugushev.Scripts.Battle.Core.Interfaces;
+using UnityEngine;
 
 namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
 {
@@ -16,7 +18,14 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
         public int PlayerSquadSize => 10;
         public int TeammateDefaultDamage => 3;
         public int TeammateDefaultMaxHp => 40;
+        public int DefendingPointHealth => 80;
 
+        public IReadOnlyList<Vector2> DefendingPoints { get; } = new[]
+        {
+            new Vector2(-9, 10),
+            new Vector2(0, 10),
+            new Vector2(9, 10),
+        };
 
         public int EnemyMaxSquadSize => 16;
         public int EnemyMinSquadSize => 10;
@@ -28,6 +37,7 @@ namespace Kugushev.Scripts.Battle.Core.ValueObjects.Parameters
         public int EnemyBigMaxHp => 60;
         public float EnemyBigAttackRange => 3f;
         public float EnemySpawnSize => 8f;
-        public float EnemyHeroHunterSpawnProbability => 0.1f;
+        public float EnemyHeroHunterSpawnProbability => 0.15f;
+        public float EnemyConquerorSpawnProbability => 0.1f;
     }
 }

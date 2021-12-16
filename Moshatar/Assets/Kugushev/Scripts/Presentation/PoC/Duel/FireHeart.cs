@@ -18,7 +18,7 @@ namespace Kugushev.Scripts.Presentation.PoC.Duel
 
         [Inject] private HeroHeadController _heroHeadController;
 
-        public ReactiveProperty<int> BurningRate { get; } = new ReactiveProperty<int>(0);
+        public ReactiveProperty<int> BurningRate { get; } = new ReactiveProperty<int>(1000);
         public bool Breathing { get; set; }
 
         private void Awake()

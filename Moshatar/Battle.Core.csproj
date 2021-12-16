@@ -78,6 +78,7 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\BattleConstants.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Interfaces\IInteractable.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\PlayerFighter.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Core\Models\Fighters\DefendingPoint.cs" />
      <None Include="Assets\Kugushev\Scripts\Battle\Core\Battle.Core.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

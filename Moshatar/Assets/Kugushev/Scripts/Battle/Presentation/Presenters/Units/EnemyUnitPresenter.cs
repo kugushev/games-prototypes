@@ -88,7 +88,7 @@ namespace Kugushev.Scripts.Battle.Presentation.Presenters.Units
                 return;
 
             if (other.CompareTag("Dot"))
-                Model.Burning = true;
+                Model.Burning = false;
         }
 
         protected override void OnActivityChanged(ActivityType newActivityType)

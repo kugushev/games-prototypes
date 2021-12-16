@@ -52,10 +52,10 @@
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\EnemyWeapon.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\EnemyUnitPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\PlayerUnitPresenter.cs" />
-     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\BaseUnitPresenterOld.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\RetreatZonePresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Squad\EnemySquadPresenter.cs" />
      <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\BattleSetup.cs" />
+     <Compile Include="Assets\Kugushev\Scripts\Battle\Presentation\Presenters\Units\DefendingPointPresenter.cs" />
      <None Include="Assets\Kugushev\Scripts\Battle\Presentation\Battle.Presentation.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -710,6 +710,10 @@
     <ProjectReference Include="Core.csproj">
       <Project>{b5f7d4f2-6e92-a85b-f5c2-2a6621ece731}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Presentation.csproj">
+      <Project>{1d24352e-9c81-43f0-a560-589cc286d2ab}</Project>
+      <Name>Presentation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

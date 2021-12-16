@@ -95,13 +95,27 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 return;
             }
 
-            var opponents = _playerSquad.Units.Where(u => !u.IsDead).Concat<BaseFighter>(_playerSquad.Heroes);
+            if (enemyUnit.IsConqueror)
+            {
+                var point = _playerSquad.DefendingPoints.FirstOrDefault(p => !p.IsDead);
+                if (point is { })
+                {
+                    enemyUnit.CurrentOrder = _orderAttackFactory.Create(point);
+                    return;
+                }
+            }
+
+            // todo: this might be slow operation, let's measure impact
+            var opponents = _playerSquad.Units.Where(u => !u.IsDead)
+                .Concat<BaseFighter>(_playerSquad.Heroes)
+                .Concat(_playerSquad.DefendingPoints.Where(u => !u.IsDead));
+
             var order = _simpleAIService.AttackTheNearest(enemyUnit, opponents);
             if (order != null)
                 enemyUnit.CurrentOrder = order;
         }
 
-        private void Spawn(bool spawnBig)
+        private void Spawn(bool isBig)
         {
             var parameters = _battleGameplayManager.Parameters;
 
@@ -118,13 +132,18 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                     Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize),
                     Random.Range(-parameters.EnemySpawnSize, parameters.EnemySpawnSize));
 
-            var character = spawnBig
+            var character = isBig
                 ? new Character(parameters.EnemyBigMaxHp, parameters.EnemyBigDamage, parameters.EnemyBigAttackRange)
                 : new Character(parameters.EnemyDefaultMaxHp, parameters.EnemyDefaultDamage);
 
-            var isHeroHunter = !spawnBig && Random.Range(0f, 1f) < parameters.EnemyHeroHunterSpawnProbability;
+            var isHeroHunter = !isBig && Random.Range(0f, 1f) < parameters.EnemyHeroHunterSpawnProbability;
+            var isConqueror = !isBig && !isHeroHunter &&
+                              Random.Range(0f, 1f) < parameters.EnemyConquerorSpawnProbability;
 
-            var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield, spawnBig, isHeroHunter);
+            var enemyUnit = new EnemyFighter(new Position(point), character, _battlefield,
+                isBig,
+                isHeroHunter,
+                isConqueror);
             _units.Add(enemyUnit);
 
             _battlefield.RegisterUnt(enemyUnit);

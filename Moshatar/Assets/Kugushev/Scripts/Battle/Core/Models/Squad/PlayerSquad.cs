@@ -25,7 +25,8 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
         private readonly SimpleAIService _simpleAIService;
         private readonly BattleGameplayManager _battleGameplayManager;
         private readonly ReactiveProperty<int> _availableUnits = new ReactiveProperty<int>(100);
-
+        private readonly List<PlayerFighter> _unitsToDelete = new List<PlayerFighter>(32);
+        private readonly List<DefendingPoint> _defendingPoints;
         private readonly ReactiveCollection<PlayerFighter> _units = new ReactiveCollection<PlayerFighter>();
 
         public PlayerSquad(
@@ -47,6 +48,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             Hero = new HeroFighter(new Position(Vector2.zero), battlefield, _battleGameplayManager);
             Heroes = new[] { Hero };
+            _defendingPoints = _battleGameplayManager.Parameters.DefendingPoints
+                .Select(CreateDefendingPoint)
+                .ToList();
         }
 
         public IReadOnlyReactiveCollection<PlayerFighter> Units => _units;
@@ -55,14 +59,16 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
         public IEnumerable<HeroFighter> Heroes { get; }
 
+        public IReadOnlyList<DefendingPoint> DefendingPoints => _defendingPoints;
+
         public IReadOnlyReactiveProperty<int> AvailableUnits => _availableUnits;
 
         public IReadOnlyList<Vector3> SpawnPoints { get; set; }
         private int _lastSpawnIndex = 0;
 
-        IEnumerable<IAgent> IAgentsOwner.Agents => _units;
+        public event Action GameOver;
 
-        private readonly List<PlayerFighter> _unitsToDelete = new List<PlayerFighter>(32);
+        IEnumerable<IAgent> IAgentsOwner.Agents => _units;
 
         void ITickable.Tick()
         {
@@ -96,6 +102,9 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
 
             if (_units.Count < _battleGameplayManager.Parameters.PlayerSquadSize)
                 Spawn();
+
+            if (DefendingPoints.All(d => d.IsDead)) 
+                GameOver?.Invoke();
         }
 
         private void Spawn()
@@ -104,7 +113,7 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
                 return;
 
             var parameters = _battleGameplayManager.Parameters;
-            
+
             Vector2 point;
             if (_battleGameplayManager.SeletedMode == BattleGameplayManager.Mode.Tog)
             {
@@ -142,6 +151,11 @@ namespace Kugushev.Scripts.Battle.Core.Models.Squad
             _lastSpawnIndex = spawnIndex;
             return point;
         }
+
+        private DefendingPoint CreateDefendingPoint(Vector2 v) => new DefendingPoint(
+            new Position(v),
+            _battleGameplayManager.Parameters.DefendingPointHealth,
+            _battlefield);
 
         void IDisposable.Dispose()
         {
